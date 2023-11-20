@@ -16,37 +16,44 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 
 @Controller
-@RequestMapping("/login/")
+@RequestMapping("/member/*")
 public class MemberController {
 	
-	private MemberService memberService;
+private MemberService memberService;
 
-	@Autowired
-	public MemberController(MemberService memberService){
-		this.memberService = memberService;
-	}
 
-	@GetMapping("/login")
-	public String loginPageMove(){
+
+@Autowired
+public MemberController(MemberService memberService){
+	this.memberService = memberService;
+}
+
+/*
+작성일:20231117
+작성자:강정수
+작성 기능: 로그인 및 로그아웃
+ */
+@GetMapping("/login")
+public String loginPageMove(){
+	return "/member/login";
+}
+
+@PostMapping("/login")
+public String loginCheck(MemberDto memberDto) throws Exception {
+	//1. 아이디 체크
+	if(memberService.login(memberDto.getId(), memberDto.getPwd())) {
+		return "/home";
+	}else {
 		return "/member/login";
 	}
 
-	@PostMapping("/login")
-	public String loginCheck(MemberDto memberDto) throws Exception {
-		//1. 아이디 체크
-		if(memberService.loginCheck(memberDto.getId(), memberDto.getPwd())) {
-			return "redirect:/";
-		}else {
-			return "redirect:/member/login";
-		}
-
-	}
+}
 
 
 /*
 작성일:20231117
 작성자:강정수
-작성 기능: 회원 관리
+작성 기능: 회원 가입 및 관리
  */
 
 @GetMapping("/signup")
@@ -56,12 +63,26 @@ public String signupPageMove() {
 
 }
 
+
+//회원가입
 @PostMapping("/signup")
 public String signup(MemberDto memberDto) throws Exception {
 
 	System.out.println("memberDto!!!!"+memberDto);
 	memberService.signUp(memberDto);
-	return "redirect:/member/login";
+	return "/member/login";
+}
+
+public String memberInfoEdit(MemberDto memberDto) throws Exception{
+	System.out.println("memberInfoEdit===" + memberDto);
+	memberService.memberInfoEdit(memberDto);
+	return null;
+}
+
+public String memberDelete(MemberDto memberDto) throws Exception{
+	System.out.println("memberDelete===" + memberDto);
+	memberService.memberDelete(memberDto.getId());
+	return null;
 }
 
 
