@@ -19,11 +19,12 @@ public class MemberServiceImpl implements MemberService {
 	MemberDao memberDao;
 	
 	@Override
-	public boolean loginCheck(String id, String pwd) throws Exception {
+	public boolean login(String id, String pwd) throws Exception {
 		MemberDto memberDto = null;
 		
 		try {
 			memberDto = memberDao.selectUser(id);
+			System.out.println(memberDto);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -40,4 +41,14 @@ public class MemberServiceImpl implements MemberService {
 	public int signUp(MemberDto memberDto) throws Exception {
 		return memberDao.insertUser(memberDto);
 	}
-}
+
+	@Override
+	public int memberInfoEdit(MemberDto memberDto) throws Exception {
+		return memberDao.updateUser(memberDto);
+	}
+
+		@Override
+		public int memberDelete(String id) throws Exception {
+			return memberDao.deleteUser(id);
+		}
+	}

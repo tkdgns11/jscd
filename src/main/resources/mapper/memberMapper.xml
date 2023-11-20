@@ -26,35 +26,21 @@
 	<update id="update" parameterType="memberDto">
 	    UPDATE MEMBER
 	    	SET
-				mebrNo = #{mebrNo}, 
-				id = #{id}, 
-				name = #{name}, 
-				alias = #{alias}, 
-				birth = #{birth}, 
-				pwd = #{pwd}, 
-				phone1 = #{phone1}, 
-				phone2 = #{phone2}, 
-				phone3 = #{phone3}, 
-    			acct = #{acct}, 
-    			status = #{status}, 
-    			grade = #{grade}, 
-    			regDate = #{regDate}, 
-    			frsidNmbr = #{frsidNmbr}, 
-    			modifyDate = #{modifyDate}, 
-    			lstidNmbr = #{lstidNmbr}, 
+				alias = #{alias},
     			etc = #{etc}
 	    WHERE id = #{id}
 	</update>
     
-    <delete id="deleteAll">
-        DELETE FROM MEMBER
-    </delete>
+
     
     <delete id="delete">
         DELETE FROM MEMBER
         WHERE
         id = #{id}
     </delete>
-    
+
+	<delete id="deleteAll">
+		DELETE FROM MEMBER
+	</delete>
     
 </mapper>
