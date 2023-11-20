@@ -10,6 +10,6 @@
 		<typeAlias alias="StdManageDto" type="com.jscd.app.admin.dto.StdManageDto"/>
 		<typeAlias alias="StdMemberManageDto" type="com.jscd.app.admin.dto.StdMemberManageDto"/>
 		<typeAlias alias="bootCampDto" type="com.jscd.app.lecture.bootCamp.dto.BootCampDto"/>
-		<typeAlias alias="SeminarRegistDto" type="com.jscd.app.lecture.seminar.domain.SeminarRegistDto"/>
+		<typeAlias alias="SeminarRegistDto" type="com.jscd.app.lecture.seminar.dto.SeminarRegistDto"/>
 	</typeAliases>
 </configuration>
