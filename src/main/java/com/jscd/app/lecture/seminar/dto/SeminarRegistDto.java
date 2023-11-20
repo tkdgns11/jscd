@@ -1,4 +1,4 @@
-package com.jscd.app.lecture.seminar.domain;
+package com.jscd.app.lecture.seminar.dto;
 
 import java.util.Date;
 import java.util.Objects;

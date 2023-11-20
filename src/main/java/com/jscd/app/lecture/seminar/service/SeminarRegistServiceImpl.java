@@ -1,7 +1,7 @@
 package com.jscd.app.lecture.seminar.service;
 
 import com.jscd.app.lecture.seminar.dao.SeminarRegistDao;
-import com.jscd.app.lecture.seminar.domain.SeminarRegistDto;
+import com.jscd.app.lecture.seminar.dto.SeminarRegistDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

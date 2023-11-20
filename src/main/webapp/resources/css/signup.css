@@ -12,7 +12,7 @@ input {
 /* 포커스 시 기본 아웃라인 제거 */
 input:focus {outline: none;}
 input[type="text"],input[type="password"]{border: none;width: 300px;height: 50px;}
-#wrap{margin: 0 auto; width: 960px;margin-top: 50px; margin-bottom: 50px;}
+#wrap{margin: 0 auto; width:960px;margin-top: 50px; margin-bottom: 50px;}
 #wrap img{width: 50px; height: 50px;}
 #wrap > div{border: 1px solid rgb(128, 128, 128); width: 60%; margin: 0 auto; border-radius: 15px;}
 #wrap > div > div{display: flex; position: relative;}

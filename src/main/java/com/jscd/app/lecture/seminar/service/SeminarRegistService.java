@@ -1,6 +1,6 @@
 package com.jscd.app.lecture.seminar.service;
 
-import com.jscd.app.lecture.seminar.domain.SeminarRegistDto;
+import com.jscd.app.lecture.seminar.dto.SeminarRegistDto;
 
 import java.util.List;
 import java.util.Map;

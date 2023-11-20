@@ -1,7 +1,7 @@
 package com.jscd.app.lecture.seminar.controller;
 
-import com.jscd.app.lecture.seminar.domain.SeminarRegistDto;
-import com.jscd.app.lecture.seminar.domain.SeminarRegistHandler;
+import com.jscd.app.lecture.seminar.dto.SeminarRegistDto;
+import com.jscd.app.lecture.seminar.dto.SeminarRegistHandler;
 import com.jscd.app.lecture.seminar.service.SeminarRegistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

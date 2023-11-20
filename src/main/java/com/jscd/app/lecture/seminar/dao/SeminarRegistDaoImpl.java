@@ -1,6 +1,6 @@
 package com.jscd.app.lecture.seminar.dao;
 
-import com.jscd.app.lecture.seminar.domain.SeminarRegistDto;
+import com.jscd.app.lecture.seminar.dto.SeminarRegistDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

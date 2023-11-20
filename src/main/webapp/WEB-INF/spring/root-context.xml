@@ -24,7 +24,7 @@
 		<property name="mapperLocations" value="classpath:mapper/**/*Mapper.xml"/>
 	</bean>
 
-	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessio[[[	[nTemplate">
 		<constructor-arg ref="sqlSessionFactory"/>
 	</bean>
 	

@@ -1,4 +1,4 @@
-package com.jscd.app.lecture.seminar.domain;
+package com.jscd.app.lecture.seminar.dto;
 
 public class SeminarRegistHandler {
     private int totalCnt; // 총 게시물 개수
