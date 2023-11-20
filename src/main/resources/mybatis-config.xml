@@ -5,5 +5,9 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="MemberDto" type="com.jscd.app.member.dto.MemberDto"/>
+		<typeAlias alias="InstructorInfoDto" type="com.jscd.app.admin.dto.InstructorInfoDto"/>
+		<typeAlias alias="InstructorMemberInfoDto" type="com.jscd.app.admin.dto.InstructorMemberInfoDto"/>
+		<typeAlias alias="StdManageDto" type="com.jscd.app.admin.dto.StdManageDto"/>
+		<typeAlias alias="StdMemberManageDto" type="com.jscd.app.admin.dto.StdMemberManageDto"/>
 	</typeAliases>
 </configuration>

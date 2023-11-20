@@ -64,7 +64,7 @@ public class MemberServiceImplTest {
     public void memberDelete() throws Exception {
 
         MemberDto user = new MemberDto("DeleteTest", "DeleteTest01", "aaa", "930203", "1234","010","2222","3333","환불계좌번호",0,0,new Date(cal.getTimeInMillis()),"0000",new Date(),"0000","etc");
-        assertTrue(memberService.signUp(user)==1);
+        Assert.assertTrue(memberService.signUp(user)==1);
         memberService.memberDelete(user.getId());
 
     }
