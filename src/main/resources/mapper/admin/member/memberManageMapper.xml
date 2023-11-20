@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--관리자 회원관리  _여기서, id는 관리자 id임-->
+<mapper namespace="com.jscd.app.mapper.memberManageMapper">
+
+	<select id="count" resultType="int">
+		select count(*) from Member
+	</select>
+
+	<!--    selectAll-->
+	<select id="selectAll" resultType="MemberDto">
+		select mebrNo, id, name, alias, status, grade, regDate
+		from member
+	</select>
+
+	<!--select_ 이름 클릭 시, 상세 정보-->
+	<select id="select" parameterType="Integer" resultType="MemberDto">
+		select mebrNo, id, name, alias, birth,phone1,phone2,phone3,
+			   acct, status, grade,regDate,etc
+		from member
+		where mebrNo = #{mebrNo}
+	</select>
+
+	<!--    update _ 등급 변경(메인화면에서 가능)-->
+	<update id="update" parameterType="MemberDto">
+		update member
+		set grade = #{grade}
+		  ,modifyDate = now()
+		where mebrNo = #{mebrNo}
+	</update>
+
+
+
+	<!-- update _ 상세정보로 들어갔을 때  _어떤 정보를 변경시킬 수 있는지 정하고 짜기(일단은, 상태/비고 )-->
+	<update id="updateDetail" parameterType="MemberDto">
+		update member
+		set status = #{status}
+		  ,etc = #{etc}
+		  ,modifyDate = now()
+		where mebrNo = #{mebrNo}
+	</update>
+
+<!--	굳이 안 나눠도 되나..-->
+
+	<delete id="delete" parameterType="Integer">
+		delete from member
+		where mebrNo = #{mebrNo}
+	</delete>
+
+	<delete id="deleteAll">
+		delete from member
+	</delete>
+
+
+</mapper>
