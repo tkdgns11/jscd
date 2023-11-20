@@ -1,0 +1,38 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jscd.app.lecture.bootCamp.bootCampMapper">
+
+    <select id="count" resultType="int">
+        SELECT count(*) FROM classEnroll
+    </select>
+
+    <select id="select" resultType="bootCampDto">
+        SELECT
+            clasEnrollNo, codeNum, title, name, startDate, endDate, startTime, endTime, price, status, onOff, description, location, minNum, maxNum, book, material, writer, regDate, etc
+        FROM classEnroll
+        WHERE classEnrollNo = #{classEnrollNo}
+    </select>
+
+    <insert id="insert" parameterType="bootCampDto">
+        INSERT INTO classEnroll
+            (codeNum, title, name, startDate, endDate, startTime, endTime, price, status, onOff, description, location, minNum, maxNum, book, material, writer, regDate, modifyDate, etc)
+        VALUES
+            (#{codeNum}, #{title}, #{name}, #{startDate}, #{endDate}, #{startTime}, #{endTime}, #{price}, #{status}, #{onOff}, #{description}, #{location},  #{minNum}, #{maxNum}, #{book}, #{material}, #{writer}, #{regDate}, #{modifyDate}, #{etc})
+    </insert>
+
+    <update id="update" parameterType="bootCampDto">
+        UPDATE classEnroll
+            SET codeNum = #{codeNum}, title = #{title}, name=#{name}, startDate=#{startDate}, endDate=#{endDate}, startTime=#{startTime}, endTime=#{endTime}, price=#{price}, status=#{status}, onOff=#{onOff}, description=#{description}, location=#{location}, minNum=#{minNum}, maxNum=#{maxNum}, book=#{book}, material=#{material}, writer=#{writer}, regDate=#{regDate}, modifyDate=#{modifyDate}, etc=#{etc}
+        WHERE classEnrollNo = #{classEnrollNo} and writer = #{writer}
+    </update>
+
+    <delete id="deleteAll">
+        DELETE FROM classEnroll
+    </delete>
+
+    <delete id="delete">
+        DELETE FROM classEnroll
+        WHERE classEnrollNo = #{classEnrollNo}
+    </delete>
+</mapper>
