@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jscd.app.lecture.seminar.SeminarRegistMapper">
+    <!--    전체 게시물 개수-->
+    <select id="count" resultType="int">
+        select count(*) from classEnroll
+    </select>
+
+    <!--    전체 게시물 삭제-->
+    <delete id="deleteAll">
+        delete from classEnroll
+    </delete>
+
+    <!--    게시물 삭제하기-->
+    <delete id="delete" parameterType="map">
+        delete from classEnroll
+        where classEnrollNo = #{classEnrollNo} and writer = #{writer}
+    </delete>
+
+    <!--    게시물 삭제하기(최고 관리자 전용)-->
+    <delete id="deleteForAdmin" parameterType="map">
+        delete from classEnroll
+        where classEnrollNo = #{classEnrollNo}
+    </delete>
+
+    <!--    게시물 추가하기-->
+    <insert id="insert" parameterType="SeminarRegistDto">
+        insert into classEnroll (codeNum, title, name, startDate, endDate,
+                                 startTime, endTime, price, status, onOff,
+                                 description, location, minNum, maxNum, book,
+                                 material, writer, regDate, modifyDate, etc )
+        values (#{codeNum}, #{title}, #{name}, #{startDate}, #{endDate},
+                #{startTime}, #{endTime}, #{price}, #{status}, #{onOff},
+                #{description}, #{location}, #{minNum}, #{maxNum}, #{book},
+                #{material}, #{writer}, now(), now(), #{etc})
+    </insert>
+
+    <!--    재사용 sql문-->
+    <sql id="selectFromClassEnroll">
+        select classEnrollNo, codeNum, title, name, startDate, endDate,
+               startTime, endTime, price, status, onOff,
+               description, location, minNum, maxNum, book,
+               material, writer, regDate, etc, viewCnt
+        from classEnroll
+    </sql>
+
+    <!--    모든 게시물 불러오기 / (작성일 내림차순), (게시물 번호 내림차순)-->
+    <select id="selectAll" resultType="SeminarRegistDto">
+        <include refid="selectFromClassEnroll"/>
+        order by regdate desc, classEnrollNo desc
+    </select>
+
+    <!--    게시물 읽기-->
+    <select id="select" parameterType="int" resultType="SeminarRegistDto">
+        <include refid="selectFromClassEnroll"/>
+        where classEnrollNo = #{classEnrollNo}
+    </select>
+
+    <!--    현재 페이지 기준 게시물 10개씩 화면에 출력-->
+    <select id="selectPage" parameterType="map" resultType="SeminarRegistDto">
+        <include refid="selectFromClassEnroll"/>
+        order by regdate desc, classEnrollNo desc
+        limit #{offset}, #{pageSize}
+    </select>
+
+    <!--    게시물 수정하기-->
+    <update id="update" parameterType="SeminarRegistDto">
+        update classEnroll
+        set codeNum = #{codeNum}, title = #{title}, name= #{name}, startDate = #{startDate}, endDate = #{endDate},
+            startTime = #{startTime}, endTime= #{endTime}, price = #{price}, status = #{status}, onOff = #{onOff},
+            description = #{description}, location = #{location}, minNum = #{minNum}, maxNum = #{maxNum}, book = #{book},
+            etc = #{etc}, modifyDate = now()
+        where classEnrollNo = #{classEnrollNo} and writer = #{writer}
+    </update>
+
+    <!--    게시물 조회수 올리기-->
+    <update id="increaseViewCnt" parameterType="int">
+        update classEnroll
+        set viewCnt = viewCnt + 1
+        where classEnrollNo = #{classEnrollNo}
+    </update>
+</mapper>
