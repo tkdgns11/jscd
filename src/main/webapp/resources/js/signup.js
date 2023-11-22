@@ -9,6 +9,7 @@ window.onload = function (){
     작성일: 2023.11.19
     작성기능: 회원가입 자바스크립트 구현
  */
+
 function signup(){
     console.log("signjs도착");
     const name = document.getElementById("name");
@@ -36,7 +37,9 @@ function signup(){
             console.log("error");
         },
         success : function (data){
-            console.log("success");
+            if(data.redirect){
+                window.location.href = data.redirect;
+            }
         }
     });
 
@@ -113,17 +116,7 @@ function  phoneValid(phone1, phone2, phone3){
     /*핸드폰번호
     1.핸드폰 번호 제대로 작성 했는지
     */
-    for(var i=1; i<=3; i++) {
-        var phoneNum = "phone" + i;
-        console.log(phoneNum);
-        if (phoneNum == "") {
-            alert("휴대전화 번호를 확인해주세요.");
-            phone1.focus();
-            phone2.focus();
-            phone3.focus();
-        }
-    }
-    /*
+
     if(phone1.value()==""){
         alert("핸드폰 번호를 확인해주세요.")
         phone1.focus();
@@ -139,5 +132,28 @@ function  phoneValid(phone1, phone2, phone3){
         phone1.focus();
         return false;
     }
-     */
+
 }
+
+/*
+    작성자: 강정수
+    작성일: 2023.11.19
+    작성기능: 회원가입 이메일 인증 api 구현
+ */
+
+$('#emailChkBtn').click(function (){
+    const email = $('#id').val(); //이메일 주소값 가져오기
+    console.log(email);
+    const checkInput = $('#emailChkInput') //인증 번호 입력하는 곳
+
+    $.ajax({
+        type:'get',
+        url : '/member/mailChk?email='+email, // get방식이라서 url 뒤에 email을 줄 수 있다.
+        success: function (data){
+            console.log(data);
+            checkInput.attr('disabled',false);
+            code=data;
+            alert("인증번호가 전송됐습니다.");
+        }
+    });
+});
