@@ -32,15 +32,6 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	MemberDao memberDao;
 
-	@Value("${kakao.client.id}")
-	private String KAKAO_CLIENT_ID;
-
-	@Value("${kakao.client.secret}")
-	private String KAKAO_CLIENT_SECRET;
-
-	@Value("${kakao.redirect.url}")
-	private String KAKAO_REDIRECT_URL;
-
 	private final static String KAKAO_AUTH_URI = "https://kauth.kakao.com";
 	private final static String KAKAO_API_URI = "https://kapi.kakao.com";
 
