@@ -6,9 +6,20 @@
 <head>
 	<meta charset="utf-8">
 	<title>Home</title>
+	<link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
+	<link rel="stylesheet" type="text/css" href="<c:url value="/css/home.css"/>">
 </head>
-<jsp:include page="header.jsp"></jsp:include>
 <body>
-<h1>홈 입니다.</h1>
+<div id="content">
+	<header>
+		<jsp:include page="header.jsp"/>
+	</header>
+	<main style="background-color: pink; height: 900px" >
+		<h1>홈입니다.</h1>
+	</main>
+	<footer>
+		<jsp:include page="footer.jsp"/>
+	</footer>
+</div>
 </body>
 </html>

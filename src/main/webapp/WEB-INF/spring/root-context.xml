@@ -8,14 +8,15 @@
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
+	<context:property-placeholder location="/config/config.properties" />
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<!--property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property-->
 		<!--property name="url" value="jdbc:log4jdbc:mysql://localhost:3306/springbasic?useUnicode=true&amp;characterEncoding=utf8"></property-->
-		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://localhost:3306/jungsukCoding?useUnicode=true&amp;characterEncoding=utf8"></property>
-		<property name="username" value="root"></property>
-		<property name="password" value="12341234"></property>
+		<property name="driverClassName" value="${spring.datasource.driverClassname}"></property>
+		<property name="url" value="${spring.datasource.url}"></property>
+		<property name="username" value="${spring.datasource.username}"></property>
+		<property name="password" value="${spring.datasource.password}"></property>
 	</bean>
 	
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -31,7 +32,7 @@
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
-	
+
 	
 	<!-- 컴포넌트 스캔을 통한 컨트롤러 클래스 스캔 -->
 	<context:component-scan base-package="com.jscd.app"/>

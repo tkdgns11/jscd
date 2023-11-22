@@ -9,6 +9,7 @@ public class MemberDto {
 	private String alias;
 	private String birth;
 	private String pwd;
+	private String gender;
 	private String phone1;
 	private String phone2;
 	private String phone3;
@@ -25,12 +26,13 @@ public class MemberDto {
 	//                acct, status, grade, regDate, frsidNmbr, modifyDate, lstidNmbr, etc)
 	public MemberDto(){}
 
-	public MemberDto(String id, String name, String alias, String birth, String pwd, String phone1, String phone2, String phone3, String acct, int status, int grade, Date regDate, String frsidNmbr, Date modifyDate, String lstidNmbr, String etc) {
+	public MemberDto(String id, String name, String alias, String birth, String pwd, String gender, String phone1, String phone2, String phone3, String acct, int status, int grade, Date regDate, String frsidNmbr, Date modifyDate, String lstidNmbr, String etc) {
 		this.id = id;
 		this.name = name;
 		this.alias = alias;
 		this.birth = birth;
 		this.pwd = pwd;
+		this.gender = gender;
 		this.phone1 = phone1;
 		this.phone2 = phone2;
 		this.phone3 = phone3;
@@ -47,7 +49,7 @@ public class MemberDto {
 	@Override
 	public String toString() {
 		return "memberDto [meberNo=" + meberNo + ", id=" + id + ", name=" + name + ", alias=" + alias + ", birth="
-				+ birth + ", pwd=" + pwd + ", phone1=" + phone1 + ", phone2=" + phone2 + ", phone3=" + phone3
+				+ birth + ", pwd=" + pwd + ", gender=" + gender+ ", phone1=" + phone1 + ", phone2=" + phone2 + ", phone3=" + phone3
 				+ ", acct=" + acct + ", status=" + status + ", grade=" + grade + ", regDate=" + regDate + ", frsidNmbr="
 				+ frsidNmbr + ", modifyDate=" + modifyDate + ", lstidNmbr=" + lstidNmbr + ", etc=" + etc + "]";
 	}
@@ -58,7 +60,7 @@ public class MemberDto {
 		this.name = name;
 		this.pwd = pwd;
 	}
-	public MemberDto(int meberNo, String id, String name, String alias, String birth, String pwd, String phone1,
+	public MemberDto(int meberNo, String id, String name, String alias, String birth, String pwd, String gender, String phone1,
 					 String phone2, String phone3, String acct, int status, int grade, Date regDate, String frsidNmbr,
 					 Date modifyDate, String lstidNmbr, String etc) {
 		super();
@@ -68,6 +70,7 @@ public class MemberDto {
 		this.alias = alias;
 		this.birth = birth;
 		this.pwd = pwd;
+		this.gender = gender;
 		this.phone1 = phone1;
 		this.phone2 = phone2;
 		this.phone3 = phone3;
@@ -120,6 +123,15 @@ public class MemberDto {
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
 	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
 	public String getPhone1() {
 		return phone1;
 	}

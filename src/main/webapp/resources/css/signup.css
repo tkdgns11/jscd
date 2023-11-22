@@ -19,6 +19,7 @@ input[type="text"],input[type="password"]{border: none;width: 300px;height: 50px
 #wrap > div > div img{margin: 0px 50px 0px 50px}
 #wrap > div > div {border-bottom: 1px solid rgb(128, 128, 128);}
 #signupHeader{display: flex; flex-direction: row; justify-content: center;}
+
 #signupHeader h1{line-height: 50px; font-size: 50px; margin-left: 30px;}
 #idChkBtn, #emailChkBtn{border:none; width: 130px;}
 #idChkBtn{border-radius: 0px 15px 0px 0px;}
@@ -36,7 +37,6 @@ input[type="text"],input[type="password"]{border: none;width: 300px;height: 50px
 #male:checked + span {width: 150px;height: 30px;border-radius: 9px 0px 0px 9px;background-color: #2196F3;color: #fff;}
 #female:checked + span {width: 150px;height: 30px;border-radius: 0px 9px 9px 0px;background-color: #2196F3;color: #fff;}
 .radio-label span{cursor: pointer;background-color: #fff;display: inline-block;width: 150px;height: 30px;text-align: center;line-height: 30px;border-radius: 10px;}
-.radio-label{border-radius: 1px;}
-#radioBtn{border: 1px solid rgb(128, 128, 128); border-radius: 10px;}
+#radioBtn{border: 1px solid rgb(128, 128, 128); border-radius: 10px; display:flex; flex-direction: row;}
 
-#signupBtn{width: 150px;height: 50px; font-size: 30px;text-align: center; line-height: 50px; background-color: #18214F; color: #fff;}
+#signupBtn{width: 150px;height: 50px; font-size: 30px;text-align: center; line-height: 50px; background-color: #18214F; color: #fff; cursor: pointer;}

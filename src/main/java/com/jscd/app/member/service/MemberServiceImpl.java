@@ -1,22 +1,40 @@
 package com.jscd.app.member.service;
 
 import javax.servlet.http.HttpSession;
+import javax.swing.text.html.parser.Parser;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.type.TypeReference;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.jscd.app.member.dao.MemberDao;
 import com.jscd.app.member.dto.MemberDto;
-	/*
-	작성일:20231117
-	작성자:강정수
-	작성 기능: 회원 관리
-	 */
+
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.HashMap;
+
+
+/*
+작성일:20231117
+작성자:강정수
+작성 기능: 회원 관리
+ */
 @Service
 public class MemberServiceImpl implements MemberService {
 	
 	@Autowired
 	MemberDao memberDao;
+
+	private final static String KAKAO_AUTH_URI = "https://kauth.kakao.com";
+	private final static String KAKAO_API_URI = "https://kapi.kakao.com";
+
 	
 	@Override
 	public boolean login(String id, String pwd) throws Exception {
@@ -51,4 +69,6 @@ public class MemberServiceImpl implements MemberService {
 		public int memberDelete(String id) throws Exception {
 			return memberDao.deleteUser(id);
 		}
-	}
+
+
+}

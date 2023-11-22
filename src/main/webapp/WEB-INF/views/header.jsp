@@ -1,31 +1,90 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:set var = "path" value = "${pageContext.request.contextPath}"/>
-<html>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-    <meta charset="utf-8">
-	<!-- HTML link 태그를 활용한 BootStrap 연동 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-	<title>Home</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/header.css"/>">
+    <script type="text/javascript" src="<c:url value="/js/header.js"/>"></script>
 </head>
-<body>
-<div>
-    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-        <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
-        <span class="fs-4">메인 홈 </span>
-      </a>
-
-      <ul class="nav nav-pills">
-        <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Home</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Features</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>
-        <li class="nav-item"><a href="${path}/board/notice" class="nav-link">Notice</a></li>
-        <li class="nav-item"><a href="${path}/member/login" class="nav-link">Login</a></li>
-      </ul>
-    </header>
+<div id="headerBox">
+    <div id="headerTop">
+        <div>
+            <a href="#"><img class="logo" src="<c:url value="/img/logo1.png"/>"></a>
+            <div>
+                <img src="<c:url value="/img/search.png"/>">
+                <input type="text" id="searchTxt" name="searchTxt" placeholder="듣고 싶은 강의를 입력해주세요.">
+            </div>
+        </div>
+        <ul>
+            <li><a href="#">로그인</a></li>
+            <li>|</li>
+            <li><a href="#">회원가입</a></li>
+        </ul>
+    </div>
+    <nav style="margin: 0 auto">
+        <ul>
+            <li class="all" id="all">
+                <img src="<c:url value="/img/line3.png"/>">
+                <div class="Menu">
+                    <ul class="submenu">
+                        <li><a href="#">원장님 소개</a></li>
+                        <li><a href="#">정석코딩 소개</a></li>
+                        <li><a href="#">찾아오시는 길</a></li>
+                    </ul>
+                    <ul class="submenu">
+                        <li><a href="#">부트캠프 신청</a></li>
+                        <li><a href="#">세미나 신청</a></li>
+                    </ul>
+                    <ul class="submenu">
+                        <li><a href="#">공지사항</a></li>
+                        <li><a href="#">Q&A</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                    <ul class="submenu">
+                        <li><a href="#">출결/좌석 관리</a></li>
+                        <li><a href="#">질의응답</a></li>
+                        <li><a href="#">학생 공지사항</a></li>
+                    </ul>
+                </div>
+            </li>
+            <!--각자 메뉴-->
+            <li id="about">
+                <p>ABOUT</p>
+                <ul class="Menu">
+                    <li><a href="#">원장님 소개</a></li>
+                    <li><a href="#">정석코딩 소개</a></li>
+                    <li><a href="#">찾아오시는 길</a></li>
+                </ul>
+            </li>
+            <li id="apply">
+                <p>교육신청</p>
+                <ul class="Menu">
+                    <li><a href="#">부트캠프 신청</a></li>
+                    <li><a href="#">세미나 신청</a></li>
+                </ul>
+            </li>
+            <li id="board">
+                <p>게시판</p>
+                <ul class="Menu">
+                    <li><a href="#">공지사항</a></li>
+                    <li><a href="#">Q&A</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </li>
+            <li id="manage">
+                <p>학사관리</p>
+                <ul class="Menu">
+                    <li><a href="#">출결/좌석 관리</a></li>
+                    <li><a href="#">질의응답</a></li>
+                    <li><a href="#">학생 공지사항</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
 </div>
-</body>
 </html>
