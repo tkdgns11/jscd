@@ -32,24 +32,25 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	MemberDao memberDao;
 
-	private final static String KAKAO_AUTH_URI = "https://kauth.kakao.com";
-	private final static String KAKAO_API_URI = "https://kapi.kakao.com";
-
-	
 	@Override
 	public boolean login(String id, String pwd) throws Exception {
 		MemberDto memberDto = null;
 		
 		try {
 			memberDto = memberDao.selectUser(id);
-			System.out.println(memberDto);
+			//System.out.println(memberDto);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
 		return memberDto != null && memberDto.getPwd().equals(pwd);
 	}
-	
+
+	@Override
+	public MemberDto memberSelect(String id) throws Exception {
+		return memberDao.selectUser(id);
+	}
+
 	@Override
 	public void logout(HttpSession session) {
 		session.invalidate();
@@ -61,14 +62,23 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int memberInfoEdit(MemberDto memberDto) throws Exception {
+	public int memberEdit(String id) throws Exception {
+		MemberDto memberDto = null;
+
+		try {
+			memberDto = memberDao.selectUser(id);
+			//System.out.println(memberDto);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
 		return memberDao.updateUser(memberDto);
 	}
 
-		@Override
-		public int memberDelete(String id) throws Exception {
-			return memberDao.deleteUser(id);
-		}
+	@Override
+	public int memberDelete(String id) throws Exception {
+		return memberDao.deleteUser(id);
+	}
 
 
 }

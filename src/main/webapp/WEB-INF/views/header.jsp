@@ -2,6 +2,12 @@
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<c:set var="loginId" value="${pageContext.request.getSession(false)==null ? null : pageContext.request.session.getAttribute('id')}"/>
+<c:set var="loginPath" value="${loginId == null  ?  '/member/login' : '/member/logout'}"/>
+<c:set var="loginStatus" value="${loginId== null ? '로그인' : loginId}"/>
+<c:set var="memberPath" value="${loginId == null  ?  '/member/signup' : '/member/memberEdit'}"/>
+<c:set var="memberStatus" value="${loginId== null ? '회원가입' : '개인정보수정'}"/>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -21,9 +27,9 @@
             </div>
         </div>
         <ul>
-            <li><a href="#">로그인</a></li>
+            <li><a href="<c:url value='${loginPath}'/>">${loginStatus}</a></li>
             <li>|</li>
-            <li><a href="#">회원가입</a></li>
+            <li><a href="<c:url value='${memberPath}'/>">${memberStatus}</a></li>
         </ul>
     </div>
     <nav style="margin: 0 auto">
@@ -55,7 +61,7 @@
             <!--각자 메뉴-->
             <li id="about">
                 <p>ABOUT</p>
-                <ul class="Menu">
+                <ul class="Menu gainMenu">
                     <li><a href="#">원장님 소개</a></li>
                     <li><a href="#">정석코딩 소개</a></li>
                     <li><a href="#">찾아오시는 길</a></li>
@@ -63,14 +69,14 @@
             </li>
             <li id="apply">
                 <p>교육신청</p>
-                <ul class="Menu">
+                <ul class="Menu gainMenu">
                     <li><a href="#">부트캠프 신청</a></li>
                     <li><a href="#">세미나 신청</a></li>
                 </ul>
             </li>
             <li id="board">
                 <p>게시판</p>
-                <ul class="Menu">
+                <ul class="Menu gainMenu">
                     <li><a href="#">공지사항</a></li>
                     <li><a href="#">Q&A</a></li>
                     <li><a href="#">FAQ</a></li>
@@ -78,7 +84,7 @@
             </li>
             <li id="manage">
                 <p>학사관리</p>
-                <ul class="Menu">
+                <ul class="Menu gainMenu">
                     <li><a href="#">출결/좌석 관리</a></li>
                     <li><a href="#">질의응답</a></li>
                     <li><a href="#">학생 공지사항</a></li>
