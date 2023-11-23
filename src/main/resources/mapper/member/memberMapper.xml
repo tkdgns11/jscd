@@ -13,14 +13,14 @@
     		mebrNo, id, name, alias, birth, pwd, phone1, phone2, phone3, 
     		acct, status, grade, regDate, frsidNmbr, modifyDate, lstidNmbr, etc 
     	FROM MEMBER
-    	WHERE ID = #{id}
+    	WHERE id = #{id}
     </select>
     
     <insert id="insert" parameterType="memberDto">
 	     INSERT INTO MEMBER
-	         (id, name, alias, birth, pwd, phone1, phone2, phone3, acct, status, grade, regDate, frsidNmbr, modifyDate, lstidNmbr, etc)
+	         (id, name, alias, birth, pwd, phone, acct, status, grade, regDate, frsidNmbr, modifyDate, lstidNmbr, etc)
 	     VALUES
-	         (#{id}, #{name}, #{alias}, #{birth}, #{pwd}, #{phone1}, #{phone2}, #{phone3}, #{acct}, #{status}, #{grade}, #{regDate}, #{frsidNmbr}, #{modifyDate}, #{lstidNmbr}, #{etc})
+	         (#{id}, #{name}, #{alias}, #{birth}, #{pwd}, #{phone}, #{acct}, #{status}, #{grade}, #{regDate}, #{frsidNmbr}, #{modifyDate}, #{lstidNmbr}, #{etc})
     </insert>
     
 	<update id="update" parameterType="memberDto">

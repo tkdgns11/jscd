@@ -5,6 +5,7 @@ import com.jscd.app.member.dto.MemberDto;
 import com.jscd.app.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.*;
@@ -39,6 +40,13 @@ public class MemberController {
 		return "/member/login";
 	}
 
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		// 1. 세션을 종료
+		session.invalidate();
+		// 2. 홈으로 이동
+		return "redirect:/";
+	}
 	@PostMapping("/login")
 	public String loginCheck(String id, String pwd, String toUrl, boolean rememberId, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
@@ -46,7 +54,7 @@ public class MemberController {
 		//1-1 일치하지 않음.
 		if(!memberService.login(id, pwd)){
 			String msg = URLEncoder.encode("id 또는 pwd가 일치하지 않습니다.", "utf-8");
-			return "redirect:/login/login?msg="+msg;
+			return "redirect:/member/login?msg="+msg;
 		}
 		//1-2 일치하는 경우
 		HttpSession session = request.getSession();
@@ -99,11 +107,16 @@ public class MemberController {
 		}
 		return map;
 	}
+	@GetMapping("/memberEdit")
+	public String memberEdit(Model model, HttpServletRequest request, HttpServletResponse response) throws Exception{
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
+		System.out.println("memberEdit===" + id);
+		MemberDto memberDto = memberService.memberSelect(id);
+		model.addAttribute(memberDto);
 
-	public String memberInfoEdit(MemberDto memberDto) throws Exception{
-		System.out.println("memberInfoEdit===" + memberDto);
-		memberService.memberInfoEdit(memberDto);
-		return null;
+
+		return "/member/signup";
 	}
 
 	public String memberDelete(MemberDto memberDto) throws Exception{
@@ -122,8 +135,6 @@ public class MemberController {
 
 		return null;
 	}
-
-
 
 }
 

@@ -3,13 +3,15 @@ package com.jscd.app.member.dto;
 import java.util.Date;
 
 public class MemberDto {
-	private int meberNo;
+	private int mebrNo;
 	private String id;
 	private String name;
 	private String alias;
 	private String birth;
 	private String pwd;
 	private String gender;
+
+	private String phone;
 	private String phone1;
 	private String phone2;
 	private String phone3;
@@ -26,16 +28,14 @@ public class MemberDto {
 	//                acct, status, grade, regDate, frsidNmbr, modifyDate, lstidNmbr, etc)
 	public MemberDto(){}
 
-	public MemberDto(String id, String name, String alias, String birth, String pwd, String gender, String phone1, String phone2, String phone3, String acct, int status, int grade, Date regDate, String frsidNmbr, Date modifyDate, String lstidNmbr, String etc) {
+	public MemberDto(String id, String name, String alias, String birth, String pwd, String gender, String phone, String acct, int status, int grade, Date regDate, String frsidNmbr, Date modifyDate, String lstidNmbr, String etc) {
 		this.id = id;
 		this.name = name;
 		this.alias = alias;
 		this.birth = birth;
 		this.pwd = pwd;
 		this.gender = gender;
-		this.phone1 = phone1;
-		this.phone2 = phone2;
-		this.phone3 = phone3;
+		this.phone = phone;
 		this.acct = acct;
 		this.status = status;
 		this.grade = grade;
@@ -48,10 +48,10 @@ public class MemberDto {
 
 	@Override
 	public String toString() {
-		return "memberDto [meberNo=" + meberNo + ", id=" + id + ", name=" + name + ", alias=" + alias + ", birth="
-				+ birth + ", pwd=" + pwd + ", gender=" + gender+ ", phone1=" + phone1 + ", phone2=" + phone2 + ", phone3=" + phone3
-				+ ", acct=" + acct + ", status=" + status + ", grade=" + grade + ", regDate=" + regDate + ", frsidNmbr="
-				+ frsidNmbr + ", modifyDate=" + modifyDate + ", lstidNmbr=" + lstidNmbr + ", etc=" + etc + "]";
+		return "memberDto [mebrNo=" + mebrNo + ", id=" + id + ", name=" + name + ", alias=" + alias + ", birth="
+				+ birth + ", pwd=" + pwd + ", gender=" + gender+ ", phone=" + phone + ", acct=" + acct + ", status="
+				+ status + ", grade=" + grade + ", regDate=" + regDate + ", frsidNmbr="	+ frsidNmbr + ", modifyDate="
+				+ modifyDate + ", lstidNmbr=" + lstidNmbr + ", etc=" + etc + "]";
 	}
 	
 	
@@ -60,20 +60,17 @@ public class MemberDto {
 		this.name = name;
 		this.pwd = pwd;
 	}
-	public MemberDto(int meberNo, String id, String name, String alias, String birth, String pwd, String gender, String phone1,
-					 String phone2, String phone3, String acct, int status, int grade, Date regDate, String frsidNmbr,
+	public MemberDto(int mebrNo, String id, String name, String alias, String birth, String pwd, String gender, String phone, String acct, int status, int grade, Date regDate, String frsidNmbr,
 					 Date modifyDate, String lstidNmbr, String etc) {
 		super();
-		this.meberNo = meberNo;
+		this.mebrNo = mebrNo;
 		this.id = id;
 		this.name = name;
 		this.alias = alias;
 		this.birth = birth;
 		this.pwd = pwd;
 		this.gender = gender;
-		this.phone1 = phone1;
-		this.phone2 = phone2;
-		this.phone3 = phone3;
+		this.phone = phone;
 		this.acct = acct;
 		this.status = status;
 		this.grade = grade;
@@ -87,11 +84,11 @@ public class MemberDto {
 
 
 
-	public int getMeberNo() {
-		return meberNo;
+	public int getMebrNo() {
+		return mebrNo;
 	}
-	public void setMeberNo(int meberNo) {
-		this.meberNo = meberNo;
+	public void setMebrNo(int mebrNo) {
+		this.mebrNo = mebrNo;
 	}
 	public String getId() {
 		return id;
@@ -130,6 +127,13 @@ public class MemberDto {
 
 	public void setGender(String gender) {
 		this.gender = gender;
+	}
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public String getPhone1() {
@@ -171,6 +175,7 @@ public class MemberDto {
 	public Date getRegDate() {
 		return regDate;
 	}
+
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
