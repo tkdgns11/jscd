@@ -6,12 +6,38 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
 <head>
+<%--    <link rel="stylesheet" type="text/css" href="<c:url value='/css/reset.css'/>">--%>
     <title>정석코딩 세미나 등록</title>
     <style>
-        #seminarRegistBoard{
+        #seminarRegistListAll{
             width: 960px;
             height: 1080px;
             margin: 0 auto;
+        }
+        #seminarRegistFont{
+            margin-bottom: 30px;
+            padding: 30px 30px;
+            text-align: center;
+            background-color: #182566;
+            color: #05CE31;
+            font-size: 50px;
+            font-weight: 600;
+        }
+        #seminarRegistNaviHead{
+            margin: 0 auto;
+            padding-top: 10px;
+            text-align: center;
+            width: 300px;
+            height: 40px;
+            border: 1px solid black;
+            font-size: 25px;
+            font-weight: 600;
+        }
+        #seminarRegistNaviHead a{
+            font-size: 25px;
+            font-weight: 600;
+            text-decoration: none;
+            color: black;
         }
         #seminarRegistBoard a{
             text-decoration: none;
@@ -21,11 +47,16 @@
             background-color: rgba(0,0,0,0.15);
         }
         #seminarFont{
+            margin-top: 80px;
             margin-bottom: -30px;
             font-size: 40px;
         }
         #seminarRegistHead{
             float: right;
+        }
+        #seminarRegistHead select{
+            width: 80px;
+            height: 20px;
         }
         #seminarRegistSel{
             width: 80px;
@@ -39,7 +70,7 @@
             border-top: 2px groove black;
             border-collapse: collapse;
             text-align: center;
-            font-weight: 900;
+            font-weight: 700;
         }
         .seminarRegistTr, .seminarRegistTd{
             padding: 10px;
@@ -54,11 +85,11 @@
             background-color: #182566;
             color: white;
         }
-        #seminarRegistNavi{
+        #seminarRegistNaviFoot{
             text-align: center;
             margin-top: 15px;
             font-size: 18px;
-            font-weight: 900;
+            font-weight: 700;
         }
         #seminarRegistNavi a{
             padding-right: 5px;
@@ -75,14 +106,14 @@
     </style>
 </head>
 <body>
-<h1>/* 정석코딩 세미나 신청 */</h1>
+<h1 id="seminarRegistFont">/* 정석코딩 세미나 등록 */</h1>
 
-<div>
-    <a href="">부트캠프</a> |
-    <a href="">세미나</a>
+<div id="seminarRegistNaviHead">
+    <a href="">부트캠프 &emsp;</a>|
+    <a href="<c:url value='/regist/list'/>"> &emsp;세미나</a>
 </div>
 
-<div id="seminarRegistBoard">
+<div id="seminarRegistListAll">
 
     <h2 id="seminarFont">세미나</h2>
 
@@ -118,7 +149,7 @@
     </table>
 
     <%--    내비게이션   --%>
-    <div id="seminarRegistNavi">
+    <div id="seminarRegistNaviFoot">
         <c:if test="${sh.showPrev}">
             <a href="<c:url value='/regist/list?page=${sh.beginPage-1}&pageSize=${sh.pageSize}'/>">&lt;&lt;</a>
         </c:if>
