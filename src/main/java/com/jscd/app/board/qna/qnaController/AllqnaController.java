@@ -44,9 +44,13 @@ public class AllqnaController {
     public String allqnaList(Model model) throws Exception {
         List<AllqnaDto> list = allqnaService.getList();
         System.out.println("list값 확인"+list);
+        for(AllqnaDto aaa : list){
+            System.out.println(aaa);
+        }
         model.addAttribute("list", list);
 
         return "/board/qna/allqnaList";
+
     }
 
     @GetMapping("/pageControll")
