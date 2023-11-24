@@ -1,67 +1,120 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.jscd.app.mapper.stdManageMapper">
 
-	<!--기수를 부여받으면, 학생 등급이 됨 -> stdManage테이블에 insert_일단 컬럼 다 넣음-->
-	<insert id="insert" parameterType="StdManageDto">
-		insert into stdManage
-		(mebrNo, codeNum, gisu, status)
-		values
-			(#{mebrNo}, #{codeNum}, #{gisu}, #{status})
-	</insert>
+    <!--기수를 부여받으면, 학생 등급이 됨 -> stdManage테이블에 insert_일단 컬럼 다 넣음-->
+    <insert id="insert" parameterType="StdManageDto">
+        insert into stdManage
+            (mebrNo, codeNum, gisu, status)
+        values (#{mebrNo}, #{codeNum}, #{gisu}, #{status})
+    </insert>
 
-<!--	<insert id="insert" parameterType="StdManageDto">-->
-<!--		insert into stdManage-->
-<!--		(mebrNo, codeNum, gisu, status,regDate,frsidNmbr,modifyDate,lstidNmbr,etc)-->
-<!--		values-->
-<!--			(#{mebrNo}, #{codeNum}, #{gisu}, #{status},#{regDate},#{frsidNmbr},#{modifyDate},#{lstidNmbr},#{etc})-->
-<!--	</insert>-->
+    <!--	<insert id="insert" parameterType="StdManageDto">-->
+    <!--		insert into stdManage-->
+    <!--		(mebrNo, codeNum, gisu, status,regDate,frsidNmbr,modifyDate,lstidNmbr,etc)-->
+    <!--		values-->
+    <!--			(#{mebrNo}, #{codeNum}, #{gisu}, #{status},#{regDate},#{frsidNmbr},#{modifyDate},#{lstidNmbr},#{etc})-->
+    <!--	</insert>-->
 
-	<select id="count" resultType="int">
-		select count(*) from stdManage
-	</select>
-
-
+    <select id="count" resultType="int">
+        select count(*)
+        from stdManage
+    </select>
 
 
-	<!--   학생 + 회원테이블 조인 => 학생 정보 전체 셀렉-->
-	<select id="selectAll" resultType="StdMemberManageDto">
-		select m.mebrNo, m.name, m.id, m.regDate,s.gisu,s.status
-		from stdManage s
-		join member m on s.mebrNo = m.mebrNo;
-	</select>
+    <!--   학생 + 회원테이블 조인 => 학생 정보 전체 셀렉-->
+    <select id="selectAll" parameterType="map" resultType="StdMemberManageDto">
+        select m.mebrNo, m.name, m.id, m.regDate, s.gisu, s.status, concat(m.phone1, m.phone2, m.phone3) as phone
+        from stdManage s
+                 join member m on s.mebrNo = m.mebrNo
+        order by s.gisu
+            limit #{offset}, #{pageSize};
+    </select>
 
-	<!--    상세 셀렉 _ 성별 킵-->
-	<select id="select" parameterType="Integer" resultType="StdMemberManageDto">
-		select m.mebrNo, m.name, m.id,m.birth,m.phone1,m.phone2,m.phone3,
-			   m.regDate,s.gisu,s.status,s.etc
-		from stdManage s
-		join member m on s.mebrNo = m.mebrNo
-		where s.mebrNo = #{mebrNo};
-	</select>
+    <!--    상세 셀렉 _ 성별 킵-->
+    <select id="select" parameterType="Integer" resultType="StdMemberManageDto">
+        select m.mebrNo,
+               m.name,
+               m.id,
+               m.birth,
+               concat(m.phone1, m.phone2, m.phone3) as phone,
+               m.regDate,
+               m.acct,
+               s.gisu,
+               s.status,
+               s.etc
+        from stdManage s
+                 join member m on s.mebrNo = m.mebrNo
+        where s.mebrNo = #{mebrNo};
+    </select>
 
-	<!--기수, 수강상태 update-->
-	<update id="update" parameterType="StdManageDto">
-		update stdManage
-		set gisu = #{gisu}
-		  ,status = #{status}
-		  ,etc = #{etc}
-		  ,modifyDate = now()
-		where mebrNo = #{mebrNo};
-	</update>
+    <!--기수, 수강상태 update-->
+    <update id="update" parameterType="StdManageDto">
+        update stdManage
+        set gisu       = #{gisu}
+          , status     = #{status}
+          , etc        = #{etc}
+          , modifyDate = now()
+        where mebrNo = #{mebrNo};
+    </update>
 
-	<!--    더이상 학생 등급이 아니거나(관리자), 탈퇴하는 경우(회원)-->
-	<delete id="delete" parameterType="Integer">
-		delete from stdManage
-		where mebrNo = #{mebrNo}
-	</delete>
+    <!--    더이상 학생 등급이 아니거나(관리자), 탈퇴하는 경우(회원)-->
+    <delete id="delete" parameterType="Integer">
+        delete
+        from stdManage
+        where mebrNo = #{mebrNo}
+    </delete>
 
-	<delete id="deleteAll">
-		delete from stdManage
-	</delete>
+    <delete id="deleteAll">
+        delete
+        from stdManage
+    </delete>
 
+    <select id="searchSelectPage" parameterType="SearchCondition" resultType="StdMemberManageDto">
+        select m.mebrNo, m.name, m.id, m.regDate, s.gisu, s.status
+        from stdManage s
+                 join member m on s.mebrNo = m.mebrNo
+        WHERE true
+        <choose>
+            <when test='option=="T"'>
+                and m.name like concat('%',#{keyword},'%')
+            </when>
+            <when test='option=="W"'>
+                and m.id like concat('%',#{keyword},'%')
+            </when>
+            <when test='option=="R"'>
+                and s.gisu like concat('%',#{keyword},'%')
+            </when>
+        <otherwise>
+            and s.status like concat('%',#{keyword},'%')
+        </otherwise>
+        </choose>
+        order by s.gisu
+        limit #{offset},#{pageSize}
+    </select>
+
+    <select id="searchResultCnt" parameterType="SearchCondition" resultType="int">
+        select count(*)
+        from stdManage s
+        join member m on s.mebrNo = m.mebrNo
+        WHERE true
+        <choose>
+            <when test='option=="T"'>
+                and m.name like concat('%',#{keyword},'%')
+            </when>
+            <when test='option=="W"'>
+                and m.id like concat('%',#{keyword},'%')
+            </when>
+            <when test='option=="R"'>
+                and s.gisu like concat('%',#{keyword},'%')
+            </when>
+            <otherwise>
+                and s.status like concat('%',#{keyword},'%')
+            </otherwise>
+        </choose>
+    </select>
 
 
 </mapper>

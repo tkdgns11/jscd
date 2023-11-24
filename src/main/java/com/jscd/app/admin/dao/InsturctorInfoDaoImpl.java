@@ -1,6 +1,7 @@
 package com.jscd.app.admin.dao;
 
 
+import com.jscd.app.admin.domain.SearchCondition;
 import com.jscd.app.admin.dto.InstructorInfoDto;
 import com.jscd.app.admin.dto.InstructorMemberInfoDto;
 import org.apache.ibatis.session.SqlSession;
@@ -27,8 +28,12 @@ public class InsturctorInfoDaoImpl implements InsturctorInfoDao {
     }
 
     @Override
-    public List<InstructorMemberInfoDto> selectAll()throws Exception{
-        return session.selectList(namespace+"selectAll");
+    public List<InstructorMemberInfoDto> selectAll(int offset,int pageSize)throws Exception{
+        Map map = new HashMap();
+        map.put("offset",offset);
+        map.put("pageSize",pageSize);
+
+        return session.selectList(namespace+"selectAll",map);
     }
 
     @Override
@@ -50,6 +55,14 @@ public class InsturctorInfoDaoImpl implements InsturctorInfoDao {
     public void deleteAll()throws Exception{
         session.delete(namespace+"deleteAll");
     }
+    @Override
+    public List<InstructorMemberInfoDto> searchSelectPage(SearchCondition sc)throws Exception{
+        return session.selectList(namespace+"searchSelectPage",sc);}
+    @Override
+    public int searchResultCnt(SearchCondition sc)throws Exception{
+        return session.selectOne(namespace+"searchResultCnt",sc);
+    }
+
 
 
 
