@@ -27,6 +27,14 @@ public class SeminarRegistController {
     @GetMapping("/read")
     public String read(Integer classEnrollNo, Integer page, Integer pageSize, Model m){
 
+        try {
+            SeminarRegistDto seminarRegistDto = seminarRegistService.read(classEnrollNo);
+            m.addAttribute(seminarRegistDto);
+            m.addAttribute("page", page);
+            m.addAttribute("pageSize", pageSize);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return "lecture/seminar/seminarRegist";
     }
 

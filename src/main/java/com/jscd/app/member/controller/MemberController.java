@@ -1,6 +1,6 @@
 package com.jscd.app.member.controller;
 
-import com.jscd.app.member.mail.mailSender;
+import com.jscd.app.member.dto.mailSender;
 import com.jscd.app.member.dto.MemberDto;
 import com.jscd.app.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;

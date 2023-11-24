@@ -1,5 +1,6 @@
 package com.jscd.app.admin.dao;
 
+import com.jscd.app.admin.domain.SearchCondition;
 import com.jscd.app.admin.dto.StdManageDto;
 import com.jscd.app.admin.dto.StdMemberManageDto;
 
@@ -9,7 +10,7 @@ public interface StdManageDao {
     int insert(StdManageDto stdManageDto) throws Exception;
     int count()throws Exception;
 
-    List<StdMemberManageDto> selectAll() throws Exception;
+    List<StdMemberManageDto> selectAll(int offset,int pageSize) throws Exception;
 
     StdMemberManageDto select(Integer mebrNo) throws Exception;
 
@@ -18,4 +19,8 @@ public interface StdManageDao {
     int delete(Integer mebrNo) throws Exception;
 
     void deleteAll() throws Exception;
+
+    List<StdMemberManageDto> searchSelectPage(SearchCondition sc)throws Exception;
+    int searchResultCnt(SearchCondition sc)throws Exception;
+
 }

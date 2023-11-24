@@ -13,8 +13,6 @@ import java.util.Map;
 
 import static org.junit.Assert.*;
 
-// 관리자 고유 번호(FK)값을 어떻게 가져와야할지 모르겠어서
-// 우선 null 가능하게 처리 후 테스트
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml"})
 public class SeminarRegistDaoImplTest {
@@ -37,14 +35,15 @@ public class SeminarRegistDaoImplTest {
     public void delete() throws Exception {
         seminarRegistDao.deleteAll();
         assertTrue(seminarRegistDao.count()==0);
-        SeminarRegistDto dto = new SeminarRegistDto(
-                "M0101", "자바의 정석(기초)", "강의 상세 설명", "남궁성", "2023-11-18",
-                "2023-11-19", "09:00", "11:00", 150000, "종료",
-                  "F", "서울시 종로구 종로 서울 YMCA 빌딩 423호", 5, 30, "자바의 정석",
-                "개인노트북, 필기구, 교재", "castello", "비고");
+
+        SeminarRegistDto dto = new SeminarRegistDto("4회차 DB 모델링", "강의 상세 설명입니다.", "DB 모델링", "4회차", "오프라인",
+                "모집중", "서울시 종로구 종로 서울 YMCA 빌딩 522호", 5, 30, 5,
+                "20231111", "20231222", "10:00", "20:00", "남궁성",
+                "DB 모델링 정석", "개인 노트북, 필기구, 교재", 100000, "50%", 50000,
+                "비고", "castello", "01", "01", 1);
         assertTrue(seminarRegistDao.insert(dto)==1);
 
-        Integer classEnrollNo = seminarRegistDao.selectAll().get(0).getclassEnrollNo();
+        Integer classEnrollNo = seminarRegistDao.selectAll().get(0).getClassEnrollNo();
         String writer = seminarRegistDao.selectAll().get(0).getWriter();
         assertTrue(seminarRegistDao.delete(classEnrollNo, writer)==1);
     }
@@ -53,11 +52,11 @@ public class SeminarRegistDaoImplTest {
     public void insert() throws Exception {
         seminarRegistDao.deleteAll();
         assertTrue(seminarRegistDao.count()==0);
-        SeminarRegistDto dto = new SeminarRegistDto(
-                "M0101", "자바의 정석(기초)", "강의 상세 설명", "남궁성", "2023-11-18",
-                "2023-11-19", "09:00", "11:00", 150000, "종료",
-                  "F", "서울시 종로구 종로 서울 YMCA 빌딩 423호", 5, 30, "자바의 정석",
-                "개인노트북, 필기구, 교재", "castello", "비고");
+        SeminarRegistDto dto = new SeminarRegistDto("4회차 DB 모델링", "강의 상세 설명입니다.", "DB 모델링", "4회차", "오프라인",
+                "모집중", "서울시 종로구 종로 서울 YMCA 빌딩 522호", 5, 30, 5,
+                "20231111", "20231222", "10:00", "20:00", "남궁성",
+                "DB 모델링 정석", "개인 노트북, 필기구, 교재", 100000, "50%", 50000,
+                "비고", "castello", "01", "01", 1);
         assertTrue(seminarRegistDao.insert(dto)==1);
     }
 
@@ -66,11 +65,11 @@ public class SeminarRegistDaoImplTest {
         seminarRegistDao.deleteAll();
         assertTrue(seminarRegistDao.count()==0);
 
-        SeminarRegistDto dto = new SeminarRegistDto(
-                "M0101", "자바의 정석(기초)", "강의 상세 설명", "남궁성", "2023-11-18",
-                "2023-11-19", "09:00", "11:00", 150000, "종료",
-                "F", "서울시 종로구 종로 서울 YMCA 빌딩 423호", 5, 30, "자바의 정석",
-                "개인노트북, 필기구, 교재", "castello", "비고");
+        SeminarRegistDto dto = new SeminarRegistDto("4회차 DB 모델링", "강의 상세 설명입니다.", "DB 모델링", "4회차", "오프라인",
+                "모집중", "서울시 종로구 종로 서울 YMCA 빌딩 522호", 5, 30, 5,
+                "20231111", "20231222", "10:00", "20:00", "남궁성",
+                "DB 모델링 정석", "개인 노트북, 필기구, 교재", 100000, "50%", 50000,
+                "비고", "castello", "01", "01", 1);
         assertTrue(seminarRegistDao.insert(dto)==1);
 
         List<SeminarRegistDto> list = seminarRegistDao.selectAll();
@@ -83,19 +82,19 @@ public class SeminarRegistDaoImplTest {
         seminarRegistDao.deleteAll();
         assertTrue(seminarRegistDao.count()==0);
 
-        SeminarRegistDto dto = new SeminarRegistDto(
-                "M0101", "자바의 정석(기초)", "강의 상세 설명", "남궁성", "2023-11-18",
-                "2023-11-19", "09:00", "11:00", 150000, "종료",
-                "F", "서울시 종로구 종로 서울 YMCA 빌딩 423호", 5, 30, "자바의 정석",
-                "개인노트북, 필기구, 교재", "castello", "비고");
+        SeminarRegistDto dto = new SeminarRegistDto("4회차 DB 모델링", "강의 상세 설명입니다.", "DB 모델링", "4회차", "오프라인",
+                "모집중", "서울시 종로구 종로 서울 YMCA 빌딩 522호", 5, 30, 5,
+                "20231111", "20231222", "10:00", "20:00", "남궁성",
+                "DB 모델링 정석", "개인 노트북, 필기구, 교재", 100000, "50%", 50000,
+                "비고", "castello", "01", "01", 1);
         assertTrue(seminarRegistDao.insert(dto)==1);
 
-        Integer classEnrollNo = seminarRegistDao.selectAll().get(0).getclassEnrollNo();
-        dto.setclassEnrollNo(classEnrollNo);
+        Integer classEnrollNo = seminarRegistDao.selectAll().get(0).getClassEnrollNo();
+        dto.setClassEnrollNo(classEnrollNo);
 
         dto = seminarRegistDao.select(classEnrollNo);
         SeminarRegistDto dto2 = seminarRegistDao.select(classEnrollNo);
-        assertTrue(dto.getclassEnrollNo().equals(dto2.getclassEnrollNo()));
+        assertTrue(dto.getClassEnrollNo().equals(dto2.getClassEnrollNo()));
         assertTrue(dto.equals(dto2));
 
         System.out.println("dto = " + dto);
@@ -108,11 +107,11 @@ public class SeminarRegistDaoImplTest {
         assertTrue(seminarRegistDao.count()==0);
 
         for(int i=1; i<=10; i++){
-            SeminarRegistDto dto = new SeminarRegistDto(
-                    "M0101", "자바의 정석(기초)"+i, "강의 상세 설명", "남궁성", "2023-11-18",
-                    "2023-11-19", "09:00", "11:00", 150000, "종료",
-                    "F", "서울시 종로구 종로 서울 YMCA 빌딩 423호", 5, 30, "자바의 정석",
-                    "개인노트북, 필기구, 교재", "castello", "비고");
+            SeminarRegistDto dto = new SeminarRegistDto("4회차 DB 모델링"+i, "강의 상세 설명입니다.", "DB 모델링", "4회차", "오프라인",
+                    "모집중", "서울시 종로구 종로 서울 YMCA 빌딩 522호", 5, 30, 5,
+                    "20231111", "20231222", "10:00", "20:00", "남궁성",
+                    "DB 모델링 정석", "개인 노트북, 필기구, 교재", 100000, "50%", 50000,
+                    "비고", "castello", "01", "01", 1);
             seminarRegistDao.insert(dto);
         }
 
@@ -121,34 +120,34 @@ public class SeminarRegistDaoImplTest {
         map.put("pageSize", 3);
 
         List<SeminarRegistDto> list = seminarRegistDao.selectPage(map);
-        assertTrue(list.get(0).getTitle().equals("자바의 정석(기초)10"));
-        assertTrue(list.get(1).getTitle().equals("자바의 정석(기초)9"));
-        assertTrue(list.get(2).getTitle().equals("자바의 정석(기초)8"));
+        assertTrue(list.get(0).getTitle().equals("4회차 DB 모델링10"));
+        assertTrue(list.get(1).getTitle().equals("4회차 DB 모델링9"));
+        assertTrue(list.get(2).getTitle().equals("4회차 DB 모델링8"));
 
         map = new HashMap();
         map.put("offset", 3);
         map.put("pageSize", 3);
 
         list = seminarRegistDao.selectPage(map);
-        assertTrue(list.get(0).getTitle().equals("자바의 정석(기초)7"));
-        assertTrue(list.get(1).getTitle().equals("자바의 정석(기초)6"));
-        assertTrue(list.get(2).getTitle().equals("자바의 정석(기초)5"));
+        assertTrue(list.get(0).getTitle().equals("4회차 DB 모델링7"));
+        assertTrue(list.get(1).getTitle().equals("4회차 DB 모델링6"));
+        assertTrue(list.get(2).getTitle().equals("4회차 DB 모델링5"));
 
         map = new HashMap();
         map.put("offset", 6);
         map.put("pageSize", 3);
 
         list = seminarRegistDao.selectPage(map);
-        assertTrue(list.get(0).getTitle().equals("자바의 정석(기초)4"));
-        assertTrue(list.get(1).getTitle().equals("자바의 정석(기초)3"));
-        assertTrue(list.get(2).getTitle().equals("자바의 정석(기초)2"));
+        assertTrue(list.get(0).getTitle().equals("4회차 DB 모델링4"));
+        assertTrue(list.get(1).getTitle().equals("4회차 DB 모델링3"));
+        assertTrue(list.get(2).getTitle().equals("4회차 DB 모델링2"));
 
         map = new HashMap();
         map.put("offset", 9);
         map.put("pageSize", 3);
 
         list = seminarRegistDao.selectPage(map);
-        assertTrue(list.get(0).getTitle().equals("자바의 정석(기초)1"));
+        assertTrue(list.get(0).getTitle().equals("4회차 DB 모델링1"));
     }
 
     @Test
@@ -156,16 +155,16 @@ public class SeminarRegistDaoImplTest {
         seminarRegistDao.deleteAll();
         assertTrue(seminarRegistDao.count()==0);
 
-        SeminarRegistDto dto = new SeminarRegistDto(
-                "M0101", "자바의 정석(기초)", "강의 상세 설명", "남궁성", "2023-11-18",
-                "2023-11-19", "09:00", "11:00", 150000, "종료",
-                "F", "서울시 종로구 종로 서울 YMCA 빌딩 423호", 5, 30, "자바의 정석",
-                "개인노트북, 필기구, 교재", "castello", "비고");
+        SeminarRegistDto dto = new SeminarRegistDto("4회차 DB 모델링", "강의 상세 설명입니다.", "DB 모델링", "4회차", "오프라인",
+                "모집중", "서울시 종로구 종로 서울 YMCA 빌딩 522호", 5, 30, 5,
+                "20231111", "20231222", "10:00", "20:00", "남궁성",
+                "DB 모델링 정석", "개인 노트북, 필기구, 교재", 100000, "50%", 50000,
+                "비고", "castello", "01", "01", 1);
         assertTrue(seminarRegistDao.insert(dto)==1);
 
-        Integer classEnrollNo = seminarRegistDao.selectAll().get(0).getclassEnrollNo();
-        dto.setclassEnrollNo(classEnrollNo);
-        dto.setTitle("수정된 자바의 정석(기초)");
+        Integer classEnrollNo = seminarRegistDao.selectAll().get(0).getClassEnrollNo();
+        dto.setClassEnrollNo(classEnrollNo);
+        dto.setTitle("수정된 4회차 DB 모델링");
 
         String title = seminarRegistDao.selectAll().get(0).getTitle();
         assertTrue(seminarRegistDao.update(dto)==1);
@@ -181,14 +180,14 @@ public class SeminarRegistDaoImplTest {
         seminarRegistDao.deleteAll();
         assertTrue(seminarRegistDao.count()==0);
 
-        SeminarRegistDto dto = new SeminarRegistDto(
-                "M0101", "자바의 정석(기초)", "강의 상세 설명", "남궁성", "2023-11-18",
-                "2023-11-19", "09:00", "11:00", 150000, "종료",
-                "F", "서울시 종로구 종로 서울 YMCA 빌딩 423호", 5, 30, "자바의 정석",
-                "개인노트북, 필기구, 교재", "castello", "비고");
+        SeminarRegistDto dto = new SeminarRegistDto("4회차 DB 모델링", "강의 상세 설명입니다.", "DB 모델링", "4회차", "오프라인",
+                "모집중", "서울시 종로구 종로 서울 YMCA 빌딩 522호", 5, 30, 5,
+                "20231111", "20231222", "10:00", "20:00", "남궁성",
+                "DB 모델링 정석", "개인 노트북, 필기구, 교재", 100000, "50%", 50000,
+                "비고", "castello", "01", "01", 1);
         assertTrue(seminarRegistDao.insert(dto)==1);
 
-        Integer classEnrollNo = seminarRegistDao.selectAll().get(0).getclassEnrollNo();
+        Integer classEnrollNo = seminarRegistDao.selectAll().get(0).getClassEnrollNo();
 
         for(int i=1; i<=10; i++){
             assertTrue(seminarRegistDao.increaseViewCnt(classEnrollNo)==1);

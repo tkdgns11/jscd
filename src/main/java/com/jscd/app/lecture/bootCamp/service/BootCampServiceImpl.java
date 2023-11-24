@@ -14,22 +14,39 @@ public class BootCampServiceImpl implements BootCampService {
     BootCampDao bootCampDao;
 
     @Override
-    public int registBootCamp(BootCampDto bootCampDto) throws Exception {
-        return bootCampDao.insertBootCamp(bootCampDto);
+    public int getCount() throws Exception{
+        return bootCampDao.count();
     }
 
     @Override
-    public List<BootCampDto> getList() throws Exception {
+    public int remove(Integer classEnrollNo, String writer) throws Exception{
+        return bootCampDao.delete(classEnrollNo, writer);
+    }
+
+    @Override
+    public int write(BootCampDto dto) throws Exception {
+        return bootCampDao.insert(dto);
+    }
+
+    @Override
+    public List<BootCampDto> getList() throws Exception{
         return bootCampDao.selectAll();
     }
 
     @Override
-    public List<BootCampDto> getPage(Map map) throws Exception {
+    public BootCampDto read(Integer classEnrollNo) throws Exception{
+        BootCampDto bootCampDto = bootCampDao.select(classEnrollNo);
+        bootCampDao.increaseViewCnt(classEnrollNo);
+        return bootCampDto;
+    }
+
+    @Override
+    public List<BootCampDto> getPage(Map map) throws Exception{
         return bootCampDao.selectPage(map);
     }
 
     @Override
-    public int getCount() throws Exception {
-        return bootCampDao.count();
+    public int modify(BootCampDto dto) throws Exception{
+        return bootCampDao.update(dto);
     }
 }

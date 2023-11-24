@@ -48,7 +48,7 @@
                     </ul>
                     <ul class="submenu">
                         <li><a href="#">공지사항</a></li>
-                        <li><a href="#">Q&A</a></li>
+                        <li><a href="<c:url value="/board/qna/allqnaList"/>">Q&A</a></li>
                         <li><a href="#">FAQ</a></li>
                     </ul>
                     <ul class="submenu">

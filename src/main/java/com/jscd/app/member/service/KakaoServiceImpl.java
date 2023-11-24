@@ -1,4 +1,4 @@
-package com.jscd.app.member.kakao.service;
+package com.jscd.app.member.service;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;

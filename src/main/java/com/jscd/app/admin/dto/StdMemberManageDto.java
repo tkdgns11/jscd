@@ -3,7 +3,7 @@ package com.jscd.app.admin.dto;
 import java.util.Date;
 import java.util.Objects;
 
-public class StdMemberManageDto {
+public class StdMemberManageDto { //학생+회원 조인 Dto
 
     //회원테이블
     private Integer mebrNo;
@@ -11,9 +11,9 @@ public class StdMemberManageDto {
     private String name;
     private String alias;
     private Date birth;
-    private String phone1;
-    private String phone2;
-    private String phone3;
+    private String phone;
+    private String acct;
+
     private Date regDate;
 
     //학생테이블
@@ -21,15 +21,13 @@ public class StdMemberManageDto {
     private String status;
     private String etc;
 
-    public StdMemberManageDto(Integer mebrNo, String id, String name, String alias, Date birth, String phone1, String phone2, String phone3, Date regDate, String gisu, String status, String etc) {
+    public StdMemberManageDto(Integer mebrNo, String id, String name, String alias, Date birth, String phone, Date regDate, String gisu, String status, String etc) {
         this.mebrNo = mebrNo;
         this.id = id;
         this.name = name;
         this.alias = alias;
         this.birth = birth;
-        this.phone1 = phone1;
-        this.phone2 = phone2;
-        this.phone3 = phone3;
+        this.phone = phone;
         this.regDate = regDate;
         this.gisu = gisu;
         this.status = status;
@@ -37,6 +35,14 @@ public class StdMemberManageDto {
     }
 
     public StdMemberManageDto() {
+    }
+
+    public String getAcct() {
+        return acct;
+    }
+
+    public void setAcct(String acct) {
+        this.acct = acct;
     }
 
     public int getmebrNo() {
@@ -79,29 +85,10 @@ public class StdMemberManageDto {
         this.birth = birth;
     }
 
-    public String getPhone1() {
-        return phone1;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setPhone1(String phone1) {
-        this.phone1 = phone1;
-    }
-
-    public String getPhone2() {
-        return phone2;
-    }
-
-    public void setPhone2(String phone2) {
-        this.phone2 = phone2;
-    }
-
-    public String getPhone3() {
-        return phone3;
-    }
-
-    public void setPhone3(String phone3) {
-        this.phone3 = phone3;
-    }
 
     public Date getRegDate() {
         return regDate;
@@ -140,12 +127,12 @@ public class StdMemberManageDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         StdMemberManageDto that = (StdMemberManageDto) o;
-        return mebrNo == that.mebrNo && Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(alias, that.alias) && Objects.equals(birth, that.birth) && Objects.equals(phone1, that.phone1) && Objects.equals(phone2, that.phone2) && Objects.equals(phone3, that.phone3) && Objects.equals(regDate, that.regDate) && Objects.equals(gisu, that.gisu) && Objects.equals(status, that.status) && Objects.equals(etc, that.etc);
+        return mebrNo == that.mebrNo && Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(alias, that.alias) && Objects.equals(birth, that.birth) && Objects.equals(phone, that.phone) && Objects.equals(regDate, that.regDate) && Objects.equals(gisu, that.gisu) && Objects.equals(status, that.status) && Objects.equals(etc, that.etc);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(mebrNo, id, name, alias, birth, phone1, phone2, phone3, regDate, gisu, status, etc);
+        return Objects.hash(mebrNo, id, name, alias, birth, phone, regDate, gisu, status, etc);
     }
 
     @Override
@@ -158,9 +145,7 @@ public class StdMemberManageDto {
                 ", name='" + name + '\'' +
                 ", alias='" + alias + '\'' +
                 ", birth=" + birth +
-                ", phone1='" + phone1 + '\'' +
-                ", phone2='" + phone2 + '\'' +
-                ", phone3='" + phone3 + '\'' +
+                ", phone='" + phone + '\'' +
                 ", regDate=" + regDate +
                 ", gisu='" + gisu + '\'' +
                 ", status='" + status + '\'' +

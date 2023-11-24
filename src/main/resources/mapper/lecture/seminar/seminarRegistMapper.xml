@@ -6,11 +6,13 @@
     <!--    전체 게시물 개수-->
     <select id="count" resultType="int">
         select count(*) from classEnroll
+        where subjectName not like "%부트캠프%"
     </select>
 
     <!--    전체 게시물 삭제-->
     <delete id="deleteAll">
         delete from classEnroll
+        where subjectName not like "%부트캠프%"
     </delete>
 
     <!--    게시물 삭제하기-->
@@ -27,28 +29,32 @@
 
     <!--    게시물 추가하기-->
     <insert id="insert" parameterType="SeminarRegistDto">
-        insert into classEnroll (codeNum, title, name, startDate, endDate,
-                                 startTime, endTime, price, status, onOff,
-                                 description, location, minNum, maxNum, book,
-                                 material, writer, regDate, modifyDate, etc )
-        values (#{codeNum}, #{title}, #{name}, #{startDate}, #{endDate},
-                #{startTime}, #{endTime}, #{price}, #{status}, #{onOff},
-                #{description}, #{location}, #{minNum}, #{maxNum}, #{book},
-                #{material}, #{writer}, now(), now(), #{etc})
+        insert into classEnroll (title, description, subjectName, roundName, onOff,
+                                 status, location, minNum, maxNum, presentNum,
+                                 startDate, endDate, startTime, endTime, name,
+                                 book, material, price, discount, lstPrice,
+                                 etc, writer, frsidNmbr, lstidNmbr, adminNo)
+        values ( #{title}, #{description}, #{subjectName}, #{roundName}, #{onOff},
+                #{status}, #{location}, #{minNum}, #{maxNum}, #{presentNum},
+                #{startDate}, #{endDate}, #{startTime}, #{endTime}, #{name},
+                #{book}, #{material}, #{price}, #{discount}, #{lstPrice},
+                #{etc}, #{writer}, #{frsidNmbr}, #{lstidNmbr}, #{adminNo});
     </insert>
 
     <!--    재사용 sql문-->
     <sql id="selectFromClassEnroll">
-        select classEnrollNo, codeNum, title, name, startDate, endDate,
-               startTime, endTime, price, status, onOff,
-               description, location, minNum, maxNum, book,
-               material, writer, regDate, etc, viewCnt
+        select classEnrollNo, title, description, subjectName, roundName,
+               onOff, status, location, minNum, maxNum, presentNum,
+               startDate, endDate, startTime, endTime, name,
+               book, material, price, discount, lstPrice,
+               etc, writer, viewCnt, regDate
         from classEnroll
     </sql>
 
     <!--    모든 게시물 불러오기 / (작성일 내림차순), (게시물 번호 내림차순)-->
     <select id="selectAll" resultType="SeminarRegistDto">
         <include refid="selectFromClassEnroll"/>
+        where subjectName not like "%부트캠프%"
         order by regdate desc, classEnrollNo desc
     </select>
 
@@ -61,6 +67,7 @@
     <!--    현재 페이지 기준 게시물 10개씩 화면에 출력-->
     <select id="selectPage" parameterType="map" resultType="SeminarRegistDto">
         <include refid="selectFromClassEnroll"/>
+        where subjectName not like "%부트캠프%"
         order by regdate desc, classEnrollNo desc
         limit #{offset}, #{pageSize}
     </select>
@@ -68,10 +75,11 @@
     <!--    게시물 수정하기-->
     <update id="update" parameterType="SeminarRegistDto">
         update classEnroll
-        set codeNum = #{codeNum}, title = #{title}, name= #{name}, startDate = #{startDate}, endDate = #{endDate},
-            startTime = #{startTime}, endTime= #{endTime}, price = #{price}, status = #{status}, onOff = #{onOff},
-            description = #{description}, location = #{location}, minNum = #{minNum}, maxNum = #{maxNum}, book = #{book},
-            etc = #{etc}, modifyDate = now()
+        set title = #{title}, description= #{description}, subjectName = #{subjectName}, roundName = #{roundName}, onOff = #{onOff},
+            status = #{status}, location = #{location}, minNum = #{minNum}, maxNum = #{maxNum}, presentNum = #{presentNum},
+            startDate = #{startDate}, endDate = #{endDate}, startTime = #{startTime}, endTime = #{endTime}, name = #{name},
+            book = #{book}, material = #{material}, price = #{price}, discount = #{discount}, lstPrice = #{lstPrice},
+            etc = #{etc}, writer = #{writer}, modifyDate = now(), lstidNmbr = #{lstidNmbr}
         where classEnrollNo = #{classEnrollNo} and writer = #{writer}
     </update>
 

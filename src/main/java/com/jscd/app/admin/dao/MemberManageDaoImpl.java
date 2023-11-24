@@ -1,5 +1,6 @@
 package com.jscd.app.admin.dao;
 
+import com.jscd.app.admin.domain.SearchCondition;
 import com.jscd.app.member.dto.MemberDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,11 @@ public class MemberManageDaoImpl implements MemberManageDao {
     }
 
     @Override
-    public List<MemberDto> selectAll()throws Exception{
-        return session.selectList(namespace+"selectAll");
+    public List<MemberDto> selectAll(int offset, int pageSize)throws Exception{
+        Map map = new HashMap();
+        map.put("offset",offset);
+        map.put("pageSize",pageSize);
+        return session.selectList(namespace+"selectAll",map);
     }
 
     @Override
@@ -46,6 +50,16 @@ public class MemberManageDaoImpl implements MemberManageDao {
     @Override
     public void deleteAll()throws Exception{
         session.delete(namespace+"deleteAll");
+    }
+
+    @Override
+    public List<MemberDto> searchSelectPage(SearchCondition sc)throws Exception{
+        return session.selectList(namespace+"searchSelectPage",sc);}
+
+
+    @Override
+    public int searchResultCnt(SearchCondition sc)throws Exception{
+        return session.selectOne(namespace+"searchResultCnt",sc);
     }
 
 

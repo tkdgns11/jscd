@@ -1,4 +1,4 @@
-package com.jscd.app.member.mail;
+package com.jscd.app.member.dto;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
