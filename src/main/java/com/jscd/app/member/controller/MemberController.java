@@ -108,6 +108,7 @@ public class MemberController {
 		}
 		return map;
 	}
+
 	@GetMapping("/memberEdit")
 	public String memberEdit(Model model, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		HttpSession session = request.getSession();
