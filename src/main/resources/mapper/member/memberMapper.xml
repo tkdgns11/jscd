@@ -10,7 +10,7 @@
     
     <select id="select" resultType="memberDto">
     	SELECT 
-    		mebrNo, id, name, alias, birth, pwd, phone1, phone2, phone3, 
+    		mebrNo, id, name, nickname, birth, pwd, phone,
     		acct, status, grade, regDate, frsidNmbr, modifyDate, lstidNmbr, etc 
     	FROM MEMBER
     	WHERE id = #{id}
@@ -18,9 +18,9 @@
     
     <insert id="insert" parameterType="memberDto">
 	     INSERT INTO MEMBER
-	         (id, name, alias, birth, pwd, phone, acct, status, grade, regDate, frsidNmbr, modifyDate, lstidNmbr, etc)
+	         (id, name, nickname, birth, pwd, phone, acct, status, grade, regDate, frsidNmbr, modifyDate, lstidNmbr, etc)
 	     VALUES
-	         (#{id}, #{name}, #{alias}, #{birth}, #{pwd}, #{phone}, #{acct}, #{status}, #{grade}, #{regDate}, #{frsidNmbr}, #{modifyDate}, #{lstidNmbr}, #{etc})
+	         (#{id}, #{name}, #{nickname}, #{birth}, #{pwd}, #{phone}, #{acct}, #{status}, #{grade}, #{regDate}, #{frsidNmbr}, #{modifyDate}, #{lstidNmbr}, #{etc})
     </insert>
     
 	<update id="update" parameterType="memberDto">

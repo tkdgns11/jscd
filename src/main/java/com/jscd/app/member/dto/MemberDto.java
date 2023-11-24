@@ -6,7 +6,7 @@ public class MemberDto {
 	private int mebrNo;
 	private String id;
 	private String name;
-	private String alias;
+	private String nickname;
 	private String birth;
 	private String pwd;
 	private String gender;
@@ -28,10 +28,10 @@ public class MemberDto {
 	//                acct, status, grade, regDate, frsidNmbr, modifyDate, lstidNmbr, etc)
 	public MemberDto(){}
 
-	public MemberDto(String id, String name, String alias, String birth, String pwd, String gender, String phone, String acct, int status, int grade, Date regDate, String frsidNmbr, Date modifyDate, String lstidNmbr, String etc) {
+	public MemberDto(String id, String name, String nickname, String birth, String pwd, String gender, String phone, String acct, int status, int grade, Date regDate, String frsidNmbr, Date modifyDate, String lstidNmbr, String etc) {
 		this.id = id;
 		this.name = name;
-		this.alias = alias;
+		this.nickname = nickname;
 		this.birth = birth;
 		this.pwd = pwd;
 		this.gender = gender;
@@ -48,7 +48,7 @@ public class MemberDto {
 
 	@Override
 	public String toString() {
-		return "memberDto [mebrNo=" + mebrNo + ", id=" + id + ", name=" + name + ", alias=" + alias + ", birth="
+		return "memberDto [mebrNo=" + mebrNo + ", id=" + id + ", name=" + name + ", alias=" + nickname + ", birth="
 				+ birth + ", pwd=" + pwd + ", gender=" + gender+ ", phone=" + phone + ", acct=" + acct + ", status="
 				+ status + ", grade=" + grade + ", regDate=" + regDate + ", frsidNmbr="	+ frsidNmbr + ", modifyDate="
 				+ modifyDate + ", lstidNmbr=" + lstidNmbr + ", etc=" + etc + "]";
@@ -60,13 +60,13 @@ public class MemberDto {
 		this.name = name;
 		this.pwd = pwd;
 	}
-	public MemberDto(int mebrNo, String id, String name, String alias, String birth, String pwd, String gender, String phone, String acct, int status, int grade, Date regDate, String frsidNmbr,
+	public MemberDto(int mebrNo, String id, String name, String nickname, String birth, String pwd, String gender, String phone, String acct, int status, int grade, Date regDate, String frsidNmbr,
 					 Date modifyDate, String lstidNmbr, String etc) {
 		super();
 		this.mebrNo = mebrNo;
 		this.id = id;
 		this.name = name;
-		this.alias = alias;
+		this.nickname = nickname;
 		this.birth = birth;
 		this.pwd = pwd;
 		this.gender = gender;
@@ -102,11 +102,11 @@ public class MemberDto {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getAlias() {
-		return alias;
+	public String getNickname() {
+		return nickname;
 	}
-	public void setAlias(String alias) {
-		this.alias = alias;
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 	public String getBirth() {
 		return birth;
