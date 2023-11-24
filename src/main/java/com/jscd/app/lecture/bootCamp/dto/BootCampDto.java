@@ -1,81 +1,92 @@
 package com.jscd.app.lecture.bootCamp.dto;
 
+import com.jscd.app.lecture.bootCamp.dto.BootCampDto;
+
 import java.util.Date;
 import java.util.Objects;
 
 public class BootCampDto {
-    private int classEnrollNo;  // 강의등록 고유번호
-    private int adminNo;        // 관리자 고유번호
-    private int codeNum;        // 과목 코드 번호
-    private String title;       // 강의 제목
-    private String description; // 강의 상세 설명
-    private String name;        // 강사명
-    private Date startDate;     // 강의 시작일
-    private Date endDate;       // 강의 종료일
-    private int price;          // 금액
-    private String status;      // 진행상태
-    private String onOff;       // 온/오프라인 여부
-    private String location;    // 강의 장소
-    private int minNum;         // 최소 인원
-    private int maxNum;         // 최대 인원
-    private int presentNum;     // 현재 인원
-    private String book;        // 교재
-    private String material;    // 준비물
-    private String writer;      // 작성한 관리자
-    private Date regDate;       // 준비물
-    private String frsidNumbr;  // 강의 등록 최초 일자
-    private Date modifyDate;    // 강의 수정 날짜
-
-    private String lstidNumbr;
-
-    private String etc;
+    private Integer classEnrollNo;
+   private String title;
+   private String description;
+   private String subjectName;
+   private String roundName;
+   private String onOff;
+   private String location;
+   private Integer minNum;
+   private Integer maxNum;
+   private Integer presentNum;
+   private Date startDate;
+   private Date endDate;
+   private String startTime;
+   private String endTime;
+   private String name;
+   private String book;
+   private String material;
+   private Integer price;
+   private String discount;
+   private Integer lstPrice;
+   private String etc;
+   private String writer;
+   private Integer viewCnt;
+   private Date regDate;
+   private Date modifyDate;
+   private String frsidNmbr;
+   private String lstidNmbr;
+   private Integer adminNo;
 
     public BootCampDto() {}
 
-    public BootCampDto(int classEnrollNo, int adminNo, int codeNum, String title, String description, String name, Date startDate, Date endDate, int price, String status, String onOff, String location, int minNum, int maxNum, int presentNum, String book, String material, String writer) {
+    public BootCampDto(Integer classEnrollNo, String title, String description, String subjectName, String roundName, String onOff, String location, Integer minNum, Integer maxNum, Integer presentNum, Date startDate, Date endDate, String startTime, String endTime, String name, String book, String material, Integer price, String discount, Integer lstPrice, String etc, String writer, Integer viewCnt, Date regDate, Date modifyDate, String frsidNmbr, String lstidNmbr, Integer adminNo) {
         this.classEnrollNo = classEnrollNo;
-        this.adminNo = adminNo;
-        this.codeNum = codeNum;
         this.title = title;
         this.description = description;
-        this.name = name;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.price = price;
-        this.status = status;
+        this.subjectName = subjectName;
+        this.roundName = roundName;
         this.onOff = onOff;
         this.location = location;
         this.minNum = minNum;
         this.maxNum = maxNum;
         this.presentNum = presentNum;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.name = name;
         this.book = book;
         this.material = material;
+        this.price = price;
+        this.discount = discount;
+        this.lstPrice = lstPrice;
+        this.etc = etc;
         this.writer = writer;
-    }
-
-
-    public int getClassEnrollNo() {
-        return classEnrollNo;
-    }
-
-    public void setClassEnrollNo(int classEnrollNo) {
-        this.classEnrollNo = classEnrollNo;
-    }
-
-    public int getAdminNo() {
-        return adminNo;
-    }
-
-    public void setAdminNo(int adminNo) {
+        this.viewCnt = viewCnt;
+        this.regDate = regDate;
+        this.modifyDate = modifyDate;
+        this.frsidNmbr = frsidNmbr;
+        this.lstidNmbr = lstidNmbr;
         this.adminNo = adminNo;
     }
 
-    public int getCodeNum() {
-        return codeNum;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BootCampDto that = (BootCampDto) o;
+        return Objects.equals(classEnrollNo, that.classEnrollNo) && Objects.equals(title, that.title) && Objects.equals(description, that.description) && Objects.equals(subjectName, that.subjectName) && Objects.equals(roundName, that.roundName) && Objects.equals(onOff, that.onOff) && Objects.equals(location, that.location) && Objects.equals(minNum, that.minNum) && Objects.equals(maxNum, that.maxNum) && Objects.equals(presentNum, that.presentNum) && Objects.equals(startDate, that.startDate) && Objects.equals(endDate, that.endDate) && Objects.equals(startTime, that.startTime) && Objects.equals(endTime, that.endTime) && Objects.equals(name, that.name) && Objects.equals(book, that.book) && Objects.equals(material, that.material) && Objects.equals(price, that.price) && Objects.equals(discount, that.discount) && Objects.equals(lstPrice, that.lstPrice) && Objects.equals(etc, that.etc) && Objects.equals(writer, that.writer) && Objects.equals(viewCnt, that.viewCnt) && Objects.equals(regDate, that.regDate) && Objects.equals(modifyDate, that.modifyDate) && Objects.equals(frsidNmbr, that.frsidNmbr) && Objects.equals(lstidNmbr, that.lstidNmbr) && Objects.equals(adminNo, that.adminNo);
     }
 
-    public void setCodeNum(int codeNum) {
-        this.codeNum = codeNum;
+    @Override
+    public int hashCode() {
+        return Objects.hash(classEnrollNo, title, description, subjectName, roundName, onOff, location, minNum, maxNum, presentNum, startDate, endDate, startTime, endTime, name, book, material, price, discount, lstPrice, etc, writer, viewCnt, regDate, modifyDate, frsidNmbr, lstidNmbr, adminNo);
+    }
+
+    public Integer getClassEnrollNo() {
+        return classEnrollNo;
+    }
+
+    public void setClassEnrollNo(Integer classEnrollNo) {
+        this.classEnrollNo = classEnrollNo;
     }
 
     public String getTitle() {
@@ -94,44 +105,20 @@ public class BootCampDto {
         this.description = description;
     }
 
-    public String getName() {
-        return name;
+    public String getSubjectName() {
+        return subjectName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setSubjectName(String subjectName) {
+        this.subjectName = subjectName;
     }
 
-    public Date getStartDate() {
-        return startDate;
+    public String getRoundName() {
+        return roundName;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
+    public void setRoundName(String roundName) {
+        this.roundName = roundName;
     }
 
     public String getOnOff() {
@@ -150,28 +137,68 @@ public class BootCampDto {
         this.location = location;
     }
 
-    public int getMinNum() {
+    public Integer getMinNum() {
         return minNum;
     }
 
-    public void setMinNum(int minNum) {
+    public void setMinNum(Integer minNum) {
         this.minNum = minNum;
     }
 
-    public int getMaxNum() {
+    public Integer getMaxNum() {
         return maxNum;
     }
 
-    public void setMaxNum(int maxNum) {
+    public void setMaxNum(Integer maxNum) {
         this.maxNum = maxNum;
     }
 
-    public int getPresentNum() {
+    public Integer getPresentNum() {
         return presentNum;
     }
 
-    public void setPresentNum(int presentNum) {
+    public void setPresentNum(Integer presentNum) {
         this.presentNum = presentNum;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getBook() {
@@ -190,44 +217,28 @@ public class BootCampDto {
         this.material = material;
     }
 
-    public String getWriter() {
-        return writer;
+    public Integer getPrice() {
+        return price;
     }
 
-    public void setWriter(String writer) {
-        this.writer = writer;
+    public void setPrice(Integer price) {
+        this.price = price;
     }
 
-    public Date getRegDate() {
-        return regDate;
+    public String getDiscount() {
+        return discount;
     }
 
-    public void setRegDate(Date regDate) {
-        this.regDate = regDate;
+    public void setDiscount(String discount) {
+        this.discount = discount;
     }
 
-    public String getFrsidNumbr() {
-        return frsidNumbr;
+    public Integer getLstPrice() {
+        return lstPrice;
     }
 
-    public void setFrsidNumbr(String frsidNumbr) {
-        this.frsidNumbr = frsidNumbr;
-    }
-
-    public Date getModifyDate() {
-        return modifyDate;
-    }
-
-    public void setModifyDate(Date modifyDate) {
-        this.modifyDate = modifyDate;
-    }
-
-    public String getLstidNumbr() {
-        return lstidNumbr;
-    }
-
-    public void setLstidNumbr(String lstidNumbr) {
-        this.lstidNumbr = lstidNumbr;
+    public void setLstPrice(Integer lstPrice) {
+        this.lstPrice = lstPrice;
     }
 
     public String getEtc() {
@@ -238,46 +249,93 @@ public class BootCampDto {
         this.etc = etc;
     }
 
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        BootCampDto that = (BootCampDto) o;
-        return classEnrollNo == that.classEnrollNo && adminNo == that.adminNo && codeNum == that.codeNum && price == that.price && minNum == that.minNum && maxNum == that.maxNum && presentNum == that.presentNum && Objects.equals(title, that.title) && Objects.equals(description, that.description) && Objects.equals(name, that.name) && Objects.equals(startDate, that.startDate) && Objects.equals(endDate, that.endDate) && Objects.equals(status, that.status) && Objects.equals(onOff, that.onOff) && Objects.equals(location, that.location) && Objects.equals(book, that.book) && Objects.equals(material, that.material) && Objects.equals(writer, that.writer) && Objects.equals(regDate, that.regDate) && Objects.equals(frsidNumbr, that.frsidNumbr) && Objects.equals(modifyDate, that.modifyDate) && Objects.equals(lstidNumbr, that.lstidNumbr) && Objects.equals(etc, that.etc);
+    public String getWriter() {
+        return writer;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(classEnrollNo, adminNo, codeNum, title, description, name, startDate, endDate, price, status, onOff, location, minNum, maxNum, presentNum, book, material, writer, regDate, frsidNumbr, modifyDate, lstidNumbr, etc);
+    public void setWriter(String writer) {
+        this.writer = writer;
+    }
+
+    public Integer getViewCnt() {
+        return viewCnt;
+    }
+
+    public void setViewCnt(Integer viewCnt) {
+        this.viewCnt = viewCnt;
+    }
+
+    public Date getRegDate() {
+        return regDate;
+    }
+
+    public void setRegDate(Date regDate) {
+        this.regDate = regDate;
+    }
+
+    public Date getModifyDate() {
+        return modifyDate;
+    }
+
+    public void setModifyDate(Date modifyDate) {
+        this.modifyDate = modifyDate;
+    }
+
+    public String getFrsidNmbr() {
+        return frsidNmbr;
+    }
+
+    public void setFrsidNmbr(String frsidNmbr) {
+        this.frsidNmbr = frsidNmbr;
+    }
+
+    public String getLstidNmbr() {
+        return lstidNmbr;
+    }
+
+    public void setLstidNmbr(String lstidNmbr) {
+        this.lstidNmbr = lstidNmbr;
+    }
+
+    public Integer getAdminNo() {
+        return adminNo;
+    }
+
+    public void setAdminNo(Integer adminNo) {
+        this.adminNo = adminNo;
     }
 
     @Override
     public String toString() {
-        return "bootCampDto{" +
+        return "BootCampDto{" +
                 "classEnrollNo=" + classEnrollNo +
-                ", adminNo=" + adminNo +
-                ", codeNum=" + codeNum +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
-                ", name='" + name + '\'' +
-                ", startDate=" + startDate +
-                ", endDate=" + endDate +
-                ", price=" + price +
-                ", status='" + status + '\'' +
+                ", subjectName='" + subjectName + '\'' +
+                ", roundName='" + roundName + '\'' +
                 ", onOff='" + onOff + '\'' +
                 ", location='" + location + '\'' +
                 ", minNum=" + minNum +
                 ", maxNum=" + maxNum +
                 ", presentNum=" + presentNum +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", startTime='" + startTime + '\'' +
+                ", endTime='" + endTime + '\'' +
+                ", name='" + name + '\'' +
                 ", book='" + book + '\'' +
                 ", material='" + material + '\'' +
-                ", writer='" + writer + '\'' +
-                ", regDate=" + regDate +
-                ", frsidNumbr='" + frsidNumbr + '\'' +
-                ", modifyDate=" + modifyDate +
-                ", lstidNumbr='" + lstidNumbr + '\'' +
+                ", price=" + price +
+                ", discount='" + discount + '\'' +
+                ", lstPrice=" + lstPrice +
                 ", etc='" + etc + '\'' +
+                ", writer='" + writer + '\'' +
+                ", viewCnt=" + viewCnt +
+                ", regDate=" + regDate +
+                ", modifyDate=" + modifyDate +
+                ", frsidNmbr='" + frsidNmbr + '\'' +
+                ", lstidNmbr='" + lstidNmbr + '\'' +
+                ", adminNo=" + adminNo +
                 '}';
     }
 }

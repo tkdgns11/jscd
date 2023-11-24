@@ -1,4 +1,4 @@
-package com.jscd.app.lecture.bootCamp.domain;
+package com.jscd.app.lecture.bootCamp.dto;
 
 public class BootCampRegistHandler {
     private int totalCnt; // 총 게시물 개수
@@ -11,7 +11,7 @@ public class BootCampRegistHandler {
     private boolean showPrev; // 이전 페이지로 이동하는 링크를 보여줄 것인지의 여부
     private boolean showNext; // 다음 페이지로 이동하는 링크를 보여줄 것인지의 여부
 
-    public BootCampRegistHandler(int totalCnt, int page){
+    public BootCampRegistHandler (int totalCnt, int page){
         // 총 게시물 개수, 현재 페이지, 한 페이지의 크기(10)
         this(totalCnt, page, 10);
     }
