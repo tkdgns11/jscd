@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jscd.app.board.qna.allqnaMapper">
+
+    <insert id="insert" parameterType="allqnaDto">
+        INSERT INTO allQnA
+            (qnaCtNo, mebrNo, title, writer, content, hit, openYN, regDate, frsidNmbr, modifyDate, lstidNmbr, etc)
+        VALUES
+            (#{qnaCtNo}, #{mebrNo}, #{title}, #{writer}, #{content}, #{hit}, #{openYN}, #{regDate}, #{frsidNmbr}, #{modifyDate}, #{lstidNmbr}, #{etc} )
+    </insert>
+
+    <select id="selectAll" resultType="allqnaDto">
+        SELECT allqnaNo, title, writer, hit, openYN, regDate, frsidNmbr, modifyDate, lstidNmbr
+        FROM allQnA
+        ORDER BY regDate DESC, allqnaNo DESC
+
+    </select>
+
+    <select id="select" parameterType="int" resultType="allqnaDto">
+        SELECT allqnaNo, title, writer, content, hit, openYN, regDate, frsidNmbr, modifyDate, lstidNmbr
+        FROM allQnA
+        WHERE allqnaNo = #{allqnaNo}
+    </select>
+
+    <update id="increaseViewCnt" parameterType="int">
+        UPDATE allQnA
+        SET   hit = hit + 1
+        WHERE allqnaNo = #{allqnaNo}
+    </update>
+
+    <update id="update" parameterType="allqnaDto">
+        UPDATE allQnA
+        SET title = #{title}
+          , writer = #{writer}
+          , content = #{content}
+        WHERE allqnaNo = #{allqnaNo}
+    </update>
+
+    <delete id="delete">
+
+        delete from allQnA where allqnaNo = #{allqnaNo}
+
+    </delete>
+
+
+    <select id="selectPage" parameterType="map" resultType="allqnaDto">
+       SELECT allqnaNo, title, content, writer, hit, view_cnt, comment_cnt, regDate
+       FROM allQnA
+        ORDER BY regDate DESC, allqnaNo DESC
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+</mapper>
