@@ -1,5 +1,6 @@
 package com.jscd.app.admin.dao;
 
+import com.jscd.app.admin.domain.SearchCondition;
 import com.jscd.app.admin.dto.StdManageDto;
 import com.jscd.app.admin.dto.StdMemberManageDto;
 import org.apache.ibatis.session.SqlSession;
@@ -27,8 +28,11 @@ public class StdManageDaoImpl implements StdManageDao {
     }
 
     @Override
-    public List<StdMemberManageDto> selectAll()throws Exception{
-        return session.selectList(namespace+"selectAll");
+    public List<StdMemberManageDto> selectAll(int offset,int pageSize)throws Exception{
+        Map map = new HashMap();
+        map.put("offset",offset);
+        map.put("pageSize",pageSize);
+        return session.selectList(namespace+"selectAll",map);
     }
 
     @Override
@@ -50,12 +54,13 @@ public class StdManageDaoImpl implements StdManageDao {
     public void deleteAll()throws Exception{
         session.delete(namespace+"deleteAll");
     }
-
-
-
-
-
-
-
+    @Override
+    public List<StdMemberManageDto> searchSelectPage(SearchCondition sc)throws Exception{
+        return session.selectList(namespace+"searchSelectPage",sc);
+    }
+    @Override
+    public int searchResultCnt(SearchCondition sc)throws Exception{
+        return session.selectOne(namespace+"searchResultCnt",sc);
+    }
 
 }

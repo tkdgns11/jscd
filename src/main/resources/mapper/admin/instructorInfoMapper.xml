@@ -1,60 +1,121 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.jscd.app.mapper.instructorInfoMapper">
 
-	<!--강사 정보 관리 -->
+    <!--강사 정보 관리 -->
 
-	<!--    등급이 강사로 변경 -> insert -->
-	<insert id="insert" parameterType="InstructorInfoDto">
-		insert into instructorInfo
-		(iscrNo,mebrNo,intro,status,hourPmt)
-		values
-			(#{iscrNo},#{mebrNo},#{intro},#{status},#{hourPmt})
-	</insert>
+    <!--    등급이 강사로 변경 -> insert -->
+    <insert id="insert" parameterType="InstructorInfoDto">
+        insert into instructorInfo
+            (iscrNo, mebrNo, intro, status, hourPmt)
+        values (#{iscrNo}, #{mebrNo}, #{intro}, #{status}, #{hourPmt})
+    </insert>
 
-	<select id="count" resultType="int">
-		select count(*) from instructorInfo
-	</select>
+    <select id="count" resultType="int">
+        select count(*)
+        from instructorInfo
+    </select>
 
-	<!-- 강사+회원 조인 / 전체 화면 => 강사정보번호,아이디,이름,전화번호,상태,등록일시 select => 관리자id 확인(session) -->
-	<select id="selectAll" resultType="InstructorMemberInfoDto">
-		select i.iscrNo, m.id, m.name, m.phone1,m.phone2,m.phone3,i.status,i.regDate
-		from instructorInfo i
-		join member m on i.mebrNo = m.mebrNo;
-	</select>
+    <!-- 강사+회원 조인 / 전체 화면 => 강사정보번호,아이디,이름,전화번호,상태,등록일시 select => 관리자id 확인(session) -->
+    <select id="selectAll" parameterType="map" resultType="InstructorMemberInfoDto">
+        select i.iscrNo,
+               m.id,
+               m.name,
+               concat(m.phone1, m.phone2, m.phone3) as phone,
+               i.status,
+               i.regDate
+        from instructorInfo i
+                 join member m on i.mebrNo = m.mebrNo
+        order by i.iscrNo asc
+            limit #{offset}, #{pageSize};
+    </select>
+
+    <!--  강사이름 클릭 시, 상세화면(or 상세보기 버튼 생성)-->
+    <select id="select" parameterType="Map" resultType="InstructorMemberInfoDto">
+        select i.iscrNo,
+               m.id,
+               m.name,
+               m.birth,
+               concat(m.phone1, m.phone2, m.phone3) as phone,
+               i.intro,
+               i.status,
+               i.hourPmt,
+               m.acct,
+               i.regDate,
+               i.etc
+        from instructorInfo i
+                 join member m on i.mebrNo = m.mebrNo
+        where i.iscrNo = #{iscrNo};
+    </select>
 
 
-	<!--  강사이름 클릭 시, 상세화면(or 상세보기 버튼 생성)-->
-	<select id="select" parameterType="Map" resultType="InstructorMemberInfoDto">
-		select i.iscrNo, m.id, m.name,m.birth,m.phone1,m.phone2,m.phone3,
-		i.intro,i.status,i.hourPmt,m.acct,i.regDate,i.etc
-		from instructorInfo i
-		join member m on i.mebrNo = m.mebrNo
-		where i.iscrNo = #{iscrNo};
-	</select>
+    <!-- update-->
+    <update id="update" parameterType="InstructorInfoDto">
+        update instructorInfo
+        set intro      = #{intro}
+          , status     = #{status}
+          , hourPmt    = #{hourPmt}
+          , etc        = #{etc}
+          , modifyDate = now()
+        where iscrNo = #{iscrNo}
+    </update>
 
+    <!--    탈퇴하거나(회원), 등급 조정 시(관리자) ->매개변수로 회원고유번호가 적합 delete-->
+    <delete id="delete" parameterType="Integer">
+        delete
+        from instructorInfo
+        where mebrNo = #{mebrNo}
+    </delete>
 
-	<!-- update-->
-	<update id="update" parameterType="InstructorInfoDto">
-		update instructorInfo
-		set intro = #{intro}
-		  ,status = #{status}
-		  ,hourPmt = #{hourPmt}
-		  ,etc = #{etc}
-		  ,modifyDate = now()
-		where iscrNo = #{iscrNo}
-	</update>
+    <delete id="deleteAll">
+        delete
+        from instructorInfo
+    </delete>
 
-	<!--    탈퇴하거나(회원), 등급 조정 시(관리자) ->매개변수로 회원고유번호가 적합 delete-->
-	<delete id="delete" parameterType="Integer">
-		delete from instructorInfo
-		where mebrNo = #{mebrNo}
-	</delete>
+    <select id="searchSelectPage" parameterType="SearchCondition" resultType="InstructorMemberInfoDto">
+    select i.iscrNo,
+    m.id,
+    m.name,
+    concat(m.phone1, m.phone2, m.phone3) as phone,
+    i.status,
+    i.regDate
+    from instructorInfo i
+    join member m on i.mebrNo = m.mebrNo
+    WHERE true
+    <choose>
+        <when test='option=="T"'>
+            AND m.name LIKE concat('%', #{keyword}, '%')
+        </when>
+        <when test='option=="W"'>
+            AND m.id LIKE concat('%', #{keyword}, '%')
+        </when>
+        <otherwise>
+            AND i.status LIKE concat('%', #{keyword}, '%')
+        </otherwise>
+    </choose>
+    order by i.iscrNo asc
+    limit #{offset},#{pageSize};
+</select>
 
-	<delete id="deleteAll">
-		delete from instructorInfo
-	</delete>
+<!--    몇개인지 알아야 페이징처리 할 수 있다-->
+<select id="searchResultCnt" parameterType="SearchCondition" resultType="int">
+SELECT count(*)
+from instructorInfo i
+join member m on i.mebrNo = m.mebrNo
+WHERE true
+    <choose>
+        <when test='option=="T"'>
+            AND m.name LIKE concat('%', #{keyword}, '%')
+        </when>
+        <when test='option=="W"'>
+            AND m.id LIKE concat('%', #{keyword}, '%')
+        </when>
+        <otherwise>
+            AND i.status LIKE concat('%', #{keyword}, '%')
+        </otherwise>
+    </choose>
+</select>
 
 </mapper>

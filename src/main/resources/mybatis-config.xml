@@ -11,5 +11,6 @@
 		<typeAlias alias="StdMemberManageDto" type="com.jscd.app.admin.dto.StdMemberManageDto"/>
 		<typeAlias alias="bootCampDto" type="com.jscd.app.lecture.bootCamp.dto.BootCampDto"/>
 		<typeAlias alias="SeminarRegistDto" type="com.jscd.app.lecture.seminar.dto.SeminarRegistDto"/>
+		<typeAlias alias="SearchCondition" type="com.jscd.app.admin.domain.SearchCondition"/>
 	</typeAliases>
 </configuration>

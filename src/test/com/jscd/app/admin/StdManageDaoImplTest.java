@@ -2,7 +2,6 @@ package com.jscd.app.admin.dao;
 
 
 import com.jscd.app.admin.dto.StdManageDto;
-import com.jscd.app.admin.dto.StdMemberManageDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
