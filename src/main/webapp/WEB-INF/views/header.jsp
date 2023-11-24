@@ -7,6 +7,7 @@
 <c:set var="loginStatus" value="${loginId== null ? '로그인' : '로그아웃'}"/>
 <c:set var="memberPath" value="${loginId == null  ?  '/member/signup' : '/member/memberEdit'}"/>
 <c:set var="memberStatus" value="${loginId== null ? '회원가입' : '개인정보수정'}"/>
+<c:set var = "path" value = "${pageContext.request.contextPath}"/>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -78,7 +79,7 @@
                 <p>게시판</p>
                 <ul class="Menu gainMenu">
                     <li><a href="#">공지사항</a></li>
-                    <li><a href="#">Q&A</a></li>
+                    <li><a href="${path}/board/qna/allqnaList">Q&A</a></li>
                     <li><a href="#">FAQ</a></li>
                 </ul>
             </li>
