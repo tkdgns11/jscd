@@ -4,7 +4,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <c:set var="loginId" value="${pageContext.request.getSession(false)==null ? null : pageContext.request.session.getAttribute('id')}"/>
 <c:set var="loginPath" value="${loginId == null  ?  '/member/login' : '/member/logout'}"/>
-<c:set var="loginStatus" value="${loginId== null ? '로그인' : loginId}"/>
+<c:set var="loginStatus" value="${loginId== null ? '로그인' : '로그아웃'}"/>
 <c:set var="memberPath" value="${loginId == null  ?  '/member/signup' : '/member/memberEdit'}"/>
 <c:set var="memberStatus" value="${loginId== null ? '회원가입' : '개인정보수정'}"/>
 

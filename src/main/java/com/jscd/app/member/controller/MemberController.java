@@ -101,6 +101,7 @@ public class MemberController {
 		try{
 			System.out.println("memberDto!!!!"+memberDto);
 			memberService.signUp(memberDto);
+			System.out.println("회원가입 성공");
 			map.put("redirect","/member/login");
 		}catch (Exception e){
 			map.put("error","회원가입에 실패했습니다.");
