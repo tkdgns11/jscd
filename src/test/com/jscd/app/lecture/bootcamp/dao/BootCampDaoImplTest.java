@@ -1,6 +1,6 @@
 //package com.jscd.app.lecture.bootCamp.dao;
 //
-//import com.jscd.app.lecture.bootCamp.dto.BootCampDto;
+//import com.jscd.app.lecture.bootCamp.dto.SeminarRegistDto;
 //import org.junit.Test;
 //import org.junit.runner.RunWith;
 //import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@
 //
 //    @Test
 //    public void insertBootCamp() throws Exception {
-//        BootCampDto boot = new BootCampDto();
+//        SeminarRegistDto boot = new SeminarRegistDto();
 //        boot.setClassEnrollNo("B0101");
 //        boot.setName("부트캠프11기");
 //
