@@ -62,8 +62,10 @@ public class KakaoController {
         //생년월일
         birthyear = birthyear.substring(2, 4);
         String birth = birthyear+birthday;
+            System.out.println("birth : " + birth);
 
-        //휴대폰번호
+
+            //휴대폰번호
         String cleanedNumber = phone.replaceAll("[\\s-]+", "");
         System.out.println(cleanedNumber);
         String phone1 = cleanedNumber.substring(0, 5);
@@ -76,6 +78,7 @@ public class KakaoController {
         memberDto.setPwd(pwd);
         memberDto.setGender(gender);
         memberDto.setBirth(birth);
+        memberDto.setPhone(phone);
         memberDto.setPhone1(phone1);
         memberDto.setPhone2(phone2);
         memberDto.setPhone3(phone3);
@@ -85,6 +88,7 @@ public class KakaoController {
         }
 
         HttpSession session = request.getSession();
+        session.setAttribute("id",id);
         session.setAttribute("accessToken",accessToken);
 
         return "redirect:/";
