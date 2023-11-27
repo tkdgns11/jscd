@@ -220,6 +220,19 @@
 			<artifactId>spring-context-support</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
+
+		<dependency> <!-- oauth 라이브러리 -->
+			<groupId>com.github.scribejava</groupId>
+			<artifactId>scribejava-core</artifactId>
+			<version>3.3.0</version>
+		</dependency>
+
+		<dependency>  <!-- json 라이브러리 -->
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+
 	</dependencies>
 	<build>
 		<plugins>

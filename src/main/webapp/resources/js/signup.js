@@ -25,10 +25,7 @@ function signup(){
         }
     }
 
-    //const phone1 = document.getElementById("phone1");
-    //const phone2 = document.getElementById("phone2");
-    //const phone3 = document.getElementById("phone3");
-    //const phone = ((String)(phone1.value) + "-" +(String)(phone2.value) + "-" + (String)(phone3.value));
+
     const phone = document.getElementById("phone");
 
     //모든 공백 체크 정규식

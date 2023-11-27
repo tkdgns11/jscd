@@ -1,5 +1,7 @@
 package com.jscd.app.member.controller;
 
+import com.jscd.app.member.dto.KakaoLoginBo;
+import com.jscd.app.member.dto.NaverLoginBo;
 import com.jscd.app.member.dto.mailSender;
 import com.jscd.app.member.dto.MemberDto;
 import com.jscd.app.member.service.MemberService;
@@ -24,9 +26,14 @@ import java.util.Map;
 @RequestMapping("/member/*")
 public class MemberController {
 	private MemberService memberService;
+	private NaverLoginBo naverLoginBo;
+
+	private KakaoLoginBo kakaoLoginBo;
 	@Autowired
-	public MemberController(MemberService memberService){
+	public MemberController(MemberService memberService, NaverLoginBo naverLoginBo,KakaoLoginBo kakaoLoginBo){
 		this.memberService = memberService;
+		this.naverLoginBo = naverLoginBo;
+		this.kakaoLoginBo = kakaoLoginBo;
 	}
 
 	/*
@@ -35,7 +42,17 @@ public class MemberController {
 	작성 기능: 로그인 및 로그아웃
 	 */
 	@GetMapping("/login")
-	public String loginPageMove(){
+	public String loginPageMove(Model model, HttpSession session){
+
+		String naverAuthUrl = naverLoginBo.getAuthorizationUrl(session);
+		System.out.println("네이버" + naverAuthUrl);
+		model.addAttribute("urlNaver", naverAuthUrl);
+
+		String kakaoAuthUrl = kakaoLoginBo.getAuthorizationUrl(session);
+		System.out.println("카카오" + kakaoAuthUrl);
+		model.addAttribute("urlKakao", kakaoAuthUrl);
+
+
 
 		return "/member/login";
 	}
@@ -48,20 +65,28 @@ public class MemberController {
 		return "redirect:/";
 	}
 	@PostMapping("/login")
-	public String loginCheck(String id, String pwd, String toUrl, boolean rememberId, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	@ResponseBody
+	public Map<String, String> loginCheck(@RequestBody MemberDto memberDto, String toUrl, HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+		String id = memberDto.getId();
+		String pwd = memberDto.getPwd();
+		String rememberId = memberDto.getRememberId();
+		Map<String, String> map = new HashMap<>();
+		System.out.println(id+pwd+rememberId);
 
 		//1. id, pwd 체크
 		//1-1 일치하지 않음.
 		if(!memberService.login(id, pwd)){
 			String msg = URLEncoder.encode("id 또는 pwd가 일치하지 않습니다.", "utf-8");
-			return "redirect:/member/login?msg="+msg;
+			map.put("redirect", "/member/login?msg="+msg);
+			return map;
 		}
 		//1-2 일치하는 경우
 		HttpSession session = request.getSession();
 		session.setAttribute("id",id);
 
 		//2.아이디 기억 처리
-		if(rememberId){
+		if(rememberId.equals("true")){
 			//2-1.쿠키 생성 및 응답에 저장
 			Cookie cookie = new Cookie("id", id);
 			response.addCookie(cookie);
@@ -74,9 +99,8 @@ public class MemberController {
 
 		toUrl = toUrl == null || toUrl.equals("") ? "/" : toUrl;
 
-		return "redirect:"+toUrl;
-
-
+		map.put("redirect",toUrl);
+		return map;
 	}
 
 
