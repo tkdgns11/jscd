@@ -1,0 +1,25 @@
+* {text-decoration: none;}
+#infoDetailBox {width: fit-content;height: 60%;margin-left: 550px;padding: 50px 0 50px 0;}
+.infoInputBox {width: 400px;height: 36px;border: 1px solid gray;border-radius: 8px;margin: 8px 0 20px 0;padding-top: 4px;padding-left: 10px;}
+.infoValueBox {width: 390px;height: 24px;border: 1px solid gray;border-radius: 8px;margin: 8px 0 20px 0;padding-top: 10px;padding-left: 10px;}
+#infoTitle {text-align: center;margin-bottom: 20px;font-size: 20px;font-weight: 600;}
+.infoDetailBtn{width: 100px;height: 35px;border-radius: 20px;border: 0;color: white;background-color: #18214F;}
+.infoDetailBtn:hover{background-color: #bebebe;}
+
+table, td, th {border-top : 1px solid black;border-bottom: 3px solid black;border-collapse : collapse;text-align: center;}
+#searchBtn{width: 60px;height: 30px;border-radius: 20px;border: 0;color: white;background-color: #18214F;}
+#searchBtn:hover{background-color: #bebebe;}
+#infoListBox{position: relative;margin-left: 250px;width: 960px;height: 600px;}
+#infoListTitle{position: absolute;width: 300px;margin: 30px 400px;}
+#infoListTitle h1{font-size: 30px;}
+#selectList{height: 27px;}
+#keywordInput{height: 25px;}
+#choiceBox{position:absolute;margin-left: 650px;top: 85px;}
+#infoListTable{position: absolute;margin-left: 200px;top: 150px;}
+#infoNav{position: absolute;margin-left:470px;top: 450px;}
+.thInput{width:40px;}
+
+#infoDetailBox {width: fit-content;height: 60%;margin-left: 550px;padding: 50px 0 50px 0;}
+.infoValueBox {width: 390px;height: 24px;border: 1px solid gray;border-radius: 8px;margin: 8px 0 20px 0;padding-top: 10px;padding-left: 10px;}
+#infoTitle {text-align: center;margin-bottom: 20px;font-size: 20px;font-weight: 600;}
+.infoModifyBox{width: 400px;height:36px;border: 1px solid red;border-radius: 8px;margin: 8px 0 20px 0;padding-top: 4px;padding-left: 10px;}

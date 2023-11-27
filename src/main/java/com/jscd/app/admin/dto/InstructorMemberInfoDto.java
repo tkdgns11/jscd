@@ -3,8 +3,8 @@ package com.jscd.app.admin.dto;
 import java.util.Date;
 import java.util.Objects;
 
-public class InstructorMemberInfoDto {
-    private String iscrNo; //pk_강사 고유 번호
+public class InstructorMemberInfoDto { //강사 + 회원 조인 Dto
+    private String iscrNo; //pk_강사 고유 코드
     private Integer mebrNo; //회원 고유 번호
     private String intro;
     private Integer status;

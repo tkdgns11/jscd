@@ -1,65 +1,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
+<%@ page session="true"%>
 <html>
 <head>
     <title>강사 정보 관리</title>
-    <style>
-        *{
-            text-decoration: none;
-            font-family: IBM Plex Sans KR;
 
-        }
-        table, td, th {
-            border-top : 1px solid black;
-            border-bottom: 1px solid black;
-            border-collapse : collapse;
-            text-align: center;
-        }
-        #searchBtn{
-            width: 100px;
-            height: 30px;
-            border-radius: 20px;
-            border: 0;
-            color: white;
-            background-color: #18214F;
-        }
-        #searchBtn:hover{background-color: #bebebe;
-        }
-        #infoListBox{
-            position: relative;
-
-        }
-        #infoListTitle{
-            position: absolute;
-            margin-left:400px;
-        }
-        #selectList{
-            height: 30px;
-        }
-        #keywordInput{
-            height: 25px;
-        }
-        #choiceBox{
-            position:absolute;
-            margin-left: 650px;
-            top: 280px;
-        }
-        #infoListTable{
-            position: absolute;
-            margin-left: 220px;
-            top: 350px;
-        }
-        #infoNav{
-            position: absolute;
-            margin-left:400px;
-            top: 750px;
-        }
-        .thInput{
-            width:40px;
-        }
-    </style>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&family=Noto+Serif+KR:wght@900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/home.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/adminInfoManage.css"/>">
+
 </head>
 <script>
     let msg = "${param.msg}";
@@ -67,14 +18,21 @@
     if(msg=="LIST_ERR")  alert("강사 목록을 가져오는데 실패했습니다. 다시 시도해 주세요.");
 </script>
 <body>
+<div id="content">
 
-<div id="infoListBox" style="width: 960px;height: 700px;">
+<header>
+    <jsp:include page="../adminHeader.jsp"/>
+</header>
+
+
+
+<div id="infoListBox">
     <div id="infoListTitle">
         <h1>강사 정보 관리</h1>
     </div>
 
     <div id="choiceBox">
-        <form action="/instructor/list" method="get";>
+        <form action="/onlyAdmin/instructor/list" method="get">
             <select name="option" id="selectList">
                 <option value="T" ${sc.option=='T' || sc.option=='' ? "selected" : ""}>이름</option>
                 <option value="W" ${sc.option=='W' || sc.option=='' ? "selected" : ""}>아이디</option>
@@ -104,7 +62,7 @@
                 <td>${instructorDto.iscrNo}</td>
                 <td>${instructorDto.id}</td>
                 <td>
-                    <a href="<c:url value="/instructor/read?page=${sc.page}&iscrNo=${instructorDto.iscrNo}"/>">${instructorDto.name}</a>
+                    <a href="<c:url value="/onlyAdmin/instructor/read?page=${sc.page}&iscrNo=${instructorDto.iscrNo}"/>">${instructorDto.name}</a>
                 </td>
                 <td>${instructorDto.phone}</td>
                 <td>${instructorDto.status}</td>
@@ -123,19 +81,24 @@
                 <c:if test="${page.totalCnt!=null && page.totalCnt!=0}">
                     <p>
                     <c:if test="${page.showPrev}">
-                        <a href="<c:url value="/instructor/list${sc.getQueryString(page.beginPage-1)}"/>">&lt;</a>
+                        <a href="<c:url value="/onlyAdmin/instructor/list${sc.getQueryString(page.beginPage-1)}"/>">&lt;</a>
                     </c:if>
                     <c:forEach var="i" begin="${page.beginPage}" end="${page.endPage}">
-                        <a href="<c:url value="/instructor/list${sc.getQueryString(i)}"/>">${i}</a>
+                        <a href="<c:url value="/onlyAdmin/instructor/list${sc.getQueryString(i)}"/>">${i}</a>
                     </c:forEach>
                     <c:if test="${page.showNext}">
-                        <a href="<c:url value="/instructor/list${sc.getQueryString(page.endPage+1)}"/>">&gt;</a>
+                        <a href="<c:url value="/onlyAdmin/instructor/list${sc.getQueryString(page.endPage+1)}"/>">&gt;</a>
                     </c:if>
                     </p>
                 </c:if>
             </div>
         </div>
 
+<footer>
+    <jsp:include page="../../footer.jsp"/>
+</footer>
+
+</div>
 
 </body>
 </html>
