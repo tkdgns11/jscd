@@ -1,7 +1,7 @@
 package com.jscd.app.member.controller;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
-import com.jscd.app.member.dto.KakaoLoginBo;
+import com.github.scribejava.core.model.OAuthRequest;
 import com.jscd.app.member.dto.MemberDto;
 import com.jscd.app.member.dto.NaverLoginBo;
 import com.jscd.app.member.service.MemberService;
@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -18,33 +19,32 @@ import javax.servlet.http.HttpSession;
 import java.util.Objects;
 
 @Controller
-@RequestMapping("/kakao/*")
-public class KakaoController {
-    private KakaoLoginBo kakaoLoginBo;
+@RequestMapping("/naver/*")
+public class NaverController {
+    private NaverLoginBo naverLoginBo;
     private MemberService memberService;
     private String apiResult = null;
 
     @Autowired
-    private  void setKakaoLoginBo(KakaoLoginBo kakaoLoginBo, MemberService memberService ){
-        this.kakaoLoginBo = kakaoLoginBo;
+    private  void setNaverLoginBo(NaverLoginBo naverLoginBo, MemberService memberService ){
+        this.naverLoginBo = naverLoginBo;
         this.memberService = memberService;
     }
 
     @GetMapping("/login")
     public String naverLogin(Model model, @RequestParam String code, @RequestParam String state, HttpSession session) throws Exception{
-        System.out.println("카카오 로그인 성공");
+        System.out.println("네이버 로그인 성공");
         System.out.println("code====" + code + ", state====" + state);
         OAuth2AccessToken oAuth2AccessToken;
 
-        oAuth2AccessToken  = kakaoLoginBo.getAccessToken(session, code, state);
-        apiResult = kakaoLoginBo.getUserProfile(oAuth2AccessToken);
+        oAuth2AccessToken  = naverLoginBo.getAccessToken(session, code, state);
+        apiResult = naverLoginBo.getUserProfile(oAuth2AccessToken);
 
         JSONParser jsonParser = new JSONParser();
         JSONObject jsonObj;
 
         jsonObj = (JSONObject) jsonParser.parse(apiResult);
-        JSONObject response_obj = (JSONObject) jsonObj.get("kakao_account");
-        JSONObject response_obj2 = (JSONObject) jsonObj.get("profile");
+        JSONObject response_obj = (JSONObject) jsonObj.get("response");
         System.out.println(response_obj.toString());
 
         String id = (String) response_obj.get("email");
@@ -63,6 +63,7 @@ public class KakaoController {
         String birth = birthyear.substring(2) + birthday.replace("-","");
         String phone = (String)response_obj.get("mobile");
 
+        System.out.println("회원가입 전");
         MemberDto memberDto = new MemberDto();
 
         if(memberService.memberSelect(id)==null){

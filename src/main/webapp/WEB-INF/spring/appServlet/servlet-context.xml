@@ -29,5 +29,6 @@
 	
 	<view-controller path="/" view-name="home"/>
 	
-	
+	<beans:bean id="naverLoginBo" class="com.jscd.app.member.dto.NaverLoginBo" />
+	<beans:bean id="kakaoLoginBo" class="com.jscd.app.member.dto.KakaoLoginBo" />
 </beans:beans>

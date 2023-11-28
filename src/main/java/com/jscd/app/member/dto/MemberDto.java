@@ -9,12 +9,8 @@ public class MemberDto {
 	private String nickname;
 	private String birth;
 	private String pwd;
-	private String gender;
-
+	private int gender;
 	private String phone;
-	private String phone1;
-	private String phone2;
-	private String phone3;
 	private String acct;
 	private int status;
 	private int grade;
@@ -23,46 +19,20 @@ public class MemberDto {
 	private Date modifyDate;	
 	private String lstidNmbr;
 	private String etc;
+	private String rememberId;
 
-	//(id, name, alias, birth, pwd, phone1, phone2, phone3,
+
+	//(id, name, nickname, birth, pwd, phone1, phone2, phone3,
 	//                acct, status, grade, regDate, frsidNmbr, modifyDate, lstidNmbr, etc)
 	public MemberDto(){}
 
-	public MemberDto(String id, String name, String nickname, String birth, String pwd, String gender, String phone, String acct, int status, int grade, Date regDate, String frsidNmbr, Date modifyDate, String lstidNmbr, String etc) {
+	public MemberDto(String id, String pwd, String rememberId, String toUrl) {
 		this.id = id;
-		this.name = name;
-		this.nickname = nickname;
-		this.birth = birth;
 		this.pwd = pwd;
-		this.gender = gender;
-		this.phone = phone;
-		this.acct = acct;
-		this.status = status;
-		this.grade = grade;
-		this.regDate = regDate;
-		this.frsidNmbr = frsidNmbr;
-		this.modifyDate = modifyDate;
-		this.lstidNmbr = lstidNmbr;
-		this.etc = etc;
+		this.rememberId = rememberId;
 	}
 
-	@Override
-	public String toString() {
-		return "memberDto [mebrNo=" + mebrNo + ", id=" + id + ", name=" + name + ", alias=" + nickname + ", birth="
-				+ birth + ", pwd=" + pwd + ", gender=" + gender+ ", phone=" + phone + ", acct=" + acct + ", status="
-				+ status + ", grade=" + grade + ", regDate=" + regDate + ", frsidNmbr="	+ frsidNmbr + ", modifyDate="
-				+ modifyDate + ", lstidNmbr=" + lstidNmbr + ", etc=" + etc + "]";
-	}
-	
-	
-	public MemberDto(String id, String name, String pwd){
-		this.id = id;
-		this.name = name;
-		this.pwd = pwd;
-	}
-	public MemberDto(int mebrNo, String id, String name, String nickname, String birth, String pwd, String gender, String phone, String acct, int status, int grade, Date regDate, String frsidNmbr,
-					 Date modifyDate, String lstidNmbr, String etc) {
-		super();
+	public MemberDto(int mebrNo, String id, String name, String nickname, String birth, String pwd, int gender, String phone, String acct, int status, int grade, Date regDate, String frsidNmbr, Date modifyDate, String lstidNmbr, String etc, String rememberId, String toUrl) {
 		this.mebrNo = mebrNo;
 		this.id = id;
 		this.name = name;
@@ -79,10 +49,8 @@ public class MemberDto {
 		this.modifyDate = modifyDate;
 		this.lstidNmbr = lstidNmbr;
 		this.etc = etc;
+		this.rememberId = rememberId;
 	}
-
-
-
 
 	public int getMebrNo() {
 		return mebrNo;
@@ -120,39 +88,17 @@ public class MemberDto {
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
 	}
-
-	public String getGender() {
+	public int getGender() {
 		return gender;
 	}
-
-	public void setGender(String gender) {
+	public void setGender(int gender) {
 		this.gender = gender;
 	}
 	public String getPhone() {
 		return phone;
 	}
-
 	public void setPhone(String phone) {
 		this.phone = phone;
-	}
-
-	public String getPhone1() {
-		return phone1;
-	}
-	public void setPhone1(String phone1) {
-		this.phone1 = phone1;
-	}
-	public String getPhone2() {
-		return phone2;
-	}
-	public void setPhone2(String phone2) {
-		this.phone2 = phone2;
-	}
-	public String getPhone3() {
-		return phone3;
-	}
-	public void setPhone3(String phone3) {
-		this.phone3 = phone3;
 	}
 	public String getAcct() {
 		return acct;
@@ -175,7 +121,6 @@ public class MemberDto {
 	public Date getRegDate() {
 		return regDate;
 	}
-
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
@@ -203,6 +148,39 @@ public class MemberDto {
 	public void setEtc(String etc) {
 		this.etc = etc;
 	}
-	
-	
+
+	public String getRememberId() {
+		return rememberId;
+	}
+
+	public void setRememberId(String rememberId) {
+		this.rememberId = rememberId;
+	}
+
+
+	@Override
+	public String toString() {
+		return "MemberDto{" +
+				"mebrNo=" + mebrNo +
+				", id='" + id + '\'' +
+				", name='" + name + '\'' +
+				", nickname='" + nickname + '\'' +
+				", birth='" + birth + '\'' +
+				", pwd='" + pwd + '\'' +
+				", gender='" + gender + '\'' +
+				", phone='" + phone + '\'' +
+				", acct='" + acct + '\'' +
+				", status=" + status +
+				", grade=" + grade +
+				", regDate=" + regDate +
+				", frsidNmbr='" + frsidNmbr + '\'' +
+				", modifyDate=" + modifyDate +
+				", lstidNmbr='" + lstidNmbr + '\'' +
+				", etc='" + etc + '\'' +
+				", rememberId='" + rememberId + '\'' +
+				'}';
+	}
+
+
+
 }

@@ -5,10 +5,11 @@
     box-sizing: border-box; /* 내용과 패딩을 포함한 전체 너비와 높이를 정의합니다. */
     margin: 0; /* 외부 여백을 초기화합니다. */
     padding: 0; /* 내부 여백을 초기화합니다. */
+    border: none;
 }
 /* 포커스 시 기본 아웃라인 제거 */
 #wrap input:focus {outline: none;}
-#wrap input[type="text"], input[type="password"]{border: none; width: 300px; height: 50px;}
+#wrap input[type="text"], input[type="password"]{ width: 300px; height: 50px;}
 #wrap{margin: 80px auto; width:960px;}
 #wrap img{width: 50px; height: 50px;}
 #wrap > div{border: 1px solid rgb(128, 128, 128); width: 60%; margin: 20px auto; border-radius: 15px;}
@@ -19,9 +20,6 @@
 #signupHeader h1{line-height: 50px; font-size: 50px; margin-left: 30px;}
 #idChkBtn, #emailChkBtn{border:none; width: 130px;}
 #idChkBtn{border-radius: 0px 15px 0px 0px;}
-/*#phoneBox  input[type="text"]{width: 80px; height: 30px; border:  1px solid rgb(128, 128, 128); border-radius: 10px; text-align: center;}*/
-/*#phone1,#phone2{margin-right: 15px;}*/
-/*#phone2,#phone3{margin-left: 15px;}*/
 #phoneBox{display: flex; flex-direction: row; align-items: center;}
 #phoneBox label{line-height: 50px;margin: 0 12px;}
 
