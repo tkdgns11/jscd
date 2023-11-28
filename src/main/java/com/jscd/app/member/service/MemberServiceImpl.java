@@ -58,21 +58,11 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int signUp(MemberDto memberDto) throws Exception {
-		System.out.println("service");
 		return memberDao.insertUser(memberDto);
 	}
 
 	@Override
-	public int memberEdit(String id) throws Exception {
-		MemberDto memberDto = null;
-
-		try {
-			memberDto = memberDao.selectUser(id);
-			//System.out.println(memberDto);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return 0;
-		}
+	public int memberEdit(MemberDto memberDto) throws Exception {
 		return memberDao.updateUser(memberDto);
 	}
 

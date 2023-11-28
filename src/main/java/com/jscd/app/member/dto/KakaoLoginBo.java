@@ -19,7 +19,7 @@ public class KakaoLoginBo {
     private final static String KAKAO_CLIENT_ID = "f9bba8ce6a0b56e27f28ef5f010fdb0c";
     private final static String KAKAO_CLIENT_SECRET = "JXQxjXwtdJ3agG7PnWTZYd23zC2829UW";
 
-    private final static String KAKAO_REDIRECT_URI="http://localhost:8080/kakao/login";
+    private final static String KAKAO_REDIRECT_URI="http://localhost:8080/member/kakaoLogin";
 
     private final static String SESSION_STATE="kakao_oauth_state";
 
@@ -47,7 +47,7 @@ public class KakaoLoginBo {
     public OAuth2AccessToken getAccessToken(HttpSession session, String code, String state) throws IOException{
         System.out.println("getAccessToken");
         String sessionState = getSession(session);
-
+        //세션에 있는 state 값 같은지 비교
         if(StringUtils.pathEquals(sessionState,state)){
             OAuth20Service oAuth20Service = new ServiceBuilder()
                     .apiKey(KAKAO_CLIENT_ID)

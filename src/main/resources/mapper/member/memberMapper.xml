@@ -7,7 +7,7 @@
     <select id="count" resultType="int">
         SELECT count(*) FROM MEMBER
     </select>
-    
+<!--    회원상태에 따른 조회-->
     <select id="select" resultType="memberDto">
     	SELECT 
     		mebrNo, id, name, nickname, birth, pwd, phone, gender,
@@ -18,19 +18,26 @@
     
     <insert id="insert" parameterType="memberDto">
 	     INSERT INTO MEMBER
-	         (id, name, nickname, birth, pwd, gender, phone, acct, status, grade, regDate, frsidNmbr, modifyDate, lstidNmbr, etc)
+	         (id, name, nickname, birth, pwd, gender, phone, acct, status, grade, regDate, frsidNmbr, etc)
 	     VALUES
-	         (#{id}, #{name}, #{nickname}, #{birth}, #{pwd}, #{gender}, #{phone}, #{acct}, #{status}, #{grade}, #{regDate}, #{frsidNmbr}, #{modifyDate}, #{lstidNmbr}, #{etc})
+	         (#{id}, #{name}, #{nickname}, #{birth}, #{pwd}, #{gender}, #{phone}, #{acct}, #{status}, #{grade}, now(), #{frsidNmbr}, #{etc})
     </insert>
     
 	<update id="update" parameterType="memberDto">
 	    UPDATE MEMBER
 	    	SET
-				alias = #{alias},
-    			etc = #{etc}
+	    	    id = #{id},
+	    	    name = #{name},
+	    	    nickname = #{nickname},
+	    	    birth = #{birth},
+	    	    pwd = #{pwd},
+	    	    gender = #{gender},
+	    	    phone = #{phone},
+	    	    modifyDate = now()
 	    WHERE id = #{id}
 	</update>
-    
+
+<!--  회원탈퇴 시 상태를 변경 -->
 
     
     <delete id="delete">
