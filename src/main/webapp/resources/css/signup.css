@@ -33,5 +33,6 @@
 #female:checked + span {width: 150px;height: 30px;border-radius: 0px 9px 9px 0px;background-color: #2196F3;color: #fff;}
 .radio-label span{cursor: pointer;background-color: #fff;display: inline-block;width: 150px;height: 30px;text-align: center;line-height: 30px;border-radius: 10px;}
 #radioBtn{border: 1px solid rgb(128, 128, 128); border-radius: 10px; display:flex; flex-direction: row;}
-
-#signupBtn{width: 150px;height: 50px; font-size: 30px;text-align: center; line-height: 50px; background-color: #18214F; color: #fff; cursor: pointer;}
+#signupBtn{width: 200px;height: 50px; border-radius: 15px;font-size: 30px;text-align: center; line-height: 50px; background-color: #18214F; color: #fff; cursor: pointer;}
+#memberEditBtn{width: 200px;height: 50px; border-radius: 15px;font-size: 30px;text-align: center; line-height: 50px; background-color: #18214F; color: #fff; cursor: pointer;}
+.cancleBtn{width: 200px;height: 50px; margin-left: 10px;border-radius: 15px;font-size: 30px;text-align: center; line-height: 50px; background-color: #a5090b; color: #fff; cursor: pointer;}

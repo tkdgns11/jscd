@@ -12,7 +12,7 @@ public interface MemberService {
 	 public MemberDto memberSelect(String id) throws Exception;
 	 public void logout(HttpSession session);
 	 public int signUp(MemberDto memberDto) throws Exception;
-	 public int memberEdit(String id) throws Exception;
+	 public int memberEdit(MemberDto memberDto) throws Exception;
 	 public int memberDelete(String id) throws Exception;
 
 

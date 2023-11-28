@@ -1,16 +1,9 @@
-window.onload = function (){
-    var signupBtn = document.getElementById("signupBtn");
-    signupBtn.addEventListener('click', function (){
-       signup();
-    });
+//취소
+function cancle(){
+    window.location.href = '/';
 }
-/*
-    작성자: 강정수
-    작성일: 2023.11.19
-    작성기능: 회원가입 자바스크립트 구현
- */
-
-function signup(){
+//회원가입 및 개인정보 변경 유효성 검사 및 ajax를 사용
+function member(value){
     const name = document.getElementById("name");
     const birth = document.getElementById("birth");
     const id = document.getElementById("id");
@@ -24,8 +17,6 @@ function signup(){
             break;
         }
     }
-
-
     const phone = document.getElementById("phone");
 
     //모든 공백 체크 정규식
@@ -39,9 +30,7 @@ function signup(){
     // 비밀번호 정규식
     var pwdReg = /^[A-Za-z0-9`~!@#\$%\^&\*\(\)\{\}\[\]\-_=\+\\|;:'"<>,\./\?]{8,20}$/;
     // 휴대폰 번호 정규식
-    var phoneReg = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
-
-
+    var phoneReg = /^\+82\s?(10|11|16|17|18|19)-?[0-9]{3,4}-?[0-9]{4}$/
 
     if(
         !nameValid(name, nameReg) ||
@@ -53,48 +42,70 @@ function signup(){
     ){
         alert("유효성 검사 실패");
     } else {
-        $.ajax({
-            url:"/member/signup",
-            type:"POST",
-            data:$('form').serialize(),
-            error : function (error){
-                console.log("error");
-            },
-            success : function (data){
-                if(data.redirect){
-                    window.location.href = data.redirect;
+        if(value=="signup"){
+            //회원가입일 경우
+            console.log(value);
+            $.ajax({
+                url:"/member/signup",
+                type:"POST",
+                data:$('form').serialize(),
+                error : function (error){
+                    console.log("error");
+                },
+                success : function (data){
+                    if(data.redirect){
+                        window.location.href = data.redirect;
+                    }
                 }
-            }
-        });
+            });
+        }else{
+            //개인정보수정일 경우
+            console.log(value);
+            $.ajax({
+                url:"/member/memberEdit",
+                type:"POST",
+                data:$('form').serialize(),
+                error : function (error){
+                    console.log("error");
+                },
+                success : function (data){
+                    if(data.redirect){
+                        window.location.href = data.redirect;
+                    }
+                }
+            });
+        }
+
     }
 }
 
+//이름 유효성 검사
 function  nameValid(name, nameReg){
-    /*이름
-    1.이름 잘 적었는지
-    */
+
+    //1.이름 잘 적었는지
     if(name.value==""){
-        alert("이름을 입력해주세요");
+        alert("이름을 입력해주세요.");
         return false;
     };
-
+    //2. 이름은 한글 2~10자, 영문 4~20자
     if(nameReg.test(name.value)==false){
-        alert("이름은 한글 2자~10자, 영문 4자~20자로 해주세요");
+        alert("이름은 한글 2자~10자, 영문 4자~20자로 해주세요.");
         return false;
     }
 
     return true;
 
 }
+//생일 유효성 검사
 function  birthValid(birth, birthReg){
-    /*생년월일
-    1.생년월일 6자리 잘 적었는지
-    */
+
+    //1. 생년월일 공백 확인
     if(birth.value==""){
         alert("생년월일을 입력해주세요");
         return false;
     };
 
+    //2. 생년월일 6자리 잘 적었는지
     if (!birthReg.test(birth.value)) {
         alert("정규식에 안맞아");
         return false;
@@ -102,42 +113,43 @@ function  birthValid(birth, birthReg){
     return true;
 }
 
+//아이디 유효성 검사
 function  idValid(id,idReg){
-    /*id
-    1.id 잘적었는지
-    2.인증번호 확인
-    */
+    //아이디 공백 확인
     if(id.value==""){
         alert("아이디를 입력해주세요.");
         return false;
     };
-
+    //아이디 정규식 유효성 검사
     if(!idReg.test(id.value)){
         alert("이메일 양식을 확인하세요.")
         return false;
     }
     return true;
 }
+
+//패스워드 유효성 검사
 function  pwdValid(pwd, pwdChk, pwdReg){
-    /*pwd
-    1.패스워드 대소문자
-    2.패스워드 체크
-    */
+
+    //패스워드 공백 확인
     if(pwd.value==""){
         alert("패스워드를 입력해주세요.");
         return false;
     }
 
+    //패스워드 확인 칸 공백 확인
     if(pwdChk.value==""){
         alert("패스워드 확인을 위해 한번 더 입력해주세요.");
         return false;
     }
 
+    //패스워드와 패스워드 확인 같은지
     if(pwd.value!==pwdChk.value){
         alert("입력한 패스워드가 다릅니다. 확인해주세요.");
         return false;
     };
 
+    //패스워드 정규식 유효성 검사
     if(!pwdReg.test(pwd.value)) {
         alert("8~20자 영문 대소문자, 숫자, 특수문자를 사용하세요.");
         return false;
@@ -145,27 +157,25 @@ function  pwdValid(pwd, pwdChk, pwdReg){
 
     return true;
 }
+//성별 유효성 검사
 function  genderValid(gender){
-    /*성별
-    1.성별 체크 했는지
-    */
+    //성별 null 또는 undefined인지
     if(gender==null||gender==undefined){
         alert("성별을 입력해주세요.");
         return false;
     };
-
     return true;
 }
 
+//핸드폰 번호 유효성 검사
 function  phoneValid(phone, phoneReg){
-    /*핸드폰번호
-    1.핸드폰 번호 제대로 작성 했는지
-    */
+    //핸드폰 번호 공백 확인
     if(phone.value==""){
         alert("연락처를 확인하세요.");
         return false;
     }
 
+    //핸드폰 번호 정규식 유효성 검사
     if(!phoneReg.test(phone.value)){
         alert("연락처 번호를 확인하세요");
         return false;
@@ -200,12 +210,7 @@ $('#emailChkBtn').click(function (){
     });
 });
 
-/*
-    작성자: 강정수
-    작성일: 2023.11.23
-    작성기능: 핸드폰 번호 자동 하이픈
- */
-
+//핸드폰 번호 자동 하이픈
 const autoHyphen = (target) => {
     target.value = target.value
         .replace(/[^0-9]/g, '')
