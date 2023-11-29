@@ -1,0 +1,208 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.location {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+.floorBtn {
+    white-space: nowrap;
+    overflow: hidden;
+    width: 8vw;
+    height: 4vh;
+    margin-right: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+}
+
+#guideText {
+    display: flex;
+    align-items: center;
+    height: 4vh;
+    margin-right: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.admin {
+    white-space: nowrap;
+    overflow: hidden;
+    width: 4vw;
+    height: 4vh;
+    margin-right: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+}
+
+.location > button:hover {
+    background-color: yellow;
+}
+
+.boundary {
+    overflow: hidden;
+    width: 90%;
+    height: 90%;
+    border: 2px solid black;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+
+.lockerTitle {
+    background-color: gray;
+    color: white;
+    width: 90%;
+    height: 1%;
+    border-radius: 10px;
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.lockerDetail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.locker-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.locker {
+    background-color: lightgray;
+    width: 8vw;
+    height: 10vh;
+    border: 2px solid black;
+    margin: 0.5px;
+    overflow: hidden;
+}
+
+.locker5 {
+    background-color: lightgray;
+    width: 10vw;
+    height: 12vh;
+    border: 2px solid black;
+    margin: 0.5px;
+    overflow: hidden;
+}
+
+.locker5 p {
+    font-size: 1rem;
+    text-align: center;
+}
+
+.locker p {
+    font-size: 1rem;
+    text-align: center;
+}
+
+.locker:hover {
+    background-color: goldenrod;
+}
+
+.locker5:hover {
+    background-color: goldenrod;
+}
+
+
+.locker h1 {
+    width: 8vw;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.row-line {
+    margin-top: 1rem;
+    border: solid 1px;
+}
+
+.lockerNO {
+    margin: 0.1rem;
+    border-radius: 50%;
+}
+
+.lockerNO:hover {
+    cursor: default;
+}
+
+#floor5locker {
+    display: none;
+}
+
+
+.changeCommit {
+    padding: 0.8rem;
+    margin: 1rem;
+
+}
+
+.changeCommit:hover {
+    background-color: aqua;
+}
