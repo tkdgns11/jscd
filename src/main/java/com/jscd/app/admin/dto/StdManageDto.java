@@ -3,8 +3,8 @@ package com.jscd.app.admin.dto;
 import java.util.Date;
 import java.util.Objects;
 
-public class StdManageDto {
-        private Integer mebrNo; //pk_회원고유번호
+public class StdManageDto { //학생
+        private Integer mebrNo; //pk_회원 고유 번호
         private Integer codeNum; //강의실 정보 코드
         private String gisu;
         private String status;

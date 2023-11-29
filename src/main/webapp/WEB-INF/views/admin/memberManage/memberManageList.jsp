@@ -4,62 +4,10 @@
 <html>
 <head>
     <title>회원 정보 관리</title>
-    <style>
-        *{
-            text-decoration: none;
-            font-family: IBM Plex Sans KR;
-
-        }
-        table, td, th {
-            border-top : 1px solid black;
-            border-bottom: 1px solid black;
-            border-collapse : collapse;
-            text-align: center;
-        }
-        #searchBtn{
-            width: 100px;
-            height: 30px;
-            border-radius: 20px;
-            border: 0;
-            color: white;
-            background-color: #18214F;
-        }
-        #searchBtn:hover{background-color: #bebebe;
-        }
-        #infoListBox{
-            position: relative;
-
-        }
-        #infoListTitle{
-            position: absolute;
-            margin-left:400px;
-        }
-        #selectList{
-            height: 30px;
-        }
-        #keywordInput{
-            height: 25px;
-        }
-        #choiceBox{
-            position:absolute;
-            margin-left: 650px;
-            top: 280px;
-        }
-        #infoListTable{
-            position: absolute;
-            margin-left: 220px;
-            top: 350px;
-        }
-        #infoNav{
-            position: absolute;
-            margin-left:400px;
-            top: 750px;
-        }
-        .thInput{
-            width:40px;
-        }
-    </style>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&family=Noto+Serif+KR:wght@900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/home.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/adminInfoManage.css"/>">
 </head>
 <script>
     let msg = "${param.msg}";
@@ -68,7 +16,13 @@
 </script>
 <body>
 
-<div id="infoListBox" style="width: 960px;height: 700px;">
+<div id="content">
+
+    <header>
+        <jsp:include page="../adminHeader.jsp"/>
+    </header>
+
+<div id="infoListBox">
     <div id="infoListTitle">
         <h1>회원 정보 관리</h1>
     </div>
@@ -107,7 +61,7 @@
                 <td>${memberDto.mebrNo}</td>
                 <td>${memberDto.id}</td>
                 <td>
-                    <a href="<c:url value="/memberManage/read?page=${sc.page}&mebrNo=${memberDto.mebrNo}"/>">${memberDto.name}</a>
+                    <a href="<c:url value="/onlyAdmin/memberManage/read?page=${sc.page}&mebrNo=${memberDto.mebrNo}"/>">${memberDto.name}</a>
                 </td>
                 <td>${memberDto.alias}</td>
                 <td>${memberDto.phone}</td>
@@ -128,17 +82,23 @@
         <c:if test="${page.totalCnt!=null && page.totalCnt!=0}">
             <p>
                 <c:if test="${page.showPrev}">
-                    <a href="<c:url value="/stdManage/list${sc.getQueryString(page.beginPage-1)}"/>">&lt;</a>
+                    <a href="<c:url value="/onlyAdmin/stdManage/list${sc.getQueryString(page.beginPage-1)}"/>">&lt;</a>
                 </c:if>
                 <c:forEach var="i" begin="${page.beginPage}" end="${page.endPage}">
-                    <a href="<c:url value="/stdManage/list${sc.getQueryString(i)}"/>">${i}</a>
+                    <a href="<c:url value="/onlyAdmin/stdManage/list${sc.getQueryString(i)}"/>">${i}</a>
                 </c:forEach>
                 <c:if test="${page.showNext}">
-                    <a href="<c:url value="/stdManage/list${sc.getQueryString(page.endPage+1)}"/>">&gt;</a>
+                    <a href="<c:url value="/onlyAdmin/stdManage/list${sc.getQueryString(page.endPage+1)}"/>">&gt;</a>
                 </c:if>
             </p>
         </c:if>
     </div>
+</div>
+
+    <footer>
+        <jsp:include page="../../footer.jsp"/>
+    </footer>
+
 </div>
 
 

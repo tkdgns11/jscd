@@ -20,7 +20,7 @@ import java.util.List;
 	 */
 
 @Controller
-@RequestMapping("/memberManage")
+@RequestMapping("/onlyAdmin/memberManage")
 public class MemberManageController {
 
     @Autowired
@@ -41,7 +41,7 @@ public class MemberManageController {
             e.printStackTrace();
             model.addAttribute("msg", "LIST_ERR");
         }
-        return "/admin/memberManageList";
+        return "/admin/memberManage/memberManageList";
     }
 
 
@@ -57,7 +57,7 @@ public class MemberManageController {
             model.addAttribute("msg", "READ_ERR");
         }
 
-        return "/admin/memberManage";
+        return "/admin/memberManage/memberManage";
     }
 
     @GetMapping("/modify")
@@ -70,7 +70,7 @@ public class MemberManageController {
             e.printStackTrace();
         }
 
-        return "/admin/memberManageModify";
+        return "/admin/memberManage/memberManageModify";
     }
 
     @PostMapping("/modify")
@@ -82,10 +82,11 @@ public class MemberManageController {
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("msg", "MOD_ERR");
-            return "redirect:/admin/memberManage/modify";
+            model.addAttribute("memberDto", memberDto);
+            return "redirect:/onlyAdmin/memberManage/modify";
         }
 
-        return "redirect:/memberManage/list?page=" + page;
+        return "redirect:/onlyAdmin/memberManage/list?page=" + page;
     }
 
 

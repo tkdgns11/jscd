@@ -22,7 +22,7 @@ import java.util.List;
 	 */
 
 @Controller
-@RequestMapping("/stdManage")
+@RequestMapping("/onlyAdmin/stdManage")
 public class StdManageController {
     @Autowired
     StdManageService stdService;
@@ -32,7 +32,7 @@ public class StdManageController {
 
         try {
             int listCnt = stdService.getSearchResultCnt(sc);
-            Pageable pageable = new Pageable(sc, listCnt); //jsp로 보내서 페이징 처리 함
+            Pageable pageable = new Pageable(sc, listCnt);
             List<StdMemberManageDto> list = stdService.getSearchPage(sc);
             model.addAttribute("list", list);
             model.addAttribute("sc", sc);
@@ -42,7 +42,7 @@ public class StdManageController {
             e.printStackTrace();
             model.addAttribute("msg", "LIST_ERR");
         }
-        return "/admin/stdManageList";
+        return "/admin/stdManage/stdManageList";
     }
 
 
@@ -57,7 +57,7 @@ public class StdManageController {
             e.printStackTrace();
             model.addAttribute("msg", "READ_ERR");
         }
-        return "/admin/stdManage";
+        return "/admin/stdManage/stdManage";
     }
 
     @GetMapping("/modify")
@@ -70,7 +70,7 @@ public class StdManageController {
             e.printStackTrace();
         }
 
-        return "/admin/stdManageModify";
+        return "/admin/stdManage/stdManageModify";
     }
 
     @PostMapping("/modify")
@@ -82,9 +82,10 @@ public class StdManageController {
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("msg", "MOD_ERR");
-            return "redirect:/admin/stdManage/modify";
+            model.addAttribute("stdDto", stdDto);
+            return "redirect:/onlyAdmin/stdManage/modify";
         }
-        return "redirect:/stdManage/list?page=" + page;
+        return "redirect:/onlyAdmin/stdManage/list?page=" + page;
     }
 
 

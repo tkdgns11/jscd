@@ -4,49 +4,10 @@
 <html>
 <head>
     <title>회원 정보 수정 </title>
-    <style>
-        * {
-            text-decoration: none;
-            font-family: IBM Plex Sans KR;
-        }
-
-        #infoDetailBox {
-            width: 45%;
-            height: max-content;
-            margin: auto;
-        }
-
-        .infoModifyBox {
-            width: 100%;
-            height: 40px;
-            border: 1px solid blue;
-            border-radius: 8px;
-            margin-top: -15px;
-
-        }
-
-        .infoValueBox {
-            width: 100%;
-            height: 40px;
-            border: 1px solid gray;
-            border-radius: 8px;
-            margin-top: -15px;
-        }
-
-        .infoDetailBtn {
-            width: 100px;
-            height: 35px;
-            border-radius: 20px;
-            border: 0;
-            color: white;
-            background-color: #18214F;
-        }
-
-        .infoDetailBtn:hover {
-            background-color: #bebebe;
-        }
-    </style>
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/home.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/adminInfoManage.css"/>">
 </head>
 <body>
 <script>
@@ -55,14 +16,17 @@
     if (msg == "MOD_ERR") alert("수정에 실패했습니다. 다시 시도해 주세요.");
 </script>
 
+<div id="content">
+
+    <header>
+        <jsp:include page="../adminHeader.jsp"/>
+    </header>
+
+
 <div id="infoDetailBox">
-    <h2 style="text-align: center;">회원 정보 수정</h2>
+    <h2 id="infoTitle">회원 정보 수정</h2>
 
-
-    <button style="background-color: #18214F;" onclick="location.href='/memberManage/list?page=${page}'"
-            class="infoDetailBtn">목록
-    </button>
-    <form action="/memberManage/modify?page=${page}&mebrNo=${memberDto.mebrNo}" method="post">
+    <form action="/onlyAdmin/memberManage/modify?page=${page}&mebrNo=${memberDto.mebrNo}" method="post">
         <h4>회원 번호</h4>
         <div class="infoValueBox">${memberDto.mebrNo}</div>
         <h4>아이디</h4>
@@ -88,6 +52,11 @@
         <button class="infoDetailBtn" style="background-color: red;">수정</button>
     </form>
 </div>
+
+</div>
+<footer>
+    <jsp:include page="../../footer.jsp"/>
+</footer>
 
 </div>
 

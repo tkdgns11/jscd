@@ -4,37 +4,20 @@
 
 <mapper namespace="com.jscd.app.mapper.stdManageMapper">
 
-    <!--기수를 부여받으면, 학생 등급이 됨 -> stdManage테이블에 insert_일단 컬럼 다 넣음-->
+    <!--기수를 부여받으면, 학생 등급이 됨 -> insert 실행-->
     <insert id="insert" parameterType="StdManageDto">
         insert into stdManage
             (mebrNo, codeNum, gisu, status)
         values (#{mebrNo}, #{codeNum}, #{gisu}, #{status})
     </insert>
 
-    <!--	<insert id="insert" parameterType="StdManageDto">-->
-    <!--		insert into stdManage-->
-    <!--		(mebrNo, codeNum, gisu, status,regDate,frsidNmbr,modifyDate,lstidNmbr,etc)-->
-    <!--		values-->
-    <!--			(#{mebrNo}, #{codeNum}, #{gisu}, #{status},#{regDate},#{frsidNmbr},#{modifyDate},#{lstidNmbr},#{etc})-->
-    <!--	</insert>-->
-
+    <!--    학생 인원수-->
     <select id="count" resultType="int">
         select count(*)
         from stdManage
     </select>
 
-
-    <!--   학생 + 회원테이블 조인 => 학생 정보 전체 셀렉-->
-    <select id="selectAll" parameterType="map" resultType="StdMemberManageDto">
-        select m.mebrNo, m.name, m.id, m.regDate, s.gisu, s.status, concat(m.phone1, m.phone2, m.phone3) as phone
-        from stdManage s
-                 join member m on s.mebrNo = m.mebrNo
-        order by s.gisu
-            limit #{offset}, #{pageSize};
-    </select>
-
-    <!--    상세 셀렉 _ 성별 킵-->
-    <select id="select" parameterType="Integer" resultType="StdMemberManageDto">
+    <sql id="selectStd">
         select m.mebrNo,
                m.name,
                m.id,
@@ -47,10 +30,22 @@
                s.etc
         from stdManage s
                  join member m on s.mebrNo = m.mebrNo
+    </sql>
+
+    <!--   학생 + 회원테이블 조인 => 학생 정보 전체 셀렉-->
+    <select id="selectAll" parameterType="map" resultType="StdMemberManageDto">
+        <include refid="selectStd"/>
+        order by s.gisu
+        limit #{offset}, #{pageSize};
+    </select>
+
+    <!--    상세 셀렉 _ 성별 킵-->
+    <select id="select" parameterType="Integer" resultType="StdMemberManageDto">
+        <include refid="selectStd"/>
         where s.mebrNo = #{mebrNo};
     </select>
 
-    <!--기수, 수강상태 update-->
+    <!--기수, 수강상태, 비고 update-->
     <update id="update" parameterType="StdManageDto">
         update stdManage
         set gisu       = #{gisu}
@@ -60,7 +55,7 @@
         where mebrNo = #{mebrNo};
     </update>
 
-    <!--    더이상 학생 등급이 아니거나(관리자), 탈퇴하는 경우(회원)-->
+    <!--    더이상 학생 등급이 아니거나(관리자,일반), 탈퇴하는 경우(회원)-->
     <delete id="delete" parameterType="Integer">
         delete
         from stdManage
@@ -72,34 +67,7 @@
         from stdManage
     </delete>
 
-    <select id="searchSelectPage" parameterType="SearchCondition" resultType="StdMemberManageDto">
-        select m.mebrNo, m.name, m.id, m.regDate, s.gisu, s.status
-        from stdManage s
-                 join member m on s.mebrNo = m.mebrNo
-        WHERE true
-        <choose>
-            <when test='option=="T"'>
-                and m.name like concat('%',#{keyword},'%')
-            </when>
-            <when test='option=="W"'>
-                and m.id like concat('%',#{keyword},'%')
-            </when>
-            <when test='option=="R"'>
-                and s.gisu like concat('%',#{keyword},'%')
-            </when>
-        <otherwise>
-            and s.status like concat('%',#{keyword},'%')
-        </otherwise>
-        </choose>
-        order by s.gisu
-        limit #{offset},#{pageSize}
-    </select>
-
-    <select id="searchResultCnt" parameterType="SearchCondition" resultType="int">
-        select count(*)
-        from stdManage s
-        join member m on s.mebrNo = m.mebrNo
-        WHERE true
+    <sql id="searchCondition">
         <choose>
             <when test='option=="T"'>
                 and m.name like concat('%',#{keyword},'%')
@@ -114,6 +82,22 @@
                 and s.status like concat('%',#{keyword},'%')
             </otherwise>
         </choose>
+    </sql>
+
+    <select id="searchSelectPage" parameterType="SearchCondition" resultType="StdMemberManageDto">
+        <include refid="selectStd"/>
+        WHERE true
+        <include refid="searchCondition"/>
+        order by s.gisu
+        limit #{offset},#{pageSize}
+    </select>
+
+    <select id="searchResultCnt" parameterType="SearchCondition" resultType="int">
+        select count(*)
+        from stdManage s
+        join member m on s.mebrNo = m.mebrNo
+        WHERE true
+        <include refid="searchCondition"/>
     </select>
 
 
