@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jscd.app.facility.LockerMapper">
+
+    <!-- 관리자 락커 사용중인 회원 조회-->
+    <select id="adminSelectLockers" resultType="LockerDto">
+        SELECT
+            e.lockerCode AS lockerCode,
+            e.lockerID AS lockerID,
+            CAST(e.lockerNO AS CHAR) AS lockerNo,
+            (SELECT m.name FROM member m WHERE m.id = e.mebrID) AS name,
+            e.mebrID AS mebrID,
+            DATE_FORMAT(e.endDate, '%Y-%m-%d') AS endDateString,
+            CAST((SELECT DATEDIFF(e.endDate, CURDATE()) FROM lockerDetail WHERE lockerID = e.lockerID) AS CHAR) AS remainDays
+        FROM
+            lockerDetail e;
+    </select>
+
+    <!-- 전체 락커 목록 조회 -->
+    <select id="selectAllLockers" resultType="LockerDto">
+        SELECT *
+        FROM lockerDetail
+    </select>
+
+    <!-- 특정 락커 정보 조회 -->
+    <select id="selectLockerById" parameterType="String" resultType="LockerDto">
+        SELECT *
+        FROM lockerDetail
+        WHERE lockerID = #{lockerId}
+    </select>
+
+    <!-- 특정 락커 정보 조회 -->
+    <select id="selectLockerByIdForUpdate" parameterType="String" resultType="LockerDto">
+        SELECT *
+        FROM lockerDetail
+        WHERE lockerID = #{lockerId} FOR UPDATE
+    </select>
+
+    <!-- 새로운 락커 등록 -->
+    <update id="insertLocker" parameterType="LockerDto">
+        UPDATE lockerDetail
+        SET statusCode = 1,
+            mebrID     = #{mebrID},
+            startDate  = #{startDate},
+            endDate    = #{endDate}
+        WHERE lockerID = #{lockerID}
+    </update>
+
+    <!-- 락커 기간 연장 -->
+    <update id="updateLockerEndDate" parameterType="map">
+        UPDATE lockerDetail
+        SET endDate = DATE_ADD(endDate, INTERVAL #{extendDays} DAY)
+        WHERE lockerID = #{lockerId}
+    </update>
+
+    <!-- 락커 삭제 -->
+    <!--    그냥 delete가 성능면에서 낫나?-->
+    <update id="deleteLocker" parameterType="String">
+        UPDATE lockerDetail
+        SET statusCode = 2,
+            mebrNO     = NULL,
+            mebrID     = NULL,
+            startDate  = NULL,
+            endDate    = NULL
+        WHERE lockerID = #{lockerId}
+    </update>
+
+
+    <!-- 사용중인 락커 총 숫자 -->
+    <select id="countActiveLockers" resultType="int">
+        SELECT COUNT(*)
+        FROM lockerDetail e,
+             member m
+        WHERE e.mebrNo = m.mebrNo;
+    </select>
+
+    <!-- 전체 락커 갯수 -->
+    <select id="countAllLockers" resultType="int">
+        SELECT COUNT(*)
+        FROM lockerDetail;
+    </select>
+
+    <!-- 4층 전체 락커 갯수 -->
+    <select id="countFloor4Lockers" resultType="int">
+        SELECT COUNT(*)
+        FROM lockerDetail
+        where lockerCode = '01';
+    </select>
+
+    <!-- 5층 전체 락커 갯수 -->
+    <select id="countFloor5Lockers" resultType="int">
+        SELECT COUNT(*)
+        FROM lockerDetail
+        where lockerCode = '02';
+    </select>
+
+    <!-- 전체 사용중인 락커 -->
+    <select id="listActiveLockers" resultType="LockerDto">
+        select count(*)
+        from lockerDetail
+        where statusCode = 1;
+    </select>
+
+    <!-- 4층 사용중인 락커 총 갯수 -->
+    <select id="countActiveFloor4Lockers" resultType="int">
+        select count(*)
+        from lockerDetail
+        where lockerCode = '01'
+          and statusCode = 1;
+    </select>
+
+    <!-- 5층 사용중인 락커 총 갯수 -->
+    <select id="countActiveFloor5Lockers" resultType="int">
+        select count(*)
+        from lockerDetail
+        where lockerCode = '02'
+          and statusCode = 1;
+    </select>
+
+    <!-- 4층 사용안하는 락커 총 숫자 -->
+    <select id="countUnusedFloor4Lockers" resultType="int">
+        select count(*)
+        from lockerDetail
+        where lockerCode = '01'
+          and statusCode != 1;
+    </select>
+
+    <!--    5층 사용안하는 락커 총 숫자 -->
+    <select id="countUnusedFloor5Lockers" resultType="int">
+        select count(*)
+        from lockerDetail
+        where lockerCode = '02'
+          and statusCode != 1;
+    </select>
+
+    <!-- 현재날짜와 비교해서 3일 이하 남은 락커만 뽑기 -->
+    <select id="lockersExpiringIn3Days" resultType="LockerDto">
+    <![CDATA[
+        SELECT *
+        FROM lockerDetail
+        WHERE DATEDIFF(endDate, CURDATE()) <= 3;
+        ]]>
+    </select>
+
+    <!-- 현재날짜와 비교해서 3일 이하 남은 사람들 명단 뽑기 -->
+    <select id="membersWithLockersExpiringIn3Days" resultType="String">
+    <![CDATA[
+        SELECT e.name
+        FROM member e,
+             (SELECT * FROM lockerDetail WHERE DATEDIFF(endDate, CURDATE()) <= 3) m
+        WHERE e.mebrNo = m.mebrNo;
+        ]]>
+    </select>
+</mapper>
