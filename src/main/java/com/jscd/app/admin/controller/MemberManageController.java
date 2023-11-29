@@ -40,6 +40,7 @@ public class MemberManageController {
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("msg", "LIST_ERR");
+            return "redirect:/admin/home";
         }
         return "/admin/memberManage/memberManageList";
     }
@@ -55,6 +56,7 @@ public class MemberManageController {
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("msg", "READ_ERR");
+            return "redirect:/onlyAdmin/memberManage/list";
         }
 
         return "/admin/memberManage/memberManage";
@@ -68,6 +70,9 @@ public class MemberManageController {
             model.addAttribute("memberDto", memberDto);
         } catch (Exception e) {
             e.printStackTrace();
+            model.addAttribute("msg", "READ_ERR");
+            return "redirect:/onlyAdmin/memberManage/read&page=" + page + "&mebrNo=" + mebrNo;
+
         }
 
         return "/admin/memberManage/memberManageModify";
@@ -83,7 +88,7 @@ public class MemberManageController {
             e.printStackTrace();
             model.addAttribute("msg", "MOD_ERR");
             model.addAttribute("memberDto", memberDto);
-            return "redirect:/onlyAdmin/memberManage/modify";
+            return "redirect:/onlyAdmin/memberManage/modify?page="+page+"&mebrNo=" + memberDto.getMebrNo();
         }
 
         return "redirect:/onlyAdmin/memberManage/list?page=" + page;

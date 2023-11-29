@@ -51,8 +51,8 @@
   <input type="text" class="infoInputBox" readonly value="${memberDto.etc}">
     <br>
 
-    <button class="infoDetailBtn"  onclick="location.href='/onlyAdmin/memberManage/modify?page=${page}&mebrNo=${memberDto.mebrNo}'" style="margin-left: 100px; margin-top: 15px">수정</button>
-    <button class="infoDetailBtn" onclick="location.href='/onlyAdmin/memberManage/list?page=${page}'">목록</button>
+    <button id="adminModifyBtn"  onclick="location.href='/onlyAdmin/memberManage/modify?page=${page}&mebrNo=${memberDto.mebrNo}'" style="margin-left: 100px; margin-top: 15px">수정</button>
+    <button id="adminListBtn" onclick="location.href='/onlyAdmin/memberManage/list?page=${page}'">목록</button>
 </div>
 
   <footer>

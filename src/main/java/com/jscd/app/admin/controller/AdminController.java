@@ -44,6 +44,7 @@ public class AdminController {
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("msg", "READ_ERR");
+            return "redirect:/admin/home";
         }
         return "/admin/adminInfo";
     }
@@ -61,6 +62,7 @@ public class AdminController {
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("msg", "READ_ERR");
+            return "redirect:/admin/read";
         }
         return "/admin/adminInfoModify";
     }
@@ -81,6 +83,7 @@ public class AdminController {
             e.printStackTrace();
             //수정 실패 시, msg 모델에 넘겨줌
             model.addAttribute("msg", "MOD_ERR");
+            return "redirect:/admin/modify";
         }
         return "redirect:/admin/read";
     }

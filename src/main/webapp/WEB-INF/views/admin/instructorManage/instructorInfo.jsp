@@ -14,7 +14,7 @@
 <body>
 <script>
   let msg = "${param.msg}";
-  if(msg=="READ_ERR")  alert("강사 정보를 가져오는데 실패했습니다. 다시 시도해 주세요.");
+  if(msg=="READ_ERR")  alert("정보를 가져오는데 실패했습니다. 다시 시도해 주세요.");
 </script>
 
 <div id="content">
@@ -43,7 +43,7 @@
   <h4>상태</h4>
   <input type="text" class="infoInputBox" readonly value="${infoDto.status}">
   <h4>급여</h4>
-  <input type="text" class="infoInputBox" readonly value="${infoDtos.hourPmt}">
+  <input type="text" class="infoInputBox" readonly value="${infoDto.hourPmt}">
   <h4>계좌</h4>
   <div class="infoValueBox">${infoDto.acct}</div>
   <h4>강사 등록일</h4>
@@ -51,8 +51,8 @@
   <h4>비고</h4>
   <input type="text" class="infoInputBox" readonly value="${infoDto.etc}">
   <br>
-    <button class="infoDetailBtn"  onclick="location.href='/onlyAdmin/instructor/modify?page=${page}&iscrNo=${infoDto.iscrNo}'" style="margin-left: 100px; margin-top: 15px">수정</button>
-    <button class="infoDetailBtn" onclick="location.href='/onlyAdmin/instructor/list?page=${page}'">목록</button>
+    <button id="adminModifyBtn"  onclick="location.href='/onlyAdmin/instructor/modify?page=${page}&iscrNo=${infoDto.iscrNo}'" style="margin-left: 100px; margin-top: 15px">수정</button>
+    <button id="adminListBtn" onclick="location.href='/onlyAdmin/instructor/list?page=${page}'">목록</button>
 
 
   </div>

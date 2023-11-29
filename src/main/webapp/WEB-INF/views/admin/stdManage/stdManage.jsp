@@ -48,8 +48,8 @@
         <h4>비고</h4>
         <input type="text" class="infoInputBox" readonly value="${stdDto.etc}">
         <br>
-        <button class="infoDetailBtn"onclick="location.href='/onlyAdmin/stdManage/modify?page=${page}&mebrNo=${stdDto.mebrNo}'"style="margin-left: 100px; margin-top: 15px">수정</button>
-        <button class="infoDetailBtn" onclick="location.href='/onlyAdmin/stdManage/list?page=${page}'">목록</button>
+        <button id="adminModifyBtn" onclick="location.href='/onlyAdmin/stdManage/modify?page=${page}&mebrNo=${stdDto.mebrNo}'"style="margin-left: 100px; margin-top: 15px">수정</button>
+        <button id="adminListBtn" onclick="location.href='/onlyAdmin/stdManage/list?page=${page}'">목록</button>
     </div>
 
     <footer>
