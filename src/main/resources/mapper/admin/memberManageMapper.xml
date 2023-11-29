@@ -15,8 +15,8 @@
         select mebrNo,
                id,
                name,
-               alias,
                birth,
+               nickname,
                concat(phone1, phone2, phone3) as phone,
                acct,
                status,
@@ -25,6 +25,23 @@
                etc
         from member
     </sql>
+
+    <!--    검색 조건 select-->
+    <select id="searchSelectPage" parameterType="SearchCondition" resultType="MemberDto">
+        <include refid="selectMember"/>
+        WHERE true
+        <include refid="searchCondition"/>
+        order by mebrNo
+        limit #{offset},#{pageSize};
+    </select>
+
+    <!--검색 결과 개수(몇개인지 알아야 페이징처리 할 수 있다)-->
+    <select id="searchResultCnt" parameterType="SearchCondition" resultType="int">
+        select count(*)
+        FROM member
+        WHERE true
+        <include refid="searchCondition"/>
+    </select>
 
     <!-- 회원 전체 정보-->
     <select id="selectAll" parameterType="Map" resultType="MemberDto">
@@ -86,21 +103,6 @@
         </choose>
     </sql>
 
-    <!--    검색 조건 select-->
-    <select id="searchSelectPage" parameterType="SearchCondition" resultType="MemberDto">
-        <include refid="selectMember"/>
-        WHERE true
-        <include refid="searchCondition"/>
-        order by mebrNo
-        limit #{offset},#{pageSize};
-    </select>
 
-    <!--검색 결과 개수(몇개인지 알아야 페이징처리 할 수 있다)-->
-    <select id="searchResultCnt" parameterType="SearchCondition" resultType="int">
-        select count(*)
-        FROM member
-        WHERE true
-        <include refid="searchCondition"/>
-    </select>
 
 </mapper>

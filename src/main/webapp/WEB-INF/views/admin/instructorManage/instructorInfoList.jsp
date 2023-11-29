@@ -10,7 +10,6 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/home.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/adminInfoManage.css"/>">
-
 </head>
 <script>
     let msg = "${param.msg}";
@@ -47,27 +46,27 @@
     </div>
 
     <div id="infoListTable">
-    <table>
+    <table class="infoListTable">
         <tr>
-            <th><input type="checkbox" class="thInput"></th>
-            <th>No.</th>
-            <th style="width: 80px;">아이디</th>
-            <th style="width: 80px;">이름</th>
-            <th style="width: 150px;">폰번호</th>
-            <th style="width: 80px;">상태</th>
-            <th style="width: 200px;">가입일</th>
+            <th class="infoListTable"><input type="checkbox" class="thInput"></th>
+            <th class="infoListTable">No.</th>
+            <th style="width: 80px;height: 45px" class="infoListTable">아이디</th>
+            <th style="width: 80px;height: 45px" class="infoListTable">이름</th>
+            <th style="width: 150px;height: 45px" class="infoListTable">폰번호</th>
+            <th style="width: 80px;height: 45px" class="infoListTable">상태</th>
+            <th style="width: 200px;height: 45px" class="infoListTable">가입일</th>
         </tr>
         <c:forEach var="instructorDto" items="${list}">
             <tr>
-                <td><input type="checkbox" class="thInput"></td>
-                <td>${instructorDto.iscrNo}</td>
-                <td>${instructorDto.id}</td>
-                <td>
+                <td class="infoListTable" style="height: 45px"><input type="checkbox" class="thInput"></td>
+                <td class="infoListTable" style="height: 45px">${instructorDto.iscrNo}</td>
+                <td class="infoListTable" style="height: 45px">${instructorDto.id}</td>
+                <td class="infoListTable" style="height: 45px">
                     <a href="<c:url value="/onlyAdmin/instructor/read?page=${sc.page}&iscrNo=${instructorDto.iscrNo}"/>">${instructorDto.name}</a>
                 </td>
-                <td>${instructorDto.phone}</td>
-                <td>${instructorDto.status}</td>
-                <td><fmt:formatDate value="${instructorDto.regDate}" pattern="yyyy-MM-dd" type="date"/></td>
+                <td class="infoListTable" style="height: 45px">${instructorDto.phone}</td>
+                <td class="infoListTable" style="height: 45px">${instructorDto.status}</td>
+                <td class="infoListTable" style="height: 45px"><fmt:formatDate value="${instructorDto.regDate}" pattern="yyyy-MM-dd" type="date"/></td>
             </tr>
         </c:forEach>
     </table>
@@ -76,9 +75,8 @@
 
     <div id="infoNav">
         <c:if test="${page.totalCnt==null || page.totalCnt==0}">
-                    게시물이 없습니다.
+            <p id="noContent">게시물이 없습니다.</p>
                 </c:if>
-
                 <c:if test="${page.totalCnt!=null && page.totalCnt!=0}">
                     <p>
                     <c:if test="${page.showPrev}">

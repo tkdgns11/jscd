@@ -34,7 +34,7 @@
   <h4>이름</h4>
   <div class="infoValueBox">${memberDto.name}</div>
     <h4>닉네임</h4>
-    <div class="infoValueBox">${memberDto.alias}</div>
+    <div class="infoValueBox">${memberDto.nickname}</div>
   <h4>생년월일</h4>
   <div class="infoValueBox">${memberDto.birth}</div>
   <h4>폰번호</h4>
