@@ -46,7 +46,7 @@
                     </ul>
                     <ul class="submenu">
                         <li><a href="#">학생 좌석 현황</a></li>
-                        <li><a href="#">사물함 현황</a></li>
+                        <li><a href="/locker/adminList">사물함 현황</a></li>
                     </ul>
                 </div>
             </li>
