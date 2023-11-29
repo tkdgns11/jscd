@@ -48,8 +48,9 @@
             <h4>비고</h4>
             <input type="text" class="infoModifyBox" name="etc" value="${stdDto.etc}">
             <br>
-            <button class="infoDetailBtn" style="margin-left: 140px; margin-top: 15px">수정</button>
+            <button id="adminModifyBtn">수정</button>
         </form>
+        <button id="adminCancelBtn" onclick="location.href='/onlyAdmin/stdManage/read?page=${page}&mebrNo=${stdDto.mebrNo}'">취소</button>
     </div>
 
     <footer>

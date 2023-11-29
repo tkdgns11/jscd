@@ -96,7 +96,7 @@
         limit #{offset},#{pageSize};
     </select>
 
-    <!--검색 결과 개수(몇개인지 알아야 페이징처리 할 수 있다)-->
+    <!--검색 결과 개수(몇개인지 알아야 페이징처리 할 수 있다) 회원컬럼을 조건으로 검색하기 때문에, 조인 필요-->
     <select id="searchResultCnt" parameterType="SearchCondition" resultType="int">
         SELECT count(*)
         from instructorInfo i

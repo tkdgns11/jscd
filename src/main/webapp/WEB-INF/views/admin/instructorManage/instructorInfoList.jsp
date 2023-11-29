@@ -15,7 +15,8 @@
 <script>
     let msg = "${param.msg}";
     if(msg=="MOD_OK")    alert("성공적으로 수정되었습니다.");
-    if(msg=="LIST_ERR")  alert("강사 목록을 가져오는데 실패했습니다. 다시 시도해 주세요.");
+    if(msg=="READ_ERR")    alert("정보를 가져올 수 없습니다. 다시 시도해주세요.");
+
 </script>
 <body>
 <div id="content">

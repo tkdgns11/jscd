@@ -41,6 +41,7 @@ public class StdManageController {
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("msg", "LIST_ERR");
+            return "redirect:/admin/home";
         }
         return "/admin/stdManage/stdManageList";
     }
@@ -56,6 +57,7 @@ public class StdManageController {
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("msg", "READ_ERR");
+            return "redirect:/onlyAdmin/stdManage/list";
         }
         return "/admin/stdManage/stdManage";
     }
@@ -68,6 +70,8 @@ public class StdManageController {
             model.addAttribute("stdDto", stdDto);
         } catch (Exception e) {
             e.printStackTrace();
+            model.addAttribute("msg", "READ_ERR");
+            return "redirect:/onlyAdmin/stdManage/read?page=" + page + "&mebrNo=" + mebrNo;
         }
 
         return "/admin/stdManage/stdManageModify";
@@ -82,8 +86,7 @@ public class StdManageController {
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("msg", "MOD_ERR");
-            model.addAttribute("stdDto", stdDto);
-            return "redirect:/onlyAdmin/stdManage/modify";
+            return "redirect:/onlyAdmin/stdManage/modify?page=" + page + "&mebrNo=" + stdDto.getMebrNo();
         }
         return "redirect:/onlyAdmin/stdManage/list?page=" + page;
     }

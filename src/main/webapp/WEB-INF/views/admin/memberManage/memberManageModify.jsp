@@ -49,8 +49,9 @@
         <div class="infoValueBox"><fmt:formatDate value="${memberDto.regDate}" pattern="yyyy-MM-dd" type="date"/></div>
         <h4>비고</h4>
         <input type="text" class="infoModifyBox" name="etc" value="${memberDto.etc}">
-        <button class="infoDetailBtn" style="background-color: red;">수정</button>
+        <button id="adminModifyBtn">수정</button>
     </form>
+    <button id="adminCancelBtn" onclick="location.href='/onlyAdmin/memberManage/read?page=${page}&mebrNo=${memberDto.mebrNo}'">취소</button>
 </div>
 
 </div>

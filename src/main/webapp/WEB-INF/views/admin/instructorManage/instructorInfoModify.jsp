@@ -44,7 +44,7 @@
         <h4>상태</h4>
         <input type="text" class="infoModifyBox" name="status" value="${infoDto.status}">
         <h4>급여</h4>
-        <input type="text" class="infoModifyBox" name="hourPmt" value="${infoDtos.hourPmt}">
+        <input type="text" class="infoModifyBox" name="hourPmt" value="${infoDto.hourPmt}">
         <h4>계좌</h4>
         <div class="infoValueBox">${infoDto.acct}</div>
         <h4>강사 등록일</h4>
@@ -52,9 +52,9 @@
         <h4>비고</h4>
         <input type="text" class="infoModifyBox" name="etc" value="${infoDto.etc}">
         <br>
-        <button class="infoDetailBtn" style="margin-left: 140px; margin-top: 15px">수정</button>
+        <button id="adminModifyBtn">수정</button>
         </form>
-
+        <button id="adminCancelBtn" onclick="location.href='/onlyAdmin/instructor/read?page=${page}&iscrNo=${infoDto.iscrNo}'">취소</button>
     </div>
 
     <footer>

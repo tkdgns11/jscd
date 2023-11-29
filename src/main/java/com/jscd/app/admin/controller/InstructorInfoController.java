@@ -50,6 +50,7 @@ public class InstructorInfoController {
             e.printStackTrace();
             //에러 존재 시, 메세지를 jsp에 넘기기
             model.addAttribute("msg", "LIST_ERR");
+            return "redirect:/admin/home";
         }
         return "/admin/instructorManage/instructorInfoList";
     }
@@ -67,8 +68,8 @@ public class InstructorInfoController {
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("msg", "READ_ERR");
+            return "redirect:/onlyAdmin/instructor/list";
         }
-
         return "/admin/instructorManage/instructorInfo";
     }
 
@@ -81,6 +82,8 @@ public class InstructorInfoController {
             model.addAttribute("infoDto", infoDto);
         } catch (Exception e) {
             e.printStackTrace();
+            model.addAttribute("msg", "READ_ERR");
+            return "redirect:/onlyAdmin/instructor/read";
         }
 
         return "/admin/instructorManage/instructorInfoModify";
@@ -89,16 +92,14 @@ public class InstructorInfoController {
 
     @PostMapping("/modify")
     public String infoModify(Integer page, InstructorInfoDto instructorInfoDto, Model model) {
-
         try {
             infoService.modify(instructorInfoDto);
             model.addAttribute("msg", "MOD_OK");
         } catch (Exception e) {
             e.printStackTrace();
             //작성 중인 내용 그대로 띄우도록 jsp에 전달
-            model.addAttribute("instructorInfoDto", instructorInfoDto);
             model.addAttribute("msg", "MOD_ERR");
-            return "redirect:/onlyAdmin/instructor/modify";
+            return "redirect:/onlyAdmin/instructor/modify?page=" + page + "&iscrNo=" + instructorInfoDto.getIscrNo();
         }
 
         return "redirect:/onlyAdmin/instructor/list?page=" + page;
