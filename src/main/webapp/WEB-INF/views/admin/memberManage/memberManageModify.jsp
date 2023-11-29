@@ -34,7 +34,7 @@
         <h4>이름</h4>
         <div class="infoValueBox">${memberDto.name}</div>
         <h4>닉네임</h4>
-        <div class="infoValueBox">${memberDto.alias}</div>
+        <div class="infoValueBox">${memberDto.nickname}</div>
         <h4>생년월일</h4>
         <div class="infoValueBox">${memberDto.birth}</div>
         <h4>폰번호</h4>
@@ -49,6 +49,7 @@
         <div class="infoValueBox"><fmt:formatDate value="${memberDto.regDate}" pattern="yyyy-MM-dd" type="date"/></div>
         <h4>비고</h4>
         <input type="text" class="infoModifyBox" name="etc" value="${memberDto.etc}">
+        <br>
         <button id="adminModifyBtn">수정</button>
     </form>
     <button id="adminCancelBtn" onclick="location.href='/onlyAdmin/memberManage/read?page=${page}&mebrNo=${memberDto.mebrNo}'">취소</button>

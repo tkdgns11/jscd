@@ -43,31 +43,31 @@
     </div>
 
     <div id="infoListTable">
-    <table>
+    <table class="infoListTable">
         <tr>
-            <th><input type="checkbox" class="thInput"></th>
-            <th>No.</th>
-            <th style="width: 80px;">아이디</th>
-            <th style="width: 80px;">이름</th>
-            <th style="width: 80px;">닉네임</th>
-            <th style="width: 150px;">폰번호</th>
-            <th style="width: 80px;">등급</th>
-            <th style="width: 80px;">상태</th>
-            <th style="width: 200px;">가입일</th>
+            <th class="infoListTable"><input type="checkbox" class="thInput"></th>
+            <th class="infoListTable">No.</th>
+            <th style="width: 80px;height: 45px" class="infoListTable">아이디</th>
+            <th style="width: 80px;height: 45px" class="infoListTable">이름</th>
+            <th style="width: 80px;height: 45px" class="infoListTable">닉네임</th>
+            <th style="width: 150px;height: 45px" class="infoListTable">폰번호</th>
+            <th style="width: 80px;height: 45px" class="infoListTable">등급</th>
+            <th style="width: 80px;height: 45px" class="infoListTable">상태</th>
+            <th style="width: 200px;height: 45px" class="infoListTable">가입일</th>
         </tr>
         <c:forEach var="memberDto" items="${list}">
             <tr>
-                <td><input type="checkbox" class="thInput"></td>
-                <td>${memberDto.mebrNo}</td>
-                <td>${memberDto.id}</td>
-                <td>
+                <td style="height: 45px" class="infoListTable"><input type="checkbox" class="thInput"></td>
+                <td style="height: 45px" class="infoListTable">${memberDto.mebrNo}</td>
+                <td style="height: 45px" class="infoListTable">${memberDto.id}</td>
+                <td style="height: 45px" class="infoListTable">
                     <a href="<c:url value="/onlyAdmin/memberManage/read?page=${sc.page}&mebrNo=${memberDto.mebrNo}"/>">${memberDto.name}</a>
                 </td>
-                <td>${memberDto.alias}</td>
-                <td>${memberDto.phone}</td>
-                <td>${memberDto.grade}</td>
-                <td>${memberDto.status}</td>
-                <td><fmt:formatDate value="${memberDto.regDate}" pattern="yyyy-MM-dd" type="date"/></td>
+                <td style="height: 45px" class="infoListTable">${memberDto.nickname}</td>
+                <td style="height: 45px" class="infoListTable">${memberDto.phone}</td>
+                <td style="height: 45px" class="infoListTable">${memberDto.grade}</td>
+                <td style="height: 45px" class="infoListTable">${memberDto.status}</td>
+                <td style="height: 45px" class="infoListTable"><fmt:formatDate value="${memberDto.regDate}" pattern="yyyy-MM-dd" type="date"/></td>
             </tr>
         </c:forEach>
     </table>
@@ -76,19 +76,19 @@
 
     <div id="infoNav">
         <c:if test="${page.totalCnt==null || page.totalCnt==0}">
-            <p> 게시물이 없습니다.</p>
+            <p id="noContent"> 게시물이 없습니다.</p>
         </c:if>
 
         <c:if test="${page.totalCnt!=null && page.totalCnt!=0}">
             <p>
                 <c:if test="${page.showPrev}">
-                    <a href="<c:url value="/onlyAdmin/stdManage/list${sc.getQueryString(page.beginPage-1)}"/>">&lt;</a>
+                    <a href="<c:url value="/onlyAdmin/memberManage/list${sc.getQueryString(page.beginPage-1)}"/>">&lt;</a>
                 </c:if>
                 <c:forEach var="i" begin="${page.beginPage}" end="${page.endPage}">
-                    <a href="<c:url value="/onlyAdmin/stdManage/list${sc.getQueryString(i)}"/>">${i}</a>
+                    <a href="<c:url value="/onlyAdmin/memberManage/list${sc.getQueryString(i)}"/>">${i}</a>
                 </c:forEach>
                 <c:if test="${page.showNext}">
-                    <a href="<c:url value="/onlyAdmin/stdManage/list${sc.getQueryString(page.endPage+1)}"/>">&gt;</a>
+                    <a href="<c:url value="/onlyAdmin/memberManage/list${sc.getQueryString(page.endPage+1)}"/>">&gt;</a>
                 </c:if>
             </p>
         </c:if>

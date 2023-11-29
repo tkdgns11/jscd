@@ -42,29 +42,29 @@
     </div>
 
     <div id="infoListTable">
-    <table>
+    <table class="infoListTable">
         <tr>
-            <th><input type="checkbox" class="thInput"></th>
-            <th>No.</th>
-            <th style="width: 80px;">아이디</th>
-            <th style="width: 80px;">이름</th>
-            <th style="width: 150px;">폰번호</th>
-            <th style="width: 80px;">기수</th>
-            <th style="width: 80px;">상태</th>
-            <th style="width: 200px;">가입일</th>
+            <th class="infoListTable"><input type="checkbox" class="thInput"></th>
+            <th class="infoListTable">No.</th>
+            <th style="width: 80px;height: 45px" class="infoListTable">아이디</th>
+            <th style="width: 80px;height: 45px" class="infoListTable">이름</th>
+            <th style="width: 150px;height: 45px" class="infoListTable">폰번호</th>
+            <th style="width: 80px;height: 45px" class="infoListTable">기수</th>
+            <th style="width: 80px;height: 45px" class="infoListTable">상태</th>
+            <th style="width: 200px;height: 45px" class="infoListTable">가입일</th>
         </tr>
         <c:forEach var="stdDto" items="${list}">
             <tr>
-                <td><input type="checkbox" class="thInput"></td>
-                <td>${stdDto.mebrNo}</td>
-                <td>${stdDto.id}</td>
-                <td>
+                <td style="height: 45px" class="infoListTable"><input type="checkbox" class="thInput"></td>
+                <td style="height: 45px" class="infoListTable">${stdDto.mebrNo}</td>
+                <td style="height: 45px" class="infoListTable">${stdDto.id}</td>
+                <td style="height: 45px" class="infoListTable">
                     <a href="<c:url value="/onlyAdmin/stdManage/read?page=${sc.page}&mebrNo=${stdDto.mebrNo}"/>">${stdDto.name}</a>
                 </td>
-                <td>${stdDto.phone}</td>
-                <td>${stdDto.gisu}</td>
-                <td>${stdDto.status}</td>
-                <td><fmt:formatDate value="${stdDto.regDate}" pattern="yyyy-MM-dd" type="date"/></td>
+                <td style="height: 45px" class="infoListTable">${stdDto.phone}</td>
+                <td style="height: 45px" class="infoListTable">${stdDto.gisu}</td>
+                <td style="height: 45px" class="infoListTable">${stdDto.status}</td>
+                <td style="height: 45px" class="infoListTable"><fmt:formatDate value="${stdDto.regDate}" pattern="yyyy-MM-dd" type="date"/></td>
             </tr>
         </c:forEach>
     </table>
@@ -73,7 +73,7 @@
 
     <div id="infoNav">
         <c:if test="${page.totalCnt==null || page.totalCnt==0}">
-                    <p> 게시물이 없습니다.</p>
+                    <p id="noContent"> 게시물이 없습니다.</p>
                 </c:if>
 
                 <c:if test="${page.totalCnt!=null && page.totalCnt!=0}">
