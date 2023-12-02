@@ -1,4 +1,4 @@
-package com.jscd.app.lecture.admin.dto;
+package com.jscd.app.lecture.round.dto;
 
 import java.util.Objects;
 
@@ -9,32 +9,17 @@ public class RoundDto {
     private Integer firstIdNo;
     private String modifyDate;
     private Integer lastIdNo;
-    private String etc;
 
     public RoundDto() {
     }
 
-    public RoundDto(Integer roundCode, String roundName, String regDate, Integer firstIdNo, String modifyDate, Integer lastIdNo, String etc) {
+    public RoundDto(Integer roundCode, String roundName, String regDate, Integer firstIdNo, String modifyDate, Integer lastIdNo) {
         this.roundCode = roundCode;
         this.roundName = roundName;
         this.regDate = regDate;
         this.firstIdNo = firstIdNo;
         this.modifyDate = modifyDate;
         this.lastIdNo = lastIdNo;
-        this.etc = etc;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        RoundDto roundDto = (RoundDto) o;
-        return Objects.equals(roundCode, roundDto.roundCode) && Objects.equals(roundName, roundDto.roundName) && Objects.equals(regDate, roundDto.regDate) && Objects.equals(firstIdNo, roundDto.firstIdNo) && Objects.equals(modifyDate, roundDto.modifyDate) && Objects.equals(lastIdNo, roundDto.lastIdNo) && Objects.equals(etc, roundDto.etc);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(roundCode, roundName, regDate, firstIdNo, modifyDate, lastIdNo, etc);
     }
 
     public Integer getRoundCode() {
@@ -85,12 +70,17 @@ public class RoundDto {
         this.lastIdNo = lastIdNo;
     }
 
-    public String getEtc() {
-        return etc;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RoundDto roundDto = (RoundDto) o;
+        return Objects.equals(roundCode, roundDto.roundCode) && Objects.equals(roundName, roundDto.roundName) && Objects.equals(regDate, roundDto.regDate) && Objects.equals(firstIdNo, roundDto.firstIdNo) && Objects.equals(modifyDate, roundDto.modifyDate) && Objects.equals(lastIdNo, roundDto.lastIdNo);
     }
 
-    public void setEtc(String etc) {
-        this.etc = etc;
+    @Override
+    public int hashCode() {
+        return Objects.hash(roundCode, roundName, regDate, firstIdNo, modifyDate, lastIdNo);
     }
 
     @Override
@@ -102,7 +92,6 @@ public class RoundDto {
                 ", firstIdNo=" + firstIdNo +
                 ", modifyDate='" + modifyDate + '\'' +
                 ", lastIdNo=" + lastIdNo +
-                ", etc='" + etc + '\'' +
                 '}';
     }
 }

@@ -19,14 +19,14 @@
         <c:forEach var="list" items="${list}">
             <li>${list.courseCode}</li>
 <%--            <li><a href="<c:url value='/onlyAdmin/courseDetail?courseCode=${list.courseCode}'/>">${list.courseName}</a></li>--%>
-            <li><a href="<c:url value='/regist/courseDetail?courseCode=${list.courseCode}'/>">${list.courseName}</a></li>
+            <li><a href="<c:url value='/registCourse/courseDetail?courseCode=${list.courseCode}'/>">${list.courseName}</a></li>
             <li>${list.regDate}</li>
             <li>${list.firstIdNo}</li>
         </c:forEach>
     </form>
 
 <%--    <button id="writeBtn" class="btn-write" onclick="location.href='<c:url value="/onlyAdmin/regist/addCourse"/>'">등록하기</button>--%>
-    <button id="writeBtn" class="btn-write" onclick="location.href='<c:url value="/regist/addCourse"/>'">등록하기</button>
+    <button id="writeBtn" class="btn-write" onclick="location.href='<c:url value="/registCourse/addCourse"/>'">등록하기</button>
 </ul>
 </body>
 </html>

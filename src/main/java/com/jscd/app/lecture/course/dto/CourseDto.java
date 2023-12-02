@@ -1,4 +1,4 @@
-package com.jscd.app.lecture.admin.dto;
+package com.jscd.app.lecture.course.dto;
 
 import java.util.Objects;
 

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.jscd.app.lecture.admin.roundMapper">
+<mapper namespace="com.jscd.app.lecture.round.roundMapper">
     <!--    과정 전체 읽기-->
     <select id="selectAll" resultType="RoundDto">
         select roundCode, roundName, regDate, firstIdNo

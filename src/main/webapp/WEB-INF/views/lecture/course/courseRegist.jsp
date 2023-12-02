@@ -37,7 +37,7 @@
       if(!confirm("해당 과정을 등록하시겠습니까?")) return;
       let form = $("#CourseAddForm");
       <%--form.attr("action", "<c:url value='/onlyAdmin/regist/addCourse'/>");--%>
-      form.attr("action", "<c:url value='/regist/addCourse'/>");
+      form.attr("action", "<c:url value='/registCourse/addCourse'/>");
       form.attr("method", "post");
       form.submit();
     });
@@ -45,7 +45,7 @@
     $("#removeBtn").on("click", function() {
       let form = $("#CourseAddForm");
       <%--form.attr("action", "<c:url value='/onlyAdmin/regist/removeCourse?courseCode=${courseDto.courseCode}'/>");--%>
-      form.attr("action", "<c:url value='/regist/removeCourse?courseCode=${courseDto.courseCode}'/>");
+      form.attr("action", "<c:url value='/registCourse/removeCourse?courseCode=${courseDto.courseCode}'/>");
       form.attr("method", "post");
       form.submit();
     });
@@ -53,7 +53,7 @@
     $("#modifyBtn").on("click", function() {
       let form = $("#CourseAddForm");
       <%--form.attr("action", "<c:url value='/onlyAdmin/regist/modifyCourse'/>");--%>
-      form.attr("action", "<c:url value='/regist/modifyCourse'/>");
+      form.attr("action", "<c:url value='/registCourse/modifyCourse'/>");
       form.attr("method", "post");
       form.submit();
     })

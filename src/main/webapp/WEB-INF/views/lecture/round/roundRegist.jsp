@@ -16,8 +16,8 @@
 <form id="RoundAddForm" method="post" action="">
     <c:choose>
         <c:when test="${mode eq 'new'}">
-            <input type="text" name="roundName" placeholder="등록할 회차을 입력해주세요." value="${courseDto.courseName}">
-            <input type="text" name="firstIdNo" placeholder="회원번호를 입력해주세요." value="${courseDto.firstIdNo}">
+            <input type="text" name="roundName" placeholder="등록할 회차을 입력해주세요." value="${RoundDto.roundName}">
+            <input type="text" name="firstIdNo" placeholder="회원번호를 입력해주세요." value="${RoundDto.firstIdNo}">
             <button type="button" id="registBt">등록하기</button>
         </c:when>
         <c:when test="${mode ne 'new'}">
@@ -36,24 +36,24 @@
         $("#registBt").on("click", function() {
             if(!confirm("해당 과정을 등록하시겠습니까?")) return;
             let form = $("#RoundAddForm");
-            <%--form.attr("action", "<c:url value='/onlyAdmin/regist/addRound'/>");--%>
-            form.attr("action", "<c:url value='/regist/addRound'/>");
+            <%--form.attr("action", "<c:url value='/onlyAdmin/registRound/addRound'/>");--%>
+            form.attr("action", "<c:url value='/registRound/addRound'/>");
             form.attr("method", "post");
             form.submit();
         });
 
         $("#removeBtn").on("click", function() {
             let form = $("#RoundAddForm");
-            <%--form.attr("action", "<c:url value='/onlyAdmin/regist/removeRound?roundCode=${roundDto.roundCode}'/>");--%>
-            form.attr("action", "<c:url value='/regist/removeRound?roundCode=${roundDto.roundCode}'/>");
+            <%--form.attr("action", "<c:url value='/onlyAdmin/registRound/removeRound?roundCode=${roundDto.roundCode}'/>");--%>
+            form.attr("action", "<c:url value='/registRound/removeRound?roundCode=${roundDto.roundCode}'/>");
             form.attr("method", "post");
             form.submit();
         });
 
         $("#modifyBtn").on("click", function() {
             let form = $("#RoundAddForm");
-            <%--form.attr("action", "<c:url value='/onlyAdmin/regist/modifyRound'/>");--%>
-            form.attr("action", "<c:url value='/regist/modifyRound'/>");
+            <%--form.attr("action", "<c:url value='/onlyAdmin/registRound/modifyRound'/>");--%>
+            form.attr("action", "<c:url value='/registRound/modifyRound'/>");
             form.attr("method", "post");
             form.submit();
         })
