@@ -2,6 +2,7 @@ package com.jscd.app.admin.service;
 
 import com.jscd.app.admin.dao.MemberManageDao;
 import com.jscd.app.admin.domain.SearchCondition;
+import com.jscd.app.admin.dto.MemberManageDto;
 import com.jscd.app.member.dto.MemberDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,13 +26,14 @@ public class MemberManageServiceImpl implements MemberManageService { //회원 �
     }
 
     @Override
-    public MemberDto read(Integer mebrNo) throws Exception {
+    public MemberManageDto read(Integer mebrNo) throws Exception {
         return manageDao.select(mebrNo);
     }
 
+
     @Override
-    public int modify(MemberDto memberDto) throws Exception {
-        return manageDao.update(memberDto);
+    public int modify(Integer status,Integer grade,List<Integer>mebrNo) throws Exception {
+        return manageDao.update(status,grade,mebrNo);
     }
 
     @Override
@@ -45,7 +47,7 @@ public class MemberManageServiceImpl implements MemberManageService { //회원 �
     }
 
     @Override
-    public List<MemberDto> getSearchPage(SearchCondition sc) throws Exception {
+    public List<MemberManageDto> getSearchPage(SearchCondition sc) throws Exception {
         return manageDao.searchSelectPage(sc);
     }
 

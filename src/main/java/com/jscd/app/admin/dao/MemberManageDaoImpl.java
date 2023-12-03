@@ -1,6 +1,7 @@
 package com.jscd.app.admin.dao;
 
 import com.jscd.app.admin.domain.SearchCondition;
+import com.jscd.app.admin.dto.MemberManageDto;
 import com.jscd.app.member.dto.MemberDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,13 +32,18 @@ public class MemberManageDaoImpl implements MemberManageDao {
     }
 
     @Override
-    public MemberDto select(Integer mebrNo) throws Exception {
+    public MemberManageDto select(Integer mebrNo) throws Exception {
         return session.selectOne(namespace + "select", mebrNo);
     }
 
+
     @Override
-    public int update(MemberDto memberDto) throws Exception {
-        return session.update(namespace + "update", memberDto);
+    public int update(Integer status, Integer grade, List<Integer> mebrNo) throws Exception {
+        Map map = new HashMap();
+        map.put("status", status);
+        map.put("grade", grade);
+        map.put("mebrNo", mebrNo);
+        return session.update(namespace + "update", map);
     }
 
     @Override
@@ -56,7 +62,7 @@ public class MemberManageDaoImpl implements MemberManageDao {
     }
 
     @Override
-    public List<MemberDto> searchSelectPage(SearchCondition sc) throws Exception {
+    public List<MemberManageDto> searchSelectPage(SearchCondition sc) throws Exception {
         return session.selectList(namespace + "searchSelectPage", sc);
     }
 

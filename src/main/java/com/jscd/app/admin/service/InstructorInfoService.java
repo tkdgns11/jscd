@@ -11,13 +11,18 @@ public interface InstructorInfoService {
 
     int getCount() throws Exception;
 
-    List<InstructorMemberInfoDto> getList(int offset,int pageSize) throws Exception;
+    List<InstructorMemberInfoDto> getList(int offset, int pageSize) throws Exception;
 
     InstructorMemberInfoDto read(String iscrNo) throws Exception;
 
     int modify(InstructorInfoDto instructorInfoDto) throws Exception;
 
+    int modifyStatus(Integer status,List<Integer>mebrNo) throws Exception;
+
+
     int remove(Integer mebrNo) throws Exception;
-    List<InstructorMemberInfoDto> getSearchPage(SearchCondition sc)throws Exception;
-    int getSearchResultCnt(SearchCondition sc)throws Exception;
+
+    List<InstructorMemberInfoDto> getSearchPage(SearchCondition sc) throws Exception;
+
+    int getSearchResultCnt(SearchCondition sc) throws Exception;
 }

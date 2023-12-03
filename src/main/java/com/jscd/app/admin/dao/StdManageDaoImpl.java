@@ -46,6 +46,14 @@ public class StdManageDaoImpl implements StdManageDao {
     }
 
     @Override
+    public int updateStatus(Integer status, List<Integer> mebrNo) throws Exception {
+        Map map = new HashMap();
+        map.put("status",status);
+        map.put("mebrNo",mebrNo);
+        return session.update(namespace + "updateStatus", map);
+    }
+
+    @Override
     public int delete(Integer mebrNo) throws Exception {
         return session.delete(namespace + "delete", mebrNo);
     }

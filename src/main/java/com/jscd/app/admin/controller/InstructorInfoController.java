@@ -1,5 +1,6 @@
 package com.jscd.app.admin.controller;
 
+import com.jscd.app.admin.dao.InsturctorInfoDao;
 import com.jscd.app.admin.domain.Pageable;
 import com.jscd.app.admin.domain.SearchCondition;
 import com.jscd.app.admin.dto.InstructorInfoDto;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 	/*
@@ -24,6 +27,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/onlyAdmin/instructor")
 public class InstructorInfoController {
+
     @Autowired
     InstructorInfoService infoService;
 
@@ -35,14 +39,16 @@ public class InstructorInfoController {
             //쿼리스트링으로 들어온 객체 jsp에 뿌려주기(페이징,검색 관련 iv 담겨있다)
             model.addAttribute("sc", sc);
             //(1-1)총 게시물 개수를 받아와서
-            int listCnt = infoService.getSearchResultCnt(sc);
+            int totalCnt = infoService.getSearchResultCnt(sc);
+
             //(1-2)페이징 처리 객체 매개변수로 넣어준다
-            Pageable pageable = new Pageable(sc, listCnt);
+            Pageable pageable = new Pageable(sc, totalCnt);
             //(1-3)jsp에서의 페이징 처리를 위해 모델로 넘겨준다
             model.addAttribute("page", pageable);
 
             //(2-1)강사 정보를 list에 받고,
             List<InstructorMemberInfoDto> list = infoService.getSearchPage(sc);
+            System.out.println("list = " + list);
             //(2-2)jsp에 뿌려주기
             model.addAttribute("list", list);
 
@@ -100,6 +106,25 @@ public class InstructorInfoController {
             //작성 중인 내용 그대로 띄우도록 jsp에 전달
             model.addAttribute("msg", "MOD_ERR");
             return "redirect:/onlyAdmin/instructor/modify?page=" + page + "&iscrNo=" + instructorInfoDto.getIscrNo();
+        }
+
+        return "redirect:/onlyAdmin/instructor/list?page=" + page;
+    }
+
+    @PostMapping("/modifyStatus")
+    public String statusModify(Integer[] mebrNoArr, Integer page, Integer status, Model model) {
+        try {
+            List mebrNo = new ArrayList(mebrNoArr.length);
+            for (int i = 0; i < mebrNoArr.length; i++) {
+                mebrNo.add(mebrNoArr[i]);
+            }
+            infoService.modifyStatus(status, mebrNo);
+
+            model.addAttribute("msg", "MOD_OK");
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("msg", "MOD_ERR");
+            return "redirect:/onlyAdmin/instructor/list?page=" + page;
         }
 
         return "redirect:/onlyAdmin/instructor/list?page=" + page;

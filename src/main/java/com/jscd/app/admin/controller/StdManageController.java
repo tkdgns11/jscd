@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 	/*
@@ -31,8 +32,10 @@ public class StdManageController {
     public String getList(SearchCondition sc, Model model) {
 
         try {
-            int listCnt = stdService.getSearchResultCnt(sc);
-            Pageable pageable = new Pageable(sc, listCnt);
+            int totalCnt = stdService.getSearchResultCnt(sc);
+            model.addAttribute("totalCnt", totalCnt);
+
+            Pageable pageable = new Pageable(sc, totalCnt);
             List<StdMemberManageDto> list = stdService.getSearchPage(sc);
             model.addAttribute("list", list);
             model.addAttribute("sc", sc);
@@ -88,6 +91,24 @@ public class StdManageController {
             model.addAttribute("msg", "MOD_ERR");
             return "redirect:/onlyAdmin/stdManage/modify?page=" + page + "&mebrNo=" + stdDto.getMebrNo();
         }
+        return "redirect:/onlyAdmin/stdManage/list?page=" + page;
+    }
+
+    @PostMapping("/modifyStatus")
+    public String statusModify(Integer[] mebrNoArr, Integer page, Integer status, Model model) {
+        try {
+            List mebrNo = new ArrayList(mebrNoArr.length);
+            for (int i = 0; i < mebrNoArr.length; i++) {
+                mebrNo.add(mebrNoArr[i]);
+            }
+            stdService.modifyStatus(status, mebrNo);
+            model.addAttribute("msg", "MOD_OK");
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("msg", "MOD_ERR");
+            return "redirect:/onlyAdmin/stdManage/list?page=" + page;
+        }
+
         return "redirect:/onlyAdmin/stdManage/list?page=" + page;
     }
 

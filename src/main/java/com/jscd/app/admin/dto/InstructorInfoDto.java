@@ -9,6 +9,7 @@ public class InstructorInfoDto { //강사정보
         private Integer mebrNo; //회원 고유 번호
         private String intro;
         private Integer status;
+
         private Float hourPmt;
         private Date regDate;
         private String frsidNmbr;

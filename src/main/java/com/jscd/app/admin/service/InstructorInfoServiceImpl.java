@@ -42,9 +42,16 @@ public class InstructorInfoServiceImpl implements InstructorInfoService { //ê°•ì
     }
 
     @Override
+    public int modifyStatus(Integer status,List<Integer>mebrNo) throws Exception {
+        return infoDao.updateStatus(status,mebrNo);
+    }
+
+
+    @Override
     public int remove(Integer mebrNo) throws Exception {
         return infoDao.delete(mebrNo);
     }
+
 
     @Override
     public List<InstructorMemberInfoDto> getSearchPage(SearchCondition sc) throws Exception {

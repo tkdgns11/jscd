@@ -27,7 +27,7 @@
 
     <div id="infoDetailBox">
 
-        <h2 id="infoTitle">강사 상세보기</h2>
+        <h2 id="infoTitle">강사 정보 수정</h2>
         <form action="/onlyAdmin/instructor/modify?page=${page}&iscrNo=${infoDto.iscrNo}" method="post">
         <h4>강사번호</h4>
         <div class="infoValueBox">${infoDto.iscrNo}</div>
@@ -42,7 +42,12 @@
         <h4>소개</h4>
         <input type="text" class="infoModifyBox" name="intro" autofocus value="${infoDto.intro}">
         <h4>상태</h4>
-        <input type="text" class="infoModifyBox" name="status" value="${infoDto.status}">
+            <select name="status" style="padding: 4px 12px;margin-bottom: 15px">
+                <option value="1">이직</option>
+                <option value="2">재직</option>
+                <option value="3">휴직</option>
+                <option value="4">퇴직</option>
+            </select>
         <h4>급여</h4>
         <input type="text" class="infoModifyBox" name="hourPmt" value="${infoDto.hourPmt}">
         <h4>계좌</h4>
