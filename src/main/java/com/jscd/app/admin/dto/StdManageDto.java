@@ -3,11 +3,11 @@ package com.jscd.app.admin.dto;
 import java.util.Date;
 import java.util.Objects;
 
-public class StdManageDto {
-        private Integer mebrNo; //pk_회원고유번호
+public class StdManageDto { //학생
+        private Integer mebrNo; //pk_회원 고유 번호
         private Integer codeNum; //강의실 정보 코드
         private String gisu;
-        private String status;
+        private Integer status;
         private Date regDate;
         private String frsidNmbr;
         private Date modifyDate;
@@ -16,7 +16,7 @@ public class StdManageDto {
 
         public StdManageDto(){}
 
-        public StdManageDto(Integer mebrNo, Integer codeNum, String gisu, String status) {
+        public StdManageDto(Integer mebrNo, Integer codeNum, String gisu, Integer status) {
             this.mebrNo = mebrNo;
             this.codeNum = codeNum;
             this.gisu = gisu;
@@ -47,11 +47,11 @@ public class StdManageDto {
             this.gisu = gisu;
         }
 
-        public String getStatus() {
+        public Integer getStatus() {
             return status;
         }
 
-        public void setStatus(String status) {
+        public void setStatus(Integer status) {
             this.status = status;
         }
 

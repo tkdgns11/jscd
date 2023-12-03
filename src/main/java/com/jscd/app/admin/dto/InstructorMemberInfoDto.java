@@ -3,11 +3,11 @@ package com.jscd.app.admin.dto;
 import java.util.Date;
 import java.util.Objects;
 
-public class InstructorMemberInfoDto {
-    private String iscrNo; //pk_강사 고유 번호
+public class InstructorMemberInfoDto { //강사 + 회원 조인 Dto
+    private String iscrNo; //pk_강사 고유 코드
     private Integer mebrNo; //회원 고유 번호
     private String intro;
-    private Integer status;
+    private String status;
     private Float hourPmt;
     private Date regDate;
     private String frsidNmbr;
@@ -23,7 +23,7 @@ public class InstructorMemberInfoDto {
 
     public InstructorMemberInfoDto(){}
 
-    public InstructorMemberInfoDto(String iscrNo, Integer mebrNo, String intro, Integer status, Float hourPmt, Date regDate,
+    public InstructorMemberInfoDto(String iscrNo, Integer mebrNo, String intro, String status, Float hourPmt, Date regDate,
                                    String frsidNmbr, Date modifyDate, String lstidNmbr, String etc, String id, String name, Date birth,
                                    String phone, String acct) {
         this.iscrNo = iscrNo;
@@ -67,11 +67,11 @@ public class InstructorMemberInfoDto {
         this.intro = intro;
     }
 
-    public Integer getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,51 +20,61 @@ public class InsturctorInfoDaoImpl implements InsturctorInfoDao {
     private static String namespace = "com.jscd.app.mapper.instructorInfoMapper.";
 
     @Override
-    public int insert(InstructorInfoDto instructorInfoDto)throws Exception{
-        return session.insert(namespace+"insert",instructorInfoDto);
-    }
-    @Override
-    public int count()throws Exception{
-        return session.selectOne(namespace+"count");
+    public int insert(InstructorInfoDto instructorInfoDto) throws Exception {
+        return session.insert(namespace + "insert", instructorInfoDto);
     }
 
     @Override
-    public List<InstructorMemberInfoDto> selectAll(int offset,int pageSize)throws Exception{
+    public int count() throws Exception {
+        return session.selectOne(namespace + "count");
+    }
+
+    @Override
+    public List<InstructorMemberInfoDto> selectAll(int offset, int pageSize) throws Exception {
         Map map = new HashMap();
-        map.put("offset",offset);
-        map.put("pageSize",pageSize);
+        map.put("offset", offset);
+        map.put("pageSize", pageSize);
 
-        return session.selectList(namespace+"selectAll",map);
+        return session.selectList(namespace + "selectAll", map);
     }
 
     @Override
-    public InstructorMemberInfoDto select(String iscrNo)throws Exception{
-        return session.selectOne(namespace+"select",iscrNo);
+    public InstructorMemberInfoDto select(String iscrNo) throws Exception {
+        return session.selectOne(namespace + "select", iscrNo);
     }
 
     @Override
-    public int update(InstructorInfoDto instructorInfoDto)throws Exception{
-        return session.update(namespace+"update",instructorInfoDto);
+    public int update(InstructorInfoDto instructorInfoDto) throws Exception {
+        return session.update(namespace + "update", instructorInfoDto);
     }
 
     @Override
-    public int delete(Integer mebrNo)throws Exception{
-        return session.delete(namespace+"delete",mebrNo);
+    public int updateStatus(Integer status, List<Integer> mebrNo) throws Exception {
+        Map map = new HashMap();
+        map.put("status",status);
+        map.put("mebrNo",mebrNo);
+        return session.update(namespace + "updateStatus", map);
     }
 
     @Override
-    public void deleteAll()throws Exception{
-        session.delete(namespace+"deleteAll");
-    }
-    @Override
-    public List<InstructorMemberInfoDto> searchSelectPage(SearchCondition sc)throws Exception{
-        return session.selectList(namespace+"searchSelectPage",sc);}
-    @Override
-    public int searchResultCnt(SearchCondition sc)throws Exception{
-        return session.selectOne(namespace+"searchResultCnt",sc);
+    public int delete(Integer mebrNo) throws Exception {
+        return session.delete(namespace + "delete", mebrNo);
     }
 
+    @Override
+    public void deleteAll() throws Exception {
+        session.delete(namespace + "deleteAll");
+    }
 
+    @Override
+    public List<InstructorMemberInfoDto> searchSelectPage(SearchCondition sc) throws Exception {
+        return session.selectList(namespace + "searchSelectPage", sc);
+    }
+
+    @Override
+    public int searchResultCnt(SearchCondition sc) throws Exception {
+        return session.selectOne(namespace + "searchResultCnt", sc);
+    }
 
 
 }

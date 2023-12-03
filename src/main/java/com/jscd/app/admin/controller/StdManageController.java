@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 	/*
@@ -22,7 +23,7 @@ import java.util.List;
 	 */
 
 @Controller
-@RequestMapping("/stdManage")
+@RequestMapping("/onlyAdmin/stdManage")
 public class StdManageController {
     @Autowired
     StdManageService stdService;
@@ -31,8 +32,10 @@ public class StdManageController {
     public String getList(SearchCondition sc, Model model) {
 
         try {
-            int listCnt = stdService.getSearchResultCnt(sc);
-            Pageable pageable = new Pageable(sc, listCnt); //jsp로 보내서 페이징 처리 함
+            int totalCnt = stdService.getSearchResultCnt(sc);
+            model.addAttribute("totalCnt", totalCnt);
+
+            Pageable pageable = new Pageable(sc, totalCnt);
             List<StdMemberManageDto> list = stdService.getSearchPage(sc);
             model.addAttribute("list", list);
             model.addAttribute("sc", sc);
@@ -41,8 +44,9 @@ public class StdManageController {
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("msg", "LIST_ERR");
+            return "redirect:/admin/home";
         }
-        return "/admin/stdManageList";
+        return "/admin/stdManage/stdManageList";
     }
 
 
@@ -56,8 +60,9 @@ public class StdManageController {
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("msg", "READ_ERR");
+            return "redirect:/onlyAdmin/stdManage/list";
         }
-        return "/admin/stdManage";
+        return "/admin/stdManage/stdManage";
     }
 
     @GetMapping("/modify")
@@ -68,9 +73,11 @@ public class StdManageController {
             model.addAttribute("stdDto", stdDto);
         } catch (Exception e) {
             e.printStackTrace();
+            model.addAttribute("msg", "READ_ERR");
+            return "redirect:/onlyAdmin/stdManage/read?page=" + page + "&mebrNo=" + mebrNo;
         }
 
-        return "/admin/stdManageModify";
+        return "/admin/stdManage/stdManageModify";
     }
 
     @PostMapping("/modify")
@@ -82,9 +89,27 @@ public class StdManageController {
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("msg", "MOD_ERR");
-            return "redirect:/admin/stdManage/modify";
+            return "redirect:/onlyAdmin/stdManage/modify?page=" + page + "&mebrNo=" + stdDto.getMebrNo();
         }
-        return "redirect:/stdManage/list?page=" + page;
+        return "redirect:/onlyAdmin/stdManage/list?page=" + page;
+    }
+
+    @PostMapping("/modifyStatus")
+    public String statusModify(Integer[] mebrNoArr, Integer page, Integer status, Model model) {
+        try {
+            List mebrNo = new ArrayList(mebrNoArr.length);
+            for (int i = 0; i < mebrNoArr.length; i++) {
+                mebrNo.add(mebrNoArr[i]);
+            }
+            stdService.modifyStatus(status, mebrNo);
+            model.addAttribute("msg", "MOD_OK");
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("msg", "MOD_ERR");
+            return "redirect:/onlyAdmin/stdManage/list?page=" + page;
+        }
+
+        return "redirect:/onlyAdmin/stdManage/list?page=" + page;
     }
 
 

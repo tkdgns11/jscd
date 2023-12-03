@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jscd.app.lecture.course.courseMapper">
+<!--    과정 전체 읽기-->
+    <select id="selectAll" resultType="CourseDto">
+        select courseCode, courseName, regDate, firstIdNo
+        from course
+    </select>
+<!--    과정 등록하기-->
+    <insert id="addCourse" parameterType="CourseDto">
+        insert into course(courseName, firstIdNo)
+        values (#{courseName}, #{firstIdNo})
+    </insert>
+<!--    과정 세부사항 확인하기-->
+    <select id="readCourse" parameterType="int" resultType="CourseDto">
+        select *
+        from course
+        where courseCode = #{courseCode}
+    </select>
+<!--    과정 삭제하기-->
+    <delete id="removeCourse">
+        delete from course
+        where courseCode = #{courseCode}
+    </delete>
+<!--    과정 수정하기-->
+    <update id="modifyCourse" parameterType="CourseDto">
+        update course
+        set courseName = #{courseName}, firstIdNo = #{firstIdNo}
+        where courseCode = #{courseCode}
+    </update>
+</mapper>

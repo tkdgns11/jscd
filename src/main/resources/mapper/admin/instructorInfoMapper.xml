@@ -6,50 +6,51 @@
 
     <!--강사 정보 관리 -->
 
-    <!--    등급이 강사로 변경 -> insert -->
+    <!-- 등급이 강사로 변경 -> 강사 정보 insert -->
     <insert id="insert" parameterType="InstructorInfoDto">
         insert into instructorInfo
             (iscrNo, mebrNo, intro, status, hourPmt)
         values (#{iscrNo}, #{mebrNo}, #{intro}, #{status}, #{hourPmt})
     </insert>
 
+    <!--    강사 인원수-->
     <select id="count" resultType="int">
         select count(*)
         from instructorInfo
     </select>
 
-    <!-- 강사+회원 조인 / 전체 화면 => 강사정보번호,아이디,이름,전화번호,상태,등록일시 select => 관리자id 확인(session) -->
-    <select id="selectAll" parameterType="map" resultType="InstructorMemberInfoDto">
+    <sql id="selectInstructor">
         select i.iscrNo,
-               m.id,
-               m.name,
-               concat(m.phone1, m.phone2, m.phone3) as phone,
-               i.status,
-               i.regDate
-        from instructorInfo i
-                 join member m on i.mebrNo = m.mebrNo
-        order by i.iscrNo asc
-            limit #{offset}, #{pageSize};
-    </select>
-
-    <!--  강사이름 클릭 시, 상세화면(or 상세보기 버튼 생성)-->
-    <select id="select" parameterType="Map" resultType="InstructorMemberInfoDto">
-        select i.iscrNo,
+               i.mebrNo,
                m.id,
                m.name,
                m.birth,
                concat(m.phone1, m.phone2, m.phone3) as phone,
                i.intro,
-               i.status,
+               a.status,
                i.hourPmt,
                m.acct,
                i.regDate,
                i.etc
-        from instructorInfo i
-                 join member m on i.mebrNo = m.mebrNo
-        where i.iscrNo = #{iscrNo};
+        from member m
+                 join instructorInfo i
+                      on i.mebrNo = m.mebrNo
+                 join (select ctNum, codeName as status from allCode where ctId = "A001") a
+                      on i.status = a.ctNum
+    </sql>
+
+    <!-- 강사 전체 정보 확인(강사 + 회원 조인)-->
+    <select id="selectAll" parameterType="map" resultType="InstructorMemberInfoDto">
+        <include refid="selectInstructor"/>
+        order by i.iscrNo asc
+        limit #{offset}, #{pageSize};
     </select>
 
+    <!--  강사 정보 상세 확인-->
+    <select id="select" parameterType="Map" resultType="InstructorMemberInfoDto">
+        <include refid="selectInstructor"/>
+        where i.iscrNo = #{iscrNo};
+    </select>
 
     <!-- update-->
     <update id="update" parameterType="InstructorInfoDto">
@@ -61,6 +62,18 @@
           , modifyDate = now()
         where iscrNo = #{iscrNo}
     </update>
+
+    <!-- 메인화면 수정-->
+    <update id="updateStatus" parameterType="map">
+        update instructorInfo
+        set status = ${status}
+        , modifyDate = now()
+        where mebrNo in
+        <foreach collection="mebrNo" item="mebrNo" open="(" close=")" separator=",">
+            #{mebrNo}
+        </foreach>
+    </update>
+
 
     <!--    탈퇴하거나(회원), 등급 조정 시(관리자) ->매개변수로 회원고유번호가 적합 delete-->
     <delete id="delete" parameterType="Integer">
@@ -74,48 +87,39 @@
         from instructorInfo
     </delete>
 
-    <select id="searchSelectPage" parameterType="SearchCondition" resultType="InstructorMemberInfoDto">
-    select i.iscrNo,
-    m.id,
-    m.name,
-    concat(m.phone1, m.phone2, m.phone3) as phone,
-    i.status,
-    i.regDate
-    from instructorInfo i
-    join member m on i.mebrNo = m.mebrNo
-    WHERE true
-    <choose>
-        <when test='option=="T"'>
-            AND m.name LIKE concat('%', #{keyword}, '%')
-        </when>
-        <when test='option=="W"'>
-            AND m.id LIKE concat('%', #{keyword}, '%')
-        </when>
-        <otherwise>
-            AND i.status LIKE concat('%', #{keyword}, '%')
-        </otherwise>
-    </choose>
-    order by i.iscrNo asc
-    limit #{offset},#{pageSize};
-</select>
 
-<!--    몇개인지 알아야 페이징처리 할 수 있다-->
-<select id="searchResultCnt" parameterType="SearchCondition" resultType="int">
-SELECT count(*)
-from instructorInfo i
-join member m on i.mebrNo = m.mebrNo
-WHERE true
-    <choose>
-        <when test='option=="T"'>
-            AND m.name LIKE concat('%', #{keyword}, '%')
-        </when>
-        <when test='option=="W"'>
-            AND m.id LIKE concat('%', #{keyword}, '%')
-        </when>
-        <otherwise>
-            AND i.status LIKE concat('%', #{keyword}, '%')
-        </otherwise>
-    </choose>
-</select>
+    <sql id="searchCondition">
+        <choose>
+            <when test='option=="T"'>
+                AND m.name LIKE concat('%', #{keyword}, '%')
+            </when>
+            <when test='option=="W"'>
+                AND m.id LIKE concat('%', #{keyword}, '%')
+            </when>
+            <otherwise>
+                AND a.status LIKE concat('%', #{keyword}, '%')
+            </otherwise>
+        </choose>
+    </sql>
+
+    <!--    검색 조건 select문-->
+    <select id="searchSelectPage" parameterType="SearchCondition" resultType="InstructorMemberInfoDto">
+        <include refid="selectInstructor"/>
+        WHERE true
+        <include refid="searchCondition"/>
+        order by i.iscrNo asc
+        limit #{offset},#{pageSize};
+    </select>
+
+    <!--검색 결과 개수(몇개인지 알아야 페이징처리 할 수 있다) 회원컬럼을 조건으로 검색하기 때문에, 조인 필요-->
+    <select id="searchResultCnt" parameterType="SearchCondition" resultType="int">
+        SELECT count(*)
+        from member m
+        join instructorInfo i
+        on i.mebrNo = m.mebrNo
+        join (select ctNum,codeName as status from allCode where ctId = "A001") a
+        on i.status = a.ctNum
+        <include refid="searchCondition"/>
+    </select>
 
 </mapper>

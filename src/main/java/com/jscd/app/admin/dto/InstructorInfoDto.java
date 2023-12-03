@@ -5,10 +5,11 @@ import java.util.Objects;
 
 public class InstructorInfoDto { //강사정보
 
-        private String iscrNo; //pk_강사 고유 번호
+        private String iscrNo; //pk_강사 고유 코드
         private Integer mebrNo; //회원 고유 번호
         private String intro;
         private Integer status;
+
         private Float hourPmt;
         private Date regDate;
         private String frsidNmbr;

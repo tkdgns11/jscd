@@ -11,46 +11,52 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class StdManageServiceImpl implements StdManageService { //학생관리
+public class StdManageServiceImpl implements StdManageService { //학생 정보 관리
     @Autowired
     StdManageDao stdManageDao;
 
     @Override
-    public int write(StdManageDto stdManageDto)throws Exception{
+    public int write(StdManageDto stdManageDto) throws Exception {
         return stdManageDao.insert(stdManageDto);
     }
 
     @Override
-    public int getCount()throws Exception{
+    public int getCount() throws Exception {
         return stdManageDao.count();
     }
 
     @Override
-    public List<StdMemberManageDto> getList(int offset,int pageSize)throws Exception{
+    public List<StdMemberManageDto> getList(int offset, int pageSize) throws Exception {
         return stdManageDao.selectAll(offset, pageSize);
     }
 
     @Override
-    public StdMemberManageDto read(Integer mebrNo)throws Exception{
+    public StdMemberManageDto read(Integer mebrNo) throws Exception {
         return stdManageDao.select(mebrNo);
     }
 
     @Override
-    public int modify(StdManageDto stdManageDto)throws Exception{
+    public int modify(StdManageDto stdManageDto) throws Exception {
         return stdManageDao.update(stdManageDto);
     }
 
     @Override
-    public int remove(Integer mebrNo)throws Exception{
+    public int modifyStatus(Integer status,List<Integer>mebrNo) throws Exception {
+        return stdManageDao.updateStatus(status,mebrNo);
+    }
+
+    @Override
+    public int remove(Integer mebrNo) throws Exception {
         return stdManageDao.delete(mebrNo);
     }
 
     @Override
-    public List<StdMemberManageDto> getSearchPage(SearchCondition sc)throws Exception{
+    public List<StdMemberManageDto> getSearchPage(SearchCondition sc) throws Exception {
         return stdManageDao.searchSelectPage(sc);
     }
+
     @Override
-    public int getSearchResultCnt(SearchCondition sc)throws Exception{
+    public int getSearchResultCnt(SearchCondition sc) throws Exception {
         return stdManageDao.searchResultCnt(sc);
     }
 

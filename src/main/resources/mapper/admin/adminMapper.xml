@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jscd.app.mapper.adminMapper">
+
+
+    <!--    insert : 관리자 회원가입 시 정보 저장-->
+    <insert id="insertAdmin" parameterType="AdminDto">
+        insert into admin
+            (id, name, alias, birth, pwd, phone1, phone2, phone3)
+        values (#{id}, #{name}, #{alias}, #{birth}, #{pwd}, #{phone1}, #{phone2}, #{phone3})
+    </insert>
+
+    <!--    count : 관리자 수-->
+    <select id="countAdmin" resultType="int">
+        select count(*)
+        from admin;
+    </select>
+
+    <!--    중복되는 쿼리문-->
+    <sql id="selectAdmin">
+        select adminNo,
+               id,
+               name,
+               alias,
+               birth,
+               pwd,
+               concat(phone1, phone2, phone3) as phone,
+               status,
+               grade,
+               regDate
+        from admin
+    </sql>
+
+    <!--    select : 로그인, 관리자 정보 확인-->
+    <select id="selectAdmin" parameterType="String" resultType="AdminDto">
+        <include refid="selectAdmin"/>
+        where id = #{id}
+    </select>
+
+    <!--    selectAll : 관리자 전체 정보 관리-->
+    <select id="selectAllAdmin" resultType="AdminDto">
+        <include refid="selectAdmin"/>
+        order by adminNo
+    </select>
+
+    <!--    update : 관리자 정보 수정-->
+    <update id="updateAdmin" parameterType="AdminDto">
+        update admin
+        set alias      = #{alias},
+            modifyDate = now()
+        where id = #{id}
+    </update>
+
+    <!--    delete : 정보 삭제-->
+    <delete id="deleteAdmin" parameterType="String">
+        delete
+        from admin
+        where id = #{id}
+    </delete>
+
+    <!--    deleteAll : 전체 삭제-->
+    <delete id="deleteAllAdmin">
+        delete
+        from admin
+    </delete>
+
+</mapper>
