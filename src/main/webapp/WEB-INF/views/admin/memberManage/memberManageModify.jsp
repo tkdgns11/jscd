@@ -40,9 +40,21 @@
         <h4>폰번호</h4>
         <div class="infoValueBox">${memberDto.phone}</div>
         <h4>등급</h4>
-        <input type="text" class="infoModifyBox" name="grade" autofocus value="${memberDto.grade}">
+        <select name="grade" style="padding: 4px 12px;margin-bottom: 15px">
+            <option value="1">일반</option>
+            <option value="2">학생</option>
+            <option value="3">수료생</option>
+            <option value="4">강사</option>
+            <option value="5">관리자(조교)</option>
+            <option value="6">최고관리자</option>
+        </select>
         <h4>상태</h4>
-        <input type="text" class="infoModifyBox" name="status" value="${memberDto.status}">
+        <select name="status" style="padding: 4px 12px;margin-bottom: 15px">
+            <option value="1">정상</option>
+            <option value="2">블랙</option>
+            <option value="3">탈퇴</option>
+            <option value="4">휴면</option>
+        </select>
         <h4>환불 계좌</h4>
         <div class="infoValueBox">${memberDto.acct}</div>
         <h4>가입일</h4>

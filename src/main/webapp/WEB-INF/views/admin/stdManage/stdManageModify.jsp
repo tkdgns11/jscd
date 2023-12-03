@@ -25,7 +25,7 @@
 
     <div id="infoDetailBox">
 
-        <h2 id="infoTitle">학생 상세보기</h2>
+        <h2 id="infoTitle">학생 정보 수정</h2>
         <form action="/onlyAdmin/stdManage/modify?page=${page}&mebrNo=${stdDto.mebrNo}" method="post">
             <h4>회원 번호</h4>
             <div class="infoValueBox">${stdDto.mebrNo}</div>
@@ -40,7 +40,11 @@
             <h4>기수</h4>
             <input type="text" class="infoModifyBox" name="gisu" autofocus value="${stdDto.gisu}">
             <h4>상태</h4>
-            <input type="text" class="infoModifyBox" name="status" value="${stdDto.status}">
+            <select name="status" style="padding: 4px 12px;margin-bottom: 15px">
+                <option value="1">수강예정</option>
+                <option value="2">수강중</option>
+                <option value="3">수료</option>
+            </select>
             <h4>계좌</h4>
             <div class="infoValueBox">${stdDto.acct}</div>
             <h4>가입일</h4>

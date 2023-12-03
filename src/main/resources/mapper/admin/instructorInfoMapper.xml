@@ -21,19 +21,22 @@
 
     <sql id="selectInstructor">
         select i.iscrNo,
+               i.mebrNo,
                m.id,
                m.name,
                m.birth,
                concat(m.phone1, m.phone2, m.phone3) as phone,
                i.intro,
-               i.status,
+               a.status,
                i.hourPmt,
                m.acct,
                i.regDate,
                i.etc
-        from instructorInfo i
-                 join member m on i.mebrNo = m.mebrNo
-
+        from member m
+                 join instructorInfo i
+                      on i.mebrNo = m.mebrNo
+                 join (select ctNum, codeName as status from allCode where ctId = "A001") a
+                      on i.status = a.ctNum
     </sql>
 
     <!-- 강사 전체 정보 확인(강사 + 회원 조인)-->
@@ -60,6 +63,18 @@
         where iscrNo = #{iscrNo}
     </update>
 
+    <!-- 메인화면 수정-->
+    <update id="updateStatus" parameterType="map">
+        update instructorInfo
+        set status = ${status}
+        , modifyDate = now()
+        where mebrNo in
+        <foreach collection="mebrNo" item="mebrNo" open="(" close=")" separator=",">
+            #{mebrNo}
+        </foreach>
+    </update>
+
+
     <!--    탈퇴하거나(회원), 등급 조정 시(관리자) ->매개변수로 회원고유번호가 적합 delete-->
     <delete id="delete" parameterType="Integer">
         delete
@@ -82,12 +97,12 @@
                 AND m.id LIKE concat('%', #{keyword}, '%')
             </when>
             <otherwise>
-                AND i.status LIKE concat('%', #{keyword}, '%')
+                AND a.status LIKE concat('%', #{keyword}, '%')
             </otherwise>
         </choose>
     </sql>
 
-<!--    검색 조건 select문-->
+    <!--    검색 조건 select문-->
     <select id="searchSelectPage" parameterType="SearchCondition" resultType="InstructorMemberInfoDto">
         <include refid="selectInstructor"/>
         WHERE true
@@ -99,9 +114,11 @@
     <!--검색 결과 개수(몇개인지 알아야 페이징처리 할 수 있다) 회원컬럼을 조건으로 검색하기 때문에, 조인 필요-->
     <select id="searchResultCnt" parameterType="SearchCondition" resultType="int">
         SELECT count(*)
-        from instructorInfo i
-        join member m on i.mebrNo = m.mebrNo
-        WHERE true
+        from member m
+        join instructorInfo i
+        on i.mebrNo = m.mebrNo
+        join (select ctNum,codeName as status from allCode where ctId = "A001") a
+        on i.status = a.ctNum
         <include refid="searchCondition"/>
     </select>
 

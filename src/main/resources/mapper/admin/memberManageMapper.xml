@@ -12,22 +12,29 @@
     </select>
 
     <sql id="selectMember">
-        select mebrNo,
-               id,
-               name,
-               birth,
-               nickname,
-               concat(phone1, phone2, phone3) as phone,
-               acct,
-               status,
-               grade,
-               regDate,
-               etc
-        from member
+        select m.mebrNo,
+               m.id,
+               m.name,
+               m.birth,
+               m.nickname,
+               g.gender,
+               concat(m.phone1, m.phone2, m.phone3) as phone,
+               m.acct,
+               s.status,
+               d.grade,
+               m.regDate,
+               m.etc
+        from member m
+                 join (select ctNum, codeName as gender from allCode where ctId = "G001") g
+                      on m.gender = g.ctNum
+                 join (select ctNum, codeName as status from allCode where ctId = "M001") s
+                      on m.status = s.ctNum
+                 join (select ctNum, codeName as grade from allCode where ctId = "M002") d
+                      on m.grade = d.ctNum
     </sql>
 
     <!--    검색 조건 select-->
-    <select id="searchSelectPage" parameterType="SearchCondition" resultType="MemberDto">
+    <select id="searchSelectPage" parameterType="SearchCondition" resultType="MemberManageDto">
         <include refid="selectMember"/>
         WHERE true
         <include refid="searchCondition"/>
@@ -38,8 +45,13 @@
     <!--검색 결과 개수(몇개인지 알아야 페이징처리 할 수 있다)-->
     <select id="searchResultCnt" parameterType="SearchCondition" resultType="int">
         select count(*)
-        FROM member
-        WHERE true
+        from member m
+        join (select ctNum,codeName as gender from allCode where ctId = "G001") g
+        on m.gender = g.ctNum
+        join (select ctNum,codeName as status from allCode where ctId = "M001") s
+        on m.status = s.ctNum
+        join (select ctNum,codeName as grade from allCode where ctId = "M002") d
+        on m.gender = d.ctNum
         <include refid="searchCondition"/>
     </select>
 
@@ -51,17 +63,21 @@
     </select>
 
     <!--회원 이름 클릭 시, 상세 정보-->
-    <select id="select" parameterType="Integer" resultType="MemberDto">
+    <select id="select" parameterType="Integer" resultType="MemberManageDto">
         <include refid="selectMember"/>
         where mebrNo = #{mebrNo}
     </select>
 
     <!--    update _ 등급 변경(메인화면에서 사용할 예정)-->
-    <update id="update" parameterType="MemberDto">
+    <update id="update" parameterType="map">
         update member
-        set grade      = #{grade}
-          , modifyDate = now()
-        where mebrNo = #{mebrNo}
+        set grade= #{grade}
+        ,status = #{status}
+        , modifyDate = now()
+        where mebrNo in
+        <foreach collection="mebrNo" item="mebrNo" open="(" close=")" separator=",">
+            #{mebrNo}
+        </foreach>
     </update>
 
 
@@ -89,20 +105,19 @@
     <sql id="searchCondition">
         <choose>
             <when test='option=="T"'>
-                AND name LIKE concat('%', #{keyword}, '%')
+                AND m.name LIKE concat('%', #{keyword}, '%')
             </when>
             <when test='option=="W"'>
-                AND id LIKE concat('%', #{keyword}, '%')
+                AND m.id LIKE concat('%', #{keyword}, '%')
             </when>
             <when test='option=="R"'>
-                and grade like concat('%',#{keyword},'%')
+                and d.grade like concat('%',#{keyword},'%')
             </when>
             <otherwise>
-                and status like concat('%',#{keyword},'%')
+                and s.status like concat('%',#{keyword},'%')
             </otherwise>
         </choose>
     </sql>
-
 
 
 </mapper>

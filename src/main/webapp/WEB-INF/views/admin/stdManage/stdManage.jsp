@@ -34,7 +34,7 @@
         <h4>이름</h4>
         <div class="infoValueBox">${stdDto.name}</div>
         <h4>생년월일</h4>
-        <div class="infoValueBox">${stdDto.birth}</div>
+        <div class="infoValueBox"><fmt:formatDate value="${stdDto.birth}" pattern="yyyy-MM-dd" type="date"/></div>
         <h4>폰번호</h4>
         <div class="infoValueBox">${stdDto.phone}</div>
         <h4>기수</h4>

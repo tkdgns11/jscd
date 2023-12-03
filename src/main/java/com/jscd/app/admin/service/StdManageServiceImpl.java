@@ -41,6 +41,11 @@ public class StdManageServiceImpl implements StdManageService { //학생 정보 
     }
 
     @Override
+    public int modifyStatus(Integer status,List<Integer>mebrNo) throws Exception {
+        return stdManageDao.updateStatus(status,mebrNo);
+    }
+
+    @Override
     public int remove(Integer mebrNo) throws Exception {
         return stdManageDao.delete(mebrNo);
     }

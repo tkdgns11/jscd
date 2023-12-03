@@ -2,6 +2,7 @@ package com.jscd.app.admin.controller;
 
 import com.jscd.app.admin.domain.Pageable;
 import com.jscd.app.admin.domain.SearchCondition;
+import com.jscd.app.admin.dto.MemberManageDto;
 import com.jscd.app.admin.service.MemberManageService;
 import com.jscd.app.member.dto.MemberDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 	/*
@@ -32,7 +34,7 @@ public class MemberManageController {
         try {
             int listCnt = manageService.getSearchResultCnt(sc);
             Pageable pageable = new Pageable(sc, listCnt);
-            List<MemberDto> list = manageService.getSearchPage(sc);
+            List<MemberManageDto> list = manageService.getSearchPage(sc);
             model.addAttribute("sc", sc);
             model.addAttribute("list", list);
             model.addAttribute("page", pageable);
@@ -50,7 +52,7 @@ public class MemberManageController {
     public String infoRead(Integer mebrNo, Integer page, Model model) {
 
         try {
-            MemberDto memberDto = manageService.read(mebrNo);
+            MemberManageDto memberDto = manageService.read(mebrNo);
             model.addAttribute("memberDto", memberDto);
             model.addAttribute("page", page);
         } catch (Exception e) {
@@ -65,7 +67,7 @@ public class MemberManageController {
     @GetMapping("/modify")
     public String modifyForm(Integer page, Integer mebrNo, Model model) {
         try {
-            MemberDto memberDto = manageService.read(mebrNo);
+            MemberManageDto memberDto = manageService.read(mebrNo);
             model.addAttribute("page", page);
             model.addAttribute("memberDto", memberDto);
         } catch (Exception e) {
@@ -88,7 +90,25 @@ public class MemberManageController {
             e.printStackTrace();
             model.addAttribute("msg", "MOD_ERR");
             model.addAttribute("memberDto", memberDto);
-            return "redirect:/onlyAdmin/memberManage/modify?page="+page+"&mebrNo=" + memberDto.getMebrNo();
+            return "redirect:/onlyAdmin/memberManage/modify?page=" + page + "&mebrNo=" + memberDto.getMebrNo();
+        }
+
+        return "redirect:/onlyAdmin/memberManage/list?page=" + page;
+    }
+
+    @PostMapping("/modifyMain")
+    public String statusModify(Integer[] mebrNoArr, Integer status, Integer grade, Integer page, Model model) {
+        try {
+            List mebrNo = new ArrayList(mebrNoArr.length);
+            for (int i = 0; i < mebrNoArr.length; i++) {
+                mebrNo.add(mebrNoArr[i]);
+            }
+            manageService.modify(status, grade, mebrNo);
+            model.addAttribute("msg", "MOD_OK");
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("msg", "MOD_ERR");
+            return "redirect:/onlyAdmin/memberManage/list?page=" + page;
         }
 
         return "redirect:/onlyAdmin/memberManage/list?page=" + page;

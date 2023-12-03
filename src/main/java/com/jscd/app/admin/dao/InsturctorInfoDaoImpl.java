@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,6 +46,14 @@ public class InsturctorInfoDaoImpl implements InsturctorInfoDao {
     @Override
     public int update(InstructorInfoDto instructorInfoDto) throws Exception {
         return session.update(namespace + "update", instructorInfoDto);
+    }
+
+    @Override
+    public int updateStatus(Integer status, List<Integer> mebrNo) throws Exception {
+        Map map = new HashMap();
+        map.put("status",status);
+        map.put("mebrNo",mebrNo);
+        return session.update(namespace + "updateStatus", map);
     }
 
     @Override

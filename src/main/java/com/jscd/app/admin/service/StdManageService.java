@@ -16,8 +16,10 @@ public interface StdManageService {
     StdMemberManageDto read(Integer mebrNo) throws Exception;
 
     int modify(StdManageDto stdManageDto) throws Exception;
+    int modifyStatus(Integer status,List<Integer>mebrNo) throws Exception;
 
-    int remove(Integer mebrNo) throws Exception;
+
+        int remove(Integer mebrNo) throws Exception;
     List<StdMemberManageDto> getSearchPage(SearchCondition sc)throws Exception;
     int getSearchResultCnt(SearchCondition sc)throws Exception;
 
