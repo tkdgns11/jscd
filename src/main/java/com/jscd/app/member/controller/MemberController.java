@@ -99,7 +99,7 @@ public class MemberController {
 			memberDto.setBirth(birth);
 			memberDto.setPhone(phone);
 
-			memberService.signUp(memberDto);
+			memberService.signup(memberDto);
 
 		}
 		//로그인 세션 처리
@@ -158,7 +158,7 @@ public class MemberController {
 			memberDto.setBirth(birth);
 			memberDto.setPhone(phone);
 
-			memberService.signUp(memberDto);
+			memberService.signup(memberDto);
 
 		}
 
@@ -237,7 +237,7 @@ public class MemberController {
 
 		try{
 			//회원가입에 성공했을 경우
-			memberService.signUp(memberDto);
+			memberService.signup(memberDto);
 			map.put("redirect","/member/login");
 		}catch (Exception e){
 			//회원가입에 실패했을 경우
@@ -248,7 +248,7 @@ public class MemberController {
 
 	//회원 개인정보수정 페이지 이동
 	@GetMapping("/memberEdit")
-	public String memberEditPage(Model model, HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public String memberEditPage(Model model, HttpServletRequest request) throws Exception{
 		//세션 값 가져와서 아이디 조회
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
@@ -275,7 +275,9 @@ public class MemberController {
 		return map;
 	}
 
-
+	//회원 삭제
+	@PostMapping("/delete")
+	@ResponseBody
 	public String memberDelete(MemberDto memberDto) throws Exception{
 		System.out.println("memberDelete===" + memberDto);
 		memberService.memberDelete(memberDto.getId());

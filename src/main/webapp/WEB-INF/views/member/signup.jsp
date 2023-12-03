@@ -84,18 +84,21 @@
                 <input type="text"  id="phone" name="phone" oninput="autoHyphen(this)" maxlength="13" placeholder="전화번호를 입력해보세요!" value="${memberDto.phone}">
             </div>
         </div>
-        <c:if test="${empty memberDto.id}">
-            <div style="border: none; display: flex; flex-direction: row;justify-content: center; align-items: center">
-                <input type="button" id="signupBtn" value="가입 완료" onclick="member('signup')">
-                <input type="button" class="cancleBtn" value="취소" onclick="cancle()" style="margin-left: 20px;">
-            </div>
-        </c:if>
-        <c:if test="${not empty memberDto.id}">
-            <div style="border: none; display: flex; flex-direction: row;justify-content: center; align-items: center">
-                <input type="button" id="memberEditBtn" value="수정 완료" onclick="member('memberEdit')" >
-                <input type="button" class="cancleBtn" value="취소" onclick="cancle()" style="margin-left: 20px;">
-            </div>
-        </c:if>
+    <c:if test="${empty memberDto.id}">
+        <div style="border: none; display: flex; flex-direction: row;justify-content: center; align-items: center">
+            <input type="button" id="signupBtn" value="가입 완료" onclick="member('signup')">
+            <input type="button" class="cancleBtn" value="취소" onclick="cancle()" style="margin-left: 20px;">
+        </div>
+    </c:if>
+    <c:if test="${not empty memberDto.id}">
+        <div style="border: none; display: flex; justify-content: flex-end">
+            <input type="button" id="memberDel" value="*회원탈퇴*">
+        </div>
+        <div style="border: none; display: flex; flex-direction: row;justify-content: center; align-items: center">
+            <input type="button" id="memberEditBtn" value="수정 완료" onclick="member('memberEdit')" >
+            <input type="button" class="cancleBtn" value="취소" onclick="cancle()" style="margin-left: 20px;">
+        </div>
+    </c:if>
     </div>
 </form>
 <footer>

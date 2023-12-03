@@ -36,3 +36,4 @@
 #signupBtn{width: 200px;height: 50px; border-radius: 15px;font-size: 30px;text-align: center; line-height: 50px; background-color: #18214F; color: #fff; cursor: pointer;}
 #memberEditBtn{width: 200px;height: 50px; border-radius: 15px;font-size: 30px;text-align: center; line-height: 50px; background-color: #18214F; color: #fff; cursor: pointer;}
 .cancleBtn{width: 200px;height: 50px; margin-left: 10px;border-radius: 15px;font-size: 30px;text-align: center; line-height: 50px; background-color: #a5090b; color: #fff; cursor: pointer;}
+#memberDel{background-color: white;cursor: pointer;color: #666666}

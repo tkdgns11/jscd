@@ -22,9 +22,6 @@ function login(){
 
     let loginData = {"id":id.value, "pwd":pwd.value, "rememberId":rememberId};
 
-    console.log(loginData);
-
-
     $.ajax({
         url:"/member/login",
         type:"POST",

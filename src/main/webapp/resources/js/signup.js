@@ -1,7 +1,31 @@
+
+window.onload = function (){
+
+    let memberDelBtn = document.getElementById("memberDel");
+    let id= document.getElementById("id");
+    memberDelBtn.addEventListener("click",function (){
+        $.ajax({
+            url:"/member/delete",
+            type:"POST",
+            data:$('form').serialize(),
+            error : function (error){
+                console.log("error");
+            },
+            success : function (data){
+                if(data.redirect){
+                    window.location.href = data.redirect;
+                }
+            }
+        });
+    });
+
+
+}
 //취소
 function cancle(){
     window.location.href = '/';
 }
+
 //회원가입 및 개인정보 변경 유효성 검사 및 ajax를 사용
 function member(value){
     const name = document.getElementById("name");
@@ -78,6 +102,12 @@ function member(value){
 
     }
 }
+
+//회원탈퇴
+function memberDel(){
+    console.log("hello del")
+}
+
 
 //이름 유효성 검사
 function  nameValid(name, nameReg){

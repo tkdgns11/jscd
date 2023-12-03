@@ -11,7 +11,7 @@ public interface MemberService {
 	 public boolean login(String id, String pwd) throws Exception;
 	 public MemberDto memberSelect(String id) throws Exception;
 	 public void logout(HttpSession session);
-	 public int signUp(MemberDto memberDto) throws Exception;
+	 public int signup(MemberDto memberDto) throws Exception;
 	 public int memberEdit(MemberDto memberDto) throws Exception;
 	 public int memberDelete(String id) throws Exception;
 

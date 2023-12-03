@@ -57,7 +57,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int signUp(MemberDto memberDto) throws Exception {
+	public int signup(MemberDto memberDto) throws Exception {
 		return memberDao.insertUser(memberDto);
 	}
 
