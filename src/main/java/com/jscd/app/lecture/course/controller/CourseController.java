@@ -43,7 +43,7 @@ public class CourseController {
             e.printStackTrace();
             rattr.addFlashAttribute("msg", "DEL_ERR");
         }
-//        return "redirect:/onlyadmin/registCourse/course";
+//        return "redirect:/onlyAdmin/registCourse/course";
         return "redirect:/registCourse/course";
     }
 
@@ -51,7 +51,6 @@ public class CourseController {
     @GetMapping("/courseDetail")
     public String detailCourse(Integer courseCode, Model m) throws Exception {
         try {
-            System.out.println("courseCode = " + courseCode);
             CourseDto courseDto = courseService.readCourse(courseCode);
             m.addAttribute(courseDto);
         } catch(Exception e) {
