@@ -14,7 +14,8 @@
 <body>
 <script>
     let msg = "${param.msg}";
-    if (msg == "READ_ERR") alert("강사 정보를 가져오는데 실패했습니다. 다시 시도해 주세요.");
+    if (msg == "READ_ERR") alert("정보를 가져오는데 실패했습니다. 다시 시도해 주세요.");
+    if (msg == "DEL_ERR") alert("삭제에 실패했습니다. 다시 시도해 주세요.");
 </script>
 
 <div id="content">
@@ -49,6 +50,7 @@
         <input type="text" class="infoInputBox" readonly value="${stdDto.etc}">
         <br>
         <button id="adminModifyBtn" onclick="location.href='/onlyAdmin/stdManage/modify?page=${page}&mebrNo=${stdDto.mebrNo}'"style="margin-left: 100px; margin-top: 15px">수정</button>
+        <button id="adminRemoveBtn">삭제</button>
         <button id="adminListBtn" onclick="location.href='/onlyAdmin/stdManage/list?page=${page}'">목록</button>
     </div>
 
@@ -58,6 +60,23 @@
 
 </div>
 
+<script>
+    $(document).ready(function(){
 
+
+        $("#adminRemoveBtn").on("click", function(){
+            if(!confirm("정말로 삭제하시겠습니까?")) return;
+
+           const form = document.createElement('form');
+           form.setAttribute('method','post');
+           form.setAttribute('action','/onlyAdmin/stdManage/delete?mebrNo=${stdDto.mebrNo}&page=${page}');
+            document.body.appendChild(form);
+            form.submit();
+
+        });
+
+    })
+
+</script>
 </body>
 </html>

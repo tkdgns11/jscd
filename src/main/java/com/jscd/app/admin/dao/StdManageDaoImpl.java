@@ -54,6 +54,11 @@ public class StdManageDaoImpl implements StdManageDao {
     }
 
     @Override
+    public int deleteMain(List<Integer> mebrNo) throws Exception {
+        return session.delete(namespace + "deleteMain",mebrNo);
+    }
+
+    @Override
     public int delete(Integer mebrNo) throws Exception {
         return session.delete(namespace + "delete", mebrNo);
     }

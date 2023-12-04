@@ -6,6 +6,7 @@ import com.jscd.app.admin.domain.SearchCondition;
 import com.jscd.app.admin.dto.StdManageDto;
 import com.jscd.app.admin.dto.StdMemberManageDto;
 import com.jscd.app.admin.service.StdManageService;
+import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -110,6 +111,45 @@ public class StdManageController {
         }
 
         return "redirect:/onlyAdmin/stdManage/list?page=" + page;
+    }
+
+    @PostMapping("/delete") //상세보기 화면에서 삭제
+    public String stdDelete(Integer mebrNo, Integer page, Model model) {
+
+        try {
+            stdService.remove(mebrNo);
+            model.addAttribute("msg", "DEL_OK");
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("msg", "DEL_ERR");
+            //에러 발생 시, 읽기 화면 그대로 보여지기
+            return "redirect:/onlyAdmin/stdManage/read?page=" + page + "&mebrNo=" + mebrNo;
+
+        }
+
+        return "redirect:/onlyAdmin/stdManage/list?page=" + page;
+
+    }
+
+    @PostMapping("/deleteMain") //메인화면에서 삭제
+    public String stdDeleteMain(Integer[]mebrNoArr, Integer page, Model model) {
+
+        try {
+            List mebrNo = new ArrayList(mebrNoArr.length);
+            for (int i = 0; i < mebrNoArr.length; i++) {
+                mebrNo.add(mebrNoArr[i]);
+            }
+            stdService.removeMain(mebrNo);
+            model.addAttribute("msg", "DEL_OK");
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("msg", "DEL_ERR");
+            return "redirect:/onlyAdmin/stdManage/list?page=" + page;
+
+        }
+
+        return "redirect:/onlyAdmin/stdManage/list?page=" + page;
+
     }
 
 

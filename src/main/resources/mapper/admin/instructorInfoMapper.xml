@@ -6,12 +6,18 @@
 
     <!--강사 정보 관리 -->
 
-    <!-- 등급이 강사로 변경 -> 강사 정보 insert -->
+    <!-- 회원 정보 관리에서 등급이 강사로 변경 -> 강사 정보 insert -->
     <insert id="insert" parameterType="InstructorInfoDto">
         insert into instructorInfo
-            (iscrNo, mebrNo, intro, status, hourPmt)
-        values (#{iscrNo}, #{mebrNo}, #{intro}, #{status}, #{hourPmt})
+            (iscrNo, mebrNo)
+        values (#{iscrNo}, #{mebrNo})
     </insert>
+
+<!--    <insert id="insert" parameterType="InstructorInfoDto">-->
+<!--        insert into instructorInfo-->
+<!--            (iscrNo, mebrNo, intro, status, hourPmt)-->
+<!--        values (#{iscrNo}, #{mebrNo}, #{intro}, #{status}, #{hourPmt})-->
+<!--    </insert>-->
 
     <!--    강사 인원수-->
     <select id="count" resultType="int">

@@ -115,7 +115,7 @@
                         <a href="<c:url value="/onlyAdmin/memberManage/list${sc.getQueryString(page.beginPage-1)}"/>">&lt;</a>
                     </c:if>
                     <c:forEach var="i" begin="${page.beginPage}" end="${page.endPage}">
-                        <a href="<c:url value="/onlyAdmin/memberManage/list${sc.getQueryString(i)}"/>">${i}</a>
+                        <a href="<c:url value="/onlyAdmin/memberManage/list${sc.getQueryString(i)}"/>"  class="naviPage">${i}</a>
                     </c:forEach>
                     <c:if test="${page.showNext}">
                         <a href="<c:url value="/onlyAdmin/memberManage/list${sc.getQueryString(page.endPage+1)}"/>">&gt;</a>

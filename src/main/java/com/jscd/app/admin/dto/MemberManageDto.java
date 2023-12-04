@@ -20,16 +20,10 @@ public class MemberManageDto {
 	private Date modifyDate;
 	private String lstidNmbr;
 	private String etc;
-	private String rememberId;
 
 
 	public MemberManageDto(){}
 
-	public MemberManageDto(String id, String pwd, String rememberId, String toUrl) {
-		this.id = id;
-		this.pwd = pwd;
-		this.rememberId = rememberId;
-	}
 
 	public MemberManageDto(int mebrNo, String id, String name, String nickname, String birth, String pwd, String gender, String phone, String acct, String status, String grade, Date regDate, String frsidNmbr, Date modifyDate, String lstidNmbr, String etc, String rememberId) {
 		this.mebrNo = mebrNo;
@@ -48,7 +42,6 @@ public class MemberManageDto {
 		this.modifyDate = modifyDate;
 		this.lstidNmbr = lstidNmbr;
 		this.etc = etc;
-		this.rememberId = rememberId;
 	}
 
 	public int getMebrNo() {
@@ -148,13 +141,6 @@ public class MemberManageDto {
 		this.etc = etc;
 	}
 
-	public String getRememberId() {
-		return rememberId;
-	}
-
-	public void setRememberId(String rememberId) {
-		this.rememberId = rememberId;
-	}
 
 
 	@Override

@@ -61,6 +61,10 @@
         <div class="infoValueBox"><fmt:formatDate value="${memberDto.regDate}" pattern="yyyy-MM-dd" type="date"/></div>
         <h4>비고</h4>
         <input type="text" class="infoModifyBox" name="etc" value="${memberDto.etc}">
+        <%--회원 정보 수정에서, 관리자로 등급변경 시 관리자 테이블로 보내줄 데이터 hidden 처리%>
+        <input type="hidden" class="infoModifyBox" name="id" value="${memberDto.id}">
+        <input type="hidden" class="infoModifyBox" name="name" value="${memberDto.name}">
+        <input type="hidden" class="infoModifyBox" name="pwd" value="${memberDto.pwd}">
         <br>
         <button id="adminModifyBtn">수정</button>
     </form>
