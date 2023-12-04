@@ -7,8 +7,8 @@ public class SeminarRegistDto {
     private Integer classEnrollNo; //강의 등록 고유번호
     private String title; // 강의 제목
     private String description; // 강의 상세 설명
-    private String subjectName; // 과목 이름
-    private String roundName; // 회차 이름
+    private Integer courseCode; // 과목 이름
+    private Integer subjectCode; // 회차 이름
     private String onOff; // 온라인/오프라인 여부
     private String status; // 진행상태
     private String location; // 강의 장소
@@ -28,6 +28,7 @@ public class SeminarRegistDto {
     private String etc; // 비고
     private String writer; // 작성자
     private int viewCnt; // 조회수
+    private String attachedFile; // 첨부파일
     private Date regDate; // 최초 등록일시
     private Date modifyDate; // 최종 수정일시
     private String frsidNmbr; // 최초 등록자 식별 번호
@@ -35,11 +36,11 @@ public class SeminarRegistDto {
     private Integer adminNo; // 관리자 고유 번호
 
     public SeminarRegistDto() {}
-    public SeminarRegistDto(String title, String description, String subjectName, String roundName, String onOff, String status, String location, Integer minNum, Integer maxNum, Integer presentNum, String startDate, String endDate, String startTime, String endTime, String name, String book, String material, Integer price, String discount, Integer lstPrice, String etc, String writer, String frsidNmbr, String lstidNmbr, Integer adminNo) {
+    public SeminarRegistDto(String title, String description, Integer courseCode, Integer subjectCode, String onOff, String status, String location, Integer minNum, Integer maxNum, Integer presentNum, String startDate, String endDate, String startTime, String endTime, String name, String book, String material, Integer price, String discount, Integer lstPrice, String etc, String attachedFile, String writer, String frsidNmbr, String lstidNmbr, Integer adminNo) {
         this.title = title;
         this.description = description;
-        this.subjectName = subjectName;
-        this.roundName = roundName;
+        this.courseCode = courseCode;
+        this.subjectCode = subjectCode;
         this.onOff = onOff;
         this.status = status;
         this.location = location;
@@ -57,6 +58,7 @@ public class SeminarRegistDto {
         this.discount = discount;
         this.lstPrice = lstPrice;
         this.etc = etc;
+        this.attachedFile = attachedFile;
         this.writer = writer;
         this.frsidNmbr = frsidNmbr;
         this.lstidNmbr = lstidNmbr;
@@ -68,12 +70,12 @@ public class SeminarRegistDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SeminarRegistDto that = (SeminarRegistDto) o;
-        return viewCnt == that.viewCnt && Objects.equals(classEnrollNo, that.classEnrollNo) && Objects.equals(title, that.title) && Objects.equals(description, that.description) && Objects.equals(subjectName, that.subjectName) && Objects.equals(roundName, that.roundName) && Objects.equals(onOff, that.onOff) && Objects.equals(status, that.status) && Objects.equals(location, that.location) && Objects.equals(minNum, that.minNum) && Objects.equals(maxNum, that.maxNum) && Objects.equals(presentNum, that.presentNum) && Objects.equals(startDate, that.startDate) && Objects.equals(endDate, that.endDate) && Objects.equals(startTime, that.startTime) && Objects.equals(endTime, that.endTime) && Objects.equals(name, that.name) && Objects.equals(book, that.book) && Objects.equals(material, that.material) && Objects.equals(price, that.price) && Objects.equals(discount, that.discount) && Objects.equals(lstPrice, that.lstPrice) && Objects.equals(etc, that.etc) && Objects.equals(writer, that.writer) && Objects.equals(regDate, that.regDate) && Objects.equals(modifyDate, that.modifyDate) && Objects.equals(frsidNmbr, that.frsidNmbr) && Objects.equals(lstidNmbr, that.lstidNmbr) && Objects.equals(adminNo, that.adminNo);
+        return viewCnt == that.viewCnt && Objects.equals(classEnrollNo, that.classEnrollNo) && Objects.equals(title, that.title) && Objects.equals(description, that.description) && Objects.equals(courseCode, that.courseCode) && Objects.equals(subjectCode, that.subjectCode) && Objects.equals(onOff, that.onOff) && Objects.equals(status, that.status) && Objects.equals(location, that.location) && Objects.equals(minNum, that.minNum) && Objects.equals(maxNum, that.maxNum) && Objects.equals(presentNum, that.presentNum) && Objects.equals(startDate, that.startDate) && Objects.equals(endDate, that.endDate) && Objects.equals(startTime, that.startTime) && Objects.equals(endTime, that.endTime) && Objects.equals(name, that.name) && Objects.equals(book, that.book) && Objects.equals(material, that.material) && Objects.equals(price, that.price) && Objects.equals(discount, that.discount) && Objects.equals(lstPrice, that.lstPrice) && Objects.equals(etc, that.etc) && Objects.equals(writer, that.writer) && Objects.equals(attachedFile, that.attachedFile) && Objects.equals(regDate, that.regDate) && Objects.equals(modifyDate, that.modifyDate) && Objects.equals(frsidNmbr, that.frsidNmbr) && Objects.equals(lstidNmbr, that.lstidNmbr) && Objects.equals(adminNo, that.adminNo);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(classEnrollNo, title, description, subjectName, roundName, onOff, status, location, minNum, maxNum, presentNum, startDate, endDate, startTime, endTime, name, book, material, price, discount, lstPrice, etc, writer, viewCnt, regDate, modifyDate, frsidNmbr, lstidNmbr, adminNo);
+        return Objects.hash(classEnrollNo, title, description, courseCode, subjectCode, onOff, status, location, minNum, maxNum, presentNum, startDate, endDate, startTime, endTime, name, book, material, price, discount, lstPrice, etc, writer, viewCnt, attachedFile, regDate, modifyDate, frsidNmbr, lstidNmbr, adminNo);
     }
 
     @Override
@@ -82,8 +84,8 @@ public class SeminarRegistDto {
                 "classEnrollNo=" + classEnrollNo +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
-                ", subjectName='" + subjectName + '\'' +
-                ", roundName='" + roundName + '\'' +
+                ", courseCode=" + courseCode +
+                ", subjectCode=" + subjectCode +
                 ", onOff='" + onOff + '\'' +
                 ", status='" + status + '\'' +
                 ", location='" + location + '\'' +
@@ -103,6 +105,7 @@ public class SeminarRegistDto {
                 ", etc='" + etc + '\'' +
                 ", writer='" + writer + '\'' +
                 ", viewCnt=" + viewCnt +
+                ", attachedFile='" + attachedFile + '\'' +
                 ", regDate=" + regDate +
                 ", modifyDate=" + modifyDate +
                 ", frsidNmbr='" + frsidNmbr + '\'' +
@@ -135,20 +138,20 @@ public class SeminarRegistDto {
         this.description = description;
     }
 
-    public String getSubjectName() {
-        return subjectName;
+    public Integer getCourseCode() {
+        return courseCode;
     }
 
-    public void setSubjectName(String subjectName) {
-        this.subjectName = subjectName;
+    public void setCourseCode(Integer courseCode) {
+        this.courseCode = courseCode;
     }
 
-    public String getRoundName() {
-        return roundName;
+    public Integer getSubjectCode() {
+        return subjectCode;
     }
 
-    public void setRoundName(String roundName) {
-        this.roundName = roundName;
+    public void setSubjectCode(Integer subjectCode) {
+        this.subjectCode = subjectCode;
     }
 
     public String getOnOff() {
@@ -303,6 +306,14 @@ public class SeminarRegistDto {
         this.viewCnt = viewCnt;
     }
 
+    public String getAttachedFile() {
+        return attachedFile;
+    }
+
+    public void setAttachedFile(String attachedFile) {
+        this.attachedFile = attachedFile;
+    }
+
     public Date getRegDate() {
         return regDate;
     }
@@ -319,11 +330,11 @@ public class SeminarRegistDto {
         this.modifyDate = modifyDate;
     }
 
-    public String getfrsidNmbr() {
+    public String getFrsidNmbr() {
         return frsidNmbr;
     }
 
-    public void setfrsidNmbr(String frsidNmbr) {
+    public void setFrsidNmbr(String frsidNmbr) {
         this.frsidNmbr = frsidNmbr;
     }
 

@@ -23,4 +23,8 @@ public interface SeminarRegistDao {
     int update(SeminarRegistDto dto) throws Exception;
 
     int increaseViewCnt(Integer classEnrollNo) throws Exception;
+
+//    int searchResultCnt(SeminarRegistSearch ss) throws Exception;
+//    List<SeminarRegistDto> searchSelectPage(SeminarRegistSearch ss) throws Exception;
+
 }

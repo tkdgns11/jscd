@@ -11,8 +11,8 @@
 		<typeAlias alias="StdMemberManageDto" type="com.jscd.app.admin.dto.StdMemberManageDto"/>
 		<typeAlias alias="CourseDto" type="com.jscd.app.lecture.course.dto.CourseDto"/>
 		<typeAlias alias="RoundDto" type="com.jscd.app.lecture.round.dto.RoundDto"/>
-		<typeAlias alias="lstRegistDto"  type="com.jscd.app.lecture.lstRegist.dto.LstRegistDto"/>
 		<typeAlias alias="ClassEnrollDto" type="com.jscd.app.lecture.classEnroll.dto.ClassEnrollDto"/>
+		<typeAlias alias="lstRegistDto"  type="com.jscd.app.lecture.lstRegist.dto.LstRegistDto"/>
 		<typeAlias alias="bootCampDto" type="com.jscd.app.lecture.bootCamp.dto.BootCampDto"/>
 		<typeAlias alias="SeminarRegistDto" type="com.jscd.app.lecture.seminar.dto.SeminarRegistDto"/>
 		<typeAlias alias="SearchCondition" type="com.jscd.app.admin.domain.SearchCondition"/>

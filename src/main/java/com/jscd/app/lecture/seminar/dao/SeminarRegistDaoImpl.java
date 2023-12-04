@@ -29,7 +29,7 @@ public class SeminarRegistDaoImpl implements SeminarRegistDao {
     public int delete(Integer classEnrollNo, String writer) throws Exception{
         Map map = new HashMap();
         map.put("classEnrollNo", classEnrollNo);
-        map.put("writer",writer);
+        map.put("writer", writer);
         return session.delete(namespace + "delete", map);
     }
 
@@ -62,4 +62,14 @@ public class SeminarRegistDaoImpl implements SeminarRegistDao {
     public int increaseViewCnt(Integer classEnrollNo) throws Exception {
         return session.update(namespace + "increaseViewCnt", classEnrollNo);
     }
+
+//    @Override
+//    public int searchResultCnt(SeminarRegistSearch ss) throws Exception{
+//        return session.selectOne(namespace + "searchResultCnt", ss);
+//    }
+//
+//    @Override
+//    public List<SeminarRegistDto> searchSelectPage(SeminarRegistSearch ss) throws Exception {
+//        return session.selectList(namespace + "searchSelectPage", ss);
+//    }
 }
