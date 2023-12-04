@@ -17,6 +17,7 @@
                m.name,
                m.birth,
                m.nickname,
+               m.pwd,
                g.gender,
                concat(m.phone1, m.phone2, m.phone3) as phone,
                m.acct,
@@ -65,6 +66,12 @@
     <!--회원 이름 클릭 시, 상세 정보-->
     <select id="select" parameterType="Integer" resultType="MemberManageDto">
         <include refid="selectMember"/>
+        where mebrNo = #{mebrNo}
+    </select>
+
+<!--    update을 위해 일단 추가..-->
+    <select id="selectMember" parameterType="Integer" resultType="MemberDto">
+        select * from member
         where mebrNo = #{mebrNo}
     </select>
 

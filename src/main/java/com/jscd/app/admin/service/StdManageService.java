@@ -11,16 +11,20 @@ public interface StdManageService {
 
     int getCount() throws Exception;
 
-    List<StdMemberManageDto> getList(int offset,int pageSize) throws Exception;
+    List<StdMemberManageDto> getList(int offset, int pageSize) throws Exception;
 
     StdMemberManageDto read(Integer mebrNo) throws Exception;
 
     int modify(StdManageDto stdManageDto) throws Exception;
-    int modifyStatus(Integer status,List<Integer>mebrNo) throws Exception;
 
+    int modifyStatus(Integer status, List<Integer> mebrNo) throws Exception;
 
-        int remove(Integer mebrNo) throws Exception;
-    List<StdMemberManageDto> getSearchPage(SearchCondition sc)throws Exception;
-    int getSearchResultCnt(SearchCondition sc)throws Exception;
+    int removeMain(List<Integer> mebrNo) throws Exception;
+
+    int remove(Integer mebrNo) throws Exception;
+
+    List<StdMemberManageDto> getSearchPage(SearchCondition sc) throws Exception;
+
+    int getSearchResultCnt(SearchCondition sc) throws Exception;
 
 }

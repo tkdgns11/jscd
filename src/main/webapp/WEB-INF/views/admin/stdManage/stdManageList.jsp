@@ -15,6 +15,8 @@
     if (msg == "MOD_OK") alert("성공적으로 수정되었습니다.");
     if (msg == "LIST_ERR") alert("학생 목록을 가져오는데 실패했습니다. 다시 시도해 주세요.");
     if (msg == "MOD_ERR") alert("수정에 실패했습니다. 다시 시도해 주세요.");
+    if (msg == "DEL_OK") alert("삭제 되었습니다.");
+    if (msg == "DEL_ERR") alert("삭제가 실패했습니다. 다시 시도해 주세요.");
 
 </script>
 <body>
@@ -43,13 +45,14 @@
                 <button id="searchBtn">검색</button>
 
             </form>
-            <div id="allModify">
+            <div id="allModify" style="margin-left: 25px">
                 <select name="status" id="status">
                     <option value="1">수강예정</option>
                     <option value="2">수강중</option>
                     <option value="3">수료</option>
                 </select>
                 <button onclick="statusUpdate()" id="allModifyBtn">상태 변경</button>
+                <button onclick="stdDelete()" id="allDeleteBtn">삭제</button>
             </div>
         </div>
 
@@ -102,7 +105,8 @@
                     <a href="<c:url value="/onlyAdmin/stdManage/list${sc.getQueryString(page.beginPage-1)}"/>">&lt;</a>
                 </c:if>
                 <c:forEach var="i" begin="${page.beginPage}" end="${page.endPage}">
-                    <a href="<c:url value="/onlyAdmin/stdManage/list${sc.getQueryString(i)}"/>">${i}</a>
+                    <a href="<c:url value="/onlyAdmin/stdManage/list${sc.getQueryString(i)}"/>"
+                       class="naviPage${i==sc.page? "-active" : ""}">${i}</a>
                 </c:forEach>
                 <c:if test="${page.showNext}">
                     <a href="<c:url value="/onlyAdmin/stdManage/list${sc.getQueryString(page.endPage+1)}"/>">&gt;</a>
@@ -173,7 +177,7 @@
 
     // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
-    //글삭제
+    //글수정
     function statusUpdate() {
         //체크박스 체크된 항목
         const query = 'input[name="chk"]:checked'
@@ -207,6 +211,44 @@
                 form.appendChild(input1);
                 form.appendChild(input2);
                 console.log(form);
+                document.body.appendChild(form);
+                form.submit();
+            }
+        }
+    }
+
+    //글삭제
+    function stdDelete() {
+        //체크박스 체크된 항목
+        const query = 'input[name="chk"]:checked'
+        const selectedElements = document.querySelectorAll(query)
+
+        //체크박스 체크된 항목의 개수
+        const selectedElementsCnt = selectedElements.length;
+
+        if (selectedElementsCnt == 0) {
+            alert("삭제할 항목을 선택해주세요.");
+            return false;
+        } else {
+            if (confirm("삭제 하시겠습니까?")) {
+                //배열생성
+                const arr = new Array(selectedElementsCnt);
+
+                document.querySelectorAll('input[name="chk"]:checked').forEach(function (v, i) { //i는 인덱스, v는 input체크박스
+                    arr[i] = v.value;
+                    console.log(v.value);
+                });
+
+
+                const form = document.createElement('form');
+                form.setAttribute('method', 'post');        //Post 메소드 적용
+                form.setAttribute('action', '/onlyAdmin/stdManage/deleteMain?page=${sc.page}');
+
+                var input1 = document.createElement('input');
+                input1.setAttribute("type", "hidden");
+                input1.setAttribute("name", "mebrNoArr");
+                input1.setAttribute("value", arr);
+                form.appendChild(input1);
                 document.body.appendChild(form);
                 form.submit();
             }

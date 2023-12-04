@@ -5,12 +5,18 @@
 <mapper namespace="com.jscd.app.mapper.adminMapper">
 
 
-    <!--    insert : 관리자 회원가입 시 정보 저장-->
+    <!--    insert : 관리자 회원가입 시 or 회원정보관리에서 등급 업데이트 시,정보 저장-->
     <insert id="insertAdmin" parameterType="AdminDto">
         insert into admin
-            (id, name, alias, birth, pwd, phone1, phone2, phone3)
-        values (#{id}, #{name}, #{alias}, #{birth}, #{pwd}, #{phone1}, #{phone2}, #{phone3})
+            (id, name, pwd)
+        values (#{id}, #{name}, #{pwd})
     </insert>
+
+    <!--    <insert id="insertAdmin" parameterType="AdminDto">-->
+    <!--        insert into admin-->
+    <!--            (id, name, alias, birth, pwd, phone1, phone2, phone3)-->
+    <!--        values (#{id}, #{name}, #{alias}, #{birth}, #{pwd}, #{phone1}, #{phone2}, #{phone3})-->
+    <!--    </insert>-->
 
     <!--    count : 관리자 수-->
     <select id="countAdmin" resultType="int">

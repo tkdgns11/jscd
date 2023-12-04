@@ -19,6 +19,7 @@ public interface StdManageDao {
 
     int updateStatus(Integer status, List<Integer> mebrNo) throws Exception;
 
+    int deleteMain(List<Integer> mebrNo) throws Exception;
 
     int delete(Integer mebrNo) throws Exception;
 

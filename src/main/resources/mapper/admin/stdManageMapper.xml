@@ -30,8 +30,8 @@
                s.etc
         from member m
                  join stdManage s on s.mebrNo = m.mebrNo
-                join (select ctNum,codeName as status from allCode where ctId = "M003") a
-                     on s.status = a.ctNum
+                 join (select ctNum, codeName as status from allCode where ctId = "M003") a
+                      on s.status = a.ctNum
     </sql>
 
     <select id="searchSelectPage" parameterType="SearchCondition" resultType="StdMemberManageDto">
@@ -86,8 +86,17 @@
     </update>
 
 
+    <!-- 학생이 수료를 하지 못하고 중도하차 하는 경우(메인 페이지 삭제)-->
+    <update id="deleteMain" parameterType="list">
+        delete from stdManage
+        where mebrNo in
+        <foreach collection="list" item="mebrNo" open="(" close=")" separator=",">
+            #{mebrNo}
+        </foreach>
+    </update>
 
-    <!--    더이상 학생 등급이 아니거나(관리자,일반), 탈퇴하는 경우(회원)-->
+
+    <!-- 학생이 수료를 하지 못하고 중도하차 하는 경우(상세보기 페이지 삭제)-->
     <delete id="delete" parameterType="Integer">
         delete
         from stdManage

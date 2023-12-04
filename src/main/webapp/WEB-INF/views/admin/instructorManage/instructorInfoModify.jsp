@@ -50,6 +50,8 @@
             </select>
         <h4>급여</h4>
         <input type="text" class="infoModifyBox" name="hourPmt" value="${infoDto.hourPmt}">
+<%--         강사 정보 수정에서, 퇴직 처리 시 회원등급을 일반으로 변경 -> 회원번호 필요--%>
+        <input type="hidden" class="infoModifyBox" name="mebrNo" value="${infoDto.mebrNo}">
         <h4>계좌</h4>
         <div class="infoValueBox">${infoDto.acct}</div>
         <h4>강사 등록일</h4>

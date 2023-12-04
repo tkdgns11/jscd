@@ -31,62 +31,6 @@ public class AdminController {
     @Autowired
     AdminService adminService;
 
-    //관리자 개인정보 페이지 보여주기
-    @GetMapping("/read")
-    public String adminInfoRead(Model model, HttpSession session) {
-        try {
-            //현재 세션에 저장된 관리자 id를 가져옴
-            String adminId = (String) session.getAttribute("adminId");
-            //관리자 id로 dto객체를 얻어오고,
-            AdminDto adminDto = adminService.readAdmin(adminId);
-            //jsp에 뿌려주기
-            model.addAttribute("adminDto", adminDto);
-        } catch (Exception e) {
-            e.printStackTrace();
-            model.addAttribute("msg", "READ_ERR");
-            return "redirect:/admin/home";
-        }
-        return "/admin/adminInfo";
-    }
-
-    //관리자 개인정보 수정 페이지 보여주기
-    @GetMapping("/modify")
-    public String adminModifyForm(Model model, HttpSession session) {
-        try {
-            //현재 세션에 저장된 관리자 id를 가져옴
-            String adminId = (String) session.getAttribute("adminId");
-            //관리자 id로 dto객체를 얻어오고,
-            AdminDto adminDto = adminService.readAdmin(adminId);
-            //jsp에 뿌려주기
-            model.addAttribute("adminDto", adminDto);
-        } catch (Exception e) {
-            e.printStackTrace();
-            model.addAttribute("msg", "READ_ERR");
-            return "redirect:/admin/read";
-        }
-        return "/admin/adminInfoModify";
-    }
-
-
-    //관리자 개인정보 수정하기
-    @PostMapping("/modify")
-    public String adminModify(AdminDto adminDto, Model model, HttpSession session) {
-        try {
-            //현재 세션에 저장된 관리자 id를 가져옴
-            String adminId = (String) session.getAttribute("adminId");
-            //업데이트할 객체에 id를 넣어줌
-            adminDto.setId(adminId);
-            adminService.modifyAdmin(adminDto);
-            //수정 성공 시, msg 모델에 넘겨줌
-            model.addAttribute("msg", "MOD_OK");
-        } catch (Exception e) {
-            e.printStackTrace();
-            //수정 실패 시, msg 모델에 넘겨줌
-            model.addAttribute("msg", "MOD_ERR");
-            return "redirect:/admin/modify";
-        }
-        return "redirect:/admin/read";
-    }
 
 
     //로그인 해야 갈 수 있도록 필터처리
@@ -161,6 +105,65 @@ public class AdminController {
         }
         return admin != null && admin.getPwd().equals(pwd);
     }
+
+
+    //관리자 개인정보 페이지 보여주기
+    @GetMapping("/read")
+    public String adminInfoRead(Model model, HttpSession session) {
+        try {
+            //현재 세션에 저장된 관리자 id를 가져옴
+            String adminId = (String) session.getAttribute("adminId");
+            //관리자 id로 dto객체를 얻어오고,
+            AdminDto adminDto = adminService.readAdmin(adminId);
+            //jsp에 뿌려주기
+            model.addAttribute("adminDto", adminDto);
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("msg", "READ_ERR");
+            return "redirect:/admin/home";
+        }
+        return "/admin/adminInfo";
+    }
+
+    //관리자 개인정보 수정 페이지 보여주기
+    @GetMapping("/modify")
+    public String adminModifyForm(Model model, HttpSession session) {
+        try {
+            //현재 세션에 저장된 관리자 id를 가져옴
+            String adminId = (String) session.getAttribute("adminId");
+            //관리자 id로 dto객체를 얻어오고,
+            AdminDto adminDto = adminService.readAdmin(adminId);
+            //jsp에 뿌려주기
+            model.addAttribute("adminDto", adminDto);
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("msg", "READ_ERR");
+            return "redirect:/admin/read";
+        }
+        return "/admin/adminInfoModify";
+    }
+
+
+    //관리자 개인정보 수정하기
+    @PostMapping("/modify")
+    public String adminModify(AdminDto adminDto, Model model, HttpSession session) {
+        try {
+            //현재 세션에 저장된 관리자 id를 가져옴
+            String adminId = (String) session.getAttribute("adminId");
+            //업데이트할 객체에 id를 넣어줌
+            adminDto.setId(adminId);
+            adminService.modifyAdmin(adminDto);
+            //수정 성공 시, msg 모델에 넘겨줌
+            model.addAttribute("msg", "MOD_OK");
+        } catch (Exception e) {
+            e.printStackTrace();
+            //수정 실패 시, msg 모델에 넘겨줌
+            model.addAttribute("msg", "MOD_ERR");
+            return "redirect:/admin/modify";
+        }
+        return "redirect:/admin/read";
+    }
+
 
 
 }

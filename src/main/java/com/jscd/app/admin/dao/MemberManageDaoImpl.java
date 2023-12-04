@@ -36,6 +36,11 @@ public class MemberManageDaoImpl implements MemberManageDao {
         return session.selectOne(namespace + "select", mebrNo);
     }
 
+    @Override
+    public MemberDto selectMember(Integer mebrNo) throws Exception {
+        return session.selectOne(namespace + "selectMember", mebrNo);
+    }
+
 
     @Override
     public int update(Integer status, Integer grade, List<Integer> mebrNo) throws Exception {
