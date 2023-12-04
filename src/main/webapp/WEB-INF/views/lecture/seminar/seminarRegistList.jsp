@@ -20,6 +20,7 @@
             text-align: center;
             background-color: #182566;
             color: #05CE31;
+
             font-size: 50px;
             font-weight: 600;
         }
@@ -38,13 +39,6 @@
             font-weight: 600;
             text-decoration: none;
             color: black;
-        }
-        #seminarRegistBoard a{
-            text-decoration: none;
-            color: black;
-        }
-        #seminarRegistBoard a:hover{
-            background-color: rgba(0,0,0,0.15);
         }
         #seminarFont{
             margin-top: 80px;
@@ -85,14 +79,25 @@
             background-color: #182566;
             color: white;
         }
+        .seminarRegistTr a{
+            text-decoration: none;
+            color: black;
+        }
+        .seminarRegistTr a:hover{
+            background-color: rgba(0,0,0,0.15);
+        }
         #seminarRegistNaviFoot{
             text-align: center;
             margin-top: 15px;
             font-size: 18px;
             font-weight: 700;
         }
-        #seminarRegistNavi a{
-            padding-right: 5px;
+        #seminarRegistNaviFoot a{
+            text-decoration: none;
+            color: black;
+        }
+        #seminarRegistNaviFoot a:hover{
+            background-color: rgba(0,0,0,0.15);
         }
         #writeBtn{
             float: right;
@@ -106,6 +111,13 @@
     </style>
 </head>
 <body>
+<script>
+    let msg = "${msg}";
+    if(msg=="WRT_OK") alert("성공적으로 등록되었습니다.");
+    if(msg=="DEL_OK") alert("성공적으로 삭제되었습니다.");
+    if(msg=="MOD_OK") alert("성공적으로 수정되었습니다.");
+    if(msg=="DEL_ERR") alert("삭제에 실패했습니다.");
+</script>
 <h1 id="seminarRegistFont">/* 정석코딩 세미나 등록 */</h1>
 
 <div id="seminarRegistNaviHead">
@@ -118,13 +130,13 @@
     <h2 id="seminarFont">세미나</h2>
 
     <%--    검색    --%>
-        <form id="seminarRegistHead" action="" method="get">
-            <select>
-                <option>전체</option>
-                <option>제목</option>
-                <option>작성자</option>
+        <form id="seminarRegistHead" action="<c:url value="/regist/list"/>" method="get">
+            <select name="option">
+                <option >전체</option>
+                <option >제목</option>
+                <option >작성자</option>
             </select>
-            <input type="text" placeholder="검색어를 입력해주세요.">
+            <input type="text"  name="keyword" value="" placeholder="검색어를 입력해주세요.">
             <input id="seminarRegistSel" type="submit" class="" value="검색">
         </form>
 
@@ -162,7 +174,7 @@
             <a href="<c:url value='/regist/list?page=${sh.endPage+1}&pageSize=${sh.pageSize}'/>">&gt;&gt;</a>
         </c:if>
     </div>
-    <button id="writeBtn" type="button" onclick="location.href='<c:url value="/regist/write"/>'">글쓰기</button>
+    <button id="writeBtn" type="button" onclick="location.href='<c:url value="/regist/write?page=${page}&pageSize=${pageSize}"/>'">글쓰기</button>
 </div>
 
 </body>

@@ -35,9 +35,9 @@ public class SeminarRegistServiceImpl implements SeminarRegistService {
 
     @Override
     public SeminarRegistDto read(Integer classEnrollNo) throws Exception{
-        SeminarRegistDto SeminarRegistDto = seminarRegistDao.select(classEnrollNo);
+        SeminarRegistDto seminarRegistDto = seminarRegistDao.select(classEnrollNo);
         seminarRegistDao.increaseViewCnt(classEnrollNo);
-        return SeminarRegistDto;
+        return seminarRegistDto;
     }
 
     @Override

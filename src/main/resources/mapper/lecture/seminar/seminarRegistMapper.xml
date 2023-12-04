@@ -5,56 +5,52 @@
 <mapper namespace="com.jscd.app.lecture.seminar.SeminarRegistMapper">
     <!--    전체 게시물 개수-->
     <select id="count" resultType="int">
-        select count(*) from classEnroll
-        where subjectName not like "%부트캠프%"
+        select count(*) from smClassEnroll
     </select>
 
     <!--    전체 게시물 삭제-->
     <delete id="deleteAll">
-        delete from classEnroll
-        where subjectName not like "%부트캠프%"
+        delete from smClassEnroll
     </delete>
 
     <!--    게시물 삭제하기-->
     <delete id="delete" parameterType="map">
-        delete from classEnroll
+        delete from smClassEnroll
         where classEnrollNo = #{classEnrollNo} and writer = #{writer}
     </delete>
 
     <!--    게시물 삭제하기(최고 관리자 전용)-->
     <delete id="deleteForAdmin" parameterType="map">
-        delete from classEnroll
+        delete from smClassEnroll
         where classEnrollNo = #{classEnrollNo}
     </delete>
 
     <!--    게시물 추가하기-->
     <insert id="insert" parameterType="SeminarRegistDto">
-        insert into classEnroll (title, description, subjectName, roundName, onOff,
+        insert into smClassEnroll (title, description, courseCode, subjectCode, onOff,
                                  status, location, minNum, maxNum, presentNum,
                                  startDate, endDate, startTime, endTime, name,
                                  book, material, price, discount, lstPrice,
-                                 etc, writer, frsidNmbr, lstidNmbr, adminNo)
-        values ( #{title}, #{description}, #{subjectName}, #{roundName}, #{onOff},
+                                 etc, writer, attachedFile, frsidNmbr, lstidNmbr, adminNo)
+        values ( #{title}, #{description}, #{courseCode}, #{subjectCode}, #{onOff},
                 #{status}, #{location}, #{minNum}, #{maxNum}, #{presentNum},
                 #{startDate}, #{endDate}, #{startTime}, #{endTime}, #{name},
                 #{book}, #{material}, #{price}, #{discount}, #{lstPrice},
-                #{etc}, #{writer}, #{frsidNmbr}, #{lstidNmbr}, #{adminNo});
+                #{etc}, #{writer}, #{attachedFile}, #{frsidNmbr}, #{lstidNmbr}, #{adminNo});
     </insert>
 
-    <!--    재사용 sql문-->
     <sql id="selectFromClassEnroll">
-        select classEnrollNo, title, description, subjectName, roundName,
+        select classEnrollNo, title, description, courseCode, subjectCode,
                onOff, status, location, minNum, maxNum, presentNum,
                startDate, endDate, startTime, endTime, name,
                book, material, price, discount, lstPrice,
-               etc, writer, viewCnt, regDate
-        from classEnroll
+               etc, attachedFile, writer, viewCnt, regDate
+        from smClassEnroll
     </sql>
 
     <!--    모든 게시물 불러오기 / (작성일 내림차순), (게시물 번호 내림차순)-->
     <select id="selectAll" resultType="SeminarRegistDto">
         <include refid="selectFromClassEnroll"/>
-        where subjectName not like "%부트캠프%"
         order by regdate desc, classEnrollNo desc
     </select>
 
@@ -67,25 +63,24 @@
     <!--    현재 페이지 기준 게시물 10개씩 화면에 출력-->
     <select id="selectPage" parameterType="map" resultType="SeminarRegistDto">
         <include refid="selectFromClassEnroll"/>
-        where subjectName not like "%부트캠프%"
-        order by regdate desc, classEnrollNo desc
+        order by regDate desc, classEnrollNo desc
         limit #{offset}, #{pageSize}
     </select>
 
     <!--    게시물 수정하기-->
     <update id="update" parameterType="SeminarRegistDto">
-        update classEnroll
-        set title = #{title}, description= #{description}, subjectName = #{subjectName}, roundName = #{roundName}, onOff = #{onOff},
+        update smClassEnroll
+        set title = #{title}, description= #{description}, courseCode = #{courseCode}, subjectCode = #{subjectCode}, onOff = #{onOff},
             status = #{status}, location = #{location}, minNum = #{minNum}, maxNum = #{maxNum}, presentNum = #{presentNum},
             startDate = #{startDate}, endDate = #{endDate}, startTime = #{startTime}, endTime = #{endTime}, name = #{name},
             book = #{book}, material = #{material}, price = #{price}, discount = #{discount}, lstPrice = #{lstPrice},
-            etc = #{etc}, writer = #{writer}, modifyDate = now(), lstidNmbr = #{lstidNmbr}
+            etc = #{etc}, writer = #{writer}, attachedFile = #{attachedFile}, modifyDate = now(), lstidNmbr = #{lstidNmbr}
         where classEnrollNo = #{classEnrollNo} and writer = #{writer}
     </update>
 
     <!--    게시물 조회수 올리기-->
     <update id="increaseViewCnt" parameterType="int">
-        update classEnroll
+        update smClassEnroll
         set viewCnt = viewCnt + 1
         where classEnrollNo = #{classEnrollNo}
     </update>

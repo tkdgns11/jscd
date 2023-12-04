@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jscd.app.lecture.classEnroll.classEnrollMapper">
+
+    <!--    강의 전체 조회-->
+    <select id="selectAll" resultType="ClassEnrollDto">
+        select *
+        from classEnroll
+    </select>
+
+    <!--    하나의 강의 조회-->
+    <select id="select" parameterType="int" resultType="ClassEnrollDto">
+        select * from classEnroll
+        where classCode = #{classCode}
+    </select>
+
+    <!--    강의 추가하기-->
+    <insert id="insert" parameterType="ClassEnrollDto">
+        insert into classEnroll (courseCode, roundCode, className, price, discount, lstPrice, firstIdNo, lastIdNo, etc)
+        values (#{courseCode}, #{roundCode}, #{className}, #{price}, #{discount}, #{lstPrice}, #{firstIdNo}, #{lastIdNo}, #{etc});
+    </insert>
+
+    <!--    강의 수정하기-->
+    <update id="update" parameterType="ClassEnrollDto">
+        update classEnroll
+        set courseCode = #{courseCode}, roundCode = #{roundCode}, className = #{className}, price = #{price}, discount = #{discount},
+            modifyDate = now(), lastIdNo = #{lastIdNo}, etc = #{etc}
+        where classCode = #{classCode}
+    </update>
+
+    <!--    강의 삭제-->
+    <delete id="delete" parameterType="int">
+        delete from classEnroll
+        where classCode = #{classCode}
+    </delete>
+
+    <!--    강의 전체 삭제-->
+    <delete id="deleteAll">
+        delete from classEnroll
+    </delete>
+</mapper>
