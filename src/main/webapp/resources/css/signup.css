@@ -37,3 +37,9 @@
 #memberEditBtn{width: 200px;height: 50px; border-radius: 15px;font-size: 30px;text-align: center; line-height: 50px; background-color: #18214F; color: #fff; cursor: pointer;}
 .cancleBtn{width: 200px;height: 50px; margin-left: 10px;border-radius: 15px;font-size: 30px;text-align: center; line-height: 50px; background-color: #a5090b; color: #fff; cursor: pointer;}
 #memberDel{background-color: white;cursor: pointer;color: #666666}
+
+#termsBox > div{height: 50px;}
+#termsBox > div > input{width: 20px; height: 20px; margin-left: 65px; margin-top: 15px;margin-right: 30px;}
+#termsBox > div > p{line-height: 50px;color: #999999;}
+.termsDetail{margin-left: auto;}
+.termsDetail a{color: #999999; margin-right: 10px;}

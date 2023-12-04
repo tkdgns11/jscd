@@ -226,17 +226,17 @@ public class MemberController {
 	@GetMapping("/signup")
 	public String signupPageMove() {
 		return "/member/signup";
-
 	}
 
 	//회원가입
 	@PostMapping("/signup")
 	@ResponseBody
-	public Map<String, String> signup(MemberDto memberDto) throws Exception {
+	public Map<String, String> signup(@RequestBody MemberDto memberDto) throws Exception {
 		Map<String, String> map = new HashMap<>();
 
 		try{
 			//회원가입에 성공했을 경우
+			System.out.println("hello, signup" + memberDto);
 			memberService.signup(memberDto);
 			map.put("redirect","/member/login");
 		}catch (Exception e){
@@ -274,6 +274,9 @@ public class MemberController {
 		}
 		return map;
 	}
+
+
+
 
 	//회원 삭제
 	@PostMapping("/delete")

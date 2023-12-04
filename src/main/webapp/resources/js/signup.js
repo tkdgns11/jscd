@@ -1,26 +1,3 @@
-
-window.onload = function (){
-
-    let memberDelBtn = document.getElementById("memberDel");
-    let id= document.getElementById("id");
-    memberDelBtn.addEventListener("click",function (){
-        $.ajax({
-            url:"/member/delete",
-            type:"POST",
-            data:$('form').serialize(),
-            error : function (error){
-                console.log("error");
-            },
-            success : function (data){
-                if(data.redirect){
-                    window.location.href = data.redirect;
-                }
-            }
-        });
-    });
-
-
-}
 //취소
 function cancle(){
     window.location.href = '/';
@@ -42,6 +19,10 @@ function member(value){
         }
     }
     const phone = document.getElementById("phone");
+    const serviceChk = document.getElementById("serviceChk");
+    const privacyChk =  document.getElementById("privacyChk");
+    const ageChk = document.getElementById("ageChk");
+    const marketingChk = document.getElementById("marketingChk");
 
     //모든 공백 체크 정규식
     var empReg = /\s/g;
@@ -50,11 +31,13 @@ function member(value){
     // 생년월일 정규식
     var birthReg = /^(?:[0-9]{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[1,2][0-9]|3[0,1]))$/;
     // 이메일 검사 정규식
-    var idReg = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+    var idReg = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
     // 비밀번호 정규식
-    var pwdReg = /^[A-Za-z0-9`~!@#\$%\^&\*\(\)\{\}\[\]\-_=\+\\|;:'"<>,\./\?]{8,20}$/;
+    var pwdReg = /^[A-Za-z0-9`~!@#\$%\^&\*\(\)\{\}\[\]\-_=+\\|;:'"<>,./?]{8,20}$/
+
     // 휴대폰 번호 정규식
-    var phoneReg = /^\+82\s?(10|11|16|17|18|19)-?[0-9]{3,4}-?[0-9]{4}$/
+    var phoneReg = /^(\+82|0)\s?(10|11|16|17|18|19)-?[0-9]{3,4}-?[0-9]{4}$/
+
 
     if(
         !nameValid(name, nameReg) ||
@@ -66,29 +49,15 @@ function member(value){
     ){
         alert("유효성 검사 실패");
     } else {
+        let signupData = {"id":id.value, "pwd":pwd.value, "birth":birth.value, "name":name.value, "gender":gender.value};
         if(value=="signup"){
             //회원가입일 경우
-            console.log(value);
+            console.log($('form').serialize());
             $.ajax({
                 url:"/member/signup",
                 type:"POST",
-                data:$('form').serialize(),
-                error : function (error){
-                    console.log("error");
-                },
-                success : function (data){
-                    if(data.redirect){
-                        window.location.href = data.redirect;
-                    }
-                }
-            });
-        }else{
-            //개인정보수정일 경우
-            console.log(value);
-            $.ajax({
-                url:"/member/memberEdit",
-                type:"POST",
-                data:$('form').serialize(),
+                contentType: "application/json; charset=utf-8",
+                data:JSON.stringify(signupData),
                 error : function (error){
                     console.log("error");
                 },
@@ -101,11 +70,6 @@ function member(value){
         }
 
     }
-}
-
-//회원탈퇴
-function memberDel(){
-    console.log("hello del")
 }
 
 
@@ -216,7 +180,6 @@ function  phoneValid(phone, phoneReg){
 
 }
 
-
 /*
     작성자: 강정수
     작성일: 2023.11.19
@@ -240,9 +203,41 @@ $('#emailChkBtn').click(function (){
     });
 });
 
+//회원탈퇴
+function memberDel(){
+    console.log("hello del")
+}
+
 //핸드폰 번호 자동 하이픈
 const autoHyphen = (target) => {
     target.value = target.value
         .replace(/[^0-9]/g, '')
         .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
+}
+
+//약관 동의
+function checkSelectAll()  {
+    // 전체 체크박스
+    const checkboxes= document.querySelectorAll(".terms");
+    // 선택된 체크박스
+    const checked= document.querySelectorAll(".terms:checked");
+    // select all 체크박스
+    const selectAll
+        = document.querySelector('input[name="selectAll"]');
+
+    if(checkboxes.length === checked.length)  {
+        selectAll.checked = true;
+    }else {
+        selectAll.checked = false;
+    }
+
+}
+
+//전체 체크
+function selectAll(selectAll)  {
+
+    const checkboxes= document.querySelectorAll(".terms");
+    checkboxes.forEach((checkbox) => {
+        checkbox.checked = selectAll.checked
+    })
 }
