@@ -3,24 +3,20 @@ package com.jscd.app.board.qna.qnaController;
 import com.jscd.app.board.qna.qnaDto.AllqnaDto;
 import com.jscd.app.board.qna.qnaDto.AllqnacDto;
 import com.jscd.app.board.qna.qnaDto.PageHandler;
+import com.jscd.app.board.qna.qnaDto.SearchCondition;
 import com.jscd.app.board.qna.qnaService.AllqnaCmmtService;
 import com.jscd.app.board.qna.qnaService.AllqnaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.HashMap;
+import javax.servlet.http.HttpSession;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Logger;
 
 @Controller
@@ -34,150 +30,166 @@ public class AllqnaController {
     AllqnaCmmtService allqnaCmmtService;
 
 
-    @GetMapping("/qnaForm")
-    public String qnaForm() {
-
+    //1-1. 게시글 등록
+    @GetMapping("/allqnaWrite")
+    public String write(Model model) {
+        model.addAttribute("mode", "new");
         return "/board/qna/allqna";
     }
 
-    @GetMapping("/allqnaList")
-    public String allqnaList(Model model) throws Exception {
-        List<AllqnaDto> list = allqnaService.getList();
-        System.out.println("list값 확인"+list);
-        for(AllqnaDto aaa : list){
-            System.out.println(aaa);
-        }
-        model.addAttribute("list", list);
+    @PostMapping("/allqnaWrite")
+    public String write(Model model, AllqnaDto allqnaDto, HttpSession session, RedirectAttributes rttr) {
 
-        return "/board/qna/allqnaList";
-
-    }
-
-    @GetMapping("/pageControll")
-    public String pageControll(@RequestParam(defaultValue ="1") Integer page,
-                       @RequestParam(defaultValue = "10") Integer pageSize,Model m, HttpServletRequest request) throws Exception {
-
-            int totalCnt = allqnaService.getCount();
-            m.addAttribute("totalCnt", totalCnt);
-
-            PageHandler pageHandler = new PageHandler(totalCnt, page, pageSize);
-
-            if(page < 0 || page > pageHandler.getTotalPage())
-                page = 1;
-            if(pageSize < 0 || pageSize > 50)
-                pageSize = 10;
-
-            Map map = new HashMap();
-            map.put("offset", (page-1)*pageSize);
-            map.put("pageSize", pageSize);
-
-            List<AllqnaDto> list = allqnaService.getPage(map);
-            m.addAttribute("list", list);
-            m.addAttribute("ph", pageHandler);
-
-            Instant startOfToday = LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant();
-            m.addAttribute("startOfToday", startOfToday.toEpochMilli());
-
-        return "/board/qna/allqnaList";
-    }
-
-
-    @PostMapping("/qnaWrite")
-    public String qnaWrite(AllqnaDto allqnaDto) throws Exception {
-        allqnaService.write(allqnaDto);
-        return "redirect:/board/qna/allqnaList";
-    }
-
-    @GetMapping("/allqnaDetail") //
-    public String read(@RequestParam("allqnaNo") Integer allqnaNo, Model model) throws Exception {
-        AllqnaDto allqnaDto = allqnaService.read(allqnaNo);
-        model.addAttribute("read", allqnaDto);
-        System.out.println("allqnaNo 값"+allqnaNo);
-
-        List<AllqnacDto> list = allqnaCmmtService.getList(allqnaNo);
-        model.addAttribute("comment", list);
-        System.out.println("맵퍼에서 컨트롤러까지 넘어오는 값 : " + list);
-
-        return "board/qna/allqnaCont"; // 얘는 또 detail안됨
-    }
-
-    @GetMapping("/allqnaModify")
-    //@RequestMapping(value = "/allqnqModify", method = RequestMethod.GET)
-    //@PathVariable("id") Integer id, Model model)
-    public String allqnaModify(@RequestParam("allqnaNo") Integer allqnaNo, Model model) throws Exception {
-        System.out.println("수정하기버튼 클릭했을때?");
-        AllqnaDto allqnaDto = allqnaService.read(allqnaNo);
-        System.out.println("수정 : " + allqnaDto);
-        model.addAttribute("modify", allqnaDto);
-        return "/board/qna/allqnaModify";
-    }
-
-//    객체로 안가져와서 안되나
-
-
-    //수정완료된 페이지 어떻게?
-    @PostMapping("/allqnaModified")
-    public String allqnaModified(AllqnaDto allqnaDto, Model model, RedirectAttributes rttr) throws Exception {
-
-        allqnaService.modify(allqnaDto);
-        model.addAttribute("modified", allqnaDto);
-
-        rttr.addFlashAttribute("result", "modify success");
-
-        return "redirect:/board/qna/allqnaList";
-
-    }
-
-    @GetMapping("/allqnaDelete")
-    public String allqnaDelete(int allqnaNo, RedirectAttributes rttr) throws Exception {
-
-        allqnaService.remove(allqnaNo);
-        rttr.addFlashAttribute("delete", "delete success");
-
-        return "redirect:/board/qna/allqnaList";
-    }
-
-
-    @PostMapping("/cmmtWrite")
-    public String cmmtWrite(AllqnacDto allqnacDto) throws Exception {
-        allqnaCmmtService.write(allqnacDto);
-//        System.out.println("댓글입력 컨트롤러 디비값 : " + allqnaCmmtService.write(allqnacDto));
-
-        return "redirect:/board/qna/allqnaDetail?allqnaNo=" + allqnacDto.getAllqnaNo();
-    }
-
-
-//댓글 리스트 ㅇ
-//댓글 인서트 후 뷰 ㅇ (근데 왜 detail이 된건지 모르겠음)
-//댓글 수정 삭제
-
-
-    @GetMapping("/cmmtModify")
-    public String cmmtModify(@RequestParam("allqnaCNo") Integer allqnacNo, AllqnacDto allqnacDto, Model model) throws Exception {
-
-        model.addAttribute("modify", allqnaCmmtService.modify(allqnacDto));
-        return "redirect:/board/qna/allqnaDetail?allqnaNo=" + allqnacDto.getAllqnaNo();
-    }
-
-
-    @GetMapping("/cmmtDelete")
-    public String cmmtDelete(int allqnaCNo , AllqnacDto allqnacDto, RedirectAttributes rttr) throws Exception {
-
+        String writer = (String) session.getAttribute("id");
+        allqnaDto.setWriter(writer);
 
         try {
-            allqnaCmmtService.delete(allqnaCNo);
-            rttr.addFlashAttribute("delete", "delete success");
-        } catch (Exception ex) {
-            // 삭제 도중 예외가 발생하면 로그에 기록
-            logger.severe("삭제 중 오류 발생: " + ex.getMessage());
+            if (allqnaService.write(allqnaDto) != 1) {
+                throw new Exception("Write faild");
+            }
+            rttr.addFlashAttribute("msg", "WRITE_OK");
+            return "redirect:/board/qna/allqnaList";
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute(allqnaDto);
+            model.addAttribute("mode", "new");
+            model.addAttribute("msg", "WRITE_ERR");
+            return "/board/qna/allqnaList";
         }
-//        allqnaCmmtService.delete(allqnacDto);
-//        rttr.addFlashAttribute("delete", "delete success");
-//
-//        System.out.println("댓글삭제 : " + allqnacDto);
+
+
+    }
+
+    //1-2. 게시글 목록 읽기 (페이징 처리) 페이지 이동
+    @GetMapping("/allqnaList")
+    public String allqnaList(SearchCondition sc, Model model, AllqnaDto allqnaDto) throws Exception {
+
+        try {
+
+            int totalCnt = allqnaService.getSearchResultCnt(sc);
+            model.addAttribute("totalCnt", totalCnt);
+
+            PageHandler pageHandler = new PageHandler(totalCnt, sc);
+
+            List<AllqnaDto> list = allqnaService.getSearchResultPage(sc);
+            model.addAttribute("list", list);
+            model.addAttribute("ph", pageHandler);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("msg", "LIST_ERR");
+            model.addAttribute("totalCnt", 0);
+        }
+        return "/board/qna/allqnaList";
+    }
+
+    //1-3. 게시글 수정
+    @GetMapping("/allqnaDetail")
+    public String read(Integer allqnaNo, SearchCondition sc, RedirectAttributes rttr, Model model) {
+        try {
+            //상세 내용
+            AllqnaDto allqnaDto = allqnaService.read(allqnaNo);
+            model.addAttribute("read", allqnaDto);
+
+            //댓글
+            List<AllqnacDto> list = allqnaService.cmmtRead(allqnaNo);
+            model.addAttribute("comment", list);
+        } catch (Exception e) {
+            e.printStackTrace();
+            rttr.addFlashAttribute("msg", "READ_ERR");
+            return "redirect:/board/qna/allqna" + sc.getQueryString();
+        }
+
+
+        return "board/qna/allqnaCont";
+    }
+
+    //1-4. 게시글 삭제
+
+    @GetMapping("/allqnaDelete")
+    public String remove(Integer allqnaNo, SearchCondition sc, RedirectAttributes rattr, HttpSession session) {
+        String writer = (String) session.getAttribute("id");
+        String msg = "DEL_OK";
+
+        try {
+            if (allqnaService.remove(allqnaNo, writer) != 1)
+                throw new Exception("Delete failed.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            msg = "DEL_ERR";
+        }
+
+        rattr.addFlashAttribute("msg", msg);
+        return "redirect:/board/qna/allqnaList" + sc.getQueryString();
+    }
+
+    //3-1 댓글 등록
+    @PostMapping("/cmmtWrite")
+    public String write(AllqnacDto allqnacDto, Integer allqnaNo, HttpSession session) throws Exception {
+
+        allqnacDto.setAllqnaNo(allqnaNo);
+        allqnaService.cmmtWrite(allqnacDto);
         return "redirect:/board/qna/allqnaDetail?allqnaNo=" + allqnacDto.getAllqnaNo();
+
+    }
+
+
+    //3-2 댓글 목록 (게시글 리스트에 있음)
+
+    //3-3 댓글 수정
+
+    @PostMapping("/cmmtModify/{allqnaCNo}")
+    public String cmmtModify(@RequestParam("allqnaCNo") Integer allqnaCNo,
+                             @RequestParam("content") String content,
+                             @ModelAttribute AllqnacDto allqnacDto) throws Exception {
+        System.out.println("컨트롤러 댓글수정 : " + allqnacDto);
+        allqnacDto.setAllqnaCNo(allqnaCNo);
+        allqnacDto.setContent(content);
+        allqnaService.cmmtModify(allqnacDto);
+
+
+        return "redirect:/board/qna/allqnaDetail?allnqaNo=" + allqnacDto.getAllqnaNo();
+
     }
 }
+
+
+    //3-4 댓글 삭제
+//    @ResponseBody
+//    @DeleteMapping("/comments/{cno}")  // DELETE /comments/1?bno=1085  <-- 삭제할 댓글 번호
+//    public String remove(@PathVariable Integer cno, Integer bno, HttpSession session) {
+////
+//        try {
+//            int rowCnt = allqnaService.remove(allqnaCNo, allqnaNo);
+//
+//            if (rowCnt != 1)
+//                throw new Exception("Delete Failed");
+//
+//            return "redirect:/board/qna/allqnaDetail?allnqaNo=" + allqnaNo();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return "DEL_ERR";
+//        }
+//    }\]]\
+    //]
+//}
+
+
+
+//4-1 대댓글 등록
+//4-2 대댓글 목록
+//4-3 대댓글 수정
+//4-4 대댓글 삭제
+
+//5 비밀글 제외
+//6 내가 작성한 글 보기
+
+
+
+
+
+
 
 
 

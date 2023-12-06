@@ -9,7 +9,40 @@ public class SearchCondition {
     private Integer pageSize = DEFAULT_PAGE_SIZE;
     private String  option = "";
     private String  keyword = "";
-//    private Integer  offset;
+
+    private String searchNam;
+    private String searchType;
+    private int pageNum;
+    private int amount;
+    private Integer  offset;
+
+    public String getSearchNam() {
+        return searchNam;
+    }
+
+    public void setSearchNam(String searchNam) {
+        this.searchNam = searchNam;
+    }
+
+    private Integer  start;
+
+    public Integer getStart() {
+        return start;
+    }
+
+    public void setStart(Integer start) {
+        this.start = start;
+    }
+
+    public Integer getLimit() {
+        return limit;
+    }
+
+    public void setLimit(Integer limit) {
+        this.limit = limit;
+    }
+
+    private Integer  limit;
 
     public static final int MIN_PAGE_SIZE = 5;
     public static final int DEFAULT_PAGE_SIZE = 10;

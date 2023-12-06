@@ -3,53 +3,118 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.jscd.app.board.qna.allqnaMapper">
-
+<!--    1-1. 게시글 등록-->
     <insert id="insert" parameterType="allqnaDto">
         INSERT INTO allQnA
-            (qnaCtNo, mebrNo, title, writer, content, hit, openYN, regDate, frsidNmbr, modifyDate, lstidNmbr, etc)
+            (title, content, writer, regDate)
         VALUES
-            (#{qnaCtNo}, #{mebrNo}, #{title}, #{writer}, #{content}, #{hit}, #{openYN}, #{regDate}, #{frsidNmbr}, #{modifyDate}, #{lstidNmbr}, #{etc} )
+            (#{title}, #{content}, #{writer}, now())
     </insert>
-
+<!--    1-2. 게시글 목록 읽기-->
     <select id="selectAll" resultType="allqnaDto">
-        SELECT allqnaNo, title, writer, hit, openYN, regDate, frsidNmbr, modifyDate, lstidNmbr
+        SELECT *
         FROM allQnA
-        ORDER BY regDate DESC, allqnaNo DESC
-
     </select>
 
-    <select id="select" parameterType="int" resultType="allqnaDto">
-        SELECT allqnaNo, title, writer, content, hit, openYN, regDate, frsidNmbr, modifyDate, lstidNmbr
+    <sql id="selectFromAllQnA">
+        SELECT allqnaNo, title, content, writer, hit, regDate
         FROM allQnA
+    </sql>
+
+<!--    1-3. 게시글 1개 읽기-->
+    <select id="select" parameterType="int" resultType="AllqnaDto">
+        <include refid="selectFromAllQnA"/>
         WHERE allqnaNo = #{allqnaNo}
     </select>
 
+<!--    1-4. 게시글 수정-->
+    <update id="update" parameterType="allqnaDto">
+        UPDATE allQnA
+        SET   title = #{title}
+          , content = #{content}
+          , up_date = now()
+        WHERE allqnaNo = #{allqnaNo}
+    </update>
+<!--    1-5. 게시글 삭제-->
+    <delete id="delete" parameterType="map">
+        DELETE FROM allQnA WHERE allqnaNo = #{allqnaNo} and writer = #{writer}
+    </delete>
+
+<!--    2. 검색-->
+
+<!--    3-1 댓글 등록-->
+    <insert id="cmmtInsert" parameterType="allqnacDto">
+        INSERT INTO allQnAC
+            (allqnaNo, allqnaCNo, content, writer, regDate)
+        VALUES
+            (#{allqnaNo}, #{allqnaCNo}, #{content}, #{writer}, now())
+    </insert>
+
+
+<!--    3-2 댓글 목록-->
+    <select id="cmmtSelectAll" parameterType="int" resultType="allqnacDto">
+        SELECT allqnaNo, allqnaCNo, content, writer, regDate
+        FROM allQnAC
+        WHERE allqnaNo = #{allqnaNo}
+        ORDER BY regDate ASC, allqnaCNo ASC
+    </select>
+
+
+    <update id="cmmtUpdate" parameterType="allqnacDto">
+        UPDATE allQnAC
+        SET content = #{content}
+          , regDate = now()
+        WHERE allqnaCNo = #{allqnaCNo}
+    </update>
+
+<!--    3-3 댓글 수정-->
+<!--    3-4 댓글 삭제-->
+
+<!--    4-1 대댓글 등록-->
+<!--    4-2 대댓글 목록-->
+<!--    4-3 대댓글 수정-->
+<!--    4-4 대댓글 삭제-->
+
+<!--    5 비밀글 제외-->
+<!--    6 내가 작성한 글 보기-->
+
+<!--    7 페이징 처리-->
+    <sql id="searchCondition">
+        <choose>
+            <when test='option=="T"'>
+                AND title LIKE concat('%', #{keyword}, '%')
+            </when>
+            <when test='option=="W"'>
+                AND writer LIKE concat('%', #{keyword}, '%')
+            </when>
+            <otherwise>
+                AND (title   LIKE concat('%', #{keyword}, '%')
+                OR   content LIKE concat('%', #{keyword}, '%'))
+            </otherwise>
+        </choose>
+    </sql>
+
+    <select id="searchSelectPage" parameterType="SearchCondition" resultType="AllqnaDto">
+        SELECT allqnaNo, title, content, writer, hit, regDate
+        FROM  allQnA
+        WHERE true
+        <include refid="searchCondition"/>
+        ORDER BY regDate DESC, allqnaNo DESC
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <select id="searchResultCnt" parameterType="SearchCondition" resultType="int">
+        SELECT count(*)
+        FROM  allQnA
+        WHERE true
+        <include refid="searchCondition"/>
+    </select>
+
+<!--    8. 조회수 처리-->
     <update id="increaseViewCnt" parameterType="int">
         UPDATE allQnA
         SET   hit = hit + 1
         WHERE allqnaNo = #{allqnaNo}
     </update>
-
-    <update id="update" parameterType="allqnaDto">
-        UPDATE allQnA
-        SET title = #{title}
-          , writer = #{writer}
-          , content = #{content}
-        WHERE allqnaNo = #{allqnaNo}
-    </update>
-
-    <delete id="delete">
-
-        delete from allQnA where allqnaNo = #{allqnaNo}
-
-    </delete>
-
-
-    <select id="selectPage" parameterType="map" resultType="allqnaDto">
-       SELECT allqnaNo, title, content, writer, hit, view_cnt, comment_cnt, regDate
-       FROM allQnA
-        ORDER BY regDate DESC, allqnaNo DESC
-        LIMIT #{offset}, #{pageSize}
-    </select>
 
 </mapper>

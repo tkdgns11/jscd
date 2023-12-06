@@ -1,24 +1,51 @@
 package com.jscd.app.board.qna.qnaService;
 
 import com.jscd.app.board.qna.qnaDto.AllqnaDto;
+import com.jscd.app.board.qna.qnaDto.AllqnacDto;
+import com.jscd.app.board.qna.qnaDto.PageHandler;
+import com.jscd.app.board.qna.qnaDto.SearchCondition;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
 
 public interface AllqnaService {
 
-    int write(AllqnaDto allqnadto) throws Exception;
+    //1-1. 게시글 등록
+    int write(AllqnaDto allqnaDto) throws Exception;
+    //1-2. 게시글 목록 읽기 (페이징 처리)
+    List<AllqnaDto> getList(SearchCondition sc) throws Exception;
+    //1-3 게시글 1개 읽기
+    AllqnaDto read(Integer allqnaNo) throws Exception;
+    //1-4 게시글 수정
+    int modify(AllqnaDto allqnaDto) throws Exception;
+    //1-5 게시글 삭제
+    int remove(Integer allqnaNo, String writer) throws Exception;
 
-  List<AllqnaDto> getList() throws Exception;
-  AllqnaDto read(Integer allqnaDto) throws Exception;
 
-  int modify(AllqnaDto allqnaDto) throws Exception;
+    //3-1 댓글 등록
+   int cmmtWrite(AllqnacDto allqnacDto) throws Exception;
 
-  int remove(Integer allqnaNo) throws Exception;
+    //3-2 댓글 목록
 
+    List<AllqnacDto> cmmtRead(Integer allqnaNo) throws Exception;
 
-  int getCount() throws Exception;
+    //3-3 댓글 수정
 
-  List<AllqnaDto> getPage(Map map) throws Exception;
+    int cmmtModify(AllqnacDto allqnacDto) throws Exception;
+
+    //3-4 댓글 삭제
+
+    //4-1 대댓글 등록
+    //4-2 대댓글 목록
+    //4-3 대댓글 수정
+    //4-4 대댓글 삭제
+
+    //5 비밀글 제외
+    //6 내가 작성한 글 보기
+
+    //7 페이지 처리 및 검색
+    int getSearchResultCnt(SearchCondition sc) throws Exception;
+    List<AllqnaDto> getSearchResultPage(SearchCondition sc) throws Exception;
 
 }

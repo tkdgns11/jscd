@@ -5,17 +5,19 @@ import java.util.Objects;
 
 public class AllqnacDto {
 
-        private long allqnaCNo;
-        private long allqnaNo;
-        private String  writer;
-        private String  content;
-        private Date    regDate ;
-        private Date    frsidNmbr;
-        private Date    modifyDate;
-        private Date    lsticNmbr;
-        private String  etc;
+    private Integer allqnaCNo;
+    private Integer allqnaNo;
+    private String writer;
+    private String content;
+    private Date regDate;
+    private Date frsidNmbr;
+    private Date modifyDate;
+    private Date lsticNmbr;
+    private String etc;
 
-    public AllqnacDto() {}
+    public AllqnacDto() {
+    }
+
     public AllqnacDto(Integer allqnaCNo, Integer allqnaNo, String writer, String content, Date regDate, Date frsidNmbr, Date modifyDate, Date lsticNmbr, String etc) {
         this.allqnaCNo = allqnaCNo;
         this.allqnaNo = allqnaNo;
@@ -56,17 +58,18 @@ public class AllqnacDto {
                 '}';
     }
 
-//    public AllqnaDto getAllqnaCNo() {
+    //    public AllqnaDto getAllqnaCNo() {
 //        return allqnaCNo;
 //    }
-    public long getAllqnaCNo() {
+    public Integer getAllqnaCNo() {
         return allqnaCNo;
     }
+
     public void setAllqnaCNo(Integer allqnaCNo) {
         this.allqnaCNo = allqnaCNo;
     }
 
-    public long getAllqnaNo() {
+    public Integer getAllqnaNo() {
         return allqnaNo;
     }
 

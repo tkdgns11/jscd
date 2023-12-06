@@ -7,15 +7,19 @@ import java.util.List;
 
 public interface AllqnaCmmtDao {
 
-//        int count(Integer bno) throws Exception;
+    //        int count(Integer bno) throws Exception;
 //        int deleteAll(Integer bno);
-          int delete(int allqnaCNo) throws Exception;
-          int insert(AllqnacDto allqnacDto) throws Exception;
-          List<AllqnacDto> selectAll(Integer allqnaNo) throws Exception;
+    void delete(Integer allqnaCNo) throws Exception;
 
-         AllqnacDto select(Integer allqnaCNo) throws Exception;
-         int update(AllqnaDto allqnaDto) throws Exception;
-         int update(AllqnacDto allqnacDto) throws Exception;
+    int insert(AllqnacDto allqnacDto) throws Exception;
+
+    List<AllqnacDto> selectAll(Integer allqnaNo) throws Exception;
+
+    AllqnacDto selectAll2(Integer allqnaCNo) throws Exception;
+
+    AllqnacDto select(AllqnacDto allqnacDto) throws Exception;
+
+    int update(AllqnacDto allqnacDto) throws Exception;
 
 
 }
