@@ -258,37 +258,39 @@ public class MemberController {
 		MemberDto memberDto = memberService.memberSelect(id);
 		//결과 담아주기
 		model.addAttribute(memberDto);
-		return "/member/signup";
+		return "/member/myPagePwdChk";
 	}
 
 	//회원, 개인정보수정 기능 구현
 	@PostMapping("/memberEdit")
-	public Map<String, String> memberEdit(MemberDto memberDto) throws Exception{
+	public String memberEdit(String pwdChk, HttpServletRequest request) throws Exception{
 		Map<String, String> map = new HashMap<>();
 
-		try{
-			//개인정보수정
-			memberService.memberEdit(memberDto);
-			map.put("redirect","/member/login");
-		}catch (Exception e){
-			//회원가입에 실패했을 경우
-			map.put("error","개인정보수정에 실패했습니다.");
-		}
-		return map;
-	}
-
-
-
+//		try{
+//			HttpSession session = request.getSession();
+//			String id = (String) session.getAttribute("id");
+//			MemberDto memberDto = memberService.memberSelect(id);
+//			String pwd = memberDto.getPwd();
+//
+//			//개인정보수정 비밀번호 확인
+//			if(!pwd.equals(pwdChk)){
+//				throw new Exception();
+//			}
+//
+//		}catch (Exception e){
+//
+//		}
+		System.out.println("hello, myPage");
+		return "/member/myPage";
+    }
 
 	//회원 삭제
-	@PostMapping("/delete")
-	@ResponseBody
+	@GetMapping("/delete")
 	public String memberDelete(MemberDto memberDto) throws Exception{
+		System.out.println("회원 탈퇴");
 		memberService.memberDelete(memberDto.getId());
 		return null;
 	}
-
-
 
 	//이메일 인증
 	@GetMapping("/mailChk")

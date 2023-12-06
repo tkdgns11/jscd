@@ -71,9 +71,9 @@ function member(value){
                     console.log("error");
                 },
                 success : function (data){
-                    // if(data.redirect){
-                    //     window.location.href = data.redirect;
-                    // }
+                    if(data.redirect){
+                        window.location.href = data.redirect;
+                    }
                 }
             });
 
