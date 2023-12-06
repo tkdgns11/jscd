@@ -238,6 +238,8 @@ public class MemberController {
 			//회원가입에 성공했을 경우
 			System.out.println("hello, signup" + memberDto);
 			memberService.signup(memberDto);
+			//회원가입 시 약관 등록
+			memberService.insertTermsYN(memberDto);
 			map.put("redirect","/member/login");
 		}catch (Exception e){
 			//회원가입에 실패했을 경우
@@ -282,7 +284,6 @@ public class MemberController {
 	@PostMapping("/delete")
 	@ResponseBody
 	public String memberDelete(MemberDto memberDto) throws Exception{
-		System.out.println("memberDelete===" + memberDto);
 		memberService.memberDelete(memberDto.getId());
 		return null;
 	}

@@ -9,4 +9,5 @@ public interface MemberDao {
     int updateUser(MemberDto memberDto) throws Exception;
     int count() throws Exception;
     int deleteAll() throws Exception;
+    int insertTermsYN(MemberDto memberDto) throws Exception;
 }

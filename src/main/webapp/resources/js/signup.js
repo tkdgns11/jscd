@@ -19,10 +19,19 @@ function member(value){
         }
     }
     const phone = document.getElementById("phone");
-    const serviceChk = document.getElementById("serviceChk");
-    const privacyChk =  document.getElementById("privacyChk");
-    const ageChk = document.getElementById("ageChk");
-    const marketingChk = document.getElementById("marketingChk");
+    //체크박스 체크 여부
+    const checkboxIds = ["serviceChkYN", "privacyChkYN", "ageChkYN", "marketingChkYN"];
+    const checkboxStates = {};
+
+    checkboxIds.forEach(id => {
+       if(document.getElementById(id).checked){
+           checkboxStates[id] = "Y";
+       }else{
+           checkboxStates[id] = "N";
+       }
+
+
+    });
 
     //모든 공백 체크 정규식
     var empReg = /\s/g;
@@ -49,25 +58,25 @@ function member(value){
     ){
         alert("유효성 검사 실패");
     } else {
-        let signupData = {"id":id.value, "pwd":pwd.value, "birth":birth.value, "name":name.value, "gender":gender.value};
-        if(value=="signup"){
+        const signupData = {"id":id.value, "pwd":pwd.value, "birth":birth.value, "name":name.value, "gender":gender};
+        const data= {...signupData, ...checkboxStates}
+        console.log(data);
             //회원가입일 경우
-            console.log($('form').serialize());
             $.ajax({
                 url:"/member/signup",
                 type:"POST",
                 contentType: "application/json; charset=utf-8",
-                data:JSON.stringify(signupData),
+                data:JSON.stringify(data),
                 error : function (error){
                     console.log("error");
                 },
                 success : function (data){
-                    if(data.redirect){
-                        window.location.href = data.redirect;
-                    }
+                    // if(data.redirect){
+                    //     window.location.href = data.redirect;
+                    // }
                 }
             });
-        }
+
 
     }
 }

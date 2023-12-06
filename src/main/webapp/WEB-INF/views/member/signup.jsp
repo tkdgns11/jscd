@@ -65,7 +65,6 @@
                 <div id="radioBtn">
                     <label class="radio-label" style="border-right: none;">
                         <input type="radio" class="radio-input"  id="male" name="gender" value="0">
-
                         <span style="border-right: 1px solid rgb(128, 128, 128); border-top-right-radius: 0px; border-bottom-right-radius: 0px;">남자</span>
                     </label>
                     <!-- 라디오 버튼 2 -->
@@ -86,22 +85,22 @@
                 <p>전체 동의</p>
             </div>
             <div>
-                <input type="checkbox" class="terms" id="serviceChk" name="serviceChk" onclick="checkSelectAll()">
-                <p>서비스 이용약관 동의</p>
+                <input type="checkbox" class="terms" id="serviceChkYN" name="serviceChkYN" onclick="checkSelectAll()">
+                <p>서비스 이용약관 동의 (필수)</p>
                 <p class="termsDetail"><a href="#">상세보기></a></p>
             </div>
             <div>
-                <input type="checkbox" class="terms" id="privacyChk" name="privacyChk" onclick="checkSelectAll()">
+                <input type="checkbox" class="terms" id="privacyChkYN" name="privacyChkYN" onclick="checkSelectAll()">
                 <p>개인정보 수집 및 이용 동의 (필수)</p>
                 <p class="termsDetail"><a href="#">상세보기></a></p>
             </div>
             <div>
-                <input type="checkbox" class="terms" id="ageChk" name="ageChk" onclick="checkSelectAll()">
+                <input type="checkbox" class="terms" id="ageChkYN" name="ageChkYN" onclick="checkSelectAll()">
                 <p>만 14세 이상입니다 (필수)</p>
                 <p class="termsDetail"><a href="#">상세보기></a></p>
             </div>
             <div style="border: none">
-                <input type="checkbox" class="terms" id="marketingChk" name="marketingChk" onclick="checkSelectAll()">
+                <input type="checkbox" class="terms" id="marketingChkYN" name="marketingChkYN" onclick="checkSelectAll()">
                 <p>마케팅 수신 동의 (선택)</p>
                 <p class="termsDetail"><a href="#">상세보기></a></p>
             </div>

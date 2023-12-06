@@ -22,6 +22,7 @@ public class MemberDaoImpl implements MemberDao{
 	}
 	@Override
 	public int insertUser(MemberDto memberDto) throws Exception {
+		System.out.println("insertUser" + memberDto);
 		return session.insert(namespace+ "insert", memberDto);
 	}
 	@Override
@@ -35,6 +36,12 @@ public class MemberDaoImpl implements MemberDao{
 	@Override
 	public int deleteAll() throws Exception {
 		return session.delete(namespace + "deleteAll");
+	}
+
+	@Override
+	public int insertTermsYN(MemberDto memberDto) throws Exception {
+		System.out.println("insertTerms" + memberDto);
+		return session.insert(namespace + "insertTerms", memberDto);
 	}
 
 }

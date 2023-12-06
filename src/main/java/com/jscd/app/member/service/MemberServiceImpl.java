@@ -38,7 +38,7 @@ public class MemberServiceImpl implements MemberService {
 		
 		try {
 			memberDto = memberDao.selectUser(id);
-			//System.out.println(memberDto);
+			System.out.println(memberDto);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -69,6 +69,11 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int memberDelete(String id) throws Exception {
 		return memberDao.deleteUser(id);
+	}
+
+	@Override
+	public int insertTermsYN(MemberDto memberDto) throws Exception {
+		return memberDao.insertTermsYN(memberDto);
 	}
 
 

@@ -15,5 +15,7 @@ public interface MemberService {
 	 public int memberEdit(MemberDto memberDto) throws Exception;
 	 public int memberDelete(String id) throws Exception;
 
+	 //회원 약관 동의
+	 public int insertTermsYN(MemberDto memberDto) throws  Exception;
 
 }
