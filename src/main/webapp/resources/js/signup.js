@@ -194,22 +194,33 @@ function  phoneValid(phone, phoneReg){
     작성일: 2023.11.19
     작성기능: 회원가입 이메일 인증 api 구현
  */
+$(document).ready(()=>{
+    $('#emailChkBtn').click(()=>{
+        let emailChkBtn = $('#emailChkBtn').value;
 
-$('#emailChkBtn').click(function (){
-    const email = $('#id').val(); //이메일 주소값 가져오기
-    console.log(email);
-    const checkInput = $('#emailChkInput') //인증 번호 입력하는 곳
+        const email = $('#id').val(); //이메일 주소값 가져오기
+        console.log(email);
 
-    $.ajax({
-        type:'get',
-        url : '/member/mailChk?email='+email, // get방식이라서 url 뒤에 email을 줄 수 있다.
-        success: function (data){
-            console.log(data);
-            checkInput.attr('disabled',false);
-            code=data;
-            alert("인증번호가 전송됐습니다.");
-        }
+        $.ajax({
+            type:'get',
+            url : '/member/mailChk?email='+email, // get방식이라서 url 뒤에 email을 줄 수 있다.
+            success: (data)=>{
+                console.log(data);
+                code=data;
+                alert("인증번호가 전송됐습니다.");
+            }
+        }); // end ajax
     });
+
+    $('#emailChkInput').blur(()=>{
+        const emailChkInputNo = $('#emailChkInput').val();
+
+        if(emailChkInputNo === code){
+            alert('인증번호가 일치합니다.')
+        }else{
+            alert('인증번호가 불일치합니다. 다시 확인해주세요.')
+        }
+    }); // .blur end
 });
 
 //회원탈퇴
