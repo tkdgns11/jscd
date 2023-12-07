@@ -2,8 +2,9 @@ package com.jscd.app.member.controller;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.jscd.app.member.dto.KakaoLoginBo;
+import com.jscd.app.member.dto.MailSendService;
 import com.jscd.app.member.dto.NaverLoginBo;
-import com.jscd.app.member.dto.mailSender;
+//import com.jscd.app.member.dto.mailSender;
 import com.jscd.app.member.dto.MemberDto;
 import com.jscd.app.member.service.MemberService;
 import org.json.simple.JSONObject;
@@ -258,49 +259,48 @@ public class MemberController {
 		MemberDto memberDto = memberService.memberSelect(id);
 		//결과 담아주기
 		model.addAttribute(memberDto);
-		return "/member/myPagePwdChk";
+		return "/member/signup";
 	}
 
 	//회원, 개인정보수정 기능 구현
 	@PostMapping("/memberEdit")
-	public String memberEdit(String pwdChk, HttpServletRequest request) throws Exception{
+	public Map<String, String> memberEdit(MemberDto memberDto) throws Exception{
 		Map<String, String> map = new HashMap<>();
 
-//		try{
-//			HttpSession session = request.getSession();
-//			String id = (String) session.getAttribute("id");
-//			MemberDto memberDto = memberService.memberSelect(id);
-//			String pwd = memberDto.getPwd();
-//
-//			//개인정보수정 비밀번호 확인
-//			if(!pwd.equals(pwdChk)){
-//				throw new Exception();
-//			}
-//
-//		}catch (Exception e){
-//
-//		}
-		System.out.println("hello, myPage");
-		return "/member/myPage";
-    }
+		try{
+			//개인정보수정
+			memberService.memberEdit(memberDto);
+			map.put("redirect","/member/login");
+		}catch (Exception e){
+			//회원가입에 실패했을 경우
+			map.put("error","개인정보수정에 실패했습니다.");
+		}
+		return map;
+	}
+
+
+
 
 	//회원 삭제
-	@GetMapping("/delete")
+	@PostMapping("/delete")
+	@ResponseBody
 	public String memberDelete(MemberDto memberDto) throws Exception{
-		System.out.println("회원 탈퇴");
 		memberService.memberDelete(memberDto.getId());
 		return null;
 	}
 
+
+
 	//이메일 인증
+	@Autowired
+	private MailSendService mailService;
 	@GetMapping("/mailChk")
 	@ResponseBody
 	public String mailChk(String email){
-		mailSender mailSender;
 		System.out.println("이메일 인증 요청이 들어옴");
-		System.out.println("이메일 인증" + email);
+		System.out.println("이메일 인증할 이메일 : " + email);
 
-		return null;
+		return mailService.joinEmail(email);
 	}
 
 }

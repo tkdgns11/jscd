@@ -2,8 +2,8 @@ package com.jscd.app.admin.dao;
 
 
 import com.jscd.app.admin.dto.InstructorInfoDto;
-import com.jscd.app.lecture.bootCamp.dao.BootCampDao;
-import com.jscd.app.lecture.bootCamp.dto.BootCampDto;
+//import com.jscd.app.lecture.bootCamp.dao.BootCampDao;
+//import com.jscd.app.lecture.bootCamp.dto.BootCampDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
