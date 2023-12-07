@@ -1,0 +1,50 @@
+package com.jscd.app.applyTraining.service;
+
+import com.jscd.app.applyTraining.dao.SmApplicationDao;
+import com.jscd.app.applyTraining.dto.SmApplicationDto;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Map;
+
+@Service
+public class SmApplicationServiceImpl implements SmApplicationService {
+    @Autowired
+    SmApplicationDao smApplicationDao;
+
+    @Override
+    public int getCount() throws Exception {
+        return smApplicationDao.count();
+    }
+
+    @Override
+    public int remove(Integer stfmNo) throws Exception{
+        return smApplicationDao.delete(stfmNo);
+    }
+
+    @Override
+    public List<SmApplicationDto> getList() throws Exception{
+        return smApplicationDao.selectAll();
+    }
+
+    @Override
+    public SmApplicationDto read(Integer stfmNo) throws Exception{
+        return smApplicationDao.select(stfmNo);
+    }
+
+    @Override
+    public List<SmApplicationDto> getPage(Map map) throws Exception{
+        return smApplicationDao.selectPage(map);
+    }
+
+    @Override
+    public int modify(SmApplicationDto dto) throws Exception{
+        return smApplicationDao.update(dto);
+    }
+
+    @Override
+    public int write(SmApplicationDto dto) throws Exception{
+        return smApplicationDao.insert(dto);
+    }
+}

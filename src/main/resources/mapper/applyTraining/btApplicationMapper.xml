@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jscd.app.applyTraining.btApplicationMapper">
+
+    <!--    (관리자 전용) 부트캠프 신청서 현황 페이지 페이징에 사용-->
+    <select id="count" resultType="int">
+        select count(*) from btstform
+    </select>
+
+    <!--    (관리자 전용) 부트캠프 신청서 전부 삭제하기-->
+    <delete id="deleteAll">
+        delete from btstform
+    </delete>
+
+    <!--    (관리자 전용) 부트캠프 신청서 하나 삭제하기-->
+    <delete id="delete" parameterType="int">
+        delete from btstform
+        where stfmNo
+    </delete>
+
+    <!--    (관리자 전용) 모든 신청서 불러오기 / 신청일 오름차순(선착순 고려)-->
+    <select id="selectAll" resultType="BtApplicationDto">
+        select * from btstform
+        order by regDate
+    </select>
+
+    <!--    (관리자 전용) 신청서 하나 읽기-->
+    <select id="select" parameterType="int" resultType="BtApplicationDto">
+        select * from btstform
+        where stfmNo = #{stfmNo}
+    </select>
+
+    <!--    (관리자 전용) 부트캠프 신청서 현황 페이지 페이징-->
+<!--    <select id="selectPage" resultType="map" resultMap="BtApplicationDto">-->
+<!--        select * from btstform-->
+<!--        order by regDate-->
+<!--        limit #{offset}, #{pageSize}-->
+<!--    </select>-->
+
+    <!--    (관리자 전용) 부트캠프 신청서 수정 및 승인시 사용-->
+    <update id="update" parameterType="BtApplicationDto">
+        update btstform
+        set  level = #{level}, levelDetail = #{levelDetail}, attdPps = #{attdPps}, attdPath = #{attdPath}, intro = #{intro},
+             expect = #{expect}, agreeYN = #{agreeYN}, approvalYN = #{approvalYN}, modifyDate = now()
+        where stfmNo = #{stfmNo}
+    </update>
+
+    <!--    (신청자 전용) 신청서 제출시 사용하는 insert-->
+    <insert id="insert" parameterType="BtApplicationDto">
+        insert into btstform (registCode, mebrNo, level, levelDetail, attdPps,
+                              attdPath, intro, expect, agreeYN)
+        values (#{registCode}, #{mebrNo}, #{level}, #{levelDetail}, #{attdPps},
+                #{attdPath}, #{intro}, #{expect}, #{agreeYN})
+    </insert>
+
+</mapper>
