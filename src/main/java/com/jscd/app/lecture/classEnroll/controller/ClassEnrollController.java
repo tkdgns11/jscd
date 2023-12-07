@@ -131,9 +131,10 @@ public class ClassEnrollController {
     // 게시물 화면 출력
     @GetMapping("/list")
     public String list(Model m){
+        Integer classCode = null;
 
         try {
-            List<ClassEnrollDto> classEnrollList = classEnrollService.getList();
+            List<ClassEnrollDto> classEnrollList = classEnrollService.getList(classCode);
 
             m.addAttribute("classEnrollList", classEnrollList);
         } catch (Exception e) {
