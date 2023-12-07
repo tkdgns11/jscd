@@ -152,6 +152,7 @@
             background-color: #182566;
             color: white;
         }
+        .classEnrollInfo { display: none;}
     </style>
 </head>
 <body>
@@ -172,10 +173,10 @@
                 강의 제목<br>
                 <c:choose>
                     <c:when test="${mode eq 'new'}">
-                        <input type="text" name="title" value="${lstRegistDto.title}" size="80">
+                        <input type="text" id="title" name="title" value="${lstRegistDto.title}" size="80">
                     </c:when>
                     <c:when test="${mode ne 'new'}">
-                        <input type="text" name="title" value="${lstRegistDto.title}" size="80">
+                        <input type="text" id="title" name="title" value="${lstRegistDto.title}" size="80">
                     </c:when>
                 </c:choose>
             </div>
@@ -194,21 +195,36 @@
 
             <div id="registSelect3">
                 과정선택
-                <select name="subjectCodeName">
+                <select id="subjectCodeName" name="courseCode" onchange="courseSelect(this.value)">
                     <c:choose>
                         <c:when test="${mode eq 'new'}">
                             <c:forEach var="list" items="${list}">
-                                <option value="${list.courseName}">${list.courseName}</option>
+                                <option value="${list.courseCode}">${list.courseName}</option>
                             </c:forEach>
+                        </c:when>
+                        <c:when test="${mode ne 'new'}">
+                            <option value="${lstRegistDto.courseCode}">${lstRegistDto.courseName}</option>
                         </c:when>
                     </c:choose>
                 </select>
             </div>
-            <div id="classEnroll">
 
+            <div id="classEnrollInfo">
+                세부사항<br>
+                <c:if test="${mode ne 'new'}">
+                    <input type="text" name="subject1" value="${lstRegistDto.subject1}">
+                    <input type="text" name="price1" value="${lstRegistDto.price1}"><br>
+                    <input type="text" name="subject2" value="${lstRegistDto.subject2}">
+                    <input type="text" name="price2" value="${lstRegistDto.price2}"><br>
+                    <input type="text" name="subject3" value="${lstRegistDto.subject3}">
+                    <input type="text" name="price3" value="${lstRegistDto.price3}"><br>
+                    <input type="text" name="subject4" value="${lstRegistDto.subject4}">
+                    <input type="text" name="price4" value="${lstRegistDto.price4}"><br>
+                    <input type="text" name="subject5" value="${lstRegistDto.subject5}">
+                    <input type="text" name="price5" value="${lstRegistDto.price5}"><br>
+                </c:if>
             </div>
-            <%--                    부트캠프 선택한다.--%>
-            <%--                    classEnroll에 등록되어 있는 부트캠프에 관련된것을 뿌려준다.--%>
+
             <div id="registSelect1">
                 온/오프라인 선택
                 <select name="onOff">
@@ -309,41 +325,41 @@
                 </c:choose>
             </div>
 
-            <div id="registTime">* 수강 시간</div>
-            <div id="registStartTime">
-                시작 시간<br>
-                <c:choose>
-                    <c:when test="${mode eq 'new'}">
-                        <input type="time" name="startTime">
-                    </c:when>
-                    <c:when test="${mode ne 'new'}">
-                        <input type="time" name="startTime" value="${lstRegistDto.startTime}">
-                    </c:when>
-                </c:choose>
-            </div>
-            &emsp; ~ &emsp;
-            <div id="registEndTime">
-                종료 시간<br>
-                <c:choose>
-                    <c:when test="${mode eq 'new'}">
-                        <input type="time" name="endTime">
-                    </c:when>
-                    <c:when test="${mode ne 'new'}">
-                        <input type="time" name="endTime" value="${lstRegistDto.endTime}">
-                    </c:when>
-                </c:choose>
-            </div>
+<%--            <div id="registTime">* 수강 시간</div>--%>
+<%--            <div id="registStartTime">--%>
+<%--                시작 시간<br>--%>
+<%--                <c:choose>--%>
+<%--                    <c:when test="${mode eq 'new'}">--%>
+<%--                        <input type="time" name="startTime">--%>
+<%--                    </c:when>--%>
+<%--                    <c:when test="${mode ne 'new'}">--%>
+<%--                        <input type="time" name="startTime" value="${lstRegistDto.startTime}">--%>
+<%--                    </c:when>--%>
+<%--                </c:choose>--%>
+<%--            </div>--%>
+<%--            &emsp; ~ &emsp;--%>
+<%--            <div id="registEndTime">--%>
+<%--                종료 시간<br>--%>
+<%--                <c:choose>--%>
+<%--                    <c:when test="${mode eq 'new'}">--%>
+<%--                        <input type="time" name="endTime">--%>
+<%--                    </c:when>--%>
+<%--                    <c:when test="${mode ne 'new'}">--%>
+<%--                        <input type="time" name="endTime" value="${lstRegistDto.endTime}">--%>
+<%--                    </c:when>--%>
+<%--                </c:choose>--%>
+<%--            </div>--%>
 
-            <div class="registBody"> 강사<br>
-                <c:choose>
-                    <c:when test="${mode eq 'new'}">
-                        <input type="text" name="name" placeholder="담당 강사님의 이름을 입력해주세요." size="80">
-                    </c:when>
-                    <c:when test="${mode ne 'new'}">
-                        <input type="text" name="name" value="${lstRegistDto.name}" size="80"><br>
-                    </c:when>
-                </c:choose>
-            </div>
+<%--            <div class="registBody"> 강사<br>--%>
+<%--                <c:choose>--%>
+<%--                    <c:when test="${mode eq 'new'}">--%>
+<%--                        <input type="text" name="name" placeholder="담당 강사님의 이름을 입력해주세요." size="80">--%>
+<%--                    </c:when>--%>
+<%--                    <c:when test="${mode ne 'new'}">--%>
+<%--                        <input type="text" name="name" value="${lstRegistDto.name}" size="80"><br>--%>
+<%--                    </c:when>--%>
+<%--                </c:choose>--%>
+<%--            </div>--%>
             <div class="registBody" > 교재<br>
                 <c:choose>
                     <c:when test="${mode eq 'new'}">
@@ -369,10 +385,10 @@
                 가격<br>
                 <c:choose>
                     <c:when test="${mode eq 'new'}">
-                        <input type="text" name="price" placeholder="가격을 입력해주세요." onchange="calculPrice()">
+                        <input type="text" name="totalPrice" placeholder="가격을 입력해주세요." onchange="calculPrice()">
                     </c:when>
                     <c:when test="${mode ne 'new'}">
-                        <input type="text" name="price" onchange="calculPrice()" value="${lstRegistDto.price}">원&emsp;&emsp;&emsp;
+                        <input type="text" name="totalPrice" onchange="calculPrice()" value="${lstRegistDto.price}">원&emsp;&emsp;&emsp;
                     </c:when>
                 </c:choose>
             </div>
@@ -404,10 +420,10 @@
                 총 가격<br>
                 <c:choose>
                     <c:when test="${mode eq 'new'}">
-                        <input type="text" name="lstPrice">
+                        <input type="text" name="lastPrice">
                     </c:when>
                     <c:when test="${mode ne 'new'}">
-                        <input type="text" name="lstPrice" value="${lstRegistDto.lstPrice}">원
+                        <input type="text" name="lastPrice" value="${lstRegistDto.lstPrice}">원
                     </c:when>
                 </c:choose>
             </div>
@@ -438,10 +454,13 @@
 
             <div id="registBtAll">
                 <c:choose>
+<%--                    <c:when test="${mode eq 'new'}">--%>
+<%--                        <input type="button" id="registRegistBt"  onclick="regist()" value="등록하기">--%>
+<%--                    </c:when>--%>
                     <c:when test="${mode eq 'new'}">
-                        <button type="button" id="registRegistBt">등록하기</button>
+                        <input type="button" id="registRegistBt" value="등록하기">
                     </c:when>
-                    <c:when test="${mode eq null}">
+                    <c:when test="${mode ne 'new'}">
                         <button type="button" id="registModifyBt">수정하기</button>
                     </c:when>
                 </c:choose>
@@ -457,23 +476,32 @@
 <script>
     <%--  가격계산하는 script  --%>
     function calculPrice() {
-        var price = document.getElementsByName('price')[0].value;
+        var price = document.getElementsByName('totalPrice')[0].value;
         var rate = document.getElementsByName('discount')[0].value;
         rate = rate.replace(/[^0-9]/g, '');
-        var totalPrice = price * (rate * 0.01);
-        document.getElementsByName('lstPrice')[0].value = totalPrice;
+        var totalPrice = price - (price * (rate * 0.01));
+        document.getElementsByName('lastPrice')[0].value = totalPrice;
     }
 </script>
+
 <script>
     $(document).ready(function() {
         $("#registRegistBt").on("click", function() {
             if(!confirm("해당 게시물을 등록하시겠습니까?")) return;
 
             let form = $("#registForm");
+            console.log("hhhhh")
             <%--form.attr("action", "<c:url value='/onlyAdmin/lstRegist/addRegist'/>");--%>
             form.attr("action", "<c:url value='/lstRegist/addRegist'/>");
             form.attr("method", "post");
-            form.submit();
+
+
+            let formData = new FormData(form[0]);
+            for (let pair of formData.entries()) {
+                console.log(pair[0]+ ', ' + pair[1]);
+            }
+
+           form.submit();
         });
 
         $("#registModifyBt").on("click", function() {
@@ -501,6 +529,108 @@
             location.href="<c:url value='/lstRegist/list?page=${param.page}&pageSize=${param.pageSize}'/>";
         });
     });
+
+    // function regist(){
+        // console.log("hello register");
+        // console.log("submit_titleValue: " + document.getElementById("title").value);
+        // console.log("submit_subjectCode: " + $("#subjectCodeName").val());
+        // const title = document.getElementById("title");
+        // const selectCourseCode = document.getElementById("subjectCodeName");
+        // selectCourseCode.addEventListener('change', function () {
+        //     let selectedOption = selectCourseCode.options[selectCourseCode.selectedIndex];
+        //     let courseCode = selectedOption.value;
+        //     console.log(courseCode);
+        // });
+
+    //     const title = document.getElementById("title");
+    //
+    //     const registerData = { "title" : title.value, "courseCode" : $("#subjectCodeName").val() }
+    //     console.log(registerData);
+    //     $.ajax({
+    //         url:"/lstRegist/addRegist",
+    //         type:"POST",
+    //         contentType: "application/json; charset=utf-8",
+    //         data:JSON.stringify(registerData),
+    //         error : function (error){
+    //             console.log("error");
+    //         },
+    //         success : function (data){
+    //             console.log("success");
+    //         }
+    //     });
+    // }
+
+    function courseSelect(value){
+        //console.log(value);
+        $.ajax({
+            url: '/lstRegist/getData',
+            type: 'POST',
+            contentType: "application/json; charset=utf-8",
+            data: value,
+            success: function (courseList) {
+                //console.log("성공");
+                //console.log("받은 데이터: ", courseList);
+
+                var receivedData = courseList;
+
+                $("#classEnrollInfo").empty();
+
+                $.each(receivedData.courseList, function(index, classInfo) {
+                    var className = classInfo.className;
+                    var price = classInfo.price;
+                    // name 속성 처리: 특수문자 및 공백을 언더스코어로 대체
+                    index++;
+                    var subjectName = "subject" + index;
+                    var priceName = "price" + index;
+
+                    var divTag = $("<div>");
+                    var inputElement = $("<input>")
+                        .attr("type", "text")
+                        .attr("name", subjectName)
+                        .val(className)[0];
+                    var inputElement2 = $("<input>")
+                        .attr("type", "text")
+                        .attr("name", priceName)
+                        .val(price)[0]; // jQuery 객체를 DOM 요소로 변환
+                    var brTag = $("<br>");
+                    var deTag = $("</div>");
+
+                    // 각각의 input 요소와 함께 추가
+                    $("#classEnrollInfo").append(divTag, inputElement, inputElement2, brTag, deTag);
+                    // var discount = classInfo.discount;
+                    // var lstPrice = classInfo.lstPrice;
+                    // var courseCode = classInfo.courseCode;
+                    // var roundCode = classInfo.roundCode;
+                    // discount 속성 처리: 특수문자 및 공백을 언더스코어로 대체
+                    // var discountAttribute = discount + "" + index;
+                    //console.log(nameAttribute);
+                    // input 요소 생성
+                    // var inputElement = $("<input>")
+                    //     .attr("type", "hidden")
+                    //     .attr("name", subjectName) //1 className  디자인패턴 1회차
+                    //     .val(roundCode)[0]; // jQuery 객체를 DOM 요소로 변환
+                    // var inputElement2 = $("<input>")
+                    //     .attr("type", "text")
+                    //     .attr("name", roundCode) //1 className  디자인패턴 1회차
+                    //     .val(className)[0]; // jQuery 객체를 DOM 요소로 변환
+                    // var inputElement3 = $("<input>")
+                    //     .attr("type", "text")
+                    //     .attr("name", discountAttribute)
+                    //     .val(discount)[0]; // jQuery 객체를 DOM 요소로 변환
+                    // var inputElement4 = $("<input>")
+                    //     .attr("type", "text")
+                    //     .attr("name", lstPrice)
+                    //     .val(lstPrice)[0]; // jQuery 객체를 DOM 요소로 변환
+
+                    // classEnrollInfo에 div 추가
+                    // $("#classEnrollInfo").append(inputElement, inputElement2, inputElement3 );
+                });
+            },
+            error: function (error) {
+                console.log("실패");
+            },
+        });
+    }
 </script>
 </body>
 </html>

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class LstServiceImpl implements LstService {
@@ -22,7 +23,7 @@ public class LstServiceImpl implements LstService {
     }
 
     @Override
-    public LstRegistDto readRegist(Integer registCode) throws Exception {
+    public Map<String, Object> readRegist(Integer registCode) throws Exception {
         return lstRegistDao.readRegist(registCode);
     }
 

@@ -14,8 +14,8 @@ public class ClassEnrollDaoImpl implements ClassEnrollDao {
     private static String namespace = "com.jscd.app.lecture.classEnroll.classEnrollMapper.";
 
     @Override
-    public List<ClassEnrollDto> selectAll() throws Exception{
-        return session.selectList(namespace + "selectAll");
+    public List<ClassEnrollDto> selectAll(Integer courseCode) throws Exception{
+        return session.selectList(namespace + "selectAll", courseCode);
     }
 
     @Override

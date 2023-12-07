@@ -5,7 +5,7 @@ import com.jscd.app.lecture.classEnroll.dto.ClassEnrollDto;
 import java.util.List;
 
 public interface ClassEnrollDao {
-    List<ClassEnrollDto> selectAll() throws Exception;
+    List<ClassEnrollDto> selectAll(Integer classCode) throws Exception;
 
     ClassEnrollDto select(Integer classCode) throws Exception;
 

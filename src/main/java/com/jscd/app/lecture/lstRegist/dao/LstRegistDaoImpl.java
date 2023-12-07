@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class LstRegistDaoImpl implements LstRegistDao {
@@ -29,7 +30,7 @@ public class LstRegistDaoImpl implements LstRegistDao {
     }
 
     @Override
-    public LstRegistDto readRegist(Integer registCode) throws Exception {
+    public Map<String, Object> readRegist(Integer registCode) throws Exception {
         return session.selectOne(namespace + "select", registCode);
     }
 

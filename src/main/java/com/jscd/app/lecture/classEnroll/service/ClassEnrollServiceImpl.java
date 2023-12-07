@@ -13,8 +13,8 @@ public class ClassEnrollServiceImpl implements ClassEnrollService {
     ClassEnrollDao classEnrollDao;
 
     @Override
-    public List<ClassEnrollDto> getList() throws Exception{
-        return classEnrollDao.selectAll();
+    public List<ClassEnrollDto> getList(Integer courseCode) throws Exception{
+        return classEnrollDao.selectAll(courseCode);
     }
 
     @Override
