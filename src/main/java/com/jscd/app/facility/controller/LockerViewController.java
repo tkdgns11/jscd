@@ -32,4 +32,10 @@ public class LockerViewController {
 
         return "facility/locker";
     }
+
+    @GetMapping("/student")
+    public String student(Model m, HttpServletRequest request){
+
+        return "admin/studentManage/studentDetail";
+    }
 }
