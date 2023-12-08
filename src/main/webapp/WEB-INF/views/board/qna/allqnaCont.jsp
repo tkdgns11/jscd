@@ -17,10 +17,6 @@
 
 
 <div id="content">
-    <%--    <header>--%>
-    <%--        <jsp:include page="/member/header.jsp"/>--%>
-    <%--    </header>--%>
-
     <div class="board_title">
         <strong>Q&A</strong>
     </div>
@@ -115,7 +111,8 @@
                         <%--                    <button id="cmtDelete" onclick="">삭제</button>--%>
 
                     <button type="button" id="cmtEdit" class="cmtEdit" data-allqnaCNo="${comment.allqnaCNo}">수정</button>
-                    <button type="button" class="cmtDelete" data-allqnaCNo="${comment.allqnaCNo}">삭제</button>
+                    <button type="button" class="cmtDelete" data-allqnaCNo="${comment.allqnaCNo}">삭제
+                    </button>
                 </div>
             </div>
 
@@ -124,14 +121,14 @@
                 <form method="POST" class="cmmtEditForm" target="_self"
                       style="display:none">
 
-                    <input id="allqnaCNo" type="hidden" value="${comment.allqnaCNo}" name="${comment.allqnaCNo}">
+                    <input id="allqnaCNo" type="hidden" value="${comment.allqnaCNo}" name="allqnaCNo">
                     <label>댓글 작성자</label>
-                    <input id="cmtEditWriter" type="text" value="${comment.writer}">
+                    <input id="cmtEditWriter" type="text" value="${comment.writer}" name="writer">
                     <br> <br> <br>
                     <textarea rows="5" cols="50" name="content">${comment.content}</textarea>
                     <div id="cmtEditBtn">
-                        <button id="cmtEdited" type="submit">등록</button>
-                        <button id="cmtCancel"
+                        <button class="cmtEdited" type="button">등록</button>
+                        <button class="cmtCancel"
                                 onclick="location.href='${path}/board/qna/allqnaDetail?allqnaNo=${comment.allqnaNo}'">
                             취소
                         </button>
@@ -147,64 +144,78 @@
 
 
     <script>
-
+    //댓글 수정버튼, 수정폼 가져오기
         window.addEventListener('DOMContentLoaded', () => {
             const editBtns = document.querySelectorAll('.cmtEdit');
             const editForms = document.querySelectorAll('.cmmtEditForm');
-
-            // 수정버튼 누르면 수정폼 뜨고 기존 댓글 사라짐
+    //각 수정버튼마다 이벤트 등록
             editBtns.forEach((btn, index) => {
                 btn.addEventListener('click', () => {
-                    editForms[index].style.display = 'block';
-                    const commentContent = document.querySelectorAll('.comment')[index];
-                    commentContent.style.display = 'none'; // 댓글 숨기기
+                    toggleCommentEditForm(index, true);
                 });
 
-                // 수정된 내용 서버로 전송
-                editForms[index].addEventListener('submit', (event) => {
-                    event.preventDefault();
-
-                    const editedContent = editForms[index].querySelector('textarea').value;
-                    const writer = editForms[index].querySelector('#cmtEditWriter').value;
-                    const allqnaCNo = editForms[index].querySelector('#allqnaCNo').value;
-
-                    console.log('출력할 메시지 : ' + editedContent);
-                    console.log('출력할 메시지 : ' + writer);
-                    console.log('출력할 메시지 : ' + allqnaCNo);
-
-                    // 수정된 내용이랑 필요한 정보들 FormData에 담아서 서버로 전송
-                    const formData = new FormData();
-                    formData.append('content', editedContent);
-                    formData.append('allqnaCNo', allqnaCNo);
-                    formData.append('writer', writer);
-                    <%--console.log(`${allqnaCNo}` + '입니다.');--%>
-
-                    console.log([...formData.entries()]);
-
-                    fetch(`/board/qna/cmmtModify/`+allqnaCNo, {
-                        method: 'POST',
-                        body: formData
-
-                    })
-
-                        .then(data => {
-                            console.log('수정 응답:', data);
-                            //수정된 댓글 보이게하고 수정폼 사라짐
-                            const commentContent = document.querySelectorAll('.comment')[index];
-                            commentContent.style.display = 'block';
-                            editForms[index].style.display = 'none';
-                        })
-                        .catch(error => {
-                            console.error('에러:', error);
-                        });
+                const registerBtn = editForms[index].querySelector('.cmtEdited');
+                registerBtn.addEventListener('click', () => {
+                    handleCommentEdit(index);
                 });
             });
+
+            function toggleCommentEditForm(index, show) {
+                editForms[index].style.display = show ? 'block' : 'none';
+                const commentContent = document.querySelectorAll('.comment')[index];
+                commentContent.style.display = show ? 'none' : 'block';
+            }
+
+            function handleCommentEdit(index) {
+                const content = editForms[index].querySelector('textarea').value;
+                const writer = editForms[index].querySelector('#cmtEditWriter').value;
+                const allqnaCNo = editForms[index].querySelector('#allqnaCNo').value;
+
+                const allqnacDto = {
+                    content: content,
+                    allqnaCNo: allqnaCNo,
+                    writer: writer
+                };
+
+                $.ajax({
+                    url: '/board/qna/cmmtModify',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(allqnacDto),
+                    success: function (data) {
+                        console.log('수정 응답:', data);
+                        toggleCommentEditForm(index, false);
+                    },
+                    error: function (error) {
+                        console.error('에러:', error);
+                    }
+                });
+            }
+
         });
 
 
 
         //댓글 삭제
+        $(document).on('click', '.cmtDelete', function (e) {
+            e.preventDefault();
+            // let allqnaCNo = document.querySelector('.cmtDelete').getAttribute('data-allqnaCNo');
+            let allqnaCNo = $(this).data('allqnaCNo');
+            console.log(allqnaCNo);
 
+            if (confirm('해당 댓글을 삭제하시겠습니까?')) {
+                $.ajax({
+                    data: JSON.stringify({allqnaCNo: allqnaCNo}),
+                    url: '/board/qna/cmmtRemove',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    success: function (result) {
+                        alert('삭제완료');
+                    }.bind(this)
+                });
+            };
+        });
 
 
     </script>
