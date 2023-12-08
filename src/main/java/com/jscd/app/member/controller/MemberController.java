@@ -2,8 +2,9 @@ package com.jscd.app.member.controller;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.jscd.app.member.dto.KakaoLoginBo;
+import com.jscd.app.member.dto.MailSendService;
 import com.jscd.app.member.dto.NaverLoginBo;
-import com.jscd.app.member.dto.mailSender;
+//import com.jscd.app.member.dto.mailSender;
 import com.jscd.app.member.dto.MemberDto;
 import com.jscd.app.member.service.MemberService;
 import org.json.simple.JSONObject;
@@ -291,14 +292,15 @@ public class MemberController {
 
 
 	//이메일 인증
+	@Autowired
+	private MailSendService mailService;
 	@GetMapping("/mailChk")
 	@ResponseBody
 	public String mailChk(String email){
-		mailSender mailSender;
 		System.out.println("이메일 인증 요청이 들어옴");
-		System.out.println("이메일 인증" + email);
+		System.out.println("이메일 인증할 이메일 : " + email);
 
-		return null;
+		return mailService.joinEmail(email);
 	}
 
 }

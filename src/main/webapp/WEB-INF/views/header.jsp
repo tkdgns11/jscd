@@ -6,7 +6,7 @@
 <c:set var="loginPath" value="${loginId == null  ?  '/member/login' : '/member/logout'}"/>
 <c:set var="loginStatus" value="${loginId== null ? '로그인' : '로그아웃'}"/>
 <c:set var="memberPath" value="${loginId == null  ?  '/member/signup' : '/member/memberEdit'}"/>
-<c:set var="memberStatus" value="${loginId== null ? '회원가입' : '개인정보수정'}"/>
+<c:set var="memberStatus" value="${loginId== null ? '회원가입' : '마이 페이지'}"/>
 <c:set var = "path" value = "${pageContext.request.contextPath}"/>
 
 <!DOCTYPE html>

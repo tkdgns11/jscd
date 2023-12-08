@@ -5,7 +5,7 @@ import com.jscd.app.lecture.classEnroll.dto.ClassEnrollDto;
 import java.util.List;
 
 public interface ClassEnrollService {
-    List<ClassEnrollDto> getList() throws Exception;
+    List<ClassEnrollDto> getList(Integer courseCode) throws Exception;
 
     ClassEnrollDto read(Integer classCode) throws Exception;
 
@@ -14,4 +14,5 @@ public interface ClassEnrollService {
     int modify(ClassEnrollDto dto) throws Exception;
 
     int remove(Integer classCode) throws Exception;
+
 }

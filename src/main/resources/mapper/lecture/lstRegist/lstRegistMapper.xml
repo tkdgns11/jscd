@@ -11,15 +11,25 @@
 
 <!--      강의 등록하기 -->
        <insert id="insert" parameterType="lstRegistDto">
-              insert into lstRegist (title, discription, <!-- courseCode--> onOff, status,
-                                     minNum, maxNum, location, startDate, endDate, startTime, endTime,
-                                     name, book, material, price, discount, lstPrice,
+              insert into lstRegist (title, discription, courseCode,
+                                     subject1, subject2, subject3, subject4, subject5,
+                                     price1, price2, price3, price4, price5,
+                                     onOff, status, minNum, maxNum, location, startDate, endDate,
+                                     book, material, totalPrice, discount, lastPrice,
                                      content, attachedFile)
-              values (#{title}, #{discription}, <!--#{courseCode},--> #{onOff}, #{status},
-                      #{minNum}, #{maxNum}, #{location}, #{startDate}, #{endDate}, #{startTime}, #{endTime},
-                      #{name}, #{book}, #{material}, #{price}, #{discount}, #{lstPrice},
+              values (#{title}, #{discription}, #{courseCode},
+                      #{subject1}, #{subject2}, #{subject3}, #{subject4}, #{subject5},
+                      #{price1}, #{price2}, #{price3}, #{price4}, #{price5},
+                      #{onOff}, #{status}, #{minNum}, #{maxNum}, #{location}, #{startDate}, #{endDate},
+                      #{book}, #{material}, #{totalPrice}, #{discount}, #{lastPrice},
                       #{content}, #{attachedFile})
        </insert>
+
+    <!--       등록된 강의 조회하기-->
+    <sql id="selectFromlstRegist">
+        select *
+        from lstRegist
+    </sql>
 
     <!--       강의 조회하기-->
     <select id="selectAll" resultType="lstRegistDto">
@@ -28,17 +38,21 @@
     </select>
 
     <!--       강의 세부 사항 조회하기-->
-    <select id="select" parameterType="int" resultType="lstRegistDto">
-        <include refid="selectFromlstRegist"/>
-        where registCode = #{registCode}
+    <select id="select" parameterType="int" resultType="map">
+        select lr.*,c.courseName
+        FROM lstRegist lr JOIN course c ON lr.courseCode = c.courseCode
+        where lr.registCode = #{registCode}
     </select>
+
+
+    <!--    -->
 
     <!--    등록된 강의 수정하기-->
     <update id="update" parameterType="lstRegistDto">
         update lstRegist
-        set title = #{title}, discription = #{discription}, <!--courseCode = #{}--> onOff = #{onOff}, status = #{status},
-            minNum = #{minNum}, maxNum = #{maxNum}, startDate = #{startDate}, endDate = #{endDate}, startTime = #{startTime}, endTime = #{endTime},
-            name = #{name}, book = #{book}, material = #{material}, price = #{price}, discount = #{discount}, lstPrice = #{lstPrice},
+        set title = #{title}, discription = #{discription}, onOff = #{onOff}, status = #{status},
+            minNum = #{minNum}, maxNum = #{maxNum}, startDate = #{startDate}, endDate = #{endDate},
+            book = #{book}, material = #{material}, totalPrice = #{totalPrice}, discount = #{discount}, lastPrice = #{lastPrice},
             content = #{content}, attachedFile = #{attachedFile}, etc = #{etc}
         where registCode = #{registCode}
     </update>
@@ -54,25 +68,4 @@
         where registCode = #{registCode}
     </delete>
 
-    <!--       부트캠프 이름 조회하기-->
-       <sql id="selectCourseName">
-              SELECT
-                     lr.*,
-                     c.courseName,
-                     ce.className,
-                     ce.discount '회차별 할인율',
-                      ce.price '회차별 가등'
-              FROM
-                     jungsukCoding.lstRegist lr
-                            JOIN
-                     jungsukCoding.classEnroll ce ON lr.courseCode = ce.courseCode
-                            JOIN
-                     jungsukCoding.course c ON lr.courseCode = c.courseCode
-       </sql>
-
-<!--       등록된 강의 조회하기-->
-       <sql id="selectFromlstRegist">
-              select *
-              from lstRegist
-       </sql>
 </mapper>

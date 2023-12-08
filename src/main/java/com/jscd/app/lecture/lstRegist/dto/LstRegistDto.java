@@ -1,59 +1,85 @@
 package com.jscd.app.lecture.lstRegist.dto;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class LstRegistDto {
     private Integer registCode;
     private String title;
     private String discription;
-//    private Integer courseCode;
+    private Integer courseCode;
+    private String subject1;
+    private String subject2;
+    private String subject3;
+    private String subject4;
+    private String subject5;
+
+    private Integer price1;
+    private Integer price2;
+    private Integer price3;
+    private Integer price4;
+    private Integer price5;
+
     private String onOff;
     private String status;
     private Integer minNum;
     private Integer maxNum;
     private String location;
     private Integer currentNum;
+
     private String startDate;
     private String endDate;
-    private String startTime;
-    private String endTime;
-    private String name;
     private String book;
     private String material;
-    private Integer price;
+
+
+    private Integer totalPrice;
     private String discount;
-    private Integer lstPrice;
+    private Integer lastPrice;
     private String content;
     private String attachedFile;
-    private String regDate;
+
+
+
+    private Date regDate;
     private Integer firstIdNo;
     private String modifyDate;
     private Integer lastIdNo;
     private String etc;
+    private String courseName;
+
 
     public LstRegistDto() {
     }
 
-    public LstRegistDto(Integer registCode, String title, String discription, String onOff, String status, Integer minNum, Integer maxNum, Integer currentNum, String location, String startDate, String endDate, String startTime, String endTime, String name, String book, String material, Integer price, String discount, Integer lstPrice, String content, String attachedFile, String regDate, Integer firstIdNo, String modifyDate, Integer lastIdNo, String etc) {
+    public LstRegistDto(Integer registCode, String title, String discription, Integer courseCode, String subject1, String subject2, String subject3, String subject4, String subject5, Integer price1, Integer price2, Integer price3, Integer price4, Integer price5, String onOff, String status, Integer minNum, Integer maxNum, String location, Integer currentNum, String startDate, String endDate, String book, String material, Integer totalPrice, String discount, Integer lastPrice, String content, String attachedFile, Date regDate, Integer firstIdNo, String modifyDate, Integer lastIdNo, String etc, String courseName) {
         this.registCode = registCode;
         this.title = title;
         this.discription = discription;
+        this.courseCode = courseCode;
+        this.subject1 = subject1;
+        this.subject2 = subject2;
+        this.subject3 = subject3;
+        this.subject4 = subject4;
+        this.subject5 = subject5;
+        this.price1 = price1;
+        this.price2 = price2;
+        this.price3 = price3;
+        this.price4 = price4;
+        this.price5 = price5;
         this.onOff = onOff;
         this.status = status;
         this.minNum = minNum;
         this.maxNum = maxNum;
-        this.currentNum = currentNum;
         this.location = location;
+        this.currentNum = currentNum;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.name = name;
         this.book = book;
         this.material = material;
-        this.price = price;
+        this.totalPrice = totalPrice;
         this.discount = discount;
-        this.lstPrice = lstPrice;
+        this.lastPrice = lastPrice;
         this.content = content;
         this.attachedFile = attachedFile;
         this.regDate = regDate;
@@ -61,19 +87,7 @@ public class LstRegistDto {
         this.modifyDate = modifyDate;
         this.lastIdNo = lastIdNo;
         this.etc = etc;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        LstRegistDto that = (LstRegistDto) o;
-        return Objects.equals(registCode, that.registCode) && Objects.equals(title, that.title) && Objects.equals(discription, that.discription) && Objects.equals(onOff, that.onOff) && Objects.equals(status, that.status) && Objects.equals(minNum, that.minNum) && Objects.equals(maxNum, that.maxNum) && Objects.equals(location, that.location) && Objects.equals(currentNum, that.currentNum) && Objects.equals(startDate, that.startDate) && Objects.equals(endDate, that.endDate) && Objects.equals(startTime, that.startTime) && Objects.equals(endTime, that.endTime) && Objects.equals(name, that.name) && Objects.equals(book, that.book) && Objects.equals(material, that.material) && Objects.equals(price, that.price) && Objects.equals(discount, that.discount) && Objects.equals(lstPrice, that.lstPrice) && Objects.equals(content, that.content) && Objects.equals(attachedFile, that.attachedFile) && Objects.equals(regDate, that.regDate) && Objects.equals(firstIdNo, that.firstIdNo) && Objects.equals(modifyDate, that.modifyDate) && Objects.equals(lastIdNo, that.lastIdNo) && Objects.equals(etc, that.etc);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(registCode, title, discription, onOff, status, minNum, maxNum, location, currentNum, startDate, endDate, startTime, endTime, name, book, material, price, discount, lstPrice, content, attachedFile, regDate, firstIdNo, modifyDate, lastIdNo, etc);
+        this.courseName = courseName;
     }
 
     public Integer getRegistCode() {
@@ -98,6 +112,94 @@ public class LstRegistDto {
 
     public void setDiscription(String discription) {
         this.discription = discription;
+    }
+
+    public Integer getCourseCode() {
+        return courseCode;
+    }
+
+    public void setCourseCode(Integer courseCode) {
+        this.courseCode = courseCode;
+    }
+
+    public String getSubject1() {
+        return subject1;
+    }
+
+    public void setSubject1(String subject1) {
+        this.subject1 = subject1;
+    }
+
+    public String getSubject2() {
+        return subject2;
+    }
+
+    public void setSubject2(String subject2) {
+        this.subject2 = subject2;
+    }
+
+    public String getSubject3() {
+        return subject3;
+    }
+
+    public void setSubject3(String subject3) {
+        this.subject3 = subject3;
+    }
+
+    public String getSubject4() {
+        return subject4;
+    }
+
+    public void setSubject4(String subject4) {
+        this.subject4 = subject4;
+    }
+
+    public String getSubject5() {
+        return subject5;
+    }
+
+    public void setSubject5(String subject5) {
+        this.subject5 = subject5;
+    }
+
+    public Integer getPrice1() {
+        return price1;
+    }
+
+    public void setPrice1(Integer price1) {
+        this.price1 = price1;
+    }
+
+    public Integer getPrice2() {
+        return price2;
+    }
+
+    public void setPrice2(Integer price2) {
+        this.price2 = price2;
+    }
+
+    public Integer getPrice3() {
+        return price3;
+    }
+
+    public void setPrice3(Integer price3) {
+        this.price3 = price3;
+    }
+
+    public Integer getPrice4() {
+        return price4;
+    }
+
+    public void setPrice4(Integer price4) {
+        this.price4 = price4;
+    }
+
+    public Integer getPrice5() {
+        return price5;
+    }
+
+    public void setPrice5(Integer price5) {
+        this.price5 = price5;
     }
 
     public String getOnOff() {
@@ -132,20 +234,20 @@ public class LstRegistDto {
         this.maxNum = maxNum;
     }
 
-    public Integer getCurrentNum() {
-        return currentNum;
-    }
-
-    public void setCurrentNum(Integer currentNum) {
-        this.currentNum = currentNum;
-    }
-
     public String getLocation() {
         return location;
     }
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public Integer getCurrentNum() {
+        return currentNum;
+    }
+
+    public void setCurrentNum(Integer currentNum) {
+        this.currentNum = currentNum;
     }
 
     public String getStartDate() {
@@ -164,30 +266,6 @@ public class LstRegistDto {
         this.endDate = endDate;
     }
 
-    public String getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
-    }
-
-    public String getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getBook() {
         return book;
     }
@@ -204,12 +282,12 @@ public class LstRegistDto {
         this.material = material;
     }
 
-    public Integer getPrice() {
-        return price;
+    public Integer getTotalPrice() {
+        return totalPrice;
     }
 
-    public void setPrice(Integer price) {
-        this.price = price;
+    public void setTotalPrice(Integer totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     public String getDiscount() {
@@ -220,12 +298,12 @@ public class LstRegistDto {
         this.discount = discount;
     }
 
-    public Integer getLstPrice() {
-        return lstPrice;
+    public Integer getLastPrice() {
+        return lastPrice;
     }
 
-    public void setLstPrice(Integer lstPrice) {
-        this.lstPrice = lstPrice;
+    public void setLastPrice(Integer lastPrice) {
+        this.lastPrice = lastPrice;
     }
 
     public String getContent() {
@@ -244,11 +322,11 @@ public class LstRegistDto {
         this.attachedFile = attachedFile;
     }
 
-    public String getRegDate() {
+    public Date getRegDate() {
         return regDate;
     }
 
-    public void setRegDate(String regDate) {
+    public void setRegDate(Date regDate) {
         this.regDate = regDate;
     }
 
@@ -284,34 +362,52 @@ public class LstRegistDto {
         this.etc = etc;
     }
 
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
     @Override
     public String toString() {
         return "LstRegistDto{" +
                 "registCode=" + registCode +
                 ", title='" + title + '\'' +
                 ", discription='" + discription + '\'' +
+                ", courseCode=" + courseCode +
+                ", subject1='" + subject1 + '\'' +
+                ", subject2='" + subject2 + '\'' +
+                ", subject3='" + subject3 + '\'' +
+                ", subject4='" + subject4 + '\'' +
+                ", subject5='" + subject5 + '\'' +
+                ", price1=" + price1 +
+                ", price2=" + price2 +
+                ", price3=" + price3 +
+                ", price4=" + price4 +
+                ", price5=" + price5 +
                 ", onOff='" + onOff + '\'' +
                 ", status='" + status + '\'' +
                 ", minNum=" + minNum +
                 ", maxNum=" + maxNum +
+                ", location='" + location + '\'' +
                 ", currentNum=" + currentNum +
                 ", startDate='" + startDate + '\'' +
                 ", endDate='" + endDate + '\'' +
-                ", startTime='" + startTime + '\'' +
-                ", endTime='" + endTime + '\'' +
-                ", name='" + name + '\'' +
                 ", book='" + book + '\'' +
                 ", material='" + material + '\'' +
-                ", price=" + price +
+                ", totalPrice=" + totalPrice +
                 ", discount='" + discount + '\'' +
-                ", lstPrice=" + lstPrice +
+                ", lastPrice=" + lastPrice +
                 ", content='" + content + '\'' +
                 ", attachedFile='" + attachedFile + '\'' +
-                ", regDate='" + regDate + '\'' +
+                ", regDate=" + regDate +
                 ", firstIdNo=" + firstIdNo +
                 ", modifyDate='" + modifyDate + '\'' +
                 ", lastIdNo=" + lastIdNo +
                 ", etc='" + etc + '\'' +
+                ", courseName='" + courseName + '\'' +
                 '}';
     }
 }
