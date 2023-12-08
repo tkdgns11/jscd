@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jscd.app.board.noticeMapper">
+    <select id="count" resultType="int">
+        SELECT count(*) FROM notibrd
+    </select>
+
+    <delete id="deleteAll">
+        DELETE FROM notibrd
+    </delete>
+
+    <delete id="delete" parameterType="map">
+        DELETE FROM notibrd WHERE bno = #{bno} and writer = #{writer}
+    </delete>
+
+    <insert id="insert" parameterType="noticeDto">
+        INSERT INTO notibrd
+            (title, content, writer)
+        VALUES
+            (#{title}, #{content}, #{writer})
+    </insert>
+
+    <select id="selectAll" resultType="noticeDto">
+        SELECT bno, title, content, writer, viewCnt, commentCnt, regDate
+        FROM notibrd
+        ORDER BY regDate DESC, bno DESC
+    </select>
+
+
+    <sql id="selectFromNotice">
+        SELECT bno, title, content, writer, viewCnt, commentCnt, regDate
+        FROM notibrd
+    </sql>
+
+    <select id="select" parameterType="int" resultType="noticeDto">
+        <include refid="selectFromNotice"/>
+        WHERE bno = #{bno}
+    </select>
+
+    <select id="selectPage" parameterType="map" resultType="noticeDto">
+        <include refid="selectFromNotice"/>
+        ORDER BY regDate DESC, bno DESC
+        LIMIT  #{pageSize}
+    </select>
+
+    <update id="update" parameterType="noticeDto">
+        UPDATE notibrd
+        SET   title = #{title}
+          , content = #{content}
+          , modifyDate = now()
+        WHERE bno = #{bno} and writer = #{writer}
+    </update>
+
+    <update id="updateCommentCnt" parameterType="map">
+        UPDATE notibrd
+        SET   commentCnt = commentCnt + #{cnt}
+        WHERE bno = #{bno}
+    </update>
+
+    <update id="increaseViewCnt" parameterType="int">
+        UPDATE notibrd
+        SET   viewCnt = viewCnt + 1
+        WHERE bno = #{bno}
+    </update>
+
+
+    <sql id="searchCondition">
+        <choose>
+            <when test='option=="T"'>
+                AND title LIKE concat('%', #{keyword}, '%')
+            </when>
+            <when test='option=="W"'>
+                AND writer LIKE concat('%', #{keyword}, '%')
+            </when>
+            <otherwise>
+                AND (title   LIKE concat('%', #{keyword}, '%')
+                OR   content LIKE concat('%', #{keyword}, '%'))
+            </otherwise>
+        </choose>
+    </sql>
+
+    <select id="searchSelectPage" parameterType="SearchCon" resultType="noticeDto">
+        SELECT bno, title, content, writer, viewCnt, regDate
+        FROM notibrd
+        WHERE true
+        <include refid="searchCondition"/>
+        ORDER BY regDate DESC, bno DESC
+        LIMIT  #{offset}, #{pageSize}
+    </select>
+
+    <select id="searchResultcnt" parameterType="SearchCon" resultType="int">
+        SELECT count(*)
+        FROM notibrd
+        WHERE true
+        <include refid="searchCondition"/>
+    </select>
+</mapper>

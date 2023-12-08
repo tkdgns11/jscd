@@ -24,5 +24,8 @@
 		<typeAlias alias="AdminDto" type="com.jscd.app.admin.dto.AdminDto"/>
 		<typeAlias alias="LockerDto" type="com.jscd.app.facility.dto.LockerDto"/>
 		<typeAlias alias="MemberManageDto" type="com.jscd.app.admin.dto.MemberManageDto"/>
+
+		<typeAlias alias="noticeDto" type="com.jscd.app.board.notice.dto.noticeDto"/>
+		<typeAlias alias="SearchCon" type="com.jscd.app.board.notice.dto.SearchCon"/>
 	</typeAliases>
 </configuration>
