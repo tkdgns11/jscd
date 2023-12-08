@@ -34,7 +34,7 @@
         WHERE allqnaCNo = #{allqnaCNo}
     </select>
 
-    <update id="update" parameterType="allqnacDto">
+    <update id="cmmtUpdate" parameterType="allqnacDto">
         UPDATE allQnAC
         SET content    = #{content}
           , modifyDate = now()
@@ -43,10 +43,12 @@
     </update>
 
 
-    <delete id="delete" parameterType="Integer">
+    <delete id="cmmtDelete" parameterType="Integer">
         DELETE
         FROM allQnAC
         WHERE allqnaCNo = #{allqnaCNo}
     </delete>
+
+
 
 </mapper>
