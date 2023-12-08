@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>게시판-${read.title}</title>
+    <title>QnA</title>
 
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/allqnaView.css"/>">
@@ -107,8 +107,7 @@
                         ${comment.content}
                 </div>
                 <div id="cmtBtn">
-                        <%--                     <button id="cmtEdit">수정</button>--%>
-                        <%--                    <button id="cmtDelete" onclick="">삭제</button>--%>
+
 
                     <button type="button" id="cmtEdit" class="cmtEdit" data-allqnaCNo="${comment.allqnaCNo}">수정</button>
                     <button type="button" class="cmtDelete" data-allqnaCNo="${comment.allqnaCNo}">삭제
@@ -117,108 +116,12 @@
             </div>
 
 
-            <div id="cmmtEditBox">
-                <form method="POST" class="cmmtEditForm" target="_self"
-                      style="display:none">
-
-                    <input id="allqnaCNo" type="hidden" value="${comment.allqnaCNo}" name="allqnaCNo">
-                    <label>댓글 작성자</label>
-                    <input id="cmtEditWriter" type="text" value="${comment.writer}" name="writer">
-                    <br> <br> <br>
-                    <textarea rows="5" cols="50" name="content">${comment.content}</textarea>
-                    <div id="cmtEditBtn">
-                        <button class="cmtEdited" type="button">등록</button>
-                        <button class="cmtCancel"
-                                onclick="location.href='${path}/board/qna/allqnaDetail?allqnaNo=${comment.allqnaNo}'">
-                            취소
-                        </button>
-                    </div>
-
-                </form>
-            </div>
         </c:forEach>
 
 
         <div id="bottom"></div>
     </div>
 
-
-    <script>
-    //댓글 수정버튼, 수정폼 가져오기
-        window.addEventListener('DOMContentLoaded', () => {
-            const editBtns = document.querySelectorAll('.cmtEdit');
-            const editForms = document.querySelectorAll('.cmmtEditForm');
-    //각 수정버튼마다 이벤트 등록
-            editBtns.forEach((btn, index) => {
-                btn.addEventListener('click', () => {
-                    toggleCommentEditForm(index, true);
-                });
-
-                const registerBtn = editForms[index].querySelector('.cmtEdited');
-                registerBtn.addEventListener('click', () => {
-                    handleCommentEdit(index);
-                });
-            });
-
-            function toggleCommentEditForm(index, show) {
-                editForms[index].style.display = show ? 'block' : 'none';
-                const commentContent = document.querySelectorAll('.comment')[index];
-                commentContent.style.display = show ? 'none' : 'block';
-            }
-
-            function handleCommentEdit(index) {
-                const content = editForms[index].querySelector('textarea').value;
-                const writer = editForms[index].querySelector('#cmtEditWriter').value;
-                const allqnaCNo = editForms[index].querySelector('#allqnaCNo').value;
-
-                const allqnacDto = {
-                    content: content,
-                    allqnaCNo: allqnaCNo,
-                    writer: writer
-                };
-
-                $.ajax({
-                    url: '/board/qna/cmmtModify',
-                    type: 'POST',
-                    contentType: 'application/json',
-                    data: JSON.stringify(allqnacDto),
-                    success: function (data) {
-                        console.log('수정 응답:', data);
-                        toggleCommentEditForm(index, false);
-                    },
-                    error: function (error) {
-                        console.error('에러:', error);
-                    }
-                });
-            }
-
-        });
-
-
-
-        //댓글 삭제
-        $(document).on('click', '.cmtDelete', function (e) {
-            e.preventDefault();
-            // let allqnaCNo = document.querySelector('.cmtDelete').getAttribute('data-allqnaCNo');
-            let allqnaCNo = $(this).data('allqnaCNo');
-            console.log(allqnaCNo);
-
-            if (confirm('해당 댓글을 삭제하시겠습니까?')) {
-                $.ajax({
-                    data: JSON.stringify({allqnaCNo: allqnaCNo}),
-                    url: '/board/qna/cmmtRemove',
-                    type: 'POST',
-                    contentType: 'application/json',
-                    dataType: 'json',
-                    success: function (result) {
-                        alert('삭제완료');
-                    }.bind(this)
-                });
-            };
-        });
-
-
-    </script>
 
 </body>
 </html>
