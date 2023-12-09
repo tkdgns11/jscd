@@ -9,8 +9,8 @@
     <!-- 회원 정보 관리에서 등급이 강사로 변경 -> 강사 정보 insert -->
     <insert id="insert" parameterType="InstructorInfoDto">
         insert into instructorInfo
-            (iscrNo, mebrNo)
-        values (#{iscrNo}, #{mebrNo})
+            (mebrNo,regDate,modifyDate)
+        value  (#{mebrNo},now(),now())
     </insert>
 
 <!--    <insert id="insert" parameterType="InstructorInfoDto">-->
@@ -31,7 +31,7 @@
                m.id,
                m.name,
                m.birth,
-               concat(m.phone1, m.phone2, m.phone3) as phone,
+               m.phone,
                i.intro,
                a.status,
                i.hourPmt,

@@ -1,6 +1,5 @@
 package com.jscd.app.admin.controller;
 
-import com.jscd.app.admin.dao.InsturctorInfoDao;
 import com.jscd.app.admin.domain.Pageable;
 import com.jscd.app.admin.domain.SearchCondition;
 import com.jscd.app.admin.dto.InstructorInfoDto;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 	/*

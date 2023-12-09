@@ -32,7 +32,7 @@
                alias,
                birth,
                pwd,
-               concat(phone1, phone2, phone3) as phone,
+               phone,
                status,
                grade,
                regDate

@@ -196,7 +196,6 @@
 
                 document.querySelectorAll('input[name="chk"]:checked').forEach(function (v, i) { //i는 인덱스, v는 input체크박스
                     arr[i] = v.value;
-                    console.log(v.value);
                 });
 
                 const form = document.createElement('form');
