@@ -53,7 +53,6 @@ public class MemberManageServiceImpl implements MemberManageService { //회원 �
 
             for (int i = 0; i < mebrNo.size(); i++) {
 
-                instructorInfoDto.setIscrNo("15" + i); //이 값을 어떻게..
                 instructorInfoDto.setMebrNo(mebrNo.get(i));
                 rowCnt = insturctorInfoDao.insert(instructorInfoDto);
 

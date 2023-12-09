@@ -19,7 +19,7 @@
                m.nickname,
                m.pwd,
                g.gender,
-               concat(m.phone1, m.phone2, m.phone3) as phone,
+               m.phone,
                m.acct,
                s.status,
                d.grade,

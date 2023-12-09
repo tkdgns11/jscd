@@ -180,7 +180,7 @@
 
     // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
-    //글삭제
+
     function statusUpdate() {
         //체크박스 체크된 항목
         const query = 'input[name="chk"]:checked'
@@ -199,7 +199,6 @@
 
                 document.querySelectorAll('input[name="chk"]:checked').forEach(function (v, i) { //i는 인덱스, v는 input체크박스
                     arr[i] = v.value;
-                    console.log(v.value);
                 });
 
                 const form = document.createElement('form');

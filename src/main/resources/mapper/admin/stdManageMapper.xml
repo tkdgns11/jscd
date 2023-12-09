@@ -22,7 +22,7 @@
                m.name,
                m.id,
                m.birth,
-               concat(m.phone1, m.phone2, m.phone3) as phone,
+               m.phone,
                m.regDate,
                m.acct,
                s.gisu,
