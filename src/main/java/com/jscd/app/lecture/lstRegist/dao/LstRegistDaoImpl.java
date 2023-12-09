@@ -1,6 +1,7 @@
 package com.jscd.app.lecture.lstRegist.dao;
 
 import com.jscd.app.lecture.lstRegist.dto.LstRegistDto;
+import com.jscd.app.lecture.lstRegist.dto.SearchCondition;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -47,5 +48,35 @@ public class LstRegistDaoImpl implements LstRegistDao {
     @Override
     public int removeRegist(Integer registCode) throws Exception {
         return session.delete(namespace + "delete", registCode);
+    }
+
+    @Override
+    public int searchResultCnt(SearchCondition sc) throws Exception {
+        return session.selectOne(namespace+"searchResultCnt", sc);
+    }
+
+    @Override
+    public List<LstRegistDto> searchSelectPage(SearchCondition sc) throws Exception {
+        return session.selectList(namespace+"searchSelectPage", sc);
+    }
+
+    @Override
+    public List<LstRegistDto> getSeminarList() throws Exception {
+        return session.selectList(namespace + "seminarList");
+    }
+
+    @Override
+    public LstRegistDto readSeminar(Integer registCode) throws Exception {
+        return session.selectOne(namespace + "seminarDetail", registCode);
+    }
+
+    @Override
+    public List<LstRegistDto> getBootCampList() throws Exception {
+        return session.selectList(namespace + "bootCampList");
+    }
+
+    @Override
+    public LstRegistDto readBootCamp(Integer registCode) throws Exception {
+        return session.selectOne(namespace + "bootCampDetail", registCode);
     }
 }
