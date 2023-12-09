@@ -32,7 +32,8 @@
         UPDATE allQnA
         SET   title = #{title}
           , content = #{content}
-          , up_date = now()
+          , writer = #{writer}
+          , regDate = now()
         WHERE allqnaNo = #{allqnaNo}
     </update>
 <!--    1-5. 게시글 삭제-->
@@ -60,15 +61,21 @@
     </select>
 
 
+
+<!--    3-3 댓글 수정-->
     <update id="cmmtUpdate" parameterType="allqnacDto">
         UPDATE allQnAC
         SET content = #{content}
           , regDate = now()
         WHERE allqnaCNo = #{allqnaCNo}
+        ORDER BY allqnaCNo ASC
     </update>
 
-<!--    3-3 댓글 수정-->
+
 <!--    3-4 댓글 삭제-->
+    <delete id="cmmtDelete" parameterType="map">
+        DELETE FROM allQnAC WHERE allqnaCNo = #{allqnaCNo}
+    </delete>
 
 <!--    4-1 대댓글 등록-->
 <!--    4-2 대댓글 목록-->

@@ -9,6 +9,7 @@
 <c:set var="memberStatus" value="${loginId== null ? '회원가입' : '마이 페이지'}"/>
 <c:set var = "path" value = "${pageContext.request.contextPath}"/>
 
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -48,7 +49,7 @@
                         <li><a href="#">세미나 신청</a></li>
                     </ul>
                     <ul class="submenu">
-                        <li><a href="#">공지사항</a></li>
+                        <li><a href="<c:url value="/board/notice/list"/>">공지사항</a></li>
                         <li><a href="<c:url value="/board/qna/allqnaList"/>">Q&A</a></li>
                         <li><a href="#">FAQ</a></li>
                     </ul>
@@ -78,7 +79,7 @@
             <li id="board">
                 <p>게시판</p>
                 <ul class="Menu gainMenu">
-                    <li><a href="#">공지사항</a></li>
+                    <li><a href="<c:url value="/board/notice/list"/>">공지사항</a></li>
                     <li><a href="${path}/board/qna/allqnaList">Q&A</a></li>
                     <li><a href="#">FAQ</a></li>
                 </ul>

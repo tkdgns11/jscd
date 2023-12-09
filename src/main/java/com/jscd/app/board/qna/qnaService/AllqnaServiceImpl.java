@@ -50,9 +50,8 @@ public class AllqnaServiceImpl implements AllqnaService {
         return allqnaDao.delete(allqnaNo, writer);
     }
 
-    //2. 검색
 
-    //3-1 댓글 등록
+    //2-1 댓글 등록
     @Override
     @Transactional(rollbackFor = Exception.class)
     public int cmmtWrite(AllqnacDto allqnacDto) throws Exception {
@@ -62,29 +61,33 @@ public class AllqnaServiceImpl implements AllqnaService {
     }
 
 
-    //3-2 댓글 목록
+    //2-2 댓글 목록
 
     public List<AllqnacDto> cmmtRead(Integer allqnaNo) throws Exception {
         return allqnaDao.selectAll(allqnaNo);
     }
 
-    //3-3 댓글 수정
+//    //2-3 댓글 수정
+//    @Override
+//    public int cmmtModify(AllqnacDto allqnacDto) throws Exception {
+//        System.out.println("서비스 댓글 수정 : "+ allqnacDto);
+//        return allqnaDao.cmmtUpdate(allqnacDto);
+//    }
 
-    @Override
-    public int cmmtModify(AllqnacDto allqnacDto) throws Exception {
-        System.out.println("서비스 댓글 수정 : "+ allqnacDto);
-        return allqnaDao.cmmtUpdate(allqnacDto);
+    //2-4 댓글 삭제
+    @Transactional(rollbackFor = Exception.class)
+    public int cmmtRemove(Integer allqnaCNo) throws Exception {
+        System.out.println("서비스 : "+allqnaCNo);
+         return allqnaDao.cmmtDelete(allqnaCNo);
     }
 
-    //3-4 댓글 삭제
+    //3-1 대댓글 등록
+    //3-2 대댓글 목록
+    //3-3 대댓글 수정
+    //3-4 대댓글 삭제
 
-    //4-1 대댓글 등록
-    //4-2 대댓글 목록
-    //4-3 대댓글 수정
-    //4-4 대댓글 삭제
-
-    //5 비밀글 제외
-    //6 내가 작성한 글 보기
+    //4 비밀글 제외
+    //5 내가 작성한 글 보기
 
     //7 페이징 처리 및 검새
     @Override

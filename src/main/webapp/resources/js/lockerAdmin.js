@@ -183,6 +183,7 @@ window.onload = function () {
   }
 
   function lockerClick(id, event) {
+
     if (event.target.tagName === 'BUTTON') {
       return;
     }
