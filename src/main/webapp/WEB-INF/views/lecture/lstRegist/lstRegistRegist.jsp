@@ -209,8 +209,8 @@
                 </select>
             </div>
 
+            세부사항<br>
             <div id="classEnrollInfo">
-                세부사항<br>
                 <c:if test="${mode ne 'new'}">
                     <input type="text" name="subject1" value="${lstRegistDto.subject1}">
                     <input type="text" name="price1" value="${lstRegistDto.price1}"><br>
@@ -388,7 +388,7 @@
                         <input type="text" name="totalPrice" placeholder="가격을 입력해주세요." onchange="calculPrice()">
                     </c:when>
                     <c:when test="${mode ne 'new'}">
-                        <input type="text" name="totalPrice" onchange="calculPrice()" value="${lstRegistDto.price}">원&emsp;&emsp;&emsp;
+                        <input type="text" name="totalPrice" onchange="calculPrice()" value="${lstRegistDto.totalPrice}">원&emsp;&emsp;&emsp;
                     </c:when>
                 </c:choose>
             </div>
@@ -423,7 +423,7 @@
                         <input type="text" name="lastPrice">
                     </c:when>
                     <c:when test="${mode ne 'new'}">
-                        <input type="text" name="lastPrice" value="${lstRegistDto.lstPrice}">원
+                        <input type="text" name="lastPrice" value="${lstRegistDto.lastPrice}">원
                     </c:when>
                 </c:choose>
             </div>
@@ -474,14 +474,7 @@
     </div>
 </div>
 <script>
-    <%--  가격계산하는 script  --%>
-    function calculPrice() {
-        var price = document.getElementsByName('totalPrice')[0].value;
-        var rate = document.getElementsByName('discount')[0].value;
-        rate = rate.replace(/[^0-9]/g, '');
-        var totalPrice = price - (price * (rate * 0.01));
-        document.getElementsByName('lastPrice')[0].value = totalPrice;
-    }
+
 </script>
 
 <script>
@@ -490,7 +483,6 @@
             if(!confirm("해당 게시물을 등록하시겠습니까?")) return;
 
             let form = $("#registForm");
-            console.log("hhhhh")
             <%--form.attr("action", "<c:url value='/onlyAdmin/lstRegist/addRegist'/>");--%>
             form.attr("action", "<c:url value='/lstRegist/addRegist'/>");
             form.attr("method", "post");
@@ -508,8 +500,8 @@
             if(!confirm("해당 게시물을 정말로 수정하시겠습니까?")) return;
 
             let form = $("#registForm");
-            <%--form.attr("action", "<c:url value='/onlyAdmin/lstRegist/modifyRegist?page=${page}&pageSize=${pageSize}'/>");--%>
-            form.attr("action", "<c:url value='/lstRegist/modifyRegist?page=${page}&pageSize=${pageSize}'/>");
+            <%--form.attr("action", "<c:url value='/onlyAdmin/lstRegist/modifyRegist${searchCondition.queryString}'/>");--%>
+            form.attr("action", "<c:url value='/lstRegist/modifyRegist${searchCondition.queryString}'/>");
             form.attr("method", "post");
             form.submit();
         });
@@ -519,49 +511,18 @@
 
             let form = $("#registForm");
             <%--form.attr("action", "<c:url value='/onlyAdmin/lstRegist/removeRegist'/>?page=${param.page}&pageSize=${param.pageSize}");--%>
-            form.attr("action", "<c:url value='/lstRegist/removeRegist'/>?page=${param.page}&pageSize=${param.pageSize}");
+            form.attr("action", "<c:url value='/lstRegist/removeRegist${searchCondition.queryString}'/>");
             form.attr("method", "post");
             form.submit();
         });
 
         $("#registListBt").on("click", function() {
             <%--location.href="<c:url value='/onlyAdmin/lstRegist/list?page=${param.page}&pageSize=${param.pageSize}'/>";--%>
-            location.href="<c:url value='/lstRegist/list?page=${param.page}&pageSize=${param.pageSize}'/>";
+            location.href="<c:url value='/lstRegist/list${searchCondition.queryString}'/>";
         });
     });
 
-    // function regist(){
-        // console.log("hello register");
-        // console.log("submit_titleValue: " + document.getElementById("title").value);
-        // console.log("submit_subjectCode: " + $("#subjectCodeName").val());
-        // const title = document.getElementById("title");
-        // const selectCourseCode = document.getElementById("subjectCodeName");
-        // selectCourseCode.addEventListener('change', function () {
-        //     let selectedOption = selectCourseCode.options[selectCourseCode.selectedIndex];
-        //     let courseCode = selectedOption.value;
-        //     console.log(courseCode);
-        // });
-
-    //     const title = document.getElementById("title");
-    //
-    //     const registerData = { "title" : title.value, "courseCode" : $("#subjectCodeName").val() }
-    //     console.log(registerData);
-    //     $.ajax({
-    //         url:"/lstRegist/addRegist",
-    //         type:"POST",
-    //         contentType: "application/json; charset=utf-8",
-    //         data:JSON.stringify(registerData),
-    //         error : function (error){
-    //             console.log("error");
-    //         },
-    //         success : function (data){
-    //             console.log("success");
-    //         }
-    //     });
-    // }
-
     function courseSelect(value){
-        //console.log(value);
         $.ajax({
             url: '/lstRegist/getData',
             type: 'POST',
@@ -572,7 +533,7 @@
                 //console.log("받은 데이터: ", courseList);
 
                 var receivedData = courseList;
-
+                var totalPrice = 0;
                 $("#classEnrollInfo").empty();
 
                 $.each(receivedData.courseList, function(index, classInfo) {
@@ -583,7 +544,6 @@
                     var subjectName = "subject" + index;
                     var priceName = "price" + index;
 
-                    var divTag = $("<div>");
                     var inputElement = $("<input>")
                         .attr("type", "text")
                         .attr("name", subjectName)
@@ -593,43 +553,26 @@
                         .attr("name", priceName)
                         .val(price)[0]; // jQuery 객체를 DOM 요소로 변환
                     var brTag = $("<br>");
-                    var deTag = $("</div>");
 
                     // 각각의 input 요소와 함께 추가
-                    $("#classEnrollInfo").append(divTag, inputElement, inputElement2, brTag, deTag);
-                    // var discount = classInfo.discount;
-                    // var lstPrice = classInfo.lstPrice;
-                    // var courseCode = classInfo.courseCode;
-                    // var roundCode = classInfo.roundCode;
-                    // discount 속성 처리: 특수문자 및 공백을 언더스코어로 대체
-                    // var discountAttribute = discount + "" + index;
-                    //console.log(nameAttribute);
-                    // input 요소 생성
-                    // var inputElement = $("<input>")
-                    //     .attr("type", "hidden")
-                    //     .attr("name", subjectName) //1 className  디자인패턴 1회차
-                    //     .val(roundCode)[0]; // jQuery 객체를 DOM 요소로 변환
-                    // var inputElement2 = $("<input>")
-                    //     .attr("type", "text")
-                    //     .attr("name", roundCode) //1 className  디자인패턴 1회차
-                    //     .val(className)[0]; // jQuery 객체를 DOM 요소로 변환
-                    // var inputElement3 = $("<input>")
-                    //     .attr("type", "text")
-                    //     .attr("name", discountAttribute)
-                    //     .val(discount)[0]; // jQuery 객체를 DOM 요소로 변환
-                    // var inputElement4 = $("<input>")
-                    //     .attr("type", "text")
-                    //     .attr("name", lstPrice)
-                    //     .val(lstPrice)[0]; // jQuery 객체를 DOM 요소로 변환
-
-                    // classEnrollInfo에 div 추가
-                    // $("#classEnrollInfo").append(inputElement, inputElement2, inputElement3 );
+                    $("#classEnrollInfo").append(inputElement, inputElement2, brTag);
+                    totalPrice += parseFloat(price) || 0;
                 });
+                document.getElementsByName("totalPrice")[0].value = totalPrice;
             },
             error: function (error) {
                 console.log("실패");
             },
         });
+
+    }
+    <%--  가격계산하는 script  --%>
+    function calculPrice() {
+        var price = document.getElementsByName('totalPrice')[0].value;
+        var rate = document.getElementsByName('discount')[0].value;
+        rate = rate.replace(/[^0-9]/g, '');
+        var totalPrice = price - (price * (rate * 0.01));
+        document.getElementsByName('lastPrice')[0].value = totalPrice;
     }
 </script>
 </body>
