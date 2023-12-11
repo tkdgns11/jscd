@@ -1,5 +1,6 @@
 package com.jscd.app.applyTraining.dao;
 
+import com.jscd.app.applyTraining.dto.BtApplicationDto;
 import com.jscd.app.applyTraining.dto.SmApplicationDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,5 +53,10 @@ public class SmApplicationDaoImpl implements SmApplicationDao {
     @Override
     public int insert(SmApplicationDto dto) throws Exception{
         return session.insert(namespace + "insert", dto);
+    }
+
+    @Override
+    public int lectureApplyInsert(SmApplicationDto dto) throws Exception{
+        return session.insert(namespace + "lectureApplyInsert", dto);
     }
 }

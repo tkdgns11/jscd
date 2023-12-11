@@ -55,4 +55,10 @@
                 #{attdPath}, #{intro}, #{expect})
     </insert>
 
+    <!--    폼 제출시 lectureapply에도 insert-->
+    <insert id="lectureApplyInsert" parameterType="SmApplicationDto">
+        insert into lectureapply(id, registCode)
+        values (#{id}, #{registCode})
+    </insert>
+
 </mapper>

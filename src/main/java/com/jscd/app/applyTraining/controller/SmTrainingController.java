@@ -28,6 +28,7 @@ public class SmTrainingController {
 
         try {
             int cnt = smApplicationService.write(smApplicationDto);
+            smApplicationService.lectureApplyInsert(smApplicationDto);
 
             if(cnt != 1)
                 throw new Exception("write err");

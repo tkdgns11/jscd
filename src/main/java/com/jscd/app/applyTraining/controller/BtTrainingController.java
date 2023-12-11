@@ -34,6 +34,7 @@ public class BtTrainingController {
 
         try {
             int cnt = btApplicationService.write(btApplicationDto);
+            btApplicationService.lectureApplyInsert(btApplicationDto);
 
             if(cnt != 1)
                 throw new Exception("write err");
@@ -55,52 +56,57 @@ public class BtTrainingController {
     @GetMapping("btApplication")
     public String btApplicationWrite(LstRegistDto lstRegistDto, Model m, RedirectAttributes rattr, HttpServletRequest request){
 
-//        // 1. 로그인 상태 확인
-//        // 이미 생성된 세션이 있으면 기존의 세션 반환 없으면 null 반환
-//        HttpSession session = request.getSession(false);
-//
-//        // 2. 로그인 상태라면 이미 신청한 회원인지 확인
-//        if(session != null){
-//            String id = (String)session.getAttribute("id");
-//            System.out.println("id = " + id);
-//
-//            // 2.1 신청한 강의 번호 얻기
-//            Integer registCode = lstRegistDto.getRegistCode();
-//
-//            // 2.2 신청한 강의 번호, session id를 map에 담기
-//            Map map = new HashMap();
-//            map.put("registCode", registCode);
-//            map.put("id", id);
-//
-//            // 2.3 map으로 검색
-//            try {
-//                BtApplicationDto btApplicationDto = btApplicationService.confirmApplcation(map);
-//
-//                // 2.4 검색 결과가 중복 신청이라면 예외 발생
-//                if (btApplicationDto != null)
-//                    throw new Exception("duplicate application");
-//
-//                // 3. 중복 신청이 아니라면 id, registCode, title, lastPrice를 신청서 페이지로 전달
-//                m.addAttribute("id" + id);
-//                m.addAttribute("lstRegistDto" + lstRegistDto);
-//                return "/applyTraining/btApplication";
-//            } catch (Exception e) {
-//                // 2.5 신청 중복 메시지와 함께 리턴
-//                e.printStackTrace();
-//                rattr.addFlashAttribute("msg", "duplicate application");
-//                return null;
-//            }
-//
-//        }else{
-//            // 로그인 상태가 아니면 메세지 전송
-//            m.addAttribute("msg", "login required");
-//            // 로그인 페이지로 이동
-//            System.out.println("no session");
-//            return "redirect:/member/login";
-//        }
+        // 1. 로그인 상태 확인
+        // 이미 생성된 세션이 있으면 기존의 세션 반환 없으면 null 반환
+        HttpSession session = request.getSession(false);
 
-        m.addAttribute("lstRegistDto" + lstRegistDto);
-        return "/applyTraining/btApplication";
+        String id = (String)session.getAttribute("id");
+        System.out.println("id = " + id);
+
+        // 2. 로그인 상태라면 이미 신청한 회원인지 확인
+        if(id != null){
+
+            // 2.1 신청한 강의 번호 얻기
+            Integer registCode = lstRegistDto.getRegistCode();
+
+            // 2.2 신청한 강의 번호, session id를 map에 담기
+            Map map = new HashMap();
+            map.put("registCode", registCode);
+            map.put("id", id);
+
+            // 2.3 map으로 검색
+            try {
+                BtApplicationDto btApplicationDto = btApplicationService.confirmApplcation(map);
+
+                // 2.4 검색 결과가 중복 신청이라면 예외 발생
+                if (btApplicationDto != null)
+                    throw new Exception("duplicate application");
+
+                // 3. 중복 신청이 아니라면 id, registCode, title, lastPrice를 신청서 페이지로 전달
+                m.addAttribute("id" + id);
+                m.addAttribute("lstRegistDto" + lstRegistDto);
+                return "/applyTraining/btApplication";
+            } catch (Exception e) {
+                // 미완성
+                // 2.5 신청 중복 메시지와 함께 리턴
+                e.printStackTrace();
+                rattr.addFlashAttribute("msg", "duplicate application");
+                return null;
+            }
+
+        }else{
+            // 미완성
+            // 로그인 상태가 아니면 메세지 전송
+            m.addAttribute("msg", "login required");
+            // 로그인 페이지로 이동
+            System.out.println("no session");
+            System.out.println("url = " + request.getRequestURI());
+
+            return "redirect:/member/login";
+        }
+
+//        m.addAttribute("lstRegistDto" + lstRegistDto);
+//        return "/applyTraining/btApplication";
     }
 
     // 부트캠프 리스트 이동
