@@ -124,4 +124,23 @@
         WHERE allqnaNo = #{allqnaNo}
     </update>
 
+    <!-- 이미지 저장  -->
+    <insert id="insertFile" parameterType="AttachDto">
+        insert into attach
+            (allqnaNo, uploadPath, fileName, savePath)
+        values (#{allqnaNo}, #{uploadPath}, #{fileName}, #{savePath})
+    </insert>
+
+    <!-- 가장 끝 번호 가져옴 _이미지 테이블에 넣기위해  -->
+    <select id="selectAllQnaNo" resultType="int">
+        select max(allqnaNo)
+        from allQnA
+    </select>
+
+    <select id="selectImg" parameterType="int" resultType="AttachDto">
+        select *
+        from attach
+        where allqnaNo = #{allqnaNo}
+    </select>
+
 </mapper>

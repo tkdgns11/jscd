@@ -2,11 +2,11 @@ package com.jscd.app.board.qna.qnaDto;
 
 public class AttachDto {
 
-    int fileNo;
-    int allqnaNo;
-    String uploadPath;
-    String fileName;
-    String savePath;
+    int fileNo; //파일 고유 번호
+    int allqnaNo; //qna 번호
+    String uploadPath; //업로드 파일명
+    String fileName; //실제 파일명
+    String savePath; // 로컬 저장 경로
 
     public AttachDto(){}
 

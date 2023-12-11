@@ -2,6 +2,7 @@ package com.jscd.app.board.qna.qnaDao;
 
 import com.jscd.app.board.qna.qnaDto.AllqnaDto;
 import com.jscd.app.board.qna.qnaDto.AllqnacDto;
+import com.jscd.app.board.qna.qnaDto.AttachDto;
 import com.jscd.app.board.qna.qnaDto.SearchCondition;
 
 import java.util.List;
@@ -47,4 +48,7 @@ public interface AllqnaDao {
     int cmmtUpdate(AllqnacDto allqnacDto) throws Exception;
 
     int cmmtDelete(Integer allqnaCNo) throws Exception;
+    List<AttachDto> selectImg(Integer allqnaNo)throws Exception;
+    int insertFile(AttachDto attachDto)throws Exception;
+    int selectAllQnaNo() throws Exception; //게시물 끝번호 가져옴
 }

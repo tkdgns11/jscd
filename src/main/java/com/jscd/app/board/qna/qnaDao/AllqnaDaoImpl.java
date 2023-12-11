@@ -2,6 +2,7 @@ package com.jscd.app.board.qna.qnaDao;
 
 import com.jscd.app.board.qna.qnaDto.AllqnaDto;
 import com.jscd.app.board.qna.qnaDto.AllqnacDto;
+import com.jscd.app.board.qna.qnaDto.AttachDto;
 import com.jscd.app.board.qna.qnaDto.SearchCondition;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -108,5 +109,21 @@ public class AllqnaDaoImpl implements AllqnaDao {
     public int increaseViewCnt(Integer allqnaNo) throws Exception {
         return session.update(namespace+"increaseViewCnt", allqnaNo);
     }
+
+    //이미지 셀렉
+    @Override
+    public List<AttachDto> selectImg(Integer allqnaNo)throws Exception{
+        return session.selectList(namespace+"selectImg",allqnaNo);
+    }
+    @Override
+    public int insertFile(AttachDto attachDto)throws Exception{
+        return session.insert(namespace+"insertFile",attachDto);
+    }
+    @Override
+    public int selectAllQnaNo() throws Exception{ //게시물 끝번호 가져옴
+        return session.selectOne(namespace+"selectAllQnaNo");
+    }
+
+
 
 }
