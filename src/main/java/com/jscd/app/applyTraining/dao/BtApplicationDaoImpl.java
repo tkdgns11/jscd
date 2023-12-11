@@ -53,4 +53,14 @@ public class BtApplicationDaoImpl implements BtApplicationDao {
     public int insert(BtApplicationDto dto) throws Exception{
         return session.insert(namespace + "insert", dto);
     }
+
+    @Override
+    public int lectureApplyInsert(BtApplicationDto dto) throws Exception{
+        return session.insert(namespace + "lectureApplyInsert", dto);
+    }
+
+    @Override
+    public BtApplicationDto confirmApplcation(Map map) throws Exception{
+        return session.selectOne(namespace + "confirmApplication", map);
+    }
 }

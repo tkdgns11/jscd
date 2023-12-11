@@ -21,4 +21,6 @@ public interface SmApplicationDao {
     int update(SmApplicationDto dto) throws Exception;
 
     int insert(SmApplicationDto dto) throws Exception;
+
+    int lectureApplyInsert(SmApplicationDto dto) throws Exception;
 }

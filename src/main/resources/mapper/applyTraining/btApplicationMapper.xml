@@ -33,26 +33,37 @@
     </select>
 
     <!--    (관리자 전용) 부트캠프 신청서 현황 페이지 페이징-->
-<!--    <select id="selectPage" resultType="map" resultMap="BtApplicationDto">-->
-<!--        select * from btstform-->
-<!--        order by regDate-->
-<!--        limit #{offset}, #{pageSize}-->
-<!--    </select>-->
+    <select id="selectPage" parameterType="map" resultType="BtApplicationDto">
+        select * from btstform
+        order by stfmNo, regDate
+        limit #{offset}, #{pageSize}
+    </select>
 
     <!--    (관리자 전용) 부트캠프 신청서 수정 및 승인시 사용-->
     <update id="update" parameterType="BtApplicationDto">
         update btstform
-        set  level = #{level}, levelDetail = #{levelDetail}, attdPps = #{attdPps}, attdPath = #{attdPath}, intro = #{intro},
+        set  status = #{status}, level = #{level}, levelDetail = #{levelDetail}, attdPps = #{attdPps}, attdPath = #{attdPath}, intro = #{intro},
              expect = #{expect}, agreeYN = #{agreeYN}, approvalYN = #{approvalYN}, modifyDate = now()
         where stfmNo = #{stfmNo}
     </update>
 
+    <!--    폼 제출시 lectureapply에도 insert-->
+    <insert id="lectureApplyInsert" parameterType="BtApplicationDto">
+        insert into lectureapply(id, registCode)
+        values (#{id}, #{registCode})
+    </insert>
+
     <!--    (신청자 전용) 신청서 제출시 사용하는 insert-->
     <insert id="insert" parameterType="BtApplicationDto">
-        insert into btstform (registCode, mebrNo, level, levelDetail, attdPps,
+        insert into btstform (mebrNo, id, registCode, title, lastPrice, level, levelDetail, attdPps,
                               attdPath, intro, expect, agreeYN)
-        values (#{registCode}, #{mebrNo}, #{level}, #{levelDetail}, #{attdPps},
+        values (#{mebrNo}, #{id}, #{registCode}, #{title}, #{lastPrice}, #{level}, #{levelDetail}, #{attdPps},
                 #{attdPath}, #{intro}, #{expect}, #{agreeYN})
     </insert>
 
+    <!--    (신청자 전용) 신청서 페이지 이동시 이미 신청했는지 확인-->
+    <select id="confirmApplication" parameterType="map" resultType="BtApplicationDto">
+        select * from btstform
+        where registCode = #{registCode} and id = #{id}
+    </select>
 </mapper>

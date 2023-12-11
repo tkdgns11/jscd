@@ -1,6 +1,7 @@
 package com.jscd.app.applyTraining.service;
 
 import com.jscd.app.applyTraining.dao.SmApplicationDao;
+import com.jscd.app.applyTraining.dto.BtApplicationDto;
 import com.jscd.app.applyTraining.dto.SmApplicationDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,5 +47,10 @@ public class SmApplicationServiceImpl implements SmApplicationService {
     @Override
     public int write(SmApplicationDto dto) throws Exception{
         return smApplicationDao.insert(dto);
+    }
+
+    @Override
+    public int lectureApplyInsert(SmApplicationDto dto) throws Exception{
+        return smApplicationDao.lectureApplyInsert(dto);
     }
 }

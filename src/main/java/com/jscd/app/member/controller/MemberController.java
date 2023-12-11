@@ -289,7 +289,25 @@ public class MemberController {
 		return null;
 	}
 
+	// id 중복체크
+	@GetMapping("/idChk")
+	@ResponseBody
+	public String idChk(String id) {
+		System.out.println("아이디 중복체크 요청 들어옴");
+		System.out.println("중복체크 필요한 id = " + id);
 
+		String getId = null;
+		try {
+			MemberDto memberDto = memberService.memberSelect(id);
+			getId = memberDto.getId();
+			System.out.println("getId = " + getId);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return getId;
+	}
 
 	//이메일 인증
 	@Autowired
@@ -298,7 +316,7 @@ public class MemberController {
 	@ResponseBody
 	public String mailChk(String email){
 		System.out.println("이메일 인증 요청이 들어옴");
-		System.out.println("이메일 인증할 이메일 : " + email);
+		System.out.println("이메일 인증할 이메일 = " + email);
 
 		return mailService.joinEmail(email);
 	}
