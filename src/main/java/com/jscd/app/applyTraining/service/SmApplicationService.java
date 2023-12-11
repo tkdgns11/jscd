@@ -19,4 +19,6 @@ public interface SmApplicationService {
     int modify(SmApplicationDto dto) throws Exception;
 
     int write(SmApplicationDto dto) throws Exception;
+
+    int lectureApplyInsert(SmApplicationDto dto) throws Exception;
 }

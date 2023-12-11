@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.*;
 import java.net.URLEncoder;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -262,11 +261,11 @@ public class MemberController {
 		//아이디 조회에 따른 결과 보여주기
 		MemberDto memberDto = memberService.memberSelect(id);
 		//결과 담아주기
-		model.addAttribute("memberDto", memberDto);
-		return "/member/myPage";
+		model.addAttribute(memberDto);
+		return "/member/signup";
 	}
 
-	//개인정보수정 기능 구현
+	//회원, 개인정보수정 기능 구현
 	@PostMapping("/memberEdit")
 	public Map<String, String> memberEdit(MemberDto memberDto) throws Exception{
 		Map<String, String> map = new HashMap<>();
@@ -274,7 +273,7 @@ public class MemberController {
 		try{
 			//개인정보수정
 			memberService.memberEdit(memberDto);
-			map.put("redirect","/");
+			map.put("redirect","/member/login");
 		}catch (Exception e){
 			//회원가입에 실패했을 경우
 			map.put("error","개인정보수정에 실패했습니다.");
@@ -282,25 +281,8 @@ public class MemberController {
 		return map;
 	}
 
-	//마이페이지 강의 현황
-	@GetMapping("/myCourse")
-	public String myLecturePageMove(LectureApplyDto lectureApplyDto, Model m, HttpServletRequest request) throws Exception {
-
-		HttpSession session = request.getSession();
-		String id = (String) session.getAttribute("id");
-		lectureApplyDto.setId("jyh931229@naver.com");
-		lectureApplyDto.setRegistCode(7);
 
 
-		//강의 목록 불러오기
-		List<LectureApplyDto> list = memberService.selectLecture(lectureApplyDto);
-		for (LectureApplyDto aaa : list) {
-			System.out.println(aaa.toString());
-		}
-		//강의 목록 넘겨주기
-		m.addAttribute("list", list);
-		return "/member/myCourse";
-	}
 
 	//회원 삭제
 	@PostMapping("/delete")
@@ -309,6 +291,8 @@ public class MemberController {
 		memberService.memberDelete(memberDto.getId());
 		return null;
 	}
+
+
 
 	//이메일 인증
 	@Autowired
@@ -321,7 +305,6 @@ public class MemberController {
 
 		return mailService.joinEmail(email);
 	}
-
 
 }
 

@@ -41,12 +41,12 @@
             <div>
                 <img src="<c:url value="/img/signup_user.png"/>">
                 <input type="text" id="id" name="id" placeholder="아이디(Ex.ghdrlfehd@naver.com)">
-                    <input type="button" id="idChkBtn" value="중복확인" onclick="" class="signup_btn">
+                    <input type="button" id="idChkBtn" value="중복확인" onclick="idCheck()" class="signup_btn">
             </div>
                 <div>
                     <img src="<c:url value="/img/signup_user.png"/>">
                     <input type="text" id="emailChkInput" name="인증번호" placeholder="인증번호를 입력해주세요." autocomplete="off">
-                    <input type="button" id="emailChkBtn" value="본인인증" onclick="" class="signup_btn">
+                    <input type="button" id="emailChkBtn" value="본인인증" class="signup_btn">
                 </div>
             <div>
                 <img src="<c:url value="/img/signup_pwd.png"/>">
