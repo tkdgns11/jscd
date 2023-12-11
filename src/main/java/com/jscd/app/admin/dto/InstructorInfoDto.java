@@ -12,23 +12,23 @@ public class InstructorInfoDto { //강사정보
 
         private Float hourPmt;
         private Date regDate;
-        private String frsidNmbr;
+        private String firstIdNo;
         private Date modifyDate;
-        private String lstidNmbr;
+        private String lastIdNo;
         private String etc;
 
         public InstructorInfoDto(){}
 
-        public InstructorInfoDto(String iscrNo, Integer mebrNo, String intro, Integer status, Float hourPmt, Date regDate, String frsidNmbr, Date modifyDate, String lstidNmbr, String etc) {
+        public InstructorInfoDto(String iscrNo, Integer mebrNo, String intro, Integer status, Float hourPmt, Date regDate, String firstIdNo, Date modifyDate, String lastIdNo, String etc) {
             this.iscrNo = iscrNo;
             this.mebrNo = mebrNo;
             this.intro = intro;
             this.status = status;
             this.hourPmt = hourPmt;
             this.regDate = regDate;
-            this.frsidNmbr = frsidNmbr;
+            this.firstIdNo = firstIdNo;
             this.modifyDate = modifyDate;
-            this.lstidNmbr = lstidNmbr;
+            this.lastIdNo = lastIdNo;
             this.etc = etc;
         }
 
@@ -90,12 +90,12 @@ public class InstructorInfoDto { //강사정보
             this.regDate = regDate;
         }
 
-        public String getFrsidNmbr() {
-            return frsidNmbr;
+        public String getfirstIdNo() {
+            return firstIdNo;
         }
 
-        public void setFrsidNmbr(String frsidNmbr) {
-            this.frsidNmbr = frsidNmbr;
+        public void setfirstIdNo(String firstIdNo) {
+            this.firstIdNo = firstIdNo;
         }
 
         public Date getModifyDate() {
@@ -106,12 +106,12 @@ public class InstructorInfoDto { //강사정보
             this.modifyDate = modifyDate;
         }
 
-        public String getLstidNmbr() {
-            return lstidNmbr;
+        public String getlastIdNo() {
+            return lastIdNo;
         }
 
-        public void setLstidNmbr(String lstidNmbr) {
-            this.lstidNmbr = lstidNmbr;
+        public void setlastIdNo(String lastIdNo) {
+            this.lastIdNo = lastIdNo;
         }
 
         public String getEtc() {
@@ -127,12 +127,12 @@ public class InstructorInfoDto { //강사정보
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
             InstructorInfoDto that = (InstructorInfoDto) o;
-            return Objects.equals(iscrNo, that.iscrNo) && Objects.equals(mebrNo, that.mebrNo) && Objects.equals(intro, that.intro) && Objects.equals(status, that.status) && Objects.equals(hourPmt, that.hourPmt) && Objects.equals(regDate, that.regDate) && Objects.equals(frsidNmbr, that.frsidNmbr) && Objects.equals(modifyDate, that.modifyDate) && Objects.equals(lstidNmbr, that.lstidNmbr) && Objects.equals(etc, that.etc);
+            return Objects.equals(iscrNo, that.iscrNo) && Objects.equals(mebrNo, that.mebrNo) && Objects.equals(intro, that.intro) && Objects.equals(status, that.status) && Objects.equals(hourPmt, that.hourPmt) && Objects.equals(regDate, that.regDate) && Objects.equals(firstIdNo, that.firstIdNo) && Objects.equals(modifyDate, that.modifyDate) && Objects.equals(lastIdNo, that.lastIdNo) && Objects.equals(etc, that.etc);
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(iscrNo, mebrNo, intro, status, hourPmt, regDate, frsidNmbr, modifyDate, lstidNmbr, etc);
+            return Objects.hash(iscrNo, mebrNo, intro, status, hourPmt, regDate, firstIdNo, modifyDate, lastIdNo, etc);
         }
 
         @Override
@@ -144,9 +144,9 @@ public class InstructorInfoDto { //강사정보
                     ", status=" + status +
                     ", hourPmt=" + hourPmt +
                     ", regDate=" + regDate +
-                    ", frsidNmbr='" + frsidNmbr + '\'' +
+                    ", firstIdNo='" + firstIdNo + '\'' +
                     ", modifyDate=" + modifyDate +
-                    ", lstidNmbr='" + lstidNmbr + '\'' +
+                    ", lastIdNo='" + lastIdNo + '\'' +
                     ", etc='" + etc + '\'' +
                     '}';
         }

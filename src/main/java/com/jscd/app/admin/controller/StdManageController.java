@@ -147,7 +147,7 @@ public class StdManageController {
 
         }
 
-        return "redirect:/onlyAdmin/stdManage/list?page=" + page;
+        return "redirect:/onlyAdmin/stdManage/list";
 
     }
 

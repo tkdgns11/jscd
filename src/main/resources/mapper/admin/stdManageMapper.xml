@@ -7,8 +7,8 @@
     <!--기수를 부여받으면, 학생 등급이 됨 -> insert 실행-->
     <insert id="insert" parameterType="StdManageDto">
         insert into stdManage
-            (mebrNo, codeNum, gisu, status)
-        values (#{mebrNo}, #{codeNum}, #{gisu}, #{status})
+            (mebrNo, gisu, status)
+        values (#{mebrNo}, #{gisu}, #{status})
     </insert>
 
     <!--    학생 인원수-->

@@ -13,12 +13,6 @@
         value  (#{mebrNo},now(),now())
     </insert>
 
-<!--    <insert id="insert" parameterType="InstructorInfoDto">-->
-<!--        insert into instructorInfo-->
-<!--            (iscrNo, mebrNo, intro, status, hourPmt)-->
-<!--        values (#{iscrNo}, #{mebrNo}, #{intro}, #{status}, #{hourPmt})-->
-<!--    </insert>-->
-
     <!--    강사 인원수-->
     <select id="count" resultType="int">
         select count(*)

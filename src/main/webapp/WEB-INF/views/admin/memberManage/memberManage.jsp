@@ -38,7 +38,7 @@
         <div class="infoValueBox">${memberDto.nickname}</div>
         <h4>생년월일</h4>
       <div class="infoValueBox">${memberDto.birth}</div>
-        <h4>폰번호</h4>
+        <h4>휴대전화</h4>
         <div class="infoValueBox">${memberDto.phone}</div>
         <h4>등급</h4>
         <input type="text" class="infoInputBox" readonly value="${memberDto.grade}">
