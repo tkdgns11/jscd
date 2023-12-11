@@ -1,22 +1,29 @@
 package com.jscd.app.board.qna.qnaController;
 
 import com.jscd.app.board.qna.qnaDao.AllqnaDao;
-import com.jscd.app.board.qna.qnaDto.AllqnaDto;
-import com.jscd.app.board.qna.qnaDto.AllqnacDto;
-import com.jscd.app.board.qna.qnaDto.PageHandler;
-import com.jscd.app.board.qna.qnaDto.SearchCondition;
+import com.jscd.app.board.qna.qnaDto.*;
 import com.jscd.app.board.qna.qnaService.AllqnaCmmtService;
 import com.jscd.app.board.qna.qnaService.AllqnaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.URI;
+import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,18 +48,17 @@ public class AllqnaController {
     }
 
     @PostMapping("/allqnaWrite")
-    public String write(Model model, AllqnaDto allqnaDto, HttpSession session, RedirectAttributes rttr) {
-
+    public String write(Model model, AllqnaDto allqnaDto, HttpSession session, RedirectAttributes rttr,
+                        @RequestPart(value = "imgFile", required = false) MultipartFile[] imgFile) {
         String writer = (String) session.getAttribute("id");
         allqnaDto.setWriter(writer);
 
+        ArrayList<AttachDto> imgList = insertImg(imgFile, session);
+
         try {
-            if (allqnaService.write(allqnaDto) != 1) {
-                throw new Exception("Write faild");
-            }
+            allqnaService.write(allqnaDto, imgList);
             rttr.addFlashAttribute("msg", "WRITE_OK");
             return "redirect:/board/qna/allqnaList";
-
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute(allqnaDto);
@@ -95,6 +101,10 @@ public class AllqnaController {
             AllqnaDto allqnaDto = allqnaService.read(allqnaNo);
             model.addAttribute("read", allqnaDto);
 
+
+            //이미지
+            List<AttachDto> attachList = allqnaService.getImg(allqnaNo);
+
             //댓글
             List<AllqnacDto> list = allqnaService.cmmtRead(allqnaNo);
             model.addAttribute("comment", list);
@@ -105,7 +115,7 @@ public class AllqnaController {
         }
 
 
-     return "board/qna/allqnaCont";
+        return "board/qna/allqnaCont";
     }
 
     //게시글 수정하기 버튼 눌렀을때
@@ -162,7 +172,7 @@ public class AllqnaController {
 
     //2-2 댓글 목록 (게시글 리스트에 있음)
 
-//
+    //
 //    2-3 댓글 수정
     @PostMapping("/cmmtModify")
     public String cmmtModify(@RequestBody AllqnacDto allqnacDto) throws Exception {
@@ -191,7 +201,6 @@ public class AllqnaController {
 //    }
 
 
-
     //2-4 댓글 삭제
     @PostMapping("/cmmtRemove")
     public String cmmtRemove(@RequestBody AllqnacDto allqnacDto) throws Exception {
@@ -200,7 +209,7 @@ public class AllqnaController {
         allqnaService.cmmtRemove(allqnaCNo);
 
         return "redirect:/board/qna/allqnaDetail?allqnaNo=" + allqnacDto.getAllqnaNo();
-        }
+    }
 
 
 //3-1 대댓글 등록
@@ -211,10 +220,91 @@ public class AllqnaController {
 //4 비밀글 제외
 //5 내가 작성한 글 보기
 
+    //이미지 띄우는 url⭐️
+    //원본
+    @GetMapping("/showImg")
+    public ResponseEntity<?> readImg(Integer allqnaNo, Model m) throws Exception {
+        //파일이름이름을 jsp에서 받기
+
+        List<AttachDto> attachDto = allqnaService.getImg(allqnaNo);
+        System.out.println("attachDto = " + attachDto);
+
+        ResponseEntity<byte[]> result = null;
+
+        //파일  객체 만들어서 이미지에 접근하는 경로 만들어주기
+        for (AttachDto attDto : attachDto) {
+            File file = new File(attDto.getSavePath() + attDto.getUploadPath());
+
+            try {
+                org.springframework.http.HttpHeaders header = new org.springframework.http.HttpHeaders();
+                header.add("Content-type", java.nio.file.Files.probeContentType(file.toPath()));
+                //result 3
+                result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }//for
+        return result;
+    }
 
 
+    //파일 변환 메서드
+    private ArrayList<AttachDto> insertImg(MultipartFile[] imgFile, HttpSession session) {
+        ArrayList<AttachDto> fileList = new ArrayList<>();
+        String savePath = session.getServletContext().getRealPath("/resources/uploadImg/");
 
+        File fileCheck = new File(savePath);
+
+        if (!fileCheck.exists()) fileCheck.mkdirs();
+
+        if (imgFile[0].isEmpty()) {
+        } else {
+            System.out.println("savePath = " + savePath);
+
+            for (MultipartFile file : imgFile) { //같은 파일명이 한 폴더에 저장될 때, 중복을 막아주는 로직
+                String fileName = file.getOriginalFilename();
+                String onlyFileName = fileName.substring(0, fileName.lastIndexOf("."));
+                String extention = fileName.substring(fileName.lastIndexOf("."));
+                String filePath = null;
+                int cnt = 0;
+
+                while (true) {
+                    if (cnt == 0) {
+                        filePath = onlyFileName + extention;
+                    } else {
+                        filePath = onlyFileName + "_" + cnt + extention;
+                    }
+                    File checkFile = new File(savePath + filePath);
+                    if (!checkFile.exists()) {
+                        break;
+                    }
+                    cnt++;
+                }//while
+                try {
+                    FileOutputStream fos = new FileOutputStream(new File(savePath + filePath));
+                    BufferedOutputStream bos = new BufferedOutputStream(fos);
+                    byte[] bytes = file.getBytes();
+                    bos.write(bytes);
+                    bos.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                AttachDto attachDto = new AttachDto();
+                attachDto.setFileName(fileName);
+                attachDto.setUploadPath(filePath);
+                attachDto.setSavePath(savePath);
+                fileList.add(attachDto);
+            }//for
+        }//else
+        return fileList;
+
+    }
 }
+
+
+
 
 
 

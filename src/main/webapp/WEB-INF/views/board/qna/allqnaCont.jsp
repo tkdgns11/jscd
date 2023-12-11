@@ -9,8 +9,6 @@
 
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/allqnaView.css"/>">
-
-
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 </head>
 <body>
@@ -44,11 +42,16 @@
             </dl>
         </div>
 
+        <div id="allqnaImg">
+            <img src='/board/qna/showImg?allqnaNo=${read.allqnaNo}' width="400px">
+        </div>
+
+
         <div id="cont">
             ${read.content}
         </div>
-    </div>
 
+    </div>
 
     <div id="buttonContainer">
         <button id="list" onclick="location.href='${path}/board/qna/allqnaList'">목록</button>
@@ -64,8 +67,6 @@
                 location.href = "${path}/board/qna/allqnaDelete?allqnaNo=${read.allqnaNo}";
             }
         }
-
-
     </script>
 
 
@@ -140,6 +141,7 @@
 
 
         <div id="bottom"></div>
+    </div>
     </div>
 
 
@@ -216,6 +218,35 @@
                 });
             };
         });
+
+
+    //이미지 띄우기
+    let allqnaNo = "${read.allqnaNo}";
+
+    let showImg = function (allqnaNo) {
+        $.ajax({
+            type: 'GET',       // 요청 메서드
+            url: '/board/qna/showImg?allqnaNo=' +allqnaNo,  // 요청 URI
+            contentType: "image/jpeg",
+            success: function (result) {
+                $("#allqnaImg").html("하이");
+            },
+            error: function () {
+                $("#allqnaImg").html("");
+            }
+        }); // $.ajax()
+    }
+
+
+
+    $(document).ready(function () {
+        // showImg(allqnaNo);
+
+    })
+
+
+
+
 
 
     </script>

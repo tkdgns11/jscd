@@ -27,5 +27,6 @@
 
 		<typeAlias alias="noticeDto" type="com.jscd.app.board.notice.dto.noticeDto"/>
 		<typeAlias alias="SearchCon" type="com.jscd.app.board.notice.dto.SearchCon"/>
+		<typeAlias alias="AttachDto" type="com.jscd.app.board.qna.qnaDto.AttachDto"/>
 	</typeAliases>
 </configuration>

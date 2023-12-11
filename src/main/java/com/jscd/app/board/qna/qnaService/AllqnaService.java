@@ -1,18 +1,16 @@
 package com.jscd.app.board.qna.qnaService;
 
-import com.jscd.app.board.qna.qnaDto.AllqnaDto;
-import com.jscd.app.board.qna.qnaDto.AllqnacDto;
-import com.jscd.app.board.qna.qnaDto.PageHandler;
-import com.jscd.app.board.qna.qnaDto.SearchCondition;
+import com.jscd.app.board.qna.qnaDto.*;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public interface AllqnaService {
 
     //1-1. 게시글 등록
-    int write(AllqnaDto allqnaDto) throws Exception;
+    int write(AllqnaDto allqnaDto, ArrayList<AttachDto> fileList) throws Exception;
     //1-2. 게시글 목록 읽기 (페이징 처리)
     List<AllqnaDto> getList(SearchCondition sc) throws Exception;
     //1-3 게시글 1개 읽기
@@ -48,5 +46,7 @@ public interface AllqnaService {
     //7 페이지 처리 및 검색
     int getSearchResultCnt(SearchCondition sc) throws Exception;
     List<AllqnaDto> getSearchResultPage(SearchCondition sc) throws Exception;
+    List<AttachDto> getImg(Integer allqnaNo)throws Exception;
+
 
 }

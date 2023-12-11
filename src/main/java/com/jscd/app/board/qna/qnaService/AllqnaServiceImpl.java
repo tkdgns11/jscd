@@ -3,11 +3,13 @@ package com.jscd.app.board.qna.qnaService;
 import com.jscd.app.board.qna.qnaDao.AllqnaDao;
 import com.jscd.app.board.qna.qnaDto.AllqnaDto;
 import com.jscd.app.board.qna.qnaDto.AllqnacDto;
+import com.jscd.app.board.qna.qnaDto.AttachDto;
 import com.jscd.app.board.qna.qnaDto.SearchCondition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -18,8 +20,22 @@ public class AllqnaServiceImpl implements AllqnaService {
 
     //1-1. 게시글 등록
     @Override
-    public int write(AllqnaDto allqnaDto) throws Exception {
-        return allqnaDao.insert(allqnaDto);
+    public int write(AllqnaDto allqnaDto, ArrayList<AttachDto> fileList)throws Exception{
+
+        int rowCnt = allqnaDao.insert(allqnaDto);
+        int result = 0;
+
+        if(rowCnt > 0) { //insert가 실행됐다면,
+            int allQnaNo = allqnaDao.selectAllQnaNo(); //가장 최신 번호
+
+            for(AttachDto file : fileList) {
+                file.setAllqnaNo(allQnaNo);
+                result += allqnaDao.insertFile(file);
+            }//for
+        }else { //실행되지 않았다면,
+            result = -1;
+        }
+        return result;
     }
     //1-2. 게시글 목록 읽기 (페이징 처리)
 
@@ -99,6 +115,13 @@ public class AllqnaServiceImpl implements AllqnaService {
     public List<AllqnaDto> getSearchResultPage(SearchCondition sc) throws Exception {
         return allqnaDao.searchSelectPage(sc);
     }
+
+    //이미지 가져오기
+    @Override
+    public List<AttachDto> getImg(Integer allqnaNo)throws Exception{
+        return allqnaDao.selectImg(allqnaNo);
+    }
+
 
 }
 
