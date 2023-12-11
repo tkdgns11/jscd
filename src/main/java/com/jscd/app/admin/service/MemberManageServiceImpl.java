@@ -3,10 +3,12 @@ package com.jscd.app.admin.service;
 import com.jscd.app.admin.dao.AdminDao;
 import com.jscd.app.admin.dao.InsturctorInfoDao;
 import com.jscd.app.admin.dao.MemberManageDao;
+import com.jscd.app.admin.dao.StdManageDao;
 import com.jscd.app.admin.domain.SearchCondition;
 import com.jscd.app.admin.dto.AdminDto;
 import com.jscd.app.admin.dto.InstructorInfoDto;
 import com.jscd.app.admin.dto.MemberManageDto;
+import com.jscd.app.admin.dto.StdManageDto;
 import com.jscd.app.member.dto.MemberDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,9 @@ public class MemberManageServiceImpl implements MemberManageService { //회원 �
 
     @Autowired
     AdminDao adminDao;
+
+    @Autowired
+    StdManageDao stdManageDao;
 
     @Override
     public int getCount() throws Exception {
@@ -70,6 +75,15 @@ public class MemberManageServiceImpl implements MemberManageService { //회원 �
                 rowCnt = adminDao.insertAdmin(adminDto);
 
             }
+        } else if (grade == 2) { //등급이 학생으로 변경됐다면,
+            StdManageDto stdManageDto = new StdManageDto();
+            for (int i = 0; i < mebrNo.size(); i++) {
+                stdManageDto.setMebrNo(mebrNo.get(i)); //회원 번호만 넣기
+                stdManageDto.setGisu(""); //기수 어떻게 들어갈지..일단 비우기
+                stdManageDto.setStatus(1);
+                rowCnt = stdManageDao.insert(stdManageDto);
+            }
+
         }
 
         return rowCnt;

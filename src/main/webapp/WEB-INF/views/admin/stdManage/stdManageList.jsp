@@ -63,7 +63,7 @@
                                                                       onclick="allChecked()"
                                                                       style="width:18px;height:18px;"></th>
                     <th class="infoListTh" style="width: 30px">No.</th>
-                    <th style="width: 80px;" class="infoListTh">아이디</th>
+                    <th style="width: 170px;" class="infoListTh">아이디</th>
                     <th style="width: 80px;" class="infoListTh">이름</th>
                     <th style="width:150px;" class="infoListTh">휴대전화</th>
                     <th style="width: 80px;" class="infoListTh">기수</th>

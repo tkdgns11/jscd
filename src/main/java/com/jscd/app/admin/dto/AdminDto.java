@@ -8,40 +8,40 @@ public class AdminDto { //관리자
     private Integer adminNo; //pk_관리자 고유 번호
     private String id;
     private String name;
-    private String alias;
+    private String nickname;
     private Date birth;
     private String pwd;
     private String phone;
     private Integer status;
     private Integer grade;
     private Date regDate;
-    private String frsidNmbr;
+    private String firstIdNo;
     private Date modifyDate;
-    private String lstidNmbr;
+    private String lastIdNo;
     private String etc;
 
 
-    public AdminDto(String id, String name, String alias, String pwd) {
+    public AdminDto(String id, String name, String nickname, String pwd) {
         this.id = id;
         this.name = name;
-        this.alias = alias;
+        this.nickname = nickname;
         this.pwd = pwd;
     }
 
-    public AdminDto(Integer adminNo, String id, String name, String alias, Date birth, String pwd, String phone, Integer status, Integer grade, Date regDate, String frsidNmbr, Date modifyDate, String lstidNmbr, String etc) {
+    public AdminDto(Integer adminNo, String id, String name, String nickname, Date birth, String pwd, String phone, Integer status, Integer grade, Date regDate, String firstIdNo, Date modifyDate, String lastIdNo, String etc) {
         this.adminNo = adminNo;
         this.id = id;
         this.name = name;
-        this.alias = alias;
+        this.nickname = nickname;
         this.birth = birth;
         this.pwd = pwd;
         this.phone = phone;
         this.status = status;
         this.grade = grade;
         this.regDate = regDate;
-        this.frsidNmbr = frsidNmbr;
+        this.firstIdNo = firstIdNo;
         this.modifyDate = modifyDate;
-        this.lstidNmbr = lstidNmbr;
+        this.lastIdNo = lastIdNo;
         this.etc = etc;
     }
 
@@ -72,12 +72,12 @@ public class AdminDto { //관리자
         this.name = name;
     }
 
-    public String getAlias() {
-        return alias;
+    public String getnickname() {
+        return nickname;
     }
 
-    public void setAlias(String alias) {
-        this.alias = alias;
+    public void setnickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public Date getBirth() {
@@ -128,12 +128,12 @@ public class AdminDto { //관리자
         this.regDate = regDate;
     }
 
-    public String getFrsidNmbr() {
-        return frsidNmbr;
+    public String getfirstIdNo() {
+        return firstIdNo;
     }
 
-    public void setFrsidNmbr(String frsidNmbr) {
-        this.frsidNmbr = frsidNmbr;
+    public void setfirstIdNo(String firstIdNo) {
+        this.firstIdNo = firstIdNo;
     }
 
     public Date getModifyDate() {
@@ -144,12 +144,12 @@ public class AdminDto { //관리자
         this.modifyDate = modifyDate;
     }
 
-    public String getLstidNmbr() {
-        return lstidNmbr;
+    public String getlastIdNo() {
+        return lastIdNo;
     }
 
-    public void setLstidNmbr(String lstidNmbr) {
-        this.lstidNmbr = lstidNmbr;
+    public void setlastIdNo(String lastIdNo) {
+        this.lastIdNo = lastIdNo;
     }
 
     public String getEtc() {
@@ -166,12 +166,12 @@ public class AdminDto { //관리자
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AdminDto adminDto = (AdminDto) o;
-        return Objects.equals(adminNo, adminDto.adminNo) && Objects.equals(id, adminDto.id) && Objects.equals(name, adminDto.name) && Objects.equals(alias, adminDto.alias) && Objects.equals(birth, adminDto.birth) && Objects.equals(pwd, adminDto.pwd) && Objects.equals(phone, adminDto.phone) && Objects.equals(status, adminDto.status) && Objects.equals(grade, adminDto.grade) && Objects.equals(regDate, adminDto.regDate) && Objects.equals(frsidNmbr, adminDto.frsidNmbr) && Objects.equals(modifyDate, adminDto.modifyDate) && Objects.equals(lstidNmbr, adminDto.lstidNmbr) && Objects.equals(etc, adminDto.etc);
+        return Objects.equals(adminNo, adminDto.adminNo) && Objects.equals(id, adminDto.id) && Objects.equals(name, adminDto.name) && Objects.equals(nickname, adminDto.nickname) && Objects.equals(birth, adminDto.birth) && Objects.equals(pwd, adminDto.pwd) && Objects.equals(phone, adminDto.phone) && Objects.equals(status, adminDto.status) && Objects.equals(grade, adminDto.grade) && Objects.equals(regDate, adminDto.regDate) && Objects.equals(firstIdNo, adminDto.firstIdNo) && Objects.equals(modifyDate, adminDto.modifyDate) && Objects.equals(lastIdNo, adminDto.lastIdNo) && Objects.equals(etc, adminDto.etc);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(adminNo, id, name, alias, birth, pwd, phone, status, grade, regDate, frsidNmbr, modifyDate, lstidNmbr, etc);
+        return Objects.hash(adminNo, id, name, nickname, birth, pwd, phone, status, grade, regDate, firstIdNo, modifyDate, lastIdNo, etc);
     }
 
     @Override
@@ -180,16 +180,16 @@ public class AdminDto { //관리자
                 "adminNo=" + adminNo +
                 ", id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", alias='" + alias + '\'' +
+                ", nickname='" + nickname + '\'' +
                 ", birth=" + birth +
                 ", pwd='" + pwd + '\'' +
                 ", phone='" + phone + '\'' +
                 ", status=" + status +
                 ", grade=" + grade +
                 ", regDate=" + regDate +
-                ", frsidNmbr='" + frsidNmbr + '\'' +
+                ", firstIdNo='" + firstIdNo + '\'' +
                 ", modifyDate=" + modifyDate +
-                ", lstidNmbr='" + lstidNmbr + '\'' +
+                ", lastIdNo='" + lastIdNo + '\'' +
                 ", etc='" + etc + '\'' +
                 '}';
     }

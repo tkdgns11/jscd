@@ -5,20 +5,18 @@ import java.util.Objects;
 
 public class StdManageDto { //학생
         private Integer mebrNo; //pk_회원 고유 번호
-        private Integer codeNum; //강의실 정보 코드
         private String gisu;
         private Integer status;
         private Date regDate;
-        private String frsidNmbr;
+        private String firstIdNo;
         private Date modifyDate;
-        private String lstidNmbr;
+        private String lastIdNo;
         private String etc;
 
         public StdManageDto(){}
 
-        public StdManageDto(Integer mebrNo, Integer codeNum, String gisu, Integer status) {
+        public StdManageDto(Integer mebrNo,String gisu, Integer status) {
             this.mebrNo = mebrNo;
-            this.codeNum = codeNum;
             this.gisu = gisu;
             this.status = status;
         }
@@ -29,14 +27,6 @@ public class StdManageDto { //학생
 
         public void setMebrNo(Integer mebrNo) {
             this.mebrNo = mebrNo;
-        }
-
-        public Integer getCodeNum() {
-            return codeNum;
-        }
-
-        public void setCodeNum(Integer codeNum) {
-            this.codeNum = codeNum;
         }
 
         public String getGisu() {
@@ -63,12 +53,12 @@ public class StdManageDto { //학생
             this.regDate = regDate;
         }
 
-        public String getFrsidNmbr() {
-            return frsidNmbr;
+        public String getfirstIdNo() {
+            return firstIdNo;
         }
 
-        public void setFrsidNmbr(String frsidNmbr) {
-            this.frsidNmbr = frsidNmbr;
+        public void setfirstIdNo(String firstIdNo) {
+            this.firstIdNo = firstIdNo;
         }
 
         public Date getModifyDate() {
@@ -79,12 +69,12 @@ public class StdManageDto { //학생
             this.modifyDate = modifyDate;
         }
 
-        public String getLstidNmbr() {
-            return lstidNmbr;
+        public String getlastIdNo() {
+            return lastIdNo;
         }
 
-        public void setLstidNmbr(String lstidNmbr) {
-            this.lstidNmbr = lstidNmbr;
+        public void setlastIdNo(String lastIdNo) {
+            this.lastIdNo = lastIdNo;
         }
 
         public String getEtc() {
@@ -100,25 +90,24 @@ public class StdManageDto { //학생
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
             StdManageDto that = (StdManageDto) o;
-            return Objects.equals(mebrNo, that.mebrNo) && Objects.equals(codeNum, that.codeNum) && Objects.equals(gisu, that.gisu) && Objects.equals(status, that.status) && Objects.equals(regDate, that.regDate) && Objects.equals(frsidNmbr, that.frsidNmbr) && Objects.equals(modifyDate, that.modifyDate) && Objects.equals(lstidNmbr, that.lstidNmbr) && Objects.equals(etc, that.etc);
+            return Objects.equals(mebrNo, that.mebrNo)&& Objects.equals(gisu, that.gisu) && Objects.equals(status, that.status) && Objects.equals(regDate, that.regDate) && Objects.equals(firstIdNo, that.firstIdNo) && Objects.equals(modifyDate, that.modifyDate) && Objects.equals(lastIdNo, that.lastIdNo) && Objects.equals(etc, that.etc);
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(mebrNo, codeNum, gisu, status, regDate, frsidNmbr, modifyDate, lstidNmbr, etc);
+            return Objects.hash(mebrNo, gisu, status, regDate, firstIdNo, modifyDate, lastIdNo, etc);
         }
 
         @Override
         public String toString() {
             return "StdManageDto{" +
                     "mebrNo=" + mebrNo +
-                    ", codeNum=" + codeNum +
                     ", gisu='" + gisu + '\'' +
                     ", status='" + status + '\'' +
                     ", regDate=" + regDate +
-                    ", frsidNmbr='" + frsidNmbr + '\'' +
+                    ", firstIdNo='" + firstIdNo + '\'' +
                     ", modifyDate=" + modifyDate +
-                    ", lstidNmbr='" + lstidNmbr + '\'' +
+                    ", lastIdNo='" + lastIdNo + '\'' +
                     ", etc='" + etc + '\'' +
                     '}';
         }

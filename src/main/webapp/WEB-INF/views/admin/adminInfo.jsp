@@ -33,10 +33,10 @@
         <h4>이름</h4>
         <div class="infoValueBox">${adminDto.name}</div>
         <h4>닉네임</h4>
-        <input type="text" name="alias" class="infoInputBox" readonly value="${adminDto.alias}">
+        <input type="text" name="nickname" class="infoInputBox" readonly value="${adminDto.nickname}">
         <h4>생년월일</h4>
         <div class="infoValueBox">${adminDto.birth}</div>
-        <h4>폰번호</h4>
+        <h4>휴대전화</h4>
         <div class="infoValueBox">${adminDto.phone}</div>
         <br>
         <button id="adminModifyBtn" onclick="location.href='/admin/modify'" style="margin-left: 150px">수정</button>
