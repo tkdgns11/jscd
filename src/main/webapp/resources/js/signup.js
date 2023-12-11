@@ -189,6 +189,30 @@ function  phoneValid(phone, phoneReg){
 
 }
 
+// 아이디 중복체크
+const idCheck = ()=>{
+    const id = document.getElementById('id').value;
+    console.log(id);
+
+    $.ajax({
+        type:'get',
+        url : '/member/idChk?id='+id,
+        success: (data)=>{
+            console.log("비교할 id = " + data);
+            if(id == data){
+                alert('사용할 수 없는 아이디입니다.');
+                $('#id').css("color", 'red');
+            }else{
+                alert('사용할 수 있는 아이디입니다.')
+                $('#id').css("color", 'green');
+            }
+        },
+        error : ()=>{
+            alert("서버 요청 실패")
+        }
+    }); // end ajax
+}
+
 /*
     작성자: 강정수
     작성일: 2023.11.19
@@ -208,6 +232,9 @@ $(document).ready(()=>{
                 console.log(data);
                 code=data;
                 alert("인증번호가 전송됐습니다.");
+            },
+            error : ()=>{
+                alert("서버 요청 실패")
             }
         }); // end ajax
     });

@@ -21,4 +21,6 @@ public interface BtApplicationDao {
     int update(BtApplicationDto dto) throws Exception;
 
     int insert(BtApplicationDto dto) throws Exception;
+
+    BtApplicationDto confirmApplcation(Map map) throws Exception;
 }

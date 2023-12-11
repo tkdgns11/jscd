@@ -19,11 +19,10 @@ import java.util.List;
 public class SmTrainingController {
     @Autowired
     SmApplicationService smApplicationService;
-
     @Autowired
     LstService lstService;
 
-    // 부트캠프 신청서 제출 메서드
+    // 부트캠프 신청서 제출시
     @PostMapping("smApplication")
     public String smApplicationWrite(SmApplicationDto smApplicationDto, Model m, RedirectAttributes rattr){
 
@@ -34,6 +33,7 @@ public class SmTrainingController {
                 throw new Exception("write err");
 
             rattr.addFlashAttribute("msg", "write ok");
+
             // 신청서 제출 후 결제 페이지로 이동해야 함.
             return null;
         } catch (Exception e) {
@@ -45,12 +45,17 @@ public class SmTrainingController {
             return "/applyTraining/smApplication";
         }
     }
-    // 세미나 신청서
-    @GetMapping("smApplication")
-    public String btTrainingApplication(Model m){
-        // registCode 얻어서 넘겨줘야 함.
-        // mebrNo 얻어서 넘겨줘야 함.
 
+    // 세미나 신청서 이동
+    @GetMapping("smApplication")
+    public String btTrainingApplication(LstRegistDto lstRegistDto, Model m){
+        // 1. 로그인 확인
+        // 2. 이미 신청한 회원인지 확인
+
+        // 3. 어떤 회원의 신청서인지 session id 얻어서 전달
+
+        // 4. registCode, title, lastPrice 얻어서 전달
+        m.addAttribute("lstRegistDto" + lstRegistDto);
         return "/applyTraining/smApplication";
     }
 
