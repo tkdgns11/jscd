@@ -47,4 +47,9 @@ public class BtApplicationServiceImpl implements BtApplicationService {
     public int write(BtApplicationDto dto) throws Exception{
         return btApplicationDao.insert(dto);
     }
+
+    @Override
+    public BtApplicationDto confirmApplcation(Map map) throws Exception{
+        return btApplicationDao.confirmApplcation(map);
+    }
 }

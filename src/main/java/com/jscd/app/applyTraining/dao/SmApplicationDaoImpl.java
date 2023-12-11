@@ -1,6 +1,5 @@
 package com.jscd.app.applyTraining.dao;
 
-import com.jscd.app.applyTraining.dto.BtApplicationDto;
 import com.jscd.app.applyTraining.dto.SmApplicationDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
