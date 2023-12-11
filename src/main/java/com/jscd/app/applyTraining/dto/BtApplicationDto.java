@@ -5,6 +5,7 @@ import java.util.Objects;
 
 public class BtApplicationDto {
     private Integer stfmNo;
+    private String id;
     private Integer registCode;
     private Integer mebrNo;
     private String level;
@@ -21,9 +22,14 @@ public class BtApplicationDto {
     private Integer lastIdNo;
     private String etc;
 
-    public BtApplicationDto() {}
+    public BtApplicationDto() {
+    }
 
-    public BtApplicationDto(String level, String levelDetail, String attdPps, String attdPath, String intro, String expect, String agreeYN) {
+    public BtApplicationDto(Integer stfmNo, String id, Integer registCode, Integer mebrNo, String level, String levelDetail, String attdPps, String attdPath, String intro, String expect, String agreeYN, String approvalYN, Date regDate, Integer firstIdNo, Date modifyDate, Integer lastIdNo, String etc) {
+        this.stfmNo = stfmNo;
+        this.id = id;
+        this.registCode = registCode;
+        this.mebrNo = mebrNo;
         this.level = level;
         this.levelDetail = levelDetail;
         this.attdPps = attdPps;
@@ -31,41 +37,12 @@ public class BtApplicationDto {
         this.intro = intro;
         this.expect = expect;
         this.agreeYN = agreeYN;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        BtApplicationDto that = (BtApplicationDto) o;
-        return Objects.equals(stfmNo, that.stfmNo) && Objects.equals(registCode, that.registCode) && Objects.equals(mebrNo, that.mebrNo) && Objects.equals(level, that.level) && Objects.equals(levelDetail, that.levelDetail) && Objects.equals(attdPps, that.attdPps) && Objects.equals(attdPath, that.attdPath) && Objects.equals(intro, that.intro) && Objects.equals(expect, that.expect) && Objects.equals(agreeYN, that.agreeYN) && Objects.equals(approvalYN, that.approvalYN) && Objects.equals(regDate, that.regDate) && Objects.equals(firstIdNo, that.firstIdNo) && Objects.equals(modifyDate, that.modifyDate) && Objects.equals(lastIdNo, that.lastIdNo) && Objects.equals(etc, that.etc);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(stfmNo, registCode, mebrNo, level, levelDetail, attdPps, attdPath, intro, expect, agreeYN, approvalYN, regDate, firstIdNo, modifyDate, lastIdNo, etc);
-    }
-
-    @Override
-    public String toString() {
-        return "BtApplicationDto{" +
-                "stfmNo=" + stfmNo +
-                ", registCode=" + registCode +
-                ", mebrNo=" + mebrNo +
-                ", level='" + level + '\'' +
-                ", levelDetail='" + levelDetail + '\'' +
-                ", attdPps='" + attdPps + '\'' +
-                ", attdPath='" + attdPath + '\'' +
-                ", intro='" + intro + '\'' +
-                ", expect='" + expect + '\'' +
-                ", agreeYN='" + agreeYN + '\'' +
-                ", approvalYN='" + approvalYN + '\'' +
-                ", regDate=" + regDate +
-                ", firstIdNo=" + firstIdNo +
-                ", modifyDate=" + modifyDate +
-                ", lastIdNo=" + lastIdNo +
-                ", etc='" + etc + '\'' +
-                '}';
+        this.approvalYN = approvalYN;
+        this.regDate = regDate;
+        this.firstIdNo = firstIdNo;
+        this.modifyDate = modifyDate;
+        this.lastIdNo = lastIdNo;
+        this.etc = etc;
     }
 
     public Integer getStfmNo() {
@@ -74,6 +51,14 @@ public class BtApplicationDto {
 
     public void setStfmNo(Integer stfmNo) {
         this.stfmNo = stfmNo;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public Integer getRegistCode() {
@@ -195,4 +180,29 @@ public class BtApplicationDto {
     public void setEtc(String etc) {
         this.etc = etc;
     }
+
+    @Override
+    public String toString() {
+        return "BtApplicationDto{" +
+                "stfmNo=" + stfmNo +
+                ", id='" + id + '\'' +
+                ", registCode=" + registCode +
+                ", mebrNo=" + mebrNo +
+                ", level='" + level + '\'' +
+                ", levelDetail='" + levelDetail + '\'' +
+                ", attdPps='" + attdPps + '\'' +
+                ", attdPath='" + attdPath + '\'' +
+                ", intro='" + intro + '\'' +
+                ", expect='" + expect + '\'' +
+                ", agreeYN='" + agreeYN + '\'' +
+                ", approvalYN='" + approvalYN + '\'' +
+                ", regDate=" + regDate +
+                ", firstIdNo=" + firstIdNo +
+                ", modifyDate=" + modifyDate +
+                ", lastIdNo=" + lastIdNo +
+                ", etc='" + etc + '\'' +
+                '}';
+    }
+
+
 }

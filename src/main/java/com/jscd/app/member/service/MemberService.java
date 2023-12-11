@@ -1,10 +1,14 @@
 package com.jscd.app.member.service;
 
+import com.jscd.app.applyTraining.dto.BtApplicationDto;
+import com.jscd.app.board.qna.qnaDto.AttachDto;
+import com.jscd.app.lecture.lstRegist.dto.LectureApplyDto;
 import com.jscd.app.member.dto.MemberDto;
 import org.springframework.beans.factory.annotation.Value;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.List;
 
 public interface MemberService {
 
@@ -17,5 +21,7 @@ public interface MemberService {
 
 	 //회원 약관 동의
 	 public int insertTermsYN(MemberDto memberDto) throws  Exception;
+	 //마이페이지 강의 현황
+	 public List<LectureApplyDto> selectLecture(LectureApplyDto lectureApplyDto) throws Exception;
 
 }

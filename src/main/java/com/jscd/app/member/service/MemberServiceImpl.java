@@ -6,6 +6,9 @@ import javax.swing.text.html.parser.Parser;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.jscd.app.applyTraining.dto.BtApplicationDto;
+import com.jscd.app.board.qna.qnaDto.AttachDto;
+import com.jscd.app.lecture.lstRegist.dto.LectureApplyDto;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +22,7 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
 
 
 /*
@@ -74,6 +78,11 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int insertTermsYN(MemberDto memberDto) throws Exception {
 		return memberDao.insertTermsYN(memberDto);
+	}
+
+	@Override
+	public List<LectureApplyDto> selectLecture(LectureApplyDto lectureApplyDto) throws Exception {
+		return memberDao.selectLecture(lectureApplyDto);
 	}
 
 
