@@ -7,8 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&family=Noto+Serif+KR:wght@900&display=swap"
           rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
-    <link rel="stylesheet" type="text/css" href="<c:url value="/css/home.css"/>">
-    <link rel="stylesheet" type="text/css" href="<c:url value="/css/adminInfoManage.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/adminInfoList.css"/>">
+
 </head>
 <script>
     let msg = "${param.msg}";
@@ -21,18 +21,19 @@
 </script>
 <body>
 
-<div id="content">
 
-    <header>
-        <jsp:include page="../adminHeader.jsp"/>
-    </header>
+<header>
+    <jsp:include page="../adminHeader.jsp"/>
+    <jsp:include page="../adminSidebar.jsp"/>
+</header>
 
-    <div id="infoListBox">
-        <div id="infoListTitle">
-            <h1>학생 정보 관리</h1>
-        </div>
+<div id="infoContentBox">
+    <div id="infoTitleBox">
+        <h1>학생 정보 관리</h1>
+    </div>
 
-        <div id="choiceBox">
+    <div id="infoSelectBox">
+        <div id="infoSearchBox">
             <form action="/onlyAdmin/stdManage/list" method="get">
                 <select name="option" id="selectList">
                     <option value="T" ${sc.option=='T' || sc.option=='' ? "selected" : ""}>이름</option>
@@ -43,81 +44,86 @@
                 <input type="text" name="keyword" type="text" value="${param.keyword}" id="keywordInput"
                        placeholder="검색어를 입력해주세요">
                 <button id="searchBtn">검색</button>
-
             </form>
-            <div id="allModify" style="margin-left: 25px">
-                <select name="status" id="status">
-                    <option value="1">수강예정</option>
-                    <option value="2">수강중</option>
-                    <option value="3">수료</option>
-                </select>
-                <button onclick="statusUpdate()" id="allModifyBtn">상태 변경</button>
-                <button onclick="stdDelete()" id="allDeleteBtn">삭제</button>
-            </div>
+
         </div>
-
-        <div id="infoListTable">
-            <table class="infoListTd">
-                <tr>
-                    <th class="infoListTh" style="width: 30px"><input type="checkbox" id="allCheckBox"
-                                                                      onclick="allChecked()"
-                                                                      style="width:18px;height:18px;"></th>
-                    <th class="infoListTh" style="width: 30px">No.</th>
-                    <th style="width: 170px;" class="infoListTh">아이디</th>
-                    <th style="width: 80px;" class="infoListTh">이름</th>
-                    <th style="width:150px;" class="infoListTh">휴대전화</th>
-                    <th style="width: 80px;" class="infoListTh">기수</th>
-                    <th style="width:200px;" class="infoListTh">상태</th>
-                    <th style="width:200px;" class="infoListTh">가입일</th>
-                </tr>
-
-
-                <c:forEach var="stdDto" items="${list}">
-                    <tr>
-                        <td class="infoListTd"><input type="checkbox"
-                                                      value="${stdDto.mebrNo}"
-                                                      class="chk"
-                                                      name="chk" onclick="chkClicked()" style="width:18px;height:18px;">
-                        </td>
-                        <td class="infoListTd">${stdDto.mebrNo}</td>
-                        <td class="infoListTd">${stdDto.id}</td>
-                        <td class="infoListTd">
-                            <a href="<c:url value="/onlyAdmin/stdManage/read?page=${sc.page}&mebrNo=${stdDto.mebrNo}"/>">${stdDto.name}</a>
-                        </td>
-                        <td class="infoListTd">${stdDto.phone}</td>
-                        <td class="infoListTd">${stdDto.gisu}</td>
-                        <td class="infoListTd">${stdDto.status}</td>
-                        <td class="infoListTd"><fmt:formatDate value="${stdDto.regDate}"
-                                                               pattern="yyyy-MM-dd"
-                                                               type="date"/></td>
-                    </tr>
-                </c:forEach>
-            </table>
-        </div>
-
-
-        <div id="infoNav">
-            <c:if test="${totalCnt==null || totalCnt==0}">
-                <p id="noContent">게시물이 없습니다.</p>
-            </c:if>
-            <c:if test="${totalCnt!=null && totalCnt!=0}">
-                <c:if test="${page.showPrev}">
-                    <a href="<c:url value="/onlyAdmin/stdManage/list${sc.getQueryString(page.beginPage-1)}"/>">&lt;</a>
-                </c:if>
-                <c:forEach var="i" begin="${page.beginPage}" end="${page.endPage}">
-                    <a href="<c:url value="/onlyAdmin/stdManage/list${sc.getQueryString(i)}"/>"
-                       class="naviPage${i==sc.page? "-active" : ""}">${i}</a>
-                </c:forEach>
-                <c:if test="${page.showNext}">
-                    <a href="<c:url value="/onlyAdmin/stdManage/list${sc.getQueryString(page.endPage+1)}"/>">&gt;</a>
-                </c:if>
-            </c:if>
+        <div id="infoUpdateBox">
+            <select name="status" id="status">
+                <option value="" disabled selected>변경할 상태를 골라주세요</option>
+                <option value="1">수강예정</option>
+                <option value="2">수강중</option>
+                <option value="3">수료</option>
+            </select>
+            <button onclick="statusUpdate()" id="allModifyBtn">수정</button>
         </div>
     </div>
-    <footer>
-        <jsp:include page="../../footer.jsp"/>
-    </footer>
 
+    <div id="infoListBox">
+        <table>
+            <tr>
+                <th style="width: 80px"><input type="checkbox" id="allCheckBox"
+                                               onclick="allChecked()"
+                ></th>
+                <th style="width: 80px">No.</th>
+                <th style="width: 250px;">아이디</th>
+                <th style="width: 100px;">이름</th>
+                <th style="width:250px;">휴대전화</th>
+                <th style="width: 100px;">기수</th>
+                <th style="width:100px;">상태</th>
+                <th style="width:250px;">가입일</th>
+                <th style="width:100px;"></th>
+            </tr>
+
+
+            <c:forEach var="stdDto" items="${list}">
+                <tr>
+                    <td><input type="checkbox"
+                               value="${stdDto.mebrNo}"
+                               class="chk"
+                               name="chk" onclick="chkClicked()">
+                    </td>
+                    <td>${stdDto.mebrNo}</td>
+                    <td>${stdDto.id}</td>
+                    <td>${stdDto.name}</td>
+                    <td>${stdDto.phone}</td>
+                    <td>${stdDto.gisu}</td>
+                    <td>${stdDto.status}</td>
+                    <td><fmt:formatDate value="${stdDto.regDate}"
+                                        pattern="yyyy-MM-dd"
+                                        type="date"/></td>
+                    <td>
+                        <button id="detailBtn"
+                                onclick="location.href='/onlyAdmin/stdManage/read?page=${sc.page}&mebrNo=${stdDto.mebrNo}'">
+                            상세보기
+                        </button>
+                    </td>
+                </tr>
+            </c:forEach>
+        </table>
+    </div>
+
+    <div style="position: absolute;top: 72%;left: 87.5%">
+    <button onclick="stdDelete()" id="allDeleteBtn">삭제</button>
+    </div>
+
+    <div id="infoNaviBox">
+        <c:if test="${totalCnt==null || totalCnt==0}">
+            <p id="noContent">게시물이 없습니다.</p>
+        </c:if>
+        <c:if test="${totalCnt!=null && totalCnt!=0}">
+            <c:if test="${page.showPrev}">
+                <a href="<c:url value="/onlyAdmin/stdManage/list${sc.getQueryString(page.beginPage-1)}"/>">&lt;&lt;</a>
+            </c:if>
+            <c:forEach var="i" begin="${page.beginPage}" end="${page.endPage}">
+                <a href="<c:url value="/onlyAdmin/stdManage/list${sc.getQueryString(i)}"/>"
+                   class="naviPage${i==sc.page? "-active" : ""}"
+                >${i}</a>
+            </c:forEach>
+            <c:if test="${page.showNext}">
+                <a href="<c:url value="/onlyAdmin/stdManage/list${sc.getQueryString(page.endPage+1)}"/>">&gt;&gt;</a>
+            </c:if>
+        </c:if>
+    </div>
 </div>
 
 <script>

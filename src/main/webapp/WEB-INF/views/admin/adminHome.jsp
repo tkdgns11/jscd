@@ -19,13 +19,11 @@
 <div id="content">
 	<header>
 		<jsp:include page="adminHeader.jsp"/>
+		<jsp:include page="adminSidebar.jsp"/>
 	</header>
 	<main style="background-color: pink; height: 900px" >
 		<h1>홈입니다.</h1>
 	</main>
-	<footer>
-		<jsp:include page="../footer.jsp"/>
-	</footer>
 </div>
 </body>
 </html>

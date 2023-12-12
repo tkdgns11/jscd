@@ -306,5 +306,17 @@ public class MemberController {
 		return mailService.joinEmail(email);
 	}
 
+	//찾아오시는 길
+	@GetMapping("/jscdRoad")
+	public String road(){
+		return "jsRoad";
+	}
+
+	//학원 소개
+	@GetMapping("/jscdIntro")
+	public String intro(){
+		return "jsIntro";
+	}
+
 }
 

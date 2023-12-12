@@ -9,117 +9,119 @@
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&family=Noto+Serif+KR:wght@900&display=swap"
           rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
-    <link rel="stylesheet" type="text/css" href="<c:url value="/css/home.css"/>">
-    <link rel="stylesheet" type="text/css" href="<c:url value="/css/adminInfoManage.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/adminInfoList.css"/>">
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+
 </head>
 <script>
     let msg = "${param.msg}";
     if (msg == "MOD_OK") alert("성공적으로 수정되었습니다.");
     if (msg == "READ_ERR") alert("정보를 가져올 수 없습니다. 다시 시도해주세요.");
     if (msg == "MOD_ERR") alert("수정에 실패했습니다. 다시 시도해 주세요.");
-
-
 </script>
 <body>
-<div id="content">
 
-    <header>
-        <jsp:include page="../adminHeader.jsp"/>
-    </header>
+<header>
+    <jsp:include page="../adminHeader.jsp"/>
+    <jsp:include page="../adminSidebar.jsp"/>
+</header>
 
+<div id="infoContentBox">
 
-    <div id="infoListBox">
-        <div id="infoListTitle">
-            <h1>강사 정보 관리</h1>
+    <div id="infoTitleBox">
+        <h1>강사 정보 관리</h1>
+    </div>
+
+    <div id="infoSelectBox">
+        <div id="infoSearchBox">
+        <form action="/onlyAdmin/instructor/list" method="get">
+            <select name="option">
+                <option value="T" ${sc.option=='T' || sc.option=='' ? "selected" : ""}>이름</option>
+                <option value="W" ${sc.option=='W' || sc.option=='' ? "selected" : ""}>아이디</option>
+                <option value="R" ${sc.option=='R' || sc.option=='' ? "selected" : ""}>상태</option>
+            </select>
+
+            <input type="text" name="keyword" type="text" value="${param.keyword}" id="keywordInput"
+                   placeholder="검색어를 입력해주세요">
+            <button id="searchBtn">검색</button>
+        </form>
         </div>
-
-        <div id="choiceBox">
-            <form action="/onlyAdmin/instructor/list" method="get">
-                <select name="option" id="selectList">
-                    <option value="T" ${sc.option=='T' || sc.option=='' ? "selected" : ""}>이름</option>
-                    <option value="W" ${sc.option=='W' || sc.option=='' ? "selected" : ""}>아이디</option>
-                    <option value="R" ${sc.option=='R' || sc.option=='' ? "selected" : ""}>상태</option>
-                </select>
-
-                <input type="text" name="keyword" type="text" value="${param.keyword}" id="keywordInput"
-                       placeholder="검색어를 입력해주세요">
-                <button id="searchBtn">검색</button>
-
-            </form>
-
-            <div id="allModify">
-                <select name="status" id="status">
-                    <option value="1">이직</option>
-                    <option value="2">재직</option>
-                    <option value="3">휴직</option>
-                    <option value="4">퇴직</option>
-                </select>
-                <button onclick="statusUpdate()" id="allModifyBtn">상태 변경</button>
-            </div>
-        </div>
-
-
-        <div id="infoListTable">
-            <table id="listTable">
-                <tr>
-                    <th class="infoListTh" style="width: 30px"><input type="checkbox" id="allCheckBox"
-                                                                      onclick="allChecked()"
-                                                                      style="width:18px;height:18px;"></th>
-                    <th class="infoListTh" style="width: 30px">No.</th>
-                    <th style="width: 170px;" class="infoListTh">아이디</th>
-                    <th style="width: 80px;" class="infoListTh">이름</th>
-                    <th style="width:150px;" class="infoListTh">휴대전화</th>
-                    <th style="width: 80px;" class="infoListTh">상태</th>
-                    <th style="width:200px;" class="infoListTh">가입일</th>
-                </tr>
-                <c:forEach var="instructorDto" items="${list}">
-
-                    <tr>
-                        <td class="infoListTd"><input type="checkbox"
-                                                      value="${instructorDto.mebrNo}"
-                                                      class="chk"
-                                                      name="chk" onclick="chkClicked()" style="width:18px;height:18px;"
-                        >
-                        </td>
-                        <td class="infoListTd">${instructorDto.iscrNo}</td>
-                        <td class="infoListTd">${instructorDto.id}</td>
-                        <td class="infoListTd">
-                            <a href="<c:url value="/onlyAdmin/instructor/read?page=${sc.page}&iscrNo=${instructorDto.iscrNo}"/>">${instructorDto.name}</a>
-                        </td>
-                        <td class="infoListTd">${instructorDto.phone}</td>
-                        <td class="infoListTd" name="statusTd">${instructorDto.status}</td>
-                        <td class="infoListTd"><fmt:formatDate
-                                value="${instructorDto.regDate}"
-                                pattern="yyyy-MM-dd"
-                                type="date"/></td>
-                    </tr>
-                </c:forEach>
-            </table>
-        </div>
-
-        <div id="infoNav">
-            <c:if test="${page.totalCnt==null || page.totalCnt==0}">
-                <p id="noContent">게시물이 없습니다.</p>
-            </c:if>
-            <c:if test="${page.totalCnt!=null && page.totalCnt!=0}">
-                <c:if test="${page.showPrev}">
-                    <a href="<c:url value="/onlyAdmin/instructor/list${sc.getQueryString(page.beginPage-1)}"/>">&lt;</a>
-                </c:if>
-                <c:forEach var="i" begin="${page.beginPage}" end="${page.endPage}">
-                    <a href="<c:url value="/onlyAdmin/instructor/list${sc.getQueryString(i)}"/>" class="naviPage">${i}</a>
-                </c:forEach>
-
-                <c:if test="${page.showNext}">
-                    <a href="<c:url value="/onlyAdmin/instructor/list${sc.getQueryString(page.endPage+1)}"/>">&gt;</a>
-                </c:if>
-            </c:if>
+        <div id="infoUpdateBox">
+        <select name="status" id="status">
+            <option value="" disabled selected>변경할 상태를 골라주세요</option>
+            <option value="1">이직</option>
+            <option value="2">재직</option>
+            <option value="3">휴직</option>
+            <option value="4">퇴직</option>
+        </select>
+        <button onclick="statusUpdate()" id="allModifyBtn">수정</button>
         </div>
     </div>
 
-    <footer>
-        <jsp:include page="../../footer.jsp"/>
-    </footer>
+
+    <div id="infoListBox">
+        <table>
+            <tr>
+                <th style="width: 80px"><input type="checkbox" id="allCheckBox"
+                                                                  onclick="allChecked()"
+                ></th>
+                <th style="width: 80px">No.</th>
+                <th style="width: 250px;">아이디</th>
+                <th style="width: 100px;">이름</th>
+                <th style="width:250px;">휴대전화</th>
+                <th style="width: 100px;">상태</th>
+                <th style="width:250px;">가입일</th>
+                <th style="width:100px;"></th>
+            </tr>
+            <c:forEach var="instructorDto" items="${list}">
+
+                <tr>
+                    <td><input type="checkbox"
+                                                  value="${instructorDto.mebrNo}"
+                                                  class="chk"
+                                                  name="chk" onclick="chkClicked()"
+                    >
+                    </td>
+                    <td>${instructorDto.iscrNo}</td>
+                    <td>${instructorDto.id}</td>
+                    <td>${instructorDto.name}</td>
+                    <td>${instructorDto.phone}</td>
+                    <td name="statusTd">${instructorDto.status}</td>
+                    <td><fmt:formatDate
+                            value="${instructorDto.regDate}"
+                            pattern="yyyy-MM-dd"
+                            type="date"/></td>
+                    <td>
+                        <button id="detailBtn" onclick="location.href='/onlyAdmin/instructor/read?page=${sc.page}&iscrNo=${instructorDto.iscrNo}'">
+                            상세보기
+                        </button>
+                    </td>
+
+                </tr>
+            </c:forEach>
+        </table>
+    </div>
+
+    <div id="infoNaviBox">
+        <c:if test="${page.totalCnt==null || page.totalCnt==0}">
+            <p id="noContent">게시물이 없습니다.</p>
+        </c:if>
+        <c:if test="${page.totalCnt!=null && page.totalCnt!=0}">
+            <c:if test="${page.showPrev}">
+                <a href="<c:url value="/onlyAdmin/instructor/list${sc.getQueryString(page.beginPage-1)}"/>">&lt;&lt;</a>
+            </c:if>
+            <c:forEach var="i" begin="${page.beginPage}" end="${page.endPage}">
+                <a href="<c:url value="/onlyAdmin/instructor/list${sc.getQueryString(i)}"/>"
+                   class="naviPage${i==sc.page? "-active" : ""}"
+                >${i}</a>
+            </c:forEach>
+
+            <c:if test="${page.showNext}">
+                <a href="<c:url value="/onlyAdmin/instructor/list${sc.getQueryString(page.endPage+1)}"/>">&gt;&gt;</a>
+            </c:if>
+        </c:if>
+    </div>
+
 
 </div>
 
