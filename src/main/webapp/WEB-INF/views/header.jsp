@@ -41,8 +41,8 @@
                 <div class="Menu">
                     <ul class="submenu">
                         <li><a href="#">원장님 소개</a></li>
-                        <li><a href="#">정석코딩 소개</a></li>
-                        <li><a href="#">찾아오시는 길</a></li>
+                        <li><a href="/member/jscdIntro">정석코딩 소개</a></li>
+                        <li><a href="/member/jscdRoad">찾아오시는 길</a></li>
                     </ul>
                     <ul class="submenu">
                         <li><a href="<c:url value="/btTraining/list"/>#">부트캠프 신청</a></li>
@@ -65,8 +65,8 @@
                 <p>ABOUT</p>
                 <ul class="Menu gainMenu">
                     <li><a href="#">원장님 소개</a></li>
-                    <li><a href="#">정석코딩 소개</a></li>
-                    <li><a href="#">찾아오시는 길</a></li>
+                    <li><a href="/member/jscdIntro">정석코딩 소개</a></li>
+                    <li><a href="/member/jscdRoad">찾아오시는 길</a></li>
                 </ul>
             </li>
             <li id="apply">

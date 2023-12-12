@@ -109,11 +109,11 @@
             <span class="arrow up"></span>
         </div>
         <div class="box-content">
-            <a href="#">학생정보</a>
+            <a href="/onlyAdmin/stdManage/list">학생정보</a>
             <a href="#">성적관리</a>
             <a href="#">출결관리</a>
-            <a href="#">강사관리</a>
-            <a href="#">회원관리</a>
+            <a href="/onlyAdmin/instructor/list">강사관리</a>
+            <a href="/onlyAdmin/memberManage/list">회원관리</a>
         </div>
     </div>
     <div class="box">
