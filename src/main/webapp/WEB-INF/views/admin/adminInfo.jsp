@@ -7,7 +7,7 @@
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/home.css"/>">
-    <link rel="stylesheet" type="text/css" href="<c:url value="/css/adminInfoManage.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/adminInfoDetail.css"/>">
 
 </head>
 <body>

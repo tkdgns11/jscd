@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&family=Noto+Serif+KR:wght@900&display=swap"
           rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
-        <link rel="stylesheet" type="text/css" href="<c:url value="/css/adminInfoManage.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/adminInfoList.css"/>">
 
 </head>
 <script>
@@ -102,7 +102,7 @@
         </table>
     </div>
 
-    <div style="position: absolute;top: 64%;left: 87.5%">
+    <div style="position: absolute;top: 72%;left: 87.5%">
     <button onclick="stdDelete()" id="allDeleteBtn">삭제</button>
     </div>
 

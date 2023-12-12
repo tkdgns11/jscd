@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&family=Noto+Serif+KR:wght@900&display=swap"
           rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
-        <link rel="stylesheet" type="text/css" href="<c:url value="/css/adminInfoManage.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/adminInfoList.css"/>">
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 
 </head>
