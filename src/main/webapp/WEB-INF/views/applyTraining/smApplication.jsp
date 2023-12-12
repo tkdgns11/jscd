@@ -18,7 +18,7 @@
     <hr>
 
     <form id="smApplicationForm" method="post">
-        <input type="hidden" name="id" value="">
+        <input type="hidden" name="id" value="${id}">
         <input type="hidden" name="registCode" value="${lstRegistDto.registCode}">
         <input type="hidden" name="title" value="${lstRegistDto.title}">
         <input type="hidden" name="lastPrice" value="${lstRegistDto.lastPrice}">

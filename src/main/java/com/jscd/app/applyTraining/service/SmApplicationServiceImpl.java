@@ -53,4 +53,9 @@ public class SmApplicationServiceImpl implements SmApplicationService {
     public int lectureApplyInsert(SmApplicationDto dto) throws Exception{
         return smApplicationDao.lectureApplyInsert(dto);
     }
+
+    @Override
+    public SmApplicationDto confirmApplcation(SmApplicationDto dto) throws Exception{
+        return smApplicationDao.confirmApplcation(dto);
+    }
 }
