@@ -60,7 +60,7 @@ public class BtApplicationDaoImpl implements BtApplicationDao {
     }
 
     @Override
-    public BtApplicationDto confirmApplcation(Map map) throws Exception{
-        return session.selectOne(namespace + "confirmApplication", map);
+    public BtApplicationDto confirmApplcation(BtApplicationDto dto) throws Exception{
+        return session.selectOne(namespace + "confirmApplication", dto);
     }
 }

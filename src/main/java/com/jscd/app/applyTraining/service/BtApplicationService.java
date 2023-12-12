@@ -21,5 +21,5 @@ public interface BtApplicationService {
     int write(BtApplicationDto dto) throws Exception;
 
     int lectureApplyInsert(BtApplicationDto dto) throws Exception;
-    BtApplicationDto confirmApplcation(Map map) throws Exception;
+    BtApplicationDto confirmApplcation(BtApplicationDto dto) throws Exception;
 }

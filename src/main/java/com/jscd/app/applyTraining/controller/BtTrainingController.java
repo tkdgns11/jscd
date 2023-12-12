@@ -4,6 +4,8 @@ import com.jscd.app.applyTraining.dto.BtApplicationDto;
 import com.jscd.app.applyTraining.service.BtApplicationService;
 import com.jscd.app.lecture.lstRegist.dto.LstRegistDto;
 import com.jscd.app.lecture.lstRegist.service.LstService;
+import com.jscd.app.member.dto.MemberDto;
+import com.jscd.app.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,9 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/btTraining")
@@ -25,12 +25,12 @@ public class BtTrainingController {
     BtApplicationService btApplicationService;
     @Autowired
     LstService lstService;
+    @Autowired
+    MemberService memberService;
 
     // 부트캠프 신청서 제출
     @PostMapping("btApplication")
     public String btApplicationWrite(BtApplicationDto btApplicationDto, Model m, RedirectAttributes rattr){
-
-        System.out.println("btApplicationDto = " + btApplicationDto);
 
         try {
             int cnt = btApplicationService.write(btApplicationDto);
@@ -54,59 +54,75 @@ public class BtTrainingController {
 
     // 부트캠프 신청서 이동
     @GetMapping("btApplication")
-    public String btApplicationWrite(LstRegistDto lstRegistDto, Model m, RedirectAttributes rattr, HttpServletRequest request){
+    public String btTrainingApplication(LstRegistDto lstRegistDto, Model m, HttpServletRequest request){
 
-        // 1. 로그인 상태 확인
         // 이미 생성된 세션이 있으면 기존의 세션 반환 없으면 null 반환
         HttpSession session = request.getSession(false);
 
+        // 신청한 강의 번호, session id 얻기
         String id = (String)session.getAttribute("id");
         System.out.println("id = " + id);
+        Integer registCode = lstRegistDto.getRegistCode();
 
-        // 2. 로그인 상태라면 이미 신청한 회원인지 확인
+        try {
+            MemberDto memberDto = memberService.memberSelect(id);
+            Integer mebrNo = memberDto.getMebrNo();
+            System.out.println("mebrNo = " + mebrNo);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // 1. 로그인 상태라면 이미 신청한 회원인지 확인
         if(id != null){
 
-            // 2.1 신청한 강의 번호 얻기
-            Integer registCode = lstRegistDto.getRegistCode();
+            // 1.2 신청한 강의 번호, session id를 btApplicationDto에 담기
+            BtApplicationDto btApplicationDto = new BtApplicationDto();
+            btApplicationDto.setRegistCode(registCode);
+            btApplicationDto.setId(id);
 
-            // 2.2 신청한 강의 번호, session id를 map에 담기
-            Map map = new HashMap();
-            map.put("registCode", registCode);
-            map.put("id", id);
-
-            // 2.3 map으로 검색
+            // 1.3  btApplicationDto 이용하여 검색
             try {
-                BtApplicationDto btApplicationDto = btApplicationService.confirmApplcation(map);
-
-                // 2.4 검색 결과가 중복 신청이라면 예외 발생
-                if (btApplicationDto != null)
+                BtApplicationDto btApplicationDto2 = btApplicationService.confirmApplcation(btApplicationDto);
+                System.out.println("btApplicationDto2 검색 결과 = " + btApplicationDto2);
+                // 1.4.1 검색 결과가 중복 신청이라면 예외 발생
+                if (btApplicationDto2 != null)
                     throw new Exception("duplicate application");
 
-                // 3. 중복 신청이 아니라면 id, registCode, title, lastPrice를 신청서 페이지로 전달
+                // 1.5 검색 결과가 중복이 아니라면
+                // mebrNo, id, registCode, title, lastPrice를 신청서 페이지로 전달
                 m.addAttribute("id" + id);
                 m.addAttribute("lstRegistDto" + lstRegistDto);
                 return "/applyTraining/btApplication";
             } catch (Exception e) {
-                // 미완성
-                // 2.5 신청 중복 메시지와 함께 리턴
+                // 1.4.2 신청 중복 메시지와 함께 리턴
                 e.printStackTrace();
-                rattr.addFlashAttribute("msg", "duplicate application");
-                return null;
-            }
+                System.out.println("중복 신청 발생");
+                try {
+                    LstRegistDto lstRegistDto2 = lstService.bootCampRead(registCode);
+
+                    m.addAttribute("lstRegistDto", lstRegistDto2);
+                    m.addAttribute("msg", "duplicate application");
+                    return "/applyTraining/bootCamp";
+                } catch (Exception e2) {
+                    e2.printStackTrace();
+                    return "redirect:/btTraining/list";
+                }// try catch end
+            }// try catch end
 
         }else{
-            // 미완성
-            // 로그인 상태가 아니면 메세지 전송
-            m.addAttribute("msg", "login required");
-            // 로그인 페이지로 이동
-            System.out.println("no session");
-            System.out.println("url = " + request.getRequestURI());
+            // 3. 로그인 상태가 아니면
+            System.out.println("로그인 상태가 아님");
+            try {
+                LstRegistDto lstRegistDto2 = lstService.bootCampRead(registCode);
 
-            return "redirect:/member/login";
-        }
-
-//        m.addAttribute("lstRegistDto" + lstRegistDto);
-//        return "/applyTraining/btApplication";
+                m.addAttribute("lstRegistDto", lstRegistDto2);
+                m.addAttribute("msg", "login required");
+                return "/applyTraining/bootCamp";
+            } catch (Exception e) {
+                e.printStackTrace();
+                return "redirect:/btTraining/list";
+            }// try catch end
+        }// if else end
     }
 
     // 부트캠프 리스트 이동
@@ -123,7 +139,8 @@ public class BtTrainingController {
 
     // 부트캠프 세부페이지 이동
     @GetMapping("/read")
-    public String bootCampRead(Integer registCode, Model m) throws Exception {
+    public String bootCampRead(Integer registCode, Model m, HttpServletRequest request) throws Exception {
+
         try {
             LstRegistDto lstRegistDto = lstService.bootCampRead(registCode);
             m.addAttribute(lstRegistDto);

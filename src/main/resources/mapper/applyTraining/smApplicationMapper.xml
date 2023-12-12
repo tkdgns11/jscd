@@ -47,6 +47,12 @@
         where smfmNo = #{smfmNo}
     </update>
 
+    <!--    폼 제출시 lectureapply에도 insert-->
+    <insert id="lectureApplyInsert" parameterType="SmApplicationDto">
+        insert into lectureapply(id, registCode)
+        values (#{id}, #{registCode})
+    </insert>
+
     <!--    (신청자 전용) 신청서 제출시 사용하는 insert-->
     <insert id="insert" parameterType="SmApplicationDto">
         insert into smstform (mebrNo, id, registCode, title, lastPrice, level, levelDetail, attdPps,
@@ -55,10 +61,10 @@
                 #{attdPath}, #{intro}, #{expect})
     </insert>
 
-    <!--    폼 제출시 lectureapply에도 insert-->
-    <insert id="lectureApplyInsert" parameterType="SmApplicationDto">
-        insert into lectureapply(id, registCode)
-        values (#{id}, #{registCode})
-    </insert>
+    <!--    (신청자 전용) 신청서 페이지 이동시 이미 신청했는지 확인-->
+    <select id="confirmApplication" parameterType="SmApplicationDto" resultType="SmApplicationDto">
+        select * from smstform
+        where registCode = #{registCode} and id = #{id}
+    </select>
 
 </mapper>

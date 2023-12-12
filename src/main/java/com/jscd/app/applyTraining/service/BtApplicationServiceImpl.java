@@ -54,7 +54,7 @@ public class BtApplicationServiceImpl implements BtApplicationService {
     }
 
     @Override
-    public BtApplicationDto confirmApplcation(Map map) throws Exception{
-        return btApplicationDao.confirmApplcation(map);
+    public BtApplicationDto confirmApplcation(BtApplicationDto dto) throws Exception{
+        return btApplicationDao.confirmApplcation(dto);
     }
 }
