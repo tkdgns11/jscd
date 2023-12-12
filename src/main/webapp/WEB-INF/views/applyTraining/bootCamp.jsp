@@ -37,6 +37,6 @@
     <li>${lstRegistDto.lastPrice}</li>
     <li>${lstRegistDto.location}</li>
     <a href="<c:url value='/btTraining/btApplication?registCode=${lstRegistDto.registCode}&title=${lstRegistDto.title}&lastPrice=${lstRegistDto.lastPrice}'/>"><button type="button">수강 신청 하기</button></a>
-
+    <a href="<c:url value='/btTraining/list'/>"><button type="button">목록</button></a>
 </body>
 </html>

@@ -1,6 +1,7 @@
 package com.jscd.app.applyTraining.dao;
 
 import com.jscd.app.applyTraining.dto.BtApplicationDto;
+import com.jscd.app.applyTraining.dto.SearchApplication;
 import com.jscd.app.applyTraining.dto.SmApplicationDto;
 
 import java.util.List;
@@ -26,4 +27,8 @@ public interface SmApplicationDao {
     int lectureApplyInsert(SmApplicationDto dto) throws Exception;
 
     SmApplicationDto confirmApplcation(SmApplicationDto dto) throws Exception;
+
+    List<SmApplicationDto> searchSelectPage(SearchApplication sa) throws Exception;
+
+    int searchResultCnt(SearchApplication sa) throws Exception;
 }

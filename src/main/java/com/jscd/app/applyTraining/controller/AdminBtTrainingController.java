@@ -2,6 +2,7 @@ package com.jscd.app.applyTraining.controller;
 
 import com.jscd.app.applyTraining.dto.BtApplicationDto;
 import com.jscd.app.applyTraining.dto.ApplicationHandler;
+import com.jscd.app.applyTraining.dto.SearchApplication;
 import com.jscd.app.applyTraining.service.BtApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -63,25 +64,20 @@ public class AdminBtTrainingController {
     }
 
     @GetMapping("list")
-    public String btApplicationList(Integer page, Integer pageSize, Model m){
-
-        if (page == null) page = 1;
-        if (pageSize == null) pageSize = 10;
+    public String btApplicationList(SearchApplication sa, Model m){
 
         try {
-            int totalCnt = btApplicationService.getCount();
+            int totalCnt = btApplicationService.getSearchResulCnt(sa);
+            System.out.println("totalCnt = " + totalCnt);
 
-            ApplicationHandler ah = new ApplicationHandler(totalCnt, page, pageSize);
-            Map map = new HashMap();
-            map.put("offset", (page - 1) * pageSize);
-            map.put("pageSize", pageSize);
+            ApplicationHandler applicationHandler = new ApplicationHandler(totalCnt, sa);
+            System.out.println("ApplicationHandler = " + applicationHandler);
 
-            List<BtApplicationDto> list = btApplicationService.getPage(map);
+            List<BtApplicationDto> list = btApplicationService.getSearchResultpage(sa);
 
+            m.addAttribute("totalCnt", totalCnt);
             m.addAttribute("list", list);
-            m.addAttribute("ah", ah);
-            m.addAttribute("page", page);
-            m.addAttribute("pageSize", pageSize);
+            m.addAttribute("ah", applicationHandler);
         } catch (Exception e) {
             e.printStackTrace();
         }

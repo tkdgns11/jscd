@@ -1,6 +1,7 @@
 package com.jscd.app.applyTraining.dao;
 
 import com.jscd.app.applyTraining.dto.BtApplicationDto;
+import com.jscd.app.applyTraining.dto.SearchApplication;
 import com.jscd.app.applyTraining.dto.SmApplicationDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,5 +64,15 @@ public class SmApplicationDaoImpl implements SmApplicationDao {
     @Override
     public SmApplicationDto confirmApplcation(SmApplicationDto dto) throws Exception{
         return session.selectOne(namespace + "confirmApplication", dto);
+    }
+
+    @Override
+    public List<SmApplicationDto> searchSelectPage(SearchApplication sa) throws Exception{
+        return session.selectList(namespace + "searchSelectPage", sa);
+    }
+
+    @Override
+    public int searchResultCnt(SearchApplication sa) throws Exception{
+        return session.selectOne(namespace + "searchResultCnt", sa);
     }
 }

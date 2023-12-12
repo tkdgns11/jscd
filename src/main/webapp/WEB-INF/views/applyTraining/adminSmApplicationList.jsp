@@ -18,13 +18,13 @@
     <%--    검색    --%>
     <form action="<c:url value="/adminSmTraining/list"/>" method="get">
         <select name="option">
-            <option >전체</option>
-            <option >강의 이름</option>
-            <option >신청자 계정</option>
+            <option value="all" ${ah.sa.option=='all' || ah.sa.option=='' ? "selected" : ""}>전체</option>
+            <option value="title" ${ah.sa.option=='title' ? "selected" : ""}>강의 이름</option>
+            <option value="id" ${ah.sa.option=='id' ? "selected" : ""}>신청자 계정</option>
         </select>
-        &emsp;
-        <input type="text" name="keyword" value="" placeholder="검색어를 입력해주세요.">
-        <input id="smApplicationListSearch" type="submit" value="검색">
+
+        <input type="text" name="keyword" value="${ah.sa.keyword}" placeholder="검색어를 입력해주세요.">
+        <input type="submit" id="smApplicationListSearch" value="검색">
     </form>
 
     <%--    게시판    --%>
@@ -38,25 +38,29 @@
         <c:forEach var="smApplicationDto" items="${list}">
         <tr>
             <td>${smApplicationDto.stfmNo}</td>
-            <td><a href="<c:url value='/adminSmTraining/read?stfmNo=${smApplicationDto.stfmNo}&page=${page}&pageSize=${pageSize}'/>">${smApplicationDto.title}</a></td>
+            <td><a href="<c:url value='/adminSmTraining/read${ah.sa.queryString}&stfmNo=${smApplicationDto.stfmNo}'/>">${smApplicationDto.title}</a></td>
             <td>${smApplicationDto.id}</td>
             <td><fmt:formatDate value="${smApplicationDto.regDate}" pattern="yyyy-MM-dd HH시 mm분 ss초"/></td>
         </tr>
         </c:forEach>
     </table>
+    <c:if test="${totalCnt==null || totalCnt==0}">
+        <div> 신청서가 없습니다.</div>
+    </c:if>
 
     <%--    내비게이션   --%>
-    <c:if test="${ah.showPrev}">
-        <a href="<c:url value='/adminBtTraining/list?page=${ah.beginPage-1}&pageSize=${ah.pageSize}'/>">&lt;&lt;</a>
+    <c:if test="${totalCnt!=null && totalCnt!=0}">
+        <c:if test="${ah.showPrev}">
+            <a href="<c:url value='/adminBtTraining/list${ah.sa.getQueryString(ah.beginPage-1)}'/>">&lt;&lt;</a>
+        </c:if>
+
+        <c:forEach var="i" begin="${ah.beginPage}" end="${ah.endPage}">
+            <a href="<c:url value='/adminBtTraining/list${ah.sa.getQueryString(i)}'/>">${i}</a>
+        </c:forEach>
+
+        <c:if test="${ah.showNext}">
+            <a href="<c:url value='/adminBtTraining/list${ah.sa.getQueryString(ah.endPage+1)}'/>">&gt;&gt;</a>
+        </c:if>
     </c:if>
-
-    <c:forEach var="i" begin="${ah.beginPage}" end="${ah.endPage}">
-        <a href="<c:url value='/adminBtTraining/list?page=${i}&pageSize=${ah.pageSize}'/>">${i}</a>
-    </c:forEach>
-
-    <c:if test="${ah.showNext}">
-        <a href="<c:url value='/adminBtTraining/list?page=${ah.endPage+1}&pageSize=${ah.pageSize}'/>">&gt;&gt;</a>
-    </c:if>
-
 </body>
 </html>
