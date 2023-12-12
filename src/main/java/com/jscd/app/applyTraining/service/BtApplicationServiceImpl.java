@@ -2,6 +2,7 @@ package com.jscd.app.applyTraining.service;
 
 import com.jscd.app.applyTraining.dao.BtApplicationDao;
 import com.jscd.app.applyTraining.dto.BtApplicationDto;
+import com.jscd.app.applyTraining.dto.SearchApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -57,4 +58,15 @@ public class BtApplicationServiceImpl implements BtApplicationService {
     public BtApplicationDto confirmApplcation(BtApplicationDto dto) throws Exception{
         return btApplicationDao.confirmApplcation(dto);
     }
+
+    @Override
+    public List<BtApplicationDto> getSearchResultpage(SearchApplication sa) throws Exception{
+        return btApplicationDao.searchSelectPage(sa);
+    }
+
+    @Override
+    public int getSearchResulCnt(SearchApplication sa) throws Exception{
+        return btApplicationDao.searchResultCnt(sa);
+    }
+
 }

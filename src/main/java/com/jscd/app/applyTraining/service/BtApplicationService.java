@@ -1,6 +1,7 @@
 package com.jscd.app.applyTraining.service;
 
 import com.jscd.app.applyTraining.dto.BtApplicationDto;
+import com.jscd.app.applyTraining.dto.SearchApplication;
 
 import java.util.List;
 import java.util.Map;
@@ -22,4 +23,8 @@ public interface BtApplicationService {
 
     int lectureApplyInsert(BtApplicationDto dto) throws Exception;
     BtApplicationDto confirmApplcation(BtApplicationDto dto) throws Exception;
+
+    List<BtApplicationDto> getSearchResultpage(SearchApplication sa) throws Exception;
+
+    int getSearchResulCnt(SearchApplication sa) throws Exception;
 }

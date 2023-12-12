@@ -12,6 +12,7 @@
 
 		<typeAlias alias="BtApplicationDto" type="com.jscd.app.applyTraining.dto.BtApplicationDto"/>
 		<typeAlias alias="SmApplicationDto" type="com.jscd.app.applyTraining.dto.SmApplicationDto"/>
+		<typeAlias alias="SearchApplication" type="com.jscd.app.applyTraining.dto.SearchApplication"/>
 
 		<typeAlias alias="CourseDto" type="com.jscd.app.lecture.course.dto.CourseDto"/>
 		<typeAlias alias="RoundDto" type="com.jscd.app.lecture.round.dto.RoundDto"/>

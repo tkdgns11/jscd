@@ -20,10 +20,10 @@
         where stfmNo
     </delete>
 
-    <!--    (관리자 전용) 모든 신청서 불러오기 / 신청일 오름차순(선착순 고려)-->
+    <!--    (관리자 전용) 모든 신청서 불러오기-->
     <select id="selectAll" resultType="BtApplicationDto">
         select * from btstform
-        order by regDate
+        order by stfmNo desc
     </select>
 
     <!--    (관리자 전용) 신청서 하나 읽기-->
@@ -35,7 +35,7 @@
     <!--    (관리자 전용) 부트캠프 신청서 현황 페이지 페이징-->
     <select id="selectPage" parameterType="map" resultType="BtApplicationDto">
         select * from btstform
-        order by stfmNo, regDate
+        order by stfmNo desc
         limit #{offset}, #{pageSize}
     </select>
 
@@ -47,7 +47,7 @@
         where stfmNo = #{stfmNo}
     </update>
 
-    <!--    폼 제출시 lectureapply에도 insert-->
+    <!--    폼 제출시 lectureapply테이블에 같이 insert-->
     <insert id="lectureApplyInsert" parameterType="BtApplicationDto">
         insert into lectureapply(id, registCode)
         values (#{id}, #{registCode})
@@ -66,4 +66,39 @@
         select * from btstform
         where registCode = #{registCode} and id = #{id}
     </select>
+
+    <sql id="searchApplication">
+        <choose>
+            <when test='option=="title"'>
+                and title like concat('%', #{keyword}, '%')
+            </when>
+            <when test='option=="id"'>
+                and id like concat('%', #{keyword}, '%')
+            </when>
+            <when test='option=="approvalYN"'>
+                and approvalYN like concat(#{keyword}, '%')
+            </when>
+            <otherwise>
+                and (title like concat('%', #{keyword}, '%')
+                or id like concat('%', #{keyword}, '%')
+                or approvalYN like concat(#{keyword}, '%'))
+            </otherwise>
+        </choose>
+    </sql>
+
+    <select id="searchSelectPage" parameterType="SearchApplication" resultType="BtApplicationDto">
+        select * from btstform
+        where true
+        <include refid="searchApplication"/>
+        order by stfmNo desc
+        limit #{offset}, #{pageSize}
+    </select>
+
+    <select id="searchResultCnt" parameterType="SearchApplication" resultType="int">
+        select count(*)
+        from btstform
+        where true
+        <include refid="searchApplication"/>
+    </select>
+
 </mapper>
