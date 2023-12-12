@@ -4,95 +4,100 @@ import java.util.Date;
 import java.util.Objects;
 
 public class AllqnaDto {
-    private long allqnaNo;
-    private int qnaCtNo;
-    private int mebrNo;
-    private String title;
-    private String writer;
-    private String content;
-    private int hit;
+
+    private Integer allqnaNo; //게시글 번호
+    private Integer allqnaCmtNo; //댓글 번호 (조회수)
+    private Integer allqnaCmtNum;// 댓글 Pk
+
+    private Integer allqnaCmtReplyNo; //대댓글 번호
+    private Integer qnaCtNo; //카테고리 번호
+    private Integer mebrNo; //회원 번호
+    private String title; //게시글 제목
+    private String writer; //게시글 작성자
+    private String content; //게시글 내용
+    private String cmtWriter; //댓글 작성자
+    private String cmtContent; //댓글 내용
+
+    private Integer hit; //게시글 조회수
     private String openYN;
     private Date regDate;
-    private int frsidNmbr;
+    private Date cmtRegDate; //댓글 번호
+    private Integer firstIdNo;
     private Date modifyDate;
-    private int lstidNmbr;
+    private Integer lastIdNo;
     private String etc;
 
     public AllqnaDto() {
-
     }
 
-    public AllqnaDto(long allqnaNo, int qnaCtNo, int mebrNo, String title, String writer, String content,
-                     int hit, String openYN, Date regDate, int frsidNmbr, Date modifyDate, int lstidNmbr, String etc) {
+    public AllqnaDto(Integer allqnaNo, Integer allqnaCmtNo, Integer allqnaCmtNum, Integer allqnaCmtReplyNo, Integer qnaCtNo, Integer mebrNo, String title, String writer, String content, String cmtWriter, String cmtContent, Integer hit, String openYN, Date regDate, Date cmtRegDate, Integer firstIdNo, Date modifyDate, Integer lastIdNo, String etc) {
         this.allqnaNo = allqnaNo;
+        this.allqnaCmtNo = allqnaCmtNo;
+        this.allqnaCmtNum = allqnaCmtNum;
+        this.allqnaCmtReplyNo = allqnaCmtReplyNo;
         this.qnaCtNo = qnaCtNo;
         this.mebrNo = mebrNo;
         this.title = title;
         this.writer = writer;
         this.content = content;
+        this.cmtWriter = cmtWriter;
+        this.cmtContent = cmtContent;
         this.hit = hit;
         this.openYN = openYN;
         this.regDate = regDate;
-        this.frsidNmbr = frsidNmbr;
+        this.cmtRegDate = cmtRegDate;
+        this.firstIdNo = firstIdNo;
         this.modifyDate = modifyDate;
-        this.lstidNmbr = lstidNmbr;
+        this.lastIdNo = lastIdNo;
         this.etc = etc;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        AllqnaDto allqnaDto = (AllqnaDto) o;
-        return allqnaNo == allqnaDto.allqnaNo && qnaCtNo == allqnaDto.qnaCtNo && mebrNo == allqnaDto.mebrNo && hit == allqnaDto.hit && frsidNmbr == allqnaDto.frsidNmbr && lstidNmbr == allqnaDto.lstidNmbr && title.equals(allqnaDto.title) && writer.equals(allqnaDto.writer) && content.equals(allqnaDto.content) && openYN.equals(allqnaDto.openYN) && regDate.equals(allqnaDto.regDate) && modifyDate.equals(allqnaDto.modifyDate) && Objects.equals(etc, allqnaDto.etc);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(allqnaNo, qnaCtNo, mebrNo, title, writer, content, hit, openYN, regDate, frsidNmbr, modifyDate, lstidNmbr, etc);
-    }
-
-    @Override
-    public String toString() {
-        return "allqnaDto{" +
-                "allqnaNo=" + allqnaNo +
-                ", qnaCtNo=" + qnaCtNo +
-                ", mebrNo=" + mebrNo +
-                ", title='" + title + '\'' +
-                ", writer='" + writer + '\'' +
-                ", content='" + content + '\'' +
-                ", hit=" + hit +
-                ", openYN='" + openYN + '\'' +
-                ", regDate=" + regDate +
-                ", frsidNmbr=" + frsidNmbr +
-                ", modifyDate=" + modifyDate +
-                ", lstidNmbr=" + lstidNmbr +
-                ", etc='" + etc + '\'' +
-                '}';
-    }
-
-    // Getter and Setter methods for each field
-    public long getAllqnaNo() {
+    public Integer getAllqnaNo() {
         return allqnaNo;
     }
 
-    public void setAllqnaNo(long allqnaNo) {
+    public void setAllqnaNo(Integer allqnaNo) {
         this.allqnaNo = allqnaNo;
     }
 
-    public int getQnaCtNo() {
+    public Integer getAllqnaCmtNo() {
+        return allqnaCmtNo;
+    }
+
+    public void setAllqnaCmtNo(Integer allqnaCmtNo) {
+        this.allqnaCmtNo = allqnaCmtNo;
+    }
+
+    public Integer getAllqnaCmtNum() {
+        return allqnaCmtNum;
+    }
+
+    public void setAllqnaCmtNum(Integer allqnaCmtNum) {
+        this.allqnaCmtNum = allqnaCmtNum;
+    }
+
+    public Integer getAllqnaCmtReplyNo() {
+        return allqnaCmtReplyNo;
+    }
+
+    public void setAllqnaCmtReplyNo(Integer allqnaCmtReplyNo) {
+        this.allqnaCmtReplyNo = allqnaCmtReplyNo;
+    }
+
+    public Integer getQnaCtNo() {
         return qnaCtNo;
     }
 
-    public void setQnaCtNo(int qnaCtNo) {
+    public void setQnaCtNo(Integer qnaCtNo) {
         this.qnaCtNo = qnaCtNo;
     }
 
-    public int getMebrNo() {
+    public Integer getMebrNo() {
         return mebrNo;
     }
 
-    public void setMebrNo(int mebrNo) {
+    public void setMebrNo(Integer mebrNo) {
         this.mebrNo = mebrNo;
     }
 
@@ -120,11 +125,27 @@ public class AllqnaDto {
         this.content = content;
     }
 
-    public int getHit() {
+    public String getCmtWriter() {
+        return cmtWriter;
+    }
+
+    public void setCmtWriter(String cmtWriter) {
+        this.cmtWriter = cmtWriter;
+    }
+
+    public String getCmtContent() {
+        return cmtContent;
+    }
+
+    public void setCmtContent(String cmtContent) {
+        this.cmtContent = cmtContent;
+    }
+
+    public Integer getHit() {
         return hit;
     }
 
-    public void setHit(int hit) {
+    public void setHit(Integer hit) {
         this.hit = hit;
     }
 
@@ -144,12 +165,20 @@ public class AllqnaDto {
         this.regDate = regDate;
     }
 
-    public int getFrsidNmbr() {
-        return frsidNmbr;
+    public Date getCmtRegDate() {
+        return cmtRegDate;
     }
 
-    public void setFrsidNmbr(int frsidNmbr) {
-        this.frsidNmbr = frsidNmbr;
+    public void setCmtRegDate(Date cmtRegDate) {
+        this.cmtRegDate = cmtRegDate;
+    }
+
+    public Integer getFirstIdNo() {
+        return firstIdNo;
+    }
+
+    public void setFirstIdNo(Integer firstIdNo) {
+        this.firstIdNo = firstIdNo;
     }
 
     public Date getModifyDate() {
@@ -160,12 +189,12 @@ public class AllqnaDto {
         this.modifyDate = modifyDate;
     }
 
-    public int getLstidNmbr() {
-        return lstidNmbr;
+    public Integer getLastIdNo() {
+        return lastIdNo;
     }
 
-    public void setLstidNmbr(int lstidNmbr) {
-        this.lstidNmbr = lstidNmbr;
+    public void setLastIdNo(Integer lastIdNo) {
+        this.lastIdNo = lastIdNo;
     }
 
     public String getEtc() {
@@ -174,5 +203,30 @@ public class AllqnaDto {
 
     public void setEtc(String etc) {
         this.etc = etc;
+    }
+
+    @Override
+    public String toString() {
+        return "AllqnaDto{" +
+                "allqnaNo=" + allqnaNo +
+                ", allqnaCmtNo=" + allqnaCmtNo +
+                ", allqnaCmtNum=" + allqnaCmtNum +
+                ", allqnaCmtReplyNo=" + allqnaCmtReplyNo +
+                ", qnaCtNo=" + qnaCtNo +
+                ", mebrNo=" + mebrNo +
+                ", title='" + title + '\'' +
+                ", writer='" + writer + '\'' +
+                ", content='" + content + '\'' +
+                ", cmtWriter='" + cmtWriter + '\'' +
+                ", cmtContent='" + cmtContent + '\'' +
+                ", hit=" + hit +
+                ", openYN='" + openYN + '\'' +
+                ", regDate=" + regDate +
+                ", cmtRegDate=" + cmtRegDate +
+                ", firstIdNo=" + firstIdNo +
+                ", modifyDate=" + modifyDate +
+                ", lastIdNo=" + lastIdNo +
+                ", etc='" + etc + '\'' +
+                '}';
     }
 }

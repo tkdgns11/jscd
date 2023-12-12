@@ -5,8 +5,12 @@ import java.util.Objects;
 
 public class BtApplicationDto {
     private Integer stfmNo;
-    private Integer registCode;
     private Integer mebrNo;
+    private String id;
+    private Integer registCode;
+    private String title;
+    private Integer lastPrice;
+    private String status;
     private String level;
     private String levelDetail;
     private String attdPps;
@@ -22,28 +26,33 @@ public class BtApplicationDto {
     private String etc;
 
     public BtApplicationDto() {}
-
-    public BtApplicationDto(String level, String levelDetail, String attdPps, String attdPath, String intro, String expect, String agreeYN) {
-        this.level = level;
-        this.levelDetail = levelDetail;
-        this.attdPps = attdPps;
-        this.attdPath = attdPath;
-        this.intro = intro;
-        this.expect = expect;
-        this.agreeYN = agreeYN;
-    }
+    public BtApplicationDto(String id, Integer registCode, String title, Integer lastPrice, String status, String level, String levelDetail, String attdPps, String attdPath, String intro, String expect, String agreeYN, String approvalYN) {
+            this.id = id;
+            this.registCode = registCode;
+            this.title = title;
+            this.lastPrice = lastPrice;
+            this.status = status;
+            this.level = level;
+            this.levelDetail = levelDetail;
+            this.attdPps = attdPps;
+            this.attdPath = attdPath;
+            this.intro = intro;
+            this.expect = expect;
+            this.agreeYN = agreeYN;
+            this.approvalYN = approvalYN;
+        }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         BtApplicationDto that = (BtApplicationDto) o;
-        return Objects.equals(stfmNo, that.stfmNo) && Objects.equals(registCode, that.registCode) && Objects.equals(mebrNo, that.mebrNo) && Objects.equals(level, that.level) && Objects.equals(levelDetail, that.levelDetail) && Objects.equals(attdPps, that.attdPps) && Objects.equals(attdPath, that.attdPath) && Objects.equals(intro, that.intro) && Objects.equals(expect, that.expect) && Objects.equals(agreeYN, that.agreeYN) && Objects.equals(approvalYN, that.approvalYN) && Objects.equals(regDate, that.regDate) && Objects.equals(firstIdNo, that.firstIdNo) && Objects.equals(modifyDate, that.modifyDate) && Objects.equals(lastIdNo, that.lastIdNo) && Objects.equals(etc, that.etc);
+        return Objects.equals(stfmNo, that.stfmNo) && Objects.equals(registCode, that.registCode) && Objects.equals(mebrNo, that.mebrNo) && Objects.equals(id, that.id) && Objects.equals(registCode, that.registCode) && Objects.equals(title, that.title) && Objects.equals(lastPrice, that.lastPrice) && Objects.equals(status, that.status) && Objects.equals(level, that.level) && Objects.equals(levelDetail, that.levelDetail) && Objects.equals(attdPps, that.attdPps) && Objects.equals(attdPath, that.attdPath) && Objects.equals(intro, that.intro) && Objects.equals(expect, that.expect) && Objects.equals(agreeYN, that.agreeYN) && Objects.equals(approvalYN, that.approvalYN) && Objects.equals(regDate, that.regDate) && Objects.equals(firstIdNo, that.firstIdNo) && Objects.equals(modifyDate, that.modifyDate) && Objects.equals(lastIdNo, that.lastIdNo) && Objects.equals(etc, that.etc);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(stfmNo, registCode, mebrNo, level, levelDetail, attdPps, attdPath, intro, expect, agreeYN, approvalYN, regDate, firstIdNo, modifyDate, lastIdNo, etc);
+        return Objects.hash(stfmNo, registCode, mebrNo, id, registCode, title, lastPrice, status, level, levelDetail, attdPps, attdPath, intro, expect, agreeYN, approvalYN, regDate, firstIdNo, modifyDate, lastIdNo, etc);
     }
 
     @Override
@@ -52,6 +61,11 @@ public class BtApplicationDto {
                 "stfmNo=" + stfmNo +
                 ", registCode=" + registCode +
                 ", mebrNo=" + mebrNo +
+                ", id='" + id + '\'' +
+                ", registCode=" + registCode +
+                ", title='" + title + '\'' +
+                ", lastPrice=" + lastPrice +
+                ", status='" + status + '\'' +
                 ", level='" + level + '\'' +
                 ", levelDetail='" + levelDetail + '\'' +
                 ", attdPps='" + attdPps + '\'' +
@@ -84,12 +98,28 @@ public class BtApplicationDto {
         this.registCode = registCode;
     }
 
-    public Integer getMebrNo() {
-        return mebrNo;
+    public String getTitle() {
+        return title;
     }
 
-    public void setMebrNo(Integer mebrNo) {
-        this.mebrNo = mebrNo;
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Integer getLastPrice() {
+        return lastPrice;
+    }
+
+    public void setLastPrice(Integer lastPrice) {
+        this.lastPrice = lastPrice;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getLevel() {
@@ -194,5 +224,21 @@ public class BtApplicationDto {
 
     public void setEtc(String etc) {
         this.etc = etc;
+    }
+
+    public Integer getMebrNo() {
+        return mebrNo;
+    }
+
+    public void setMebrNo(Integer mebrNo) {
+        this.mebrNo = mebrNo;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

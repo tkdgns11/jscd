@@ -13,6 +13,21 @@
     <title>seminarDetail</title>
 </head>
 <body>
+<script>
+    let msg = "${msg}";
+    if(msg == "login required"){
+        const confirmMsg = "로그인이 필요한 서비스입니다. \n로그인 하시겠습니까?";
+        const confirmBoolean = confirm(confirmMsg);
+
+        if(confirmBoolean){
+            window.location.href='http://localhost:8080/member/login';
+        }
+    }
+
+    if(msg == "duplicate application"){
+        alert("이미 신청한 강의입니다.");
+    }
+</script>
     선택한 세미나 상세페이지 입니다.
     <li>${lstRegistDto.registCode}</li>
     <li>${lstRegistDto.title}</li>

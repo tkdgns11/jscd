@@ -59,4 +59,9 @@ public class SmApplicationDaoImpl implements SmApplicationDao {
     public int lectureApplyInsert(SmApplicationDto dto) throws Exception{
         return session.insert(namespace + "lectureApplyInsert", dto);
     }
+
+    @Override
+    public SmApplicationDto confirmApplcation(SmApplicationDto dto) throws Exception{
+        return session.selectOne(namespace + "confirmApplication", dto);
+    }
 }

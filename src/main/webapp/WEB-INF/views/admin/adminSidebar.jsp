@@ -33,6 +33,7 @@
         }
 
         .sidenav {
+            float:left;
             height: 100%;
             width: 12%;
             position: fixed;

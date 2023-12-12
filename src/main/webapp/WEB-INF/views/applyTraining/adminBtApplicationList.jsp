@@ -8,11 +8,21 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
+<%--<jsp:include page="../admin/adminHeader.jsp"/>--%>
+<jsp:include page="../admin/adminSidebar.jsp"/>
 <html>
 <head>
     <title>adminBtApplicationList</title>
+    <style>
+        #whole{
+            width:88% ;
+            height: 100%;
+            float: right;
+        }
+    </style>
 </head>
 <body>
+<div id = "whole">
     <h1>정석코딩 부트캠프 신청서 관리</h1>
 
     <%--    검색    --%>
@@ -64,6 +74,6 @@
     <c:if test="${bh.showNext}">
         <a href="<c:url value='/adminBtTraining/list?page=${ah.endPage+1}&pageSize=${ah.pageSize}'/>">&gt;&gt;</a>
     </c:if>
-
+</div>
 </body>
 </html>

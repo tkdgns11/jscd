@@ -1,5 +1,6 @@
 package com.jscd.app.applyTraining.dao;
 
+import com.jscd.app.applyTraining.dto.BtApplicationDto;
 import com.jscd.app.applyTraining.dto.SmApplicationDto;
 
 import java.util.List;
@@ -23,4 +24,6 @@ public interface SmApplicationDao {
     int insert(SmApplicationDto dto) throws Exception;
 
     int lectureApplyInsert(SmApplicationDto dto) throws Exception;
+
+    SmApplicationDto confirmApplcation(SmApplicationDto dto) throws Exception;
 }
