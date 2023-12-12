@@ -12,12 +12,6 @@
         values (#{id}, #{name}, #{pwd})
     </insert>
 
-    <!--    <insert id="insertAdmin" parameterType="AdminDto">-->
-    <!--        insert into admin-->
-    <!--            (id, name, alias, birth, pwd, phone1, phone2, phone3)-->
-    <!--        values (#{id}, #{name}, #{alias}, #{birth}, #{pwd}, #{phone1}, #{phone2}, #{phone3})-->
-    <!--    </insert>-->
-
     <!--    count : 관리자 수-->
     <select id="countAdmin" resultType="int">
         select count(*)
@@ -26,13 +20,12 @@
 
     <!--    중복되는 쿼리문-->
     <sql id="selectAdmin">
-        select adminNo,
-               id,
+        select id,
                name,
-               alias,
+               nickname,
                birth,
                pwd,
-               concat(phone1, phone2, phone3) as phone,
+               phone,
                status,
                grade,
                regDate
@@ -54,7 +47,7 @@
     <!--    update : 관리자 정보 수정-->
     <update id="updateAdmin" parameterType="AdminDto">
         update admin
-        set alias      = #{alias},
+        set nickname      = #{nickname},
             modifyDate = now()
         where id = #{id}
     </update>

@@ -10,9 +10,9 @@ public class InstructorMemberInfoDto { //강사 + 회원 조인 Dto
     private String status;
     private Float hourPmt;
     private Date regDate;
-    private String frsidNmbr;
+    private String firstIdNo;
     private Date modifyDate;
-    private String lstidNmbr;
+    private String lastIdNo;
     private String etc;
     //    ㅡㅡㅡㅡㅡㅡㅡㅡ회원컬럼ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     private String id;
@@ -24,7 +24,7 @@ public class InstructorMemberInfoDto { //강사 + 회원 조인 Dto
     public InstructorMemberInfoDto(){}
 
     public InstructorMemberInfoDto(String iscrNo, Integer mebrNo, String intro, String status, Float hourPmt, Date regDate,
-                                   String frsidNmbr, Date modifyDate, String lstidNmbr, String etc, String id, String name, Date birth,
+                                   String firstIdNo, Date modifyDate, String lastIdNo, String etc, String id, String name, Date birth,
                                    String phone, String acct) {
         this.iscrNo = iscrNo;
         this.mebrNo = mebrNo;
@@ -32,9 +32,9 @@ public class InstructorMemberInfoDto { //강사 + 회원 조인 Dto
         this.status = status;
         this.hourPmt = hourPmt;
         this.regDate = regDate;
-        this.frsidNmbr = frsidNmbr;
+        this.firstIdNo = firstIdNo;
         this.modifyDate = modifyDate;
-        this.lstidNmbr = lstidNmbr;
+        this.lastIdNo = lastIdNo;
         this.etc = etc;
         this.id = id;
         this.name = name;
@@ -91,12 +91,12 @@ public class InstructorMemberInfoDto { //강사 + 회원 조인 Dto
         this.regDate = regDate;
     }
 
-    public String getFrsidNmbr() {
-        return frsidNmbr;
+    public String getfirstIdNo() {
+        return firstIdNo;
     }
 
-    public void setFrsidNmbr(String frsidNmbr) {
-        this.frsidNmbr = frsidNmbr;
+    public void setfirstIdNo(String firstIdNo) {
+        this.firstIdNo = firstIdNo;
     }
 
     public Date getModifyDate() {
@@ -107,12 +107,12 @@ public class InstructorMemberInfoDto { //강사 + 회원 조인 Dto
         this.modifyDate = modifyDate;
     }
 
-    public String getLstidNmbr() {
-        return lstidNmbr;
+    public String getlastIdNo() {
+        return lastIdNo;
     }
 
-    public void setLstidNmbr(String lstidNmbr) {
-        this.lstidNmbr = lstidNmbr;
+    public void setlastIdNo(String lastIdNo) {
+        this.lastIdNo = lastIdNo;
     }
 
     public String getEtc() {
@@ -165,12 +165,12 @@ public class InstructorMemberInfoDto { //강사 + 회원 조인 Dto
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         InstructorMemberInfoDto that = (InstructorMemberInfoDto) o;
-        return Objects.equals(iscrNo, that.iscrNo) && Objects.equals(mebrNo, that.mebrNo) && Objects.equals(intro, that.intro) && Objects.equals(status, that.status) && Objects.equals(hourPmt, that.hourPmt) && Objects.equals(regDate, that.regDate) && Objects.equals(frsidNmbr, that.frsidNmbr) && Objects.equals(modifyDate, that.modifyDate) && Objects.equals(lstidNmbr, that.lstidNmbr) && Objects.equals(etc, that.etc) && Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(birth, that.birth) && Objects.equals(phone, that.phone)&& Objects.equals(acct, that.acct);
+        return Objects.equals(iscrNo, that.iscrNo) && Objects.equals(mebrNo, that.mebrNo) && Objects.equals(intro, that.intro) && Objects.equals(status, that.status) && Objects.equals(hourPmt, that.hourPmt) && Objects.equals(regDate, that.regDate) && Objects.equals(firstIdNo, that.firstIdNo) && Objects.equals(modifyDate, that.modifyDate) && Objects.equals(lastIdNo, that.lastIdNo) && Objects.equals(etc, that.etc) && Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(birth, that.birth) && Objects.equals(phone, that.phone)&& Objects.equals(acct, that.acct);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(iscrNo, mebrNo, intro, status, hourPmt, regDate, frsidNmbr, modifyDate, lstidNmbr, etc, id, name, birth, phone, acct);
+        return Objects.hash(iscrNo, mebrNo, intro, status, hourPmt, regDate, firstIdNo, modifyDate, lastIdNo, etc, id, name, birth, phone, acct);
     }
 
     @Override
@@ -182,9 +182,9 @@ public class InstructorMemberInfoDto { //강사 + 회원 조인 Dto
                 ", status=" + status +
                 ", hourPmt=" + hourPmt +
                 ", regDate=" + regDate +
-                ", frsidNmbr='" + frsidNmbr + '\'' +
+                ", firstIdNo='" + firstIdNo + '\'' +
                 ", modifyDate=" + modifyDate +
-                ", lstidNmbr='" + lstidNmbr + '\'' +
+                ", lastIdNo='" + lastIdNo + '\'' +
                 ", etc='" + etc + '\'' +
                 ", id='" + id + '\'' +
                 ", name='" + name + '\'' +

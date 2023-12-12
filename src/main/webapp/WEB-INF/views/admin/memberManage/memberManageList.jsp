@@ -69,7 +69,7 @@
                     <th class="infoListTh"><input type="checkbox" id="allCheckBox" onclick="allChecked()"
                                                   style="width:18px;height:18px;"></th>
                     <th class="infoListTh">No.</th>
-                    <th style="width: 80px;" class="infoListTh">아이디</th>
+                    <th style="width: 170px;" class="infoListTh">아이디</th>
                     <th style="width: 80px;" class="infoListTh">이름</th>
                     <th style="width: 80px;" class="infoListTh">닉네임</th>
                     <th style="width: 80px;" class="infoListTh">성별</th>

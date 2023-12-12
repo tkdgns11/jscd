@@ -19,4 +19,7 @@ public interface BtApplicationService {
     int modify(BtApplicationDto dto) throws Exception;
 
     int write(BtApplicationDto dto) throws Exception;
+
+    int lectureApplyInsert(BtApplicationDto dto) throws Exception;
+    BtApplicationDto confirmApplcation(Map map) throws Exception;
 }

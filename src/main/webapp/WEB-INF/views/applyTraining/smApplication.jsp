@@ -18,8 +18,10 @@
     <hr>
 
     <form id="smApplicationForm" method="post">
-        <%--        <input type="hidden" value="${.mebrNo}">--%>
-        <%--        <input type="hidden" value="${.registCode}">--%>
+        <input type="hidden" name="id" value="">
+        <input type="hidden" name="registCode" value="${lstRegistDto.registCode}">
+        <input type="hidden" name="title" value="${lstRegistDto.title}">
+        <input type="hidden" name="lastPrice" value="${lstRegistDto.lastPrice}">
         <div>
             <div>Q.본인의 프로그래밍 지식이나 경험 수준에 대해 선택해주세요. (선택1)</div>
             <input type="radio" name="level" value="낮음">낮음
@@ -58,7 +60,6 @@
             <textarea name="expect" maxlength="300"></textarea>
         </div>
         <br>
-
         <button type="button" id="writeBtn">제출하기</button>
     </form>
 

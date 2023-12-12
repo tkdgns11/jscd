@@ -37,7 +37,7 @@
         <div class="infoValueBox">${infoDto.name}</div>
         <h4>생년월일</h4>
         <div class="infoValueBox">${infoDto.iscrNo}</div>
-        <h4>폰번호</h4>
+        <h4>휴대전화</h4>
         <div class="infoValueBox">${infoDto.phone}</div>
         <h4>소개</h4>
         <input type="text" class="infoModifyBox" name="intro" autofocus value="${infoDto.intro}">

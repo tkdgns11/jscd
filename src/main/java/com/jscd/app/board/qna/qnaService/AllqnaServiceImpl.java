@@ -2,6 +2,7 @@ package com.jscd.app.board.qna.qnaService;
 
 import com.jscd.app.board.qna.qnaDao.AllqnaDao;
 import com.jscd.app.board.qna.qnaDto.AllqnaDto;
+import com.jscd.app.board.qna.qnaDto.AllqnacDto;
 import com.jscd.app.board.qna.qnaDto.SearchCondition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,6 +50,7 @@ public class AllqnaServiceImpl implements AllqnaService {
     public int remove(Integer allqnaNo, String writer) throws Exception {
         return allqnaDao.delete(allqnaNo, writer);
     }
+
 
     //2-1 댓글 등록
     @Override

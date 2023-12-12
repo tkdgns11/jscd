@@ -1,10 +1,15 @@
 package com.jscd.app.member.dao;
 
+import com.jscd.app.applyTraining.dto.BtApplicationDto;
+import com.jscd.app.board.qna.qnaDto.AttachDto;
+import com.jscd.app.lecture.lstRegist.dto.LectureApplyDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.jscd.app.member.dto.MemberDto;
+
+import java.util.List;
 
 @Repository
 public class MemberDaoImpl implements MemberDao{
@@ -22,7 +27,6 @@ public class MemberDaoImpl implements MemberDao{
 	}
 	@Override
 	public int insertUser(MemberDto memberDto) throws Exception {
-		System.out.println("insertUser" + memberDto);
 		return session.insert(namespace+ "insert", memberDto);
 	}
 	@Override
@@ -42,6 +46,11 @@ public class MemberDaoImpl implements MemberDao{
 	public int insertTermsYN(MemberDto memberDto) throws Exception {
 		System.out.println("insertTerms" + memberDto);
 		return session.insert(namespace + "insertTerms", memberDto);
+	}
+
+	@Override
+	public List<LectureApplyDto> selectLecture(LectureApplyDto lectureApplyDto) throws Exception {
+		return session.selectList(namespace+"selectLecture", lectureApplyDto);
 	}
 
 }

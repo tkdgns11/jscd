@@ -56,4 +56,11 @@
 		VALUES
 		(#{id}, #{serviceChkYN}, #{serviceChkYN}, #{ageChkYN}, #{marketingChkYN}, now(), #{firstIdNo})
 	</insert>
+<!--	마이페이지 강의 현황-->
+	<select id="selectLecture" parameterType="LectureApplyDto" resultType="LectureApplyDto">
+		select A.stdApplyNo, A.id, A.registCode, A.status, B.title, B.lastPrice
+		from lectureapply AS A, lstregist AS B
+		where  A.id = #{id}
+		  and B.registCode = #{registCode};
+	</select>
 </mapper>

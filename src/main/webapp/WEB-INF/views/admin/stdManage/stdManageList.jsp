@@ -63,7 +63,7 @@
                                                                       onclick="allChecked()"
                                                                       style="width:18px;height:18px;"></th>
                     <th class="infoListTh" style="width: 30px">No.</th>
-                    <th style="width: 80px;" class="infoListTh">아이디</th>
+                    <th style="width: 170px;" class="infoListTh">아이디</th>
                     <th style="width: 80px;" class="infoListTh">이름</th>
                     <th style="width:150px;" class="infoListTh">휴대전화</th>
                     <th style="width: 80px;" class="infoListTh">기수</th>
@@ -196,7 +196,6 @@
 
                 document.querySelectorAll('input[name="chk"]:checked').forEach(function (v, i) { //i는 인덱스, v는 input체크박스
                     arr[i] = v.value;
-                    console.log(v.value);
                 });
 
                 const form = document.createElement('form');

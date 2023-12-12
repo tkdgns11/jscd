@@ -1,6 +1,9 @@
 package com.jscd.app.member.controller;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
+import com.jscd.app.applyTraining.dto.BtApplicationDto;
+import com.jscd.app.board.qna.qnaDto.AttachDto;
+import com.jscd.app.lecture.lstRegist.dto.LectureApplyDto;
 import com.jscd.app.member.dto.KakaoLoginBo;
 import com.jscd.app.member.dto.MailSendService;
 import com.jscd.app.member.dto.NaverLoginBo;

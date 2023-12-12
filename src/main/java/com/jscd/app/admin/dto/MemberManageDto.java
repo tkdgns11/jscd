@@ -16,16 +16,16 @@ public class MemberManageDto {
 	private String status;
 	private String grade;
 	private Date regDate;
-	private String frsidNmbr;
+	private String firstIdNo;
 	private Date modifyDate;
-	private String lstidNmbr;
+	private String lastIdNo;
 	private String etc;
 
 
 	public MemberManageDto(){}
 
 
-	public MemberManageDto(int mebrNo, String id, String name, String nickname, String birth, String pwd, String gender, String phone, String acct, String status, String grade, Date regDate, String frsidNmbr, Date modifyDate, String lstidNmbr, String etc, String rememberId) {
+	public MemberManageDto(int mebrNo, String id, String name, String nickname, String birth, String pwd, String gender, String phone, String acct, String status, String grade, Date regDate, String firstIdNo, Date modifyDate, String lastIdNo, String etc, String rememberId) {
 		this.mebrNo = mebrNo;
 		this.id = id;
 		this.name = name;
@@ -38,9 +38,9 @@ public class MemberManageDto {
 		this.status = status;
 		this.grade = grade;
 		this.regDate = regDate;
-		this.frsidNmbr = frsidNmbr;
+		this.firstIdNo = firstIdNo;
 		this.modifyDate = modifyDate;
-		this.lstidNmbr = lstidNmbr;
+		this.lastIdNo = lastIdNo;
 		this.etc = etc;
 	}
 
@@ -116,11 +116,11 @@ public class MemberManageDto {
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
-	public String getFrsidNmbr() {
-		return frsidNmbr;
+	public String getfirstIdNo() {
+		return firstIdNo;
 	}
-	public void setFrsidNmbr(String frsidNmbr) {
-		this.frsidNmbr = frsidNmbr;
+	public void setfirstIdNo(String firstIdNo) {
+		this.firstIdNo = firstIdNo;
 	}
 	public Date getModifyDate() {
 		return modifyDate;
@@ -128,11 +128,11 @@ public class MemberManageDto {
 	public void setModifyDate(Date modifyDate) {
 		this.modifyDate = modifyDate;
 	}
-	public String getLstidNmbr() {
-		return lstidNmbr;
+	public String getlastIdNo() {
+		return lastIdNo;
 	}
-	public void setLstidNmbr(String lstidNmbr) {
-		this.lstidNmbr = lstidNmbr;
+	public void setlastIdNo(String lastIdNo) {
+		this.lastIdNo = lastIdNo;
 	}
 	public String getEtc() {
 		return etc;
@@ -158,9 +158,9 @@ public class MemberManageDto {
 				", status=" + status +
 				", grade=" + grade +
 				", regDate=" + regDate +
-				", frsidNmbr='" + frsidNmbr + '\'' +
+				", firstIdNo='" + firstIdNo + '\'' +
 				", modifyDate=" + modifyDate +
-				", lstidNmbr='" + lstidNmbr + '\'' +
+				", lastIdNo='" + lastIdNo + '\'' +
 				", etc='" + etc + '\'' +
 				'}';
 	}

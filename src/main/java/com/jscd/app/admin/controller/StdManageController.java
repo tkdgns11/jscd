@@ -6,7 +6,6 @@ import com.jscd.app.admin.domain.SearchCondition;
 import com.jscd.app.admin.dto.StdManageDto;
 import com.jscd.app.admin.dto.StdMemberManageDto;
 import com.jscd.app.admin.service.StdManageService;
-import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -148,7 +147,7 @@ public class StdManageController {
 
         }
 
-        return "redirect:/onlyAdmin/stdManage/list?page=" + page;
+        return "redirect:/onlyAdmin/stdManage/list";
 
     }
 

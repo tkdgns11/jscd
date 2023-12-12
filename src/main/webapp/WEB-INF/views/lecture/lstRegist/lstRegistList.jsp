@@ -133,13 +133,13 @@
 
     <%--    검색    --%>
     <form id="registHead" action="" method="get">
-        <select>
-            <option>전체</option>
-            <option>제목</option>
-            <option>작성자</option>
+        <select class="search-option" name="option">
+            <option value="A" ${ph.sc.option=='A' || ph.sc.option=='' ? "selected" : ""}>제목+내용</option>
+            <option value="T" ${ph.sc.option=='T' ? "selected" : ""}>제목만</option>
+            <option value="W" ${ph.sc.option=='W' ? "selected" : ""}>작성자</option>
         </select>
-        <input type="text" placeholder="검색어를 입력해주세요.">
-        <input id="registSel" type="submit" class="" value="검색">
+        <input type="text" name="keyword" class="search-input" type="text" value="${ph.sc.keyword}" placeholder="검색어를 입력해주세요">
+        <input type="submit" class="search-button" value="검색">
     </form>
 
     <%--    게시판    --%>
@@ -162,19 +162,22 @@
 
     <%--    내비게이션   --%>
     <div id="registNaviFoot">
-        <c:if test="${sh.showPrev}">
-<%--            <a href="<c:url value='/onlyAdmin/lstRegist/list?page=${sh.beginPage-1}&pageSize=${sh.pageSize}'/>">&lt;&lt;</a>--%>
-            <a href="<c:url value='/lstRegist/list?page=${sh.beginPage-1}&pageSize=${sh.pageSize}'/>">&lt;&lt;</a>
+        <c:if test="${totalCnt==null || totalCnt==0}">
+            <div> 게시물이 없습니다. </div>
         </c:if>
-
-        <c:forEach var="i" begin="${sh.beginPage}" end="${sh.endPage}">
-<%--            <a href="<c:url value='/onlyAdmin/lstRegist/list?page=${i}&pageSize=${sh.pageSize}'/>">${i}</a>--%>
-            <a href="<c:url value='/lstRegist/list?page=${i}&pageSize=${sh.pageSize}'/>">${i}</a>
-        </c:forEach>
-
-        <c:if test="${sh.showNext}">
-<%--            <a href="<c:url value='/onlyAdmin/lstRegist/list?page=${sh.endPage+1}&pageSize=${sh.pageSize}'/>">&gt;&gt;</a>--%>
-            <a href="<c:url value='/lstRegist/list?page=${sh.endPage+1}&pageSize=${sh.pageSize}'/>">&gt;&gt;</a>
+        <c:if test="${totalCnt!=null && totalCnt!=0}">
+            <c:if test="${ph.showPrev}">
+<%--                <a class="page" href="<c:url value='/onlyAdmin/lstRegist/list${ph.sc.getQueryString(ph.beginPage-1)}'/>">&lt;</a>--%>
+                <a class="page" href="<c:url value='/lstRegist/list${ph.sc.getQueryString(ph.beginPage-1)}'/>">&lt;</a>
+            </c:if>
+            <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
+<%--                <a class="page ${i==ph.sc.page? "paging-active" : ""}" href="<c:url value='/onlyAdmin/lstRegist/list${ph.sc.getQueryString(i)}'/>">${i}</a>--%>
+                <a class="page ${i==ph.sc.page? "paging-active" : ""}" href="<c:url value='/lstRegist/list${ph.sc.getQueryString(i)}'/>">${i}</a>
+            </c:forEach>
+            <c:if test="${ph.showNext}">
+<%--                <a class="page" href="<c:url value='/onlyAdmin/lstRegist/list${ph.sc.getQueryString(ph.endPage+1)}'/>">&gt;</a>--%>
+                <a class="page" href="<c:url value='/lstRegist/list${ph.sc.getQueryString(ph.endPage+1)}'/>">&gt;</a>
+            </c:if>
         </c:if>
     </div>
 <%--    <button id="writeBtn" class="btn-write" onclick="location.href='<c:url value="/onlyAdmin/lstRegist/addRegist"/>'">강의 추가하기</button>--%>
