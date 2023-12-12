@@ -1,8 +1,6 @@
 package com.jscd.app.board.qna.qnaDao;
 
 import com.jscd.app.board.qna.qnaDto.AllqnaDto;
-import com.jscd.app.board.qna.qnaDto.AllqnacDto;
-import com.jscd.app.board.qna.qnaDto.AttachDto;
 import com.jscd.app.board.qna.qnaDto.SearchCondition;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +18,7 @@ public class AllqnaDaoImpl implements AllqnaDao {
     private static String namespace = "com.jscd.app.board.qna.allqnaMapper.";
     //1-1. 게시글 등록
     public int insert(AllqnaDto allqnaDto) throws Exception {
+        System.out.println("dao===="+allqnaDto);
         return session.insert(namespace+"insert", allqnaDto);
     } // int insert(String statement, Object parameter)
 
@@ -51,41 +50,57 @@ public class AllqnaDaoImpl implements AllqnaDao {
     }
 
 
+
     //2-1 댓글 등록
-
     @Override
-    public int cmmtInsert(AllqnacDto allqnacDto) throws Exception {
-        return session.insert(namespace+"cmmtInsert", allqnacDto);
+    public int cmtInsert(AllqnaDto allqnaDto) throws Exception {
+        return session.insert(namespace+"cmtInsert", allqnaDto);
     }
-
 
     //2-2 댓글 목록
     @Override
-    public List<AllqnacDto> selectAll(Integer allqnaNo) throws Exception {
-        return session.selectList(namespace+"cmmtSelectAll", allqnaNo);
+    public List<AllqnaDto> cmtSelect(Integer allqnaNo) throws Exception {
+        return session.selectList(namespace+"cmtSelect", allqnaNo);
     }
+
 
     //2-3 댓글 수정
     @Override
-    public int cmmtUpdate(AllqnacDto allqnacDto) throws Exception {
-        System.out.println("다오 댓글수정 : " +allqnacDto);
-        return session.update(namespace+"cmmtUpdate", allqnacDto);
+    public int cmtUpdate(AllqnaDto allqnaDto) throws Exception {
+        return session.update(namespace+"cmtUpdate", allqnaDto);
     }
+
 
     //2-4 댓글 삭제
     @Override
-    public int cmmtDelete(Integer allqnaCNo) throws Exception {
-//        Map map = new HashMap();
-//        map.put("allqnaCNo", allqnaCNo);
-        System.out.println("댓글수정 디비 : "+session.delete(namespace+"cmmtDelete", allqnaCNo));
-
-        return 0;
+    public int cmtDelete(AllqnaDto allqnaDto) throws Exception {
+        return session.delete(namespace + "cmtDelete", allqnaDto);
     }
 
+
+
     //3-1 대댓글 등록
+    @Override
+    public int cmtReplyInsert(AllqnaDto allqnaDto) throws Exception {
+        return session.insert(namespace + "cmtReplyInsert", allqnaDto);
+    }
     //3-2 대댓글 목록
+    @Override
+    public List<AllqnaDto> cmtReplySelectList(Integer allqnaCmtNo) throws Exception {
+        return session.selectList(namespace+"cmtReplySelect", allqnaCmtNo);
+    }
     //3-3 대댓글 수정
+    @Override
+    public int cmtReplyUpdate(AllqnaDto allqnaDto) throws Exception {
+        return session.update(namespace+"cmtReplyUpdate",allqnaDto);
+    }
+
     //3-4 대댓글 삭제
+    @Override
+    public int cmtReplyDelete(AllqnaDto allqnaDto) throws Exception {
+        return session.delete(namespace+"cmtReplyDelete", allqnaDto);
+    }
+
 
     //4 비밀글 제외
     //5 내가 작성한 글 보기
@@ -104,24 +119,10 @@ public class AllqnaDaoImpl implements AllqnaDao {
     }
 
 
-    //8 조회수 처리
+    //9 조회수 처리
     @Override
     public int increaseViewCnt(Integer allqnaNo) throws Exception {
         return session.update(namespace+"increaseViewCnt", allqnaNo);
-    }
-
-    //이미지 셀렉
-    @Override
-    public List<AttachDto> selectImg(Integer allqnaNo)throws Exception{
-        return session.selectList(namespace+"selectImg",allqnaNo);
-    }
-    @Override
-    public int insertFile(AttachDto attachDto)throws Exception{
-        return session.insert(namespace+"insertFile",attachDto);
-    }
-    @Override
-    public int selectAllQnaNo() throws Exception{ //게시물 끝번호 가져옴
-        return session.selectOne(namespace+"selectAllQnaNo");
     }
 
 

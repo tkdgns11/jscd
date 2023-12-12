@@ -6,9 +6,9 @@
 <!--    1-1. 게시글 등록-->
     <insert id="insert" parameterType="allqnaDto">
         INSERT INTO allQnA
-            (title, content, writer, regDate)
+            (title, content, writer, openYN, regDate)
         VALUES
-            (#{title}, #{content}, #{writer}, now())
+            (#{title}, #{content}, #{writer}, #{openYN}, now())
     </insert>
 <!--    1-2. 게시글 목록 읽기-->
     <select id="selectAll" resultType="allqnaDto">
@@ -17,7 +17,7 @@
     </select>
 
     <sql id="selectFromAllQnA">
-        SELECT allqnaNo, title, content, writer, hit, regDate
+        SELECT allqnaNo, title, writer, content, hit, openYN, regDate
         FROM allQnA
     </sql>
 
@@ -41,51 +41,84 @@
         DELETE FROM allQnA WHERE allqnaNo = #{allqnaNo} and writer = #{writer}
     </delete>
 
-<!--    2. 검색-->
-
-<!--    3-1 댓글 등록-->
-    <insert id="cmmtInsert" parameterType="allqnacDto">
-        INSERT INTO allQnAC
-            (allqnaNo, allqnaCNo, content, writer, regDate)
-        VALUES
-            (#{allqnaNo}, #{allqnaCNo}, #{content}, #{writer}, now())
-    </insert>
-
-
-<!--    3-2 댓글 목록-->
-    <select id="cmmtSelectAll" parameterType="int" resultType="allqnacDto">
-        SELECT allqnaNo, allqnaCNo, content, writer, regDate
-        FROM allQnAC
+    <!--2-1 댓글 목록-->
+    <select id="cmtSelect" resultType="allqnaDto">
+        SELECT allqnaCmtNum, allqnaCmtNo, allqnaNo, cmtWriter, cmtContent, regDate, firstIdNo, modifyDate, lastIdNo
+        FROM allqnacmt
         WHERE allqnaNo = #{allqnaNo}
-        ORDER BY regDate ASC, allqnaCNo ASC
+        AND allqnaCmtReplyNO is NULL;
     </select>
-
-
-
-<!--    3-3 댓글 수정-->
-    <update id="cmmtUpdate" parameterType="allqnacDto">
-        UPDATE allQnAC
-        SET content = #{content}
-          , regDate = now()
-        WHERE allqnaCNo = #{allqnaCNo}
-        ORDER BY allqnaCNo ASC
+    <!--2-2 댓글 등록-->
+    <insert id="cmtInsert" parameterType="allqnaDto">
+        <selectKey keyProperty="allqnaCmtNo" resultType="int" order="BEFORE">
+            SELECT COALESCE(MAX(allqnaCmtNo)+1,1) AS newCmtNo
+            FROM allqnacmt
+            WHERE allqnaNo = #{allqnaNo}
+        </selectKey>
+            INSERT INTO allqnacmt (allqnaCmtNo, allqnaNo, cmtWriter, cmtContent, regDate, firstIdNo, etc)
+            VALUES (#{allqnaCmtNo}, #{allqnaNo}, #{cmtWriter}, #{cmtContent}, now(), #{firstIdNo}, #{etc})
+    </insert>
+    <!--2-3 댓글 수정-->
+    <update id="cmtUpdate" parameterType="allqnaDto">
+        UPDATE allqnacmt
+        SET cmtContent = #{cmtContent}
+          , cmtWriter = #{cmtWriter}
+          , modifyDate = now()
+        WHERE allqnaNo = #{allqnaNo}
+        AND allqnaCmtNo = #{allqnaCmtNo}
     </update>
+    <!--2-4 댓글 삭제-->
+    <delete id="cmtDelete" parameterType="allqnaDto">
+        DELETE
+        FROM   allqnacmt
+        WHERE allqnaNo = #{allqnaNo}
+        AND allqnaCmtNo = #{allqnaCmtNo}
+        AND cmtWriter = #{cmtWriter}
 
-
-<!--    3-4 댓글 삭제-->
-    <delete id="cmmtDelete" parameterType="map">
-        DELETE FROM allQnAC WHERE allqnaCNo = #{allqnaCNo}
     </delete>
 
 <!--    4-1 대댓글 등록-->
+    <insert id="cmtReplyInsert" parameterType="allqnaDto">
+        <selectKey keyProperty="allqnaCmtReplyNo" resultType="int" order="BEFORE">
+            SELECT COALESCE(MAX(allqnaCmtReplyNo)+1,1) AS newCmtReplyNo
+            FROM allqnacmt
+            WHERE
+                allqnaNo = #{allqnaNo}
+            AND
+                allqnaCmtNo = #{allqnaCmtNo}
+        </selectKey>
+        INSERT INTO allqnacmt (allqnaCmtNo, allqnaNo, cmtWriter, cmtContent, allqnaCmtReplyNo, regDate, firstIdNo, etc)
+        VALUES (#{allqnaCmtNo}, #{allqnaNo}, #{cmtWriter}, #{cmtContent}, #{allqnaCmtReplyNo}, now(), #{firstIdNo}, #{etc})
+    </insert>
 <!--    4-2 대댓글 목록-->
+    <select id="cmtReplySelect" resultType="allqnaDto">
+        SELECT allqnaCmtNum, allqnaCmtNo, allqnaNo, allqnaCmtReplyNo, cmtWriter, cmtContent, regDate, firstIdNo, modifyDate, lastIdNo
+        FROM allqnacmt
+        WHERE allqnaCmtNo = #{allqnaCmtNo}
+        AND allqnaCmtReplyNO is NOT NULL
+    </select>
 <!--    4-3 대댓글 수정-->
+    <update id="cmtReplyUpdate" parameterType="allqnaDto">
+        UPDATE allqnacmt
+        SET cmtContent = #{cmtContent}
+          , cmtWriter = #{cmtWriter}
+          , modifyDate = now()
+        WHERE allqnaCmtNo = #{allqnaCmtNo}
+          AND allqnaCmtReplyNo = #{allqnaCmtReplyNo}
+    </update>
 <!--    4-4 대댓글 삭제-->
+    <delete id="cmtReplyDelete" parameterType="allqnaDto">
+        DELETE
+        FROM   allqnacmt
+        WHERE allqnaCmtNo = #{allqnaCmtNo}
+          AND allqnaCmtReplyNo = #{allqnaCmtReplyNo}
+
+    </delete>
 
 <!--    5 비밀글 제외-->
 <!--    6 내가 작성한 글 보기-->
 
-<!--    7 페이징 처리-->
+<!--    7 게시글 페이징 처리-->
     <sql id="searchCondition">
         <choose>
             <when test='option=="T"'>
@@ -102,7 +135,7 @@
     </sql>
 
     <select id="searchSelectPage" parameterType="SearchCondition" resultType="AllqnaDto">
-        SELECT allqnaNo, title, content, writer, hit, regDate
+        SELECT allqnaNo, title, content, writer, hit, openYN, regDate
         FROM  allQnA
         WHERE true
         <include refid="searchCondition"/>
@@ -117,7 +150,8 @@
         <include refid="searchCondition"/>
     </select>
 
-<!--    8. 조회수 처리-->
+
+<!--    9. 조회수 처리-->
     <update id="increaseViewCnt" parameterType="int">
         UPDATE allQnA
         SET   hit = hit + 1

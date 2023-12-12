@@ -27,7 +27,7 @@
             <a href="${path}/board/qna/allqnaList">FAQ</a>
         </div>
         <p id="QnA">Q&A</p>
-        <input type="checkbox" name="secret" value=""> <span>비밀글 제외</span>
+        <input type="checkbox" class="secret" name="secret" value="secret"> <span>비밀글 제외</span>
         <input type="checkbox" name="myWriting" value=""> <span>내가 작성한 글 보기</span>
 
         <div id="top_container">
@@ -40,7 +40,7 @@
                 </select>
                 <input type="text" name="keyword" class="serachInput" value="${ph.sc.keyword}" placeholder="검색어를 입력하세요">
                 <button type="submit" class="searchButtom" value="검색">검색</button>
-<%--                <input type="hidden" name="page" value="1">--%>
+                <%--                <input type="hidden" name="page" value="1">--%>
                 <input type="hidden" name="pageSize" value="10">
             </form>
         </div>
@@ -54,72 +54,97 @@
                     <div class="regDate">작성일</div>
                     <div class="hit">조회수</div>
                 </div>
+
                 <c:forEach var="list" items="${list}">
                     <div class="lists">
                         <div class="allqnaNo">${list.allqnaNo}</div>
-                        <div class="title"><a href="${path}/board/qna/allqnaDetail?allqnaNo=${list.allqnaNo}&page=${paging.page}">${list.title}</a></div>
+                        <div class="title2" id="title" data-openyn="${list.openYN}">
+                            <c:if test="${empty param.secret}">
+                            <c:choose>
+                                <c:when test="${list.openYN eq 'Y' || empty list.openYN || list.openYN eq null}">
+                                    <a href="${path}/board/qna/allqnaDetail?allqnaNo=${list.allqnaNo}">${list.title}</a>
+                                </c:when>
+                                <c:when test="${list.openYN eq 'N'}">
+                                    비밀글은 작성자와 관리자만 볼 수 있습니다.
+                                </c:when>
+                                <c:when test="${list.openYN eq 'N' && not empty param.secret}">
+
+                                </c:when>
+                            </c:choose>
+                            </c:if>
+                        </div>
                         <div class="writer">${list.writer}</div>
                         <div class="regDate">${list.regDate}</div>
                         <div class="hit">${list.hit}</div>
                     </div>
+
                 </c:forEach>
             </div>
+        </div>
 
-            <br>
-            <div class="paging-container">
-                <div class="paging">
-                    <c:if test="${totalCnt==null || totalCnt==0}">
-                        <div id="empty"> 게시물이 없습니다.</div>
+
+        <br>
+        <div class="paging-container">
+            <div class="paging">
+                <c:if test="${totalCnt==null || totalCnt==0}">
+                    <div id="empty"> 게시물이 없습니다.</div>
+                </c:if>
+                <c:if test="${totalCnt!=null && totalCnt!=0}">
+                    <c:if test="${ph.showPrev}">
+                        <a id="pageNbr" class="page"
+                           href="<c:url value="/board/qna/allqnaList${ph.sc.getQueryString(ph.beginPage-1)}"/>">&lt;</a>
                     </c:if>
-                    <c:if test="${totalCnt!=null && totalCnt!=0}">
-                        <c:if test="${ph.showPrev}">
-                            <a id="pageNbr" class="page"
-                               href="<c:url value="/board/qna/allqnaList${ph.sc.getQueryString(ph.beginPage-1)}"/>">&lt;</a>
-                        </c:if>
-                        <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
-                            <a id="pageNbr" class="page ${i==ph.sc.page? "paging-active" : ""}"
-                               href="<c:url value="/board/qna/allqnaList${ph.sc.getQueryString(i)}"/>">${i}</a>
-                        </c:forEach>
-                        <c:if test="${ph.showNext}">
-                            <a id="pageNbr" class="page"
-                               href="<c:url value="/board/qna/allqnaList${ph.sc.getQueryString(ph.endPage+1)}"/>">&gt;</a>
-                        </c:if>
+                    <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
+                        <a id="pageNbr" class="page ${i==ph.sc.page? "paging-active" : ""}"
+                           href="<c:url value="/board/qna/allqnaList${ph.sc.getQueryString(i)}"/>">${i}</a>
+                    </c:forEach>
+                    <c:if test="${ph.showNext}">
+                        <a id="pageNbr" class="page"
+                           href="<c:url value="/board/qna/allqnaList${ph.sc.getQueryString(ph.endPage+1)}"/>">&gt;</a>
                     </c:if>
-                </div>
-                <div class="bt_wrap">
-                    <a href="${path}/board/qna/allqnaWrite" class="on">등록</a>
-                </div>
+                </c:if>
+            </div>
+
+
+
+            <div class="bt_wrap">
+                <a class="on" href="<c:url value="/board/qna/allqnaWrite"/>">등록</a>
             </div>
         </div>
     </div>
 </div>
+</div>
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const secretCheckboxes = document.querySelectorAll('.secret');
+
+        secretCheckboxes.forEach(function(secretCheckbox) {
+            secretCheckbox.addEventListener('change', function() {
+                const isChecked = this.checked;
+                const lists = document.querySelectorAll('.lists');
+
+                lists.forEach(function(list) {
+                    const title = list.querySelector('.title2');
+                    const openYNValue = title.getAttribute('data-openyn');
+
+                    if (isChecked && openYNValue === 'N') {
+                        list.style.display = 'none';
+                    } else {
+                        list.style.display = 'block';
+                    }
+                });
+            });
+        });
+    });
+
+</script>
 
 
 </body>
 </html>
 
 
-<%--                <br>--%>
-<%--                <div class="paging-container">--%>
-<%--                    <div class="paging">--%>
-<%--                        <c:if test="${totalCnt==null || totalCnt==0}">--%>
-<%--                            &lt;%&ndash;                <div> 게시물이 없습니다. </div>&ndash;%&gt;--%>
-<%--                        </c:if>--%>
-<%--                        <c:if test="${totalCnt!=null && totalCnt!=0}">--%>
-<%--                            <c:if test="${ph.showPrev}">--%>
-<%--                                <a class="page" href="<c:url value="/board/qna/allqnaList?page=${ph.beginPage-1}"/>">&lt;</a>--%>
-<%--                            </c:if>--%>
-<%--                            <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">--%>
-<%--                                <a class="page ${i==ph.page? "paging-active" : ""}"--%>
-<%--                                   href="<c:url value="/board/qna/allqnaList?page=${i}"/>">${i}</a>--%>
-<%--                            </c:forEach>--%>
-<%--                            <c:if test="${ph.showNext}">--%>
-<%--                                <a class="page"--%>
-<%--                                   href="<c:url value="/board/qna/allqnaList?page=${ph.endPage+1}"/>">&gt;</a>--%>
-<%--                            </c:if>--%>
-<%--                        </c:if>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
 
 

@@ -10,7 +10,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QnA</title>
 
-    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/allqnaForm.css"/>">
 </head>
@@ -24,7 +23,7 @@
     <p id="QnA">Q&A</p>
     <hr>
 
-    <form action="${path}/board/qna/allqnaWrite" method="post" enctype="multipart/form-data">
+    <form action="${path}/board/qna/allqnaWrite" method="post">
         <label>카테고리</label>
         <select name="languages" id="lang">
             <option value="" disabled selected>카테고리</option>
@@ -46,14 +45,10 @@
         <label for="content">내용:</label>
         <textarea id="content" name="content" rows="4"></textarea>
         <br><br>
-
-        <div id="fileDiv">
-            <p>
-                <input type="file" id="file" name="imgFile">
-                <a href="#this" class="btn" id="delete" name="delete">삭제</a>
-            </p>
-        </div>
-        <a href="#this" class="btn" id="addFile">파일 추가</a>
+        <label for="file">파일 첨부:</label>
+        <input type="file" id="file" name="file">
+        <%--    <input type="file" id="file" onchange="previewFile()" style="display:none;">--%>
+        <%--    <label for="file">파일 업로드</label>--%>
         <br><br>
         <hr>
         <button id="submit" type="submit">등록하기</button>
@@ -72,36 +67,5 @@
 
 
 </div>
-<script>
-    $(document).ready(function () {
-        $('#addFile').on("click", function (e) {
-            e.preventDefault();
-            fn_addFile();
-        })
-
-        $("a[name='delete']").on('click', function (e) {
-            e.preventDefault();
-            fn_deleteFile($(this))
-        })
-
-        function fn_addFile() {
-            var str = "<p><input type='file' name='imgFile'><a href='#this' name='delete'>삭제</a></p>";
-            $("#fileDiv").append(str);
-
-            $("a[name='delete']").on('click', function (e) {
-                e.preventDefault();
-                fn_deleteFile($(this))
-            })
-
-        }
-
-        function fn_deleteFile(obj) {
-            obj.parent().remove();
-        }
-
-
-    })
-</script>
 </body>
 </html>
-
