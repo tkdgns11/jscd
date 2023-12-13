@@ -1,7 +1,6 @@
 package com.jscd.app.board.qna.qnaDto;
 
 import java.util.Date;
-import java.util.Objects;
 
 public class AllqnaDto {
 

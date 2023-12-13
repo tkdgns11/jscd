@@ -1,0 +1,22 @@
+#headerfaq{overflow: hidden; background-color: #182566; padding: 20px 10px;width: 70%; margin: 0 auto 0 auto;}
+#firstletter{font-size: 38px; font-weight: bold; color:#05CE31; font-size:38px; text-align: center;}
+#secondletter{font-size: 15px; font-weight: bold; color:#FFFFFF; margin-top: 20px; text-align: center;}
+.innerbox{height:700px; margin: 20px auto; display: flex; max-width: 70%; flex-wrap: wrap; justify-content: space-between; overflow: hidden;}
+#pink1, #pink2,#blue1,#blue2{ width:490px;  border-radius: 30px 30px 0px 0px; padding: 10px;}
+#pink1hd,#pink2hd{ height: 55px; background: #ED3269;  border-radius: 30px 30px 0px 0px; text-align: center; line-height: 55px; font-size:  32px; font-weight: bold; color: #FFFFFF;  }
+#blue1hd,#blue2hd{ height: 55px; background: #0185F2;  border-radius: 30px 30px 0px 0px;  text-align: center;  line-height: 55px; font-size: 24px; font-weight: bold; color: #FFFFFF; }
+#pink1bd,#pink2bd,#blue1bd,#blue2bd { height: 200px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 0 0 30px 30px; }
+#blue1bd,#blue2bd{font-size: 20px; font-weight: bold; padding: 10px;}
+/* 첫번째 핑크상자 글씨 크기(가 달라서 id를 따로 설정함) */
+#fstLt{font-size: 32px; font-weight: bold; text-align: center;}
+#scdLt{font-size: 24px; font-weight: bold; text-align: center;}
+#pink1bd{display:flex; flex-direction: row; justify-content: space-around; align-items: center;}
+#pink2bd{font-size: 32px; font-weight: bold; display:flex; flex-direction: row ;justify-content: center; align-items: center;}
+#pink1bd img{width: 80px; height: 110px; transform: translate(50px, 0);}
+#pink1bd a{ transform: translate(-50px, 0); text-decoration-line: none;}
+#pink2bd iframe{width: 160px; height: 90px; margin: 0 auto ;}
+#pink2bd a{ transform: translate(-30px, 0); text-decoration-line: none;}
+#curriculum{ margin: 0 auto 0 auto ; width:70%; overflow: hidden;}
+#imgboxNavi{height: 39px; background: #0F36C3;  text-align: center; border-radius: 10px 10px 0px 0px; font-size: 24px; color: #FFFFFF; font-weight: bold; }
+#imgbox{display: flex;   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); margin: 0 auto 300px auto; }
+#imgbox img{width: 100%; top: 50%;  left: 50%;}

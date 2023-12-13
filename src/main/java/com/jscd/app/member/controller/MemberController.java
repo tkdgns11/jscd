@@ -318,5 +318,10 @@ public class MemberController {
 		return "jsIntro";
 	}
 
+	@GetMapping("/introTeacher")
+	public String introTeacher(){
+		return "introTeacher";
+	}
+
 }
 
