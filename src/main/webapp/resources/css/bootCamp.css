@@ -1,0 +1,18 @@
+#BootCampBox header{height: 300px;width: 100%; background-color: #0185FE; color: #FFFFFF}
+#BootCampBox header>p{position: absolute; left: 10%; top:10%; font-size: 25px;}
+#BootCampList{position: absolute; left: 15%; top: 19%; }
+#BootCampList li{display: flex; margin-top: 10px; }
+#BootCampList li h1{width: 30px; height: 30px; background-color: #FFFFFF;color: #0185FE; text-align: center; line-height: 30px; border-radius: 5px; font-weight: bold; margin: 0px 5px; box-shadow: 5px 5px 5px rgba(0,0,0,0.4)}
+#BootCampList li p{line-height: 30px;}
+#BootCampBox nav{background-color: #ED3269}
+#BootCampBox nav > ul{display: flex; width: 100%;justify-content: center;padding: 10px;}
+#BootCampBox nav li{margin-right: 5px;}
+
+#btProcess{display: flex; flex-direction: column; align-items: center;}
+#btProcess > h1{font-size: 50px; color: #0185FE; margin-top: 20px;}
+#imgBox{display: flex; flex-direction: row}
+#imgBox > div{text-align: center;}
+#imgBox > div > p{color: red; font-size: 20px; font-weight: bold; text-shadow: 5px 5px 5px rgba(0,0,0,0.2)}
+#imgBox > div > p{margin-top: 10px;}
+#imgBox > div:nth-child(odd) > img{width: 200px; height: 200px;}
+#imgBox > div:nth-child(even) > img{width: 100px; height: 100px; justify-content: flex-end;}
