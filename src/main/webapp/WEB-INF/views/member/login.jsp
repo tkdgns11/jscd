@@ -64,8 +64,8 @@
     </div>
     </form>
 </div>
-<footer>
+<footer style="flex-shrink: 0;" >
     <jsp:include page="../footer.jsp" flush="true"/>
 </footer>
 </body>
-</html>   
+</html>
