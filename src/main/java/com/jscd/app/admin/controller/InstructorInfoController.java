@@ -46,7 +46,6 @@ public class InstructorInfoController {
 
             //(2-1)강사 정보를 list에 받고,
             List<InstructorMemberInfoDto> list = infoService.getSearchPage(sc);
-            System.out.println("list = " + list);
             //(2-2)jsp에 뿌려주기
             model.addAttribute("list", list);
 
@@ -77,26 +76,11 @@ public class InstructorInfoController {
         return "/admin/instructorManage/instructorInfo";
     }
 
-    //강사 정보 수정 페이지
-    @GetMapping("/modify")
-    public String modifyForm(Integer page, String iscrNo, Model model) {
-        try {
-            InstructorMemberInfoDto infoDto = infoService.read(iscrNo);
-            model.addAttribute("page", page);
-            model.addAttribute("infoDto", infoDto);
-        } catch (Exception e) {
-            e.printStackTrace();
-            model.addAttribute("msg", "READ_ERR");
-            return "redirect:/onlyAdmin/instructor/read";
-        }
-
-        return "/admin/instructorManage/instructorInfoModify";
-    }
-
-
     @PostMapping("/modify")
     public String infoModify(Integer page, InstructorInfoDto instructorInfoDto, Model model) {
         try {
+            System.out.println("이리 오나요오");
+            System.out.println("instructorInfoDto = " + instructorInfoDto);
             infoService.modify(instructorInfoDto);
             model.addAttribute("msg", "MOD_OK");
         } catch (Exception e) {
@@ -106,7 +90,7 @@ public class InstructorInfoController {
             return "redirect:/onlyAdmin/instructor/modify?page=" + page + "&iscrNo=" + instructorInfoDto.getIscrNo();
         }
 
-        return "redirect:/onlyAdmin/instructor/list?page=" + page;
+        return "redirect:/onlyAdmin/instructor/read?page=" + page + "&iscrNo=" + instructorInfoDto.getIscrNo();
     }
 
     @PostMapping("/modifyStatus")

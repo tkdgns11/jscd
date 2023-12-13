@@ -8,14 +8,16 @@
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&family=Noto+Serif+KR:wght@900&display=swap"
           rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
-        <link rel="stylesheet" type="text/css" href="<c:url value="/css/adminInfoList.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/adminInfo.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/jscdReset.css"/>">
 
 </head>
 <script>
     let msg = "${param.msg}";
-    if (msg == "MOD_OK") alert("성공적으로 수정되었습니다.");
     if (msg == "LIST_ERR") alert("회원 목록을 가져오는데 실패했습니다. 다시 시도해 주세요.");
     if (msg == "MOD_ERR") alert("수정에 실패했습니다. 다시 시도해 주세요.");
+    if (msg == "MOD_OK") alert("성공적으로 수정되었습니다.");
+
 </script>
 
 <body>
@@ -26,13 +28,15 @@
     <jsp:include page="../adminSidebar.jsp"/>
 </header>
 
+<%--수정 -> 수정버튼 -> 읽기--%>
+
 <div id="infoContentBox">
     <div id="infoTitleBox">
         <h1>회원 정보 관리</h1>
     </div>
 
     <div id="memManageSelectBox">
-        <div style="margin-left: -70px;margin-right: 20px">
+        <div id="memberSearchBox">
             <form action="" method="get" ;>
                 <select name="option">
                     <option value="T" ${sc.option=='T' || sc.option=='' ? "selected" : ""}>이름</option>
@@ -42,26 +46,23 @@
                 </select>
                 <input type="text" name="keyword" type="text" value="${param.keyword}" id="keywordInput"
                        placeholder="검색어를 입력해주세요">
-                <button id="searchBtn">검색</button>
+                <input type="submit" value="검색" class="deleteBtn">
             </form>
         </div>
-        <div style="margin-top: -5px">
+        <div id="memberUpdateBox">
             <select name="grade" id="grade">
-                <option value="" disabled selected>등급</option>
                 <option value="1">일반</option>
                 <option value="2">학생</option>
-                <option value="3">수료생</option>
-                <option value="4">강사</option>
-                <option value="5">관리자(조교)</option>
+                <option value="3">강사</option>
+                <option value="4">관리자(조교)</option>
             </select>
             <select name="status" id="status">
-                <option value="" disabled selected>상태</option>
                 <option value="1">정상</option>
                 <option value="2">블랙</option>
                 <option value="3">탈퇴</option>
                 <option value="4">휴면</option>
             </select>
-            <button onclick="statusUpdate()" id="allModifyBtn" style="width: 100px">등급/상태 수정</button>
+            <input type="button" value="등급/상태 수정" class="modifyBtn" onclick="statusUpdate()" style="width: 100px">
         </div>
 
     </div>
@@ -114,7 +115,7 @@
 
     <div id="infoNaviBox">
         <c:if test="${page.totalCnt==null || page.totalCnt==0}">
-            <p id="noContent"> 게시물이 없습니다.</p>
+            <p id="noContent">등록된 회원이 없습니다 .</p>
         </c:if>
 
         <c:if test="${page.totalCnt!=null && page.totalCnt!=0}">
