@@ -1,6 +1,3 @@
-
-
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -46,13 +43,10 @@
                         <li><a href="/member/introTeacher">원장님 소개</a></li>
                         <li><a href="/member/jscdIntro">정석코딩 소개</a></li>
                         <li><a href="/member/jscdRoad">찾아오시는 길</a></li>
-                        <li><a href="#">원장님 소개</a></li>
-                        <li><a href="#">정석코딩 소개</a></li>
-                        <li><a href="#">찾아오시는 길</a></li>
                     </ul>
                     <ul class="submenu">
-                        <li><a href="#">부트캠프 신청</a></li>
-                        <li><a href="#">세미나 신청</a></li>
+                        <li><a href="<c:url value="/btTraining/list"/>#">부트캠프 신청</a></li>
+                        <li><a href="<c:url value="/smTraining/list"/>#">세미나 신청</a></li>
                     </ul>
                     <ul class="submenu">
                         <li><a href="<c:url value="/board/notice/list"/>">공지사항</a></li>
@@ -73,16 +67,13 @@
                     <li><a href="/member/introTeacher">원장님 소개</a></li>
                     <li><a href="/member/jscdIntro">정석코딩 소개</a></li>
                     <li><a href="/member/jscdRoad">찾아오시는 길</a></li>
-                    <li><a href="#">원장님 소개</a></li>
-                    <li><a href="#">정석코딩 소개</a></li>
-                    <li><a href="#">찾아오시는 길</a></li>
                 </ul>
             </li>
             <li id="apply">
                 <p>교육신청</p>
                 <ul class="Menu gainMenu">
-                    <li><a href="#">부트캠프 신청</a></li>
-                    <li><a href="#">세미나 신청</a></li>
+                    <li><a href="<c:url value="/btTraining/list"/>#">부트캠프 신청</a></li>
+                    <li><a href="<c:url value="/smTraining/list"/>#">세미나 신청</a></li>
                 </ul>
             </li>
             <li id="board">
