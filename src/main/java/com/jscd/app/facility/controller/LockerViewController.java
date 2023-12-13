@@ -35,7 +35,15 @@ public class LockerViewController {
 
     @GetMapping("/student")
     public String student(Model m, HttpServletRequest request){
+        return "admin/stdManage/studentDetail";
+    }
+    @GetMapping("/dashboard")
+    public String dashBoard(Model m, HttpServletRequest request){
+        return "admin/dashBoard";
+    }
 
-        return "admin/studentManage/studentDetail";
+    @GetMapping("/campMain")
+    public String campMain(Model m, HttpServletRequest request){
+        return "lecture/campMain";
     }
 }
