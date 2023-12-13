@@ -5,31 +5,31 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>글쓰기 리스트</title>
+    <title>학생공지 글쓰기 리스트</title>
     <link rel="stylesheet" href="<c:url value='/css/noticeList.css'/>">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 <body>
 <div id="headerNotice">
-    <div id="ltone">/* Notice */</div>
-    <div id="lttwo">공지사항;</div>
+    <div id="ltone">/* Student Notice */</div>
+    <div id="lttwo">학생 공지사항;</div>
 </div>
 <script>
     let msg = "${msg}";
-    if (msg == "wrt_err") alert("등록 실패!!!! 다시 시도 바람")
+    if (msg == "wrt_err") alert("등록에 실패했습니다. 다시 시도해주세요.")
 </script>
 
 <form action="" id="form">
-    <input type="hidden" name="bno" value="${noticeDto.bno}"><br>
+    <input type="hidden" name="bno" value="${stdNoticeDto.bno}"><br>
     제목<br>
-    <input type="text" name="title" value="${noticeDto.title}" ${mode=="new" ? '' : 'readonly="readonly"'}><br>
+    <input type="text" name="title" value="${stdNoticeDto.title}" ${mode=="new" ? '' : 'readonly="readonly"'}><br>
     작성자<br>
-    <input type="text" name="writer" value="${noticeDto.writer}" ${mode=="new" ? '' : 'readonly="readonly"'}><br>
+    <input type="text" name="writer" value="${stdNoticeDto.writer}" ${mode=="new" ? '' : 'readonly="readonly"'}><br>
     <%--        <br><input type="hidden" name="reg_date"--%>
-    <%--                       value="${noticeDto.reg_date}" ${mode=="new" ? '' : 'readonly="readonly"'}><br>--%>
+    <%--                       value="${stdNoticeDto.reg_date}" ${mode=="new" ? '' : 'readonly="readonly"'}><br>--%>
     내용<br>
-    <textarea name="content" id="" cols="30"
-              rows="10" ${mode=="new" ? '' : 'readonly="readonly"'}>${noticeDto.content}</textarea><br>
+    <textarea name="content" id="" cols="50"
+              rows="10" ${mode=="new" ? '' : 'readonly="readonly"'}>${stdNoticeDto.content}</textarea><br>
     <button type="button" id="upload">첨부파일</button>
     <br>
     <button type="button" id="writeBtn" class="btn" ${mode eq 'new' ? '' : 'hidden'}>${mode eq 'new' ? '등록하기' : ''}</button>
@@ -76,7 +76,7 @@
 
             console.log('Form:', form);
 
-            form.attr("action", "<c:url value='/board/notice/write'/>");
+            form.attr("action", "<c:url value='/board/stdNotice/write'/>");
             form.attr("method", "post");
             console.log('Form data:', form.serialize());
             form.submit();
@@ -109,7 +109,7 @@
             console.log("444444")
 
             //2. 수정 상태이면, 수정된 내용을 서버로 전송
-            form.attr("action", "<c:url value='/board/notice/modify?page=${page}&pageSize=${pageSize}'/>");
+            form.attr("action", "<c:url value='/board/stdNotice/modify?page=${page}&pageSize=${pageSize}'/>");
             form.attr("method", "post"); //포스트로 해서 전송
             if (formCheck()){form.submit();}
 

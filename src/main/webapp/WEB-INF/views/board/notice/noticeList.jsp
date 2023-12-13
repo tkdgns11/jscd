@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<c:set var = "path" value = "${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +18,7 @@
     <div id="topnav">
         <a href="<c:url value='list'/>">공지사항</a>|
         <a href="<c:url value='allqnaList'/>">QnA</a>|
-        <a href="<c:url value='/'/>">FAQ</a>
+        <a href="<c:url value="${path}/board/faq"/>">FAQ</a>
    </div>
     <div class="subtop">
         <div id="chkbox">

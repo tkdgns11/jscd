@@ -37,10 +37,10 @@ public class noticeDaoImplTest {
 
     @Test
     public void insertTestData() throws Exception{
-        noticeDao.deleteAll();
+
         for (int i=1; i<=500; i++){
-           // noticeDto noticeDto = new noticeDto("title"+i, "no content", "memeber"+i);
-           // noticeDao.insert(noticeDto);
+            noticeDto noticeDto = new noticeDto("title"+i, "no content", "memeber"+i);
+            noticeDao.insert(noticeDto);
         }
 
     }
