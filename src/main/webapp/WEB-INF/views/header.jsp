@@ -43,6 +43,9 @@
                 <img src="<c:url value="/img/line3.png"/>">
                 <div class="Menu">
                     <ul class="submenu">
+                        <li><a href="/member/introTeacher">원장님 소개</a></li>
+                        <li><a href="/member/jscdIntro">정석코딩 소개</a></li>
+                        <li><a href="/member/jscdRoad">찾아오시는 길</a></li>
                         <li><a href="#">원장님 소개</a></li>
                         <li><a href="#">정석코딩 소개</a></li>
                         <li><a href="#">찾아오시는 길</a></li>
@@ -67,6 +70,9 @@
             <li id="about">
                 <p>ABOUT</p>
                 <ul class="Menu gainMenu">
+                    <li><a href="/member/introTeacher">원장님 소개</a></li>
+                    <li><a href="/member/jscdIntro">정석코딩 소개</a></li>
+                    <li><a href="/member/jscdRoad">찾아오시는 길</a></li>
                     <li><a href="#">원장님 소개</a></li>
                     <li><a href="#">정석코딩 소개</a></li>
                     <li><a href="#">찾아오시는 길</a></li>

@@ -28,16 +28,36 @@
     }
 
     #headerTop {
+      height: 100%;
       justify-items: center;
+      align-items: center;
+    }
+
+    #headerTop ul {
+      height: 100%;
+      display: flex;
+      flex-direction: row;
+      flex-warp: nowrap;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    #headerTop ul li {
+      height: 100%;
+    }
+
+    #headerTop ul li a {
+      height: 100%;
+      display: flex;
+      text-decoration: none;
+      font-size: 25px;
       align-items: center;
     }
 
     .admin_group {
       color: #f1f1f1;
-      padding: 1rem 1rem 1rem 1rem;
       text-decoration: none;
       font-size: 25px;
-      margin-top: 1rem;
     }
 
     #admin_title {
@@ -387,9 +407,9 @@
 z-index: 1000; float: right;/">
   <div id="headerTop">
     <h1 id="admin_title">정석코딩 관리자 시스템</h1>
-    <ul style="display: flex; flex-direction: row; flex-warp:nowrap; justify-content: flex-end; align-items: center; margin-top: 1rem;">
+    <ul>
       <li><a class = "admin_group" href="<c:url value='/admin/logout'/>">로그아웃</a></li>
-      <li>|</li>
+      <li><a>&nbsp;&nbsp;|&nbsp;&nbsp;</a></li>
       <li><a class = "admin_group" href="<c:url value='/admin/read'/>">개인정보수정</a></li>
     </ul>
   </div>
