@@ -46,4 +46,9 @@ public class LockerViewController {
     public String campMain(Model m, HttpServletRequest request){
         return "lecture/campMain";
     }
+
+    @GetMapping("/temple")
+    public String adminTempl(Model m, HttpServletRequest request){
+        return "template";
+    }
 }
