@@ -1,18 +1,50 @@
-#BootCampBox header{height: 300px;width: 100%; background-color: #0185FE; color: #FFFFFF}
-#BootCampBox header>p{position: absolute; left: 10%; top:10%; font-size: 25px;}
-#BootCampList{position: absolute; left: 15%; top: 19%; }
-#BootCampList li{display: flex; margin-top: 10px; }
-#BootCampList li h1{width: 30px; height: 30px; background-color: #FFFFFF;color: #0185FE; text-align: center; line-height: 30px; border-radius: 5px; font-weight: bold; margin: 0px 5px; box-shadow: 5px 5px 5px rgba(0,0,0,0.4)}
-#BootCampList li p{line-height: 30px;}
-#BootCampBox nav{background-color: #ED3269}
-#BootCampBox nav > ul{display: flex; width: 100%;justify-content: center;padding: 10px;}
-#BootCampBox nav li{margin-right: 5px;}
-
+/* bootCampList.jsp
+부트캠프 목록 상단
+*/
+#BootCampBox header{height: 500px;width: 100%; background-color: #0185FE; color: #FFFFFF; position: relative;}
+#BootCampBox header>p{position: absolute; left: 10%; top:10%; font-size: 50px; font-weight: bold;text-shadow: 5px 5px 5px rgba(0,0,0,0.2);}
+#BootCampList{position: absolute; left: 15%; top: 45%;}
+#BootCampList li:first-child{margin-top: 0px;}
+#BootCampList li{display: flex; margin-top: 30px;}
+#BootCampList li h1{width: 50px; height: 50px; background-color: #FFFFFF; color: #0185FE; text-align: center; line-height: 50px; border-radius: 5px; font-size: 25px; font-weight: bold; margin: 0px 20px; box-shadow: 5px 5px 5px rgba(0,0,0,0.4)}
+#BootCampList li p{line-height: 50px; font-weight: bold; font-size: 30px;text-shadow: 5px 5px 5px rgba(0,0,0,0.2);}
+#BootCampNav{background-color: #ED3269; color: #ffffff; height: 50px;}
+#BootCampNav li{line-height: 50px; font-weight: bold;}
+#BootCampNav a{color: #ffffff;font-weight: bold; margin: 0px 15px;}
+#BootCampNav > ul{display: flex; width: 100%;justify-content: center;}
+#BootCampNav li{margin-right: 5px;}
+/*부트캠프 목록 중간*/
 #btProcess{display: flex; flex-direction: column; align-items: center;}
-#btProcess > h1{font-size: 50px; color: #0185FE; margin-top: 20px;}
-#imgBox{display: flex; flex-direction: row}
-#imgBox > div{text-align: center;}
-#imgBox > div > p{color: red; font-size: 20px; font-weight: bold; text-shadow: 5px 5px 5px rgba(0,0,0,0.2)}
+#btProcess > h1{font-size: 50px; font-weight: bold; color: #0185FE; margin-top: 20px;}
+#imgBox{display: flex; flex-direction: row; margin-top: 40px;}
+#imgBox > div{text-align: center; display: flex; flex-direction: column}
+#imgBox > div > p{color: red; font-size: 20px; font-weight: bold; text-shadow: 5px 5px 5px rgba(0,0,0,0.4);}
 #imgBox > div > p{margin-top: 10px;}
-#imgBox > div:nth-child(odd) > img{width: 200px; height: 200px;}
-#imgBox > div:nth-child(even) > img{width: 100px; height: 100px; justify-content: flex-end;}
+#imgBox > div:nth-child(odd) > img{width: 300px; height: 300px;}
+#imgBox > div:nth-child(even){display: flex; margin-top: auto;}
+#imgBox > div:nth-child(even) > img{width: 100px; height: 100px; }
+/*부트캠프 목록 신청 상자*/
+#btApplyList{width: 960px; margin: 30px auto;}
+#btApplyBox{background-color: rgba(0,0,0,0.1); width: 100%;height: 200px; margin-top: 30px;position: relative;display: flex;flex-direction: row;border-radius: 10px;box-shadow: 5px 5px 5px rgba(0,0,0,0.4)}
+#btApplyBox > ul{margin-left: 20px;position: absolute;top:15px;}
+#btApplyBox > ul li{margin-top: 5px;}
+#btApplyBox > button{width: 80px; height: 40px; border-radius: 8px;background-color: #0185FE; border: 0; margin-left: auto; position: absolute; right: 20px; top: 15px;}
+#btApplyBox > button > a{color: #ffffff}
+.applyTxt{color: rgba(0,0,0,0.5);}
+.applyTxt2{color: #0185FE; font-weight: bold;}
+.btTitle{font-size: 20px; font-weight: bold}
+/*
+*   bootCamp.jsp
+*   부트캠프 소개 페이지
+*/
+#btDetailInfo{width: 960px;margin: 50px auto;}
+#btDetailInfo > div{margin-top: 20px;}
+#btDetailInfo > div > h1{color: rgba(0,0,0,0.7); font-size: 30px; font-weight: bold; line-height: 50px;}
+#btDetailInfo > hr{margin-top: 20px; color: rgba(0,0,0,0.2);}
+#btDetailInfo > div > div{display: flex; flex-direction: row;}
+#btDetailInfo > div > div > img{width: 50px; height: 50px;}
+#btDetailInfo > div > div > h1{margin-bottom: 20px; color: rgba(0,0,0,0.7); font-size: 30px; font-weight: bold; line-height: 50px;}
+#btDetailInfo > div > h2{margin-bottom: 20px;}
+#btDetailInfo > div > h3{color: red;}
+.btinputTxt{box-shadow: 5px 5px 5px rgba(0,0,0,0.2);border: 1px solid rgba(0,0,0,0.1); border-radius: 5px;width: 100%; height: 60px;}
+

@@ -16,6 +16,9 @@
     <title>bootCampList</title>
 </head>
 <body>
+<header>
+    <jsp:include page="../header.jsp"/>
+</header>
 <div>
     <div id="BootCampBox">
         <header>
@@ -35,7 +38,7 @@
                 </li>
             </ul>
         </header>
-        <nav>
+        <div id="BootCampNav">
             <ul>
                 <li><a href="#">전체 BootCamp</a></li>
                 <li>|</li>
@@ -43,7 +46,7 @@
                 <li>|</li>
                 <li><a href="#">진행 중인 BootCamp</a></li>
             </ul>
-        </nav>
+        </div>
         <div id="btProcess">
             <h1>BootCamp Register Process</h1>
             <div id="imgBox">
@@ -69,27 +72,28 @@
             </div>
         </div>
     </div>
-    <div>
+    <div id="btApplyList">
+        <hr/>
         <c:forEach var="list" items="${list}">
-        <div>
+        <div id="btApplyBox">
             <ul>
-                <li>${list.startDate} 모집중</li>
-                <li>${list.title}</li>
-                <li>담당 강사 ${list.title}</li>
-                <li>${list.startDate}</li>
-                <li>${list.lastPrice} / Month</li>
-                <li>${list.location}</li>
-                <button type="button"><a href="<c:url value='/btTraining/read?registCode=${list.registCode}'/>">수강 신청 하기</a></button>
+                <li class="applyTxt">${list.startDate} 모집중</li>
+                <li class="btTitle">BootCamp</li>
+                <li class="btTitle">${list.title}</li>
+                <li class="applyTxt">담당 강사 ${list.title}</li>
+                <li class="applyTxt">${list.startDate}</li>
+                <li class="applyTxt2">${list.lastPrice} / Month</li>
+                <li class="applyTxt">${list.location}</li>
             </ul>
+            <button type="button"><a href="<c:url value='/btTraining/read?registCode=${list.registCode}'/>">수강 신청</a></button>
         </div>
         </c:forEach>
     </div>
-
-
-
-
-
 </div>
+<footer>
+    <jsp:include page="../footer.jsp"/>
+</footer>
+
 
 </body>
 </html>

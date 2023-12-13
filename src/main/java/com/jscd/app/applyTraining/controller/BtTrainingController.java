@@ -128,8 +128,10 @@ public class BtTrainingController {
     // 부트캠프 리스트 이동
     @GetMapping("/list")
     public String btTrainingList(Model m) throws Exception {
+
         try {
             List<LstRegistDto> list = lstService.bootCampList();
+            System.out.println(list);
             m.addAttribute("list", list);
         } catch(Exception e) {
             e.printStackTrace();
