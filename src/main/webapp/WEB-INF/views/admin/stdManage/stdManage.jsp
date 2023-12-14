@@ -45,7 +45,16 @@
     <input type="text" class="infoInputBox" name="gisu" id="gisu" readonly value="${stdDto.gisu}"><br>
     <label style="margin-right: 25px;">상태</label>
     <select name="status" id="status" class="modifySelect">
-        <option value="">${stdDto.status}</option>
+        <c:if test="${stdDto.status eq '수강예정'}">
+            <option value="1">수강예정</option>
+        </c:if>
+        <c:if test="${stdDto.status eq '수강중'}">
+            <option value="2">수강중</option>
+        </c:if>
+        <c:if test="${stdDto.status eq '수료'}">
+            <option value="3">수료</option>
+        </c:if>
+    </select><br>
     </select><br>
     <label style="margin-right: 25px;">계좌</label>
     <input type="text" class="infoInputBox" readonly value="${stdDto.acct}"><br>
@@ -73,6 +82,9 @@
         3: '수료'
     }
 
+    let statusInfo = "${stdDto.status}"; //string
+
+
     $(document).ready(function () {
 
 
@@ -99,10 +111,13 @@
                 $("input[name=gisu]").css("border-bottom", "1px solid red");
                 $("input[name=etc]").css("border-bottom", "1px solid red");
 
-                $("#status option").remove();
                 $.each(statusArr, function (key, value) {
-                    $('#status').append($("<option></option>").attr("value", key).text(value))
+                    //상태와 value가 같지 않다면 옵션 추가
+                    if(statusInfo !== value){
+                        $('#status').append($("<option></option>").attr("value", key).text(value))
+                    }
                 });
+
             } else {
                 const form = document.createElement('form');
                 form.setAttribute('method', 'post');

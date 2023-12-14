@@ -11,7 +11,9 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/adminInfo.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/jscdReset.css"/>">
-    <script src="https://code.jquery.com/jquery-1.11.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+
+
 </head>
 <script>
     let msg = "${param.msg}";
@@ -94,7 +96,7 @@
                             pattern="yyyy-MM-dd"
                             type="date"/></td>
                     <td>
-                        <button id="detailBtn" onclick="location.href='/onlyAdmin/instructor/read?page=${sc.page}&iscrNo=${instructorDto.iscrNo}'">
+                        <button class="detailBtn" onclick="location.href='/onlyAdmin/instructor/read?page=${sc.page}&iscrNo=${instructorDto.iscrNo}'">
                             상세보기
                         </button>
                     </td>
@@ -128,6 +130,10 @@
 </div>
 
 <script>
+
+    $(document).ready(function (){
+    })
+
     function allChecked(target) {
 
         //전체 체크박스 버튼

@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/reset.css'/>">
     <title>정석코딩</title>
     <style>
         #content{width: 960px; height: 1080px; margin: 0 auto;}

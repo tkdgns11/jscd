@@ -142,7 +142,7 @@ margin-top: 700px;
     font-weight: 600;
 }
 
-#detailBtn {
+.detailBtn {
     border: 1px solid rgba(0, 0, 0, 0.7);
     background-color: #ffffff;
     width: 80px;
