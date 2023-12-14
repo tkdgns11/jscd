@@ -1,0 +1,74 @@
+#applicationManageText{
+    margin-bottom: 30px;
+    padding: 30px 30px;
+    text-align: center;
+    background-color: #182566;
+    color: #05CE31;
+    font-size: 50px;
+    font-weight: 600;
+}
+#applicationManageAll{
+    width: 960px;
+    margin: 0 auto;
+}
+#applicationManageSel{
+    float: right;
+    margin-bottom: 10px;
+}
+select[name="option"]{
+    border: 1px solid rgba(0,0,0,0.7); border-radius: 5px;
+    height: 29px;
+}
+input[name="keyword"]{
+    border: 1px solid rgba(0,0,0,0.7); border-radius: 5px;
+    height: 29px;
+}
+.searchBtn{
+    border: 0;
+    background-color: #182566;
+    color: #ffffff; width: 80px;
+    height: 30px;
+    border-radius: 8px;
+    font-family: FontAwesome;
+}
+#applicationManageTable{
+    width: 100%;
+    border-top: 2px groove black;
+    border-collapse: collapse;
+    text-align: center;
+    font-weight: 700;
+}
+.applicationManageTr, .applicationManageTd{
+    padding: 10px;
+    margin-right: -10px;
+    border-bottom: 1px groove gray;
+}
+.applicationManageTd a{
+    color: blue;
+}
+.applicationManageTd a:hover{
+    background-color: #18214F;
+    color: white;
+}
+.applicationManageTh{
+    padding: 10px;
+    border-bottom: 1px groove gray;
+}
+.applicationManageTr:nth-child(1){
+    background-color: #182566;
+    color: white;
+}
+#applicationManageNavi{
+    text-align: center;
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: 700;
+}
+#applicationManageNavi a{
+    color: black;
+    padding-right: 5px;
+}
+#applicationManageNavi a:hover{
+    background-color: #18214F;
+    color: white;
+}

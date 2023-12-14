@@ -84,6 +84,4 @@ public class MemberServiceImpl implements MemberService {
 	public List<LectureApplyDto> selectLecture(LectureApplyDto lectureApplyDto) throws Exception {
 		return memberDao.selectLecture(lectureApplyDto);
 	}
-
-
 }

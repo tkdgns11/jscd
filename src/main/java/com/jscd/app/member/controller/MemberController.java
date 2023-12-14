@@ -292,7 +292,25 @@ public class MemberController {
 		return null;
 	}
 
+	//이메일 중복 확인
+	@GetMapping("/idChk")
+	@ResponseBody
+	public String idChk(String id){
+		System.out.println("비교할 이메일 아이디 = " + id);
 
+		String email = "";
+
+		try {
+			MemberDto memberDto = memberService.memberSelect(id);
+			email = memberDto.getId();
+
+			System.out.println("email = " + email);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return email;
+	}
 
 	//이메일 인증
 	@Autowired

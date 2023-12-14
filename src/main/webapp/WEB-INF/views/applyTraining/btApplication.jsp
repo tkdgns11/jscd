@@ -10,60 +10,20 @@
 <html>
 <head>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/jscdReset.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/application.css"/>">
     <title>부트캠프 신청서</title>
-    <style>
-        #btApplicationAll{
-            width: 960px;
-            margin: 0 auto;
-        }
-        #applicationText{
-            padding: 30px 0px 15px 15px;
-            font-size: 30px;
-            font-weight: 500;
-        }
-        #detailsText{
-            padding-left: 15px;
-            color: red;
-        }
-        .redText{
-            color: red;
-        }
-        .question{
-            padding: 10px 0px 15px 15px;
-            font-size: 20px;
-        }
-
-        .applicationTextarea{
-            margin-left: 15px;
-            width: 560px;
-            height: 100px;
-            border: 1px solid rgba(0,0,0,0.30);
-            border-radius: 8px;
-            resize: none;
-        }
-        #selAll{
-            margin-left: 15px;
-            padding: 10px 0px 10px 0px;
-            border: 1px solid rgba(0,0,0,0.30);
-            border-radius: 8px;
-            width: 280px;
-            font-size: 18px;
-        }
-        #selAll input {
-            margin: 5px;
-        }
-    </style>
 </head>
 <body>
 
 <header><jsp:include page="../header.jsp"/></header>
 
-<div id="btApplicationAll">
+<div id="applicationAll">
     <h1 id="applicationText">정석코딩 부트캠프 신청서</h1>
     <span id="detailsText">최대한 자세히 작성해주세요.</span>
-    <hr>
+    <hr class="applicationHr">
     <form id="btApplicationForm" method="post">
         <input type="hidden" name="id" value="${id}">
         <input type="hidden" name="registCode" value="${lstRegistDto.registCode}">
@@ -72,8 +32,8 @@
         <div>
             <div class="question">Q. 본인의 프로그래밍 지식이나 경험 수준에 대해 선택해주세요. <span class="redText">(선택 1)</span></div>
             <div id="selAll">
-            <label><input type="radio" name="level" value="낮음">낮음</label><hr>
-            <label><input type="radio" name="level" value="중간">중간</label><hr>
+            <label><input type="radio" name="level" value="낮음">낮음</label><hr class="applicationHr">
+            <label><input type="radio" name="level" value="중간">중간</label><hr class="applicationHr">
             <label><input type="radio" name="level" value="높은">높은</label>
             </div>
         </div>
@@ -86,9 +46,9 @@
         <div>
             <div class="question">Q. 정석코딩 부트캠프에 참여하려는 목적을 선택해주세요. <span class="redText">(선택 1)</span></div>
             <div id="selAll">
-            <label><input type="radio" name="attdPps" value="실무에서 필요">실무에서 필요</label><hr>
-            <label><input type="radio" name="attdPps" value="취업 준비 or 이직 준비">취업 준비 or 이직 준비</label><hr>
-            <label><input type="radio" name="attdPps" value="개인적인 관심">개인적인 관심</label><hr>
+            <label><input type="radio" name="attdPps" value="실무에서 필요">실무에서 필요</label><hr class="applicationHr">
+            <label><input type="radio" name="attdPps" value="취업 준비 or 이직 준비">취업 준비 or 이직 준비</label><hr class="applicationHr">
+            <label><input type="radio" name="attdPps" value="개인적인 관심">개인적인 관심</label><hr class="applicationHr">
             <label><input type="radio" name="attdPps" value="기타">기타</label>
             </div>
         </div>
@@ -96,34 +56,35 @@
         <div>
             <div class="question">Q. 정석코딩 부트캠프에 대한 정보를 얻으신 경로를 선택해주세요. <span class="redText">(선택 1)</span></div>
             <div id="selAll">
-            <label><input type="radio" name="attdPath" value="페이스북, 인스타 등 SNS">페이스북, 인스타 등 SNS</label><hr>
-            <label><input type="radio" name="attdPath" value="정석코딩 네이버 카페">정석코딩 네이버 카페</label><hr>
-            <label><input type="radio" name="attdPath" value="지인 추천">지인 추천</label><hr>
+            <label><input type="radio" name="attdPath" value="페이스북, 인스타 등 SNS">페이스북, 인스타 등 SNS</label><hr class="applicationHr">
+            <label><input type="radio" name="attdPath" value="정석코딩 네이버 카페">정석코딩 네이버 카페</label><hr class="applicationHr">
+            <label><input type="radio" name="attdPath" value="지인 추천">지인 추천</label><hr class="applicationHr">
             <label><input type="radio" name="attdPath" value="기타">기타</label>
             </div>
         </div>
         <br>
         <div>
-            <div class="question">Q.간단한 자기소개를 해주세요. <span class="redText">(300자 내외)</span></div>
+            <div class="question">Q. 간단한 자기소개를 해주세요. <span class="redText">(300자 내외)</span></div>
             <textarea class="applicationTextarea" name="intro" maxlength="300"></textarea>
         </div>
         <br>
         <div>
-            <div class="question">Q.정석코딩 부트캠프에서 기대하는 것은 무엇입니까? <span class="redText">(300자 내외)</span></div>
+            <div class="question">Q. 정석코딩 부트캠프에서 기대하는 것은 무엇입니까? <span class="redText">(300자 내외)</span></div>
             <textarea class="applicationTextarea" name="expect" maxlength="300"></textarea>
         </div>
         <br>
         <div>
-            <div class="question">Q.학업에 전념 <span class="redText">(하루 14시간 이상)</span> 하지 않거나 타인에게 피해를 주는 경우<br>
+            <div class="question">Q. 학업에 전념 <span class="redText">(하루 14시간 이상)</span> 하지 않거나 타인에게 피해를 주는 경우<br>
                 &emsp;퇴소 될 수 있습니다. 동의하십니까? <span class="redText">(선택 1)</span></div>
             <div id="selAll">
-            <label><input type="radio" name="agreeYN" value="Y">예</label><hr>
+            <label><input type="radio" name="agreeYN" value="Y">예</label><hr class="applicationHr">
             <label><input type="radio" name="agreeYN" value="N">아니오</label>
             </div>
         </div>
         <br>
-        <hr>
-        &emsp;<input type="button" id="writeBtn" class="registeBtn" value="제출">
+        <hr class="applicationHr">
+        &emsp;<input type="button" id="writeBtn" class="registeBtn" value=" 제출">
+        &emsp;<input type="button" id="listBtn" class="backBtn" value=" 목록">
         <br><br>
     </form>
 </div>
@@ -182,6 +143,11 @@
             if(formCheck())
                 form.submit();
         })
+
+        // 목록
+        $("#listBtn").on("click", function(){
+            location.href="<c:url value='/btTraining/list'/>";
+        });
     });
 </script>
 </body>
