@@ -25,7 +25,6 @@
 
 <header>
     <jsp:include page="../adminHeader.jsp"/>
-    <jsp:include page="../adminSidebar.jsp"/>
 </header>
 
 <%--수정 -> 수정버튼 -> 읽기--%>
@@ -102,7 +101,7 @@
                     <td><fmt:formatDate value="${memberDto.regDate}"
                                         pattern="yyyy-MM-dd" type="date"/></td>
                     <td>
-                        <button id="detailBtn"
+                        <button class="detailBtn"
                                 onclick="location.href='/onlyAdmin/memberManage/read?page=${sc.page}&mebrNo=${memberDto.mebrNo}'">
                             상세보기
                         </button>

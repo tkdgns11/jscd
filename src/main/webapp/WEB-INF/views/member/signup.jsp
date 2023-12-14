@@ -13,6 +13,32 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/signup.css"/>">
     <script type="text/javascript" src="<c:url value="/js/signup.js"/>"></script>
     <title>회원가입 폼</title>
+    <style>
+
+        /* //모달팝업을 감싸고 있는 최상위 부모 */
+        .signModalBox {
+            position: fixed;
+            z-index: 1;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            display: none;
+        }
+
+        /* //모달 팝업창 */
+        .modalBody {
+            width: 500px;
+            height: 300px;
+            padding: 30px 30px;
+            margin: 0 auto;
+            border: 1px solid #777;
+            background-color: #fff;
+        }
+    </style>
 
 </head>
 <body>
@@ -87,22 +113,22 @@
             <div>
                 <input type="checkbox" class="terms" id="serviceChkYN" name="serviceChkYN" onclick="checkSelectAll()">
                 <p>서비스 이용약관 동의 (필수)</p>
-                <p class="termsDetail"><a href="#">상세보기></a></p>
+                <p class="termsDetail"><span id="detailBtn">상세보기></span></p>
             </div>
             <div>
                 <input type="checkbox" class="terms" id="privacyChkYN" name="privacyChkYN" onclick="checkSelectAll()">
                 <p>개인정보 수집 및 이용 동의 (필수)</p>
-                <p class="termsDetail"><a href="#">상세보기></a></p>
+                <p class="termsDetail"><span id="detailBtn2">상세보기></span></p>
             </div>
             <div>
                 <input type="checkbox" class="terms" id="ageChkYN" name="ageChkYN" onclick="checkSelectAll()">
                 <p>만 14세 이상입니다 (필수)</p>
-                <p class="termsDetail"><a href="#">상세보기></a></p>
+                <p class="termsDetail"><span id="detailBtn3">상세보기></span></p>
             </div>
             <div style="border: none">
                 <input type="checkbox" class="terms" id="marketingChkYN" name="marketingChkYN" onclick="checkSelectAll()">
                 <p>마케팅 수신 동의 (선택)</p>
-                <p class="termsDetail"><a href="#">상세보기></a></p>
+                <p class="termsDetail"><span id="detailBtn4">상세보기></span></p>
             </div>
         </div>
         <div style="border: none; display: flex; flex-direction: row;justify-content: center; align-items: center">
@@ -113,9 +139,133 @@
 
     </div>
 </form>
+<%--약관동의 모달창--%>
+<div id="modalWrap" class="signModalBox">
+    <div class="modalContent">
+        <div class="modalBody">
+            <h1>서비스 이용약관 동의(필수)</h1>
+            <textarea rows="17" cols="57">제 1 조 (목적)</textarea>
+            <input type="button" class="" id="agreeBtn" value="동의">
+            <input type="button" class="" id="closeBtn" value="닫기">
+        </div>
+    </div>
+</div>
+
+<div id="modalWrap2" class="signModalBox">
+    <div class="modalContent">
+        <div class="modalBody">
+            <h1>개인정보 수집 및 이용 동의(필수)</h1>
+            <textarea rows="17" cols="57">제 1 조 (목적)</textarea>
+            <input type="button" class="" id="agreeBtn2" value="동의">
+            <input type="button" class="" id="closeBtn2" value="닫기">
+        </div>
+    </div>
+</div>
+
+<div id="modalWrap3" class="signModalBox">
+    <div class="modalContent">
+        <div class="modalBody">
+            <h1>만 14세 이상(필수)</h1>
+            <textarea rows="17" cols="57">제 1 조 (목적)</textarea>
+            <input type="button" class="" id="agreeBtn3" value="동의">
+            <input type="button" class="" id="closeBtn3" value="닫기">
+        </div>
+    </div>
+</div>
+
+<div id="modalWrap4" class="signModalBox">
+    <div class="modalContent">
+        <div class="modalBody">
+            <h1>마케팅 수신 동의(선택)</h1>
+            <textarea rows="17" cols="57">제 1 조 (목적)</textarea>
+            <input type="button" class="" id="agreeBtn4" value="동의">
+            <input type="button" class="" id="closeBtn4" value="닫기">
+        </div>
+    </div>
+</div>
+
 <footer>
     <jsp:include page="../footer.jsp" flush="true"/>
 </footer>
+
+
+<script>
+    const modal = document.getElementById('modalWrap');
+    const modal2 = document.getElementById('modalWrap2');
+    const modal3 = document.getElementById('modalWrap3');
+    const modal4 = document.getElementById('modalWrap4');
+
+    $(document).ready(function () {
+
+        $('#detailBtn').on("click", function () {
+            modal.style.display = 'block'; //상세보기 클릭 시, 모달창 보임
+        });
+
+        $('#detailBtn2').on("click", function () {
+            modal2.style.display = 'block'; //상세보기 클릭 시, 모달창 보임
+        });
+
+        $('#detailBtn3').on("click", function () {
+            modal3.style.display = 'block'; //상세보기 클릭 시, 모달창 보임
+        });
+
+        $('#detailBtn4').on("click", function () {
+            modal4.style.display = 'block'; //상세보기 클릭 시, 모달창 보임
+        });
+
+        $('#closeBtn').on("click", function () {
+            modal.style.display = 'none'; //모달창 속 닫기 버튼 클릭 시, 모달창 안 보임
+        });
+        $('#closeBtn2').on("click", function () {
+            modal2.style.display = 'none'; //모달창 속 닫기 버튼 클릭 시, 모달창 안 보임
+        });
+        $('#closeBtn3').on("click", function () {
+            modal3.style.display = 'none'; //모달창 속 닫기 버튼 클릭 시, 모달창 안 보임
+        });
+        $('#closeBtn4').on("click", function () {
+            modal4.style.display = 'none'; //모달창 속 닫기 버튼 클릭 시, 모달창 안 보임
+        });
+
+        $(window).on("click", function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+            if (event.target == modal2) {
+                modal2.style.display = "none";
+            }
+            if (event.target == modal3) {
+                modal3.style.display = "none";
+            }
+            if (event.target == modal4) {
+                modal4.style.display = "none";
+            }
+        })
+
+        $('#agreeBtn').on("click", function () {
+            $('#serviceChkYN').prop("checked", true);
+            modal.style.display = 'none';
+        })
+        $('#agreeBtn2').on("click", function () {
+            $('#privacyChkYN').prop("checked", true);
+            modal2.style.display = 'none';
+
+        })
+        $('#agreeBtn3').on("click", function () {
+            //같은 값을 가진 id의 checkBox의 checked가 활성화
+            $('#ageChkYN').prop("checked", true);
+            modal3.style.display = 'none';
+
+        })
+        $('#agreeBtn4').on("click", function () {
+            $('#marketingChkYN').prop("checked", true);
+            modal4.style.display = 'none';
+
+        })
+    })
+
+
+</script>
+
 </body>
 
 </html>

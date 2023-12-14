@@ -26,7 +26,6 @@
 
 <header>
     <jsp:include page="../adminHeader.jsp"/>
-    <jsp:include page="../adminSidebar.jsp"/>
 </header>
 
 <div id="infoContentBox">

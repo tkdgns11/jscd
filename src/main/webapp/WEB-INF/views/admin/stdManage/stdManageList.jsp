@@ -25,7 +25,6 @@
 
 <header>
     <jsp:include page="../adminHeader.jsp"/>
-    <jsp:include page="../adminSidebar.jsp"/>
 </header>
 
 <div id="infoContentBox">
@@ -93,7 +92,7 @@
                                         pattern="yyyy-MM-dd"
                                         type="date"/></td>
                     <td>
-                        <button id="detailBtn"
+                        <button class="detailBtn"
                                 onclick="location.href='/onlyAdmin/stdManage/read?page=${sc.page}&mebrNo=${stdDto.mebrNo}'">
                             상세보기
                         </button>

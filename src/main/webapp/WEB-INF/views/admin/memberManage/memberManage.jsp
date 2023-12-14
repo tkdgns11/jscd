@@ -20,7 +20,6 @@
 </script>
 <body>
 <header>
-    <jsp:include page="../adminSidebar.jsp"/>
     <jsp:include page="../adminHeader.jsp"/>
 </header>
 
@@ -78,11 +77,6 @@
            value="<fmt:formatDate value="${memberDto.regDate}" pattern="yyyy-MM-dd" type="date"/>"><br>
     <label style="margin-right: 25px;">비고</label>
     <input type="text" class="infoInputBox" id="etc" name="etc" readonly value="${memberDto.etc}"><br>
-    <%--회원 정보 수정에서, 관리자로 등급변경 시 관리자 테이블로 보내줄 데이터 hidden 처리--%>
-    <input type="hidden" class="infoModifyBox" name="id" id="id" value="${memberDto.id}">
-    <input type="hidden" class="infoModifyBox" name="name" id="name" value="${memberDto.name}">
-    <input type="hidden" class="infoModifyBox" name="pwd" id="pwd" value="${memberDto.pwd}">
-
 
     <div id="adminBtnBox">
         <input type="button" value="수정" class="modifyBtn">
