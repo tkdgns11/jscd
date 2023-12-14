@@ -254,15 +254,20 @@ public class MemberController {
 
 	//회원 개인정보수정 페이지 이동
 	@GetMapping("/memberEdit")
-	public String memberEditPage(Model model, HttpServletRequest request) throws Exception{
+	public String memberEditPage() throws Exception{
+		return "/member/myPagePwdChk";
+	}
+	@GetMapping("/memberPwdChk")
+	public String memberPwdChk(Model model, HttpServletRequest request) throws Exception{
 		//세션 값 가져와서 아이디 조회
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
 		//아이디 조회에 따른 결과 보여주기
 		MemberDto memberDto = memberService.memberSelect(id);
+		System.out.println(memberDto);
 		//결과 담아주기
 		model.addAttribute(memberDto);
-		return "/member/signup";
+		return "/member/myPage";
 	}
 
 	//회원, 개인정보수정 기능 구현

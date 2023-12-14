@@ -198,7 +198,7 @@
 		<div id="youtubeBox">
 			<div>
 				<ul>
-					<li><a><img src="<c:url value="/img/youtube01.png"/>"></a></li>
+					<li><a><img src="<c:url value="/img/youtube03.png"/>"></a></li>
 					<li>정석코딩 2기 1팀 프로젝트 발표</li>
 					<li>2개월 동안 누구의 도움도 받지 않고 학생들 스스로 열심히 만든 갓벽한 프로젝트 발표 영상</li>
 				</ul>
@@ -212,7 +212,7 @@
 			</div>
 			<div>
 				<ul>
-					<li><a><img src="<c:url value="/img/youtube03.png"/>"></a></li>
+					<li><a><img src="<c:url value="/img/youtube01.png"/>"></a></li>
 					<li>코포자를 위한 코딩 공부법</li>
 					<li>예제 공부법, 연습문제 푸는 방법 등 남궁성 원장님의 꿀팁 대방출</li>
 				</ul>

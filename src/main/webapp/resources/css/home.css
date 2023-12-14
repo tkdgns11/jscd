@@ -3,12 +3,12 @@
 /* Slideshow container */
 .slideshowContainer {
     max-width: 100%;
-    max-height: 300px;
+    max-height: 500px;
     position: relative;
     margin: auto;
 }
 .slideshowContainer .mySlides img {
-    height: 300px;
+    height: 500px;
 }
 
 /* Hide the images by default */
@@ -102,12 +102,12 @@
 /* Slideshow container */
 .slideshowContainer01 {
     max-width: 100%;
-    max-height: 300px;
+    max-height: 500px;
     position: relative;
     margin: auto;
 }
 .slideshowContainer01 .mySlides01 img {
-    height: 300px;
+    height: 500px;
 }
 
 /* Hide the images by default */
@@ -204,7 +204,7 @@
 .lectureBtn input:hover{background-color: rgba(0,0,0,0.5); color: #FFFFFF}
 .lectureBtn{width: 960px; margin: 10px auto;}
 
-#lectureWrap{width: 960px; height: 300px; margin: 0 auto; display: flex; flex-direction: row;justify-content: space-around; align-items: center;}
+#lectureWrap{width: 1100px; height: 300px; margin: 0 auto; display: flex; flex-direction: row;justify-content: space-around; align-items: center;}
 #lectureWrap > div{ border: 1px solid rgba(0,0,0,0.2); width: 450px; height: 200px; border-radius: 15px; box-shadow: 5px 5px 5px rgba(0,0,0,0.5); display: flex; flex-direction: row; position: relative;}
 #lectureWrap > div > ul{display: flex;flex-direction:column;justify-content: center;margin-left: 20px;}
 #lectureWrap > div > ul li{margin-top: 20px;}
@@ -212,18 +212,20 @@
 #lectureWrap > div > ul li:nth-child(2){font-size: 30px;color: rgba(0,0,0,0.7); font-weight: bold;}
 #lectureWrap > div > img{width: 80px; height: 80px; position: absolute; right: 10%; top:40%;}
 
-#keyElement{position: relative; left: 10%;width: 500px;height: 100px;}
-#keyElement img{width: 500px; height: 100px; position: absolute; }
-#keyElement ul{position: absolute;left: 20%; top: 50%;transform: translate(-10%,-50%)}
+#keyElement{position: relative; margin: 0 auto; width: 960px;height: 100px;}
+#keyElement img{width: 500px; height: 100px; position: absolute; filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.5));}
+#keyElement ul{position: absolute;left: 10%; top: 50%;transform: translate(-10%,-50%)}
 #keyElement ul li{float: left; font-size: 40px; color: #AFA95E; margin-left: 10px; }
 
 #keyElementTxt{display: flex; flex-direction: column; justify-content: center; position: relative; width: 960px; margin: 25px auto;font-size: 30px;}
-#keyElementTxt span h1{ font-size: 30px;}
-#keyElementTxt span h2{ font-size: 30px; color: #ED3269;}
+#keyElementTxt span:nth-child(1){height: 80px;}
+#keyElementTxt span:nth-child(2){margin-top: -40px;}
+#keyElementTxt span h1{ font-size: 30px; line-height: 80px;}
+#keyElementTxt span h2{ font-size: 30px; color: #ED3269; text-emphasis: filled #ED3269; }
 #keyElementTxt span h6{color: rgba(0,0,0,0.5); font-size: 20px;}
 #keyElementTxt span:nth-child(1){display: flex; flex-direction: row;}
 
-#youtubeBox{display: flex; flex-direction: row; justify-content: space-around; margin-bottom: 50px; margin-top: 50px;}
+#youtubeBox{display: flex; flex-direction: row; justify-content: space-around; width: 1200px; margin: 50px auto;}
 #youtubeBox div{width: 300px; height: 300px;}
 #youtubeBox div img{width: 300px; height: 200px;filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.5)); border-radius: 10px;}
 #youtubeBox > div > ul > li:nth-child(2){color: #0F36C3; font-size: 20px; margin-top: 10px;font-weight: bold;}
