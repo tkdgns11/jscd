@@ -92,7 +92,7 @@
 <div class="sidenav">
     <div class="box">
         <div class="box-header" onclick="toggleBoxContent(this)">
-            <a href="#contact"><i class="fa-solid fa-user-graduate"></i>사이트 통계</a>
+            <a href="/locker/dashboard"><i class="fa-solid fa-user-graduate"></i>사이트 통계</a>
         </div>
     </div>
     <div class="box">
