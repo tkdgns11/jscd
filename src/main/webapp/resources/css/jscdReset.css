@@ -2,7 +2,7 @@
 
 
 .registeBtn{border: 0;background-color: #0185FE; color: #ffffff; width: 80px; height: 40px; border-radius: 8px;}
-.modifyBtn{border: 0; background-color: rgba(0,0,0,0.2); width: 80px; height: 40px; border-radius: 8px;}
+.registeBtnmodifyBtn{border: 0; background-color: rgba(0,0,0,0.2); width: 80px; height: 40px; border-radius: 8px;}
 .cancleBtn{border: 1px solid rgba(0,0,0,0.7);background-color: #ffffff; width: 80px; height: 40px; border-radius: 8px;}
 .deleteBtn{border: 1px solid rgba(0,0,0,0.7);background-color: #ffffff; width: 80px; height: 40px; border-radius: 8px;}
 .backBtn{border: 1px solid rgba(0,0,0,0.7);background-color: #ffffff; width: 80px; height: 40px; border-radius: 8px;}
