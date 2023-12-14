@@ -196,6 +196,7 @@
     }
 
     .list3rdContent {
+      height: 100%;
       display: flex;
       flex-direction: row;
       flex-wrap: nowrap;
@@ -209,9 +210,11 @@
 
     .list3rdDetail {
       width: 80%;
+      height: 80%;
     }
 
     .list3rdDetail h4 {
+      height: 50%;
       font-size: 1.7rem;
       text-align: center;
     }
@@ -543,17 +546,13 @@ z-index: 1000; float: right;/">
   </div>
   <div id="warp1">
     <div id="memberStatus" class="list1st">
-      <h4 class="Titles">관리자현황</h4>
+      <h4 class="Titles">취업현황</h4>
       <div>
         <div id="topAdmin" class="layer1contents">
           <i class="fa-solid fa-user-secret"></i>
-          <h5>원장님</h5>
-          <h5>1</h5>
         </div>
         <div id="assistant" class="layer1contents">
           <i class="fa-solid fa-user-graduate"></i>
-          <h5>조교</h5>
-          <h5>4</h5>
         </div>
       </div>
     </div>
@@ -652,7 +651,7 @@ z-index: 1000; float: right;/">
           .data(yourPie)
           .enter()
           .append("text")
-          .attr("transform", d => `translate(${labelArc.centroid(d)})`)
+          .attr("transform", d => `translate(\${labelArc.centroid(d)})`)
           .attr("dy", "0.35em")
           .style("text-anchor", "middle")
           .text(d => d.data.os);
