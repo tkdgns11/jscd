@@ -568,12 +568,12 @@ z-index: 1000; float: right;/">
   </div>
   <div id="warp1">
     <div id="memberStatus" class="list1st">
-      <h4 class="Titles">검색통계</h4>
+      <h4 class="Titles">검색 통계</h4>
       <div id = "search">
       </div>
     </div>
     <div id="deviceStatistics" class="list1st">
-      <h4 class="Titles">기기별통계</h4>
+      <h4 class="Titles">기기별 통계</h4>
       <div>
         <div id="desktop" class="layer1contents">
           <i class="fa-solid fa-desktop"></i>
