@@ -36,7 +36,7 @@ public class AdminController {
     //로그인 해야 갈 수 있도록 필터처리
     @GetMapping("/home")
     public String adminHome() {
-        return "/admin/adminHome";
+        return "admin/dashBoard";
     }
 
 
