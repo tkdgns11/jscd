@@ -6,13 +6,12 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="admin/adminSidebar.jsp"%>
+<%@include file="admin/adminHeader.jsp"%>
 <html lang="en">
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
-  <script src="https://d3js.org/d3.v7.min.js"></script>
   <style>
     html,
     body {
