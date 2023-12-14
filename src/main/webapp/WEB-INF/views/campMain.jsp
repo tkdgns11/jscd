@@ -196,6 +196,9 @@
     </style>
 </head>
 <body>
+<header>
+    <jsp:include page="header.jsp"/>
+</header>
 <div id="content">
 
     <div class="slideshow-container">
@@ -301,5 +304,10 @@
         dots[slideIndex - 1].className += " active";
     }
 </script>
+
+<footer>
+    <jsp:include page="footer.jsp"/>
+</footer>
+
 </body>
 </html>

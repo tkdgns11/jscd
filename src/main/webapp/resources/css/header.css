@@ -1,24 +1,20 @@
-#headerBox{border-bottom: 1px solid black; height: 250px;}
-#headerTop{width: 960px; margin: 0 auto; display: flex; flex-direction: row; justify-content: space-between;}
-#headerTop > div{ display: flex; flex-direction: row; margin-top: 50px;}
-#headerTop > ul{margin-top: 50px;}
-#headerTop > div > a { margin-right: 30px;}
-#headerTop > div > div {border: 1px solid grey; border-radius: 20px; width: 300px; height: 30px;display: flex; flex-direction: row;  justify-content: center; align-items: center;}
-#headerTop > div > div img{margin-right: 5px; width: 20px; height: 20px;}
-#searchTxt{width: 200px; height: 10px; padding: 5px;border: none}
-#headerTop > ul li{float: left; padding: 5px;}
+
+#mainHeader{width: 100%;height: 80px; }
+
+#mainHeader > nav{display: flex; flex-direction: row;position:fixed; width: 100%;height: 80px; background-color: #FFFFFF;box-shadow: 5px 5px 5px rgba(0,0,0,0.2); z-index: 99999;}
+#mainHeader > nav > div{display: flex; flex-direction: row; position: absolute; margin-top: 15px;}
 
 
+#jscdNav{width: 50%;display: flex; flex-direction: row;}
+#jscdNav > ul {width: 80%; display: flex; flex-direction: row; justify-content: space-around;}
+#jscdNav img{width: 50px; height: 50px; margin-left: 20px;}
+#jscdNav li > p {line-height: 50px;}
+#apply{text-align: center;}
+.Menu{width:100px; height: 100px; display: none; position: absolute;background-color: #ffffff; border: 1px solid rgba(0,0,0,0.2); box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);z-index: 1;border-radius: 5px;flex-direction: column;transition: opacity 0.3s ease, visibility 0.3s ease; opacity: 0; visibility: hidden; text-align: center;}
+.Menu li{margin-top: 10px;}
+#searchBox{ width: 30%; left: 50%; top: 10%;}
+#searchBox > img{width: 30px; height: 30px;}
+#searchBox input{width: 250px; height: 25px;box-shadow: 5px 5px 5px rgba(0,0,0,0.2);border: 1px solid rgba(0,0,0,0.1); border-radius: 5px;}
 
-nav {width: 660px;margin: 0 auto;height: 150px;position: relative;}
-nav p{font-size: 20px; margin-top: 10px; margin-bottom: 20px;}
-nav > ul {list-style: none;padding: 0; margin-top: 50px;}
-nav > ul > li {float: left;padding: 0px 30px 0px 24px;position: relative; }
-.Menu {display: none; position: absolute;background-color: #ffffff;box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);z-index: 1;top: 100%;left: 30px;border-radius: 5px;flex-direction: column;transition: opacity 0.3s ease, visibility 0.3s ease;opacity: 0;visibility: hidden; }
-.Menu a {font-size: 15px; font-weight: bold;}
-.all .Menu {text-align: center;width: 560px;display: flex;flex-direction: row;justify-content: flex-end;}
-.submenu{font-weight: bold;margin: 20px 40px 20px 0px;}
-.submenu li{margin-bottom: 10px;}
-.submenu a{font-size: 15px; }
-.gainMenu{width: 120px; height: 100px;  left: 0px; text-align: center;}
-.gainMenu li{margin-top: 10px;}
+#memberBox{width:20%;left: 80%;}
+#memberBox > .registeBtn{margin-left: 20px;}
