@@ -3,69 +3,127 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
 <html>
 <head>
-  <title>강사 상세보기</title>
+    <title>강사 상세보기</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&family=Noto+Serif+KR:wght@900&display=swap" rel="stylesheet">
-  <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
-  <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
-  <link rel="stylesheet" type="text/css" href="<c:url value="/css/home.css"/>">
-  <link rel="stylesheet" type="text/css" href="<c:url value="/css/adminInfoDetail.css"/>">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&family=Noto+Serif+KR:wght@900&display=swap"
+          rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/home.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/adminInfo.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/jscdReset.css"/>">
+
+    <script>
+        let msg = "${param.msg}";
+        if (msg == "READ_ERR") alert("정보를 가져오는데 실패했습니다. 다시 시도해 주세요.");
+        if (msg == "MOD_OK") alert("성공적으로 수정되었습니다.");
+
+    </script>
+
 </head>
+
 <body>
-<script>
-  let msg = "${param.msg}";
-  if(msg=="READ_ERR")  alert("정보를 가져오는데 실패했습니다. 다시 시도해 주세요.");
-</script>
 
-<div id="content">
 
-  <header>
+<header>
     <jsp:include page="../adminHeader.jsp"/>
-  </header>
+    <jsp:include page="../adminSidebar.jsp"/>
+</header>
 
 
-  <div id="infoDetailBox">
+<div id="infoDetailBox">
 
     <h2 id="infoTitle">강사 상세보기</h2>
 
-    <h4>강사번호</h4>
-    <div class="infoValueBox">${infoDto.iscrNo}</div>
-    <h4>아이디</h4>
-    <div class="infoValueBox">${infoDto.id}</div>
-    <h4>이름</h4>
-    <div class="infoValueBox">${infoDto.name}</div>
-    <h4>생년월일</h4>
-    <div class="infoValueBox"><fmt:formatDate value="${infoDto.birth}" pattern="yyyy-MM-dd" type="date"/></div>
-    <h4>휴대전화</h4>
-    <div class="infoValueBox">${infoDto.phone}</div>
-    <h4>소개</h4>
-    <input type="text" class="infoInputBox" readonly value="${infoDto.intro}">
-    <h4>상태</h4>
-    <input type="text" class="infoInputBox" readonly value="${infoDto.status}">
-    <h4>급여</h4>
-    <input type="text" class="infoInputBox" readonly value="${infoDto.hourPmt}">
-    <h4>계좌</h4>
-    <div class="infoValueBox">${infoDto.acct}</div>
-    <h4>강사 등록일</h4>
-    <div class="infoValueBox"><fmt:formatDate value="${infoDto.regDate}" pattern="yyyy-MM-dd" type="date"/></div>
-    <h4>비고</h4>
-    <input type="text" class="infoInputBox" readonly value="${infoDto.etc}">
-    <br>
-    <button id="adminModifyBtn"  onclick="location.href='/onlyAdmin/instructor/modify?page=${page}&iscrNo=${infoDto.iscrNo}'" style="margin-left: 100px; margin-top: 15px">수정</button>
-    <button id="adminListBtn" onclick="location.href='/onlyAdmin/instructor/list?page=${page}'">목록</button>
+    <label style="margin-right: 3px;">강사번호</label>
+    <input type="text" class="infoInputBox" readonly value="${infoDto.iscrNo}"><br>
+    <label style="margin-right: 15px;">아이디</label>
+    <input type="text" class="infoInputBox" readonly value="${infoDto.id}"><br>
+    <label style="margin-right: 25px;">이름</label>
+    <input type="text" class="infoInputBox" readonly value="${infoDto.name}"><br>
+    <label>생년월일</label>
+    <input type="text" class="infoInputBox" readonly
+           value="<fmt:formatDate value="${infoDto.birth}" pattern="yyyy-MM-dd" type="date"/>"><br>
+    <label>휴대전화</label>
+    <input type="text" class="infoInputBox" readonly value="${infoDto.phone}"><br>
+    <label style="margin-right: 25px;">소개</label>
+    <input type="text" class="infoInputBox" name="intro" id="intro" readonly value="${infoDto.intro}"><br>
+    <label style="margin-right: 25px;">상태</label>
+    <select name="status" id="status" class="modifySelect">
+        <option value="">${infoDto.status}</option>
+    </select><br>
+    <label style="margin-right: 25px;">급여</label>
+    <input type="text" class="infoInputBox" name="hourPmt" id="hourPmt" readonly value="${infoDto.hourPmt}"><br>
+    <label style="margin-right: 25px;">계좌</label>
+    <input type="text" class="infoInputBox" readonly value="${infoDto.acct}"><br>
+    <label style="margin-right: 15px;">등록일</label>
+    <input type="text" class="infoInputBox" readonly
+           value="<fmt:formatDate value="${infoDto.regDate}" pattern="yyyy-MM-dd" type="date"/>"><br>
+    <label style="margin-right: 25px;">비고</label>
+    <input type="text" class="infoInputBox" name="etc" id="etc" readonly value="${infoDto.etc}"><br>
+    <input type="hidden" name="mebrNo" id="mebrNo" value="${infoDto.mebrNo}">
+    <div id="adminBtnBox">
+        <input type="submit" value="수정" class="modifyBtn" onclick="infoModify()">
+        <input type="button" value="목록" class="backBtn"
+               onclick="location.href='/onlyAdmin/instructor/list?page=${page}'">
+    </div>
 
-
-  </div>
-
-  <footer>
-    <jsp:include page="../../footer.jsp"/>
-  </footer>
 
 </div>
+<script>
+    const statusArr = {
+        1: '이직',
+        2: '재직',
+        3: '휴직',
+        4: '퇴직'
+    }
+
+    function infoModify() {
+
+        let isReadonly = $("input[name=intro]").attr('readonly');
 
 
+        if (isReadonly == 'readonly') {
+            $("#infoTitle").html("강사 정보 수정");
+            $("input[name=intro]").attr('readonly', false);
+
+            $("#status option").remove();
+            $.each(statusArr, function (key, value) {
+                $('#status').append($("<option></option>").attr("value", key).text(value))
+            });
 
 
+            $("input[name=hourPmt]").attr('readonly', false);
+            $("input[name=etc]").attr('readonly', false);
+            $("input[name=intro]").focus();
+            $("input[name=intro]").css("border-bottom", "1px solid red");
+            $("input[name=status]").css("border-bottom", "1px solid red");
+            $("input[name=hourPmt]").css("border-bottom", "1px solid red");
+            $("input[name=etc]").css("border-bottom", "1px solid red");
+        } else {
+            const form = document.createElement('form');
+            form.setAttribute('method', 'post');
+            form.setAttribute('action', '/onlyAdmin/instructor/modify?page=${page}&iscrNo=${infoDto.iscrNo}');
+
+            var intro = document.getElementById('intro');
+            var status = document.getElementById('status');
+            var hourPmt = document.getElementById('hourPmt');
+            var etc = document.getElementById('etc');
+            var mebrNo = document.getElementById('mebrNo');
+
+            form.appendChild(intro);
+            form.appendChild(status);
+            form.appendChild(hourPmt);
+            form.appendChild(etc);
+            form.appendChild(mebrNo);
+            console.log(form)
+            document.body.appendChild(form);
+            form.submit();
+        }
+
+
+    }
+</script>
 
 </body>
 </html>

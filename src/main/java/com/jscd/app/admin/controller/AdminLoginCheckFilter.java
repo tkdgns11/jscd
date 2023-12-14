@@ -14,7 +14,7 @@ import java.io.IOException;
 	작성 기능:관리자 메뉴를 관리자만 사용할 수 있도록 id를 확인
 	 */
 
-@WebFilter(urlPatterns = {"/onlyAdmin/*", "/admin/home"})
+@WebFilter(urlPatterns = {"/onlyAdmin/*", "/admin/home","/admin/read"})
 public class AdminLoginCheckFilter implements Filter {
 
     @Override

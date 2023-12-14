@@ -8,7 +8,8 @@
           rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/home.css"/>">
-    <link rel="stylesheet" type="text/css" href="<c:url value="/css/adminInfoDetail.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/adminInfo.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/jscdReset.css"/>">
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 </head>
 <body>
@@ -16,64 +17,114 @@
     let msg = "${param.msg}";
     if (msg == "READ_ERR") alert("정보를 가져오는데 실패했습니다. 다시 시도해 주세요.");
     if (msg == "DEL_ERR") alert("삭제에 실패했습니다. 다시 시도해 주세요.");
+    if (msg == "MOD_OK") alert("성공적으로 수정되었습니다.");
+
 </script>
 
-<div id="content">
+<header>
+    <jsp:include page="../adminHeader.jsp"/>
+    <jsp:include page="../adminSidebar.jsp"/>
+</header>
 
-    <header>
-        <jsp:include page="../adminHeader.jsp"/>
-    </header>
+<div id="infoDetailBox">
 
-    <div id="infoDetailBox">
+    <h2 id="infoTitle">학생 상세보기</h2>
 
-        <h2 id="infoTitle">학생 상세보기</h2>
+    <label style="margin-right: 3px;">회원 번호</label>
+    <input type="text" class="infoInputBox" readonly name="mebrNo" id="mebrNo" value="${stdDto.mebrNo}"><br>
+    <label style="margin-right: 15px;">아이디</label>
+    <input type="text" class="infoInputBox" readonly value="${stdDto.id}"><br>
+    <label style="margin-right: 25px;">이름</label>
+    <input type="text" class="infoInputBox" readonly value="${stdDto.name}"><br>
+    <label>생년월일</label>
+    <input type="text" class="infoInputBox" readonly
+           value="<fmt:formatDate value="${stdDto.birth}" pattern="yyyy-MM-dd" type="date"/>"><br>
+    <label>휴대전화</label>
+    <input type="text" class="infoInputBox" readonly value="${stdDto.phone}"><br>
+    <label style="margin-right: 25px;">기수</label>
+    <input type="text" class="infoInputBox" name="gisu" id="gisu" readonly value="${stdDto.gisu}"><br>
+    <label style="margin-right: 25px;">상태</label>
+    <select name="status" id="status" class="modifySelect">
+        <option value="">${stdDto.status}</option>
+    </select><br>
+    <label style="margin-right: 25px;">계좌</label>
+    <input type="text" class="infoInputBox" readonly value="${stdDto.acct}"><br>
+    <label style="margin-right: 15px;">가입일</label>
+    <input type="text" class="infoInputBox" readonly
+           value="<fmt:formatDate value="${stdDto.regDate}" pattern="yyyy-MM-dd" type="date"/>"><br>
+    <label style="margin-right: 25px;">비고</label>
+    <input type="text" class="infoInputBox" name="etc" id="etc" readonly value="${stdDto.etc}"><br>
 
-        <h4>회원 번호</h4>
-        <div class="infoValueBox">${stdDto.mebrNo}</div>
-        <h4>아이디</h4>
-        <div class="infoValueBox">${stdDto.id}</div>
-        <h4>이름</h4>
-        <div class="infoValueBox">${stdDto.name}</div>
-        <h4>생년월일</h4>
-        <div class="infoValueBox"><fmt:formatDate value="${stdDto.birth}" pattern="yyyy-MM-dd" type="date"/></div>
-        <h4>휴대전화</h4>
-        <div class="infoValueBox">${stdDto.phone}</div>
-        <h4>기수</h4>
-        <input type="text" class="infoInputBox" readonly value="${stdDto.gisu}">
-        <h4>상태</h4>
-        <input type="text" class="infoInputBox" readonly value="${stdDto.status}">
-        <h4>계좌</h4>
-        <div class="infoValueBox">${stdDto.acct}</div>
-        <h4>가입일</h4>
-        <div class="infoValueBox"><fmt:formatDate value="${stdDto.regDate}" pattern="yyyy-MM-dd" type="date"/></div>
-        <h4>비고</h4>
-        <input type="text" class="infoInputBox" readonly value="${stdDto.etc}">
-        <br>
-        <button id="adminModifyBtn" onclick="location.href='/onlyAdmin/stdManage/modify?page=${page}&mebrNo=${stdDto.mebrNo}'"style="margin-left: 100px; margin-top: 15px">수정</button>
-        <button id="adminRemoveBtn">삭제</button>
-        <button id="adminListBtn" onclick="location.href='/onlyAdmin/stdManage/list?page=${page}'">목록</button>
+    <div style="margin: 40px 0px 50px 100px;">
+        <input type="submit" value="수정" class="modifyBtn">
+        <input type="button" value="삭제" class="deleteBtn">
+        <input type="button" value="목록" class="backBtn"
+               onclick="location.href='/onlyAdmin/stdManage/list?page=${page}'">
     </div>
-
-    <footer>
-        <jsp:include page="../../footer.jsp"/>
-    </footer>
 
 </div>
 
+
 <script>
-    $(document).ready(function(){
+
+    const statusArr = {
+        1: '수강예정',
+        2: '수강중',
+        3: '수료'
+    }
+
+    $(document).ready(function () {
 
 
-        $("#adminRemoveBtn").on("click", function(){
-            if(!confirm("정말로 삭제하시겠습니까?")) return;
+        $(".deleteBtn").on("click", function () {
+            if (!confirm("정말로 삭제하시겠습니까?")) return;
 
-           const form = document.createElement('form');
-           form.setAttribute('method','post');
-           form.setAttribute('action','/onlyAdmin/stdManage/delete?mebrNo=${stdDto.mebrNo}&page=${page}');
+            const form = document.createElement('form');
+            form.setAttribute('method', 'post');
+            form.setAttribute('action', '/onlyAdmin/stdManage/delete?mebrNo=${stdDto.mebrNo}&page=${page}');
             document.body.appendChild(form);
             form.submit();
 
         });
+
+        $(".modifyBtn").on("click", function () {
+
+            let isReadonly = $("input[name=gisu]").attr('readonly');
+
+            if (isReadonly == 'readonly') {
+                $("#infoTitle").html("학생 정보 수정");
+                $("input[name=gisu]").attr('readonly', false);
+                $("input[name=gisu]").focus();
+                $("input[name=etc]").attr('readonly', false);
+                $("input[name=gisu]").css("border-bottom", "1px solid red");
+                $("input[name=etc]").css("border-bottom", "1px solid red");
+
+                $("#status option").remove();
+                $.each(statusArr, function (key, value) {
+                    $('#status').append($("<option></option>").attr("value", key).text(value))
+                });
+            } else {
+                const form = document.createElement('form');
+                form.setAttribute('method', 'post');
+                form.setAttribute('action', '/onlyAdmin/stdManage/modify?page=${page}&mebrNo=${stdDto.mebrNo}');
+
+                var gisu = document.getElementById('gisu');
+                var status = document.getElementById('status');
+                var etc = document.getElementById('etc');
+                var mebrNo = document.getElementById('mebrNo');
+
+                form.appendChild(gisu);
+                form.appendChild(status);
+                form.appendChild(etc);
+                form.appendChild(mebrNo);
+                console.log(form)
+                document.body.appendChild(form);
+                form.submit();
+            }
+
+
+        })//수정
+
 
     })
 

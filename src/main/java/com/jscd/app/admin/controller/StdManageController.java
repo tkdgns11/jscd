@@ -65,20 +65,6 @@ public class StdManageController {
         return "/admin/stdManage/stdManage";
     }
 
-    @GetMapping("/modify")
-    public String modifyForm(Integer page, Integer mebrNo, Model model) {
-        try {
-            StdMemberManageDto stdDto = stdService.read(mebrNo);
-            model.addAttribute("page", page);
-            model.addAttribute("stdDto", stdDto);
-        } catch (Exception e) {
-            e.printStackTrace();
-            model.addAttribute("msg", "READ_ERR");
-            return "redirect:/onlyAdmin/stdManage/read?page=" + page + "&mebrNo=" + mebrNo;
-        }
-
-        return "/admin/stdManage/stdManageModify";
-    }
 
     @PostMapping("/modify")
     public String infoModify(Integer page, StdManageDto stdDto, Model model) {
@@ -91,7 +77,7 @@ public class StdManageController {
             model.addAttribute("msg", "MOD_ERR");
             return "redirect:/onlyAdmin/stdManage/modify?page=" + page + "&mebrNo=" + stdDto.getMebrNo();
         }
-        return "redirect:/onlyAdmin/stdManage/list?page=" + page;
+        return "redirect:/onlyAdmin/stdManage/read?page="+page+"&mebrNo="+stdDto.getMebrNo();
     }
 
     @PostMapping("/modifyStatus")

@@ -7,16 +7,17 @@
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&family=Noto+Serif+KR:wght@900&display=swap"
           rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
-    <link rel="stylesheet" type="text/css" href="<c:url value="/css/adminInfoList.css"/>">
-
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/adminInfo.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/jscdReset.css"/>">
 </head>
 <script>
     let msg = "${param.msg}";
-    if (msg == "MOD_OK") alert("성공적으로 수정되었습니다.");
     if (msg == "LIST_ERR") alert("학생 목록을 가져오는데 실패했습니다. 다시 시도해 주세요.");
     if (msg == "MOD_ERR") alert("수정에 실패했습니다. 다시 시도해 주세요.");
     if (msg == "DEL_OK") alert("삭제 되었습니다.");
     if (msg == "DEL_ERR") alert("삭제가 실패했습니다. 다시 시도해 주세요.");
+    if (msg == "MOD_OK") alert("성공적으로 수정되었습니다.");
+
 
 </script>
 <body>
@@ -43,7 +44,7 @@
                 </select>
                 <input type="text" name="keyword" type="text" value="${param.keyword}" id="keywordInput"
                        placeholder="검색어를 입력해주세요">
-                <button id="searchBtn">검색</button>
+                <input type="submit" value="검색" class="deleteBtn">
             </form>
 
         </div>
@@ -54,7 +55,7 @@
                 <option value="2">수강중</option>
                 <option value="3">수료</option>
             </select>
-            <button onclick="statusUpdate()" id="allModifyBtn">수정</button>
+            <input type="button" value="수정" class="modifyBtn" onclick="statusUpdate()">
         </div>
     </div>
 
@@ -102,13 +103,13 @@
         </table>
     </div>
 
-    <div style="position: absolute;top: 72%;left: 87.5%">
-    <button onclick="stdDelete()" id="allDeleteBtn">삭제</button>
+    <div style="position: absolute;margin-top: 600px;left: 85%">
+        <input type="button" value="삭제" class="deleteBtn" onclick="stdDelete()" style="height: 30px">
     </div>
 
     <div id="infoNaviBox">
         <c:if test="${totalCnt==null || totalCnt==0}">
-            <p id="noContent">게시물이 없습니다.</p>
+            <p id="noContent">등록된 학생이 없습니다 .</p>
         </c:if>
         <c:if test="${totalCnt!=null && totalCnt!=0}">
             <c:if test="${page.showPrev}">

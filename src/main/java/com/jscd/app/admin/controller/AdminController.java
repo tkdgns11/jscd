@@ -122,27 +122,8 @@ public class AdminController {
             model.addAttribute("msg", "READ_ERR");
             return "redirect:/admin/home";
         }
-        return "/admin/adminInfo";
+        return "/admin/adminInfo/adminInfo";
     }
-
-    //관리자 개인정보 수정 페이지 보여주기
-    @GetMapping("/modify")
-    public String adminModifyForm(Model model, HttpSession session) {
-        try {
-            //현재 세션에 저장된 관리자 id를 가져옴
-            String adminId = (String) session.getAttribute("adminId");
-            //관리자 id로 dto객체를 얻어오고,
-            AdminDto adminDto = adminService.readAdmin(adminId);
-            //jsp에 뿌려주기
-            model.addAttribute("adminDto", adminDto);
-        } catch (Exception e) {
-            e.printStackTrace();
-            model.addAttribute("msg", "READ_ERR");
-            return "redirect:/admin/read";
-        }
-        return "/admin/adminInfoModify";
-    }
-
 
     //관리자 개인정보 수정하기
     @PostMapping("/modify")

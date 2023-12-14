@@ -30,7 +30,7 @@
             margin-bottom: 50px;
         }
         #addTitle{
-            background-color: #3B457D;
+            background-color: #0185FE;
             width: 100px;
             height: 30px;
             font-weight: 700;
