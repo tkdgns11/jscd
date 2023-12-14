@@ -24,7 +24,10 @@
 <div id="mainHeader">
     <nav>
         <div id="jscdNav">
-            <img src="<c:url value="/img/logo.png"/>">
+            <div id="homeImg">
+                <a href="<c:url value='/'/>"><img src="<c:url value="/img/logo.png"/>"></a>
+                <p>정석코딩</p>
+            </div>
             <ul>
                 <li id="about">
                     <p>ABOUT</p>
@@ -52,7 +55,7 @@
                 <li id="manage">
                     <p>학사관리</p>
                     <ul class="Menu">
-                        <li><a href="<c:url value="/board/stdNotice/list"/>">공지사항</a></li>
+                        <li><a href="#">공지사항</a></li>
                         <li><a href="#">질문&답변</a></li>
                     </ul>
                 </li>

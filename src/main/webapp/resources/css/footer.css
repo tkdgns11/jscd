@@ -1,5 +1,5 @@
 
-footer{background-color: black; width: 100%; }
+footer{background-color: black; width: 100%;}
 #footerContent{width: 960px; margin: 0 auto ;display: flex; flex-direction: row; position: relative; color: grey;}
 #footerLeft{width: 210px; display:flex; flex-direction: column;justify-content: center; align-items: center;  color: #AFA95E;font-size: 20px;  font-weight: bold;}
 #footerLeft img{width: 70px; height: 70px;}

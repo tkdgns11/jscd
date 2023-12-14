@@ -1,20 +1,22 @@
 
-#mainHeader{width: 100%;height: 80px; }
+#mainHeader{width: 100%; position: relative; height: 80px;}
 
 #mainHeader > nav{display: flex; flex-direction: row;position:fixed; width: 100%;height: 80px; background-color: #FFFFFF;box-shadow: 5px 5px 5px rgba(0,0,0,0.2); z-index: 99999;}
 #mainHeader > nav > div{display: flex; flex-direction: row; position: absolute; margin-top: 15px;}
 
-
-#jscdNav{width: 50%;display: flex; flex-direction: row;}
-#jscdNav > ul {width: 80%; display: flex; flex-direction: row; justify-content: space-around;}
+#homeImg{display: flex; flex-direction: row;}
+#homeImg p{line-height: 50px;margin-left: 10px;}
+#jscdNav{width: 100%;display: flex; flex-direction: row; position: relative;}
+#jscdNav > ul {width: 40%; display: flex; flex-direction: row; justify-content: space-around;}
 #jscdNav img{width: 50px; height: 50px; margin-left: 20px;}
 #jscdNav li > p {line-height: 50px;}
-#apply{text-align: center;}
+#jscdNav > a p{line-height: 50px;}
 .Menu{width:100px; height: 100px; display: none; position: absolute;background-color: #ffffff; border: 1px solid rgba(0,0,0,0.2); box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);z-index: 1;border-radius: 5px;flex-direction: column;transition: opacity 0.3s ease, visibility 0.3s ease; opacity: 0; visibility: hidden; text-align: center;}
 .Menu li{margin-top: 10px;}
-#searchBox{ width: 30%; left: 50%; top: 10%;}
+
+#searchBox{ width: 20%; left: 55%; top: 10%;}
 #searchBox > img{width: 30px; height: 30px;}
 #searchBox input{width: 250px; height: 25px;box-shadow: 5px 5px 5px rgba(0,0,0,0.2);border: 1px solid rgba(0,0,0,0.1); border-radius: 5px;}
 
 #memberBox{width:20%;left: 80%;}
-#memberBox > .registeBtn{margin-left: 20px;}
+#memberBox > input{margin-left: 20px;}
