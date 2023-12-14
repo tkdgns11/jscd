@@ -192,14 +192,13 @@ function  phoneValid(phone, phoneReg){
 // 아이디 중복체크
 const idCheck = ()=>{
     const id = document.getElementById('id').value;
-    console.log(id);
 
     $.ajax({
         type:'get',
         url : '/member/idChk?id='+id,
-        success: (data)=>{
-            console.log("비교할 id = " + data);
-            if(id == data){
+        success: (email)=>{
+            console.log("비교할 id = " + email);
+            if(id == email){
                 alert('사용할 수 없는 아이디입니다.');
                 $('#id').css("color", 'red');
             }else{

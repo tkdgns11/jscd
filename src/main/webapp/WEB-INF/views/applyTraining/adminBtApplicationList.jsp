@@ -8,52 +8,48 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
-<%--<jsp:include page="../admin/adminHeader.jsp"/>--%>
-<jsp:include page="../admin/adminSidebar.jsp"/>
 <html>
 <head>
-    <title>adminBtApplicationList</title>
-    <style>
-        #whole{
-            width:88% ;
-            height: 100%;
-            float: right;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/adminApplicationList.css"/>">
+
+    <title>정석코딩 부트캠프 신청서 관리</title>
 </head>
 <body>
-<div id = "whole">
-    <h1>정석코딩 부트캠프 신청서 관리</h1>
+    <h1 id="applicationManageText">/* 정석코딩 부트캠프 신청서 관리 */</h1>
+
+<div id="applicationManageAll">
 
     <%--    검색    --%>
-    <form action="<c:url value="/adminBtTraining/list"/>" method="get">
-        <select name="option">
+    <form id="applicationManageSel" action="<c:url value="/adminBtTraining/list"/>" method="get">
+        <select class="inputTxt" name="option">
             <option value="all" ${ah.sa.option=='all' || ah.sa.option=='' ? "selected" : ""}>전체</option>
             <option value="title" ${ah.sa.option=='title' ? "selected" : ""}>강의 이름</option>
             <option value="id" ${ah.sa.option=='id' ? "selected" : ""}>신청자 계정</option>
             <option value="approvalYN" ${ah.sa.option=='approvalYN' ? "selected" : ""}>승인 상태</option>
         </select>
 
-        <input type="text" name="keyword" value="${ah.sa.keyword}" placeholder="검색어를 입력해주세요.">
-        <input type="submit" id="btApplicationListSearch" value="검색">
+        <input type="text" class="inputTxt" name="keyword" value="${ah.sa.keyword}" placeholder="검색어를 입력해주세요.">
+        <input type="submit" id="btApplicationListSearch" class="searchBtn" value=" 검색">
     </form>
 
     <%--    게시판    --%>
-    <table border="1">
-        <tr>
-            <th>신청 번호</th>
-            <th>신청한 강의 이름</th>
-            <th>신청자 계정</th>
-            <th>신청 일시</th>
-            <th>승인 상태</th>
+    <table id="applicationManageTable">
+        <tr class="applicationManageTr">
+            <th class="applicationManageTh">신청 번호</th>
+            <th class="applicationManageTh">신청한 강의 이름</th>
+            <th class="applicationManageTh">신청자 계정</th>
+            <th class="applicationManageTh">신청 일시</th>
+            <th class="applicationManageTh">승인 상태</th>
         </tr>
         <c:forEach var="btApplicationDto" items="${list}">
-        <tr>
-            <td>${btApplicationDto.stfmNo}</td>
-            <td><a href="<c:url value='/adminBtTraining/read${ah.sa.queryString}&stfmNo=${btApplicationDto.stfmNo}'/>">${btApplicationDto.title}</a></td>
-            <td>${btApplicationDto.id}</td>
-            <td><fmt:formatDate value="${btApplicationDto.regDate}" pattern="yyyy-MM-dd HH시 mm분 ss초"/></td>
-            <td>${btApplicationDto.approvalYN}</td>
+        <tr class="applicationManageTr">
+            <td class="applicationManageTd">${btApplicationDto.stfmNo}</td>
+            <td class="applicationManageTd"><a href="<c:url value='/adminBtTraining/read${ah.sa.queryString}&stfmNo=${btApplicationDto.stfmNo}'/>">${btApplicationDto.title}</a></td>
+            <td class="applicationManageTd">${btApplicationDto.id}</td>
+            <td class="applicationManageTd"><fmt:formatDate value="${btApplicationDto.regDate}" pattern="yyyy-MM-dd HH시 mm분 ss초"/></td>
+            <td class="applicationManageTd">${btApplicationDto.approvalYN}</td>
         </tr>
         </c:forEach>
     </table>
@@ -62,6 +58,7 @@
     </c:if>
 
     <%--    내비게이션   --%>
+    <div id="applicationManageNavi">
     <c:if test="${totalCnt!=null && totalCnt!=0}">
         <c:if test="${ah.showPrev}">
             <a href="<c:url value='/adminBtTraining/list${ah.sa.getQueryString(ah.beginPage-1)}'/>">&lt;&lt;</a>
@@ -75,6 +72,7 @@
             <a href="<c:url value='/adminBtTraining/list${ah.sa.getQueryString(ah.endPage+1)}'/>">&gt;&gt;</a>
         </c:if>
     </c:if>
+    </div>
 </div>
 </body>
 </html>

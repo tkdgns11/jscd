@@ -63,4 +63,5 @@
 		where  A.id = #{id}
 		  and B.registCode = #{registCode};
 	</select>
+
 </mapper>

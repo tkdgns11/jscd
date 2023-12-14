@@ -55,9 +55,9 @@
 
     <!--    (신청자 전용) 신청서 제출시 사용하는 insert-->
     <insert id="insert" parameterType="SmApplicationDto">
-        insert into smstform (mebrNo, id, registCode, title, lastPrice, level, levelDetail, attdPps,
+        insert into smstform (mebrNo, id, registCode, title, lastPrice, status, level, levelDetail, attdPps,
                               attdPath, intro, expect)
-        values (#{mebrNo}, #{id}, #{registCode}, #{title}, #{lastPrice}, #{level}, #{levelDetail}, #{attdPps},
+        values (#{mebrNo}, #{id}, #{registCode}, #{title}, #{lastPrice}, #{status}, #{level}, #{levelDetail}, #{attdPps},
                 #{attdPath}, #{intro}, #{expect})
     </insert>
 
