@@ -568,7 +568,7 @@ z-index: 1000; float: right;/">
   </div>
   <div id="warp1">
     <div id="memberStatus" class="list1st">
-      <h4 class="Titles">취업현황</h4>
+      <h4 class="Titles">검색통계</h4>
       <div id = "search">
       </div>
     </div>
@@ -815,41 +815,13 @@ z-index: 1000; float: right;/">
     { name: "JPA", value: 10 },
     { name: "스프링부트", value: 10 },
     { name: "백엔드", value: 30 },
-    { name: "리액트", value: 20 },
-    { name: "정석코딩", value: 100 },
-    { name: "부트캠프", value: 80 },
-    { name: "남궁성", value: 70 },
-    { name: "java", value: 70 },
-    { name: "SQL", value: 50 },
-    { name: "SQL튜닝", value: 30 },
-    { name: "JavaScript", value: 50 },
-    { name: "스프링", value: 50 },
-    { name: "웹개발", value: 20 },
-    { name: "프로젝트", value: 40 },
-    { name: "JPA", value: 10 },
-    { name: "스프링부트", value: 10 },
-    { name: "백엔드", value: 30 },
-    { name: "리액트", value: 20 },
-    { name: "정석코딩", value: 100 },
-    { name: "부트캠프", value: 80 },
-    { name: "남궁성", value: 70 },
-    { name: "java", value: 70 },
-    { name: "SQL", value: 50 },
-    { name: "SQL튜닝", value: 30 },
-    { name: "JavaScript", value: 50 },
-    { name: "스프링", value: 50 },
-    { name: "웹개발", value: 20 },
-    { name: "프로젝트", value: 40 },
-    { name: "JPA", value: 10 },
-    { name: "스프링부트", value: 10 },
-    { name: "백엔드", value: 30 },
-    { name: "리액트", value: 20 },
+    { name: "리액트", value: 20 }
   ];
 
-  var svgWidth = 600, svgHeight = 400;
+  var svgWidth = 400, svgHeight = 300;
 
   // SVG 요소 생성
-  var svgBubble = d3.select("#search").append("svgBubble")
+  var svgBubble = d3.select("#search").append("svg")
           .attr("width", svgWidth)
           .attr("height", svgHeight)
           .attr("class", "bubble");
