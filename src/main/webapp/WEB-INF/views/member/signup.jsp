@@ -10,6 +10,7 @@
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/jscdReset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/signup.css"/>">
     <script type="text/javascript" src="<c:url value="/js/signup.js"/>"></script>
     <title>회원가입 폼</title>
@@ -47,7 +48,7 @@
 </header>
 <form>
     <div id="wrap">
-        <div id="signupHeader" style="border: none;">
+        <div id="signupHeader" style="border: none; box-shadow: none;">
             <img src="<c:url value="/img/logo.png"/>">
             <h1>정석코딩</h1>
         </div>
@@ -67,7 +68,7 @@
             <div>
                 <img src="<c:url value="/img/signup_user.png"/>">
                 <input type="text" id="id" name="id" placeholder="아이디(Ex.ghdrlfehd@naver.com)">
-                    <input type="button" id="idChkBtn" value="중복확인" onclick="idCheck()" class="signup_btn">
+                <input type="button" id="idChkBtn" value="중복확인" onclick="idCheck()" class="signup_btn">
             </div>
                 <div>
                     <img src="<c:url value="/img/signup_user.png"/>">
@@ -80,7 +81,7 @@
             </div>
 
             <div style="border-bottom: none;">
-                <img src="<c:url value="/img/signup_user.png"/>">
+                <img src="<c:url value="/img/signup_pwd.png"/>">
                 <input type="password" id="pwdChk" name="pwdChk" placeholder="비밀번호 확인" autocomplete="off">
             </div>
         </div>
@@ -102,7 +103,7 @@
             </div>
             <div id="phoneBox" style="border-bottom: none;">
                 <img src="<c:url value="/img/signup_phone.png"/>">
-                <input type="text"  id="phone" name="phone" oninput="autoHyphen(this)" maxlength="13" placeholder="전화번호를 입력해보세요!">
+                <input type="text"  id="phone" name="phone" oninput="autoHyphen(this)" maxlength="13" placeholder="전화번호를 입력해주세요.">
             </div>
         </div>
         <div id="termsBox">
@@ -131,9 +132,9 @@
                 <p class="termsDetail"><span id="detailBtn4">상세보기></span></p>
             </div>
         </div>
-        <div style="border: none; display: flex; flex-direction: row;justify-content: center; align-items: center">
+        <div id="btnBox" style="border: none; box-shadow: none;">
             <input type="button" id="signupBtn" value="가입 완료" onclick="member('signup')">
-            <input type="button" class="cancleBtn" value="취소" onclick="cancle()" style="margin-left: 20px;">
+            <input type="button" id="cancleBtn" value="취소" onclick="cancle()" style="margin-left: 20px;">
         </div>
 
 
@@ -145,8 +146,8 @@
         <div class="modalBody">
             <h1>서비스 이용약관 동의(필수)</h1>
             <textarea rows="17" cols="57">제 1 조 (목적)</textarea>
-            <input type="button" class="" id="agreeBtn" value="동의">
-            <input type="button" class="" id="closeBtn" value="닫기">
+            <input type="button" class="registeBtn" id="agreeBtn" value="동의">
+            <input type="button" class="cancleBtn" id="closeBtn" value="닫기">
         </div>
     </div>
 </div>

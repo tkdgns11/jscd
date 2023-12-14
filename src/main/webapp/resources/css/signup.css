@@ -9,16 +9,16 @@
 }
 /* 포커스 시 기본 아웃라인 제거 */
 #wrap input:focus {outline: none;}
-#wrap input[type="text"], input[type="password"]{ width: 300px; height: 50px;}
+#wrap input[type="text"], input[type="password"]{ width: 300px; height: 50px; font-size: 15px;}
 #wrap{margin: 80px auto; width:960px;}
 #wrap img{width: 50px; height: 50px;}
-#wrap > div{border: 1px solid rgb(128, 128, 128); width: 60%; margin: 20px auto; border-radius: 15px;}
+#wrap > div{border: 1px solid rgb(128, 128, 128); width: 60%; margin: 20px auto; border-radius: 15px;box-shadow: 5px 5px 5px rgba(0,0,0,0.5)}
 #wrap > div > div{display: flex; position: relative;}
 #wrap > div > div img{margin: 0px 50px 0px 50px}
 #wrap > div > div {border-bottom: 1px solid rgb(128, 128, 128);}
 #signupHeader{display: flex; flex-direction: row; justify-content: center;}
 #signupHeader h1{line-height: 50px; font-size: 50px; margin-left: 30px;}
-#idChkBtn, #emailChkBtn{border:none; width: 130px;}
+#idChkBtn, #emailChkBtn{border:none; width: 130px; cursor: pointer;}
 #idChkBtn{border-radius: 0px 15px 0px 0px;}
 #phoneBox{display: flex; flex-direction: row; align-items: center;}
 #phoneBox label{line-height: 50px;margin: 0 12px;}
@@ -33,13 +33,13 @@
 #female:checked + span {width: 150px;height: 30px;border-radius: 0px 9px 9px 0px;background-color: #2196F3;color: #fff;}
 .radio-label span{cursor: pointer;background-color: #fff;display: inline-block;width: 150px;height: 30px;text-align: center;line-height: 30px;border-radius: 10px;}
 #radioBtn{border: 1px solid rgb(128, 128, 128); border-radius: 10px; display:flex; flex-direction: row;}
-#signupBtn{width: 200px;height: 50px; border-radius: 15px;font-size: 30px;text-align: center; line-height: 50px; background-color: #18214F; color: #fff; cursor: pointer;}
-#memberEditBtn{width: 200px;height: 50px; border-radius: 15px;font-size: 30px;text-align: center; line-height: 50px; background-color: #18214F; color: #fff; cursor: pointer;}
-.cancleBtn{width: 200px;height: 50px; margin-left: 10px;border-radius: 15px;font-size: 30px;text-align: center; line-height: 50px; background-color: #a5090b; color: #fff; cursor: pointer;}
+#btnBox{ width: 300px;  display: flex; flex-direction: row; justify-content: center;}
+#signupBtn{width: 200px;height: 50px; border-radius: 15px;font-size: 30px;text-align: center; line-height: 50px; background-color: #18214F; color: #fff; cursor: pointer; box-shadow: 5px 5px 5px rgba(0,0,0,0.5)}
+#cancleBtn{width: 200px;height: 50px; border-radius: 15px;font-size: 30px;text-align: center; line-height: 50px; background-color: #FF4646; color: #fff; cursor: pointer; box-shadow: 5px 5px 5px rgba(0,0,0,0.5)}
 #memberDel{background-color: white;cursor: pointer;color: #666666}
 
 #termsBox > div{height: 50px;}
 #termsBox > div > input{width: 20px; height: 20px; margin-left: 65px; margin-top: 15px;margin-right: 30px;}
-#termsBox > div > p{line-height: 50px;color: #999999;}
+#termsBox > div > p{line-height: 50px;color: rgba(0,0,0,0.8);}
 .termsDetail{margin-left: auto;}
-.termsDetail a{color: #999999; margin-right: 10px;}
+.termsDetail span{color: rgba(0,0,0,0.5); margin-right: 10px; cursor: pointer;}
