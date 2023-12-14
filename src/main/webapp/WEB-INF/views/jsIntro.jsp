@@ -18,7 +18,7 @@
       background-color: #D9D9D9;
       width: 150px;
       height: 40px;
-      margin-right: 350px;
+      margin-right: 300px;
       font-weight: 700;
       text-align: center;
       line-height: 40px;
@@ -33,7 +33,7 @@
       margin-top: 3%;
     }
     .itemTitle{
-      background-color: #182566;
+      background-color: #0185FE;
       width: 350px;
       height: 45px;
       font-size: 30px;
@@ -48,6 +48,8 @@
       height: 45px;
       text-align: center;
       margin-top: 10px;
+      font-size: 18px;
+      font-weight: 600;
     }
     .classItemBox{
       display: flex;
@@ -59,13 +61,15 @@
     .itemDesc{
       width: 410px;
       text-align: center;
-      margin:5px 0;
-      font-weight: 450;
+      margin:10px 0;
+      font-weight: 600;
+      font-size: 18px;
+
     }
     .itemImg{
       object-fit: cover;
       border-radius: 20px;
-    }
+      filter: drop-shadow(10px 8px 6px #c3c3c3);    }
   </style>
 </head>
 <body>
@@ -114,7 +118,7 @@
     <div class="itemBox">
       <p class="itemTitle">3개의 스터디룸&회의실</p>
       <img src="<c:url value="/img/stRoom.jpg"/>"  class="itemImg" style="width: 450px; height: 300px;">
-      <p class="itemDesc">581호내의 위치</p>
+      <p class="itemDesc">518호내의 위치</p>
     </div>
     <div class="itemBox">
       <p class="itemTitle">강의실마다 사물함 배치</p>

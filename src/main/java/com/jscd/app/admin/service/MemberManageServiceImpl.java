@@ -52,7 +52,7 @@ public class MemberManageServiceImpl implements MemberManageService { //회원 �
     public int modify(Integer status, Integer grade, List<Integer> mebrNo) throws Exception { //메인수정
         int rowCnt = manageDao.update(status, grade, mebrNo);
 
-        if (grade == 4) {
+        if (grade == 3) {
             //멤버의 정보 그대로 강사테이블로 insert
             InstructorInfoDto instructorInfoDto = new InstructorInfoDto();
 
@@ -62,7 +62,7 @@ public class MemberManageServiceImpl implements MemberManageService { //회원 �
                 rowCnt = insturctorInfoDao.insert(instructorInfoDto);
 
             }
-        } else if (grade == 5) { //등급이 관리자로 변경됐다면,
+        } else if (grade == 4) { //등급이 관리자로 변경됐다면,
 
 
             for (int i = 0; i < mebrNo.size(); i++) {
@@ -80,7 +80,7 @@ public class MemberManageServiceImpl implements MemberManageService { //회원 �
             for (int i = 0; i < mebrNo.size(); i++) {
                 stdManageDto.setMebrNo(mebrNo.get(i)); //회원 번호만 넣기
                 stdManageDto.setGisu(""); //기수 어떻게 들어갈지..일단 비우기
-                stdManageDto.setStatus(1);
+                stdManageDto.setStatus(1); //1 '수강예정' 기본값
                 rowCnt = stdManageDao.insert(stdManageDto);
             }
 

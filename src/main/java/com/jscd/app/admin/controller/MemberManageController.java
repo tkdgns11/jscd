@@ -64,21 +64,6 @@ public class MemberManageController {
         return "/admin/memberManage/memberManage";
     }
 
-    @GetMapping("/modify")
-    public String modifyForm(Integer page, Integer mebrNo, Model model) {
-        try {
-            MemberManageDto memberDto = manageService.read(mebrNo);
-            model.addAttribute("page", page);
-            model.addAttribute("memberDto", memberDto);
-        } catch (Exception e) {
-            e.printStackTrace();
-            model.addAttribute("msg", "READ_ERR");
-            return "redirect:/onlyAdmin/memberManage/read&page=" + page + "&mebrNo=" + mebrNo;
-
-        }
-
-        return "/admin/memberManage/memberManageModify";
-    }
 
     @PostMapping("/modify")
     public String infoModify(Integer page, MemberDto memberDto, Model model) {
@@ -93,7 +78,7 @@ public class MemberManageController {
             return "redirect:/onlyAdmin/memberManage/modify?page=" + page + "&mebrNo=" + memberDto.getMebrNo();
         }
 
-        return "redirect:/onlyAdmin/memberManage/list?page=" + page;
+        return "redirect:/onlyAdmin/memberManage/read?page="+page+"&mebrNo="+memberDto.getMebrNo();
     }
 
     @PostMapping("/modifyMain")
