@@ -205,7 +205,13 @@
     }
 
     .titleLogo {
+      height: 50%;
       width: 20%;
+    }
+
+    .titleLogo i {
+      font-size: 3rem;
+      height: 100%;
     }
 
     .list3rdDetail {
@@ -284,6 +290,7 @@
     #osStatistics {}
 
     .Titles {
+      font-weight: 700;
       margin: 0;
       margin-left: 1rem;
       margin-top: 0.5rem;
@@ -400,6 +407,21 @@
       height: 50%;
       width: 20%;
       background-color: #2196F3;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f2f2f2;
     }
   </style>
   <script src="https://kit.fontawesome.com/d47308ea25.js" crossorigin="anonymous"></script>
@@ -547,13 +569,7 @@ z-index: 1000; float: right;/">
   <div id="warp1">
     <div id="memberStatus" class="list1st">
       <h4 class="Titles">취업현황</h4>
-      <div>
-        <div id="topAdmin" class="layer1contents">
-          <i class="fa-solid fa-user-secret"></i>
-        </div>
-        <div id="assistant" class="layer1contents">
-          <i class="fa-solid fa-user-graduate"></i>
-        </div>
+      <div id = "search">
       </div>
     </div>
     <div id="deviceStatistics" class="list1st">
@@ -581,6 +597,47 @@ z-index: 1000; float: right;/">
     </div>
     <div id="adminNotice" class="list1st">
       <h4 class="Titles">관리자공지</h4>
+      <table>
+        <thead>
+        <tr>
+          <th>제목</th>
+          <th>내용</th>
+          <th>등록일</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>관리자 공지사항 테스트1</td>
+            <td>sdfasdfkjas;ldkfj;alskasdf;kjas;dlkfj;as</td>
+            <td>2023-12-10</td>
+          </tr>
+          <tr>
+            <td>관리자 공지사항 테스트2</td>
+            <td>sdfasdfkjas;ldkfj;alskasdf;kjas;dlkfj;as</td>
+            <td>2023-12-9</td>
+          </tr>
+          <tr>
+            <td>관리자 공지사항 테스트3</td>
+            <td>sdfasdfkjas;ldkfj;alskasdf;kjas;dlkfj;as</td>
+            <td>2023-12-8</td>
+          </tr>
+          <tr>
+            <td>관리자 공지사항 테스트4</td>
+            <td>sdfasdfkjas;ldkfj;alskasdf;kjas;dlkfj;as</td>
+            <td>2023-12-8</td>
+          </tr>
+          <tr>
+            <td>관리자 공지사항 테스트5</td>
+            <td>sdfasdfkjas;ldkfj;alskasdf;kjas;dlkㅁㄴㅇㅁㄴㅇㄹfj;as</td>
+            <td>2023-12-7</td>
+          </tr>
+          <tr>
+            <td>관리자 공지사항 테스트1</td>
+            <td>sdfasdfkjas;ldkfj;alskasdf;kjas;dlkfj;as</td>
+            <td>2023-12-6</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
@@ -727,6 +784,108 @@ z-index: 1000; float: right;/">
           .attr("fill", "none")
           .attr("stroke", "darkred")
           .attr("stroke-width", 2);
+/////////////////////////////////////////////////
+
+  // 데이터 설정
+  var data = [
+    { name: "정석코딩", value: 100 },
+    { name: "부트캠프", value: 80 },
+    { name: "남궁성", value: 70 },
+    { name: "java", value: 70 },
+    { name: "SQL", value: 50 },
+    { name: "SQL튜닝", value: 30 },
+    { name: "JavaScript", value: 50 },
+    { name: "스프링", value: 50 },
+    { name: "웹개발", value: 20 },
+    { name: "프로젝트", value: 40 },
+    { name: "JPA", value: 10 },
+    { name: "스프링부트", value: 10 },
+    { name: "백엔드", value: 30 },
+    { name: "리액트", value: 20 },
+    { name: "정석코딩", value: 100 },
+    { name: "부트캠프", value: 80 },
+    { name: "남궁성", value: 70 },
+    { name: "java", value: 70 },
+    { name: "SQL", value: 50 },
+    { name: "SQL튜닝", value: 30 },
+    { name: "JavaScript", value: 50 },
+    { name: "스프링", value: 50 },
+    { name: "웹개발", value: 20 },
+    { name: "프로젝트", value: 40 },
+    { name: "JPA", value: 10 },
+    { name: "스프링부트", value: 10 },
+    { name: "백엔드", value: 30 },
+    { name: "리액트", value: 20 },
+    { name: "정석코딩", value: 100 },
+    { name: "부트캠프", value: 80 },
+    { name: "남궁성", value: 70 },
+    { name: "java", value: 70 },
+    { name: "SQL", value: 50 },
+    { name: "SQL튜닝", value: 30 },
+    { name: "JavaScript", value: 50 },
+    { name: "스프링", value: 50 },
+    { name: "웹개발", value: 20 },
+    { name: "프로젝트", value: 40 },
+    { name: "JPA", value: 10 },
+    { name: "스프링부트", value: 10 },
+    { name: "백엔드", value: 30 },
+    { name: "리액트", value: 20 },
+    { name: "정석코딩", value: 100 },
+    { name: "부트캠프", value: 80 },
+    { name: "남궁성", value: 70 },
+    { name: "java", value: 70 },
+    { name: "SQL", value: 50 },
+    { name: "SQL튜닝", value: 30 },
+    { name: "JavaScript", value: 50 },
+    { name: "스프링", value: 50 },
+    { name: "웹개발", value: 20 },
+    { name: "프로젝트", value: 40 },
+    { name: "JPA", value: 10 },
+    { name: "스프링부트", value: 10 },
+    { name: "백엔드", value: 30 },
+    { name: "리액트", value: 20 },
+  ];
+
+  var svgWidth = 600, svgHeight = 400;
+
+  // SVG 요소 생성
+  var svgBubble = d3.select("#search").append("svgBubble")
+          .attr("width", svgWidth)
+          .attr("height", svgHeight)
+          .attr("class", "bubble");
+
+  // 색상 스케일 설정
+  var colorBubble = d3.scaleOrdinal(d3.schemeCategory10);
+
+  // 버블 레이아웃 설정
+  var bubble = d3.pack()
+          .size([svgWidth, svgHeight])
+          .padding(5);
+
+  // 데이터를 계층 구조로 변환
+  var root = d3.hierarchy({ children: data })
+          .sum(function (d) { return d.value; });
+
+  // 버블 노드 계산
+  bubble(root);
+
+  // 버블 생성
+  var bubbles = svgBubble.selectAll(".bubble")
+          .data(root.children)
+          .enter().append("g")
+          .attr("transform", function (d) {
+            return "translate(" + d.x + "," + d.y + ")";
+          });
+
+  bubbles.append("circle")
+          .attr("r", function (d) { return d.r; })
+          .style("fill", function (d) { return colorBubble(d.data.name); });
+
+  bubbles.append("text")
+          .attr("dy", ".3em")
+          .style("text-anchor", "middle")
+          .text(function (d) { return d.data.name; });
+
 
 
 </script>
