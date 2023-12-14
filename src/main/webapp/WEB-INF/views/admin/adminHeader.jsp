@@ -242,7 +242,7 @@ z-index: 1000; float: right;/">
         </div>
         <div class="box-content">
             <a href="#">강의실</a>
-            <a href="#">사물함</a>
+            <a href="/locker/adminList">사물함</a>
         </div>
     </div>
 </div>

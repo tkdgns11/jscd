@@ -35,7 +35,7 @@
 <%--        .sidenav {--%>
 <%--            float:left;--%>
 <%--            height: 100%;--%>
-<%--            width: 15%;--%>
+<%--            width: 12%;--%>
 <%--            position: fixed;--%>
 <%--            z-index: 1;--%>
 <%--            top: 0;--%>
@@ -104,6 +104,7 @@
 <%--            <a href="#"></a>--%>
 <%--        </div>--%>
 <%--    </div>--%>
+<%--    <div class="box">--%>
 <%--        <div class="box-header" onclick="toggleBoxContent(this)">--%>
 <%--            <a href="#about"><i class="fa-solid fa-circle-user"></i> 학사관리</a>--%>
 <%--            <span class="arrow up"></span>--%>
@@ -144,7 +145,7 @@
 <%--        </div>--%>
 <%--        <div class="box-content">--%>
 <%--            <a href="#">강의실</a>--%>
-<%--            <a href="#">사물함</a>--%>
+<%--            <a href="/locker/adminList">사물함</a>--%>
 <%--        </div>--%>
 <%--    </div>--%>
 <%--</div>--%>
