@@ -44,12 +44,32 @@
     <input type="text" class="infoInputBox" readonly value="${memberDto.phone}"><br>
     <label style="margin-right: 25px;">등급</label>
     <select name="grade" id="grade" class="modifySelect">
-        <option value="">${memberDto.grade}</option>
-    </select><br><br>
-    <%--        <input type="text" class="infoInputBox" readonly value="${memberDto.grade}"><br>--%>
+        <c:if test="${memberDto.grade eq '일반'}">
+            <option value="1">일반</option>
+        </c:if>
+        <c:if test="${memberDto.grade eq '학생'}">
+            <option value="2">학생</option>
+        </c:if>
+        <c:if test="${memberDto.grade eq '강사'}">
+            <option value="3">강사</option>
+        </c:if>
+        <c:if test="${memberDto.grade eq '관리자'}">
+            <option value="4">관리자</option>
+        </c:if> </select><br><br>
     <label style="margin-right: 25px;">상태</label>
     <select name="status" id="status" class="modifySelect">
-        <option value="">${memberDto.status}</option>
+        <c:if test="${memberDto.status eq '정상'}">
+            <option value="1">정상</option>
+        </c:if>
+        <c:if test="${memberDto.status eq '블랙'}">
+            <option value="2">블랙</option>
+        </c:if>
+        <c:if test="${memberDto.status eq '탈퇴'}">
+            <option value="3">탈퇴</option>
+        </c:if>
+        <c:if test="${memberDto.status eq '휴면'}">
+            <option value="4">휴면</option>
+        </c:if>
     </select><br>
     <label style="margin-right: 25px;">계좌</label>
     <input type="text" class="infoInputBox" readonly value="${memberDto.acct}"><br>
@@ -87,6 +107,10 @@
         4: '관리자(조교)'
     }
 
+    let statusInfo = "${memberDto.status}"; //string
+    let gradeInfo = "${memberDto.grade}"; //string
+
+
     $(document).ready(function () {
 
         $(".modifyBtn").on("click", function () {
@@ -97,14 +121,16 @@
                 $("input[name=etc]").css("border-bottom", "1px solid red");
                 $("input[name=etc]").focus();
 
-                $("#grade option").remove();
                 $.each(gradeArr, function (key, value) {
-                    $('#grade').append($("<option></option>").attr("value", key).text(value))
+                    if (gradeInfo !== value) {
+                        $('#grade').append($("<option></option>").attr("value", key).text(value))
+                    }
                 });
 
-                $("#status option").remove();
                 $.each(statusArr, function (key, value) {
-                    $('#status').append($("<option></option>").attr("value", key).text(value))
+                    if (statusInfo !== value) {
+                        $('#status').append($("<option></option>").attr("value", key).text(value))
+                    }
                 });
             } else {
                 const form = document.createElement('form');

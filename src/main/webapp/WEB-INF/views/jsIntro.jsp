@@ -7,7 +7,7 @@
   <meta charset="utf-8">
 
   <title>정석코딩 소개</title>
-  <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
+  <link rel="stylesheet" type="text/css" href="<c:url value='/css/reset.css'/>">
 
 
   <style>

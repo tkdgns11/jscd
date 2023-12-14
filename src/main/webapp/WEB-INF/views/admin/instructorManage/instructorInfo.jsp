@@ -50,7 +50,18 @@
     <input type="text" class="infoInputBox" name="intro" id="intro" readonly value="${infoDto.intro}"><br>
     <label style="margin-right: 25px;">상태</label>
     <select name="status" id="status" class="modifySelect">
-        <option value="">${infoDto.status}</option>
+        <c:if test="${infoDto.status eq '이직'}">
+            <option value="1">이직</option>
+        </c:if>
+        <c:if test="${infoDto.status eq '재직'}">
+            <option value="2">재직</option>
+        </c:if>
+        <c:if test="${infoDto.status eq '휴직'}">
+            <option value="3">휴직</option>
+        </c:if>
+        <c:if test="${infoDto.status eq '퇴직'}">
+            <option value="4">퇴직</option>
+        </c:if>
     </select><br>
     <label style="margin-right: 25px;">급여</label>
     <input type="text" class="infoInputBox" name="hourPmt" id="hourPmt" readonly value="${infoDto.hourPmt}"><br>
@@ -63,7 +74,7 @@
     <input type="text" class="infoInputBox" name="etc" id="etc" readonly value="${infoDto.etc}"><br>
     <input type="hidden" name="mebrNo" id="mebrNo" value="${infoDto.mebrNo}">
     <div id="adminBtnBox">
-        <input type="submit" value="수정" class="modifyBtn" onclick="infoModify()">
+        <input type="submit" value="수정" class="modifyBtn">
         <input type="button" value="목록" class="backBtn"
                onclick="location.href='/onlyAdmin/instructor/list?page=${page}'">
     </div>
@@ -78,51 +89,56 @@
         4: '퇴직'
     }
 
-    function infoModify() {
+    let statusInfo = "${infoDto.status}"; //string
 
-        let isReadonly = $("input[name=intro]").attr('readonly');
+    $(document).ready(function () {
+        $(".modifyBtn").on("click", function () {
 
-
-        if (isReadonly == 'readonly') {
-            $("#infoTitle").html("강사 정보 수정");
-            $("input[name=intro]").attr('readonly', false);
-
-            $("#status option").remove();
-            $.each(statusArr, function (key, value) {
-                $('#status').append($("<option></option>").attr("value", key).text(value))
-            });
+            let isReadonly = $("input[name=intro]").attr('readonly');
 
 
-            $("input[name=hourPmt]").attr('readonly', false);
-            $("input[name=etc]").attr('readonly', false);
-            $("input[name=intro]").focus();
-            $("input[name=intro]").css("border-bottom", "1px solid red");
-            $("input[name=status]").css("border-bottom", "1px solid red");
-            $("input[name=hourPmt]").css("border-bottom", "1px solid red");
-            $("input[name=etc]").css("border-bottom", "1px solid red");
-        } else {
-            const form = document.createElement('form');
-            form.setAttribute('method', 'post');
-            form.setAttribute('action', '/onlyAdmin/instructor/modify?page=${page}&iscrNo=${infoDto.iscrNo}');
+            if (isReadonly == 'readonly') {
+                $("#infoTitle").html("강사 정보 수정");
+                $("input[name=intro]").attr('readonly', false);
 
-            var intro = document.getElementById('intro');
-            var status = document.getElementById('status');
-            var hourPmt = document.getElementById('hourPmt');
-            var etc = document.getElementById('etc');
-            var mebrNo = document.getElementById('mebrNo');
-
-            form.appendChild(intro);
-            form.appendChild(status);
-            form.appendChild(hourPmt);
-            form.appendChild(etc);
-            form.appendChild(mebrNo);
-            console.log(form)
-            document.body.appendChild(form);
-            form.submit();
-        }
+                $.each(statusArr, function (key, value) {
+                    //상태와 value가 같지 않다면 옵션 추가
+                    if (statusInfo !== value) {
+                        $('#status').append($("<option></option>").attr("value", key).text(value))
+                    }
+                });
 
 
-    }
+                $("input[name=hourPmt]").attr('readonly', false);
+                $("input[name=etc]").attr('readonly', false);
+                $("input[name=intro]").focus();
+                $("input[name=intro]").css("border-bottom", "1px solid red");
+                $("input[name=status]").css("border-bottom", "1px solid red");
+                $("input[name=hourPmt]").css("border-bottom", "1px solid red");
+                $("input[name=etc]").css("border-bottom", "1px solid red");
+            } else {
+                const form = document.createElement('form');
+                form.setAttribute('method', 'post');
+                form.setAttribute('action', '/onlyAdmin/instructor/modify?page=${page}&iscrNo=${infoDto.iscrNo}');
+
+                var intro = document.getElementById('intro');
+                var status = document.getElementById('status');
+                var hourPmt = document.getElementById('hourPmt');
+                var etc = document.getElementById('etc');
+                var mebrNo = document.getElementById('mebrNo');
+
+                form.appendChild(intro);
+                form.appendChild(status);
+                form.appendChild(hourPmt);
+                form.appendChild(etc);
+                form.appendChild(mebrNo);
+                console.log(form)
+                document.body.appendChild(form);
+                form.submit();
+            }
+        })
+    })
+
 </script>
 
 </body>

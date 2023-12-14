@@ -6,7 +6,8 @@
 
     <title>찾아오시는 길</title>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2282f0ae50d3344aacbb4711c04360bd"></script>
-    <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/reset.css'/>">
+
     <style>
         #loadContentBox{
             display: flex;
@@ -17,7 +18,7 @@
             background-color: #D9D9D9;
             width: 150px;
             height: 40px;
-            margin-right: 350px;
+            margin-right: 450px;
             font-weight: 700;
             text-align: center;
             line-height: 40px;
@@ -49,9 +50,10 @@
 
         }
         #map{
-            width: 500px;
-            height: 400px;
+            width: 600px;
+            height: 500px;
             margin-bottom: 20px;
+            filter: drop-shadow(10px 8px 6px #c3c3c3);
         }
 
     </style>
