@@ -59,54 +59,61 @@ function calculPrice() {
     document.getElementsByName('lastPrice')[0].value = totalPrice;
 }
 
-$("input[type='file']").on("change", function(e) {
-
-    let formData = new FormData();
-    let fileInput = $('input[name="uploadFile"]');
-    let fileList = fileInput[0].files;
-    let fileObj = fileList[0];
-
-    if (!fileCheck(fileObj.name, fileObj.size)) {
-        return false;
-    }
-
-    for(let i=0; i < fileList.length; i++) {
-        formData.append("uploadFile", fileList[i]);
-    }
-
-    // 첨부파일을 resources/img에 집어넣는다.
-    $.ajax({
-        url: '/lstRegist/uploadAjaxAction',
-        processData: false,
-        contentType: false,
-        data: formData,
-        type: 'POST',
-        dataType: 'json',
-        success : function(result) {
-            console.log(result);
-            // showUploadImage(result);
-        },
-        error : function(result) {
-            alert("이미지 파일이 아닙니다.");
-        }
-    });
-});
-
-/* var, method related with attachFile */
-let regex = new RegExp("(.*?)\.(jpg|png)$");
-let maxSize = 1048576; //1MB
-
-function fileCheck(fileName, fileSize){
-
-    if(fileSize >= maxSize){
-        alert("파일 사이즈 초과");
-        return false;
-    }
-
-    if(!regex.test(fileName)){
-        alert("해당 종류의 파일은 업로드할 수 없습니다.");
-        return false;
-    }
-
-    return true;
+function fn_fileDown(fileNo){
+    var formObj = $("form[name='registForm']");
+    $("#fileNo").attr("value", fileNo);
+    formObj.attr("action", "/lstRegist/fileDown");
+    formObj.submit();
 }
+//
+// $("input[type='file']").on("change", function(e) {
+//
+//     let formData = new FormData();
+//     let fileInput = $('input[name="uploadFile"]');
+//     let fileList = fileInput[0].files;
+//     let fileObj = fileList[0];
+//
+//     if (!fileCheck(fileObj.name, fileObj.size)) {
+//         return false;
+//     }
+//
+//     for(let i=0; i < fileList.length; i++) {
+//         formData.append("uploadFile", fileList[i]);
+//     }
+//
+//     // 첨부파일을 resources/img에 집어넣는다.
+//     $.ajax({
+//         url: '/lstRegist/uploadAjaxAction',
+//         processData: false,
+//         contentType: false,
+//         data: formData,
+//         type: 'POST',
+//         dataType: 'json',
+//         success : function(result) {
+//             console.log(result);
+//             // showUploadImage(result);
+//         },
+//         error : function(result) {
+//             alert("이미지 파일이 아닙니다.");
+//         }
+//     });
+// });
+//
+// /* var, method related with attachFile */
+// let regex = new RegExp("(.*?)\.(jpg|png)$");
+// let maxSize = 1048576; //1MB
+//
+// function fileCheck(fileName, fileSize){
+//
+//     if(fileSize >= maxSize){
+//         alert("파일 사이즈 초과");
+//         return false;
+//     }
+//
+//     if(!regex.test(fileName)){
+//         alert("해당 종류의 파일은 업로드할 수 없습니다.");
+//         return false;
+//     }
+//
+//     return true;
+// }

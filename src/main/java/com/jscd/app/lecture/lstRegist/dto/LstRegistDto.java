@@ -37,9 +37,6 @@ public class LstRegistDto {
     private String discount;
     private Integer lastPrice;
     private String content;
-    private String attachedFile;
-
-
 
     private Date regDate;
     private Integer firstIdNo;
@@ -48,11 +45,22 @@ public class LstRegistDto {
     private String etc;
     private String courseName;
 
+    //파일 첨부
+/*    private Integer fileNo;
+    private String originFileName;
+    private String storedFileName;
+    private String fileSize;
+
+    private String file;
+
+    private String fileName;
+
+    private String attachedFile;*/
 
     public LstRegistDto() {
     }
 
-    public LstRegistDto(Integer registCode, String title, String discription, Integer courseCode, String subject1, String subject2, String subject3, String subject4, String subject5, Integer price1, Integer price2, Integer price3, Integer price4, Integer price5, String onOff, String status, Integer minNum, Integer maxNum, String location, Integer currentNum, String startDate, String endDate, String book, String material, Integer totalPrice, String discount, Integer lastPrice, String content, String attachedFile, Date regDate, Integer firstIdNo, String modifyDate, Integer lastIdNo, String etc, String courseName) {
+    public LstRegistDto(Integer registCode, String title, String discription, Integer courseCode, String subject1, String subject2, String subject3, String subject4, String subject5, Integer price1, Integer price2, Integer price3, Integer price4, Integer price5, String onOff, String status, Integer minNum, Integer maxNum, String location, Integer currentNum, String startDate, String endDate, String book, String material, Integer totalPrice, String discount, Integer lastPrice, String content, Date regDate, Integer firstIdNo, String modifyDate, Integer lastIdNo, String etc, String courseName) {
         this.registCode = registCode;
         this.title = title;
         this.discription = discription;
@@ -81,7 +89,6 @@ public class LstRegistDto {
         this.discount = discount;
         this.lastPrice = lastPrice;
         this.content = content;
-        this.attachedFile = attachedFile;
         this.regDate = regDate;
         this.firstIdNo = firstIdNo;
         this.modifyDate = modifyDate;
@@ -314,14 +321,6 @@ public class LstRegistDto {
         this.content = content;
     }
 
-    public String getAttachedFile() {
-        return attachedFile;
-    }
-
-    public void setAttachedFile(String attachedFile) {
-        this.attachedFile = attachedFile;
-    }
-
     public Date getRegDate() {
         return regDate;
     }
@@ -401,7 +400,6 @@ public class LstRegistDto {
                 ", discount='" + discount + '\'' +
                 ", lastPrice=" + lastPrice +
                 ", content='" + content + '\'' +
-                ", attachedFile='" + attachedFile + '\'' +
                 ", regDate=" + regDate +
                 ", firstIdNo=" + firstIdNo +
                 ", modifyDate='" + modifyDate + '\'' +

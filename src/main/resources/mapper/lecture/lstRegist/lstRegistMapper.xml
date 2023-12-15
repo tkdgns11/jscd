@@ -16,13 +16,18 @@
                                      price1, price2, price3, price4, price5,
                                      onOff, status, minNum, maxNum, location, startDate, endDate,
                                      book, material, totalPrice, discount, lastPrice,
-                                     content, attachedFile)
+                                     content)
               values (#{title}, #{discription}, #{courseCode},
                       #{subject1}, #{subject2}, #{subject3}, #{subject4}, #{subject5},
                       #{price1}, #{price2}, #{price3}, #{price4}, #{price5},
                       #{onOff}, #{status}, #{minNum}, #{maxNum}, #{location}, #{startDate}, #{endDate},
                       #{book}, #{material}, #{totalPrice}, #{discount}, #{lastPrice},
-                      #{content}, #{attachedFile})
+                      #{content})
+           <selectKey keyProperty="registCode" resultType="lstRegistDto" order="AFTER">
+               SELECT *
+               FROM lstRegist
+               WHERE registCode = LAST_INSERT_ID()
+           </selectKey>
        </insert>
 
     <!--       등록된 강의 조회하기-->
@@ -50,7 +55,7 @@
         set title = #{title}, discription = #{discription}, onOff = #{onOff}, status = #{status},
             minNum = #{minNum}, maxNum = #{maxNum}, startDate = #{startDate}, endDate = #{endDate},
             book = #{book}, material = #{material}, totalPrice = #{totalPrice}, discount = #{discount}, lastPrice = #{lastPrice},
-            content = #{content}, attachedFile = #{attachedFile}, etc = #{etc}
+            content = #{content}, etc = #{etc}
         where registCode = #{registCode}
     </update>
 
@@ -116,4 +121,32 @@
         <include refid="selectFromlstRegist"/>
         where registCode = #{registCode}
     </select>
+
+    <!--강의 첨부 파일 업로드 -->
+    <insert id="InsertFile" parameterType="hashMap">
+        INSERT INTO lstregistfile(registCode, originFileName, storedFileName, fileSize, regDate, firstIdNo)
+        VALUES (#{registCode}, #{originFileName}, #{storedFileName}, #{fileSize}, now(), #{firstIdNo})
+    </insert>
+
+    <!--강의 첨부 파일 조회-->
+    <select id="selectFileList" parameterType="int" resultType="hashMap">
+        SELECT fileNo,
+               registCode,
+               originFileName,
+               storedFileName,
+               ROUND(fileSize/1024,1) AS fileSize
+        FROM lstregistfile
+        WHERE registCode = #{registCode}
+    </select>
+
+    <!--강의 첨부 파일 다운로드-->
+    <select id="selectFileDown" parameterType="hashMap" resultType="hashMap">
+        SELECT
+               originFileName,
+               storedFileName
+        FROM lstregistfile
+        WHERE fileNo = #{fileNo}
+    </select>
+
+
 </mapper>

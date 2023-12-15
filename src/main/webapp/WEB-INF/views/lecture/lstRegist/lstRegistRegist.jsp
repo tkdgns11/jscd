@@ -22,7 +22,8 @@
     <hr/>
 </div>
 <div class="registAll">
-    <form id="registForm" class="registForm">
+    <form id="registForm" name="registForm" class="registForm" enctype="multipart/form-data">
+        <input type="hidden" id="fileNo" name="fileNo" value="">
         <div class="title">
             <p>강의 제목</p>
             <input class="inputTxt" name="title" type="text" value="${lstRegistDto.title}" ${mode == "new" ? '' : 'readonly="readonly"'} placeholder="개설할 강의 제목을 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='강의에 대한 소개를 입력해주세요.'" >
@@ -40,7 +41,7 @@
                     <select class="lectureSelect" name="courseCode" onchange="courseSelect(this.value)">
                         <option value="" disabled selected>과정을 선택해주세요.</option>
                         <c:forEach var="list" items="${list}">
-                                <option value="${list.courseCode}">${list.courseName}</option>
+                            <option value="${list.courseCode}">${list.courseName}</option>
                         </c:forEach>
                     </select>
                 </c:when>
@@ -61,11 +62,11 @@
         <br>
         <div class="onOff">
             <p>온/오프라인 선택</p>
-                <select class="lectureSelect" name="onOff" value="${lstRegistDto.status}" ${mode == "new" ? '' : 'readonly="readonly"'}>
-                    <option value="" disabled selected>온/오프옵션을 선택해주세요.</option>
-                    <option value="<c:out value="온라인"/>">온라인</option>
-                    <option value="<c:out value="오프라인"/>">오프라인</option>
-                </select>
+            <select class="lectureSelect" name="onOff" value="${lstRegistDto.status}" ${mode == "new" ? '' : 'readonly="readonly"'}>
+                <option value="" disabled selected>온/오프옵션을 선택해주세요.</option>
+                <option value="<c:out value="온라인"/>">온라인</option>
+                <option value="<c:out value="오프라인"/>">오프라인</option>
+            </select>
         </div>
         <br>
         <div class="status">
@@ -105,19 +106,29 @@
             </select>
         </div>
         <br>
-        <div class="SEDate">
-            <p>수강 기간</p>
-            <br>
-            <div>
-                <p>시작일</p>
-                <input class="inputTxt" type="date" name="startDate" value="${lstRegistDto.startDate}" ${mode == "new" ? '' : 'readonly="readonly"'}>
-            </div>
-            <br>
-            <div>
-                <p>종료일</p>
-                <input class="inputTxt" type="date" name="endDate" value="${lstRegistDto.endDate}" ${mode == "new" ? '' : 'readonly="readonly"'}>
-            </div>
-            <br>
+        <div id="registPeriod">* 수강 기간</div>
+        <div id="registStartDay">
+            시작일<br>
+            <c:choose>
+                <c:when test="${mode eq 'new'}">
+                    <input type="date" name="startDate">
+                </c:when>
+                <c:when test="${mode ne 'new'}">
+                    <input type="date" name="startDate" value="${lstRegistDto.startDate}">
+                </c:when>
+            </c:choose>
+        </div>
+        &emsp; ~ &emsp;
+        <div id="registEndDay">
+            종료일<br>
+            <c:choose>
+                <c:when test="${mode eq 'new'}">
+                    <input type="date" name="endDate">
+                </c:when>
+                <c:when test="${mode ne 'new'}">
+                    <input type="date" name="endDate" value="${lstRegistDto.endDate}">
+                </c:when>
+            </c:choose>
         </div>
         <br>
         <div class="book">
@@ -160,7 +171,33 @@
         <br>
         <div>
             <p>첨부파일</p>
-            <input type="file" class="inputTxt" name="attachedFile" ${mode == "new" ? '' : 'readonly="readonly"'}>
+            <input type="file" class="inputTxt" name="file" id="file" accept="<c:url value="/img/upload/img/*"/>"  onchange="setThumbnail(event)" multiple ${mode == "new" ? '' : 'readonly="readonly"'}>
+            <div id="imgContainer"></div>
+        </div>
+        <script>
+            function setThumbnail(event) {
+                for (var image of event.target.files) {
+                    var reader = new FileReader();
+
+                    reader.onload = function(event) {
+                        var img = document.createElement("img");
+                        img.setAttribute("src", event.target.result);
+                        document.querySelector("div#imgContainer").appendChild(img);
+                    };
+
+                    console.log(image);
+                    reader.readAsDataURL(image);
+                }
+            }
+        </script>
+        <div>
+            <p>파일 목록</p>
+            <div style="width: 300px;">
+                <c:forEach var="file" items="${file}">
+                    <a href="#" onclick="fn_fileDown('${file.fileNo}'); return false;">${file.originFileName}</a>(${file.fileSize}kb)<br>
+                    <img src="<c:url value="/upload/img${file.storedFileName}"/>">
+                </c:forEach>
+            </div>
         </div>
         <br>
         <div>
@@ -174,7 +211,7 @@
             </c:choose>
             <%--글쓰기 모드일때(삭제버튼 비활성화) / 읽기 모드일때(삭제버튼 활성화)--%>
             <c:if test="${mode ne 'new'}">
-                    <input type="button" class="deleteBtn" id="registRemoveBt" value="삭제하기">
+                <input type="button" class="deleteBtn" id="registRemoveBt" value="삭제하기">
             </c:if>
             <input type="button" class="backBtn" id="registListBt" value="돌아가기">
         </div>
@@ -189,6 +226,7 @@
             // form.attr("action", "<c:url value='/onlyAdmin/lstRegist/addRegist'/>");
             form.attr("action", "<c:url value='/lstRegist/addRegist'/>");
             form.attr("method", "post");
+            form.attr("enctype", "multipart/form-data");
             form.submit();
         });
 

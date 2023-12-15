@@ -37,7 +37,6 @@
     <!-- 컴포넌트 스캔을 통한 컨트롤러 클래스 스캔 -->
     <context:component-scan base-package="com.jscd.app"/>
 
-
     <!-- 어노테이션 기반의 컨트롤러 활성화 -->
     <mvc:annotation-driven />
     <tx:annotation-driven/>
@@ -68,5 +67,6 @@
         <property name="maxInMemorySize" value="100000000" />
         <property name="defaultEncoding" value="utf-8" />
     </bean>
+
 
 </beans>
