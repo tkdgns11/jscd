@@ -41,4 +41,7 @@
         <beans:property name="defaultEncoding" value="utf-8" />
     </beans:bean>
 
+    <!-- 소희 : RestTemplate 빈 추가 -->
+    <beans:bean id="restTemplate" class="org.springframework.web.client.RestTemplate" />
+
 </beans:beans>
