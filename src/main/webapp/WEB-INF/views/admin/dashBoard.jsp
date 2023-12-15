@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@include file="../admin/adminSidebar.jsp"%>
 <html lang="en">
 <head>
 <%--  <meta charset="UTF-8">--%>
@@ -427,10 +428,77 @@
 </head>
 
 <body>
-<header>
-  <jsp:include page="adminHeader.jsp"/>
-</header>
-
+<div id="headerBox" style="height: 50px; position: fixed; top: 0; left: 0; width: 100%;  background-color: #182566;  color: #f1f1f1;
+z-index: 1000; float: right;/">
+  <div id="headerTop">
+    <h1 id="admin_title">정석코딩 관리자 시스템</h1>
+    <ul>
+      <li><a class = "admin_group" href="<c:url value='/admin/logout'/>">로그아웃</a></li>
+      <li><a>&nbsp;&nbsp;|&nbsp;&nbsp;</a></li>
+      <li><a class = "admin_group" href="<c:url value='/admin/read'/>">개인정보수정</a></li>
+    </ul>
+  </div>
+</div>
+<div class="sidenav">
+  <div class="box">
+    <div class="box-header" onclick="toggleBoxContent(this)">
+      <a href="#contact"><i class="fa-solid fa-user-graduate"></i>사이트 통계</a>
+    </div>
+  </div>
+  <div class="box">
+    <div class="box-header" onclick="toggleBoxContent(this)">
+      <a href="#about"><i class="fa-solid fa-user"></i> My page</a>
+      <span class="arrow up"></span>
+    </div>
+    <div class="box-content">
+      <a href="#"></a>
+    </div>
+  </div>
+  <div class="box">
+    <div class="box-header" onclick="toggleBoxContent(this)">
+      <a href="#about"><i class="fa-solid fa-circle-user"></i> 학사관리</a>
+      <span class="arrow up"></span>
+    </div>
+    <div class="box-content">
+      <a href="#">학생관리</a>
+      <a href="#">성적관리</a>
+      <a href="#">출결관리</a>
+      <a href="#">강사관리</a>
+      <a href="#">회원관리</a>
+    </div>
+  </div>
+  <div class="box">
+    <div class="box-header" onclick="toggleBoxContent(this)">
+      <a href="#services"><i class="fa-solid fa-synagogue"></i> 교육등록</a>
+      <span class="arrow up"></span>
+    </div>
+    <div class="box-content">
+      <a href="#">부트캠프</a>
+      <a href="#">세미나</a>
+    </div>
+  </div>
+  <div class="box">
+    <div class="box-header" onclick="toggleBoxContent(this)">
+      <a href="#clients"><i class="fa-solid fa-users"></i> 커뮤니티</a>
+      <span class="arrow up"></span>
+    </div>
+    <div class="box-content">
+      <a href="#">전체공지</a>
+      <a href="#">학생공지</a>
+      <a href="#">FAQ</a>
+    </div>
+  </div>
+  <div class="box">
+    <div class="box-header" onclick="toggleBoxContent(this)">
+      <a href="#contact"><i class="fa-solid fa-city"></i> 시설물</a>
+      <span class="arrow up"></span>
+    </div>
+    <div class="box-content">
+      <a href="#">강의실</a>
+      <a href="#">사물함</a>
+    </div>
+  </div>
+</div>
 <div id="whole">
   <div id="warp3">
     <div id="totalVisit" class="list3rd">
