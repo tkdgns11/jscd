@@ -11,7 +11,7 @@ public interface InsturctorInfoDao {
 
     List<InstructorMemberInfoDto> selectAll(int offset, int pageSize) throws Exception;
 
-    InstructorMemberInfoDto select(String iscrNo) throws Exception;
+    InstructorMemberInfoDto select(Integer iscrNo) throws Exception;
 
     int update(InstructorInfoDto instructorInfoDto) throws Exception;
 

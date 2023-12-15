@@ -9,8 +9,8 @@
     <!-- 회원 정보 관리에서 등급이 강사로 변경 -> 강사 정보 insert -->
     <insert id="insert" parameterType="InstructorInfoDto">
         insert into instructorInfo
-            (mebrNo,regDate,modifyDate)
-        value  (#{mebrNo},now(),now())
+            (mebrNo, regDate, modifyDate)
+            value (#{mebrNo},now(),now())
     </insert>
 
     <!--    강사 인원수-->
@@ -19,6 +19,7 @@
         from instructorInfo
     </select>
 
+<!--    강사 + 회원 + 코드테이블 조인-->
     <sql id="selectInstructor">
         select i.iscrNo,
                i.mebrNo,
@@ -39,7 +40,7 @@
                       on i.status = a.ctNum
     </sql>
 
-    <!-- 강사 전체 정보 확인(강사 + 회원 조인)-->
+    <!-- 강사 전체 정보 확인-->
     <select id="selectAll" parameterType="map" resultType="InstructorMemberInfoDto">
         <include refid="selectInstructor"/>
         order by i.iscrNo asc
@@ -52,7 +53,7 @@
         where i.iscrNo = #{iscrNo};
     </select>
 
-    <!-- update-->
+    <!-- 상세보기 화면 update-->
     <update id="update" parameterType="InstructorInfoDto">
         update instructorInfo
         set intro      = #{intro}
@@ -63,7 +64,7 @@
         where iscrNo = #{iscrNo}
     </update>
 
-    <!-- 메인화면 수정-->
+    <!-- 메인화면 상태만 update (일괄 수정 가능)-->
     <update id="updateStatus" parameterType="map">
         update instructorInfo
         set status = ${status}
@@ -75,7 +76,6 @@
     </update>
 
 
-    <!--    탈퇴하거나(회원), 등급 조정 시(관리자) ->매개변수로 회원고유번호가 적합 delete-->
     <delete id="delete" parameterType="Integer">
         delete
         from instructorInfo
@@ -111,7 +111,7 @@
         limit #{offset},#{pageSize};
     </select>
 
-    <!--검색 결과 개수(몇개인지 알아야 페이징처리 할 수 있다) 회원컬럼을 조건으로 검색하기 때문에, 조인 필요-->
+    <!--회원컬럼을 조건으로 검색하기 때문에(이름,아이디), 조인 필요-->
     <select id="searchResultCnt" parameterType="SearchCondition" resultType="int">
         SELECT count(*)
         from member m

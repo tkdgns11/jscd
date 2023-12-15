@@ -58,13 +58,14 @@ public class InstructorInfoController {
         return "/admin/instructorManage/instructorInfoList";
     }
 
-    //강사 상세 정보 읽기
+    //강사 상세 정보 읽기+수정
     @GetMapping("/read")
-    public String infoRead(String iscrNo, Integer page, Model model) {
+    public String infoRead(Integer iscrNo, Integer page, Model model) {
 
         try {
             //쿼리스트링으로 넘어온 iscrNo로 강사 데이터를 select
             InstructorMemberInfoDto infoDto = infoService.read(iscrNo);
+
             //객체를 jsp에 넘겨주기
             model.addAttribute("infoDto", infoDto);
             model.addAttribute("page", page);
@@ -76,35 +77,41 @@ public class InstructorInfoController {
         return "/admin/instructorManage/instructorInfo";
     }
 
-    @PostMapping("/modify")
+
+    @PostMapping("/modify") //상세 페이지 수정
     public String infoModify(Integer page, InstructorInfoDto instructorInfoDto, Model model) {
         try {
-            System.out.println("이리 오나요오");
-            System.out.println("instructorInfoDto = " + instructorInfoDto);
+            //입력받아 넘어온 dto update
             infoService.modify(instructorInfoDto);
+            //에러 없다면, 성공msg 모델에 전달
             model.addAttribute("msg", "MOD_OK");
+
         } catch (Exception e) {
             e.printStackTrace();
-            //작성 중인 내용 그대로 띄우도록 jsp에 전달
+            //에러 발생 시, 에러 msg 전달 _ 읽기 화면으로 이동
             model.addAttribute("msg", "MOD_ERR");
-            return "redirect:/onlyAdmin/instructor/modify?page=" + page + "&iscrNo=" + instructorInfoDto.getIscrNo();
+            return "redirect:/onlyAdmin/instructor/read?page=" + page + "&iscrNo=" + instructorInfoDto.getIscrNo();
         }
 
         return "redirect:/onlyAdmin/instructor/read?page=" + page + "&iscrNo=" + instructorInfoDto.getIscrNo();
     }
 
+    //메인화면 수정
     @PostMapping("/modifyStatus")
     public String statusModify(Integer[] mebrNoArr, Integer page, Integer status, Model model) {
         try {
+            //jsp에서 전달받은 회원번호 배열 List에 담아주기
             List mebrNo = new ArrayList(mebrNoArr.length);
             for (int i = 0; i < mebrNoArr.length; i++) {
                 mebrNo.add(mebrNoArr[i]);
             }
+            //수정 메서드에 전달
             infoService.modifyStatus(status, mebrNo);
 
             model.addAttribute("msg", "MOD_OK");
         } catch (Exception e) {
             e.printStackTrace();
+            //에러 발생 시, 현재 화면(list)에 에러 msg 전달
             model.addAttribute("msg", "MOD_ERR");
             return "redirect:/onlyAdmin/instructor/list?page=" + page;
         }

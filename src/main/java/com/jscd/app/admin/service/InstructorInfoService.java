@@ -13,7 +13,7 @@ public interface InstructorInfoService {
 
     List<InstructorMemberInfoDto> getList(int offset, int pageSize) throws Exception;
 
-    InstructorMemberInfoDto read(String iscrNo) throws Exception;
+    InstructorMemberInfoDto read(Integer iscrNo) throws Exception;
 
     int modify(InstructorInfoDto instructorInfoDto) throws Exception;
 

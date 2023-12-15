@@ -4,7 +4,7 @@
 
 <mapper namespace="com.jscd.app.mapper.stdManageMapper">
 
-    <!--기수를 부여받으면, 학생 등급이 됨 -> insert 실행-->
+    <!--부트캠프 결제 or 학생 등급으로 수정 시, 학생테이블로 insert-->
     <insert id="insert" parameterType="StdManageDto">
         insert into stdManage
             (mebrNo, gisu, status)
@@ -17,6 +17,7 @@
         from stdManage
     </select>
 
+<!--    학생+회원+코드테이블 조인-->
     <sql id="selectStd">
         select m.mebrNo,
                m.name,
@@ -52,20 +53,20 @@
         <include refid="searchCondition"/>
     </select>
 
-    <!--   학생 + 회원테이블 조인 => 학생 정보 전체 셀렉-->
+    <!--  학생 정보 전체 셀렉-->
     <select id="selectAll" parameterType="map" resultType="StdMemberManageDto">
         <include refid="selectStd"/>
         order by s.gisu
         limit #{offset}, #{pageSize};
     </select>
 
-    <!--    상세 셀렉 _ 성별 킵-->
+    <!--   상세정보 -->
     <select id="select" parameterType="Integer" resultType="StdMemberManageDto">
         <include refid="selectStd"/>
         where s.mebrNo = #{mebrNo};
     </select>
 
-    <!--기수, 수강상태, 비고 update-->
+    <!--상세보기 update-->
     <update id="update" parameterType="StdManageDto">
         update stdManage
         set gisu       = #{gisu}
@@ -75,6 +76,7 @@
         where mebrNo = #{mebrNo};
     </update>
 
+<!--    메인화면 상태 update(일괄 수정)-->
     <update id="updateStatus" parameterType="map">
         update stdManage
         set status = ${status}

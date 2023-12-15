@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Optional;
 
 	/*
 	작성일:20231126
@@ -14,16 +15,18 @@ import java.io.IOException;
 	작성 기능:관리자 메뉴를 관리자만 사용할 수 있도록 id를 확인
 	 */
 
-@WebFilter(urlPatterns = {"/onlyAdmin/*", "/admin/home","/admin/read"})
+@WebFilter(urlPatterns = {"/onlyAdmin/*", "/admin/home", "/admin/read"})
 public class AdminLoginCheckFilter implements Filter {
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {}
+    public void init(FilterConfig filterConfig) throws ServletException {
+    }
 
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, NullPointerException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
-        HttpSession session = httpRequest.getSession(false);
+        HttpSession session = httpRequest.getSession();
+        //false -> 두번째 로그인때, 세션이 생기질 않아서 null 에러 발생
 
         //로그인 여부
         boolean login = session.getAttribute("adminId") != null;
@@ -38,8 +41,11 @@ public class AdminLoginCheckFilter implements Filter {
             //로그인 창으로 redirect(넘어온 uri 덧붙이기)
             httpResponse.sendRedirect("/admin/login?manageURL=" + manageURL);
         }
+
+
     }
 
     @Override
-    public void destroy() {}
+    public void destroy() {
+    }
 }

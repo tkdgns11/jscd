@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class InstructorInfoDto { //강사정보
 
-        private String iscrNo; //pk_강사 고유 코드
+        private Integer iscrNo; //pk_강사 고유 코드
         private Integer mebrNo; //회원 고유 번호
         private String intro;
         private Integer status;
@@ -19,7 +19,7 @@ public class InstructorInfoDto { //강사정보
 
         public InstructorInfoDto(){}
 
-        public InstructorInfoDto(String iscrNo, Integer mebrNo, String intro, Integer status, Float hourPmt, Date regDate, String firstIdNo, Date modifyDate, String lastIdNo, String etc) {
+        public InstructorInfoDto(Integer iscrNo, Integer mebrNo, String intro, Integer status, Float hourPmt, Date regDate, String firstIdNo, Date modifyDate, String lastIdNo, String etc) {
             this.iscrNo = iscrNo;
             this.mebrNo = mebrNo;
             this.intro = intro;
@@ -32,7 +32,7 @@ public class InstructorInfoDto { //강사정보
             this.etc = etc;
         }
 
-    public InstructorInfoDto(String iscrNo, Integer mebrNo, String intro, Integer status, Float hourPmt) {
+    public InstructorInfoDto(Integer iscrNo, Integer mebrNo, String intro, Integer status, Float hourPmt) {
         this.iscrNo = iscrNo;
         this.mebrNo = mebrNo;
         this.intro = intro;
@@ -42,11 +42,11 @@ public class InstructorInfoDto { //강사정보
 
 
 
-        public String getIscrNo() {
+        public Integer getIscrNo() {
             return iscrNo;
         }
 
-        public void setIscrNo(String iscrNo) {
+        public void setIscrNo(Integer iscrNo) {
             this.iscrNo = iscrNo;
         }
 
