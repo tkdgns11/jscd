@@ -72,14 +72,14 @@
                 <div>
                     <input type="hidden" id="allqnaCmtNo${loop.index}" name="allqnaCmtNo" value="${commentList.allqnaCmtNo}">
                         작성자 : <br/> <input type="text" id="cmtWriter${loop.index}" name="cmtWriter" value="${commentList.cmtWriter}" readonly><br/>
-                        내용 : <br/><textarea id="cmtContent${loop.index}" name="cmtContent" rows="4" readonly>${commentList.cmtContent}</textarea><br/>
+                        내용 : <br/><textarea id="cmtContent${loop.index}" name="cmtContent" rows="4" readonly style="heigh=70px">${commentList.cmtContent}</textarea><br/>
                         <input type="button" id="cmtEditBtn${loop.index}" onclick="cmtEdit(${loop.index})" value="수정하기">
                         <input type="button" onclick="cmtDelete(${loop.index})" value="삭제하기"><br/>
                         <input type="button" id="replyBoxWrite${loop.index}" onclick="replyBlock(${loop.index})" value="대댓글 등록">
 
                     <div id="replyBox" style="display: none; background-color: #666666">
                         댓글 작성자 : <input type="text" id="cmtReplyWriter${loop.index}" name="cmtWriter" ><br/>
-                        댓글 내용 : <br/><textarea id="cmtReplyContent${loop.index}" name="cmtContent" rows="4" ></textarea><br/>
+                        댓글 내용 : <br/><textarea id="cmtReplyContent${loop.index}" name="cmtContent" rows="4" style="height: 50px"></textarea><br/>
                         <input type="button" onclick="replyCmtWrite(${loop.index})" value="등록하기">
                         <div id="replyListBox">
                         </div>

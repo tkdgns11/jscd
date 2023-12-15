@@ -85,7 +85,7 @@ function cmtEdit(index){
     document.getElementById('cmtWriter' + index).readOnly = false;
     document.getElementById('cmtContent' + index).readOnly = false;
 
-    var editButton = document.getElementById('cmtEditBtn' + index);
+    const editButton = document.getElementById('cmtEditBtn' + index);
     editButton.value = '등록하기';
     editButton.onclick = function() { cmtModify(index); };
 
@@ -116,7 +116,7 @@ function cmtModify(index){
             document.getElementById('cmtWriter' + index).readOnly = true;
             document.getElementById('cmtContent' + index).readOnly = true;
 
-            var editButton = document.getElementById('cmtEditBtn' + index);
+            const editButton = document.getElementById('cmtEditBtn' + index);
             editButton.value = '수정하기';
             editButton.onclick = function() { cmtEdit(index); };
         }
@@ -308,7 +308,7 @@ function replyEdit(index){
     document.getElementById('replyContent'+index).readOnly = false;
 
     //수정하기 버튼 등록하기로 바꿔주기?
-    var replyEditBtn = document.getElementById('replyEditBtn' + index);
+    const replyEditBtn = document.getElementById('replyEditBtn' + index);
     replyEditBtn.value = '등록하기';
     replyEditBtn.onclick = function() { replyModify(index); };
 
