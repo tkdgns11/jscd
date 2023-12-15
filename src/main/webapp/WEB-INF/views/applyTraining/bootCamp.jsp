@@ -10,9 +10,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
 <head>
+    <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/jscdReset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/bootCamp.css"/>">
+<%--    <script type="text/javascript" src="<c:url value="/js/bootCamp.js"/>"></script>--%>
     <title>bootCampDetail</title>
 </head>
 <script>
@@ -38,20 +40,29 @@
 </header>
 <div id="btDetailInfo">
     <div>
-        <%--231214. 정수 오프라인인지 온라인인지 값 가져오고 + 제목 붙여쓰면 될듯 확인 되면 주석 지워주세요 --%>
         <%--231214. 정수 제목이 좀 밋밋한데...고민좀 확인 되면 주석 지워주세요 --%>
-        <h1>오프라인&nbsp${lstRegistDto.title}</h1>
+        <h1>${lstRegistDto.onOff}&nbsp${lstRegistDto.title}</h1>
     </div>
     <hr/>
     <div>
-        <input type="button" class="registeBtn"  value="수강 신청">
-        <input type="button" class="modifyBtn"  value="공유 하기">
-        <input type="button" class="backBtn"  value="둘러 보기">
+<%--        <input type="button" class="registeBtn"  value="수강 신청">--%>
+<%--        <input type="button" class="modifyBtn"  value="공유 하기">--%>
+<%--        <input type="button" class="backBtn"  value="둘러 보기">--%>
 <%--        -231214. 정수 이거 버튼 처리해주세요 ajax를 써서 넘기든지.. js로 값들을 넘기든지... 처리되면 주석 삭제--%>
-            <a href="<c:url value='/btTraining/btApplication?registCode=${lstRegistDto.registCode}&title=${lstRegistDto.title}&lastPrice=${lstRegistDto.lastPrice}'/>"><button type="button">수강 신청 하기</button></a>
-            <a href="<c:url value='/btTraining/list'/>"><button type="button">목록</button></a>
-
+            <input type="button" class="registeBtn"  id="registeBtn" value="수강 신청">
+            <input type="button" class="modifyBtn"  value="공유 하기">
+            <input type="button" class="backBtn" id="backBtn" value="둘러 보기">
     </div>
+    <script>
+        $(document).ready(function() {
+            $("#registeBtn").on("click", function() {
+                location.href="<c:url value='/btTraining/btApplication?registCode=${lstRegistDto.registCode}&title=${lstRegistDto.title}&lastPrice=${lstRegistDto.lastPrice}'/>";
+            });
+            $("#backBtn").on("click", function() {
+                location.href="<c:url value='/btTraining/list'/>";
+            });
+        })
+    </script>
     <hr/>
     <div>
         <div>
@@ -63,21 +74,42 @@
     <hr/>
     <div>
         <div>
-            <%--  231213 정수           이미지 없음 처리후 삭제--%>
-            <img src="<c:url value="/img/lectureInfo.png"/>">
+            <img src="<c:url value="/img/curri.png"/>">
             <h1>커리큘럼</h1>
         </div>
         <%--  231213 정수           표 형식으로 데이터 받아올까? 고민 좀--%>
-        <input type="text" class="btinputTxt" readonly>
+
+<%--        일반 input형식 코드--%>
+<%--        <c:forEach var="list" items="${list}">--%>
+<%--            <input type="text" class="btinputTxt className" value="${list.className}" readonly>--%>
+<%--            &nbsp&nbsp<input type="text" class="btinputTxt category" value="${list.category}" readonly>--%>
+<%--            &nbsp&nbsp<input type="text" class="btinputTxt content" value="${list.content}" readonly>--%>
+<%--        </c:forEach>--%>
+<%--        <table border="5px" style="width:100%">--%>
+<%--        표형식 코드--%>
+        <table id="btTable">
+            <tr>
+                <th>분류</th>
+                <th>주차</th>
+                <th>학습내용</th>
+            </tr>
+            <c:forEach var="list" items="${list}">
+                <tr>
+                    <td>${list.className}</td>
+                    <td>${list.category}</td>
+                    <td>${list.content}</td>
+                </tr>
+            </c:forEach>
+        </table>
     </div>
     <hr/>
     <div>
         <div>
-            <%--  231213 정수           이미지 없음 처리후 삭제--%>
-            <img src="<c:url value="/img/lectureInfo.png"/>">
+            <img src="<c:url value="/img/calendar.png"/>">
             <h1>수강 기간</h1>
         </div>
-        <input type="text" class="btinputTxt" readonly>
+        <input type="text" class="Date" value="${lstRegistDto.startDate}" readonly>&nbsp&nbsp~&nbsp&nbsp
+        <input type="text" class="Date" value="${lstRegistDto.endDate}" readonly>
     </div>
     <hr/>
     <div>
@@ -118,8 +150,7 @@
             <h1>비용</h1>
         </div>
         <input type="text" class="btinputTxt" value="${lstRegistDto.lastPrice}" readonly>
-        <%--  231213 정수           이거는 할인 가격 컬럼으로 해서 데이터 가져올 수 있으면 처리 좀--%>
-        <h2>75% 할인가</h2>
+        <h2>${lstRegistDto.discount} 할인가</h2>
         <h3>*카드 결제, 계좌이체 가능</h3>
     </div>
     <hr/>

@@ -15,4 +15,6 @@ public interface ClassEnrollService {
 
     int remove(Integer classCode) throws Exception;
 
+//    부트캠프 신청 상세페이지에서 부트캠프 관련 category와 content만 불러오기.
+    List<ClassEnrollDto> getBootList(Integer courseCode) throws Exception;
 }
