@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.Objects;
 
 public class InstructorMemberInfoDto { //강사 + 회원 조인 Dto
-    private String iscrNo; //pk_강사 고유 코드
+    private Integer iscrNo; //pk_강사 고유 코드
     private Integer mebrNo; //회원 고유 번호
     private String intro;
     private String status;
@@ -23,7 +23,7 @@ public class InstructorMemberInfoDto { //강사 + 회원 조인 Dto
 
     public InstructorMemberInfoDto(){}
 
-    public InstructorMemberInfoDto(String iscrNo, Integer mebrNo, String intro, String status, Float hourPmt, Date regDate,
+    public InstructorMemberInfoDto(Integer iscrNo, Integer mebrNo, String intro, String status, Float hourPmt, Date regDate,
                                    String firstIdNo, Date modifyDate, String lastIdNo, String etc, String id, String name, Date birth,
                                    String phone, String acct) {
         this.iscrNo = iscrNo;
@@ -43,11 +43,11 @@ public class InstructorMemberInfoDto { //강사 + 회원 조인 Dto
         this.acct = acct;
     }
 
-    public String getIscrNo() {
+    public Integer getIscrNo() {
         return iscrNo;
     }
 
-    public void setIscrNo(String iscrNo) {
+    public void setIscrNo(Integer iscrNo) {
         this.iscrNo = iscrNo;
     }
 

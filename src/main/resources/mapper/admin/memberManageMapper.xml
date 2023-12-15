@@ -11,6 +11,7 @@
         from Member
     </select>
 
+<!--    회원 + 코드테이블 조인-->
     <sql id="selectMember">
         select m.mebrNo,
                m.id,
@@ -43,7 +44,7 @@
         limit #{offset},#{pageSize};
     </select>
 
-    <!--검색 결과 개수(몇개인지 알아야 페이징처리 할 수 있다)-->
+    <!--검색 결과 개수-->
     <select id="searchResultCnt" parameterType="SearchCondition" resultType="int">
         select count(*)
         from member m
@@ -63,19 +64,18 @@
         limit #{offset}, #{pageSize}
     </select>
 
-    <!--회원 이름 클릭 시, 상세 정보-->
+    <!--회원 상세정보-->
     <select id="select" parameterType="Integer" resultType="MemberManageDto">
         <include refid="selectMember"/>
         where mebrNo = #{mebrNo}
     </select>
 
-<!--    update을 위해 일단 추가..-->
     <select id="selectMember" parameterType="Integer" resultType="MemberDto">
         select * from member
         where mebrNo = #{mebrNo}
     </select>
 
-    <!--    update _ 등급 변경(메인화면에서 사용할 예정)-->
+    <!-- 메인화면 등급/상태 update (일괄 수정)-->
     <update id="update" parameterType="map">
         update member
         set grade= #{grade}
@@ -88,7 +88,7 @@
     </update>
 
 
-    <!-- update _ 상세정보로 들어갔을 때-->
+    <!-- 상세정보 updqte-->
     <update id="updateDetail" parameterType="MemberDto">
         update member
         set status     = #{status}

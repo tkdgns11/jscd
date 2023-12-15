@@ -3,10 +3,9 @@ package com.jscd.app.admin.dto;
 import java.util.Date;
 import java.util.Objects;
 
-public class AdminDto { //관리자
+public class AdminDto { //관리자 테이블
 
-    private Integer adminNo; //pk_관리자 고유 번호
-    private String id;
+    private String id; //pk
     private String name;
     private String nickname;
     private Date birth;
@@ -28,8 +27,7 @@ public class AdminDto { //관리자
         this.pwd = pwd;
     }
 
-    public AdminDto(Integer adminNo, String id, String name, String nickname, Date birth, String pwd, String phone, Integer status, Integer grade, Date regDate, String firstIdNo, Date modifyDate, String lastIdNo, String etc) {
-        this.adminNo = adminNo;
+    public AdminDto(String id, String name, String nickname, Date birth, String pwd, String phone, Integer status, Integer grade, Date regDate, String firstIdNo, Date modifyDate, String lastIdNo, String etc) {
         this.id = id;
         this.name = name;
         this.nickname = nickname;
@@ -46,14 +44,6 @@ public class AdminDto { //관리자
     }
 
     public AdminDto() {
-    }
-
-    public Integer getAdminNo() {
-        return adminNo;
-    }
-
-    public void setAdminNo(Integer adminNo) {
-        this.adminNo = adminNo;
     }
 
     public String getId() {
@@ -166,18 +156,17 @@ public class AdminDto { //관리자
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AdminDto adminDto = (AdminDto) o;
-        return Objects.equals(adminNo, adminDto.adminNo) && Objects.equals(id, adminDto.id) && Objects.equals(name, adminDto.name) && Objects.equals(nickname, adminDto.nickname) && Objects.equals(birth, adminDto.birth) && Objects.equals(pwd, adminDto.pwd) && Objects.equals(phone, adminDto.phone) && Objects.equals(status, adminDto.status) && Objects.equals(grade, adminDto.grade) && Objects.equals(regDate, adminDto.regDate) && Objects.equals(firstIdNo, adminDto.firstIdNo) && Objects.equals(modifyDate, adminDto.modifyDate) && Objects.equals(lastIdNo, adminDto.lastIdNo) && Objects.equals(etc, adminDto.etc);
+        return Objects.equals(id, adminDto.id) && Objects.equals(name, adminDto.name) && Objects.equals(nickname, adminDto.nickname) && Objects.equals(birth, adminDto.birth) && Objects.equals(pwd, adminDto.pwd) && Objects.equals(phone, adminDto.phone) && Objects.equals(status, adminDto.status) && Objects.equals(grade, adminDto.grade) && Objects.equals(regDate, adminDto.regDate) && Objects.equals(firstIdNo, adminDto.firstIdNo) && Objects.equals(modifyDate, adminDto.modifyDate) && Objects.equals(lastIdNo, adminDto.lastIdNo) && Objects.equals(etc, adminDto.etc);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(adminNo, id, name, nickname, birth, pwd, phone, status, grade, regDate, firstIdNo, modifyDate, lastIdNo, etc);
+        return Objects.hash(id, name, nickname, birth, pwd, phone, status, grade, regDate, firstIdNo, modifyDate, lastIdNo, etc);
     }
 
     @Override
     public String toString() {
         return "AdminDto{" +
-                "adminNo=" + adminNo +
                 ", id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", nickname='" + nickname + '\'' +

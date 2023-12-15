@@ -38,19 +38,20 @@ public class InstructorInfoServiceImpl implements InstructorInfoService { //강�
     }
 
     @Override
-    public InstructorMemberInfoDto read(String iscrNo) throws Exception {
+    public InstructorMemberInfoDto read(Integer iscrNo) throws Exception {
         return infoDao.select(iscrNo);
     }
 
-    @Override //실행 완
+    @Override  //상세보기 페이지 update
     @Transactional(rollbackFor = Exception.class)
     public int modify(InstructorInfoDto instructorInfoDto) throws Exception {
         int rowCnt = infoDao.update(instructorInfoDto);
 
         //만약, 상태를 퇴직으로 변경한다면
         if (instructorInfoDto.getStatus() == 4) {
+            //회원번호에 해당하는 회원객체를 불러오고,
             MemberDto memberDto = memberManageDao.selectMember(instructorInfoDto.getMebrNo());
-            //등급을 일반으로 변경한다
+            //회원등급을 일반으로 변경한다
             memberDto.setGrade(1);
             rowCnt = memberManageDao.updateDetail(memberDto);
         }
@@ -58,13 +59,15 @@ public class InstructorInfoServiceImpl implements InstructorInfoService { //강�
         return rowCnt;
     }
 
-    @Override//실행 완
+    @Override//메인페이지 update
     @Transactional(rollbackFor = Exception.class)
     public int modifyStatus(Integer status, List<Integer> mebrNo) throws Exception {
         int rowCnt = infoDao.updateStatus(status, mebrNo);
-        if (status == 4) {
+        if (status == 4) { //상태를 퇴직으로 변경한다면,
             for (int i = 0; i < mebrNo.size(); i++) {
+                //회원번호에 해당하는 회원객체를 불러오고,
                 MemberDto memberDto = memberManageDao.selectMember(mebrNo.get(i));
+                //회원등급을 일반으로 변경한다
                 memberDto.setGrade(1);
                 rowCnt = memberManageDao.updateDetail(memberDto);
             }

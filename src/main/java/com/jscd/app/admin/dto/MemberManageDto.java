@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class MemberManageDto {
 	//member + allCode와 조인하여 성별,상태,등급을 String으로 받아서 화면에 뿌릴 때 사용할 Dto
-	private int mebrNo;
+	private Integer mebrNo;
 	private String id;
 	private String name;
 	private String nickname;
@@ -25,7 +25,7 @@ public class MemberManageDto {
 	public MemberManageDto(){}
 
 
-	public MemberManageDto(int mebrNo, String id, String name, String nickname, String birth, String pwd, String gender, String phone, String acct, String status, String grade, Date regDate, String firstIdNo, Date modifyDate, String lastIdNo, String etc, String rememberId) {
+	public MemberManageDto(Integer mebrNo, String id, String name, String nickname, String birth, String pwd, String gender, String phone, String acct, String status, String grade, Date regDate, String firstIdNo, Date modifyDate, String lastIdNo, String etc, String rememberId) {
 		this.mebrNo = mebrNo;
 		this.id = id;
 		this.name = name;
@@ -44,10 +44,10 @@ public class MemberManageDto {
 		this.etc = etc;
 	}
 
-	public int getMebrNo() {
+	public Integer getMebrNo() {
 		return mebrNo;
 	}
-	public void setMebrNo(int mebrNo) {
+	public void setMebrNo(Integer mebrNo) {
 		this.mebrNo = mebrNo;
 	}
 	public String getId() {

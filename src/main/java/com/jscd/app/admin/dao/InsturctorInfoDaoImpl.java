@@ -39,7 +39,7 @@ public class InsturctorInfoDaoImpl implements InsturctorInfoDao {
     }
 
     @Override
-    public InstructorMemberInfoDto select(String iscrNo) throws Exception {
+    public InstructorMemberInfoDto select(Integer iscrNo) throws Exception {
         return session.selectOne(namespace + "select", iscrNo);
     }
 

@@ -4,8 +4,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 public class SearchCondition {
 
-    //페이지 이동마다 쿼리스트링으로 받을 데이터
-    private Integer page = 1;
+    //페이지 이동마다 쿼리스트링으로 주고 받을 데이터 객체로 묶기
+    private Integer page = 1; //값이 넘어오지 못할 경우를 위해, 기본값 설정
     private Integer pageSize = 10;
     private String option = "";
     private String keyword = "";
