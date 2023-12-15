@@ -166,23 +166,23 @@
         <div>
             <c:choose>
                 <c:when test="${mode eq 'new'}">
-                    <input type="button" class="registeBtn" id="registeBtn" value="등록하기">
+                    <input type="button" class="registeBtn" id="registRegistBt" value="등록하기">
                 </c:when>
                 <c:when test="${mode ne 'new'}">
-                    <input type="button" class="registeBtn" id="registeBtn" value="수정하기">
+                    <input type="button" class="registeBtn" id="registModifyBt" value="수정하기">
                 </c:when>
             </c:choose>
             <%--글쓰기 모드일때(삭제버튼 비활성화) / 읽기 모드일때(삭제버튼 활성화)--%>
             <c:if test="${mode ne 'new'}">
-                    <input type="button" class="deleteBtn" id="deleteBtn" value="삭제하기">
+                    <input type="button" class="deleteBtn" id="registRemoveBt" value="삭제하기">
             </c:if>
-            <input type="button" class="backBtn" id="backBtn" value="돌아가기">
+            <input type="button" class="backBtn" id="registListBt" value="돌아가기">
         </div>
     </form>
 </div>
 <script>
     $(document).ready(function() {
-        $("#registeBtn").on("click", function() {
+        $("#registRegistBt").on("click", function() {
             if(!confirm("해당 게시물을 등록하시겠습니까?")) return;
 
             let form = $("#registForm");
@@ -192,7 +192,7 @@
             form.submit();
         });
 
-        $("#registeBtn").on("click", function() {
+        $("#registModifyBt").on("click", function() {
             let form = $("#registForm");
             // TODO readonly 수정하기
             let isReadonly = $("input[name=title]").attr('readonly');
@@ -204,7 +204,7 @@
             form.submit();
         });
 
-        $("#deleteBtn").on("click", function() {
+        $("#registRemoveBt").on("click", function() {
             if(!confirm("정말로 삭제하시겠습니까?")) return;
 
             let form = $("#registForm");
@@ -214,7 +214,7 @@
             form.submit();
         });
 
-        $("#backBtn").on("click", function() {
+        $("#registListBt").on("click", function() {
             // location.href="<c:url value='/onlyAdmin/lstRegist/list?page=${param.page}&pageSize=${param.pageSize}'/>";
             location.href="<c:url value='/lstRegist/list${searchCondition.queryString}'/>";
         });
