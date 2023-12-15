@@ -37,4 +37,10 @@ public class ClassEnrollServiceImpl implements ClassEnrollService {
     public int remove(Integer classCode) throws Exception{
         return classEnrollDao.delete(classCode);
     }
+
+    //    부트캠프 신청 상세페이지에서 부트캠프 관련 category와 content만 불러오기.
+    @Override
+    public List<ClassEnrollDto> getBootList(Integer courseCode) throws Exception {
+        return classEnrollDao.selectBoot(courseCode);
+    }
 }

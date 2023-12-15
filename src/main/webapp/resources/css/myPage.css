@@ -1,0 +1,15 @@
+/*myPagePwdChk*/
+#myPagePwdChkBox{display: flex; flex-direction: row; height: 720px; position: relative;}
+#myPagePwdChkBox > nav{height: 100%; border-right: 1px solid rgba(0,0,0,0.2)}
+#myPagePwdChkBox > nav > ul{width: 300px;}
+#myPagePwdChkBox > nav > ul > li{width:200px; margin: 0 auto; padding:30px; border-bottom: 1px solid rgba(0,0,0,0.2)}
+#myPagePwdChkBox > nav > ul > li > a{font-size: 25px;font-weight: bold; color: #182566}
+#myPagePwdChkBox > nav > ul > li > a:hover{font-size: 25px;font-weight: bold; color: #0185FE}
+#myPagePwdChkBox > div{position: relative; width: 100%}
+#myPagePwdChkBox > div > p {position: absolute; left: 50%; top: 20%; transform: translate(-50%, -30%); font-size: 30px; color: rgba(0,0,0,0.5)}
+#myPagePwdChkBox > div > input {position: absolute; left: 50%; top: 45%; transform: translate(-50%, -45%);}
+#myPagePwdChk input { box-sizing: border-box; margin: 0; padding: 0; border: none;}
+#myPagePwdChk input:focus {outline: none;}
+#myPagePwdChk{position: absolute; left: 50%; top: 30%; transform: translate(-50%, -30%); border: 1px solid black; width: 700px; height: 50px; border-radius: 10px;}
+#myPagePwdChk > input{width: 500px; height: 50px; font-size: 25px; border-radius: 15px;}
+/*myPage*/

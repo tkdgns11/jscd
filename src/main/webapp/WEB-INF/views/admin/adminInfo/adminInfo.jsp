@@ -42,7 +42,7 @@
     <input type="text" class="infoInputBox" readonly value="${adminDto.phone}"><br>
     <br>
     <input type="button" value="수정" class="modifyBtn">
-    <input type="button" value="취소" class="deleteBtn" onclick="location.href='../../../..'">
+    <input type="button" value="취소" class="deleteBtn" onclick="location.href='/admin/home'">
 
 </div>
 

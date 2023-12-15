@@ -22,39 +22,34 @@
 
 			<!-- Full-width images with number and caption text -->
 			<div class="mySlides fade">
-				<div class="numbertext">1 / 6</div>
-				<img src="https://divisare-res.cloudinary.com/images/f_auto,q_auto,w_800/v1491425456/ltekybkstiyl7faumrsq/acne-studios-acne-studio-potsdamer-strasse.jpg" style="width:100%">
-				<div class="text">ACNE STUDIO</div>
+<%--				<img src="https://divisare-res.cloudinary.com/images/f_auto,q_auto,w_800/v1491425456/ltekybkstiyl7faumrsq/acne-studios-acne-studio-potsdamer-strasse.jpg" style="width:100%">--%>
+				<img src="<c:url value="/img/homeTeacher_W2500H500.png"/>" style="width:100%;  object-fit: cover;">
+				<div class="text">JUNGSUK_CODING</div>
 			</div>
 
 			<div class="mySlides fade">
-				<div class="numbertext">2 / 6</div>
 				<img src="https://divisare-res.cloudinary.com/images/f_auto,q_auto,w_800/v1491425435/hwxwxqxfwo4htfgqksbu/acne-studios-acne-studio-potsdamer-strasse.jpg" style="width:100%">
-				<div class="text">ACNE STUDIO</div>
+				<div class="text">JUNGSUK_CODING</div>
 			</div>
 
 			<div class="mySlides fade">
-				<div class="numbertext">3 / 6</div>
 				<img src="https://divisare-res.cloudinary.com/images/f_auto,q_auto,w_800/v1491425448/rnelglmoujifzlbzykxw/acne-studios-acne-studio-potsdamer-strasse.jpg" style="width:100%">
-				<div class="text">ACNE STUDIO</div>
+				<div class="text">JUNGSUK_CODING</div>
 			</div>
 
 			<div class="mySlides fade">
-				<div class="numbertext">4 / 6</div>
 				<img src="https://divisare-res.cloudinary.com/images/f_auto,q_auto,w_800/v1491425434/coct9kmra7uhmeu4cxto/acne-studios-acne-studio-potsdamer-strasse.jpg" style="width:100%">
-				<div class="text">ACNE STUDIO</div>
+				<div class="text">JUNGSUK_CODING</div>
 			</div>
 
 			<div class="mySlides fade">
-				<div class="numbertext">5 / 6</div>
 				<img src="https://divisare-res.cloudinary.com/images/f_auto,q_auto,w_800/v1491425440/xacfj7abitmifeyciiia/acne-studios-acne-studio-potsdamer-strasse.jpg" style="width:100%">
-				<div class="text">ACNE STUDIO</div>
+				<div class="text">JUNGSUK_CODING</div>
 			</div>
 
 			<div class="mySlides fade">
-				<div class="numbertext">6 / 6</div>
 				<img src="https://divisare-res.cloudinary.com/images/f_auto,q_auto,w_800/v1491425434/cqxjhpdmepxto0nudsok/acne-studios-acne-studio-potsdamer-strasse.jpg" style="width:100%">
-				<div class="text">ACNE STUDIO</div>
+				<div class="text">JUNGSUK_CODING</div>
 			</div>
 
 			<!-- Next and previous buttons -->
@@ -143,39 +138,33 @@
 
 				<!-- Full-width images with number and caption text -->
 				<div class="mySlides01 fade">
-					<div class="numbertext01">1 / 6</div>
-					<img src="https://divisare-res.cloudinary.com/images/f_auto,q_auto,w_800/v1491425456/ltekybkstiyl7faumrsq/acne-studios-acne-studio-potsdamer-strasse.jpg" style="width:100%">
-					<div class="text01">ACNE STUDIO</div>
+					<img src="<c:url value="/img/restRoom.jpg"/>" style="width:100%; object-fit: cover;">
+					<div class="text01">JUNGSUK_CODING</div>
 				</div>
 
 				<div class="mySlides01 fade">
-					<div class="numbertext01">2 / 6</div>
 					<img src="https://divisare-res.cloudinary.com/images/f_auto,q_auto,w_800/v1491425435/hwxwxqxfwo4htfgqksbu/acne-studios-acne-studio-potsdamer-strasse.jpg" style="width:100%">
-					<div class="text01">ACNE STUDIO</div>
+					<div class="text01">JUNGSUK_CODING</div>
 				</div>
 
 				<div class="mySlides01 fade">
-					<div class="numbertext01">3 / 6</div>
 					<img src="https://divisare-res.cloudinary.com/images/f_auto,q_auto,w_800/v1491425448/rnelglmoujifzlbzykxw/acne-studios-acne-studio-potsdamer-strasse.jpg" style="width:100%">
-					<div class="text01">ACNE STUDIO</div>
+					<div class="text01">JUNGSUK_CODING</div>
 				</div>
 
 				<div class="mySlides01 fade">
-					<div class="numbertext01">4 / 6</div>
 					<img src="https://divisare-res.cloudinary.com/images/f_auto,q_auto,w_800/v1491425434/coct9kmra7uhmeu4cxto/acne-studios-acne-studio-potsdamer-strasse.jpg" style="width:100%">
-					<div class="text01">ACNE STUDIO</div>
+					<div class="text01">JUNGSUK_CODING</div>
 				</div>
 
 				<div class="mySlides01 fade">
-					<div class="numbertext01">5 / 6</div>
 					<img src="https://divisare-res.cloudinary.com/images/f_auto,q_auto,w_800/v1491425440/xacfj7abitmifeyciiia/acne-studios-acne-studio-potsdamer-strasse.jpg" style="width:100%">
-					<div class="text01">ACNE STUDIO</div>
+					<div class="text01">JUNGSUK_CODING</div>
 				</div>
 
 				<div class="mySlides01 fade">
-					<div class="numbertext01">6 / 6</div>
 					<img src="https://divisare-res.cloudinary.com/images/f_auto,q_auto,w_800/v1491425434/cqxjhpdmepxto0nudsok/acne-studios-acne-studio-potsdamer-strasse.jpg" style="width:100%">
-					<div class="text01">ACNE STUDIO</div>
+					<div class="text01">JUNGSUK_CODING</div>
 				</div>
 
 				<!-- Next and previous buttons -->
@@ -198,7 +187,7 @@
 		<div id="youtubeBox">
 			<div>
 				<ul>
-					<li><a><img src="<c:url value="/img/youtube01.png"/>"></a></li>
+					<li><a><img src="<c:url value="/img/youtube03.png"/>"></a></li>
 					<li>정석코딩 2기 1팀 프로젝트 발표</li>
 					<li>2개월 동안 누구의 도움도 받지 않고 학생들 스스로 열심히 만든 갓벽한 프로젝트 발표 영상</li>
 				</ul>
@@ -212,7 +201,7 @@
 			</div>
 			<div>
 				<ul>
-					<li><a><img src="<c:url value="/img/youtube03.png"/>"></a></li>
+					<li><a><img src="<c:url value="/img/youtube01.png"/>"></a></li>
 					<li>코포자를 위한 코딩 공부법</li>
 					<li>예제 공부법, 연습문제 푸는 방법 등 남궁성 원장님의 꿀팁 대방출</li>
 				</ul>

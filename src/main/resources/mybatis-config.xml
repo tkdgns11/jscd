@@ -31,5 +31,9 @@
 		<typeAlias alias="AttachDto" type="com.jscd.app.board.qna.qnaDto.AttachDto"/>
 		<typeAlias alias="stdNoticeDto" type="com.jscd.app.board.notice.dto.stdNoticeDto"/>
 
+		<typeAlias alias="OrderDTO" type="com.jscd.app.order.dto.OrderDTO"/>
+		<typeAlias alias="CompanyInfoDTO" type="com.jscd.app.order.dto.CompanyInfoDTO"/>
+		<typeAlias alias="StodDTO" type="com.jscd.app.order.dto.StodDTO"/>
+
 	</typeAliases>
 </configuration>

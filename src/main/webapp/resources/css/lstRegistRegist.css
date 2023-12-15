@@ -1,0 +1,7 @@
+.registHead{font-size: 30px; margin: 25px; text-align: center; font-weight: 600; position: sticky; top:0;}
+.registAll{text-align: center;}
+.registForm{display: inline-block;}
+.inputTxt{box-shadow: 5px 5px 5px rgba(0,0,0,0.2); border: 1px solid rgba(0,0,0,0.1); border-radius: 5px; height: 30px;width: 100%;}
+.lectureSelect{box-shadow: 5px 5px 5px rgba(0,0,0,0.2); border: 1px solid rgba(0,0,0,0.1); border-radius: 5px; height: 30px;width: 100%;}
+.lectureDetail{box-shadow: 5px 5px 5px rgba(0,0,0,0.2); border: 1px solid rgba(0,0,0,0.1); border-radius: 5px; height: 30px;width: 45%;}
+p{text-align: left; margin-left: 0;}

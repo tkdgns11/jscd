@@ -2,6 +2,8 @@ package com.jscd.app.applyTraining.controller;
 
 import com.jscd.app.applyTraining.dto.BtApplicationDto;
 import com.jscd.app.applyTraining.service.BtApplicationService;
+import com.jscd.app.lecture.classEnroll.dto.ClassEnrollDto;
+import com.jscd.app.lecture.classEnroll.service.ClassEnrollService;
 import com.jscd.app.lecture.lstRegist.dto.LstRegistDto;
 import com.jscd.app.lecture.lstRegist.service.LstService;
 import com.jscd.app.member.dto.MemberDto;
@@ -27,6 +29,8 @@ public class BtTrainingController {
     LstService lstService;
     @Autowired
     MemberService memberService;
+    @Autowired
+    ClassEnrollService classEnrollService;
 
     // 부트캠프 신청서 제출
     @PostMapping("btApplication")
@@ -141,11 +145,13 @@ public class BtTrainingController {
 
     // 부트캠프 세부페이지 이동
     @GetMapping("/read")
-    public String bootCampRead(Integer registCode, Model m, HttpServletRequest request) throws Exception {
+    public String bootCampRead(Integer registCode, Integer courseCode, Model m, HttpServletRequest request) throws Exception {
 
         try {
             LstRegistDto lstRegistDto = lstService.bootCampRead(registCode);
+            List<ClassEnrollDto> classList = classEnrollService.getBootList(courseCode);
             m.addAttribute(lstRegistDto);
+            m.addAttribute("list", classList);
         } catch(Exception e) {
             e.printStackTrace();
             return "redirect:/btTraining/list";

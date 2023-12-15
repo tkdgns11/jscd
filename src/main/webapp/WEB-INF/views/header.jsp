@@ -63,7 +63,7 @@
         </div>
         <div id="searchBox">
             <img src="<c:url value="/img/readGlasses.png"/>">
-            <input type="text">
+            <input type="text" placeholder="검색어를 입력해주세요.">
         </div>
         <div id="memberBox">
             <input type="button" value="${loginStatus}" class="deleteBtn" onClick="location.href='<c:url value='${loginPath}'/>'">

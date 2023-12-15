@@ -38,7 +38,8 @@ public class SmTrainingController {
             rattr.addFlashAttribute("msg", "write ok");
 
             // 신청서 제출 후 결제 페이지로 이동해야 함.
-            return null;
+//            return null; //(용호) 수정 전
+            return "redirect:/order/order";  // (소희) 수정 후
         } catch (Exception e) {
             // 신청서 제출 실패시
             // 작성했던 내용, 에러 메세지와 함께 신청서 페이지로 이동

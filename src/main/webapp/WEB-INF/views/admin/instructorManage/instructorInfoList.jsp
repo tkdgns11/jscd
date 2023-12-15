@@ -20,14 +20,12 @@
     if (msg == "MOD_OK") alert("성공적으로 수정되었습니다.");
     if (msg == "READ_ERR") alert("정보를 가져올 수 없습니다. 다시 시도해주세요.");
     if (msg == "MOD_ERR") alert("수정에 실패했습니다. 다시 시도해 주세요.");
-    if (msg == "MOD_OK") alert("성공적으로 수정되었습니다.");
 
 </script>
 <body>
 
 <header>
     <jsp:include page="../adminHeader.jsp"/>
-    <jsp:include page="../adminSidebar.jsp"/>
 </header>
 
 <div id="infoContentBox">

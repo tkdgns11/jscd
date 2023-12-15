@@ -9,7 +9,7 @@ function member(value){
     const birth = document.getElementById("birth");
     const id = document.getElementById("id");
     const pwd = document.getElementById("pwd");
-    const pwdChk = document.getElementById("pwdChk")
+    const pwdChk = document.getElementById("pwdChk");
     const selectGender = document.getElementsByName("gender");
     let gender;
     for(const option of selectGender){

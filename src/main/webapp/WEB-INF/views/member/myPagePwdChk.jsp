@@ -17,25 +17,32 @@
   <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
 
   <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
-<%--  <link rel="stylesheet" type="text/css" href="<c:url value="/css/myPage.css"/>">--%>
+  <link rel="stylesheet" type="text/css" href="<c:url value="/css/jscdReset.css"/>">
+  <link rel="stylesheet" type="text/css" href="<c:url value="/css/myPage.css"/>">
   <script type="text/javascript" src="<c:url value="/js/myPage.js"/>"></script>
     <title>myPage</title>
 </head>
 <body>
+<header>
+  <jsp:include page="../header.jsp"/>
+</header>
+  <div id="myPagePwdChkBox">
+    <nav>
+      <ul>
+        <li><a href="#">회원 정보 수정</a></li>
+        <li><a href="#">강의 신청 현황</a></li>
+      </ul>
+    </nav>
     <div>
-      <div>
-        <ul>
-          <li><a href="#">회원 정보 수정</a></li>
-          <li><a href="#">강의 신청 현황</a></li>
-        </ul>
+      <p>비밀번호 입력</p>
+      <div id="myPagePwdChk">
+        <input type="password" name="pwd" placeholder="&nbsp&nbsp&nbsp비밀번호 입력">
       </div>
-      <form action="<c:url value="/member/memberEdit"/>" method="POST">
-        <div>
-          <p>비밀번호 입력</p>
-          <input type="password" id="memberEditPwdChk">
-          <input type="submit" id="signupBtn" value="확인">
-        </div>
-      </form>
+      <input type="button" value="확인" class="modifyBtn">
     </div>
+  </div>
+<header>
+  <jsp:include page="../footer.jsp"/>
+</header>
 </body>
 </html>

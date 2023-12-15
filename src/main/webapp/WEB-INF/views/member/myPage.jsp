@@ -17,19 +17,22 @@
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
-    <%--  <link rel="stylesheet" type="text/css" href="<c:url value="/css/myPage.css"/>">--%>
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/myPage.css"/>">
     <script type="text/javascript" src="<c:url value="/js/myPage.js"/>"></script>
     <title>myPage</title>
 </head>
 <body>
-<div>
-    <div>
+<header>
+    <jsp:include page="../header.jsp"/>
+</header>
+<div id="myPageWrap">
+    <nav>
         <ul>
             <li><a href="#">회원 정보 수정</a></li>
             <li><a href="#">강의 신청 현황</a></li>
         </ul>
-    </div>
-    <div>
+    </nav>
+    <div id="myPageBox">
         <ul>
             <li>아이디(이메일)</li>
             <input type="text" value="${memberDto.id}">
@@ -51,5 +54,8 @@
         <a href="<c:url value="/member/delete"/>">회원 탈퇴</a>
     </div>
 </div>
+<header>
+    <jsp:include page="../footer.jsp"/>
+</header>
 </body>
 </html>
