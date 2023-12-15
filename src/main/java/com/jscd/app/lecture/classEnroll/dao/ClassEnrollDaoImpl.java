@@ -42,4 +42,9 @@ public class ClassEnrollDaoImpl implements ClassEnrollDao {
     public int deleteAll() throws Exception{
         return session.delete(namespace + "deleteAll");
     }
+
+    @Override
+    public List<ClassEnrollDto> selectBoot(Integer courseCode) throws Exception {
+        return session.selectList(namespace + "selectBoot", courseCode);
+    }
 }

@@ -8,9 +8,11 @@ public class ClassEnrollDto {
     private Integer courseCode;
     private Integer roundCode;
     private String className;
+    private String category;
+    private String content;
     private Integer price;
-    private String discount;
-    private Integer lstPrice;
+//    private String discount;
+//    private Integer lstPrice;
     private Date regDate;
     private Integer firstIdNo;
     private Date modifyDate;
@@ -19,48 +21,19 @@ public class ClassEnrollDto {
 
     public ClassEnrollDto() {}
 
-    public ClassEnrollDto(Integer courseCode, Integer roundCode, String className, Integer price, String discount, Integer lstPrice, Date regDate, Integer firstIdNo, Integer lastIdNo, String etc) {
+    public ClassEnrollDto(Integer classCode, Integer courseCode, Integer roundCode, String className, String category, String content, Integer price, Date regDate, Integer firstIdNo, Date modifyDate, Integer lastIdNo, String etc) {
+        this.classCode = classCode;
         this.courseCode = courseCode;
         this.roundCode = roundCode;
         this.className = className;
+        this.category = category;
+        this.content = content;
         this.price = price;
-        this.discount = discount;
-        this.lstPrice = lstPrice;
         this.regDate = regDate;
         this.firstIdNo = firstIdNo;
+        this.modifyDate = modifyDate;
         this.lastIdNo = lastIdNo;
         this.etc = etc;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ClassEnrollDto that = (ClassEnrollDto) o;
-        return Objects.equals(classCode, that.classCode) && Objects.equals(courseCode, that.courseCode) && Objects.equals(roundCode, that.roundCode) && Objects.equals(className, that.className) && Objects.equals(price, that.price) && Objects.equals(discount, that.discount) && Objects.equals(lstPrice, that.lstPrice) && Objects.equals(regDate, that.regDate) && Objects.equals(firstIdNo, that.firstIdNo) && Objects.equals(modifyDate, that.modifyDate) && Objects.equals(lastIdNo, that.lastIdNo) && Objects.equals(etc, that.etc);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(classCode, courseCode, roundCode, className, price, discount, lstPrice, regDate, firstIdNo, modifyDate, lastIdNo, etc);
-    }
-
-    @Override
-    public String toString() {
-        return "ClassEnrollDto{" +
-                "classCode=" + classCode +
-                ", courseCode=" + courseCode +
-                ", roundCode=" + roundCode +
-                ", className='" + className + '\'' +
-                ", price=" + price +
-                ", discount='" + discount + '\'' +
-                ", lstPrice=" + lstPrice +
-                ", regDate='" + regDate + '\'' +
-                ", firstIdNo=" + firstIdNo +
-                ", modifyDate='" + modifyDate + '\'' +
-                ", lastIdNo=" + lastIdNo +
-                ", etc='" + etc + '\'' +
-                '}';
     }
 
     public Integer getClassCode() {
@@ -95,28 +68,28 @@ public class ClassEnrollDto {
         this.className = className;
     }
 
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
     public Integer getPrice() {
         return price;
     }
 
     public void setPrice(Integer price) {
         this.price = price;
-    }
-
-    public String getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(String discount) {
-        this.discount = discount;
-    }
-
-    public Integer getLstPrice() {
-        return lstPrice;
-    }
-
-    public void setLstPrice(Integer lstPrice) {
-        this.lstPrice = lstPrice;
     }
 
     public Date getRegDate() {
@@ -157,5 +130,23 @@ public class ClassEnrollDto {
 
     public void setEtc(String etc) {
         this.etc = etc;
+    }
+
+    @Override
+    public String toString() {
+        return "ClassEnrollDto{" +
+                "classCode=" + classCode +
+                ", courseCode=" + courseCode +
+                ", roundCode=" + roundCode +
+                ", className='" + className + '\'' +
+                ", category='" + category + '\'' +
+                ", content='" + content + '\'' +
+                ", price=" + price +
+                ", regDate=" + regDate +
+                ", firstIdNo=" + firstIdNo +
+                ", modifyDate=" + modifyDate +
+                ", lastIdNo=" + lastIdNo +
+                ", etc='" + etc + '\'' +
+                '}';
     }
 }

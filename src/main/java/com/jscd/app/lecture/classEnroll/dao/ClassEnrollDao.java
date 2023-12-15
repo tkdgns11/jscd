@@ -16,4 +16,6 @@ public interface ClassEnrollDao {
     int delete(Integer classCode) throws Exception;
 
     int deleteAll() throws Exception;
+
+    List<ClassEnrollDto> selectBoot(Integer courseCode) throws Exception;
 }

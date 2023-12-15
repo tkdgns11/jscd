@@ -45,4 +45,11 @@
     <delete id="deleteAll">
         delete from classEnroll
     </delete>
+
+<!--    부트캠프 categroy content 내용 가져가기-->
+    <select id="selectBoot" parameterType="int" resultType="ClassEnrollDto">
+        select *
+        from classEnroll
+        where courseCode = #{courseCode}
+    </select>
 </mapper>

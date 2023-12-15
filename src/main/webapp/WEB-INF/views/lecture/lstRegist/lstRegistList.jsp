@@ -12,6 +12,8 @@
 <head>
     <title>정석코딩 강의 등록</title>
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/jscdReset.css"/>">
     <style>
         #registListAll{
             width: 960px;

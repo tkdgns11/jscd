@@ -1,5 +1,6 @@
 package com.jscd.app.lecture.lstRegist.controller;
 
+import com.jscd.app.board.qna.qnaDto.AttachDto;
 import com.jscd.app.lecture.classEnroll.dto.ClassEnrollDto;
 import com.jscd.app.lecture.classEnroll.service.ClassEnrollService;
 import com.jscd.app.lecture.course.dto.CourseDto;
@@ -8,20 +9,33 @@ import com.jscd.app.lecture.lstRegist.dto.LstRegistDto;
 import com.jscd.app.lecture.lstRegist.dto.PageHandler;
 import com.jscd.app.lecture.lstRegist.dto.SearchCondition;
 import com.jscd.app.lecture.lstRegist.service.LstService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.HashMap;
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 //@RequestMapping("/onlyAdmin/lstRegist")
 @RequestMapping("/lstRegist")
 public class LstController {
+    // 로그 선언
+    private static final Logger logger = LoggerFactory.getLogger(LstController.class);
     @Autowired
     LstService lstService;
 
@@ -30,7 +44,6 @@ public class LstController {
 
     @Autowired
     ClassEnrollService classEnrollService;
-
 
     // 등록된 강의 수정 기능 구현
     @PostMapping("/modifyRegist")
@@ -90,10 +103,7 @@ public class LstController {
     @PostMapping("/addRegist")
     public String addRegist(LstRegistDto lstRegistDto, Model m) throws Exception {
 
-        System.out.println("hhheeellooo");
-
         try {
-            System.out.println("llll" +lstRegistDto.toString());
             lstService.addRegist(lstRegistDto);
             return "redirect:/lstRegist/list";
         } catch(Exception e) {
@@ -118,6 +128,97 @@ public class LstController {
             e.printStackTrace();
         }
         return map;
+    }
+
+    /* 첨부 파일 업로드 */
+    @PostMapping(value="/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<List<AttachDto>> uploadAjaxActionPOST(MultipartFile[] uploadFile) {
+
+        logger.info("uploadAjaxActionPOST..........");
+
+        /* 이미지 파일 체크 */
+        for(MultipartFile multipartFile: uploadFile) {
+
+            File checkfile = new File(multipartFile.getOriginalFilename());
+            String type = null;
+
+            try {
+                type = Files.probeContentType(checkfile.toPath());
+                logger.info("MIME TYPE : " + type);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            if(!type.startsWith("image")) {
+
+                List<AttachDto> list = null;
+                return new ResponseEntity<>(list, HttpStatus.BAD_REQUEST);
+
+            }
+        }
+
+        String uploadFolder = "/Users/george/Desktop/WEB_Project/src/main/webapp/resources/img";
+
+        String Path = "jk";
+
+        /* 폴더 생성 */
+        File uploadPath = new File(uploadFolder, Path);
+
+        if(uploadPath.exists() == false) {
+            uploadPath.mkdirs();
+        }
+
+        /* 이미지 정보 담는 객체*/
+        List<AttachDto> list = new ArrayList();
+
+        // 향상된 for
+        for(MultipartFile multipartFile : uploadFile) {
+            /* 이미지 정보 객체 */
+            AttachDto attachDto = new AttachDto();
+
+            /* 파일 이름 */
+            String uploadFileName = multipartFile.getOriginalFilename();
+            attachDto.setFileName(uploadFileName);
+            attachDto.setUploadPath(Path);
+
+            /* uuid 적용 파일 이름 */
+            String uuid = UUID.randomUUID().toString();
+            attachDto.setUuid(uuid);
+
+            uploadFileName = uuid + "_" + uploadFileName;
+
+            /* 파일 위치, 파일 이름을 합친 File 객체 */
+            File saveFile = new File(uploadPath, uploadFileName);
+
+            /* 파일 저장 */
+            try {
+                multipartFile.transferTo(saveFile);
+
+                /* 썸네일 생성(ImageIO) */
+                File thumbnailFile = new File(uploadPath, "s_" + uploadFileName);
+
+                BufferedImage bo_image = ImageIO.read(saveFile);
+                /* 비율 */
+                double ratio = 3;
+
+                /*넓이 높이*/
+                int width = (int) (bo_image.getWidth() / ratio);
+                int height = (int) (bo_image.getHeight() / ratio);
+
+                BufferedImage bt_image = new BufferedImage(width, height, BufferedImage.TYPE_3BYTE_BGR);
+                Graphics2D graphic = bt_image.createGraphics();
+
+                graphic.drawImage(bo_image, 0, 0, width, height, null);
+
+                ImageIO.write(bt_image, "jpg", thumbnailFile);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            list.add(attachDto);
+        }
+        ResponseEntity<List<AttachDto>> result = new ResponseEntity<List<AttachDto>>(list, HttpStatus.OK);
+
+        return result;
     }
 
     // 강의 리스트로 이동 기능 구현
