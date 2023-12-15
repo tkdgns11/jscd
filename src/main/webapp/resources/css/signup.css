@@ -20,6 +20,8 @@
 #signupHeader h1{line-height: 50px; font-size: 50px; margin-left: 30px;}
 #idChkBtn, #emailChkBtn{border:none; width: 130px; cursor: pointer;}
 #idChkBtn{border-radius: 0px 15px 0px 0px;}
+#idChkBtn:hover{ cursor: pointer; background-color: rgba(0,0,0,0.1); }
+#emailChkBtn:hover{ cursor: pointer; background-color: rgba(0,0,0,0.1); }
 #phoneBox{display: flex; flex-direction: row; align-items: center;}
 #phoneBox label{line-height: 50px;margin: 0 12px;}
 
@@ -32,6 +34,7 @@
 #male:checked + span {width: 150px;height: 30px;border-radius: 9px 0px 0px 9px;background-color: #2196F3;color: #fff;}
 #female:checked + span {width: 150px;height: 30px;border-radius: 0px 9px 9px 0px;background-color: #2196F3;color: #fff;}
 .radio-label span{cursor: pointer;background-color: #fff;display: inline-block;width: 150px;height: 30px;text-align: center;line-height: 30px;border-radius: 10px;}
+.radio-label span:hover{ background-color: rgba(0,0,0,0.1); }
 #radioBtn{border: 1px solid rgb(128, 128, 128); border-radius: 10px; display:flex; flex-direction: row;}
 #btnBox{ width: 300px;  display: flex; flex-direction: row; justify-content: center;}
 #signupBtn{width: 200px;height: 50px; border-radius: 15px;font-size: 30px;text-align: center; line-height: 50px; background-color: #18214F; color: #fff; cursor: pointer; box-shadow: 5px 5px 5px rgba(0,0,0,0.5)}

@@ -70,11 +70,11 @@
                 <input type="text" id="id" name="id" placeholder="아이디(Ex.ghdrlfehd@naver.com)">
                 <input type="button" id="idChkBtn" value="중복확인" onclick="idCheck()" class="signup_btn">
             </div>
-                <div>
-                    <img src="<c:url value="/img/signup_user.png"/>">
-                    <input type="text" id="emailChkInput" name="인증번호" placeholder="인증번호를 입력해주세요." autocomplete="off">
-                    <input type="button" id="emailChkBtn" value="본인인증" class="signup_btn">
-                </div>
+            <div>
+                <img src="<c:url value="/img/signup_user.png"/>">
+                <input type="text" id="emailChkInput" name="인증번호" placeholder="인증번호를 입력해주세요." autocomplete="off">
+                <input type="button" id="emailChkBtn" value="본인인증" class="signup_btn">
+            </div>
             <div>
                 <img src="<c:url value="/img/signup_pwd.png"/>">
                 <input type="password" id="pwd" name="pwd" placeholder="비밀번호(영문자 + 숫자 + 특수문자 포함 필수)"style="width: 400px;" autocomplete="off">
@@ -97,7 +97,7 @@
                     <!-- 라디오 버튼 2 -->
                     <label class="radio-label" style="border-left: none;">
                         <input type="radio" class="radio-input" id="female" name="gender" value="1">
-                        <span>여자</span>
+                        <span style="border-top-left-radius: 0px; border-bottom-left-radius: 0px;">여자</span>
                     </label>
                 </div>
             </div>
