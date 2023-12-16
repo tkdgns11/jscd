@@ -26,67 +26,255 @@ http://localhost:8080/order/orderDetail?odNo=jscd20231212025948340
 
     <!-- css 파일 불러오기 -->
     <link rel="stylesheet" href="/css/reset.css" type="text/css"/>
+    <link rel="stylesheet" href="/css/order.css" type="text/css"/>
+
+    <!--java script 파일 불러오기-->
+    <script src="/js/paySuccess.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 
 </head>
 <body>
-<header>
-    <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
-</header>
-<!-- 전체 페이지 -->
-<div id="orderDetail">
-    <div>
-        <p>주문 상세 내역 페이지</p>
-    </div>
-    <!-- 주문 상세 내역 표시 -->
-    <div id="orderDetailContent">
-        <h2>주문 상세 내역</h2>
-        <p>ID: ${id}</p>
-        <p>이름: ${name}</p>
-        <p>주문번호: ${odNo}</p>
-        <p>결제 상태: ${status}</p>
-        <p>결제일: ${payDate}</p>
-        <p>결제 시각: ${payTime}</p>
-        <p>상품 코드: ${registCode}</p>
-        <p>구매 상품: ${title}</p>
-        <p>상품 가격: ${lastPrice}</p>
-        <p>결제 고유 번호: ${htyNo}</p>
-        <p>결제 종류: ${payType}</p>
-        <p>카드 종류: ${cardType}</p>
-        <p>카드 번호: ${creditNum}</p>
-        <p>할부개월: ${instlFees}</p>
-        <p>현금영수증 번호: ${csrcNum}</p>
-        <p>사용자 지불 계좌번호: ${userActNum}</p>
-        <p>최종 결제 금액: ${lastPrice}</p>
-    </div>
-    <div id="companyinfo">
-        <h2>공급자</h2>
-        <table>
-            <tr>
-                <th>공급자 고유 번호</th>
-                <th>상업자등록번호</th>
-                <th>상호명</th>
-                <th>공급자명</th>
-                <th>연락처</th>
-                <th>주소</th>
-                <th>업태</th>
-                <th>종목</th>
-            </tr>
-            <tr>
-                <td>${slrNo}</td>
-                <td>${slrNum}</td>
-                <td>${companyName}</td>
-                <td>${slrName}</td>
-                <td>${slrPhone}</td>
-                <td>${slrAddr}</td>
-                <td>${indst}</td>
-                <td>${kind}</td>
-            </tr>
-        </table>
-    </div>
+<div id="root">
+    <header>
+        <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
+    </header>
+    <c:forEach var="order" items="${orderDetail}">
+        <div class="display-none" id="orderDetailContent">
+            <p>주문번호: ${order.odNo}</p>
+            <p>상품번호 : ${order.registCode}</p>
+            <p>판매자번호 : ${order.slrNo}</p>
+            <p class="typing-txt">For your level up !</p>
+        </div>
+        <main class="orderDetail_main">
+            <section id="orderDetail_main-content">
+                <section id="orderDetail_header">
+                    <h3 class="display-none">영수증 제목</h3>
+                    <div>
+                        <div class="receipt-text">
+                                <%-- <p class="typing" id="receipt-text-01">For your level up !</p>--%>
+                            <p class="typing" id="receipt-text-01"></p>
+                            <p id="receipt-text-02">정석코딩</p>
+                        </div>
+                        <div id="receipt-title">구매 상세 내역</div>
+                    </div>
+                </section>
+                <section id="orderDetail_contents">
+                    <section id="orderDetail_info">
+                        <h3 class="display-none">주문 정보</h3>
+                        <div class="orderdetail_header" id="orderDetail_info_header">
+                            <h2>주문 정보</h2>
+                        </div>
+                        <div id="orderDetail_info_content">
+                            <table id="orderDetail_info_odNo1">
+                                <tr>
+                                    <td class="orderdetail_td-01">주문 번호</td>
+                                    <td class="orderdetail_td-02">${order.odNo}</td>
+                                </tr>
+                                <tr>
+                                    <td class="orderdetail_td-01">구매 상품명</td>
+                                    <td class="orderdetail_td-highlight">${order.title}</td>
+                                </tr>
+                                <tr>
+                                    <td class="orderdetail_td-01">상품가격</td>
+                                    <td class="orderdetail_td-highlight">${order.lastPrice}</td>
+                                </tr>
+                                <tr>
+                                    <td class="orderdetail_td-01">구매일시</td>
+                                    <td class="orderdetail_td-02">${order.regDate}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </section>
+                    <section id="orderDetail_pay_info">
+                        <h3 class="display-none">결제 정보</h3>
+                        <div class="orderdetail_header" id="orderDetail_pay_header">
+                            <h2>결제 정보</h2>
+                        </div>
+                        <div id="orderDetail_pay_content">
+                            <table id="pay_common_content">
+                                <tr>
+                                    <td class="orderdetail_td-01">결제상태</td>
+                                    <td class="orderdetail_td-highlight">
+                                        <c:choose>
+                                            <%--                          1. ${order.status} == 'paid' : 결제 완료--%>
+                                            <c:when test="${order.status eq 'paid'}">결제 완료</c:when>
+                                            <%--                          2.  ${order.status} == 'notPaid' : 결제 대기중--%>
+                                            <c:when test="${order.status eq 'notPaid'}">결제 대기중</c:when>
+                                            <%--                          3.  ${order.status} == 'cancel' : 결제 취소--%>
+                                            <c:when test="${order.status eq 'cancel'}">결제 취소</c:when>
+                                            <%--                          3.  나머지 값 : 해당 값 그대로 표시--%>
+                                            <c:otherwise>${order.status}</c:otherwise>
+                                        </c:choose>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="orderdetail_td-01">결제일</td>
+                                    <td class="orderdetail_td-02">${order.payDay}</td>
+                                </tr>
+                                <tr>
+                                    <td class="orderdetail_td-01">결제시각</td>
+                                    <td class="orderdetail_td-02">${order.payTime}</td>
+                                </tr>
+                                <tr>
+                                    <td class="orderdetail_td-01">거래종류</td>
+                                    <td class="orderdetail_td-highlight">
+                                        <c:choose>
+                                            <%--                          1. ${order.payType} == 'card' : 카드 결제--%>
+                                            <c:when test="${order.payType eq 'card'}">신용카드</c:when>
+                                            <%--                          2.  ${order.payType} == '계좌이체' : 계좌이체--%>
+                                            <c:when test="${order.payType eq '계좌이체'}">현금</c:when>
+                                            <%--                          3.  ${order.payType} == 'kakaopay' : 결제 취소--%>
+                                            <c:when test="${order.payType eq 'kakaopay'}">카카오페이</c:when>
+                                            <%--                          3.  나머지 값 : 해당 값 그대로 표시--%>
+                                            <c:otherwise>${order.payType}</c:otherwise>
+                                        </c:choose>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="orderdetail_td-01">결제금액</td>
+                                    <td class="orderdetail_td-highlight">${order.lastPrice}</td>
+                                </tr>
+                                <tr>
+                                    <td class="orderdetail_td-subtitle">[카드/카카오페이 결제]</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td class="orderdetail_td-01">카드사</td>
+                                    <td class="orderdetail_td-02">${order.cardType}</td>
+                                </tr>
+                                <tr>
+                                    <td class="orderdetail_td-01">카드번호</td>
+                                    <td class="orderdetail_td-02">${order.creditNum}</td>
+                                </tr>
+                                <tr>
+                                    <td class="orderdetail_td-01">할부개월</td>
+                                    <td class="orderdetail_td-02">${order.instlFees}</td>
+                                </tr>
+                                <tr>
+                                    <td class="orderdetail_td-subtitle">[현금 결제]</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td class="orderdetail_td-01">거래자명</td>
+                                    <td class="orderdetail_td-02">${order.payName}</td>
+                                </tr>
+                                <tr>
+                                    <td class="orderdetail_td-01">거래 은행</td>
+                                    <td class="orderdetail_td-02">${order.payBank}</td>
+                                </tr>
+                                <tr>
+                                    <td class="orderdetail_td-01">거래 계좌번호</td>
+                                    <td class="orderdetail_td-02">${order.userActNum}</td>
+                                </tr>
+                                <tr>
+                                    <td class="orderdetail_td-01">현금영수증 번호</td>
+                                    <td class="orderdetail_td-02">${order.csrcNum}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </section>
+                    <section id="orderDetail_buyer_info">
+                        <h3 class="display-none">구매자 정보</h3>
+                        <div class="orderdetail_header" id="orderDetail_buyer_header">
+                            <h2>구매자 정보</h2>
+                        </div>
+                        <table id="orderDetail_buyer_content">
+                            <tr>
+                                <td class="orderdetail_td-01">구매자명</td>
+                                <td class="orderdetail_td-02">${order.name}</td>
+                            </tr>
+                            <tr>
+                                <td class="orderdetail_td-01">회원 아이디</td>
+                                <td class="orderdetail_td-highlight">${order.id}</td>
+                            </tr>
+                        </table>
+                    </section>
+                    <section id="orderDetail_seller_info">
+                        <h3 class="display-none">판매자 정보</h3>
+                        <div class="orderdetail_header" id="orderDetail_seller_header">
+                            <h2>판매자 정보</h2>
+                        </div>
+                        <table id="orderDetail_seller_content">
+                            <tr>
+                                <td class="orderdetail_td-01">판매자명</td>
+                                <td class="orderdetail_td-02">${order.slrName}</td>
+                            </tr>
+                            <tr>
+                                <td class="orderdetail_td-01">이메일</td>
+                                <td class="orderdetail_td-02">${order.slrMail}</td>
+                            </tr>
+                            <tr>
+                                <td class="orderdetail_td-01">연락처</td>
+                                <td class="orderdetail_td-02">${order.slrPhone}</td>
+                            </tr>
+                            <tr>
+                                <td class="orderdetail_td-01">상호명</td>
+                                <td class="orderdetail_td-02">${order.companyName}</td>
+                            </tr>
+                            <tr>
+                                <td class="orderdetail_td-01">상업자등록번호</td>
+                                <td class="orderdetail_td-02">${order.slrNum}</td>
+                            </tr>
+                            <tr>
+                                <td class="orderdetail_td-01">주소</td>
+                                <td class="orderdetail_td-02">${order.slrAddr}</td>
+                            </tr>
+                            <tr>
+                                <td class="orderdetail_td-01">업태</td>
+                                <td class="orderdetail_td-02">${order.indst}</td>
+                            </tr>
+                            <tr>
+                                <td class="orderdetail_td-01">종목</td>
+                                <td class="orderdetail_td-02">${order.kind}</td>
+                            </tr>
+                        </table>
+                    </section>
+                </section>
+                <section id="orderDetail_btn">
+                    <h3 class="display-none">주문내역 바로가기 버튼</h3>
+                    <div>
+                        <input class="order_btns" id="go_orderlist" type="button" value="주문내역 바로가기">
+                    </div>
+                    <div>
+                        <input class="order_btns" id="go_mypage" type="button" value="마이페이지 바로가기">
+                    </div>
+                </section>
+            </section>
+        </main>
+    </c:forEach>
+    <footer>
+        <jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
+    </footer>
+    <script>
+        // var typingBool = false;
+        // var typingIdx = 0;
+        //
+        // // 타이핑될 텍스트를 가져온다
+        // var typingTxt = $(".typing-txt").text();
+        //
+        // typingTxt = typingTxt.split(""); // 한글자씩 자른다.
+        //
+        // if (typingBool == false) {
+        //     // 타이핑이 진행되지 않았다면
+        //     typingBool = true;
+        //     var tyInt = setInterval(typing, 100); // 반복동작
+        // }
+
+        // function typing() {
+        //     if (typingIdx < typingTxt.length) {
+        //         // 타이핑될 텍스트 길이만큼 반복
+        //         $("#receipt-text-01").append(typingTxt[typingIdx]);
+        //         // 한글자씩 이어준다.
+        //         typingIdx++;
+        //     } else {
+        //         //끝나면 반복종료
+        //         clearInterval(tyInt);
+        //     }
+        // }
+    </script>
 </div>
-<footer>
-    <jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
-</footer>
 </body>
+
 </html>
 

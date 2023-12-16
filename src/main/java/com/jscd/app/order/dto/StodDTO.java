@@ -26,6 +26,7 @@ public class StodDTO {
     private Integer lastIdNo;
     private String etc;
     private String slrAddr; //추가
+    private String slrMail;
 
     private String odNo;
     private String status;
@@ -35,13 +36,16 @@ public class StodDTO {
     private String creditNum;
     private String cardType;
     private int instlFees;
-    private String payDay;
+    private String payDay; //
+    private String csrcNum; //
     private String payTime;
     private String userActNum;
+    private String payName;
+    private String payBank;
 
     public StodDTO(){}
 
-    public StodDTO(String id, String name, String phone, int registCode, String title, int lastPrice, int slrNo, String slrName, String slrNum, String companyName, String indst, String kind, String slrPhone, String regDate, int firstIdNo, String modifyDate, Integer lastIdNo, String etc, String slrAddr, String odNo, String status, String payType, String creditNum, String cardType, int instlFees, String payDay, String payTime, String userActNum) {
+    public StodDTO(String id, String name, String phone, int registCode, String title, int lastPrice, int slrNo, String slrName, String slrNum, String companyName, String indst, String kind, String slrPhone, String regDate, int firstIdNo, String modifyDate, Integer lastIdNo, String etc, String slrAddr, String slrMail, String odNo, String status, String payType, String creditNum, String cardType, int instlFees, String payDay, String csrcNum, String payTime, String userActNum, String payName, String payBank) {
         this.id = id;
         this.name = name;
         this.phone = phone;
@@ -61,6 +65,7 @@ public class StodDTO {
         this.lastIdNo = lastIdNo;
         this.etc = etc;
         this.slrAddr = slrAddr;
+        this.slrMail = slrMail;
         this.odNo = odNo;
         this.status = status;
         this.payType = payType;
@@ -68,8 +73,11 @@ public class StodDTO {
         this.cardType = cardType;
         this.instlFees = instlFees;
         this.payDay = payDay;
+        this.csrcNum = csrcNum;
         this.payTime = payTime;
         this.userActNum = userActNum;
+        this.payName = payName;
+        this.payBank = payBank;
     }
 
     public String getId() {
@@ -224,6 +232,14 @@ public class StodDTO {
         this.slrAddr = slrAddr;
     }
 
+    public String getSlrMail() {
+        return slrMail;
+    }
+
+    public void setSlrMail(String slrMail) {
+        this.slrMail = slrMail;
+    }
+
     public String getOdNo() {
         return odNo;
     }
@@ -280,6 +296,14 @@ public class StodDTO {
         this.payDay = payDay;
     }
 
+    public String getCsrcNum() {
+        return csrcNum;
+    }
+
+    public void setCsrcNum(String csrcNum) {
+        this.csrcNum = csrcNum;
+    }
+
     public String getPayTime() {
         return payTime;
     }
@@ -294,6 +318,22 @@ public class StodDTO {
 
     public void setUserActNum(String userActNum) {
         this.userActNum = userActNum;
+    }
+
+    public String getPayName() {
+        return payName;
+    }
+
+    public void setPayName(String payName) {
+        this.payName = payName;
+    }
+
+    public String getPayBank() {
+        return payBank;
+    }
+
+    public void setPayBank(String payBank) {
+        this.payBank = payBank;
     }
 
     @Override
@@ -318,6 +358,7 @@ public class StodDTO {
                 ", lastIdNo=" + lastIdNo +
                 ", etc='" + etc + '\'' +
                 ", slrAddr='" + slrAddr + '\'' +
+                ", slrMail='" + slrMail + '\'' +
                 ", odNo='" + odNo + '\'' +
                 ", status='" + status + '\'' +
                 ", payType='" + payType + '\'' +
@@ -325,8 +366,11 @@ public class StodDTO {
                 ", cardType='" + cardType + '\'' +
                 ", instlFees=" + instlFees +
                 ", payDay='" + payDay + '\'' +
+                ", csrcNum='" + csrcNum + '\'' +
                 ", payTime='" + payTime + '\'' +
                 ", userActNum='" + userActNum + '\'' +
+                ", payName='" + payName + '\'' +
+                ", payBank='" + payBank + '\'' +
                 '}';
     }
 }

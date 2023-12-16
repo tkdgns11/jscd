@@ -32,42 +32,12 @@ http://localhost:8080/order/orderList
 
     <!-- css 파일 불러오기 -->
     <link rel="stylesheet" href="/css/reset.css" type="text/css"/>
-
+    <link rel="stylesheet" href="/css/order.css" type="text/css"/>
 </head>
 <body>
 <header>
     <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 </header>
-<%--<form id="orderData">--%>
-<%--  <input type="text" id="odNo" name="odNo">--%>
-<%--  <input type="text" id="id" name="id" value="${memberDto.id}">--%>
-<%--  <input type="text" id="name" name="name" value="${memberDto.name}">--%>
-<%--  <input type="text" id="phone" name="phone" value="${memberDto.phone}">--%>
-
-<%--  <input type="text" id="registCode" name="registCode" value="${orderDto.registCode}">--%>
-<%--  <input type="text" id="title" name="title" value="${orderDto.title}">--%>
-<%--  <input type="text" id="lastPrice" name="lastPrice" value="${orderDto.lastPrice}">--%>
-
-<%--  <input type="text" id="slrNo" name="slrNo" value="${companyInfoDto.slrNo}">--%>
-<%--  <input type="text" id="slrName" name="slrName" value="${companyInfoDto.slrName}">--%>
-<%--  <input type="text" id="slrNum" name="slrNum" value="${companyInfoDto.slrNum}">--%>
-<%--  <input type="text" id="actName" name="actName" value="${companyInfoDto.actName}">--%>
-<%--  <input type="text" id="actNum" name="actNum" value="${companyInfoDto.actNum}">--%>
-<%--  <input type="text" id="slrAddr" name="slrAddr" value="${companyInfoDto.slrAddr}">--%>
-<%--  <input type="text" id="companyName" name="companyName" value="${companyInfoDto.companyName}">--%>
-<%--  <input type="text" id="indst" name="indst" value="${companyInfoDto.indst}">--%>
-<%--  <input type="text" id="kind" name="kind" value="${companyInfoDto.kind}">--%>
-<%--  <input type="text" id="slrPhone" name="slrPhone" value="${companyInfoDto.slrPhone}">--%>
-
-<%--&lt;%&ndash;  추가&ndash;%&gt;--%>
-<%--  <input type="text" id="creditNum" name="creditNum">--%>
-<%--  <input type="text" id="cardType" name="cardType">--%>
-<%--  <input type="text" id="payType" name="payType">--%>
-<%--  <input type="text" id="payDay" name="payDay">--%>
-<%--  <input type="text" id="payTime" name="payTime">--%>
-<%--  <input type="text" id="status" name="status">--%>
-<%--  <input type="text" id="instlFees" name="instlFees">--%>
-<%--</form>--%>
 <!-- 전체 페이지 -->
 <div id="orderList">
     <div>
