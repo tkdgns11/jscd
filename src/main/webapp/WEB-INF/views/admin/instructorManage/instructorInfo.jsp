@@ -119,7 +119,7 @@
             } else {
                 const form = document.createElement('form');
                 form.setAttribute('method', 'post');
-                form.setAttribute('action', '/onlyAdmin/instructor/modify?page=${page}&iscrNo=${infoDto.iscrNo}');
+                form.setAttribute('action', '/onlyAdmin/instructor/modify?page=${page}&mebrNo=${infoDto.mebrNo}');
 
                 var intro = document.getElementById('intro');
                 var status = document.getElementById('status');

@@ -48,9 +48,9 @@
     </select>
 
     <!--  강사 정보 상세 확인-->
-    <select id="select" parameterType="Map" resultType="InstructorMemberInfoDto">
+    <select id="select" parameterType="int" resultType="InstructorMemberInfoDto">
         <include refid="selectInstructor"/>
-        where i.iscrNo = #{iscrNo};
+        where i.mebrNo = #{mebrNo};
     </select>
 
     <!-- 상세보기 화면 update-->
@@ -61,7 +61,7 @@
           , hourPmt    = #{hourPmt}
           , etc        = #{etc}
           , modifyDate = now()
-        where iscrNo = #{iscrNo}
+        where mebrNo = #{mebrNo}
     </update>
 
     <!-- 메인화면 상태만 update (일괄 수정 가능)-->
@@ -121,5 +121,13 @@
         on i.status = a.ctNum
         <include refid="searchCondition"/>
     </select>
+
+<!--    마이페이지에서 강사 소개말 작성-->
+    <update id="updateIntro" parameterType="InstructorInfoDto">
+        update instructorInfo
+        set intro = #{intro},
+            modifyDate = now()
+        where mebrNo = #{mebrNo}
+    </update>
 
 </mapper>
