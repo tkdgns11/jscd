@@ -35,11 +35,13 @@ public interface LstRegistDao {
     List<LstRegistDto> getBootCampList() throws Exception;
     LstRegistDto readBootCamp(Integer registCode) throws Exception;
 
-    //첨부파일 업로드
+    // 첨부파일 업로드
     public int InsertFile(Map<String, Object> map) throws Exception;
     // 첨부파일 조회
     public List<Map<String, Object>> selectFileList(Integer registCode) throws Exception;
-    //첨부파일 다운로드
+    // 첨부파일 다운로드
     public Map<String, Object> selectFileDown(Map<String, Object> map) throws Exception;
+    // 첨부파일 수정
+    public void updateFile(Map<String, Object> map) throws Exception;
 
 }

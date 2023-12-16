@@ -4,4 +4,5 @@
 .inputTxt{box-shadow: 5px 5px 5px rgba(0,0,0,0.2); border: 1px solid rgba(0,0,0,0.1); border-radius: 5px; height: 30px;width: 100%;}
 .lectureSelect{box-shadow: 5px 5px 5px rgba(0,0,0,0.2); border: 1px solid rgba(0,0,0,0.1); border-radius: 5px; height: 30px;width: 100%;}
 .lectureDetail{box-shadow: 5px 5px 5px rgba(0,0,0,0.2); border: 1px solid rgba(0,0,0,0.1); border-radius: 5px; height: 30px;width: 45%;}
+.deleteImg{background-color: #ef7d7d; color: wheat; width: 30px; height: 30px; border-radius: 50%; line-height: 26px; text-align: center; border: none; cursor: pointer;}
 p{text-align: left; margin-left: 0;}

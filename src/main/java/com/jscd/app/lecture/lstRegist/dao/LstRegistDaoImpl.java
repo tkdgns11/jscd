@@ -94,7 +94,7 @@ public class LstRegistDaoImpl implements LstRegistDao {
     public int InsertFile(Map<String, Object> map) throws Exception {
         return session.insert(namespace+"InsertFile", map);
     }
-
+    //강의 첨부 파일 조회
     @Override
     public List<Map<String, Object>> selectFileList(Integer registCode) throws Exception {
         return session.selectList(namespace+"selectFileList",registCode);
@@ -103,5 +103,10 @@ public class LstRegistDaoImpl implements LstRegistDao {
     @Override
     public Map<String, Object> selectFileDown(Map<String, Object> map) throws Exception {
         return session.selectOne(namespace+"selectFileDown", map);
+    }
+    //강의 첨부 파일 수정
+    @Override
+    public void updateFile(Map<String, Object> map) throws Exception {
+        session.update(namespace+"updateFile", map);
     }
 }
