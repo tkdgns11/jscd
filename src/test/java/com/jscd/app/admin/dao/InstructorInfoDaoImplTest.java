@@ -28,7 +28,7 @@ public class InstructorInfoDaoImplTest {
         //전체 지우기
         infoDao.deleteAll();
         //인서트
-        InstructorInfoDto infoDto = new InstructorInfoDto("01",1,"자바강사입니다",2,100.0f);
+        InstructorInfoDto infoDto = new InstructorInfoDto(1,1,"자바강사입니다",2,100.0f);
         infoDao.insert(infoDto);
         //count
         int rowCnt = infoDao.count();
@@ -62,7 +62,7 @@ public class InstructorInfoDaoImplTest {
         //전체 지우기
         infoDao.deleteAll();
         //인서트
-        InstructorInfoDto infoDto = new InstructorInfoDto("01",1,"자바강사입니다",2,100.0f);
+        InstructorInfoDto infoDto = new InstructorInfoDto(1,1,"자바강사입니다",2,100.0f);
         infoDao.insert(infoDto);
         //count
         int rowCnt = infoDao.count();

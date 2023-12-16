@@ -22,6 +22,7 @@ public class MemberManageServiceImpl implements MemberManageService { //회원 �
     @Autowired
     MemberManageDao manageDao;
 
+    //회원 등급 변경 시, 필요한 Dao(조교(관리자),강사,학생)
     @Autowired
     InsturctorInfoDao insturctorInfoDao;
 
@@ -48,32 +49,30 @@ public class MemberManageServiceImpl implements MemberManageService { //회원 �
 
 
     @Override
-    @Transactional(rollbackFor = Exception.class)
-    public int modify(Integer status, Integer grade, List<Integer> mebrNo) throws Exception { //메인수정
+    @Transactional(rollbackFor = Exception.class) //메인페이지 상태/등급 일괄 수정
+    public int modify(Integer status, Integer grade, List<Integer> mebrNo) throws Exception {
         int rowCnt = manageDao.update(status, grade, mebrNo);
 
+        //등급이 강사로 변경됐다면,
         if (grade == 3) {
-            //멤버의 정보 그대로 강사테이블로 insert
+            //회원 정보를 강사테이블로 insert
             InstructorInfoDto instructorInfoDto = new InstructorInfoDto();
 
             for (int i = 0; i < mebrNo.size(); i++) {
-
+                //회원 번호만 insert(소개말,급여는 추후에 강사가 기입 and 관리자가 지정)
                 instructorInfoDto.setMebrNo(mebrNo.get(i));
                 rowCnt = insturctorInfoDao.insert(instructorInfoDto);
-
             }
-        } else if (grade == 4) { //등급이 관리자로 변경됐다면,
-
+        } else if (grade == 4) { //등급이 관리자(조교)로 변경됐다면,
 
             for (int i = 0; i < mebrNo.size(); i++) {
                 MemberDto memberDto = manageDao.selectMember(mebrNo.get(i));
-                //멤버의 정보가 관리자 테이블로 insert
-                AdminDto adminDto = new AdminDto(); //아이디,이름,비번
+                //회원 정보가 관리자 테이블로 insert
+                AdminDto adminDto = new AdminDto();
                 adminDto.setId(memberDto.getId());
                 adminDto.setName(memberDto.getName());
                 adminDto.setPwd(memberDto.getPwd());
                 rowCnt = adminDao.insertAdmin(adminDto);
-
             }
         } else if (grade == 2) { //등급이 학생으로 변경됐다면,
             StdManageDto stdManageDto = new StdManageDto();
@@ -92,23 +91,28 @@ public class MemberManageServiceImpl implements MemberManageService { //회원 �
 
 
     @Override
-    @Transactional(rollbackFor = Exception.class)
-    public int modifyDetail(MemberDto memberDto) throws Exception { //상세수정 _ 4번 강사 _ 5번 관리자
+    @Transactional(rollbackFor = Exception.class) //상세페이지 수정
+    public int modifyDetail(MemberDto memberDto) throws Exception {
         int rowCnt = manageDao.updateDetail(memberDto);
         //만약 등급이 강사로 변경됐다면,
-        if (memberDto.getGrade() == 4) {
+        if (memberDto.getGrade() == 3) {
             //멤버의 정보 그대로 강사테이블로 insert
             InstructorInfoDto instructorInfoDto = new InstructorInfoDto();
-            instructorInfoDto.setIscrNo("15"); //이 값을 어떻게..int 자동증가 수로 만들면 될 듯
             instructorInfoDto.setMebrNo(memberDto.getMebrNo());
             insturctorInfoDao.insert(instructorInfoDto);
-        } else if (memberDto.getGrade() == 5) { //등급이 관리자로 변경됐다면,
+        } else if (memberDto.getGrade() == 4) { //등급이 관리자로 변경됐다면,
             //멤버의 정보가 관리자 테이블로 insert
-            AdminDto adminDto = new AdminDto(); //아이디,이름,비번
+            AdminDto adminDto = new AdminDto();
             adminDto.setId(memberDto.getId());
             adminDto.setName(memberDto.getName());
             adminDto.setPwd(memberDto.getPwd());
             adminDao.insertAdmin(adminDto);
+        }else if(memberDto.getGrade() == 2){ //학생으로 변경됐다면,
+            StdManageDto stdManageDto = new StdManageDto();
+            stdManageDto.setMebrNo(memberDto.getMebrNo());
+            stdManageDto.setGisu("");
+            stdManageDto.setStatus(1); //'수강예정' 기본값
+            rowCnt = stdManageDao.insert(stdManageDto);
         }
         return rowCnt;
     }

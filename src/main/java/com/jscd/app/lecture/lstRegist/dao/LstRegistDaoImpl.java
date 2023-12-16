@@ -11,45 +11,51 @@ import java.util.Map;
 
 @Repository
 public class LstRegistDaoImpl implements LstRegistDao {
+
     @Autowired
     SqlSession session;
     private String namespace = "com.jscd.app.lecture.lstRegist.lstRegistMapper.";
 
-    @Override
-    public int countRegist() throws Exception {
-        return session.selectOne(namespace + "count");
-    }
-
-    @Override
-    public int addRegist(LstRegistDto dto) throws Exception {
-        return session.insert(namespace + "insert", dto);
-    }
-
+    //1.강의 목록
     @Override
     public List<LstRegistDto> getRegistList() throws Exception {
         return session.selectList(namespace + "selectAll");
     }
-
+    //2.강의 등록
+    @Override
+    public int addRegist(LstRegistDto lstRegistDto) throws Exception {
+        return session.insert(namespace + "insert", lstRegistDto);
+    }
+    //3.강의 상세
     @Override
     public Map<String, Object> readRegist(Integer registCode) throws Exception {
         return session.selectOne(namespace + "select", registCode);
     }
-
+    //4.강의 삭제
+    @Override
+    public int removeAllRegist(Integer registCode) throws Exception {
+        return session.delete(namespace + "deleteAll", registCode);
+    }
+    //5.강의 수정
     @Override
     public int modifyRegist(LstRegistDto dto) throws Exception {
         return session.update(namespace + "update", dto);
     }
 
-    @Override
-    public int removeAllRegist(Integer registCode) throws Exception {
-        return session.delete(namespace + "deleteAll", registCode);
-    }
 
+    //6.강의 카운트
+
+    @Override
+    public int countRegist() throws Exception {
+        return session.selectOne(namespace + "count");
+    }
+    //7.강의 전체 삭제
     @Override
     public int removeRegist(Integer registCode) throws Exception {
         return session.delete(namespace + "delete", registCode);
     }
 
+    //8.검색 및 페이지
     @Override
     public int searchResultCnt(SearchCondition sc) throws Exception {
         return session.selectOne(namespace+"searchResultCnt", sc);
@@ -60,6 +66,7 @@ public class LstRegistDaoImpl implements LstRegistDao {
         return session.selectList(namespace+"searchSelectPage", sc);
     }
 
+    //9.세미나
     @Override
     public List<LstRegistDto> getSeminarList() throws Exception {
         return session.selectList(namespace + "seminarList");
@@ -70,13 +77,31 @@ public class LstRegistDaoImpl implements LstRegistDao {
         return session.selectOne(namespace + "seminarDetail", registCode);
     }
 
+    //10.부트캠프
     @Override
     public List<LstRegistDto> getBootCampList() throws Exception {
         return session.selectList(namespace + "bootCampList");
     }
 
+    //부트캠프 세부항목 읽기
     @Override
     public LstRegistDto readBootCamp(Integer registCode) throws Exception {
         return session.selectOne(namespace + "bootCampDetail", registCode);
+    }
+
+    //강의 첨부 파일
+    @Override
+    public int InsertFile(Map<String, Object> map) throws Exception {
+        return session.insert(namespace+"InsertFile", map);
+    }
+
+    @Override
+    public List<Map<String, Object>> selectFileList(Integer registCode) throws Exception {
+        return session.selectList(namespace+"selectFileList",registCode);
+    }
+
+    @Override
+    public Map<String, Object> selectFileDown(Map<String, Object> map) throws Exception {
+        return session.selectOne(namespace+"selectFileDown", map);
     }
 }

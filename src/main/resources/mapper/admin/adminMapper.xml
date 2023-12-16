@@ -5,20 +5,20 @@
 <mapper namespace="com.jscd.app.mapper.adminMapper">
 
 
-    <!--    insert : 관리자 회원가입 시 or 회원정보관리에서 등급 업데이트 시,정보 저장-->
+    <!--  회원정보관리에서 관리자로 등급 업데이트 시, 관리자 테이블에 insert -->
     <insert id="insertAdmin" parameterType="AdminDto">
         insert into admin
             (id, name, pwd)
         values (#{id}, #{name}, #{pwd})
     </insert>
 
-    <!--    count : 관리자 수-->
+    <!--   관리자 수-->
     <select id="countAdmin" resultType="int">
         select count(*)
         from admin;
     </select>
 
-    <!--    중복되는 쿼리문-->
+    <!--    select 쿼리문-->
     <sql id="selectAdmin">
         select id,
                name,
@@ -32,7 +32,7 @@
         from admin
     </sql>
 
-    <!--    select : 로그인, 관리자 정보 확인-->
+    <!--    select : 로그인 시, 관리자 정보 확인-->
     <select id="selectAdmin" parameterType="String" resultType="AdminDto">
         <include refid="selectAdmin"/>
         where id = #{id}
@@ -41,13 +41,15 @@
     <!--    selectAll : 관리자 전체 정보 관리-->
     <select id="selectAllAdmin" resultType="AdminDto">
         <include refid="selectAdmin"/>
-        order by adminNo
+        order by name
     </select>
 
     <!--    update : 관리자 정보 수정-->
     <update id="updateAdmin" parameterType="AdminDto">
         update admin
-        set nickname      = #{nickname},
+        set nickname   = #{nickname},
+            birth      = #{birth},
+            phone      = #{phone},
             modifyDate = now()
         where id = #{id}
     </update>

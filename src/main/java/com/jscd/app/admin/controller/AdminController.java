@@ -4,9 +4,12 @@ package com.jscd.app.admin.controller;
 import com.jscd.app.admin.dto.AdminDto;
 import com.jscd.app.admin.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -14,7 +17,10 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 	/*
 	작성일:20231126
@@ -33,7 +39,7 @@ public class AdminController {
 
 
 
-    //로그인 해야 갈 수 있도록 필터처리
+    //관리자 홈
     @GetMapping("/home")
     public String adminHome() {
         return "admin/dashBoard";
@@ -107,6 +113,7 @@ public class AdminController {
     }
 
 
+
     //관리자 개인정보 페이지 보여주기
     @GetMapping("/read")
     public String adminInfoRead(Model model, HttpSession session) {
@@ -125,10 +132,17 @@ public class AdminController {
         return "/admin/adminInfo/adminInfo";
     }
 
+    //관리자 생일 수정을 위한 변환기
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));}
+
     //관리자 개인정보 수정하기
     @PostMapping("/modify")
     public String adminModify(AdminDto adminDto, Model model, HttpSession session) {
         try {
+            System.out.println("adminDto = " + adminDto);
             //현재 세션에 저장된 관리자 id를 가져옴
             String adminId = (String) session.getAttribute("adminId");
             //업데이트할 객체에 id를 넣어줌

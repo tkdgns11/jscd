@@ -17,6 +17,7 @@
         let msg = "${param.msg}";
         if (msg == "READ_ERR") alert("정보를 가져오는데 실패했습니다. 다시 시도해 주세요.");
         if (msg == "MOD_OK") alert("성공적으로 수정되었습니다.");
+        if (msg == "MOD_ERR") alert("수정에 실패하였습니다. 다시 시도해 주세요.");
 
     </script>
 
@@ -27,7 +28,6 @@
 
 <header>
     <jsp:include page="../adminHeader.jsp"/>
-    <jsp:include page="../adminSidebar.jsp"/>
 </header>
 
 

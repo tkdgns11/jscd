@@ -22,7 +22,6 @@
 
 <header>
     <jsp:include page="../adminHeader.jsp"/>
-    <jsp:include page="../adminSidebar.jsp"/>
 </header>
 
 
@@ -33,13 +32,14 @@
     <label style="margin-right: 25px;">이름</label>
     <input type="text" class="infoInputBox" readonly value="${adminDto.name}"><br>
     <label style="margin-right: 15px;">닉네임</label>
-    <input type="text" name="nickname" class="infoInputBox" name="nickname" id="nickname" readonly
+    <input type="text" name="nickname" class="infoInputBox" id="nickname" readonly
            value="${adminDto.nickname}"><br>
     <label>생년월일</label>
-    <input type="text" class="infoInputBox" readonly
+<%--    <input type="date" name="birth" id="birth" value="${adminDto.birth}"><br>--%>
+    <input type="text" class="infoInputBox" readonly name="birth" id="birth"
            value="<fmt:formatDate value="${adminDto.birth}" pattern="yyyy-MM-dd" type="date"/>"><br>
     <label>휴대전화</label>
-    <input type="text" class="infoInputBox" readonly value="${adminDto.phone}"><br>
+    <input type="text" class="infoInputBox" readonly name="phone" id="phone" value="${adminDto.phone}"><br>
     <br>
     <input type="button" value="수정" class="modifyBtn">
     <input type="button" value="취소" class="deleteBtn" onclick="location.href='/admin/home'">
@@ -60,6 +60,12 @@
                 $("input[name=nickname]").attr('readonly', false);
                 $("input[name=nickname]").focus();
                 $("input[name=nickname]").css("border-bottom", "1px solid red");
+                $("input[name=phone]").attr('readonly', false);
+                $("input[name=phone]").css("border-bottom", "1px solid red");
+                $("input[name=birth]").attr('type', 'date');
+                $("input[name=birth]").attr('readonly', false);
+
+
 
             } else {
                 const form = document.createElement('form');
@@ -67,7 +73,11 @@
                 form.setAttribute('action', '/admin/modify');
 
                 var nickname = document.getElementById('nickname');
+                var phone = document.getElementById('phone');
+                var birth = document.getElementById('birth');
                 form.appendChild(nickname);
+                form.appendChild(phone);
+                form.appendChild(birth);
                 document.body.appendChild(form);
                 form.submit();
 
