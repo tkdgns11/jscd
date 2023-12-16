@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/jscdReset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/bootCamp.css"/>">
-    <title>bootCampList</title>
+    <title>BootCampList</title>
 </head>
 <body>
 <header>
