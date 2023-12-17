@@ -1,13 +1,8 @@
 /* 구분 */
 .section_buyer-info, .aside_pay-info {background-color: #fff;}
 .section_howpay {background-color: #fff;}
-
-/*#pay-success_main {background-color: #9da2a7;}*/
-#pay_info_type, #pay-success_lecture_notice {background-color: yellow;}
-#goLink_btns {background-color: skyblue;}
-#pay-success_main-content {background-color: #5EC75E;}
-.pay_info_amount {background-color: #5EC75E;}
-.pay_info_type {background-color: #41CDCD;}
+/*#orderDetail_info, #orderDetail_buyer_info {background-color: yellow;}*/
+/*#orderDetail_pay_info, #orderDetail_seller_info {background-color: skyblue;}*/
 
 /* 컨텐츠 영역 사이즈 */
 #pay_main {display: flex; width: 60%; margin: 50px auto;}
@@ -21,38 +16,55 @@
 #payBtns {margin: 60px 0 20px 0; display: flex; justify-content: center;}
 .aside_pay {position: fixed; right: 16%; top: 15%;}
 
-#pay-success_main {width: 50%; margin: 50px auto;}
-#pay-success_main-content {padding: 30px; background-color: #ffffff; box-shadow: 15px 15px 20px rgba(0, 0, 0, 0.15); border-radius: 7px;}
-#pay-success_header, #pay-success_notice, #odNo_notice, #pay_info_notice {border-bottom: solid 1px #d7d9dc;}
+#pay-success_main, .orderDetail_main {width: 50%; margin: 100px auto 300px auto;}
+#pay-success_main-content, #orderDetail_main-content {padding: 30px; background-color: #ffffff; box-shadow: 0 0 40px rgba(0, 0, 0, 0.15); border-radius: 7px;}
+#pay-success_header, #pay-success_notice, #odNo_notice, #pay_info_notice, #pay-success_lecture_notice {border-bottom: solid 1px #d7d9dc;}
 #pay-success_header {padding: 30px 30px 0 30px;}
-#pay-success_header > h2 {width: 60%; margin: 0 auto;}
+#pay-success_header > h2 {width: 45%; margin: 0 auto;}
 #pay-success_notice {padding: 80px;}
 #odNo_notice {padding: 40px;}
-#pay_info_notice {padding: 20px;}
-.pay_info_amount, .pay_info_type {width: 65%; margin: 0 auto;}
+#pay_info_notice, #pay-success_lecture_notice {padding: 40px;}
+.pay_info_amount, .pay_info_type, #pay-success_lecture_notice div {width: 35%; margin: 0 auto; display: flex;}
+.pay_info_amount_title, .pay_info_type_title, .pay-success_lecture_notice_title {text-align: left;}
+.pay_info_amount_num-section, .pay_info_type_showType, .pay-success_lecture_notice_lecture-title {text-align: right;}
+.pay_info_amount span, .pay_info_type span, .pay-success_lecture_notice_title, .pay-success_lecture_notice_lecture-title {width: 50%;}
+#goLink_btns {padding: 65px;}
+#go_orderlist {margin-bottom: 15px;}
+#account_notice {padding-bottom: 40px;}
 
+#orderDetail_header {margin: 0 auto;}
+#orderDetail_contents {padding: 40px 0;}
+#orderDetail_info, #orderDetail_pay_info, #orderDetail_buyer_info, #orderDetail_seller_info {width: 64%; margin: 0 auto;}
+#orderDetail_info_odNo1 tr td, #pay_common_content tr td, #orderDetail_buyer_content tr td, #orderDetail_seller_content tr td {width: 50%;}
+#orderDetail_info_odNo1, #pay_common_content, #orderDetail_buyer_content, #orderDetail_seller_content {width: 100%;}
+#orderDetail_btn {margin: 20px 0 60px 0;}
+#orderDetail_buyer_info, #orderDetail_pay_info, #orderDetail_seller_info {padding: 20px 0; border-bottom: solid 1px #d7d9dc;}
+#orderDetail_info {padding-bottom: 20px; border-bottom: solid 1px #d7d9dc;}
+/*#orderDetail_seller_info {padding-top: 20px;}*/
 
 /* 공통 */
 body {font-size: 1rem; line-height: 1.5;}
 .display-none {display: none;}
 .bottom-fixed {display: none;}
-.buyer-info_header > input, #card, #account, #kakaopay, #copyBtn, .e-open-terms, #goQna, #price-btn {cursor: pointer;}
 
 /* img */
 #boss_thanks {width: 40%; padding-top: 35px;}
+#boss_thanks:hover {opacity: 1; -webkit-animation: flash 1.5s; animation: flash 1.5s;}
+@-webkit-keyframes flash {0% {opacity: .4;} 100% {opacity: 1;} }
+@keyframes flash {0% {opacity: .4;} 100% {opacity: 1;} }
 
 /* 텍스트 */
-.buyer-info_header > input, .buyer-info_list div dt, .terms-agreement , #goQna, .lecture-date_start_title, .lecture-date_end_title, .tableText, #odNo_notice > p, #pay_info_notice {color: #94a0ab;}
-.buyer-info_list div dd, .lecture-date_start_day, .lecture-date_end_day, #slrActNum {color: #575e65;}
+.buyer-info_header > input, .buyer-info_list div dt, .terms-agreement , #goQna, .lecture-date_start_title, .lecture-date_end_title, .tableText, #odNo_notice > p {color: #94a0ab;}
+.buyer-info_list div dd, .lecture-date_start_day, .lecture-date_end_day, #slrActNum, #pay_info_notice, #pay-success_lecture_notice {color: #575e65;}
 .section_howpay > span {color: #9da2a7;}
 .price-pay-num, .price-pay > span, #price-btn {font-size: 16px;}
 .terms-agreement {font-size: 13px;}
 .e-open-terms {color: #7c838b; text-decoration: underline;}
 #goQna {font-size: 15px;}
-.pay-info_header, #pay-success_header > h2 {font-size: 24px; font-weight: 700; padding: 20px 0 20px 0; border-bottom: solid 1px black; letter-spacing: 7px;}
+.pay-info_header, #pay-success_header > h2, #receipt-title {font-size: 24px; font-weight: 700; padding: 20px 0 20px 0; border-bottom: solid 1px black; letter-spacing: 7px;}
 .lecture-title_info, .lecture-price_title, .section_howpay > h2 {padding: 0 0 15px 0; font-size: 18px; font-weight: 550; color: #707880;}
 .lecture-title {border-bottom: solid 0.5px #d9e1e8; padding-bottom: 50px;}
-.lecture-price-num, .lecture-title {color: #0185FE;}
+.lecture-price-num, .lecture-title, .pay_info_amount_num {color: #0185FE;}
 .lecture-title, .lecture-price-num, .lecture-price-unit {font-size: 20px;}
 .price-pay-num {color: #ED3269;}
 .cash-payment_notice > span {color: red;}
@@ -61,12 +73,31 @@ body {font-size: 1rem; line-height: 1.5;}
 #pay-success_header, #odNo_notice, #pay_info_type, #goLink_btns, #pay-success_notice, #pay_info_notice, #pay-success_lecture_notice {text-align: center;}
 #pay-success_notice p {font-size: 20px; color: #353739; line-height: 1.5;}
 #odNo_notice > p, #pay_info_notice {font-size: 17px; line-height: 1.7;}
+#cash_pay_notice {color: red !important;}
+#account_notice {color: #707880 !important;}
+
+#orderDetail_header {text-align: center;}
+.receipt-text {padding: 10px; margin: 30px 0;}
+#receipt-text-01 {font-size: 40px; font-weight: 700; color: #0185FE; padding-bottom: 10px; letter-spacing: 4px;}
+#receipt-text-02 {font-size: 20px; color: #7c838b; letter-spacing: 10px;}
+#receipt-title {width: 45%; margin: 0 auto;}
+.orderdetail_td-01 {color: #7c838b;}
+.orderdetail_td-02 {text-align: right; color: #353739;}
+.orderdetail_td-highlight {text-align: right; color: #ED3269 !important;}
+.orderdetail_td-01, .orderdetail_td-02, .orderdetail_td-highlight {padding: 7px 0;}
+.orderdetail_header {padding: 5px 0; font-size: 18px; font-weight: 500; color: #353739}
+.orderdetail_td-subtitle {padding: 10px 0; color: #7c838b; font-weight: bold;}
+
 /* 버튼 디자인 */
 .order_btns:active {opacity: 0.5;}
-#price-btn {margin: 20px 0 10px 0; height: 40px; width: 100%; background-color: #0185FE; color: #fff; font-weight: bold; border: 0; border-radius: 10px;}
+.order_btns {cursor: pointer;}
+#price-btn, #go_orderlist {background-color: #0185FE; color: #fff; font-weight: bold; border: 0; border-radius: 10px;}
+#price-btn {margin: 20px 0 10px 0; height: 40px; width: 100%;}
 #goQna {margin: 20px 0 10px 0; height: 40px; width: 100%; background-color: #fff; border: 0; border-radius: 10px; box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);}
-#kakaopay, #card, #account {width: 150px; height: 60px; border: solid 1px #676363; color: #676363; border-radius: 10px; margin: 5px; background-color: #fff;}
+#kakaopay, #card, #account, #go_mypage {border: solid 1px #676363; color: #676363; border-radius: 10px; background-color: #fff;}
+#kakaopay, #card, #account {width: 150px; height: 60px; margin: 5px;}
 #copyBtn {height: 25px; width: 200px; border: solid 1px rgba(0, 0, 0, 0.2); color: #676363; border-radius: 10px; margin: 5px; background-color: #fff;}
+#go_orderlist, #go_mypage {width: 100%; height: 80px; font-size: 20px;}
 
 /* .aside_pay */
 .section_buyer-info {height: 135px;}

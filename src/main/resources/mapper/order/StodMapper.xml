@@ -32,6 +32,7 @@
                m.name,
                s.odNo,
                s.registCode,
+               s.regDate,
                lr.title,
                lr.lastPrice,
                p.htyNo,
@@ -45,6 +46,8 @@
                p.payDay,
                p.payTime,
                p.lastPrice,
+               p.payName,
+               p.payBank,
                c.slrNo,
                c.slrNum,
                c.slrName,
@@ -52,6 +55,7 @@
                c.slrAddr,
                c.companyName,
                c.indst,
+               c.slrMail,
                c.kind
         FROM member m
                  JOIN stod s ON m.id = s.id
@@ -70,9 +74,9 @@
 
     <!-- 사용자 결제 완료 시 결제 이력 테이블에 주문 정보 담기 위함 -->
     <insert id="insertPayHty" parameterType="StodDTO">
-        INSERT INTO payhty (odNo, id, lastPrice, payType, slrNo, slrName, slrNum, companyName, indst, kind, slrPhone,
+        INSERT INTO payhty (odNo, id, lastPrice, payType, slrNo, slrName, slrNum, slrMail, companyName, indst, kind, slrPhone,
                             creditNum, status, cardType, instlFees, slrAddr, payDay, payTime)
-        VALUES (#{odNo}, #{id}, #{lastPrice}, #{payType}, #{slrNo}, #{slrName}, #{slrNum}, #{companyName}, #{indst},
+        VALUES (#{odNo}, #{id}, #{lastPrice}, #{payType}, #{slrNo}, #{slrName}, #{slrNum}, #{slrMail}, #{companyName}, #{indst},
                 #{kind}, #{slrPhone}, #{creditNum}, #{status}, #{cardType}, #{instlFees}, #{slrAddr}, #{payDay},
                 #{payTime})
     </insert>

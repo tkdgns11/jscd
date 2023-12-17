@@ -23,7 +23,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/order")
@@ -86,7 +88,6 @@ public class OrderController {
         //결제 정보 DB에 넣기
         stodService.insertPayHty(stodDto);
 
-
         return null;
     }
 
@@ -104,7 +105,31 @@ public class OrderController {
 
         return null;
     }
-    
+
+//    @PostMapping("/actPaySuccess")
+//    public String submitOrder2(@RequestBody StodDTO stodDto) throws Exception {
+//        System.out.println("서버 측에서 주문 처리 중" + stodDto);
+//
+//        // 주문 정보 DB에 넣기
+//        stodService.insertStod(stodDto);
+//
+//        // 결제 정보 DB에 넣기
+//        stodService.insertPayHty(stodDto);
+//
+//        // "/order/actPaySuccess" 뷰 이름 반환
+//        return "redirect:/order/actPaySuccess?odNo=" + stodDto.getOdNo();
+//    }
+//
+//    @GetMapping("/order/actPaySuccess")
+//    public String showOrderSuccess(@RequestParam String odNo, Model model) {
+//        StodDTO stodDto = stodService.getStodByOdNo(odNo);
+//        model.addAttribute("stodDto", stodDto);
+//        return "/order/actPaySuccess";
+//    }
+
+
+
+
     // 카드 결제 완료 페이지 연결
     @GetMapping("/paySuccess")
     public String paySuccess() {
@@ -134,15 +159,6 @@ public class OrderController {
         return "order/orderList";
     }
 
-    // 주문 상세 내역 조회
-    // 1. 주문 ID(id)와 주문 번호(odNo) : URL 경로 변수로 받기
-//    @GetMapping("/{id}/{odNo}")
-//    public ResponseEntity<List<StodDTO>> selectOrderDetail(@PathVariable("id") String id, @PathVariable("odNo") String odNo) throws Exception {
-//        // 2. StodService의 selectOrderDetail() 호출 -> 주문 상세 내역 조회
-//        List<StodDTO> orderDetail = stodService.selectOrderDetail(id, odNo);
-//        // 3. 조회된 결과 -> HTTP 응답 본문으로 반환
-//        return ResponseEntity.ok(orderDetail);
-//    }
     @GetMapping("/orderDetail")
     public String selectOrderDetail(@RequestParam("odNo") String odNo, HttpServletRequest request, Model model) throws Exception {
         // 세션에서 로그인한 사용자의 ID를 가져옵니다.

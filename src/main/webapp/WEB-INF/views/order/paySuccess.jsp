@@ -25,6 +25,10 @@ http://localhost:8080/order/paySuccess
     <!-- css 파일 불러오기 -->
     <link rel="stylesheet" href="/css/reset.css" type="text/css"/>
     <link rel="stylesheet" href="/css/order.css" type="text/css"/>
+
+    <!--java script 파일 불러오기-->
+    <script src="/js/paySuccess.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
 <div id="root">
@@ -42,7 +46,9 @@ http://localhost:8080/order/paySuccess
             </section>
             <section id="pay-success_notice">
                 <h3 class="display-none">수강신청 완료 상세 안내</h3>
-                <p>수강신청 및 결제<br>완료되었습니다</p>
+                <div class="display-none"><p class="typing-txt">수강신청 및 결제가 완료되었습니다 :)</p></div>
+<%--                <p>수강신청 및 결제가 완료되었습니다 :)</p>--%>
+                <p id="receipt-text-01"></p>
             </section>
             <section id="odNo_notice">
                 <h3 class="display-none">주문 고유 번호</h3>
@@ -52,8 +58,10 @@ http://localhost:8080/order/paySuccess
                 <h3 class="display-none">결제 정보</h3>
                 <div class="pay_info_amount">
                     <span class="pay_info_amount_title">결제금액</span>
-                    <span class="pay_info_amount_num">500//수정필요</span>
-                    <span class="pay_info_amount_unit">원</span>
+                    <span class="pay_info_amount_num-section">
+                        <span class="pay_info_amount_num">500//수정필요</span>
+                        <span class="pay_info_amount_unit">원</span>
+                    </span>
                 </div>
                 <div class="pay_info_type">
                     <span class="pay_info_type_title">결제수단</span>
@@ -62,8 +70,10 @@ http://localhost:8080/order/paySuccess
             </section>
             <section id="pay-success_lecture_notice">
                 <h3 class="display-none">주문 강의 정보</h3>
-                <span class="pay-success_lecture_notice_title">주문 강의명</span>
-                <span class="pay-success_lecture_notice_lecture-title">리눅스//수정필요</span>
+                <div>
+                    <span class="pay-success_lecture_notice_title">주문 강의명</span>
+                    <span class="pay-success_lecture_notice_lecture-title">리눅스//수정필요</span>
+                </div>
             </section>
             <section id="goLink_btns">
                 <h3 class="display-none">바로가기 버튼</h3>
