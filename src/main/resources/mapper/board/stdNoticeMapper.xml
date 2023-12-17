@@ -30,7 +30,7 @@
 
 
     <sql id="selectFromNotice">
-        SELECT bno, title, content, writer, viewCnt,  regDate
+        SELECT *
         FROM stdnotibd
     </sql>
 
@@ -49,8 +49,8 @@
         UPDATE stdnotibd
         SET   title = #{title}
           , content = #{content}
-          , modifyDate = now()
-        WHERE bno = #{bno} and writer = #{writer}
+          , modifyDate = #{modifyDate}
+        WHERE bno = #{bno}
     </update>
 
 <!--    <update id="updateCommentCnt" parameterType="map">-->

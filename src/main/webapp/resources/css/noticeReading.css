@@ -1,0 +1,17 @@
+body{display: flex;    flex-direction: column; min-height: 100vh; width: 100%; max-width: 752px; margin: 0px auto;}
+#topLetter{border-bottom: 0.125rem solid rgb(222, 226, 230);  font-size: 16px; padding: 14px 0; font-weight: 700;}
+#notice{padding: 14px 16px;  border-bottom: 0.125rem solid #0185FE;}
+
+#title{height: 39px; font-size: 28px; text-align: left; border-width: 0px; outline: 0px; margin-bottom: 16px;  width: 100%;
+    font-weight: 700;    line-height: 1.35; padding: 0px; resize: none;}
+#buttonBox{bottom: 0px;left: 0px;display: flex;justify-content: flex-end;align-items: center; padding: 16px 20px; width: 100%; margin-left: 10px;}
+#writeBtn, #modifyBtn, #removeBtn, #listBtn {margin-left: 10px;}
+#regDate,#viewCnt, #writer,#modifyDate  {border: none; color: #868e96;}
+.ck ck-sticky-panel__content{width:100%; margin-top: 14px ;}
+.ck-content{ border: 1px solid #ced4da; min-height: 480px;  padding: 16px 20px; font-size: 12px; }
+#detailHd{padding: 40px 40px 0; color: #212529; box-sizing: border-box;}
+#detailHd span{color: #868e96; font-size: 13px;}
+#wrapCon{padding: 16px 14px 0 14px; width: 100% ;border-radius: 8px; }
+#wrapAtc{display: flex; align-content: center; margin: 16px 14px; border-radius: 8px; width: 100%;}
+.attachBtn{border: 1px solid #ced4da; height: 30px; border-radius: 8px; padding: 5px 20px 0 20px;width: 100% ; }
+
