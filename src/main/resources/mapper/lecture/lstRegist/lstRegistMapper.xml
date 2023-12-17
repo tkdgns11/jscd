@@ -39,7 +39,7 @@
     <!--       강의 조회하기-->
     <select id="selectAll" resultType="lstRegistDto">
         <include refid="selectFromlstRegist"/>
-        order by regdate desc, registCode desc
+        order by regDate desc, registCode desc
     </select>
 
     <!--       강의 세부 사항 조회하기-->
@@ -86,7 +86,7 @@
     </sql>
 
     <select id="searchSelectPage" parameterType="SearchCondition" resultType="lstRegistDto">
-        SELECT registCode, title
+        SELECT registCode, title, regDate
         FROM  lstregist
         WHERE true
         <include refid="searchCondition"/>
@@ -148,5 +148,9 @@
         WHERE fileNo = #{fileNo}
     </select>
 
-
+<!--    강의 첨부 파일 삭제하기-->
+    <delete id="updateFile" parameterType="hashMap">
+        delete from lstregistfile
+        WHERE fileNo = #{fileNo}
+    </delete>
 </mapper>

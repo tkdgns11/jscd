@@ -19,7 +19,8 @@ public interface LstService {
     //4.강의 삭제
     int removeRegist(Integer registCode) throws Exception;
     //5.강의 수정
-    int modifyRegist(LstRegistDto dto) throws Exception;
+    public void modifyRegist(LstRegistDto lstRegistDto, String[] files, String[] fileName, MultipartHttpServletRequest mpRequest) throws Exception;
+
     //6. 검색 및 페이지 처리
     int getSearchResultCnt(SearchCondition sc) throws Exception;
     List<LstRegistDto> getSearchResultPage(SearchCondition sc) throws Exception;

@@ -40,7 +40,8 @@ public class LstController {
     // 로그 선언
     private static final Logger logger = LoggerFactory.getLogger(LstController.class);
     // 파일이 저장될 위치
-    private static final String filePath = "C:\\Users\\wjdtn\\Desktop\\jscd\\src\\main\\webapp\\resources\\upload\\img";
+//    private static final String filePath = "C:\\Users\\wjdtn\\Desktop\\jscd\\src\\main\\webapp\\resources\\upload\\img";
+    private static final String filePath = "/Users/george/Desktop/JungSuk_Project/src/main/webapp/resources/upload/img";
 
     @Autowired
     LstService lstService;
@@ -135,18 +136,24 @@ public class LstController {
     //5.강의 수정
     // 등록된 강의 수정 기능 구현
     @PostMapping("/modifyRegist")
-    public String modifyRegist(LstRegistDto lstRegistDto, SearchCondition sc, RedirectAttributes rattr, Model m) throws Exception{
+    public String modifyRegist(LstRegistDto lstRegistDto,
+                               @RequestParam(value="fileNoDel[]")String[] files,
+                               @RequestParam(value="fileNameDel[]")String[] fileNames,
+                               MultipartHttpServletRequest mpRequest,
+                               SearchCondition sc,
+                               Model m) throws Exception{
         try {
-            lstService.modifyRegist(lstRegistDto);
+            // hidden에 담긴 정보들과 form에 담겨있는 각종 컬럼들의 값들을 service로 전달한다.
+            lstService.modifyRegist(lstRegistDto, files, fileNames, mpRequest);
 //            return "redirect:/onlyAdmin/lstRegist/list";
             return "redirect:/lstRegist/list"+sc.getQueryString();
         } catch(Exception e) {
             e.printStackTrace();
             m.addAttribute(lstRegistDto);
+            m.addAttribute(mpRequest);
             return "/lecture/lstRegist/lstRegistRegist";
         }
     }
-
     //6. 첨부파일 다운로드
     @RequestMapping(value="/fileDown")
     public void fileDown(@RequestParam Map<String, Object> map, HttpServletResponse response) throws Exception{

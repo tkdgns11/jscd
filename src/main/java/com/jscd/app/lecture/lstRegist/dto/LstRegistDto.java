@@ -38,7 +38,7 @@ public class LstRegistDto {
     private Integer lastPrice;
     private String content;
 
-    private Date regDate;
+    private String regDate;
     private Integer firstIdNo;
     private String modifyDate;
     private Integer lastIdNo;
@@ -60,7 +60,7 @@ public class LstRegistDto {
     public LstRegistDto() {
     }
 
-    public LstRegistDto(Integer registCode, String title, String discription, Integer courseCode, String subject1, String subject2, String subject3, String subject4, String subject5, Integer price1, Integer price2, Integer price3, Integer price4, Integer price5, String onOff, String status, Integer minNum, Integer maxNum, String location, Integer currentNum, String startDate, String endDate, String book, String material, Integer totalPrice, String discount, Integer lastPrice, String content, Date regDate, Integer firstIdNo, String modifyDate, Integer lastIdNo, String etc, String courseName) {
+    public LstRegistDto(Integer registCode, String title, String discription, Integer courseCode, String subject1, String subject2, String subject3, String subject4, String subject5, Integer price1, Integer price2, Integer price3, Integer price4, Integer price5, String onOff, String status, Integer minNum, Integer maxNum, String location, Integer currentNum, String startDate, String endDate, String book, String material, Integer totalPrice, String discount, Integer lastPrice, String content, String regDate, Integer firstIdNo, String modifyDate, Integer lastIdNo, String etc, String courseName) {
         this.registCode = registCode;
         this.title = title;
         this.discription = discription;
@@ -321,11 +321,11 @@ public class LstRegistDto {
         this.content = content;
     }
 
-    public Date getRegDate() {
+    public String getRegDate() {
         return regDate;
     }
 
-    public void setRegDate(Date regDate) {
+    public void setRegDate(String regDate) {
         this.regDate = regDate;
     }
 

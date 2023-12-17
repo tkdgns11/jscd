@@ -155,8 +155,8 @@
         <c:forEach var="list" items="${list}">
             <tr class="registTr">
                 <td class="registTd">${list.registCode}</td>
-<%--                <td class="registTd"><a href="<c:url value='/onlyAdmin/lstRegist/detailRegist?registCode=${lstRegist.registCode}&page=${page}&pageSize=${pageSize}'/>">${list.title}</a></td>--%>
-                <td class="registTd"><a href="<c:url value='/lstRegist/detailRegist?registCode=${list.registCode}&page=${page}&pageSize=${pageSize}'/>">${list.title}</a></td>
+<%--                <td class="registTd"><a href="<c:url value='/onlyAdmin/lstRegist/detailRegist${ph.sc.queryString}&registCode=${list.registCode}'/>">${list.title}</a></td>--%>
+                <td class="registTd"><a href="<c:url value='/lstRegist/detailRegist${ph.sc.queryString}&registCode=${list.registCode}'/>">${list.title}</a></td>
                 <td class="registTd">${list.regDate} </td>
             </tr>
         </c:forEach>
