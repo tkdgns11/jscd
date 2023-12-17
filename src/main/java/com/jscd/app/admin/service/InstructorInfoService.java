@@ -13,7 +13,7 @@ public interface InstructorInfoService {
 
     List<InstructorMemberInfoDto> getList(int offset, int pageSize) throws Exception;
 
-    InstructorMemberInfoDto read(Integer iscrNo) throws Exception;
+    InstructorMemberInfoDto read(Integer mebrNo) throws Exception;
 
     int modify(InstructorInfoDto instructorInfoDto) throws Exception;
 
@@ -25,4 +25,6 @@ public interface InstructorInfoService {
     List<InstructorMemberInfoDto> getSearchPage(SearchCondition sc) throws Exception;
 
     int getSearchResultCnt(SearchCondition sc) throws Exception;
-}
+    int modifyIntro(InstructorInfoDto instructorInfoDto)throws Exception;
+
+    }

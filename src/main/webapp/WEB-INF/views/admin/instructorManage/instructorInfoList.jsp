@@ -94,7 +94,7 @@
                             pattern="yyyy-MM-dd"
                             type="date"/></td>
                     <td>
-                        <button class="detailBtn" onclick="location.href='/onlyAdmin/instructor/read?page=${sc.page}&iscrNo=${instructorDto.iscrNo}'">
+                        <button class="detailBtn" onclick="location.href='/onlyAdmin/instructor/read?page=${sc.page}&mebrNo=${instructorDto.mebrNo}'">
                             상세보기
                         </button>
                     </td>

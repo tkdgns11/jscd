@@ -39,8 +39,8 @@ public class InsturctorInfoDaoImpl implements InsturctorInfoDao {
     }
 
     @Override
-    public InstructorMemberInfoDto select(Integer iscrNo) throws Exception {
-        return session.selectOne(namespace + "select", iscrNo);
+    public InstructorMemberInfoDto select(Integer mebrNo) throws Exception {
+        return session.selectOne(namespace + "select", mebrNo);
     }
 
     @Override
@@ -74,6 +74,10 @@ public class InsturctorInfoDaoImpl implements InsturctorInfoDao {
     @Override
     public int searchResultCnt(SearchCondition sc) throws Exception {
         return session.selectOne(namespace + "searchResultCnt", sc);
+    }
+    @Override
+    public int updateIntro(InstructorInfoDto instructorInfoDto)throws Exception{
+        return session.update(namespace+"updateIntro",instructorInfoDto);
     }
 
 

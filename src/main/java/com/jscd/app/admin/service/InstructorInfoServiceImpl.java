@@ -38,8 +38,8 @@ public class InstructorInfoServiceImpl implements InstructorInfoService { //강�
     }
 
     @Override
-    public InstructorMemberInfoDto read(Integer iscrNo) throws Exception {
-        return infoDao.select(iscrNo);
+    public InstructorMemberInfoDto read(Integer mebrNo) throws Exception {
+        return infoDao.select(mebrNo);
     }
 
     @Override  //상세보기 페이지 update
@@ -91,6 +91,11 @@ public class InstructorInfoServiceImpl implements InstructorInfoService { //강�
     @Override
     public int getSearchResultCnt(SearchCondition sc) throws Exception {
         return infoDao.searchResultCnt(sc);
+    }
+
+    @Override
+    public int modifyIntro(InstructorInfoDto instructorInfoDto)throws Exception{
+        return infoDao.updateIntro(instructorInfoDto);
     }
 
 

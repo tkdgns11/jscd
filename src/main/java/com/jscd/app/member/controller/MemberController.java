@@ -1,6 +1,9 @@
 package com.jscd.app.member.controller;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
+import com.jscd.app.admin.dto.InstructorInfoDto;
+import com.jscd.app.admin.dto.InstructorMemberInfoDto;
+import com.jscd.app.admin.service.InstructorInfoService;
 import com.jscd.app.applyTraining.dto.BtApplicationDto;
 import com.jscd.app.board.qna.qnaDto.AttachDto;
 import com.jscd.app.lecture.lstRegist.dto.LectureApplyDto;
@@ -31,11 +34,13 @@ public class MemberController {
 	private NaverLoginBo naverLoginBo;
 	private KakaoLoginBo kakaoLoginBo;
 	private String apiResult = null;
+	private InstructorInfoService infoService;
 	@Autowired
-	public MemberController(MemberService memberService, NaverLoginBo naverLoginBo,KakaoLoginBo kakaoLoginBo){
+	public MemberController(MemberService memberService, NaverLoginBo naverLoginBo,KakaoLoginBo kakaoLoginBo,InstructorInfoService infoService){
 		this.memberService = memberService;
 		this.naverLoginBo = naverLoginBo;
 		this.kakaoLoginBo = kakaoLoginBo;
+		this.infoService = infoService;
 	}
 
 
@@ -254,7 +259,11 @@ public class MemberController {
 
 	//회원 개인정보수정 페이지 이동
 	@GetMapping("/memberEdit")
-	public String memberEditPage() throws Exception{
+	public String memberEditPage(Model model,HttpSession session) throws Exception{
+		//등급이 강사라면, 사이드바에 '강사 소개말' 메뉴 보이도록 해야돼서, 등급 체크를 위해 현재 로그인된 member객체 jsp에 보내주기
+		String id = (String)session.getAttribute("id");
+		MemberDto memberDto = memberService.memberSelect(id);
+		model.addAttribute("memberDto",memberDto);
 		return "/member/myPagePwdChk";
 	}
 	@GetMapping("/memberPwdChk")
@@ -345,6 +354,42 @@ public class MemberController {
 	public String introTeacher(){
 		return "introTeacher";
 	}
+
+
+	//강사 소개말 작성 페이지 이동
+	@GetMapping("/instructorIntro")
+	public String instructorIntro(HttpSession session,Model model){
+		String id = (String)session.getAttribute("id");
+		try{
+			//등급 체크를 위해 현재 로그인된 회원객체 select + 기존 강사 소개말 띄우기 위해 강사 객체 select jsp에 넘기기
+			MemberDto memberDto = memberService.memberSelect(id);
+			InstructorMemberInfoDto instructorMemberInfoDto = infoService.read(memberDto.getMebrNo());
+			model.addAttribute("memberDto",memberDto);
+			model.addAttribute("infoDto",instructorMemberInfoDto);
+		}catch (Exception e){
+			e.printStackTrace();
+			model.addAttribute("msg", "READ_ERR");
+			return "redirect:/member/memberPwdChk";
+		}
+		return "/member/instructorIntro";
+	}
+
+	//강사 소개말 등록+수정
+	@PostMapping("/instructorIntro")
+	public String instructorIntroSave(InstructorInfoDto instructorInfoDto,Model model){
+		try{
+			//넘어온 객체로 강사 객체 update
+			infoService.modifyIntro(instructorInfoDto);
+			model.addAttribute("msg", "MOD_OK");
+
+		}catch (Exception e){
+			e.printStackTrace();
+			model.addAttribute("msg", "MOD_ERR");
+			return "redirect:/member/instructorIntro";
+		}
+		return "redirect:/member/instructorIntro";
+	}
+
 
 }
 
