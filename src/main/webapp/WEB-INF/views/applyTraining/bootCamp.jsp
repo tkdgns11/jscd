@@ -17,9 +17,14 @@
 <%--    <script type="text/javascript" src="<c:url value="/js/bootCamp.js"/>"></script>--%>
     <title>bootCampDetail</title>
 </head>
+
 <script>
     //231214. 정수 여기에 로그인 검사 필요해요?
     //자스 자바 둘 다 할건가..궁금..?
+    //231218. 용호
+    //로그인 검사는 자바에서 하고 Model로 "msg" 전달 후 사용자에게 로그인 할건지 아닌지 물어보고
+    //확인 누르면 로그인 화면으로 이동, 취소 누르면 보던 페이지 그대로 유지하게 하려는 의도로 만들었어요.
+    //자바에서 로그인 검사하고 아무 알림 없이 로그인 화면 넘기면 이상해서 :)
     let msg = "${msg}";
     if(msg == "login required"){
         const confirmMsg = "로그인이 필요한 서비스입니다. \n로그인 하시겠습니까?";
@@ -34,6 +39,7 @@
         alert("이미 신청한 강의입니다.");
     }
 </script>
+
 <body>
 <header>
     <jsp:include page="../header.jsp"/>
@@ -45,10 +51,6 @@
     </div>
     <hr/>
     <div>
-<%--        <input type="button" class="registeBtn"  value="수강 신청">--%>
-<%--        <input type="button" class="modifyBtn"  value="공유 하기">--%>
-<%--        <input type="button" class="backBtn"  value="둘러 보기">--%>
-<%--        -231214. 정수 이거 버튼 처리해주세요 ajax를 써서 넘기든지.. js로 값들을 넘기든지... 처리되면 주석 삭제--%>
             <input type="button" class="registeBtn"  id="registeBtn" value="수강 신청">
             <input type="button" class="modifyBtn"  value="공유 하기">
             <input type="button" class="backBtn" id="backBtn" value="둘러 보기">
