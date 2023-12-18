@@ -1,3 +1,5 @@
+231218
+
 <%--
   Created by IntelliJ IDEA.
   User: george
@@ -22,7 +24,7 @@
     <hr/>
 </div>
 <div class="registAll">
-    <form id="registForm" name="registForm" class="registForm" enctype="multipart/form-data">
+    <form id="registForm" action="" name="registForm" class="registForm" enctype="multipart/form-data">
         <input type="hidden" name="registCode" value="${lstRegistDto.registCode}">
         <input type="hidden" id="fileNo" name="fileNo" value="">
         <input type="hidden" id="fileNoDel" name="fileNoDel[]" value="">
@@ -140,15 +142,31 @@
             </select>
         </div>
         <br>
-        <div id="registPeriod">* 수강 기간</div>
+        <div id="registPeriod"><p>* 수강 기간</p></div>
         <div id="registStartDay">
-            시작일<br>
+            <p>시작일</p>
             <input type="date" name="startDate" value="${lstRegistDto.startDate}" ${mode == "new" ? '' : 'readonly="readonly"'}>
         </div>
         &emsp; ~ &emsp;
         <div id="registEndDay">
-            종료일<br>
+            <p>종료일</p>
             <input type="date" name="endDate" value="${lstRegistDto.endDate}" ${mode == "new" ? '' : 'readonly="readonly"'}
+        </div>
+        <br>
+        <div id="registTime"><p>* 수강 시간</p></div>
+        <div id="registStartTime">
+            <p>시작 시간</p>
+            <input type="time" class="inputTxt" name="startTime" value="${lstRegistDto.startTime}" ${mode == "new" ? '' : 'readonly="readonly"'}>
+        </div>
+        &emsp; ~ &emsp;
+        <div id="registEndTime">
+            <p>종료 시간</p>
+            <input type="time" class="inputTxt" name="endTime" value="${lstRegistDto.endTime}" ${mode == "new" ? '' : 'readonly="readonly"'}>
+        </div>
+        <br>
+        <div class="registBody">
+            <p>강사</P>
+            <input type="text" class="inputTxt" name="name" value="${lstRegistDto.name}" ${mode == "new" ? '' : 'readonly="readonly"'}>
         </div>
         <br>
         <div class="book">
@@ -229,16 +247,18 @@
                     <input type="button" class="deleteImg" onclick="fn_del('${file.fileNo}', 'fileNo${var.index}');" value="x">
                 </c:forEach>
             </div>
-<%--            파일 삭제를 위해 폼 태그 밑에 선언해둔 곳에 정보를 push하는 메서드--%>
+            <%--            파일 삭제를 위해 폼 태그 밑에 선언해둔 곳에 정보를 push하는 메서드--%>
             <script>
                 var fileNoArray = new Array();
                 var fileNameArray = new Array();
                 function fn_del(value, name) {
-                    // Todo 이미지 가리기 구현해야함.
                     fileNoArray.push(value);
                     fileNameArray.push(name);
                     $("#fileNoDel").attr("value", fileNoArray);
                     $("#fileNameDel").attr("value", fileNameArray);
+
+                    var imgElement = $("#img" + name);
+                    imgElement.hide();
                 }
             </script>
         </div>
@@ -262,11 +282,13 @@
 </div>
 <script>
     $(document).ready(function() {
-        $("#registRegistBt").on("click", function() {
+        $("#registRegistBt").on("click", function(e) {
+            e.preventDefault();
             if(!confirm("해당 게시물을 등록하시겠습니까?")) return;
 
             let form = $("#registForm");
-            // form.attr("action", "<c:url value='/onlyAdmin/lstRegist/addRegist'/>");
+            console.log(form);
+            <%--// form.attr("action", "<c:url value='/onlyAdmin/lstRegist/addRegist'/>");--%>
             form.attr("action", "<c:url value='/lstRegist/addRegist'/>");
             form.attr("method", "post");
             form.attr("enctype", "multipart/form-data");
@@ -293,10 +315,9 @@
 
                 $("input[name=startDate]", form).attr('readonly', false);
                 $("input[name=endDate]", form).attr('readonly', false);
-                // $("input[name=startTime]", form).attr('readonly', false);
-                // $("input[name=endTime]", form).attr('readonly', false);
-                // $("input[name=name]", form).attr('readonly', false);
-                // $("input[name=name]", form).attr('readonly', false);
+                $("input[name=startTime]", form).attr('readonly', false);
+                $("input[name=endTime]", form).attr('readonly', false);
+                $("input[name=name]", form).attr('readonly', false);
                 $("input[name=book]", form).attr('readonly', false);
                 $("input[name=material]", form).attr('readonly', false);
                 $("select[name=discount]", form).attr('disabled', false);
@@ -310,7 +331,7 @@
             }
 
             if(!confirm("해당 게시물을 정말로 수정하시겠습니까?")) return;
-            // form.attr("action", "<c:url value='/onlyAdmin/lstRegist/modifyRegist${searchCondition.queryString}'/>");
+            <%--form.attr("action", "<c:url value='/onlyAdmin/lstRegist/modifyRegist${searchCondition.queryString}'/>");--%>
             form.attr("action", "<c:url value='/lstRegist/modifyRegist${searchCondition.queryString}'/>");
             form.attr("method", "post");
             form.attr("enctype", "multipart/form-data");
@@ -321,14 +342,14 @@
             if(!confirm("정말로 삭제하시겠습니까?")) return;
 
             let form = $("#registForm");
-            // form.attr("action", "<c:url value='/onlyAdmin/lstRegist/removeRegist'/>");
+            <%--form.attr("action", "<c:url value='/onlyAdmin/lstRegist/removeRegist'/>");--%>
             form.attr("action", "<c:url value='/lstRegist/removeRegist${searchCondition.queryString}'/>");
             form.attr("method", "post");
             form.submit();
         });
 
         $("#registListBt").on("click", function() {
-            // location.href="<c:url value='/onlyAdmin/lstRegist/list?page=${param.page}&pageSize=${param.pageSize}'/>";
+            <%--location.href="<c:url value='/onlyAdmin/lstRegist/list?page=${param.page}&pageSize=${param.pageSize}'/>";--%>
             location.href="<c:url value='/lstRegist/list${searchCondition.queryString}'/>";
         });
     });

@@ -3,6 +3,7 @@ package com.jscd.app.lecture.lstRegist.service;
 import com.jscd.app.lecture.lstRegist.dao.LstRegistDao;
 import com.jscd.app.lecture.lstRegist.dto.LstRegistDto;
 import com.jscd.app.lecture.lstRegist.dto.SearchCondition;
+import com.jscd.app.lecture.lstRegist.dto.lstregistfileDto;
 import com.jscd.app.lecture.lstRegist.util.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -83,7 +84,7 @@ public class LstServiceImpl implements LstService {
 
     //7.세미나
     @Override
-    public List<LstRegistDto> seminarList() throws Exception {
+    public List<lstregistfileDto> seminarList() throws Exception {
         return lstRegistDao.getSeminarList();
     }
 
