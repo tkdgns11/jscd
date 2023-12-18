@@ -26,3 +26,4 @@ public interface NoticeService {
 
         int modify(noticeDto noticeDto) throws Exception;
 }
+
