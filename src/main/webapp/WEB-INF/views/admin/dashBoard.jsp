@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+<%@ page import="java.net.URLDecoder"%>
 <html lang="en">
 <head>
 <%--  <meta charset="UTF-8">--%>
@@ -577,6 +578,9 @@
 </div>
 
 <script>
+
+let msg = "${param.msg}";
+if (msg != "") alert("원장님만 접근 가능한 페이지 입니다.");
 
   function toggleBoxContent(element) {
     var boxContent = element.nextElementSibling;

@@ -38,7 +38,7 @@
 <div id="myPagePwdChkBox">
     <nav>
         <ul>
-            <li><a href="#">회원 정보 수정</a></li>
+            <li><a href="/member/memberEdit">회원 정보 수정</a></li>
             <li><a href="#">강의 신청 현황</a></li>
             <c:if test="${memberDto.getGrade() eq '3'}">
                 <li><a href="/member/instructorIntro">강사 소개말 작성</a></li>
@@ -47,9 +47,7 @@
     </nav>
     <div id="instructorInfoBox" style="margin-top: 100px;margin-left: 50px">
         <h1 id="introTitle">강사 소개말</h1>
-        <textarea rows="20" cols="80" name="intro" readonly id="intro" style="text-align-all: left;">
-            ${infoDto.getIntro()}
-        </textarea>
+        <textarea rows="20" cols="80" name="intro" readonly id="intro" id="intro">${infoDto.getIntro()}</textarea>
         <input type="button" value="수정" class="modifyBtn" style="margin-top: 150px;left: 3.5%">
         <input type="hidden" name="mebrNo" value="${memberDto.getMebrNo()}" id="mebrNo">
     </div>
@@ -62,14 +60,24 @@
 <script>
     $(document).ready(function () {
 
+
+
+
+
         $('.modifyBtn').on("click", function () {
             let isReadonly = $("textarea[name=intro]").attr('readonly');
 
             if (isReadonly == 'readonly') {
                 $("#introTitle").html("강사 소개말 수정");
                 $("textarea[name=intro]").attr('readonly', false);
-                $("textarea[name=intro]").focus();
+
+                var len = $('#intro').val().length;
+                $('#intro').focus();
+                $('#intro')[0].setSelectionRange(len, len);
+
                 $(".modifyBtn").val("등록");
+
+
             } else {
                 //post메서드로 저장
                 const form = document.createElement('form');

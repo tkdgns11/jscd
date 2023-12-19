@@ -8,8 +8,8 @@
     <!--  회원정보관리에서 관리자로 등급 업데이트 시, 관리자 테이블에 insert -->
     <insert id="insertAdmin" parameterType="AdminDto">
         insert into admin
-            (id, name, pwd)
-        values (#{id}, #{name}, #{pwd})
+            (id, name, pwd,grade)
+        values (#{id}, #{name}, #{pwd},#{grade})
     </insert>
 
     <!--   관리자 수-->
