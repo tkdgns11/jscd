@@ -71,7 +71,7 @@ public class stdNoticeController {
     public String remove(Integer bno, Integer page, Integer pageSize, Model m, HttpSession session, RedirectAttributes rattr) {
 
 
-        String writer = "memeber493";
+        String writer = "memeber428";
 //                (String)session.getAttribute("id");
 
 
@@ -94,12 +94,16 @@ public class stdNoticeController {
     }
 
     @GetMapping("/write")  //게시판 작성을 위한 빈 화면을 보여준다
-    public String write(Model m) {
-        m.addAttribute("mode", "new");
-//        m.addAttribute("page", page);
-//        m.addAttribute("pageSize", pageSize);
+    public String write(Model m, SearchCon sc) {
 
+        System.out.println("write get");
+
+        m.addAttribute("mode", "new");
+        m.addAttribute("page", sc.getPage());
+        m.addAttribute("pageSize", sc.getPageSize());
         System.out.println(m);
+        System.out.println("sc = " + sc);
+
         return "board/notice/stdNotice"; //읽기와 쓰기에 사용, 쓰기에 사용할 때는 mode=new , new가 아닐 때에는 읽기만!
     }
 
@@ -157,7 +161,6 @@ public class stdNoticeController {
 
             m.addAttribute("page", page);
             m.addAttribute("pageSize", pageSize);
-            rattr.addFlashAttribute("msg", "mod_ok"); //세션을 이용한 저장
 
             return "board/notice/stdNotice";
 

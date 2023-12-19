@@ -7,6 +7,9 @@ import com.jscd.app.board.notice.dto.noticeDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -15,15 +18,15 @@ public class NoticeServiceImpl implements NoticeService {
     @Autowired
     noticeDao noticeDao;
 
-   @Override
-    public List<noticeDto> getSearchResultPage(SearchCon sc) throws Exception{
-       return noticeDao.searchSelectPage(sc);
-   }
+    @Override
+    public List<noticeDto> getSearchResultPage(SearchCon sc) throws Exception {
+        return noticeDao.searchSelectPage(sc);
+    }
 
-   @Override
-    public int getSearchResultCnt(SearchCon sc) throws Exception{
-       return noticeDao.searchResultcnt(sc);
-   }
+    @Override
+    public int getSearchResultCnt(SearchCon sc) throws Exception {
+        return noticeDao.searchResultcnt(sc);
+    }
 
     @Override
     public int getCount() throws Exception {
@@ -62,8 +65,16 @@ public class NoticeServiceImpl implements NoticeService {
 
     @Override
     public int modify(noticeDto noticeDto) throws Exception {
-        return noticeDao.update(noticeDto);
-    }
+        Date date = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        String today = dateFormat.format(date);
+        noticeDto.setModifyDate(today);
+        System.out.println("today = " + today);
+        int result = noticeDao.update(noticeDto);
+        System.out.println("result = " + result);
+        return result;
 
+
+    }
 
 }

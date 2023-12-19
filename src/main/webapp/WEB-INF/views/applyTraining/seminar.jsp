@@ -41,10 +41,6 @@
     </div>
     <hr/>
     <div>
-        <%--        <input type="button" class="registesmn"  value="수강 신청">--%>
-        <%--        <input type="button" class="modifysmn"  value="공유 하기">--%>
-        <%--        <input type="button" class="backsmn"  value="둘러 보기">--%>
-        <%--        -231214. 정수 이거 버튼 처리해주세요 ajax를 써서 넘기든지.. js로 값들을 넘기든지... 처리되면 주석 삭제--%>
         <input type="button" class="registeBtn"  id="registesmn" value="수강 신청">
         <input type="button" class="modifyBtn"  value="공유 하기">
         <input type="button" class="backBtn" id="backsmn" value="둘러 보기">

@@ -38,8 +38,8 @@ public class noticeDaoImpl implements noticeDao {
     } // int delete(String statement, Object parameter)
 
     @Override
-    public int insert(noticeDto dto) throws Exception {
-        return session.insert(namespace+"insert", dto);
+    public int insert(noticeDto noticeDto) throws Exception {
+        return session.insert(namespace+"insert", noticeDto);
     } // int insert(String statement, Object parameter)
 
     @Override

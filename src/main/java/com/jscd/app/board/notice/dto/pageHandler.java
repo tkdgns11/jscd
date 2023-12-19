@@ -33,7 +33,7 @@ public class pageHandler {
     }
 
     private void doPaging(int totalCnt, SearchCon sc) {
-        this.totalPage = totalCnt / sc.getPageSize() + (totalCnt % sc.getPageSize()==0? 0:1);
+        this.totalPage = totalCnt / sc.getPageSize() + (totalCnt % sc.getPageSize()== 0? 0:1);
         this.sc.setPage(Math.min(sc.getPage(), totalPage));  // page가 totalPage보다 크지 않게
         this.beginPage = (this.sc.getPage() -1) / naviSize * naviSize + 1; // 11 -> 11, 10 -> 1, 15->11. 따로 떼어내서 테스트
         this.endPage = Math.min(beginPage + naviSize - 1, totalPage);
