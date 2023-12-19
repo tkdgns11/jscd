@@ -1,21 +1,22 @@
 // 메서드 실제 적용 영역
 window.onload = function () {
     // 1-1. 결제 방법 버튼 id 불러오기 후 변수에 담기
-    var cardPay = document.getElementById("card");
-    var kakaoPay = document.getElementById("kakaopay");
-    var actShow = document.getElementById("account");
+    const cardPay = document.getElementById("card");
+    const kakaoPay = document.getElementById("kakaopay");
+    const actShow = document.getElementById("account");
     // 1-2. 복사하기 버튼 불러오기 후 변수에 담기
-    var copyBtn = document.getElementById("copyBtn");
+    const copyBtn = document.getElementById("copyBtn");
     // 1-3. 결제하기 버튼 불러오기 후 변수에 담기
-    var lastPayBtn = document.getElementById("price-btn");
-    var goQna = document.getElementById("goQna");
+    const lastPayBtn = document.getElementById("price-btn");
+    // q&a 바로가기 연결
+    const goQna = document.getElementById("goQna");
 
-    var currentPaymentMethod = null;
+    let currentPaymentMethod = null;
 
-    var paymentMethods = [cardPay, kakaoPay, actShow];
+    const paymentMethods = [cardPay, kakaoPay, actShow];
 
-        var newPaymentFunc = function() {
-            var isPaymentSelected = paymentMethods.some(function(button) {
+    const newPaymentFunc = function() {
+            const isPaymentSelected = paymentMethods.some(function(button) {
                 return button.classList.contains("selected"); // "selected"는 선택된 버튼에 추가되는 클래스 이름이어야 합니다.
             });
 
@@ -28,9 +29,9 @@ window.onload = function () {
 
         lastPayBtn.addEventListener("click", newPaymentFunc);
         currentPaymentMethod = newPaymentFunc;
-    
 
-    var setPaymentMethod = function (paymentFunc) {
+
+    const setPaymentMethod = function (paymentFunc) {
         if (currentPaymentMethod) {
             lastPayBtn.removeEventListener("click", currentPaymentMethod);
         }
@@ -103,6 +104,7 @@ async function handleLastPayBtnClick() {
     const id = document.getElementById("id").value; //'현재 로그인한 회원의 id'; 
     const registCode = document.getElementById("registCode").value; //'registCode 값';
     const lastPrice = document.getElementById("lastPrice").value; //'lastPrice 값';
+    const title = document.getElementById("title").value; //'title 값'; //추가
 
     try {
         // 서버에 데이터를 전송하여 stod 테이블에 값을 추가
@@ -118,7 +120,8 @@ async function handleLastPayBtnClick() {
                 payType: "계좌이체",
                 status: "notPaid",
                 slrNo: "1",
-                lastPrice: lastPrice
+                lastPrice: lastPrice,
+                title: title //추가
             })
         });
 
@@ -441,6 +444,7 @@ function ActNumcopys() {
 
 // qna 바로가기 연결
 function ToGoQna() {
-    console.log('gogo');
+    console.log('go qna');
     window.location.href = "http://localhost:8080/board/qna/allqnaList";
 }
+

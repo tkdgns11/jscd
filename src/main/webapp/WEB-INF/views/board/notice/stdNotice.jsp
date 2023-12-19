@@ -6,13 +6,20 @@
 <head>
     <meta charset="UTF-8">
     <title>학생공지 글쓰기 리스트</title>
-    <link rel="stylesheet" href="<c:url value='/css/noticeList.css'/>">
+<%--    <link rel="stylesheet" href="<c:url value='/css/noticeList.css'/>">--%>
+    <link rel="stylesheet" href="<c:url value='/css/noticeReading.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/jscdReset.css'/>">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js"></script>
 </head>
 <body>
-<div id="headerNotice">
-    <div id="ltone">/* Student Notice */</div>
-    <div id="lttwo">학생 공지사항;</div>
+
+<header>
+    <jsp:include page="../../header.jsp"/>
+</header>
+
+<div id="topLetter">
+   <span id="notice">학생 공지사항</span>
 </div>
 <script>
     let msg = "${msg}";
@@ -20,22 +27,39 @@
 </script>
 
 <form action="" id="form">
-    <input type="hidden" name="bno" value="${stdNoticeDto.bno}"><br>
-    제목<br>
-    <input type="text" name="title" value="${stdNoticeDto.title}" ${mode=="new" ? '' : 'readonly="readonly"'}><br>
-    작성자<br>
-    <input type="text" name="writer" value="${stdNoticeDto.writer}" ${mode=="new" ? '' : 'readonly="readonly"'}><br>
-    <%--        <br><input type="hidden" name="reg_date"--%>
-    <%--                       value="${stdNoticeDto.reg_date}" ${mode=="new" ? '' : 'readonly="readonly"'}><br>--%>
-    내용<br>
-    <textarea name="content" id="" cols="50"
-              rows="10" ${mode=="new" ? '' : 'readonly="readonly"'}>${stdNoticeDto.content}</textarea><br>
-    <button type="button" id="upload">첨부파일</button>
-    <br>
-    <button type="button" id="writeBtn" class="btn" ${mode eq 'new' ? '' : 'hidden'}>${mode eq 'new' ? '등록하기' : ''}</button>
-    <button type="button" id="modifyBtn" class="btn">수정하기</button>
-    <button type="button" id="removeBtn" class="btn">삭제하기</button>
-    <button type="button" id="listBtn" class="btn">돌아가기</button>
+    <div id="detailHd">
+        <input type="hidden" name="bno" value="${stdNoticeDto.bno}"><br>
+        <input id="title" placeholder="제목에 핵심 내용을 요약해보세요." name="title" value="${stdNoticeDto.title}" ${mode=="new" ? '' : 'readonly="readonly"'}><br>
+        <span>작성 <input type="text" id="regDate" name="regDate" value="${stdNoticeDto.regDate} " readonly> ･</span>
+        <span>수정 <input type="text" id="modifyDate" name="modifyDate" value="${stdNoticeDto.modifyDate} " readonly>･</span>
+        <span>조회수 <input type="text" id="viewCnt" name="viewCnt" value=" ${stdNoticeDto.viewCnt}" readonly></span><br>
+        <span>작성자 <input type="text" name="writer" id="writer" value=" ${stdNoticeDto.writer}" ></span><br>
+    </div>
+
+    <div id="wrapCon">
+        <textarea name="content" id="content" ${mode=="new" ? '' : 'readonly="readonly"'}>${stdNoticeDto.content}</textarea><%--위지윅 적용--%>
+        <%--위지윅 적용--%>
+        <script>
+            ClassicEditor
+                .create(document.querySelector('#content'))
+                .catch(error=>{
+                    console.error(error);
+                });
+        </script>
+        </div>
+        <div id="wrapAtc">
+            <input type="file" id="upload" class="attachBtn">
+        </div>
+    </div>
+
+    <div id="buttonBox">
+        <input type="button" id="writeBtn" class="registeBtn" value="${mode eq 'new' ? '등록' : ''}"
+               style="display: ${mode eq 'new' ? 'inline-block' : 'none'}">
+        <input type="button" id="modifyBtn" class="modifyBtn" value="${mode eq 'new' ? '' : '수정'}"
+               style="display: ${mode eq 'new' ? 'none' : 'inline-block'}">
+        <input type="button" id="removeBtn" class="deleteBtn" value="삭제">
+        <input type="button" id="listBtn" class="backBtn" value="목록">
+    </div>
 </form>
 <script>
     $(document).ready(function () { // the same as main() -- document는 html문서이고 그 문서가 실행되면 준비해라 펑션을
@@ -78,7 +102,9 @@
 
             form.attr("action", "<c:url value='/board/stdNotice/write'/>");
             form.attr("method", "post");
+
             console.log('Form data:', form.serialize());
+
             form.submit();
         });
 
@@ -90,23 +116,12 @@
 
             if (isReadOnly == 'readonly') {
 
-                console.log("111");
-
                 $("input[name=title]").removeAttr('readonly'); //title
-
-                console.log("222");
-
                 $("textarea").removeAttr('readonly'); //content
-
-                console.log("333");
-
-                $("#modifyBtn").html("수정완료");
+                $("#modifyBtn").val("수정완료");
 
                 return;
-
             }
-
-            console.log("444444")
 
             //2. 수정 상태이면, 수정된 내용을 서버로 전송
             form.attr("action", "<c:url value='/board/stdNotice/modify?page=${page}&pageSize=${pageSize}'/>");
@@ -114,16 +129,12 @@
             if (formCheck()){form.submit();}
 
         })
-
-
-
-
-
-
-
     });
-
-
 </script>
+
+<footer>
+    <jsp:include page="../../footer.jsp"/>
+</footer>
+
 </body>
 </html>

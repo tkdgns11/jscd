@@ -14,14 +14,14 @@
               insert into lstRegist (title, discription, courseCode,
                                      subject1, subject2, subject3, subject4, subject5,
                                      price1, price2, price3, price4, price5,
-                                     onOff, status, minNum, maxNum, location, startDate, endDate,
-                                     book, material, totalPrice, discount, lastPrice,
+                                     onOff, status, minNum, maxNum, location, startDate, endDate, startTime, endTime,
+                                     name, book, material, totalPrice, discount, lastPrice,
                                      content)
               values (#{title}, #{discription}, #{courseCode},
                       #{subject1}, #{subject2}, #{subject3}, #{subject4}, #{subject5},
                       #{price1}, #{price2}, #{price3}, #{price4}, #{price5},
-                      #{onOff}, #{status}, #{minNum}, #{maxNum}, #{location}, #{startDate}, #{endDate},
-                      #{book}, #{material}, #{totalPrice}, #{discount}, #{lastPrice},
+                      #{onOff}, #{status}, #{minNum}, #{maxNum}, #{location}, #{startDate}, #{endDate}, #{startTime}, #{endTime},
+                      #{name}, #{book}, #{material}, #{totalPrice}, #{discount}, #{lastPrice},
                       #{content})
            <selectKey keyProperty="registCode" resultType="lstRegistDto" order="AFTER">
                SELECT *
@@ -39,7 +39,7 @@
     <!--       강의 조회하기-->
     <select id="selectAll" resultType="lstRegistDto">
         <include refid="selectFromlstRegist"/>
-        order by regdate desc, registCode desc
+        order by regDate desc, registCode desc
     </select>
 
     <!--       강의 세부 사항 조회하기-->
@@ -53,8 +53,8 @@
     <update id="update" parameterType="lstRegistDto">
         update lstRegist
         set title = #{title}, discription = #{discription}, onOff = #{onOff}, status = #{status},
-            minNum = #{minNum}, maxNum = #{maxNum}, startDate = #{startDate}, endDate = #{endDate},
-            book = #{book}, material = #{material}, totalPrice = #{totalPrice}, discount = #{discount}, lastPrice = #{lastPrice},
+            minNum = #{minNum}, maxNum = #{maxNum}, startDate = #{startDate}, endDate = #{endDate}, startTime=#{startTime}, endTime=#{endTime},
+            name=#{name}, book = #{book}, material = #{material}, totalPrice = #{totalPrice}, discount = #{discount}, lastPrice = #{lastPrice},
             content = #{content}, etc = #{etc}
         where registCode = #{registCode}
     </update>
@@ -86,7 +86,7 @@
     </sql>
 
     <select id="searchSelectPage" parameterType="SearchCondition" resultType="lstRegistDto">
-        SELECT registCode, title
+        SELECT registCode, title, regDate
         FROM  lstregist
         WHERE true
         <include refid="searchCondition"/>
@@ -101,9 +101,12 @@
         <include refid="searchCondition"/>
     </select>
 
-    <select id="seminarList" resultType="lstRegistDto">
-        <include refid="selectFromlstRegist"/>
-        where status LIKE "진행예정" AND courseCode NOT LIKE 1
+    <select id="seminarList" resultType="lstregistfileDto">
+<!--        <include refid="selectFromlstRegist"/>-->
+<!--        where status LIKE "진행예정" AND courseCode NOT LIKE 1-->
+        select *
+        from lstRegist lr right Join lstregistfile lf on lr.registCode = lf.registCode
+        where status LIKE "진행예정" AND courseCode NOT LIKE 1;
     </select>
 
     <select id="seminarDetail" parameterType="int" resultType="lstRegistDto">
@@ -148,5 +151,9 @@
         WHERE fileNo = #{fileNo}
     </select>
 
-
+<!--    강의 첨부 파일 삭제하기-->
+    <delete id="updateFile" parameterType="hashMap">
+        delete from lstregistfile
+        WHERE fileNo = #{fileNo}
+    </delete>
 </mapper>

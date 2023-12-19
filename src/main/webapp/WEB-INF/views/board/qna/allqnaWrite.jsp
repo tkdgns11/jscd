@@ -11,60 +11,87 @@
     <title>QnA</title>
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
-    <link rel="stylesheet" type="text/css" href="<c:url value="/css/allqnaForm.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/jscdReset.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/allqnaWrite.css"/>">
     <script type="text/javascript" src="<c:url value="/js/allqnaWrite.js"/>"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js"></script>
 </head>
 <body>
-<div id="background">
-    <div class="board_title">
-        <strong>Q&A</strong>
-        <p class="qna">질의응답;</p>
-    </div>
+<%--<div id="background">--%>
 
-    <p id="QnA">Q&A</p>
-    <hr>
+        <div id="qnaLetterwrap"> <span id="qnaLetter" >Q&A</span></div>
 
-    <form>
-        <label>카테고리</label>
-        <select name="languages" id="lang">
-            <option value="0" disabled selected>카테고리</option>
-            <option value="1">부트캠프</option>
-            <option value="2">세미나</option>
-            <option value="3">결제 및 환불</option>
-            <option value="4">사이트 이용</option>
-            <option value="5">학원관련</option>
-            <option value="6">기타</option>
-        </select>
-        <br><br>
-        <input type="hidden" id="allqnaNo" name="allqnaNo" value="${allqnaList.allqnaNo}">
-        <label for="title">제목:</label>
-        <input type="text" id="title" name="title" value="${allqnaList.title}">
-        <br><br>
-        <label for="writer">작성자:</label>
-        <input type="text" id="writer" name="writer" value="${allqnaList.writer}">
-        <br><br>
-        <label for="content">내용:</label>
-        <textarea id="content" name="content" rows="4" >${allqnaList.content}</textarea>
-        <br><br>
-        <label for="file">파일 첨부:</label>
-        <input type="file" id="file" name="file">
-        <br><br>
-        <div class="openYN">
-            <input type="radio" name="openYN" id="open" value="Y" class="radio" <c:if test="${allqnaList.openYN == 'Y'}">checked</c:if>/><span class="ml_10">공개</span>&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="radio" name="openYN" id="close" value="N" class="radio" <c:if test="${allqnaList.openYN == 'N'}">checked</c:if>/><span class="ml_10">비공개</span>&nbsp;
+
+    <form id="form">
+        <div id="detailHd">
+            <input type="hidden" id="allqnaNo" name="allqnaNo" value="${allqnaList.allqnaNo}">
+            <%--            <label>카테고리</label>--%>
+            <select name="languages" id="lang">
+                <option value="0" disabled selected>분류</option>
+                <option value="1">부트캠프</option>
+                <option value="2">세미나</option>
+                <option value="3">결제 및 환불</option>
+                <option value="4">사이트 이용</option>
+                <option value="5">학원관련</option>
+                <option value="6">기타</option>
+            </select>
+            <br><br>
+
+            <input type="text" id="title" name="title" placeholder="제목에 핵심 내용을 요약해보세요." value="${allqnaList.title}">
+            <span>작성 <input type="text" id="regDate" name="regDate" value="${allqnaList.regDate} " readonly> ･</span>
+<%--        <span>수정 ･<input type="text" id="modifyDate" name="modifyDate" value="${allqnaList.modifyDate} " readonly></span>--%>
+            <span>조회수 <input type="text" id="viewCnt" name="viewCnt" value=" ${allqnaList.hit}" readonly></span><br>
+            <span>작성자 <input type="text" name="writer" id="writer" value=" ${allqnaList.writer}" readonly></span><br>
+
+            <div id="wrapCon">
+                <textarea id="content" name="content" >${allqnaList.content}</textarea>
+                <%--위지윅 적용--%>
+                <script>
+                    ClassicEditor
+                        .create(document.querySelector('#content'))
+                        .catch(error=>{
+                            console.error(error);
+                        });
+                </script>
+            </div>
+<%--        <label for="file">파일 첨부:</label>--%>
+            <div id="wrapAtc">
+<%--                id = file -> upload 바꿈--%>
+                <input type="file" id="upload" name="file" class="attachBtn">
+            </div>
         </div>
-        <hr>
-        <div id="btnBox">
-            <input type="button" onclick="allqnaWrite();" value="등록하기"/>
-            <input type="button" onclick="" value="돌아가기">
-            <input type="button" onclick="allqnaDelete()" value="삭제하기">
+<%--       id 바꿈 btnBox -> buttonBox--%>
+        <div id="buttonBox">
+            <input type="button" id="writeBtn" class="registeBtn" onclick="allqnaWrite();" value="등록"
+                   style="display: ${mode eq 'new' ? 'inline-block' : 'none'}"/>
+            <input type="button" id="removeBtn" class="deleteBtn" onclick="allqnaDelete()" value="삭제">
+            <input type="button" id="listBtn" class="backBtn" onclick="" value="목록">
         </div>
+
+<%--        <div class="openYN">--%>
+<%--            <input type="radio" name="openYN" id="open" value="Y" class="radio" <c:if test="${allqnaList.openYN == 'Y'}">checked</c:if>/><span class="ml_10">공개</span>&nbsp;&nbsp;&nbsp;&nbsp;--%>
+<%--            <input type="radio" name="openYN" id="close" value="N" class="radio" <c:if test="${allqnaList.openYN == 'N'}">checked</c:if>/><span class="ml_10">비공개</span>&nbsp;--%>
+<%--        </div>--%>
+
     </form>
-    <div style="background-color: grey">
-        작성자 : <input type="text" id="cmtWriterRegi" name="cmtWriter" ><br/>
-        내용 : <br/><textarea id="cmtContentRegi" name="cmtContent" rows="4" ></textarea><br/>
-        <input type="button" onclick="cmtWrite()" value="등록하기">
-    </div>
+
+    <section id="cmmtBox" style=" ">
+        <div id="cmmtHd" background-color: grey>
+            <p id="hdLetter">답변
+                <span id="cmmtTcnt">totalcount of comments</span>
+            </p>
+        </div>
+        <br>
+        <div id="cmmtContent">
+            <input type="text" id="cmtWriterRegi" name="cmtWriter" value=""> 님,<br/><br/>
+            <textarea id="cmtContentRegi" name="cmtContent" rows="1" ></textarea><br/>
+        </div>
+        <div id="cmmtBtn">
+            <%--            취소버튼 만들었음--%>
+            <input type="button" id="cmmtCancel" onclick="cmtCancel()" value="취소">
+            <input type="button" id="cmmtRegist" onclick="cmtWrite()" value="등록">
+        </div>
+    </section>
     <br/>
     <div>
         <div>
@@ -88,10 +115,8 @@
             </c:forEach>
 
         </div>
-
-
     </div>
 
-</div>
+
 </body>
 </html>

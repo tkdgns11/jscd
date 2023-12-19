@@ -1,0 +1,29 @@
+body{display: flex; flex-direction: column; min-height: 100vh; width: 100%; max-width: 752px; margin: 0px auto;}
+#qnaLetterwrap{padding: -1px 16px;  border-bottom: 0.125rem solid rgb(222, 226, 230);font-size: 16px;font-weight: 700;display: flex; margin-left: 10px}
+#qnaLetter{border-bottom: 0.125rem solid #0185FE; padding: 14px 16px;}
+#detailHd{padding: 40px 40px 0; color: #212529; box-sizing: border-box; }
+#title{height: 39px; font-size: 28px; text-align: left; border-width: 0px; outline: 0px; margin-bottom: 16px;  width: 100%;
+    font-weight: 700;    line-height: 1.35; padding: 0px; resize: none;}
+#wrapAtc{display: flex; align-content: center; margin: 16px 14px; border-radius: 8px; width: 100%}
+.attachBtn{border: 1px solid #ced4da; height: 30px ;}
+#buttonBox{bottom: 0px;left: 0px;display: flex;justify-content: flex-end;align-items: center; padding: 0 20px 0 20px; width: 100%; margin-left: 10px;}
+#writeBtn, #modifyBtn, #removeBtn, #listBtn {margin-left: 10px;}
+#regDate,#viewCnt, #writer,#modifyDate  {border: none; color: #868e96;}
+.ck ck-sticky-panel__content{width:100%; margin-top: 14px ;}
+.ck-content{ border: 1px solid #ced4da; min-height: 480px;  padding: 16px 20px; font-size: 12px; }
+
+#detailHd span{color: #868e96; font-size: 13px;}
+#wrapCon{padding: 16px 14px 0 14px; width: 100% ;border-radius: 8px; }
+#wrapAtc{display: flex; align-content: center; margin: 16px 14px; border-radius: 8px; }
+.attachBtn{border: 1px solid #ced4da; height: 30px; border-radius: 8px; padding: 5px 20px 0 20px;width: 100% ; }
+#lang{border: none; color: #868e96; font-size: 13px;}
+#cmmtBox{padding: 10px 40px 0;}
+#cmmtHd{ display: flex;align-items: center; justify-content: flex-start; height: 50px; border-top: 0.125rem solid rgb(222, 226, 230);width: 100%;}
+#cmmtTcnt{color: #0185FE;}
+#hdLetter{color: #868e96;font-size: 18px}
+#cmmtRegist{margin-left:5px; padding: 1px 6px; border: 0;background-color: #0185FE; color: #ffffff; width: 60px; height: 30px; border-radius: 8px;font-weight: 400; font-size:14px;}
+#cmmtCancel{padding: 1px 6px; border: 1px solid rgba(0,0,0,0.7);background-color: #ffffff; width: 60px; height: 30px; border-radius: 8px;font-weight: 400; font-size:14px;}
+#cmtContentRegi{display:flex; padding: 12px 16px; width: 100%;background-color: #fff; border-radius: 5px; border: 1px solid #ced4da;}
+#cmmtBtn{bottom: 0px;left: 0px;display: flex;justify-content: flex-end;align-items: center; padding: 16px 20px 0 20px; width: 100%; margin-left: 10px;}
+#cmtWriterRegi{border:none; color: #868e96; font-size: 16px }
+#cmmtContent{color: #868e96; font-size: 13px; margin-bottom: -17px; resize: vertical;}

@@ -2,6 +2,7 @@ package com.jscd.app.lecture.lstRegist.dao;
 
 import com.jscd.app.lecture.lstRegist.dto.LstRegistDto;
 import com.jscd.app.lecture.lstRegist.dto.SearchCondition;
+import com.jscd.app.lecture.lstRegist.dto.lstregistfileDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -68,7 +69,7 @@ public class LstRegistDaoImpl implements LstRegistDao {
 
     //9.세미나
     @Override
-    public List<LstRegistDto> getSeminarList() throws Exception {
+    public List<lstregistfileDto> getSeminarList() throws Exception {
         return session.selectList(namespace + "seminarList");
     }
 
@@ -94,7 +95,7 @@ public class LstRegistDaoImpl implements LstRegistDao {
     public int InsertFile(Map<String, Object> map) throws Exception {
         return session.insert(namespace+"InsertFile", map);
     }
-
+    //강의 첨부 파일 조회
     @Override
     public List<Map<String, Object>> selectFileList(Integer registCode) throws Exception {
         return session.selectList(namespace+"selectFileList",registCode);
@@ -103,5 +104,10 @@ public class LstRegistDaoImpl implements LstRegistDao {
     @Override
     public Map<String, Object> selectFileDown(Map<String, Object> map) throws Exception {
         return session.selectOne(namespace+"selectFileDown", map);
+    }
+    //강의 첨부 파일 수정
+    @Override
+    public void updateFile(Map<String, Object> map) throws Exception {
+        session.update(namespace+"updateFile", map);
     }
 }

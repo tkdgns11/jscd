@@ -200,10 +200,11 @@ const idCheck = ()=>{
             console.log("비교할 id = " + email);
             if(id == email){
                 alert('사용할 수 없는 아이디입니다.');
-                $('#id').css("color", 'red');
+                $('#id').css('color', 'red');
+                document.getElementById("idImg").src="/img/signup_user_red.png";
             }else{
-                alert('사용할 수 있는 아이디입니다.')
-                $('#id').css("color", 'green');
+                alert('사용할 수 있는 아이디입니다.');
+                document.getElementById("idImg").src="/img/signup_user.png";
             }
         },
         error : ()=>{
@@ -230,6 +231,7 @@ $(document).ready(()=>{
             success: (data)=>{
                 console.log(data);
                 code=data;
+                // 인증번호가 전송됐습니다. alert가 너무 느리게 나오는 상황.
                 alert("인증번호가 전송됐습니다.");
             },
             error : ()=>{
@@ -243,8 +245,10 @@ $(document).ready(()=>{
 
         if(emailChkInputNo === code){
             alert('인증번호가 일치합니다.')
+            document.getElementById("certificationImg").src="/img/signup_user.png";
         }else{
             alert('인증번호가 불일치합니다. 다시 확인해주세요.')
+            document.getElementById("certificationImg").src="/img/signup_user_red.png";
         }
     }); // .blur end
 });

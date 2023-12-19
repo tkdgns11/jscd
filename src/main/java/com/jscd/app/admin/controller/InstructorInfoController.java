@@ -23,7 +23,7 @@ import java.util.List;
 	 */
 
 @Controller
-@RequestMapping("/onlyAdmin/instructor")
+@RequestMapping("/adminManage/instructor")
 public class InstructorInfoController {
 
     @Autowired
@@ -60,11 +60,11 @@ public class InstructorInfoController {
 
     //강사 상세 정보 읽기+수정
     @GetMapping("/read")
-    public String infoRead(Integer iscrNo, Integer page, Model model) {
+    public String infoRead(Integer mebrNo, Integer page, Model model) {
 
         try {
             //쿼리스트링으로 넘어온 iscrNo로 강사 데이터를 select
-            InstructorMemberInfoDto infoDto = infoService.read(iscrNo);
+            InstructorMemberInfoDto infoDto = infoService.read(mebrNo);
 
             //객체를 jsp에 넘겨주기
             model.addAttribute("infoDto", infoDto);
@@ -72,7 +72,7 @@ public class InstructorInfoController {
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("msg", "READ_ERR");
-            return "redirect:/onlyAdmin/instructor/list";
+            return "redirect:/adminManage/instructor/list";
         }
         return "/admin/instructorManage/instructorInfo";
     }
@@ -90,10 +90,10 @@ public class InstructorInfoController {
             e.printStackTrace();
             //에러 발생 시, 에러 msg 전달 _ 읽기 화면으로 이동
             model.addAttribute("msg", "MOD_ERR");
-            return "redirect:/onlyAdmin/instructor/read?page=" + page + "&iscrNo=" + instructorInfoDto.getIscrNo();
+            return "redirect:/adminManage/instructor/read?page=" + page + "&mebrNo=" + instructorInfoDto.getMebrNo();
         }
 
-        return "redirect:/onlyAdmin/instructor/read?page=" + page + "&iscrNo=" + instructorInfoDto.getIscrNo();
+        return "redirect:/adminManage/instructor/read?page=" + page + "&mebrNo=" + instructorInfoDto.getMebrNo();
     }
 
     //메인화면 수정
@@ -113,10 +113,10 @@ public class InstructorInfoController {
             e.printStackTrace();
             //에러 발생 시, 현재 화면(list)에 에러 msg 전달
             model.addAttribute("msg", "MOD_ERR");
-            return "redirect:/onlyAdmin/instructor/list?page=" + page;
+            return "redirect:/adminManage/instructor/list?page=" + page;
         }
 
-        return "redirect:/onlyAdmin/instructor/list?page=" + page;
+        return "redirect:/adminManage/instructor/list?page=" + page;
     }
 
 

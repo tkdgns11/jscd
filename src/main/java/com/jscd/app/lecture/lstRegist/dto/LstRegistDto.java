@@ -29,6 +29,9 @@ public class LstRegistDto {
 
     private String startDate;
     private String endDate;
+    private String startTime;
+    private String endTime;
+    private String name;
     private String book;
     private String material;
 
@@ -38,29 +41,18 @@ public class LstRegistDto {
     private Integer lastPrice;
     private String content;
 
-    private Date regDate;
+    private String regDate;
     private Integer firstIdNo;
     private String modifyDate;
     private Integer lastIdNo;
     private String etc;
     private String courseName;
 
-    //파일 첨부
-/*    private Integer fileNo;
-    private String originFileName;
-    private String storedFileName;
-    private String fileSize;
-
-    private String file;
-
-    private String fileName;
-
-    private String attachedFile;*/
 
     public LstRegistDto() {
     }
 
-    public LstRegistDto(Integer registCode, String title, String discription, Integer courseCode, String subject1, String subject2, String subject3, String subject4, String subject5, Integer price1, Integer price2, Integer price3, Integer price4, Integer price5, String onOff, String status, Integer minNum, Integer maxNum, String location, Integer currentNum, String startDate, String endDate, String book, String material, Integer totalPrice, String discount, Integer lastPrice, String content, Date regDate, Integer firstIdNo, String modifyDate, Integer lastIdNo, String etc, String courseName) {
+    public LstRegistDto(Integer registCode, String title, String discription, Integer courseCode, String subject1, String subject2, String subject3, String subject4, String subject5, Integer price1, Integer price2, Integer price3, Integer price4, Integer price5, String onOff, String status, Integer minNum, Integer maxNum, String location, Integer currentNum, String startDate, String endDate, String startTime, String endTime, String name, String book, String material, Integer totalPrice, String discount, Integer lastPrice, String content, String regDate, Integer firstIdNo, String modifyDate, Integer lastIdNo, String etc, String courseName) {
         this.registCode = registCode;
         this.title = title;
         this.discription = discription;
@@ -83,6 +75,9 @@ public class LstRegistDto {
         this.currentNum = currentNum;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.name = name;
         this.book = book;
         this.material = material;
         this.totalPrice = totalPrice;
@@ -273,6 +268,30 @@ public class LstRegistDto {
         this.endDate = endDate;
     }
 
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getBook() {
         return book;
     }
@@ -321,11 +340,11 @@ public class LstRegistDto {
         this.content = content;
     }
 
-    public Date getRegDate() {
+    public String getRegDate() {
         return regDate;
     }
 
-    public void setRegDate(Date regDate) {
+    public void setRegDate(String regDate) {
         this.regDate = regDate;
     }
 
@@ -394,13 +413,16 @@ public class LstRegistDto {
                 ", currentNum=" + currentNum +
                 ", startDate='" + startDate + '\'' +
                 ", endDate='" + endDate + '\'' +
+                ", startTime='" + startTime + '\'' +
+                ", endTime='" + endTime + '\'' +
+                ", name='" + name + '\'' +
                 ", book='" + book + '\'' +
                 ", material='" + material + '\'' +
                 ", totalPrice=" + totalPrice +
                 ", discount='" + discount + '\'' +
                 ", lastPrice=" + lastPrice +
                 ", content='" + content + '\'' +
-                ", regDate=" + regDate +
+                ", regDate='" + regDate + '\'' +
                 ", firstIdNo=" + firstIdNo +
                 ", modifyDate='" + modifyDate + '\'' +
                 ", lastIdNo=" + lastIdNo +

@@ -27,12 +27,9 @@
 	<update id="update" parameterType="memberDto">
 	    UPDATE MEMBER
 	    	SET
-	    	    id = #{id},
-	    	    name = #{name},
 	    	    nickname = #{nickname},
 	    	    birth = #{birth},
 	    	    pwd = #{pwd},
-	    	    gender = #{gender},
 	    	    phone = #{phone},
 	    	    modifyDate = now()
 	    WHERE id = #{id}

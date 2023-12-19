@@ -45,7 +45,7 @@ http://localhost:8080/order/order?registCode=2
     <header class="header">
         <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
     </header>
-    <form id="orderData">
+    <form id="orderData" action="/actPaySuccess" method="post">
         <input type="hidden" id="odNo" name="odNo">
         <input type="hidden" id="id" name="id" value="${memberDto.id}">
         <input type="hidden" id="name" name="name" value="${memberDto.name}">

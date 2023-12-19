@@ -23,14 +23,14 @@
     </insert>
 
     <select id="selectAll" resultType="noticeDto">
-        SELECT bno, title, content, writer, viewCnt, commentCnt, regDate
+        SELECT bno, title, content, writer, viewCnt, regDate
         FROM notibrd
         ORDER BY regDate DESC, bno DESC
     </select>
 
 
     <sql id="selectFromNotice">
-        SELECT bno, title, content, writer, viewCnt, commentCnt, regDate
+        SELECT *
         FROM notibrd
     </sql>
 
@@ -47,17 +47,17 @@
 
     <update id="update" parameterType="noticeDto">
         UPDATE notibrd
-        SET   title = #{title}
-          , content = #{content}
-          , modifyDate = now()
-        WHERE bno = #{bno} and writer = #{writer}
-    </update>
-
-    <update id="updateCommentCnt" parameterType="map">
-        UPDATE notibrd
-        SET   commentCnt = commentCnt + #{cnt}
+        SET title     = #{title}
+          , content   = #{content}
+          , modifyDate=#{modifyDate}
         WHERE bno = #{bno}
     </update>
+
+<!--    <update id="updateCommentCnt" parameterType="map">-->
+<!--        UPDATE notibrd-->
+<!--        SET   commentCnt = commentCnt + #{cnt}-->
+<!--        WHERE bno = #{bno}-->
+<!--    </update>-->
 
     <update id="increaseViewCnt" parameterType="int">
         UPDATE notibrd

@@ -9,6 +9,7 @@ public class CompanyInfoDTO {
     private String actName;
     private String actNum;
     private String slrAddr;
+    private String slrMail;
     private String companyName;
     private String indst;
     private String kind;
@@ -21,13 +22,14 @@ public class CompanyInfoDTO {
 
     public CompanyInfoDTO(){}
 
-    public CompanyInfoDTO(int slrNo, String slrName, String slrNum, String actName, String actNum, String slrAddr, String companyName, String indst, String kind, String slrPhone, Date regDate, int firstIdNo, Date modifyDate, int lastIdNo, String etc) {
+    public CompanyInfoDTO(int slrNo, String slrName, String slrNum, String actName, String actNum, String slrAddr, String slrMail, String companyName, String indst, String kind, String slrPhone, Date regDate, int firstIdNo, Date modifyDate, int lastIdNo, String etc) {
         this.slrNo = slrNo;
         this.slrName = slrName;
         this.slrNum = slrNum;
         this.actName = actName;
         this.actNum = actNum;
         this.slrAddr = slrAddr;
+        this.slrMail = slrMail;
         this.companyName = companyName;
         this.indst = indst;
         this.kind = kind;
@@ -85,6 +87,14 @@ public class CompanyInfoDTO {
 
     public void setSlrAddr(String slrAddr) {
         this.slrAddr = slrAddr;
+    }
+
+    public String getSlrMail() {
+        return slrMail;
+    }
+
+    public void setSlrMail(String slrMail) {
+        this.slrMail = slrMail;
     }
 
     public String getCompanyName() {
@@ -168,6 +178,7 @@ public class CompanyInfoDTO {
                 ", actName='" + actName + '\'' +
                 ", actNum='" + actNum + '\'' +
                 ", slrAddr='" + slrAddr + '\'' +
+                ", slrMail='" + slrMail + '\'' +
                 ", companyName='" + companyName + '\'' +
                 ", indst='" + indst + '\'' +
                 ", kind='" + kind + '\'' +

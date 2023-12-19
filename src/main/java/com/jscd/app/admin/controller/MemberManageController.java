@@ -22,7 +22,7 @@ import java.util.List;
 	 */
 
 @Controller
-@RequestMapping("/onlyAdmin/memberManage")
+@RequestMapping("/adminManage/memberManage")
 public class MemberManageController {
 
     @Autowired
@@ -64,7 +64,7 @@ public class MemberManageController {
             e.printStackTrace();
             //에러 발생 시, 에러 msg 모델에 전달, list 목록으로 돌아가기
             model.addAttribute("msg", "READ_ERR");
-            return "redirect:/onlyAdmin/memberManage/list";
+            return "redirect:/adminManage/memberManage/list";
         }
 
         return "/admin/memberManage/memberManage";
@@ -83,10 +83,10 @@ public class MemberManageController {
             e.printStackTrace();
             //에러 발생 시, 에러 msg 전달, 읽기 화면으로 이동
             model.addAttribute("msg", "MOD_ERR");
-            return "redirect:/onlyAdmin/memberManage/read?page=" + page + "&mebrNo=" + memberDto.getMebrNo();
+            return "redirect:/adminManage/memberManage/read?page=" + page + "&mebrNo=" + memberDto.getMebrNo();
         }
 
-        return "redirect:/onlyAdmin/memberManage/read?page="+page+"&mebrNo="+memberDto.getMebrNo();
+        return "redirect:/adminManage/memberManage/read?page="+page+"&mebrNo="+memberDto.getMebrNo();
     }
 
     @PostMapping("/modifyMain") //메인 페이지 등급/상태 일괄 수정
@@ -105,10 +105,10 @@ public class MemberManageController {
             e.printStackTrace();
             //실패 시, 에러 msg 전달. list 목록으로 리다이렉트
             model.addAttribute("msg", "MOD_ERR");
-            return "redirect:/onlyAdmin/memberManage/list?page=" + page;
+            return "redirect:/adminManage/memberManage/list?page=" + page;
         }
 
-        return "redirect:/onlyAdmin/memberManage/list?page=" + page;
+        return "redirect:/adminManage/memberManage/list?page=" + page;
     }
 
 

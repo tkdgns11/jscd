@@ -72,6 +72,7 @@ public class MemberManageServiceImpl implements MemberManageService { //회원 �
                 adminDto.setId(memberDto.getId());
                 adminDto.setName(memberDto.getName());
                 adminDto.setPwd(memberDto.getPwd());
+                adminDto.setGrade(2); //1 : 원장님 _ 2: 조교 =>원장님이 부여하는 관리자는 디폴트가 '조교'
                 rowCnt = adminDao.insertAdmin(adminDto);
             }
         } else if (grade == 2) { //등급이 학생으로 변경됐다면,
@@ -106,6 +107,7 @@ public class MemberManageServiceImpl implements MemberManageService { //회원 �
             adminDto.setId(memberDto.getId());
             adminDto.setName(memberDto.getName());
             adminDto.setPwd(memberDto.getPwd());
+            adminDto.setGrade(2);
             adminDao.insertAdmin(adminDto);
         }else if(memberDto.getGrade() == 2){ //학생으로 변경됐다면,
             StdManageDto stdManageDto = new StdManageDto();

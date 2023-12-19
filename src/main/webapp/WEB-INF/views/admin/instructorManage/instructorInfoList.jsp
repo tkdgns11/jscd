@@ -36,7 +36,7 @@
 
     <div id="infoSelectBox">
         <div id="infoSearchBox">
-        <form action="/onlyAdmin/instructor/list" method="get">
+        <form action="/adminManage/instructor/list" method="get">
             <select name="option">
                 <option value="T" ${sc.option=='T' || sc.option=='' ? "selected" : ""}>이름</option>
                 <option value="W" ${sc.option=='W' || sc.option=='' ? "selected" : ""}>아이디</option>
@@ -94,7 +94,7 @@
                             pattern="yyyy-MM-dd"
                             type="date"/></td>
                     <td>
-                        <button class="detailBtn" onclick="location.href='/onlyAdmin/instructor/read?page=${sc.page}&iscrNo=${instructorDto.iscrNo}'">
+                        <button class="detailBtn" onclick="location.href='/adminManage/instructor/read?page=${sc.page}&mebrNo=${instructorDto.mebrNo}'">
                             상세보기
                         </button>
                     </td>
@@ -110,16 +110,16 @@
         </c:if>
         <c:if test="${page.totalCnt!=null && page.totalCnt!=0}">
             <c:if test="${page.showPrev}">
-                <a href="<c:url value="/onlyAdmin/instructor/list${sc.getQueryString(page.beginPage-1)}"/>">&lt;&lt;</a>
+                <a href="<c:url value="/adminManage/instructor/list${sc.getQueryString(page.beginPage-1)}"/>">&lt;&lt;</a>
             </c:if>
             <c:forEach var="i" begin="${page.beginPage}" end="${page.endPage}">
-                <a href="<c:url value="/onlyAdmin/instructor/list${sc.getQueryString(i)}"/>"
+                <a href="<c:url value="/adminManage/instructor/list${sc.getQueryString(i)}"/>"
                    class="naviPage${i==sc.page? "-active" : ""}"
                 >${i}</a>
             </c:forEach>
 
             <c:if test="${page.showNext}">
-                <a href="<c:url value="/onlyAdmin/instructor/list${sc.getQueryString(page.endPage+1)}"/>">&gt;&gt;</a>
+                <a href="<c:url value="/adminManage/instructor/list${sc.getQueryString(page.endPage+1)}"/>">&gt;&gt;</a>
             </c:if>
         </c:if>
     </div>
@@ -211,7 +211,7 @@
 
                 const form = document.createElement('form');
                 form.setAttribute('method', 'post');        //Post 메소드 적용
-                form.setAttribute('action', '/onlyAdmin/instructor/modifyStatus?page=${sc.page}');
+                form.setAttribute('action', '/adminManage/instructor/modifyStatus?page=${sc.page}');
 
                 var input1 = document.createElement('input');
                 var input2 = document.getElementById('status');

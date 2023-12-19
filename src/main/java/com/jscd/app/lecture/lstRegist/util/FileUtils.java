@@ -17,7 +17,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 @Component("fileUtils")
 public class FileUtils {
-    private static final String filePath = "C:\\Users\\wjdtn\\Desktop\\jscd\\src\\main\\webapp\\resources\\upload\\img"; // 파일이 저장될 위치
+//    private static final String filePath = "C:\\Users\\wjdtn\\Desktop\\jscd\\src\\main\\webapp\\resources\\upload\\img"; // 파일이 저장될 위치
+
+    private static final String filePath = "/Users/george/Desktop/JungSuk_Project/src/main/webapp/resources/upload/img";
 
     public List<Map<String, Object>> parseInsertFileInfo(LstRegistDto lstRegistDto, MultipartHttpServletRequest mpRequest) throws Exception{
 
@@ -68,5 +70,44 @@ public class FileUtils {
 
     public static String getRandomString() {
         return UUID.randomUUID().toString().replaceAll("-", "");
+    }
+
+    public List<Map<String, Object>> parseUpdateFileInfo(LstRegistDto lstRegistDto, String[] files, String[] fileNames, MultipartHttpServletRequest mpRequest) throws Exception {
+        Iterator<String> iterator = mpRequest.getFileNames();
+        MultipartFile multipartFile = null;
+        String originalFileName = null;
+        String originalFileExtension = null;
+        String storedFileName = null;
+
+        List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
+        Map<String, Object> listMap = null;
+
+        int registCode = lstRegistDto.getRegistCode();
+
+        while(iterator.hasNext()){
+            multipartFile = mpRequest.getFile(iterator.next());
+            if(multipartFile.isEmpty() == false){
+                originalFileName = multipartFile.getOriginalFilename();
+                originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
+                storedFileName = getRandomString() + originalFileExtension;
+                multipartFile.transferTo(new File(filePath + storedFileName));
+                listMap = new HashMap<String,Object>();
+                listMap.put("new", "Y");
+                listMap.put("registCode", registCode);
+                listMap.put("originFileName", originalFileName);
+                listMap.put("storedFileName", storedFileName);
+                listMap.put("fileSize", multipartFile.getSize());
+                list.add(listMap);
+            }
+        }
+        if(files != null && fileNames != null){
+            for(int i = 0; i<fileNames.length; i++) {
+                listMap = new HashMap<String,Object>();
+                listMap.put("new", "N");
+                listMap.put("fileNo", files[i]);
+                list.add(listMap);
+            }
+        }
+        return list;
     }
 }

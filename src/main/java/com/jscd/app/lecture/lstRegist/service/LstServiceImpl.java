@@ -3,6 +3,7 @@ package com.jscd.app.lecture.lstRegist.service;
 import com.jscd.app.lecture.lstRegist.dao.LstRegistDao;
 import com.jscd.app.lecture.lstRegist.dto.LstRegistDto;
 import com.jscd.app.lecture.lstRegist.dto.SearchCondition;
+import com.jscd.app.lecture.lstRegist.dto.lstregistfileDto;
 import com.jscd.app.lecture.lstRegist.util.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,11 +50,28 @@ public class LstServiceImpl implements LstService {
     public int removeRegist(Integer registCode) throws Exception {
         return lstRegistDao.removeRegist(registCode);
     }
+
     //5.강의 수정
     @Override
-    public int modifyRegist(LstRegistDto dto) throws Exception {
-        return lstRegistDao.modifyRegist(dto);
+    public void modifyRegist(LstRegistDto lstRegistDto, String[] files, String[] fileNames, MultipartHttpServletRequest mpRequest) throws Exception {
+        // 전달받은 lstRegistDto는 dao로 보낸다.
+        lstRegistDao.modifyRegist(lstRegistDto);
+        // 전달받은 첨부파일은 Map형태로 정리하고 list로 묶어서 보낸다.
+        List<Map<String, Object>> list = fileUtils.parseUpdateFileInfo(lstRegistDto, files, fileNames, mpRequest);
+
+        Map<String, Object> tempMap = null;
+        int size = list.size();
+        for(int i=0; i<size; i++) {
+            tempMap = list.get(i);
+            // parseUpdateFileInfo를 통해 전달받은 데이터 중 new의 Y값을 갖고 있다면 insertFile로 아니면 updateFile로 보낸다.
+            if(tempMap.get("new").equals("Y")) {
+                lstRegistDao.InsertFile(tempMap);
+            } else {
+                lstRegistDao.updateFile(tempMap);
+            }
+        }
     }
+
     //6.검색 및 페이지
     @Override
     public int getSearchResultCnt(SearchCondition sc) throws Exception {
@@ -66,7 +84,7 @@ public class LstServiceImpl implements LstService {
 
     //7.세미나
     @Override
-    public List<LstRegistDto> seminarList() throws Exception {
+    public List<lstregistfileDto> seminarList() throws Exception {
         return lstRegistDao.getSeminarList();
     }
 
