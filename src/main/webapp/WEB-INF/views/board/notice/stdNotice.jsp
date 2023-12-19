@@ -13,6 +13,11 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js"></script>
 </head>
 <body>
+
+<header>
+    <jsp:include page="../../header.jsp"/>
+</header>
+
 <div id="topLetter">
    <span id="notice">학생 공지사항</span>
 </div>
@@ -124,16 +129,12 @@
             if (formCheck()){form.submit();}
 
         })
-
-
-
-
-
-
-
     });
-
-
 </script>
+
+<footer>
+    <jsp:include page="../../footer.jsp"/>
+</footer>
+
 </body>
 </html>

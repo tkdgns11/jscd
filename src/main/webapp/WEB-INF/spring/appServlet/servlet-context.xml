@@ -54,8 +54,6 @@
             <mapping path="/adminManage/memberManage/*"/>
             <mapping path="/adminBtTraining/*"/>
             <mapping path="/adminSmTraining/*"/>
-            <mapping path="/btTraining/*"/>
-            <mapping path="/smTraining/*"/>
             <mapping path="/classEnroll/*"/>
             <mapping path="/registCourse/*"/>
             <mapping path="/lstRegist/*"/>

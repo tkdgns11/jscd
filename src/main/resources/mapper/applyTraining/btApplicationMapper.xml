@@ -61,7 +61,7 @@
                 #{attdPath}, #{intro}, #{expect}, #{agreeYN})
     </insert>
 
-    <!--    (신청자 전용) 신청서 페이지 이동시 이미 신청했는지 확인-->
+    <!--    (신청자 전용) 신청서 페이지 이동시 중복 신청 검색-->
     <select id="confirmApplication" parameterType="BtApplicationDto" resultType="BtApplicationDto">
         select * from btstform
         where registCode = #{registCode} and id = #{id}
