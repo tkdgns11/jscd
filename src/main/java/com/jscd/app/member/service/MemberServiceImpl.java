@@ -13,6 +13,8 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.jscd.app.member.dao.MemberDao;
@@ -32,22 +34,28 @@ import java.util.List;
  */
 @Service
 public class MemberServiceImpl implements MemberService {
-	
+
 	@Autowired
 	MemberDao memberDao;
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
+	@Bean
+	public BCryptPasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 
 	@Override
 	public boolean login(String id, String pwd) throws Exception {
 		MemberDto memberDto = null;
-		
+
 		try {
 			memberDto = memberDao.selectUser(id);
-			System.out.println(memberDto);
+			System.out.println("memberSeviceImpl=="+memberDto);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
-		return memberDto != null && memberDto.getPwd().equals(pwd);
+		return memberDto != null && passwordEncoder.matches(pwd, memberDto.getPwd());
 	}
 
 	@Override
@@ -85,3 +93,4 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.selectLecture(lectureApplyDto);
 	}
 }
+

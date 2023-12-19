@@ -3,6 +3,7 @@ package com.jscd.app.board.qna.qnaController;
 import com.jscd.app.board.qna.qnaDao.AllqnaDao;
 import com.jscd.app.board.qna.qnaDto.AllqnaDto;
 import com.jscd.app.board.qna.qnaDto.PageHandler;
+import com.jscd.app.board.qna.qnaDto.QnActDto;
 import com.jscd.app.board.qna.qnaDto.SearchCondition;
 import com.jscd.app.board.qna.qnaService.AllqnaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,8 +31,6 @@ public class AllqnaController {
     private static final Logger logger = Logger.getLogger(AllqnaController.class.getName());
     @Autowired
     AllqnaService allqnaService;
-    @Autowired
-    AllqnaDao allqnaDao;
 
 
     //1-1. 게시글 등록 페이지 이동
@@ -46,12 +50,13 @@ public class AllqnaController {
         //allqnaDto.setWriter(writer);
 
         try {
+
             if (allqnaService.write(allqnaDto) != 1) {
                 throw new Exception("Write faild");
             }
+
             rttr.addFlashAttribute("msg", "WRITE_OK");
             map.put("redirect","/board/qna/allqnaList");
-
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -79,6 +84,7 @@ public class AllqnaController {
             List<AllqnaDto> list = allqnaService.getSearchResultPage(sc);
             model.addAttribute("list", list);
             model.addAttribute("ph", pageHandler);
+
 
             return "/board/qna/allqnaList";
 
@@ -120,15 +126,15 @@ public class AllqnaController {
 
 
     //1-3(2) 수정된 내용 등록하기
-    @PostMapping("/allqnaDetail")
-    public String allqnaModified(AllqnaDto allqnaDto, Model model, RedirectAttributes rttr) throws Exception {
-
+    @PostMapping("/allqnaModify")
+    @ResponseBody
+    public String allqnaModify(@RequestBody AllqnaDto allqnaDto, Model model, RedirectAttributes rttr) throws Exception {
         allqnaService.modify(allqnaDto);
         model.addAttribute("modified", allqnaDto);
 
         rttr.addFlashAttribute("result", "modify success");
 
-        return "redirect:/board/qna/allqnaList";
+        return "redirect:/board/qna/allqnaDetail?allqnaNo="+allqnaDto.getAllqnaNo();
 
     }
 
@@ -142,7 +148,7 @@ public class AllqnaController {
         String writer = (String) session.getAttribute("id");
         String msg = "DEL_OK";
         System.out.println(allqnaDto.getAllqnaNo());
-        writer = "ccccaaaa";
+        writer = "대댓글111111ㅇㅇ";
 
 
 
@@ -254,9 +260,8 @@ public class AllqnaController {
     @ResponseBody
     public Map<String, String> allqnaCmtReplyWrite(@RequestBody AllqnaDto allqnaDto, Model model, SearchCondition sc, RedirectAttributes rttr, HttpSession session) {
         Map<String, String> map = new HashMap<>();
-
+        System.out.println("대댓글 수정 ======="+allqnaDto);
         //String writer = (String) session.getAttribute("id");
-        System.out.println("allqnaCmtReplyWrite==="+allqnaDto.toString());
         try {
             //댓글 등록 실패하면 1이 아님
             if (allqnaService.cmtReplyWrite(allqnaDto) != 1) {
@@ -284,11 +289,12 @@ public class AllqnaController {
     @ResponseBody
     public List<AllqnaDto> allqnaCmtReplyRead(@RequestBody AllqnaDto allqnaDto, Model model, SearchCondition sc, RedirectAttributes rttr, HttpSession session) {
 
+
         //String writer = (String) session.getAttribute("id");
         List<AllqnaDto> replyList = new ArrayList<>();
         try {
-            Integer allqnaCmtNo = allqnaDto.getAllqnaCmtNo();
-            replyList = allqnaService.cmtReplyRead(allqnaCmtNo);
+
+            replyList = allqnaService.cmtReplyRead(allqnaDto);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -299,7 +305,9 @@ public class AllqnaController {
     //3-3 대댓글 수정
     @PostMapping("/allqnaCmtReplyUpdate")
     @ResponseBody
-    public  Map<String, String> allqnaCmtReplyUpdate(@RequestBody AllqnaDto allqnaDto, Model model, SearchCondition sc, RedirectAttributes rttr, HttpSession session) {
+    public  Map<String, String> allqnaCmtReplyUpdate(@RequestBody AllqnaDto allqnaDto, Model model, RedirectAttributes rttr, HttpSession session) {
+        System.out.println("댓글수정 등록 컨트롤러 ====="+allqnaDto);
+
         Map<String, String> map = new HashMap<>();
         //String writer = (String) session.getAttribute("id");
 
@@ -352,6 +360,7 @@ public class AllqnaController {
 
     //4 비밀글 제외
     //5 내가 작성한 글 보기
+
 
 
 

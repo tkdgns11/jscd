@@ -1,13 +1,14 @@
 package com.jscd.app.board.qna.qnaDao;
 
 import com.jscd.app.board.qna.qnaDto.AllqnaDto;
+import com.jscd.app.board.qna.qnaDto.QnActDto;
 import com.jscd.app.board.qna.qnaDto.SearchCondition;
 
 import java.util.List;
 
 public interface AllqnaDao {
     //1-1. 게시글 등록
-    public int insert(AllqnaDto allqnaDto) throws Exception;
+    int insert(AllqnaDto allqnaDto) throws Exception;
     //1-2. 게시글 목록 읽기 (페이징 처리)
     public List<AllqnaDto> selectList(SearchCondition sc) throws Exception;
 
@@ -33,7 +34,7 @@ public interface AllqnaDao {
     //3-1 대댓글 등록
     int cmtReplyInsert(AllqnaDto allqnaDto) throws Exception;
     //3-2 대댓글 목록
-    List<AllqnaDto> cmtReplySelectList(Integer allqnaCmtNo) throws Exception;
+    List<AllqnaDto> cmtReplySelectList(AllqnaDto allqnaDto) throws Exception;
     //3-3 대댓글 수정
     int cmtReplyUpdate(AllqnaDto allqnaDto) throws Exception;
 
@@ -50,5 +51,6 @@ public interface AllqnaDao {
     //8 조회수 처리
     int increaseViewCnt(Integer allqnaNo) throws Exception;
 
+    QnActDto allqnaCategory(Integer qnaCtNo) throws Exception;
 
 }

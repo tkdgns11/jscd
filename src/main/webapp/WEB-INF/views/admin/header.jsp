@@ -21,7 +21,7 @@
 <body>
 <div id="adminHeader">
     <div id="adminLogoBox">
-        <a href="<c:url value='/'/>"><img src="<c:url value="/img/adminLogo.png"/>"></a>
+        <a href="<c:url value='/admin/home'/>"><img src="<c:url value="/img/adminLogo.png"/>"></a>
         <p>관리자 시스템</p>
     </div>
     <div id="adminLoginBox">

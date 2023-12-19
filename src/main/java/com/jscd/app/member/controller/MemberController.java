@@ -16,6 +16,8 @@ import com.jscd.app.member.service.MemberService;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -35,6 +37,7 @@ public class MemberController {
 	private KakaoLoginBo kakaoLoginBo;
 	private String apiResult = null;
 	private InstructorInfoService infoService;
+
 	@Autowired
 	public MemberController(MemberService memberService, NaverLoginBo naverLoginBo,KakaoLoginBo kakaoLoginBo,InstructorInfoService infoService){
 		this.memberService = memberService;
@@ -43,6 +46,12 @@ public class MemberController {
 		this.infoService = infoService;
 	}
 
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
+	@Bean
+	public BCryptPasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 
 	//로그인 페이지 이동
 	@GetMapping("/login")
@@ -204,7 +213,7 @@ public class MemberController {
 
 		//1. id, pwd 체크
 		//1-1 일치하지 않음.
-		if(!memberService.login(id, pwd)){
+		if(!memberService.login(id,pwd)){
 			String msg = URLEncoder.encode("id 또는 pwd가 일치하지 않습니다.", "utf-8");
 			map.put("redirect", "/member/login?msg="+msg);
 			return map;
@@ -244,9 +253,17 @@ public class MemberController {
 		Map<String, String> map = new HashMap<>();
 
 		try{
+			// 비밀번호 암호화
+			String pwd = memberDto.getPwd();
+			System.out.println("signup , pwd = " + pwd);
+			String securePwd = passwordEncoder.encode(pwd);
+			System.out.println("signup , securePwd = " + securePwd);
+			memberDto.setPwd(securePwd);
+
 			//회원가입에 성공했을 경우
 			System.out.println("hello, signup" + memberDto);
 			memberService.signup(memberDto);
+
 			//회원가입 시 약관 등록
 			memberService.insertTermsYN(memberDto);
 			map.put("redirect","/member/login");

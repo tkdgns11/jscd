@@ -3,31 +3,31 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.jscd.app.board.qna.allqnaMapper">
-<!--    1-1. 게시글 등록-->
+    <!--    1-1. 게시글 등록-->
     <insert id="insert" parameterType="allqnaDto">
         INSERT INTO allQnA
-            (title, content, writer, openYN, regDate)
+            (qnaCtNo, title, content, writer, openYN, regDate)
         VALUES
-            (#{title}, #{content}, #{writer}, #{openYN}, now())
+            (#{qnaCtNo}, #{title}, #{content}, #{writer}, #{openYN}, now())
     </insert>
-<!--    1-2. 게시글 목록 읽기-->
+    <!--    1-2. 게시글 목록 읽기-->
     <select id="selectAll" resultType="allqnaDto">
         SELECT *
         FROM allQnA
     </select>
 
     <sql id="selectFromAllQnA">
-        SELECT allqnaNo, title, writer, content, hit, openYN, regDate
+        SELECT allqnaNo, qnaCtNo, title, writer, content, hit, openYN, regDate
         FROM allQnA
     </sql>
 
-<!--    1-3. 게시글 1개 읽기-->
+    <!--    1-3. 게시글 1개 읽기-->
     <select id="select" parameterType="int" resultType="AllqnaDto">
         <include refid="selectFromAllQnA"/>
         WHERE allqnaNo = #{allqnaNo}
     </select>
 
-<!--    1-4. 게시글 수정-->
+    <!--    1-4. 게시글 수정-->
     <update id="update" parameterType="allqnaDto">
         UPDATE allQnA
         SET   title = #{title}
@@ -36,7 +36,7 @@
           , regDate = now()
         WHERE allqnaNo = #{allqnaNo}
     </update>
-<!--    1-5. 게시글 삭제-->
+    <!--    1-5. 게시글 삭제-->
     <delete id="delete" parameterType="map">
         DELETE FROM allQnA WHERE allqnaNo = #{allqnaNo} and writer = #{writer}
     </delete>
@@ -46,7 +46,7 @@
         SELECT allqnaCmtNum, allqnaCmtNo, allqnaNo, cmtWriter, cmtContent, regDate, firstIdNo, modifyDate, lastIdNo
         FROM allqnacmt
         WHERE allqnaNo = #{allqnaNo}
-        AND allqnaCmtReplyNO is NULL;
+          AND allqnaCmtReplyNO is NULL;
     </select>
     <!--2-2 댓글 등록-->
     <insert id="cmtInsert" parameterType="allqnaDto">
@@ -55,8 +55,8 @@
             FROM allqnacmt
             WHERE allqnaNo = #{allqnaNo}
         </selectKey>
-            INSERT INTO allqnacmt (allqnaCmtNo, allqnaNo, cmtWriter, cmtContent, regDate, firstIdNo, etc)
-            VALUES (#{allqnaCmtNo}, #{allqnaNo}, #{cmtWriter}, #{cmtContent}, now(), #{firstIdNo}, #{etc})
+        INSERT INTO allqnacmt (allqnaCmtNo, allqnaNo, cmtWriter, cmtContent, regDate, firstIdNo, etc)
+        VALUES (#{allqnaCmtNo}, #{allqnaNo}, #{cmtWriter}, #{cmtContent}, now(), #{firstIdNo}, #{etc})
     </insert>
     <!--2-3 댓글 수정-->
     <update id="cmtUpdate" parameterType="allqnaDto">
@@ -65,39 +65,42 @@
           , cmtWriter = #{cmtWriter}
           , modifyDate = now()
         WHERE allqnaNo = #{allqnaNo}
-        AND allqnaCmtNo = #{allqnaCmtNo}
+          AND allqnaCmtNo = #{allqnaCmtNo}
     </update>
     <!--2-4 댓글 삭제-->
     <delete id="cmtDelete" parameterType="allqnaDto">
         DELETE
         FROM   allqnacmt
         WHERE allqnaNo = #{allqnaNo}
-        AND allqnaCmtNo = #{allqnaCmtNo}
-        AND cmtWriter = #{cmtWriter}
+          AND allqnaCmtNo = #{allqnaCmtNo}
+          AND cmtWriter = #{cmtWriter}
 
     </delete>
 
-<!--    4-1 대댓글 등록-->
+    <!--    4-1 대댓글 등록-->
     <insert id="cmtReplyInsert" parameterType="allqnaDto">
         <selectKey keyProperty="allqnaCmtReplyNo" resultType="int" order="BEFORE">
             SELECT COALESCE(MAX(allqnaCmtReplyNo)+1,1) AS newCmtReplyNo
             FROM allqnacmt
             WHERE
-                allqnaNo = #{allqnaNo}
+            allqnaNo = #{allqnaNo}
             AND
-                allqnaCmtNo = #{allqnaCmtNo}
+            allqnaCmtNo = #{allqnaCmtNo}
         </selectKey>
         INSERT INTO allqnacmt (allqnaCmtNo, allqnaNo, cmtWriter, cmtContent, allqnaCmtReplyNo, regDate, firstIdNo, etc)
         VALUES (#{allqnaCmtNo}, #{allqnaNo}, #{cmtWriter}, #{cmtContent}, #{allqnaCmtReplyNo}, now(), #{firstIdNo}, #{etc})
     </insert>
-<!--    4-2 대댓글 목록-->
+    <!--    4-2 대댓글 목록-->
     <select id="cmtReplySelect" resultType="allqnaDto">
         SELECT allqnaCmtNum, allqnaCmtNo, allqnaNo, allqnaCmtReplyNo, cmtWriter, cmtContent, regDate, firstIdNo, modifyDate, lastIdNo
         FROM allqnacmt
         WHERE allqnaCmtNo = #{allqnaCmtNo}
-        AND allqnaCmtReplyNO is NOT NULL
+          AND allqnaNo = #{allqnaNo}
+          AND allqnaCmtReplyNO is NOT NULL
+        ORDER BY allqnaCmtReplyNo ASC
+
     </select>
-<!--    4-3 대댓글 수정-->
+    <!--    4-3 대댓글 수정-->
     <update id="cmtReplyUpdate" parameterType="allqnaDto">
         UPDATE allqnacmt
         SET cmtContent = #{cmtContent}
@@ -106,7 +109,7 @@
         WHERE allqnaCmtNo = #{allqnaCmtNo}
           AND allqnaCmtReplyNo = #{allqnaCmtReplyNo}
     </update>
-<!--    4-4 대댓글 삭제-->
+    <!--    4-4 대댓글 삭제-->
     <delete id="cmtReplyDelete" parameterType="allqnaDto">
         DELETE
         FROM   allqnacmt
@@ -115,10 +118,10 @@
 
     </delete>
 
-<!--    5 비밀글 제외-->
-<!--    6 내가 작성한 글 보기-->
+    <!--    5 비밀글 제외-->
+    <!--    6 내가 작성한 글 보기-->
 
-<!--    7 게시글 페이징 처리-->
+    <!--    7 게시글 페이징 처리-->
     <sql id="searchCondition">
         <choose>
             <when test='option=="T"'>
@@ -135,7 +138,7 @@
     </sql>
 
     <select id="searchSelectPage" parameterType="SearchCondition" resultType="AllqnaDto">
-        SELECT allqnaNo, title, content, writer, hit, openYN, regDate
+        SELECT allqnaNo, qnaCtNo, title, content, writer, hit, openYN, regDate
         FROM  allQnA
         WHERE true
         <include refid="searchCondition"/>
@@ -151,7 +154,7 @@
     </select>
 
 
-<!--    9. 조회수 처리-->
+    <!--    9. 조회수 처리-->
     <update id="increaseViewCnt" parameterType="int">
         UPDATE allQnA
         SET   hit = hit + 1
@@ -176,5 +179,14 @@
         from attach
         where allqnaNo = #{allqnaNo}
     </select>
+
+
+    <!--    카테고리-->
+<!--    <select id="allqnaCategory" parameterType="int" resultType="String">-->
+<!--        SELECT QnAct.name-->
+<!--        FROM allQnA-->
+<!--                 JOIN QnAct ON allQnA.qnaCtNo = QnAct.qnaCtNo-->
+<!--        WHERE QnAct.qnaCtNo = #{qnaCtNo}-->
+<!--    </select>-->
 
 </mapper>
