@@ -2,6 +2,7 @@ package com.jscd.app.lecture.lstRegist.dao;
 
 import com.jscd.app.lecture.lstRegist.dto.LstRegistDto;
 import com.jscd.app.lecture.lstRegist.dto.SearchCondition;
+import com.jscd.app.lecture.lstRegist.dto.lstregistfileDto;
 
 import java.util.List;
 import java.util.Map;
@@ -28,7 +29,9 @@ public interface LstRegistDao {
     List<LstRegistDto> searchSelectPage(SearchCondition sc) throws Exception;
 
     //9.세미나
-    List<LstRegistDto> getSeminarList() throws Exception;
+    //9.1 세미나 목록 불러오기
+    List<lstregistfileDto> getSeminarList() throws Exception;
+    // 9.2 세미나 세부사항 확인하기
     LstRegistDto readSeminar(Integer registCode) throws Exception;
 
     //10.부트캠프

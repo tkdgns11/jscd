@@ -3,6 +3,7 @@ package com.jscd.app.applyTraining.controller;
 import com.jscd.app.applyTraining.dto.SmApplicationDto;
 import com.jscd.app.applyTraining.service.SmApplicationService;
 import com.jscd.app.lecture.lstRegist.dto.LstRegistDto;
+import com.jscd.app.lecture.lstRegist.dto.lstregistfileDto;
 import com.jscd.app.lecture.lstRegist.service.LstService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -119,8 +120,9 @@ public class SmTrainingController {
     @GetMapping("/list")
     public String smTrainingList(Model m) throws Exception {
         try {
-            List<LstRegistDto> list = lstService.seminarList();
+            List<lstregistfileDto> list = lstService.seminarList();
             m.addAttribute("list", list);
+            System.out.println("Sminar_list = " + list);
         } catch(Exception e) {
             e.printStackTrace();
         }
