@@ -19,53 +19,42 @@
 <body>
 <ul class="menu">
   <li>
-    <a href="#">MENU1</a>
+    <a href="#">정석코딩</a>
     <ul class="submenu">
-      <li><a href="#">submenu01</a></li>
-      <li><a href="#">submenu02</a></li>
+      <li><a href="/admin/home">대시보드</a></li>
+      <li><a href="/">정석코딩 바로가기</a></li>
       <li><a href="#">submenu03</a></li>
       <li><a href="#">submenu04</a></li>
       <li><a href="#">submenu05</a></li>
     </ul>
   </li>
   <li>
-    <a href="#">MENU2</a>
+    <a href="#">학사관리</a>
     <ul class="submenu">
-      <li><a href="#">submenu01</a></li>
-      <li><a href="#">submenu02</a></li>
-      <li><a href="#">submenu03</a></li>
-      <li><a href="#">submenu04</a></li>
-      <li><a href="#">submenu05</a></li>
+      <li><a href="/adminManage/stdManage/list">학생정보</a></li>
+      <li><a href="/adminManage/instructor/list">강사관리</a></li>
+      <li><a href="/adminManage/memberManage/list">회원관리</a></li>
     </ul>
   </li>
   <li>
-    <a href="#">MENU3</a>
+    <a href="#">교육등록</a>
     <ul class="submenu">
-      <li><a href="#">submenu01</a></li>
-      <li><a href="#">submenu02</a></li>
-      <li><a href="#">submenu03</a></li>
-      <li><a href="#">submenu04</a></li>
-      <li><a href="#">submenu05</a></li>
+      <li><a href="#">부트캠프</a></li>
+      <li><a href="#">세미나</a></li>
     </ul>
   </li>
   <li>
-    <a href="#">MENU4</a>
+    <a href="#">커뮤니티</a>
     <ul class="submenu">
-      <li><a href="#">submenu01</a></li>
-      <li><a href="#">submenu02</a></li>
-      <li><a href="#">submenu03</a></li>
-      <li><a href="#">submenu04</a></li>
-      <li><a href="#">submenu05</a></li>
+      <li><a href="#">전체공지</a></li>
+      <li><a href="#">학생공지</a></li>
     </ul>
   </li>
   <li>
-    <a href="#">MENU5</a>
+    <a href="#">시설물</a>
     <ul class="submenu">
-      <li><a href="#">submenu01</a></li>
-      <li><a href="#">submenu02</a></li>
-      <li><a href="#">submenu03</a></li>
-      <li><a href="#">submenu04</a></li>
-      <li><a href="#">submenu05</a></li>
+      <li><a href="#">강의실</a></li>
+      <li><a href="#">사물함</a></li>
     </ul>
   </li>
 </ul>

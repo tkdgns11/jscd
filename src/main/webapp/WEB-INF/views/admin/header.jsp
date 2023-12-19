@@ -26,8 +26,9 @@
     </div>
     <div id="adminLoginBox">
         <ul>
-            <li>로그인</li>
-            <li>회원가입</li>
+            <li><a href="<c:url value='/admin/logout'/>">로그아웃</a></li>
+            <li><a>&nbsp;&nbsp;|&nbsp;&nbsp;</a></li>
+            <li><a href="<c:url value='/admin/read'/>">개인정보수정</a></li>
         </ul>
     </div>
 </div>
