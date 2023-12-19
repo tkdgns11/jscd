@@ -23,9 +23,6 @@
     <ul class="submenu">
       <li><a href="/admin/home">대시보드</a></li>
       <li><a href="/">정석코딩 바로가기</a></li>
-      <li><a href="#">submenu03</a></li>
-      <li><a href="#">submenu04</a></li>
-      <li><a href="#">submenu05</a></li>
     </ul>
   </li>
   <li>
@@ -59,4 +56,23 @@
   </li>
 </ul>
 </body>
+<script>
+  //각 메뉴 높이 지정 li에 따라서 변동
+  var menuItems = document.querySelectorAll('.menu > li');
+
+  // 각 메뉴 아이템에 이벤트 리스너를 추가합니다.
+  menuItems.forEach(function(item) {
+    item.addEventListener('mouseover', function() {
+      var submenu = this.querySelector('.submenu');
+      var submenuItems = submenu.querySelectorAll('li');
+      var submenuHeight = submenuItems.length * 50; // 서브메뉴 아이템의 개수에 따라 높이를 계산합니다.
+      submenu.style.height = submenuHeight + 'px'; // 높이를 변경합니다.
+    });
+
+    item.addEventListener('mouseout', function() {
+      var submenu = this.querySelector('.submenu');
+      submenu.style.height = '0'; // hover가 해제되면 높이를 0으로 설정하여 숨깁니다.
+    });
+  });
+</script>
 </html>
