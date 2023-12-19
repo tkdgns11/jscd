@@ -72,9 +72,9 @@
                 <th style="width: 80px"><input type="checkbox" id="allCheckBox" onclick="allChecked()"
                 ></th>
                 <th style="width: 80px">No.</th>
-                <th style="width: 250px;">아이디</th>
+                <th style="width: 300px;">아이디</th>
                 <th style="width: 100px;">이름</th>
-                <th style="width: 100px;">닉네임</th>
+                <th style="width: 250px;">닉네임</th>
                 <th style="width: 100px;">성별</th>
                 <th style="width: 250px;">휴대전화</th>
                 <th style="width: 100px;">등급</th>
@@ -102,7 +102,7 @@
                                         pattern="yyyy-MM-dd" type="date"/></td>
                     <td>
                         <button class="detailBtn"
-                                onclick="location.href='/onlyAdmin/memberManage/read?page=${sc.page}&mebrNo=${memberDto.mebrNo}'">
+                                onclick="location.href='/adminManage/memberManage/read?page=${sc.page}&mebrNo=${memberDto.mebrNo}'">
                             상세보기
                         </button>
                     </td>
@@ -120,14 +120,14 @@
         <c:if test="${page.totalCnt!=null && page.totalCnt!=0}">
             <p>
                 <c:if test="${page.showPrev}">
-                    <a href="<c:url value="/onlyAdmin/memberManage/list${sc.getQueryString(page.beginPage-1)}"/>">&lt;</a>
+                    <a href="<c:url value="/adminManage/memberManage/list${sc.getQueryString(page.beginPage-1)}"/>">&lt;</a>
                 </c:if>
                 <c:forEach var="i" begin="${page.beginPage}" end="${page.endPage}">
-                    <a href="<c:url value="/onlyAdmin/memberManage/list${sc.getQueryString(i)}"/>"
+                    <a href="<c:url value="/adminManage/memberManage/list${sc.getQueryString(i)}"/>"
                        class="naviPage${i==sc.page? "-active" : ""}">${i}</a>
                 </c:forEach>
                 <c:if test="${page.showNext}">
-                    <a href="<c:url value="/onlyAdmin/memberManage/list${sc.getQueryString(page.endPage+1)}"/>">&gt;</a>
+                    <a href="<c:url value="/adminManage/memberManage/list${sc.getQueryString(page.endPage+1)}"/>">&gt;</a>
                 </c:if>
             </p>
         </c:if>
@@ -215,7 +215,7 @@
 
                 const form = document.createElement('form');
                 form.setAttribute('method', 'post');        //Post 메소드 적용
-                form.setAttribute('action', '/onlyAdmin/memberManage/modifyMain?page=' +${sc.page});
+                form.setAttribute('action', '/adminManage/memberManage/modifyMain?page=' +${sc.page});
 
                 var input1 = document.createElement('input');
                 var input2 = document.getElementById('grade');

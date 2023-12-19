@@ -34,7 +34,7 @@
 
     <div id="infoSelectBox">
         <div id="infoSearchBox">
-            <form action="/onlyAdmin/stdManage/list" method="get">
+            <form action="/adminManage/stdManage/list" method="get">
                 <select name="option" id="selectList">
                     <option value="T" ${sc.option=='T' || sc.option=='' ? "selected" : ""}>이름</option>
                     <option value="W" ${sc.option=='W' || sc.option=='' ? "selected" : ""}>아이디</option>
@@ -93,7 +93,7 @@
                                         type="date"/></td>
                     <td>
                         <button class="detailBtn"
-                                onclick="location.href='/onlyAdmin/stdManage/read?page=${sc.page}&mebrNo=${stdDto.mebrNo}'">
+                                onclick="location.href='/adminManage/stdManage/read?page=${sc.page}&mebrNo=${stdDto.mebrNo}'">
                             상세보기
                         </button>
                     </td>
@@ -102,7 +102,7 @@
         </table>
     </div>
 
-    <div style="position: absolute;margin-top: 600px;left: 85%">
+    <div style="position: absolute;margin-top: 620px;left: 85%">
         <input type="button" value="삭제" class="deleteBtn" onclick="stdDelete()" style="height: 30px">
     </div>
 
@@ -112,15 +112,15 @@
         </c:if>
         <c:if test="${totalCnt!=null && totalCnt!=0}">
             <c:if test="${page.showPrev}">
-                <a href="<c:url value="/onlyAdmin/stdManage/list${sc.getQueryString(page.beginPage-1)}"/>">&lt;&lt;</a>
+                <a href="<c:url value="/adminManage/stdManage/list${sc.getQueryString(page.beginPage-1)}"/>">&lt;&lt;</a>
             </c:if>
             <c:forEach var="i" begin="${page.beginPage}" end="${page.endPage}">
-                <a href="<c:url value="/onlyAdmin/stdManage/list${sc.getQueryString(i)}"/>"
+                <a href="<c:url value="/adminManage/stdManage/list${sc.getQueryString(i)}"/>"
                    class="naviPage${i==sc.page? "-active" : ""}"
                 >${i}</a>
             </c:forEach>
             <c:if test="${page.showNext}">
-                <a href="<c:url value="/onlyAdmin/stdManage/list${sc.getQueryString(page.endPage+1)}"/>">&gt;&gt;</a>
+                <a href="<c:url value="/adminManage/stdManage/list${sc.getQueryString(page.endPage+1)}"/>">&gt;&gt;</a>
             </c:if>
         </c:if>
     </div>
@@ -206,7 +206,7 @@
 
                 const form = document.createElement('form');
                 form.setAttribute('method', 'post');        //Post 메소드 적용
-                form.setAttribute('action', '/onlyAdmin/stdManage/modifyStatus?page=' +${sc.page});
+                form.setAttribute('action', '/adminManage/stdManage/modifyStatus?page=' +${sc.page});
 
                 var input1 = document.createElement('input');
                 var input2 = document.getElementById('status');
@@ -247,7 +247,7 @@
 
                 const form = document.createElement('form');
                 form.setAttribute('method', 'post');        //Post 메소드 적용
-                form.setAttribute('action', '/onlyAdmin/stdManage/deleteMain?page=${sc.page}');
+                form.setAttribute('action', '/adminManage/stdManage/deleteMain?page=${sc.page}');
 
                 var input1 = document.createElement('input');
                 input1.setAttribute("type", "hidden");

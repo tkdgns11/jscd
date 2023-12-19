@@ -26,7 +26,7 @@
 
 <div id="infoDetailBox">
 
-    <h2 id="infoTitle">회원 정보 상세보기</h2>
+    <h2 id="infoTitle">회원 상세보기</h2>
 
     <label style="margin-right: 3px;">회원번호</label>
     <input type="text" class="infoInputBox" name="mebrNo" id="mebrNo" readonly value="${memberDto.mebrNo}"><br>
@@ -81,7 +81,7 @@
     <div id="adminBtnBox">
         <input type="button" value="수정" class="modifyBtn">
         <input type="button" value="목록" class="backBtn"
-               onclick="location.href='/onlyAdmin/memberManage/list?page=${page}'">
+               onclick="location.href='/adminManage/memberManage/list?page=${page}'">
     </div>
 
 </div>
@@ -129,7 +129,7 @@
             } else {
                 const form = document.createElement('form');
                 form.setAttribute('method', 'post');
-                form.setAttribute('action', '/onlyAdmin/memberManage/modify?page=${page}&mebrNo=${memberDto.mebrNo}');
+                form.setAttribute('action', '/adminManage/memberManage/modify?page=${page}&mebrNo=${memberDto.mebrNo}');
 
                 var status = document.getElementById('status');
                 var grade = document.getElementById('grade');

@@ -23,7 +23,7 @@ import java.util.List;
 	 */
 
 @Controller
-@RequestMapping("/onlyAdmin/stdManage")
+@RequestMapping("/adminManage/stdManage")
 public class StdManageController {
     @Autowired
     StdManageService stdService;
@@ -68,7 +68,7 @@ public class StdManageController {
             e.printStackTrace();
             //에러 발생 시, 에러 msg 전달, 학생 목록으로 이동
             model.addAttribute("msg", "READ_ERR");
-            return "redirect:/onlyAdmin/stdManage/list";
+            return "redirect:/adminManage/stdManage/list";
         }
         return "/admin/stdManage/stdManage";
     }
@@ -86,9 +86,9 @@ public class StdManageController {
             e.printStackTrace();
             //에러 발생 시, 읽기 화면으로 이동, 에러 msg 전달
             model.addAttribute("msg", "MOD_ERR");
-            return "redirect:/onlyAdmin/stdManage/read?page=" + page + "&mebrNo=" + stdDto.getMebrNo();
+            return "redirect:/adminManage/stdManage/read?page=" + page + "&mebrNo=" + stdDto.getMebrNo();
         }
-        return "redirect:/onlyAdmin/stdManage/read?page="+page+"&mebrNo="+stdDto.getMebrNo();
+        return "redirect:/adminManage/stdManage/read?page="+page+"&mebrNo="+stdDto.getMebrNo();
     }
 
     @PostMapping("/modifyStatus") //메인 페이지 상태 일괄 수정
@@ -107,10 +107,10 @@ public class StdManageController {
             e.printStackTrace();
             //에러 발생 시, 에러 msg 전달, list에 리다이렉트
             model.addAttribute("msg", "MOD_ERR");
-            return "redirect:/onlyAdmin/stdManage/list?page=" + page;
+            return "redirect:/adminManage/stdManage/list?page=" + page;
         }
 
-        return "redirect:/onlyAdmin/stdManage/list?page=" + page;
+        return "redirect:/adminManage/stdManage/list?page=" + page;
     }
 
     @PostMapping("/delete") //상세보기 화면에서 삭제
@@ -125,11 +125,11 @@ public class StdManageController {
             e.printStackTrace();
             //에러 발생 시, 에러 msg 전달, 읽기 화면으로 리다이렉트
             model.addAttribute("msg", "DEL_ERR");
-            return "redirect:/onlyAdmin/stdManage/read?page=" + page + "&mebrNo=" + mebrNo;
+            return "redirect:/adminManage/stdManage/read?page=" + page + "&mebrNo=" + mebrNo;
 
         }
 
-        return "redirect:/onlyAdmin/stdManage/list?page=" + page;
+        return "redirect:/adminManage/stdManage/list?page=" + page;
 
     }
 
@@ -150,11 +150,11 @@ public class StdManageController {
             e.printStackTrace();
             //에러 발생 시, 에러 msg 전달, 목록 페이지로 리다이렉트
             model.addAttribute("msg", "DEL_ERR");
-            return "redirect:/onlyAdmin/stdManage/list?page=" + page;
+            return "redirect:/adminManage/stdManage/list?page=" + page;
 
         }
 
-        return "redirect:/onlyAdmin/stdManage/list";
+        return "redirect:/adminManage/stdManage/list";
 
     }
 

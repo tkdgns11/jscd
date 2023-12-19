@@ -68,7 +68,7 @@
         <input type="submit" value="수정" class="modifyBtn">
         <input type="button" value="삭제" class="deleteBtn">
         <input type="button" value="목록" class="backBtn"
-               onclick="location.href='/onlyAdmin/stdManage/list?page=${page}'">
+               onclick="location.href='/adminManage/stdManage/list?page=${page}'">
     </div>
 
 </div>
@@ -93,7 +93,7 @@
 
             const form = document.createElement('form');
             form.setAttribute('method', 'post');
-            form.setAttribute('action', '/onlyAdmin/stdManage/delete?mebrNo=${stdDto.mebrNo}&page=${page}');
+            form.setAttribute('action', '/adminManage/stdManage/delete?mebrNo=${stdDto.mebrNo}&page=${page}');
             document.body.appendChild(form);
             form.submit();
 
@@ -121,7 +121,7 @@
             } else {
                 const form = document.createElement('form');
                 form.setAttribute('method', 'post');
-                form.setAttribute('action', '/onlyAdmin/stdManage/modify?page=${page}&mebrNo=${stdDto.mebrNo}');
+                form.setAttribute('action', '/adminManage/stdManage/modify?page=${page}&mebrNo=${stdDto.mebrNo}');
 
                 var gisu = document.getElementById('gisu');
                 var status = document.getElementById('status');

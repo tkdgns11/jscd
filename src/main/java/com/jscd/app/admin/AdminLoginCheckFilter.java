@@ -1,4 +1,4 @@
-package com.jscd.app.admin.controller;
+package com.jscd.app.admin;
 
 
 import javax.servlet.*;
@@ -15,7 +15,7 @@ import java.util.Optional;
 	작성 기능:관리자 메뉴를 관리자만 사용할 수 있도록 id를 확인
 	 */
 
-@WebFilter(urlPatterns = {"/onlyAdmin/*", "/admin/home", "/admin/read"})
+@WebFilter(urlPatterns = {"/adminManage/*", "/admin/home", "/admin/read"})
 public class AdminLoginCheckFilter implements Filter {
 
     @Override

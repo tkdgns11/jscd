@@ -15,9 +15,9 @@
 <body>
 <script>
     let msg = "${param.msg}";
-
     if (msg == "MOD_OK") alert("성공적으로 수정되었습니다.");
-    if (msg == "READ_ERR") alert("정보를 가져오는데 실패했습니다. 다시 시도해 주세요.");</script>
+    if (msg == "READ_ERR") alert("정보를 가져오는데 실패했습니다. 다시 시도해 주세요.");
+</script>
 
 
 <header>
@@ -25,7 +25,7 @@
 </header>
 
 
-<div id="infoDetailBox" style="margin-top: 100px;margin-left: 900px;">
+<div id="infoDetailBox">
     <h2 id="infoTitle">개인 정보 읽기</h2>
     <label style="margin-right: 15px;">아이디</label>
     <input type="text" class="infoInputBox" readonly value="${adminDto.id}"><br>
@@ -35,14 +35,15 @@
     <input type="text" name="nickname" class="infoInputBox" id="nickname" readonly
            value="${adminDto.nickname}"><br>
     <label>생년월일</label>
-<%--    <input type="date" name="birth" id="birth" value="${adminDto.birth}"><br>--%>
     <input type="text" class="infoInputBox" readonly name="birth" id="birth"
            value="<fmt:formatDate value="${adminDto.birth}" pattern="yyyy-MM-dd" type="date"/>"><br>
     <label>휴대전화</label>
     <input type="text" class="infoInputBox" readonly name="phone" id="phone" value="${adminDto.phone}"><br>
     <br>
+    <div id="adminBtnBox">
     <input type="button" value="수정" class="modifyBtn">
     <input type="button" value="취소" class="deleteBtn" onclick="location.href='/admin/home'">
+    </div>
 
 </div>
 

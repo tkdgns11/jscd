@@ -76,7 +76,7 @@
     <div id="adminBtnBox">
         <input type="submit" value="수정" class="modifyBtn">
         <input type="button" value="목록" class="backBtn"
-               onclick="location.href='/onlyAdmin/instructor/list?page=${page}'">
+               onclick="location.href='/adminManage/instructor/list?page=${page}'">
     </div>
 
 
@@ -119,7 +119,7 @@
             } else {
                 const form = document.createElement('form');
                 form.setAttribute('method', 'post');
-                form.setAttribute('action', '/onlyAdmin/instructor/modify?page=${page}&mebrNo=${infoDto.mebrNo}');
+                form.setAttribute('action', '/adminManage/instructor/modify?page=${page}&mebrNo=${infoDto.mebrNo}');
 
                 var intro = document.getElementById('intro');
                 var status = document.getElementById('status');

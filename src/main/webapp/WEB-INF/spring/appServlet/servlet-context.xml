@@ -46,4 +46,22 @@
     <!-- 소희 : RestTemplate 빈 추가 -->
     <beans:bean id="restTemplate" class="org.springframework.web.client.RestTemplate" />
 
+
+
+<!--접근 불가 인터셉터 등록-->
+    <interceptors>
+        <interceptor>
+            <mapping path="/adminManage/memberManage/*"/>
+            <mapping path="/adminBtTraining/*"/>
+            <mapping path="/adminSmTraining/*"/>
+            <mapping path="/btTraining/*"/>
+            <mapping path="/smTraining/*"/>
+            <mapping path="/classEnroll/*"/>
+            <mapping path="/registCourse/*"/>
+            <mapping path="/lstRegist/*"/>
+            <mapping path="/registRound/*"/>
+            <beans:bean id="AdminGradeCheckInterceptor" class="com.jscd.app.admin.AdminGradeCheckInterceptor" />
+        </interceptor>
+    </interceptors>
+
 </beans:beans>

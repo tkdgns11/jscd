@@ -13,3 +13,19 @@
 #myPagePwdChk{position: absolute; left: 50%; top: 30%; transform: translate(-50%, -30%); border: 1px solid black; width: 700px; height: 50px; border-radius: 10px;}
 #myPagePwdChk > input{width: 500px; height: 50px; font-size: 25px; border-radius: 15px;}
 /*myPage*/
+.memberInfoInput:focus {outline: none;}
+.memberInfoInput{border: 0;background-color: rgba(0,0,0,0.1);border-radius: 5px;margin-top: 5px;margin-bottom: 25px;width: 550px;height: 35px;pointer-events : none;}
+.memberModifyInput{border: 0;background-color: rgba(0,0,0,0.1);border-radius: 5px;margin-top: 5px;margin-bottom: 25px;width: 550px;height: 35px;}
+.password{border: 0;background-color: rgba(0,0,0,0.1);border-radius: 5px;margin-top: 5px;margin-bottom: 25px;width: 550px;height: 35px;}
+.password:focus {outline: none;}
+.memberInfoLabel{color: rgba(0,0,0,0.3);font-weight: 500;}
+#myPageBox{margin-top: 2%;margin-left: 20%;}
+#myPageBtnBox{margin-left: 43%;margin-bottom: 7px;}
+#myPageDelBox{margin-left: 89%;margin-top: 30px;}
+#myPageDelBox > a{color:rgba(0,0,0,0.3);border-bottom: 1px solid rgba(0,0,0,0.3);}
+#myPageContentBox{display: flex; flex-direction: row; height: 800px; position: relative;}
+#myPageContentBox > nav{height: 100%; border-right: 1px solid rgba(0,0,0,0.2)}
+#myPageContentBox > nav > ul{width: 300px;}
+#myPageContentBox > nav > ul > li{width:200px; margin: 0 auto; padding:30px; border-bottom: 1px solid rgba(0,0,0,0.2)}
+#myPageContentBox > nav > ul > li > a{font-size: 25px;font-weight: bold; color: #182566}
+#myPageContentBox > nav > ul > li > a:hover{font-size: 25px;font-weight: bold; color: #0185FE}
