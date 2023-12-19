@@ -3,6 +3,7 @@ package com.jscd.app.admin.controller;
 import com.jscd.app.admin.domain.Pageable;
 import com.jscd.app.admin.domain.SearchCondition;
 import com.jscd.app.admin.dto.MemberManageDto;
+import com.jscd.app.admin.service.AdminService;
 import com.jscd.app.admin.service.MemberManageService;
 import com.jscd.app.member.dto.MemberDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,8 @@ public class MemberManageController {
 
     @Autowired
     MemberManageService manageService;
+    @Autowired
+    AdminService adminService;
 
     @GetMapping("/list") //전체 회원 목록 페이지
     public String getList(SearchCondition sc, Model model) {
@@ -72,11 +75,16 @@ public class MemberManageController {
 
 
     @PostMapping("/modify") //상세 페이지 수정
-    public String infoModify(Integer page, MemberDto memberDto, Model model) {
+    public String infoModify(Integer page, MemberDto memberDto, Model model,String originGrade) {
+
 
         try {
             //입력 받은 dto를 update
             manageService.modifyDetail(memberDto);
+            MemberDto adminDel = manageService.readMember(memberDto.getMebrNo());
+            if(originGrade.equals("관리자")){//기존 등급이 관리자라면, 관리자 테이블에서 삭제
+                adminService.removeAdmin(adminDel.getId());
+            }
             //성공 msg 모델에 전달
             model.addAttribute("msg", "MOD_OK");
         } catch (Exception e) {

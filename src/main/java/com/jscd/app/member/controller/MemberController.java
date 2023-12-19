@@ -389,7 +389,7 @@ public class MemberController {
 		}catch (Exception e){
 			e.printStackTrace();
 			model.addAttribute("msg", "READ_ERR");
-			return "redirect:/member/memberPwdChk";
+			return "redirect:/member/memberEdit";
 		}
 		return "/member/instructorIntro";
 	}

@@ -47,7 +47,7 @@
     <label>휴대전화</label>
     <input type="text" class="infoInputBox" readonly value="${infoDto.phone}"><br>
     <label style="margin-right: 25px;">소개</label>
-    <input type="text" class="infoInputBox" name="intro" id="intro" readonly value="${infoDto.intro}"><br>
+    <input type="text" class="infoInputBox" id="intro" readonly value="${infoDto.intro}"><br>
     <label style="margin-right: 25px;">상태</label>
     <select name="status" id="status" class="modifySelect">
         <c:if test="${infoDto.status eq '이직'}">
@@ -94,7 +94,7 @@
     $(document).ready(function () {
         $(".modifyBtn").on("click", function () {
 
-            let isReadonly = $("input[name=intro]").attr('readonly');
+            let isReadonly = $("input[name=hourPmt]").attr('readonly');
 
 
             if (isReadonly == 'readonly') {
@@ -111,8 +111,6 @@
 
                 $("input[name=hourPmt]").attr('readonly', false);
                 $("input[name=etc]").attr('readonly', false);
-                $("input[name=intro]").focus();
-                $("input[name=intro]").css("border-bottom", "1px solid red");
                 $("input[name=status]").css("border-bottom", "1px solid red");
                 $("input[name=hourPmt]").css("border-bottom", "1px solid red");
                 $("input[name=etc]").css("border-bottom", "1px solid red");
@@ -121,13 +119,11 @@
                 form.setAttribute('method', 'post');
                 form.setAttribute('action', '/adminManage/instructor/modify?page=${page}&mebrNo=${infoDto.mebrNo}');
 
-                var intro = document.getElementById('intro');
                 var status = document.getElementById('status');
                 var hourPmt = document.getElementById('hourPmt');
                 var etc = document.getElementById('etc');
                 var mebrNo = document.getElementById('mebrNo');
 
-                form.appendChild(intro);
                 form.appendChild(status);
                 form.appendChild(hourPmt);
                 form.appendChild(etc);
