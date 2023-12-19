@@ -4,6 +4,7 @@ import com.jscd.app.lecture.course.dto.CourseDto;
 import com.jscd.app.lecture.lstRegist.dto.LectureApplyDto;
 import com.jscd.app.lecture.lstRegist.dto.LstRegistDto;
 import com.jscd.app.lecture.lstRegist.dto.SearchCondition;
+import com.jscd.app.lecture.lstRegist.dto.lstregistfileDto;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public interface LstService {
     int getSearchResultCnt(SearchCondition sc) throws Exception;
     List<LstRegistDto> getSearchResultPage(SearchCondition sc) throws Exception;
     //세미나 리스트 불러오기
-    List<LstRegistDto> seminarList() throws Exception;
+    List<lstregistfileDto> seminarList() throws Exception;
     //세미나 세부항목 불러오기
     LstRegistDto seminarRead(Integer registCode) throws Exception;
     //부트캠프 리스트 불러오기

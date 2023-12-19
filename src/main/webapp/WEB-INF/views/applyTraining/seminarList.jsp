@@ -53,16 +53,15 @@
     <div id="smApplyList">
         <c:forEach var="list" items="${list}">
         <div id="smApplyBox">
-
-            <a href="#">
-            <div>
+            <a href="<c:url value='/smTraining/read?registCode=${list.registCode}'/>">
                 <div>
-                    <div>상태</div>
-                    <h1>${list.title}</h1>
+                    <div>
+                        <div>${list.status}</div>
+                        <h1>${list.title}</h1>
+                    </div>
+                    <span id="smApplySpan"></span>
+                    <img src="<c:url value="/upload/img${list.storedFileName}"/>">
                 </div>
-                <span></span>
-                <img src="#">
-            </div>
             </a>
             <p>${list.title}</p>
         </div>

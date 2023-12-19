@@ -2,6 +2,7 @@ package com.jscd.app.lecture.lstRegist.dao;
 
 import com.jscd.app.lecture.lstRegist.dto.LstRegistDto;
 import com.jscd.app.lecture.lstRegist.dto.SearchCondition;
+import com.jscd.app.lecture.lstRegist.dto.lstregistfileDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -68,7 +69,7 @@ public class LstRegistDaoImpl implements LstRegistDao {
 
     //9.세미나
     @Override
-    public List<LstRegistDto> getSeminarList() throws Exception {
+    public List<lstregistfileDto> getSeminarList() throws Exception {
         return session.selectList(namespace + "seminarList");
     }
 
