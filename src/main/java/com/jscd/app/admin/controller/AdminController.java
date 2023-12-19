@@ -41,9 +41,7 @@ public class AdminController {
 
     //관리자 홈
     @GetMapping("/home")
-    public String adminHome() {
-        return "admin/dashBoard";
-    }
+    public String adminHome() {return "admin/dashBoard";}
 
 
     //로그인 화면 보여주기
