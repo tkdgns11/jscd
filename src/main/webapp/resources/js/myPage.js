@@ -1,6 +1,4 @@
-let msg = "${param.msg}";
-if (msg == "MOD_OK") alert("성공적으로 수정되었습니다.");
-if (msg == "MOD_ERR") alert("수정이 실패했습니다.다시 시도해주세요.");
+
 
 function infoModify() {
     const pwdChk = document.getElementById("pwd2");
@@ -28,6 +26,7 @@ function infoModify() {
         form.appendChild(birth);
         form.appendChild(phone);
         form.appendChild(id);
+        console.log(form)
         document.body.appendChild(form);
         form.submit();
 
@@ -63,15 +62,22 @@ function pwdValid(pwdChk, pwdReg) {
 
 $(document).ready(function () {
 
+    //수정할 뒤에 포커스 위치하도록
     var len = $('#nickname').val().length;
     $('#nickname').focus();
     $('#nickname')[0].setSelectionRange(len, len);
 
+    //전화번호 자동 하이픈
+    const autoHyphen = (target) => {
+        target.value = target.value
+            .replace(/[^0-9]/g, '')
+            .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
+    }
 
+
+    //비밀번호 일치 여부 효과
     $(".password").on("propertychange change keyup paste input", function() {
 
-        //비밀번호 일치 여부 효과
-    // $(".password").focusout(function () {
         let pass1 = $("#pwd1").val();
         let pass2 = $("#pwd2").val();
 

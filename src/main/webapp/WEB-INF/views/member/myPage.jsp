@@ -24,7 +24,11 @@
     <title>myPage</title>
 
 </head>
-
+<script>
+    let msg = "${param.msg}";
+    if (msg == "MOD_OK") alert("성공적으로 수정되었습니다.");
+    if (msg == "MOD_ERR") alert("수정이 실패했습니다.다시 시도해주세요.");
+</script>
 
 <body>
 <header>
@@ -57,9 +61,10 @@
         <label class="memberInfoLabel">성별</label><br>
         <input type="text"  class="memberInfoInput" value="${memberDto.gender== 0 ? '남' : '여'}" readonly><br>
         <label class="memberInfoLabel">생년월일</label><br>
-        <input type="date"  class="memberModifyInput"  name="birth" id="birth" value="${memberDto.birth}" name="birth"><br>
+        <input type="text"  class="memberModifyInput"  name="birth" id="birth" value="${memberDto.birth}" name="birth"><br>
+<%--        <input type="date"  class="memberModifyInput"  name="birth" id="birth" value="${memberDto.birth}" name="birth"><br>--%>
         <label class="memberInfoLabel">휴대전화</label><br>
-        <input type="text" value="${memberDto.phone}" name="phone" id="phone" class="memberModifyInput" ><br>
+        <input type="text" value="${memberDto.phone}" name="phone" id="phone" class="memberModifyInput" oninput="autoHyphen(this)"><br>
         <div id="myPageBtnBox">
         <input type="button" value="수정" class="modifyBtn" onclick="infoModify()">
         </div>

@@ -12,7 +12,6 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/jscdReset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/myPage.css"/>">
-    <script type="text/javascript" src="<c:url value="/js/myPage.js"/>"></script>
     <title>myPage</title>
 
     <style>

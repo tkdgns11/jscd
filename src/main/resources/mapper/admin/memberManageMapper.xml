@@ -53,7 +53,7 @@
         join (select ctNum,codeName as status from allCode where ctId = "M001") s
         on m.status = s.ctNum
         join (select ctNum,codeName as grade from allCode where ctId = "M002") d
-        on m.gender = d.ctNum
+        on m.grade = d.ctNum
         <include refid="searchCondition"/>
     </select>
 

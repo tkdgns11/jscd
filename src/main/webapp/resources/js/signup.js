@@ -58,7 +58,7 @@ function member(value){
     ){
         alert("유효성 검사 실패");
     } else {
-        const signupData = {"id":id.value, "pwd":pwd.value, "birth":birth.value, "name":name.value, "gender":gender};
+        const signupData = {"id":id.value, "pwd":pwd.value, "birth":birth.value, "name":name.value, "gender":gender,"phone":phone.value};
         const data= {...signupData, ...checkboxStates}
         console.log(data);
             //회원가입일 경우

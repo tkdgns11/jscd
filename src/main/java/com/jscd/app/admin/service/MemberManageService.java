@@ -20,4 +20,6 @@ public interface MemberManageService {
     int remove(Integer mebrNo) throws Exception;
     List<MemberManageDto> getSearchPage(SearchCondition sc)throws Exception;
     int getSearchResultCnt(SearchCondition sc)throws Exception;
-}
+    MemberDto readMember(Integer mebrNo) throws Exception;
+
+    }
