@@ -10,7 +10,9 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/adminInfo.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/jscdReset.css"/>">
-
+<style>
+    body{overflow: hidden;height: 100%}
+</style>
 </head>
 <script>
     let msg = "${param.msg}";
@@ -30,7 +32,7 @@
 <%--수정 -> 수정버튼 -> 읽기--%>
 
 <div id="infoContentBox">
-    <div id="infoTitleBox">
+    <div id="infoTitleBox" style="margin-top: -30px">
         <h1>회원 정보 관리</h1>
     </div>
 

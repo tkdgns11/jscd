@@ -42,43 +42,17 @@
     <label>휴대전화</label>
     <input type="text" class="infoInputBox" readonly value="${memberDto.phone}"><br>
     <input type="hidden" class="infoInputBox" readonly value="${memberDto.grade}" name="originGrade" id="originGrade"><br>
-
     <label style="margin-right: 25px;">등급</label>
-    <select name="grade" id="grade" class="modifySelect">
-        <c:if test="${memberDto.grade eq '일반'}">
-            <option value="1">일반</option>
-        </c:if>
-        <c:if test="${memberDto.grade eq '학생'}">
-            <option value="2">학생</option>
-        </c:if>
-        <c:if test="${memberDto.grade eq '강사'}">
-            <option value="3">강사</option>
-        </c:if>
-        <c:if test="${memberDto.grade eq '관리자'}">
-            <option value="4">관리자</option>
-        </c:if> </select><br><br>
+    <input type="text" class="infoInputBox" readonly id="grade" value="${memberDto.grade}"><br>
     <label style="margin-right: 25px;">상태</label>
-    <select name="status" id="status" class="modifySelect">
-        <c:if test="${memberDto.status eq '정상'}">
-            <option value="1">정상</option>
-        </c:if>
-        <c:if test="${memberDto.status eq '블랙'}">
-            <option value="2">블랙</option>
-        </c:if>
-        <c:if test="${memberDto.status eq '탈퇴'}">
-            <option value="3">탈퇴</option>
-        </c:if>
-        <c:if test="${memberDto.status eq '휴면'}">
-            <option value="4">휴면</option>
-        </c:if>
-    </select><br>
+    <input type="text" class="infoInputBox" readonly id="status" value="${memberDto.status}"><br>
     <label style="margin-right: 25px;">계좌</label>
     <input type="text" class="infoInputBox" readonly value="${memberDto.acct}"><br>
     <label style="margin-right: 15px;">가입일</label>
     <input type="text" class="infoInputBox" readonly
            value="<fmt:formatDate value="${memberDto.regDate}" pattern="yyyy-MM-dd" type="date"/>"><br>
     <label style="margin-right: 25px;">비고</label>
-    <input type="text" class="infoInputBox" id="etc" name="etc" readonly value="${memberDto.etc}"><br>
+    <input type="text" class="infoModifyInputBox" id="etc" name="etc" readonly value="${memberDto.etc}"><br>
 
     <div id="adminBtnBox">
         <input type="button" value="수정" class="modifyBtn">
@@ -103,8 +77,13 @@
         4: '관리자'
     }
 
-    let statusInfo = "${memberDto.status}"; //string
-    let gradeInfo = "${memberDto.grade}"; //string
+    let statusValue = "${memberDto.status}"; //상태
+    const statusKeys = Object.keys(statusArr); //상태 번호 배열
+    const statusKey = statusKeys.filter((key) => statusArr[key] == statusValue); //상태 번호
+
+    let gradeValue = "${memberDto.grade}"; //등급
+    const gradeKeys = Object.keys(gradeArr); //등급 번호 배열
+    const gradeKey = gradeKeys.filter((key) => gradeArr[key] == gradeValue); //등급 번호
 
 
     $(document).ready(function () {
@@ -113,21 +92,36 @@
             let isReadonly = $("input[name=etc]").attr('readonly');
 
             if (isReadonly == 'readonly') {
+
                 $("input[name=etc]").attr('readonly', false);
                 $("input[name=etc]").css("border-bottom", "1px solid red");
-                $("input[name=etc]").focus();
+
+                let gradeInput = $("#grade");
+                let $gradeSelect = $('<select id="grade" name="grade" class="modifySelect">');
+                $gradeSelect.append($("<option></option>").attr("value", gradeKey).text(gradeValue));
+
+                let statusInput = $("#status");
+                let $statusSelect = $('<select id="status" name="status" class="modifySelect">');
+                $statusSelect.append($("<option></option>").attr("value", statusKey).text(statusValue));
+
 
                 $.each(gradeArr, function (key, value) {
-                    if (gradeInfo !== value) {
-                        $('#grade').append($("<option></option>").attr("value", key).text(value))
+                    if (gradeValue !== value) {
+                        $gradeSelect.append($("<option></option>").attr("value", key).text(value))
                     }
                 });
 
                 $.each(statusArr, function (key, value) {
-                    if (statusInfo !== value) {
-                        $('#status').append($("<option></option>").attr("value", key).text(value))
+                    if (statusValue !== value) {
+                        $statusSelect.append($("<option></option>").attr("value", key).text(value))
                     }
                 });
+
+                gradeInput.replaceWith($gradeSelect);
+                statusInput.replaceWith($statusSelect);
+                $('.modifySelect').css("margin-bottom","20px");
+
+
             } else {
                 const form = document.createElement('form');
                 form.setAttribute('method', 'post');
