@@ -8,6 +8,8 @@ public class AllqnaDto {
     private Integer allqnaCmtNo; //댓글 번호 (조회수)
     private Integer allqnaCmtNum;// 댓글 Pk
 
+    private Integer allqnaParentCmtNo;
+    private Integer depth;
     private Integer allqnaCmtReplyNo; //대댓글 번호
     private Integer qnaCtNo; //카테고리 번호
     private Integer mebrNo; //회원 번호
@@ -26,13 +28,17 @@ public class AllqnaDto {
     private Integer lastIdNo;
     private String etc;
 
+
+
     public AllqnaDto() {
     }
 
-    public AllqnaDto(Integer allqnaNo, Integer allqnaCmtNo, Integer allqnaCmtNum, Integer allqnaCmtReplyNo, Integer qnaCtNo, Integer mebrNo, String title, String writer, String content, String cmtWriter, String cmtContent, Integer hit, String openYN, Date regDate, Date cmtRegDate, Integer firstIdNo, Date modifyDate, Integer lastIdNo, String etc) {
+    public AllqnaDto(Integer allqnaNo, Integer allqnaCmtNo, Integer allqnaCmtNum, Integer allqnaParentCmtNo, Integer depth, Integer allqnaCmtReplyNo, Integer qnaCtNo, Integer mebrNo, String title, String writer, String content, String cmtWriter, String cmtContent, Integer hit, String openYN, Date regDate, Date cmtRegDate, Integer firstIdNo, Date modifyDate, Integer lastIdNo, String etc) {
         this.allqnaNo = allqnaNo;
         this.allqnaCmtNo = allqnaCmtNo;
         this.allqnaCmtNum = allqnaCmtNum;
+        this.allqnaParentCmtNo = allqnaParentCmtNo;
+        this.depth = depth;
         this.allqnaCmtReplyNo = allqnaCmtReplyNo;
         this.qnaCtNo = qnaCtNo;
         this.mebrNo = mebrNo;
@@ -50,7 +56,6 @@ public class AllqnaDto {
         this.lastIdNo = lastIdNo;
         this.etc = etc;
     }
-
 
     public Integer getAllqnaNo() {
         return allqnaNo;
@@ -74,6 +79,22 @@ public class AllqnaDto {
 
     public void setAllqnaCmtNum(Integer allqnaCmtNum) {
         this.allqnaCmtNum = allqnaCmtNum;
+    }
+
+    public Integer getAllqnaParentCmtNo() {
+        return allqnaParentCmtNo;
+    }
+
+    public void setAllqnaParentCmtNo(Integer allqnaParentCmtNo) {
+        this.allqnaParentCmtNo = allqnaParentCmtNo;
+    }
+
+    public Integer getDepth() {
+        return depth;
+    }
+
+    public void setDepth(Integer depth) {
+        this.depth = depth;
     }
 
     public Integer getAllqnaCmtReplyNo() {
@@ -210,6 +231,8 @@ public class AllqnaDto {
                 "allqnaNo=" + allqnaNo +
                 ", allqnaCmtNo=" + allqnaCmtNo +
                 ", allqnaCmtNum=" + allqnaCmtNum +
+                ", allqnaParentCmtNo=" + allqnaParentCmtNo +
+                ", depth=" + depth +
                 ", allqnaCmtReplyNo=" + allqnaCmtReplyNo +
                 ", qnaCtNo=" + qnaCtNo +
                 ", mebrNo=" + mebrNo +

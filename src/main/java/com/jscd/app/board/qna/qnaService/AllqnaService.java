@@ -1,6 +1,7 @@
 package com.jscd.app.board.qna.qnaService;
 
 import com.jscd.app.board.qna.qnaDto.AllqnaDto;
+import com.jscd.app.board.qna.qnaDto.QnActDto;
 import com.jscd.app.board.qna.qnaDto.SearchCondition;
 
 import java.util.List;
@@ -35,7 +36,7 @@ public interface AllqnaService {
 
 
     //3-2 대댓글 목록
-    List<AllqnaDto> cmtReplyRead(Integer allqnaCmtNo) throws Exception;
+    List<AllqnaDto> cmtReplyRead(AllqnaDto allqnaDto) throws Exception;
 
 
     //3-3 대댓글 수정
@@ -50,6 +51,7 @@ public interface AllqnaService {
     int getSearchResultCnt(SearchCondition sc) throws Exception;
     List<AllqnaDto> getSearchResultPage(SearchCondition sc) throws Exception;
 
-
+    //카테고리
+    QnActDto allqnaCategory(Integer qnaCtNo) throws Exception;
 
 }
