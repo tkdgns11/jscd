@@ -2,6 +2,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var = "path" value = "${pageContext.request.contextPath}"/>
+<%@ page import="javax.servlet.http.HttpSession" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -88,11 +90,13 @@
             </c:if>
         </div>
 
+<%--        세션을 못받아와서 로그인을 못걸고있음--%>
+
         <div>
             <button type = "button" id="writeBtn" onclick="location.href='<c:url value ="/board/notice/write"/>'">글쓰기</button>
         </div>
 
-                <%--    //onclick에 function 매칭해줘야 하나, 짧아서 모두 생략후 한줄만 적어줌--%>
+
     </div>
 
 <%--    <footer>--%>

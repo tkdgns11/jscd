@@ -94,39 +94,30 @@ public class noticeController {
     @GetMapping("/write")  //게시판 작성을 위한 빈 화면을 보여준다
     public String write(Model m, SearchCon sc) {
 
-        System.out.println("write get");
-
         m.addAttribute("mode", "new");
         m.addAttribute("page", sc.getPage());
         m.addAttribute("pageSize", sc.getPageSize());
-
-
-        System.out.println("sc = " + sc);
-
 
         return "board/notice/allNotice"; //읽기와 쓰기에 사용, 쓰기에 사용할 때는 mode=new , new가 아닐 때에는 읽기만!
     }
 
     @PostMapping("/write")
-    public String write(noticeDto noticeDto, HttpSession session, Model m, RedirectAttributes rattr) { //사용자가 입력한 정보를 다시 돌려줘야해서 그걸 model에 담아둬야함
-
-//        BindingResult bindingResult
-//        List<ObjectError> allErrors = bindingResult.getAllErrors();
-//        for (ObjectError allError : allErrors) {
-//            System.out.println("allError = " + allError);  에러가 보이지 않는 문제가 있었음. 이렇게 해결함
-//        }
-
+    public String write(noticeDto noticeDto, BindingResult bindingResult, Integer page, Integer pageSize, HttpSession session, Model m, RedirectAttributes rattr) { //사용자가 입력한 정보를 다시 돌려줘야해서 그걸 model에 담아둬야함
+//            System.out.println("noticeDto: " + noticeDto);
+//BindingResult bindingResult,
+        List<ObjectError> allErrors = bindingResult.getAllErrors();
+        for (ObjectError allError : allErrors) {
+            System.out.println("allError = " + allError);  //에러가 보이지 않는 문제가 있었음. 이렇게 해결함
+        }
 
         try {
 
             int rowCnt = noticeService.write(noticeDto);
-
           System.out.println(m);
-
             if (rowCnt != 1)
                 throw new Exception("Write Failed");
 
-            rattr.addFlashAttribute("msg", "wrt_ok"); //세션을 이용한 일회성 저장
+//            rattr.addFlashAttribute("msg", "wrt_ok"); //세션을 이용한 일회성 저장
 
             return "redirect:/board/notice/list";
 
