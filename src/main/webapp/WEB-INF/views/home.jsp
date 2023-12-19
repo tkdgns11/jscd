@@ -15,42 +15,25 @@
 	<jsp:include page="header.jsp"/>
 </header>
 <div id="content">
-
 	<main>
 		<%--상단 슬라이드--%>
 		<div class="slideshowContainer">
 
 			<!-- Full-width images with number and caption text -->
 			<div class="mySlides fade">
-				<img src="<c:url value="/img/homeTeacher_W2500H500.png"/>" style="width:100%;  object-fit: cover;">
+				<img src="<c:url value="/img/homeTeacher.png"/>" style="width:100%;  object-fit: cover;">
 				<div class="text">JUNGSUK_CODING</div>
 			</div>
 
 			<div class="mySlides fade">
-				<img src="https://divisare-res.cloudinary.com/images/f_auto,q_auto,w_800/v1491425435/hwxwxqxfwo4htfgqksbu/acne-studios-acne-studio-potsdamer-strasse.jpg" style="width:100%">
+				<img src="<c:url value="/img/homeTeacher01.png"/>" style="width:100%;  object-fit: cover;">
 				<div class="text">JUNGSUK_CODING</div>
 			</div>
 
 			<div class="mySlides fade">
-				<img src="https://divisare-res.cloudinary.com/images/f_auto,q_auto,w_800/v1491425448/rnelglmoujifzlbzykxw/acne-studios-acne-studio-potsdamer-strasse.jpg" style="width:100%">
+				<img src="<c:url value="/img/homeTeacher02.png"/>" style="width:100%;  object-fit: cover;">
 				<div class="text">JUNGSUK_CODING</div>
 			</div>
-
-			<div class="mySlides fade">
-				<img src="https://divisare-res.cloudinary.com/images/f_auto,q_auto,w_800/v1491425434/coct9kmra7uhmeu4cxto/acne-studios-acne-studio-potsdamer-strasse.jpg" style="width:100%">
-				<div class="text">JUNGSUK_CODING</div>
-			</div>
-
-			<div class="mySlides fade">
-				<img src="https://divisare-res.cloudinary.com/images/f_auto,q_auto,w_800/v1491425440/xacfj7abitmifeyciiia/acne-studios-acne-studio-potsdamer-strasse.jpg" style="width:100%">
-				<div class="text">JUNGSUK_CODING</div>
-			</div>
-
-			<div class="mySlides fade">
-				<img src="https://divisare-res.cloudinary.com/images/f_auto,q_auto,w_800/v1491425434/cqxjhpdmepxto0nudsok/acne-studios-acne-studio-potsdamer-strasse.jpg" style="width:100%">
-				<div class="text">JUNGSUK_CODING</div>
-			</div>
-
 			<!-- Next and previous buttons -->
 			<a class="prev" onclick="moveSlides(-1)">&#10094;</a>
 			<a class="next" onclick="moveSlides(1)">&#10095;</a>
@@ -62,9 +45,6 @@
 			<span class="dot" onclick="currentSlide(0)"></span>
 			<span class="dot" onclick="currentSlide(1)"></span>
 			<span class="dot" onclick="currentSlide(2)"></span>
-			<span class="dot" onclick="currentSlide(3)"></span>
-			<span class="dot" onclick="currentSlide(4)"></span>
-			<span class="dot" onclick="currentSlide(5)"></span>
 		</div>
 		<%-- lecture		--%>
 		<div class="lectureContainer">

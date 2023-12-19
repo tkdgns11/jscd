@@ -42,7 +42,7 @@ public class AdminController {
     //관리자 홈
     @GetMapping("/home")
     public String adminHome() {
-        return "admin/dashBoard";
+        return "admin/home";
     }
 
 

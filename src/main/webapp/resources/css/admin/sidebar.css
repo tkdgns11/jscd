@@ -1,0 +1,36 @@
+.menu {
+    width: 300px;
+    overflow: hidden;
+    margin: 150px auto;
+}
+
+.menu > li {
+    width: 100%;
+    text-align: center;
+    line-height: 40px;
+    background-color: rgba(0,0,0,0);
+}
+
+.menu a {
+    color: #fff;
+}
+
+.submenu > li {
+    line-height: 50px;
+    background-color: rgba(0,0,0,1);
+}
+
+.submenu {
+    height: 0; /*ul의 높이를 안보이게 처리*/
+    overflow: hidden;
+}
+
+.menu > li:hover {
+    background-color: rgba(0,0,0,0.8);
+    transition-duration: 0.5s;
+}
+
+.menu > li:hover .submenu {
+    height: 250px; /*서브메뉴 li한개의 높이 50*5*/
+    transition-duration: 1s;
+}
