@@ -26,9 +26,8 @@
     </div>
     <div id="adminLoginBox">
         <ul>
-            <li><a href="<c:url value='/admin/logout'/>">로그아웃</a></li>
-            <li><a>&nbsp;&nbsp;|&nbsp;&nbsp;</a></li>
-            <li><a href="<c:url value='/admin/read'/>">개인정보수정</a></li>
+            <input type="button" value="로그아웃" class="deleteBtn" onClick="location.href='<c:url value='/admin/logout'/>'">
+            <input type="button" value="마이페이지" class="registeBtn" onClick="location.href='<c:url value='/admin/read'/>'">
         </ul>
     </div>
 </div>
