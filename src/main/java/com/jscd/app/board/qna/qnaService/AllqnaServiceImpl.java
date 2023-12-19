@@ -2,6 +2,7 @@ package com.jscd.app.board.qna.qnaService;
 
 import com.jscd.app.board.qna.qnaDao.AllqnaDao;
 import com.jscd.app.board.qna.qnaDto.AllqnaDto;
+import com.jscd.app.board.qna.qnaDto.QnActDto;
 import com.jscd.app.board.qna.qnaDto.SearchCondition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -89,8 +90,8 @@ public class AllqnaServiceImpl implements AllqnaService {
 
     //3-2 대댓글 목록
     @Override
-    public List<AllqnaDto> cmtReplyRead(Integer allqnaCmtNo) throws Exception {
-        return allqnaDao.cmtReplySelectList(allqnaCmtNo);
+    public List<AllqnaDto> cmtReplyRead(AllqnaDto allqnaDto) throws Exception {
+        return allqnaDao.cmtReplySelectList(allqnaDto);
     }
     //3-3 대댓글 수정
     @Override
@@ -121,6 +122,11 @@ public class AllqnaServiceImpl implements AllqnaService {
     }
 
 
+    //카테고리
+    @Override
+    public QnActDto allqnaCategory(Integer qnaCtNo) throws Exception {
+        return allqnaDao.allqnaCategory(qnaCtNo);
+    }
 
 
 }

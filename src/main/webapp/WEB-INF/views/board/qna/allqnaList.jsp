@@ -48,13 +48,14 @@
             <input type="checkbox" name="myWriting" value=""> <span>내가 작성한 글 보기</span>
         </div>
 
-            <button value="등록" class="registeBtn"><a href="<c:url value="/board/qna/allqnaWrite"/>">등록</a></button>
+            <button value="등록" id="registBtn" class="registeBtn"><a style="padding: 20px;" href="<c:url value="/board/qna/allqnaWrite"/>">등록</a></button>
         </div>
 
         <div class="board_list_wrap">
             <div class="board_list">
                 <div class="top">
                     <div class="allqnaNo">번호</div>
+                    <div class="qnaCt">분류</div>
                     <div class="title">제목</div>
                     <div class="writer">글쓴이</div>
                     <div class="regDate">작성일</div>
@@ -64,11 +65,12 @@
                 <c:forEach var="list" items="${list}">
                     <div class="lists">
                         <div class="allqnaNo">${list.allqnaNo}</div>
+                        <div class="qnaCt">${list.qnaCtNo}</div>
                         <div class="title2" id="title" data-openyn="${list.openYN}">
                             <c:if test="${empty param.secret}">
                                 <c:choose>
                                     <c:when test="${list.openYN eq 'Y' || empty list.openYN || list.openYN eq null}">
-                                        <a href="${path}/board/qna/allqnaDetail?allqnaNo=${list.allqnaNo}">${list.title}</a>
+                                        <a href="${path}/board/qna/allqnaDetail?allqnaNo=${list.allqnaNo}" onclick="onTitle(event)">${list.title}</a>
                                     </c:when>
                                     <c:when test="${list.openYN eq 'N'}">
                                         비밀글은 작성자와 관리자만 볼 수 있습니다.
@@ -125,6 +127,8 @@
 
 <script>
 
+
+<%--    비밀글 체크 --%>
     document.addEventListener('DOMContentLoaded', function () {
         const secretCheckboxes = document.querySelectorAll('.secret');
 
@@ -146,6 +150,18 @@
             });
         });
     });
+
+
+
+//제목버튼 누르고 상세보기 들어갔을때 등록하기 버튼 안보이게
+
+
+//
+// function onPostClick(event){
+//     event.preventDefault(); // 기본 동작(링크 이동)을 막음
+//     window.location.href = event.currentTarget.getAttribute('href');
+// }
+//
 
 </script>
 

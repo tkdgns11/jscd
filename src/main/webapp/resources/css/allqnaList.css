@@ -75,30 +75,39 @@ a {
 }
 
 .board_list .allqnaNo {
-    width: 15%;
+    width: 5%;
 
 }
 
+.board_list .qnaCt {
+    width : 15%;
+}
+
+
 .board_list .title, .title2 {
-    width: 40%;
+    width: 30%;
     text-align: left;
 }
 
 .board_list .top .title, title2 {
     text-align: center;
+
 }
 
 .board_list .writer {
-    width: 15%;
+    width: 10%;
 }
 
 .board_list .regDate {
-    width: 20%;
+    width: 25%;
+    margin-left : 10px;
 
 }
 
 .board_list .hit {
-    width: 10%;
+    width: 5%;
+    text-align: right;
+    margin-left : 20px;
 }
 
 
