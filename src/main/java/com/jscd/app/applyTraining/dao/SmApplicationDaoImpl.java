@@ -62,7 +62,7 @@ public class SmApplicationDaoImpl implements SmApplicationDao {
     }
 
     @Override
-    public SmApplicationDto confirmApplcation(SmApplicationDto dto) throws Exception{
+    public int confirmApplcation(SmApplicationDto dto) throws Exception{
         return session.selectOne(namespace + "confirmApplication", dto);
     }
 

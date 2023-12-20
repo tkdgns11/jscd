@@ -62,8 +62,9 @@
     </insert>
 
     <!--    (신청자 전용) 신청서 페이지 이동시 이미 신청했는지 확인-->
-    <select id="confirmApplication" parameterType="SmApplicationDto" resultType="SmApplicationDto">
-        select * from smstform
+    <select id="confirmApplication" parameterType="SmApplicationDto" resultType="int">
+        select count(*)
+        from smstform
         where registCode = #{registCode} and id = #{id}
     </select>
 

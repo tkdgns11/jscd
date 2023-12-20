@@ -62,8 +62,9 @@
     </insert>
 
     <!--    (신청자 전용) 신청서 페이지 이동시 중복 신청 검색-->
-    <select id="confirmApplication" parameterType="BtApplicationDto" resultType="BtApplicationDto">
-        select * from btstform
+    <select id="confirmApplication" parameterType="BtApplicationDto" resultType="int">
+        select count(*)
+        from btstform
         where registCode = #{registCode} and id = #{id}
     </select>
 
