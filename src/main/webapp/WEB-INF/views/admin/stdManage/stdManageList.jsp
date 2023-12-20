@@ -9,6 +9,13 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/adminInfo.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/jscdReset.css"/>">
+
+    <style>
+        body {
+            overflow: hidden;
+            height: 100%
+        }
+    </style>
 </head>
 <script>
     let msg = "${param.msg}";
@@ -71,7 +78,9 @@
                 <th style="width: 100px;">기수</th>
                 <th style="width:100px;">상태</th>
                 <th style="width:250px;">가입일</th>
-                <th style="width:100px;"></th>
+                <th style="width:100px;"><input type="button" value="삭제" class="deleteBtn" onclick="stdDelete()"
+                                                style="height: 23px">
+                </th>
             </tr>
 
 
@@ -102,9 +111,9 @@
         </table>
     </div>
 
-    <div style="position: absolute;margin-top: 620px;left: 85%">
-        <input type="button" value="삭제" class="deleteBtn" onclick="stdDelete()" style="height: 30px">
-    </div>
+    <%--    <div id="delBtnBox">--%>
+    <%--        <input type="button" value="삭제" class="deleteBtn" onclick="stdDelete()" style="height: 30px">--%>
+    <%--    </div>--%>
 
     <div id="infoNaviBox">
         <c:if test="${totalCnt==null || totalCnt==0}">

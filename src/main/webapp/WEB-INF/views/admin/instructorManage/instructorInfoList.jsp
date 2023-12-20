@@ -12,7 +12,9 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/adminInfo.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/jscdReset.css"/>">
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
-
+    <style>
+        body{overflow: hidden;height: 100%}
+    </style>
 
 </head>
 <script>

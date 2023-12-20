@@ -30,6 +30,7 @@
 
     <h2 id="infoTitle">학생 상세보기</h2>
 
+
     <label style="margin-right: 3px;">회원 번호</label>
     <input type="text" class="infoInputBox" readonly name="mebrNo" id="mebrNo" value="${stdDto.mebrNo}"><br>
     <label style="margin-right: 15px;">아이디</label>
@@ -39,32 +40,23 @@
     <label>생년월일</label>
     <input type="text" class="infoInputBox" readonly
            value="<fmt:formatDate value="${stdDto.birth}" pattern="yyyy-MM-dd" type="date"/>"><br>
+
+
     <label>휴대전화</label>
     <input type="text" class="infoInputBox" readonly value="${stdDto.phone}"><br>
     <label style="margin-right: 25px;">기수</label>
-    <input type="text" class="infoInputBox" name="gisu" id="gisu" readonly value="${stdDto.gisu}"><br>
+    <input type="text" class="infoModifyInputBox" name="gisu" id="gisu" readonly value="${stdDto.gisu}"><br>
     <label style="margin-right: 25px;">상태</label>
-    <select name="status" id="status" class="modifySelect">
-        <c:if test="${stdDto.status eq '수강예정'}">
-            <option value="1">수강예정</option>
-        </c:if>
-        <c:if test="${stdDto.status eq '수강중'}">
-            <option value="2">수강중</option>
-        </c:if>
-        <c:if test="${stdDto.status eq '수료'}">
-            <option value="3">수료</option>
-        </c:if>
-    </select><br>
-    </select><br>
+    <input type="text" class="infoModifyInputBox" name="status" id="status" readonly value="${stdDto.status}"><br>
     <label style="margin-right: 25px;">계좌</label>
     <input type="text" class="infoInputBox" readonly value="${stdDto.acct}"><br>
     <label style="margin-right: 15px;">가입일</label>
     <input type="text" class="infoInputBox" readonly
            value="<fmt:formatDate value="${stdDto.regDate}" pattern="yyyy-MM-dd" type="date"/>"><br>
     <label style="margin-right: 25px;">비고</label>
-    <input type="text" class="infoInputBox" name="etc" id="etc" readonly value="${stdDto.etc}"><br>
+    <input type="text" class="infoModifyInputBox" name="etc" id="etc" readonly value="${stdDto.etc}"><br>
 
-    <div style="margin: 40px 0px 50px 100px;">
+    <div id="stdBtnBox">
         <input type="submit" value="수정" class="modifyBtn">
         <input type="button" value="삭제" class="deleteBtn">
         <input type="button" value="목록" class="backBtn"
@@ -82,11 +74,11 @@
         3: '수료'
     }
 
-    let statusInfo = "${stdDto.status}"; //string
-
+    let statusValue = "${stdDto.status}"; //상태
+    const keyArr = Object.keys(statusArr); //상태 번호 배열
+    const statusKey = keyArr.filter((key) => statusArr[key] == statusValue); //상태 번호
 
     $(document).ready(function () {
-
 
         $(".deleteBtn").on("click", function () {
             if (!confirm("정말로 삭제하시겠습니까?")) return;
@@ -111,12 +103,20 @@
                 $("input[name=gisu]").css("border-bottom", "1px solid red");
                 $("input[name=etc]").css("border-bottom", "1px solid red");
 
+
+                let statusInput = $("#status");
+                let $statusSelect = $('<select id="status" name="status" class="modifySelect">');
+                $statusSelect.append($("<option></option>").attr("value", statusKey).text(statusValue));
+
                 $.each(statusArr, function (key, value) {
                     //상태와 value가 같지 않다면 옵션 추가
-                    if(statusInfo !== value){
-                        $('#status').append($("<option></option>").attr("value", key).text(value))
+                    if (statusValue !== value) {
+                        $statusSelect.append($("<option></option>").attr("value", key).text(value))
                     }
                 });
+
+                statusInput.replaceWith($statusSelect);
+
 
             } else {
                 const form = document.createElement('form');

@@ -21,6 +21,7 @@
 
     </script>
 
+
 </head>
 
 <body>
@@ -42,36 +43,22 @@
     <label style="margin-right: 25px;">이름</label>
     <input type="text" class="infoInputBox" readonly value="${infoDto.name}"><br>
     <label>생년월일</label>
-    <input type="text" class="infoInputBox" readonly
-           value="<fmt:formatDate value="${infoDto.birth}" pattern="yyyy-MM-dd" type="date"/>"><br>
+    <input type="text" class="infoInputBox" readonly value="${infoDto.birth}"><br>
     <label>휴대전화</label>
     <input type="text" class="infoInputBox" readonly value="${infoDto.phone}"><br>
     <label style="margin-right: 25px;">소개</label>
     <input type="text" class="infoInputBox" id="intro" readonly value="${infoDto.intro}"><br>
     <label style="margin-right: 25px;">상태</label>
-    <select name="status" id="status" class="modifySelect">
-        <c:if test="${infoDto.status eq '이직'}">
-            <option value="1">이직</option>
-        </c:if>
-        <c:if test="${infoDto.status eq '재직'}">
-            <option value="2">재직</option>
-        </c:if>
-        <c:if test="${infoDto.status eq '휴직'}">
-            <option value="3">휴직</option>
-        </c:if>
-        <c:if test="${infoDto.status eq '퇴직'}">
-            <option value="4">퇴직</option>
-        </c:if>
-    </select><br>
+    <input type="text" class="infoInputBox" name="status" readonly value="${infoDto.status}" id="status"><br>
     <label style="margin-right: 25px;">급여</label>
-    <input type="text" class="infoInputBox" name="hourPmt" id="hourPmt" readonly value="${infoDto.hourPmt}"><br>
+    <input type="text" class="infoModifyInputBox" name="hourPmt" id="hourPmt" readonly value="${infoDto.hourPmt}"><br>
     <label style="margin-right: 25px;">계좌</label>
     <input type="text" class="infoInputBox" readonly value="${infoDto.acct}"><br>
     <label style="margin-right: 15px;">등록일</label>
     <input type="text" class="infoInputBox" readonly
            value="<fmt:formatDate value="${infoDto.regDate}" pattern="yyyy-MM-dd" type="date"/>"><br>
     <label style="margin-right: 25px;">비고</label>
-    <input type="text" class="infoInputBox" name="etc" id="etc" readonly value="${infoDto.etc}"><br>
+    <input type="text" class="infoModifyInputBox" name="etc" id="etc" readonly value="${infoDto.etc}"><br>
     <input type="hidden" name="mebrNo" id="mebrNo" value="${infoDto.mebrNo}">
     <div id="adminBtnBox">
         <input type="submit" value="수정" class="modifyBtn">
@@ -89,7 +76,9 @@
         4: '퇴직'
     }
 
-    let statusInfo = "${infoDto.status}"; //string
+    let statusValue = "${infoDto.status}"; //상태
+    const keyArr = Object.keys(statusArr); //상태 번호 배열
+    const statusKey = keyArr.filter((key) => statusArr[key] == statusValue); //상태 번호
 
     $(document).ready(function () {
         $(".modifyBtn").on("click", function () {
@@ -99,19 +88,26 @@
 
             if (isReadonly == 'readonly') {
                 $("#infoTitle").html("강사 정보 수정");
-                $("input[name=intro]").attr('readonly', false);
+                $("input[name=hourPmt]").attr('readonly', false);
+
+                let statusInput = $("#status");
+                let $statusSelect = $('<select id="status" name="status" class="modifySelect">');
+                $statusSelect.append($("<option></option>").attr("value", statusKey).text(statusValue));
+
 
                 $.each(statusArr, function (key, value) {
                     //상태와 value가 같지 않다면 옵션 추가
-                    if (statusInfo !== value) {
-                        $('#status').append($("<option></option>").attr("value", key).text(value))
+                    if (statusValue !== value) {
+                        $statusSelect.append($("<option></option>").attr("value", key).text(value))
                     }
                 });
+
+                statusInput.replaceWith($statusSelect);
 
 
                 $("input[name=hourPmt]").attr('readonly', false);
                 $("input[name=etc]").attr('readonly', false);
-                $("input[name=status]").css("border-bottom", "1px solid red");
+                // $("input[name=status]").css("border-bottom", "1px solid red");
                 $("input[name=hourPmt]").css("border-bottom", "1px solid red");
                 $("input[name=etc]").css("border-bottom", "1px solid red");
             } else {
@@ -132,6 +128,8 @@
                 document.body.appendChild(form);
                 form.submit();
             }
+
+
         })
     })
 

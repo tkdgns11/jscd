@@ -37,7 +37,7 @@
         <li><a href="/member/memberEdit">회원 정보 수정</a></li>
         <li><a href="#">강의 신청 현황</a></li>
         <c:if test="${memberDto.getGrade() eq '3'}">
-          <li><a href="/member/instructorIntro">강사 소개말 작성</a></li>
+          <li><a href="/member/instructorIntro">강사 소개말 등록</a></li>
         </c:if>
       </ul>
     </nav>
@@ -45,7 +45,7 @@
       <p>비밀번호 입력</p>
       <div id="myPagePwdChk">
         <input type="password" name="pwd" placeholder="&nbsp&nbsp&nbsp비밀번호 입력" id="pwd" style="padding-left: 15px;margin-bottom: 5px"><br>
-        <font id="checkPwd" size="2"></font><br>
+<%--        <font id="checkPwd" size="2"></font><br>--%>
       </div>
       <input type="button" value="확인" class="modifyBtn">
     </div>
@@ -53,40 +53,6 @@
 <header>
   <jsp:include page="../footer.jsp"/>
 </header>
-<script>
-  $(document).ready(function () {
-    $(".modifyBtn").on("click", function () {
-      const form = document.createElement('form');
-      form.setAttribute('method', 'post');
-      form.setAttribute('action', '/member/memberEdit');
 
-      var pwd = document.getElementById('pwd');
-      form.appendChild(pwd);
-      document.body.appendChild(form);
-      form.submit();
-
-    })
-
-    $("#pwd").on("propertychange change keyup paste input", function () {
-      let pass1 = $("#pwd").val();
-      let pass2 = "${memberDto.pwd}"
-
-      if (pass1 != "") {
-        if (pass1 === pass2) {
-          $("#checkPwd").html("비밀번호 일치");
-          $("#checkPwd").attr("color", "green");
-          $("#myPagePwdChk").css("border", "1.5px solid green");
-        } else {
-          $("#checkPwd").html("비밀번호 불일치");
-          $("#checkPwd").attr("color", "red");
-          $("#myPagePwdChk").css("border", "1.5px solid red");
-
-        }
-      }
-
-    })
-
-  })
-</script>
 </body>
 </html>
