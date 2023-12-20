@@ -8,6 +8,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
+<c:set var="loginId" value="${pageContext.request.getSession(false)==null ? null : pageContext.request.session.getAttribute('id')}"/>
+
 <html>
 <head>
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
@@ -17,33 +20,15 @@
 <%--    <script type="text/javascript" src="<c:url value="/js/bootCamp.js"/>"></script>--%>
     <title>bootCampDetail</title>
 </head>
-
-<script>
-    //231214. 정수 여기에 로그인 검사 필요해요?
-    //자스 자바 둘 다 할건가..궁금..?
-    //231218. 용호
-    //로그인 검사는 자바에서 하고 Model로 "msg" 전달 후 사용자에게 로그인 할건지 아닌지 물어보고
-    //확인 누르면 로그인 화면으로 이동, 취소 누르면 보던 페이지 그대로 유지하게 하려는 의도로 만들었어요.
-    //자바에서 로그인 검사하고 아무 알림 없이 로그인 화면 넘기면 이상해서 :)
-    let msg = "${msg}";
-    if(msg == "login required"){
-        const confirmMsg = "로그인이 필요한 서비스입니다. \n로그인 하시겠습니까?";
-        const confirmBoolean = confirm(confirmMsg);
-
-        if(confirmBoolean){
-            window.location.href='http://localhost:8080/member/login';
-        }
-    }
-
-    if(msg == "duplicate application"){
-        alert("이미 신청한 강의입니다.");
-    }
-</script>
-
 <body>
+
 <header>
     <jsp:include page="../header.jsp"/>
 </header>
+
+<input type="hidden" id="id" value=${loginId}>
+<input type="hidden" id="registCode" value=${lstRegistDto.registCode}>
+
 <div id="btDetailInfo">
     <div>
         <%--231214. 정수 제목이 좀 밋밋한데...고민좀 확인 되면 주석 지워주세요 --%>
@@ -51,20 +36,10 @@
     </div>
     <hr/>
     <div>
-            <input type="button" class="registeBtn"  id="registeBtn" value="수강 신청">
-            <input type="button" class="modifyBtn"  value="공유 하기">
-            <input type="button" class="backBtn" id="backBtn" value="둘러 보기">
+        <input type="button" class="registeBtn" id="registeBtn" value="수강 신청">
+        <input type="button" class="modifyBtn" value="공유 하기">
+        <input type="button" class="backBtn" id="backBtn" value="둘러 보기">
     </div>
-    <script>
-        $(document).ready(function() {
-            $("#registeBtn").on("click", function() {
-                location.href="<c:url value='/btTraining/btApplication?registCode=${lstRegistDto.registCode}&title=${lstRegistDto.title}&lastPrice=${lstRegistDto.lastPrice}'/>";
-            });
-            $("#backBtn").on("click", function() {
-                location.href="<c:url value='/btTraining/list'/>";
-            });
-        })
-    </script>
     <hr/>
     <div>
         <div>
@@ -164,8 +139,50 @@
         <input type="text" class="btinputTxt" value="${lstRegistDto.location}" readonly>
     </div>
 </div>
+
 <footer>
     <jsp:include page="../footer.jsp"/>
 </footer>
+
+<script>
+    $(document).ready(function() {
+
+        $("#registeBtn").on("click", function() {
+            const loginId = $("#id").val();
+            const registCode = $("#registCode").val();
+            console.log("loginId = " + loginId);
+            console.log("registCode = " + registCode);
+
+            // 로그인 상태가 아니라면
+            if(loginId == "")
+                if(confirm('로그인이 필요한 서비스입니다.\n로그인 하시겠습니까?'))
+                    location.href='http://localhost:8080/member/login';
+
+            // 로그인 상태라면
+            if(loginId != ""){
+                // 중복 강의 신청인지 확인
+                $.ajax({
+                    type:'get',
+                    url: '/btTraining/duplicationChk?loginId=' + loginId + '&registCode=' + registCode,
+                    success: function(cnt){
+                        console.log(cnt);
+                        if(cnt != 0){
+                            alert('이미 신청한 강의입니다.')
+                        }else {
+                            location.href="<c:url value='/btTraining/btApplication?registCode=${lstRegistDto.registCode}&title=${lstRegistDto.title}&lastPrice=${lstRegistDto.lastPrice}'/>";
+                        }
+                    },
+                    error : ()=>{
+                        alert("서버 요청 실패\n관리자에게 문의해주세요.")
+                    }
+                }); // end ajax
+            }; // end if
+        }); // end registeBtn
+
+        $("#backBtn").on("click", function() {
+            location.href="<c:url value='/btTraining/list'/>";
+        });
+    });
+</script>
 </body>
 </html>

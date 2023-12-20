@@ -56,7 +56,7 @@ public class SmApplicationServiceImpl implements SmApplicationService {
     }
 
     @Override
-    public SmApplicationDto confirmApplcation(SmApplicationDto dto) throws Exception{
+    public int confirmApplcation(SmApplicationDto dto) throws Exception{
         return smApplicationDao.confirmApplcation(dto);
     }
     @Override

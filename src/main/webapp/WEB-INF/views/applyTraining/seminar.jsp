@@ -8,32 +8,26 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
+<c:set var="loginId" value="${pageContext.request.getSession(false)==null ? null : pageContext.request.session.getAttribute('id')}"/>
+
 <html>
 <head>
     <title>seminarDetail</title>
+    <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/jscdReset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/seminar.css"/>">
 </head>
-<script>
-    let msg = "${msg}";
-    if(msg == "login required"){
-        const confirmMsg = "로그인이 필요한 서비스입니다. \n로그인 하시겠습니까?";
-        const confirmBoolean = confirm(confirmMsg);
-
-        if(confirmBoolean){
-            window.location.href='http://localhost:8080/member/login';
-        }
-    }
-
-    if(msg == "duplicate application"){
-        alert("이미 신청한 강의입니다.");
-    }
-</script>
 <body>
+
 <header>
     <jsp:include page="../header.jsp"/>
 </header>
+
+<input type="hidden" id="id" value=${loginId}>
+<input type="hidden" id="registCode" value=${lstRegistDto.registCode}>
+
 <div id="smDetailInfo">
     <div>
         <%--231214. 정수 제목이 좀 밋밋한데...고민좀 확인 되면 주석 지워주세요 --%>
@@ -45,16 +39,6 @@
         <input type="button" class="modifyBtn"  value="공유 하기">
         <input type="button" class="backBtn" id="backsmn" value="둘러 보기">
     </div>
-    <script>
-        $(document).ready(function() {
-            $("#registesmn").on("click", function() {
-                location.href="<c:url value='/smTraining/smApplication?registCode=${lstRegistDto.registCode}&title=${lstRegistDto.title}&lastPrice=${lstRegistDto.lastPrice}'/>";
-            });
-            $("#backsmn").on("click", function() {
-                location.href="<c:url value='/smTraining/list'/>";
-            });
-        })
-    </script>
     <hr/>
     <div>
         <div>
@@ -154,8 +138,51 @@
         <input type="text" class="sminputTxt" value="${lstRegistDto.location}" readonly>
     </div>
 </div>
+
 <footer>
     <jsp:include page="../footer.jsp"/>
 </footer>
+
+<script>
+    $(document).ready(function() {
+
+        $("#registesmn").on("click", function() {
+            const loginId = $("#id").val();
+            const registCode = $("#registCode").val();
+            console.log("loginId = " + loginId);
+            console.log("registCode = " + registCode);
+
+            // 로그인 상태가 아니라면
+            if(loginId == "")
+                if(confirm('로그인이 필요한 서비스입니다.\n로그인 하시겠습니까?'))
+                    location.href='http://localhost:8080/member/login';
+
+            // 로그인 상태라면
+            if(loginId != ""){
+                // 중복 강의 신청인지 확인
+                $.ajax({
+                    type:'get',
+                    url: '/smTraining/duplicationChk?loginId=' + loginId + '&registCode=' + registCode,
+                    success: function(cnt){
+                        console.log(cnt);
+                        if(cnt != 0){
+                            alert('이미 신청한 강의입니다.')
+                        }else {
+                            location.href="<c:url value='/smTraining/smApplication?registCode=${lstRegistDto.registCode}&title=${lstRegistDto.title}&lastPrice=${lstRegistDto.lastPrice}'/>";
+                        }
+                    },
+                    error : ()=>{
+                        alert("서버 요청 실패\n관리자에게 문의해주세요.")
+                    }
+                }); // end ajax
+            }; // end if
+        }); // end registesmn
+
+        $("#backsmn").on("click", function() {
+            location.href="<c:url value='/smTraining/list'/>";
+        });
+    })
+</script>
+
 </body>
 </html>

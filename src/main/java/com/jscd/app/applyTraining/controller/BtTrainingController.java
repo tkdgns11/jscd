@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -62,69 +63,33 @@ public class BtTrainingController {
         // 이미 생성된 세션이 있으면 기존의 세션 반환 없으면 null 반환
         HttpSession session = request.getSession(false);
 
-        //session id, 신청한 강의 번호 얻기
+        // session id, 신청한 강의 번호 얻기
         String id = (String)session.getAttribute("id");
         Integer registCode = lstRegistDto.getRegistCode();
 
-        // 1. 로그인 상태라면
-        if(id != null){
+        // id, registCode, title, lastPrice를 신청서 페이지로 전달
+        m.addAttribute("id" + id);
+        m.addAttribute("lstRegistDto" + lstRegistDto);
+        return "/applyTraining/btApplication";
+    }
 
-            // 2. id와 신청한 강의 번호 btApplicationDto에 set
-            BtApplicationDto btApplicationDto = new BtApplicationDto();
-            btApplicationDto.setId(id);
-            btApplicationDto.setRegistCode(registCode);
+    // 강의 신청 중복 확인
+    @GetMapping("/duplicationChk")
+    @ResponseBody
+    public int idDuplication(String loginId, Integer registCode) throws Exception{
+        System.out.println("loginId = " + loginId);
+        System.out.println("registCode = " + registCode);
 
-            // 강의 중복 신청 확인
-            try {
-                // 3. id와 신청한 강의 번호를 set한 btApplicationDto 이용하여 검색
-                BtApplicationDto btApplicationDto2 = btApplicationService.confirmApplcation(btApplicationDto);
+        // loginId, registCode를 btApplicationDto에 set
+        BtApplicationDto btApplicationDto = new BtApplicationDto();
+        btApplicationDto.setId(loginId);
+        btApplicationDto.setRegistCode(registCode);
 
-                // 4. 검색 결과가 중복 신청이면 예외 발생
-                if (btApplicationDto2 != null)
-                    throw new Exception("duplicate application");
+        // btApplicationDto로 신청한 강의가 있는지 검색
+        int cnt = btApplicationService.confirmApplcation(btApplicationDto);
+        System.out.println("cnt = " + cnt);
 
-                // 5. 검색 결과가 중복이 아니라면
-                // id, registCode, title, lastPrice를 신청서 페이지로 전달
-                m.addAttribute("id" + id);
-                m.addAttribute("lstRegistDto" + lstRegistDto);
-                return "/applyTraining/btApplication";
-            } catch (Exception e) {
-                e.printStackTrace();
-                System.out.println("중복 신청 발생");
-
-                // 6. 검색 결과가 중복 신청이라 예외 발생시
-                try {
-                    // 7. 신청한 강의 번호로 강의 상세 내용 얻기
-                    LstRegistDto lstRegistDto2 = lstService.bootCampRead(registCode);
-
-                    // 8. 강의 상세 내용과 중복 신청 메시지 전달
-                    // 강의 상세 내용을 전달하는 이유는 사용자가 보던 강의 상세 페이지를 보여주기 위함
-                    m.addAttribute("lstRegistDto", lstRegistDto2);
-                    m.addAttribute("msg", "duplicate application");
-                    return "/applyTraining/bootCamp";
-                } catch (Exception e2) {
-                    e2.printStackTrace();
-                    return "redirect:/btTraining/list";
-                }// try catch end
-            }// try catch end
-
-        }else{
-            // 9. 로그인 상태가 아니면
-            System.out.println("로그아웃 상태");
-            try {
-                // 10. 신청한 강의 번호로 강의 상세 내용 얻기
-                LstRegistDto lstRegistDto2 = lstService.bootCampRead(registCode);
-
-                // 11. 강의 상세 내용과 로그인 필요 메시지 전달
-                // 사용자가 로그인을 거절하면 보던 강의 상세 페이지를 보여주기 위함
-                m.addAttribute("lstRegistDto", lstRegistDto2);
-                m.addAttribute("msg", "login required");
-                return "/applyTraining/bootCamp";
-            } catch (Exception e) {
-                e.printStackTrace();
-                return "redirect:/btTraining/list";
-            }// try catch end
-        }// if else end
+        return cnt;
     }
 
     // 부트캠프 리스트 이동
@@ -150,6 +115,7 @@ public class BtTrainingController {
             LstRegistDto lstRegistDto = lstService.bootCampRead(registCode);
             List<ClassEnrollDto> classList = classEnrollService.getBootList(courseCode);
             m.addAttribute(lstRegistDto);
+            System.out.println("lstRegistDto = " + lstRegistDto);
             m.addAttribute("list", classList);
         } catch(Exception e) {
             e.printStackTrace();
@@ -157,12 +123,5 @@ public class BtTrainingController {
         }
         return "/applyTraining/bootCamp";
     }
-
-//    private boolean loginCheck(HttpServletRequest request) {
-//        // 1. 세션 얻기
-//        HttpSession session = request.getSession();
-//        // 2. 세션에 id가 있는지 확인, 있으면 true를 반환
-//        return session.getAttribute("id")!=null;
-//    }
 
 }
