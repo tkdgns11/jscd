@@ -3,32 +3,32 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.jscd.app.lecture.lstRegist.lstRegistMapper">
-<!--       전체 게시물 개수-->
-       <select id="count" resultType="int">
-              select count(*)
-              from lstRegist
-       </select>
+    <!--       전체 게시물 개수-->
+    <select id="count" resultType="int">
+        select count(*)
+        from lstRegist
+    </select>
 
-<!--      강의 등록하기 -->
-       <insert id="insert" parameterType="lstRegistDto">
-              insert into lstRegist (title, discription, courseCode,
-                                     subject1, subject2, subject3, subject4, subject5,
-                                     price1, price2, price3, price4, price5,
-                                     onOff, status, minNum, maxNum, location, startDate, endDate, startTime, endTime,
-                                     name, book, material, totalPrice, discount, lastPrice,
-                                     content)
-              values (#{title}, #{discription}, #{courseCode},
-                      #{subject1}, #{subject2}, #{subject3}, #{subject4}, #{subject5},
-                      #{price1}, #{price2}, #{price3}, #{price4}, #{price5},
-                      #{onOff}, #{status}, #{minNum}, #{maxNum}, #{location}, #{startDate}, #{endDate}, #{startTime}, #{endTime},
-                      #{name}, #{book}, #{material}, #{totalPrice}, #{discount}, #{lastPrice},
-                      #{content})
-           <selectKey keyProperty="registCode" resultType="lstRegistDto" order="AFTER">
-               SELECT *
-               FROM lstRegist
-               WHERE registCode = LAST_INSERT_ID()
-           </selectKey>
-       </insert>
+    <!--      강의 등록하기 -->
+    <insert id="insert" parameterType="lstRegistDto">
+        insert into lstRegist (title, discription, courseCode, courseCategory,
+        subject1, subject2, subject3, subject4, subject5,
+        price1, price2, price3, price4, price5,
+        onOff, status, minNum, maxNum, location, startDate, endDate, startTime, endTime,
+        name, book, material, totalPrice, discount, lastPrice,
+        content)
+        values (#{title}, #{discription}, #{courseCode}, #{courseCategory},
+        #{subject1}, #{subject2}, #{subject3}, #{subject4}, #{subject5},
+        #{price1}, #{price2}, #{price3}, #{price4}, #{price5},
+        #{onOff}, #{status}, #{minNum}, #{maxNum}, #{location}, #{startDate}, #{endDate}, #{startTime}, #{endTime},
+        #{name}, #{book}, #{material}, #{totalPrice}, #{discount}, #{lastPrice},
+        #{content})
+        <selectKey keyProperty="registCode" resultType="lstRegistDto" order="AFTER">
+            SELECT *
+            FROM lstRegist
+            WHERE registCode = LAST_INSERT_ID()
+        </selectKey>
+    </insert>
 
     <!--       등록된 강의 조회하기-->
     <sql id="selectFromlstRegist">
@@ -52,7 +52,7 @@
     <!--    등록된 강의 수정하기-->
     <update id="update" parameterType="lstRegistDto">
         update lstRegist
-        set title = #{title}, discription = #{discription}, onOff = #{onOff}, status = #{status},
+        set title = #{title}, discription = #{discription}, onOff = #{onOff}, status = #{status}, courseCategory = #{courseCategory},
             minNum = #{minNum}, maxNum = #{maxNum}, startDate = #{startDate}, endDate = #{endDate}, startTime=#{startTime}, endTime=#{endTime},
             name=#{name}, book = #{book}, material = #{material}, totalPrice = #{totalPrice}, discount = #{discount}, lastPrice = #{lastPrice},
             content = #{content}, etc = #{etc}
@@ -101,12 +101,11 @@
         <include refid="searchCondition"/>
     </select>
 
+    <!--    세미나 리스트화면으로 이동-->
     <select id="seminarList" resultType="lstregistfileDto">
-<!--        <include refid="selectFromlstRegist"/>-->
-<!--        where status LIKE "진행예정" AND courseCode NOT LIKE 1-->
         select *
         from lstRegist lr right Join lstregistfile lf on lr.registCode = lf.registCode
-        where status LIKE "진행예정" AND courseCode NOT LIKE 1;
+        where status LIKE "진행예정" AND courseCode NOT LIKE 1
     </select>
 
     <select id="seminarDetail" parameterType="int" resultType="lstRegistDto">
@@ -145,15 +144,31 @@
     <!--강의 첨부 파일 다운로드-->
     <select id="selectFileDown" parameterType="hashMap" resultType="hashMap">
         SELECT
-               originFileName,
-               storedFileName
+            originFileName,
+            storedFileName
         FROM lstregistfile
         WHERE fileNo = #{fileNo}
     </select>
 
-<!--    강의 첨부 파일 삭제하기-->
+    <!--    강의 첨부 파일 삭제하기-->
     <delete id="updateFile" parameterType="hashMap">
         delete from lstregistfile
         WHERE fileNo = #{fileNo}
     </delete>
+
+    <!--    홈 화면 세미나 리스트-->
+    <select id="homeSeminarList" resultType="lstRegistDto">
+        SELECT registCode, title, discription
+        FROM lstregist
+        where status like "진행예정" and courseCode not like 1
+            limit 2;
+    </select>
+
+    <!--    홈 화면 부트캠프 리스트-->
+    <select id="homeBootCampList" resultType="lstRegistDto">
+        select registCode, title, discription
+        from lstregist
+        where status like "진행예정" and courseCode like 1
+            limit 2;
+    </select>
 </mapper>

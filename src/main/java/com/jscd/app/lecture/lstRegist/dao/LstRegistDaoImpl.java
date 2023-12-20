@@ -110,4 +110,14 @@ public class LstRegistDaoImpl implements LstRegistDao {
     public void updateFile(Map<String, Object> map) throws Exception {
         session.update(namespace+"updateFile", map);
     }
+
+    @Override
+    public List<LstRegistDto> homeSeminarList() throws Exception {
+        return session.selectList(namespace + "homeSeminarList");
+    }
+
+    @Override
+    public List<LstRegistDto> homeBootCampList() throws Exception {
+        return session.selectList(namespace + "homeBootCampList");
+    }
 }

@@ -1,5 +1,3 @@
-231218
-
 <%--
   Created by IntelliJ IDEA.
   User: george
@@ -55,6 +53,11 @@
                     <input type="text" class="inputTxt" name="courseCode" value="${lstRegistDto.courseName}" ${mode=='new' ? '' : 'disabled="disabled"'}>
                 </c:when>
             </c:choose>
+        </div>
+        <br>
+        <div>
+            <p>과목구분</p>
+            <input type="text" class="inputTxt" name="courseCategory" value="${lstRegistDto.courseCategory}" ${mode=='new' ? '' : 'disabled="disabled"'} placeholder="세미나 개설시 입력해주세요 ex)디자인패턴 - JAVA" onfocus="this.placeholder=''" onblur="this.placeholder='세미나 개설시 입력해주세요 ex)디자인패턴 - JAVA'">
         </div>
         <br>
         <div class="classEnrollInfo">
@@ -289,7 +292,7 @@
             let form = $("#registForm");
             console.log(form);
             <%--// form.attr("action", "<c:url value='/onlyAdmin/lstRegist/addRegist'/>");--%>
-            form.attr("action", "<c:url value='/lstRegist/addRegist'/>");
+            form.attr("action", "<c:url value='/adminManage/lstRegist/addRegist'/>");
             form.attr("method", "post");
             form.attr("enctype", "multipart/form-data");
             form.submit();
@@ -306,6 +309,7 @@
                 $("input[name=title]", form).attr('readonly', false);
                 $("input[name=discription]", form).attr('readonly', false);
                 $("select[name=courseCode]", form).attr('disabled', false);
+                $("input[name=courseCategory]", form).attr('disabled', false);
 
                 $("select[name=onOff]", form).attr('disabled', false);
                 $("select[name=status]", form).attr('disabled', false);
@@ -332,7 +336,7 @@
 
             if(!confirm("해당 게시물을 정말로 수정하시겠습니까?")) return;
             <%--form.attr("action", "<c:url value='/onlyAdmin/lstRegist/modifyRegist${searchCondition.queryString}'/>");--%>
-            form.attr("action", "<c:url value='/lstRegist/modifyRegist${searchCondition.queryString}'/>");
+            form.attr("action", "<c:url value='/adminManage/lstRegist/modifyRegist${searchCondition.queryString}'/>");
             form.attr("method", "post");
             form.attr("enctype", "multipart/form-data");
             form.submit();
@@ -343,14 +347,14 @@
 
             let form = $("#registForm");
             <%--form.attr("action", "<c:url value='/onlyAdmin/lstRegist/removeRegist'/>");--%>
-            form.attr("action", "<c:url value='/lstRegist/removeRegist${searchCondition.queryString}'/>");
+            form.attr("action", "<c:url value='/adminManage/lstRegist/removeRegist${searchCondition.queryString}'/>");
             form.attr("method", "post");
             form.submit();
         });
 
         $("#registListBt").on("click", function() {
             <%--location.href="<c:url value='/onlyAdmin/lstRegist/list?page=${param.page}&pageSize=${param.pageSize}'/>";--%>
-            location.href="<c:url value='/lstRegist/list${searchCondition.queryString}'/>";
+            location.href="<c:url value='/adminManage/lstRegist/list${searchCondition.queryString}'/>";
         });
     });
 </script>

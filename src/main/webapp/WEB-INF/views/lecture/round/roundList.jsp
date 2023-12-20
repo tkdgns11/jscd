@@ -19,14 +19,14 @@
         <c:forEach var="list" items="${list}">
             <li>${list.roundCode}</li>
             <%--            <li><a href="<c:url value='/onlyAdmin/regist/roundDetail?roundCode=${list.roundCode}'/>">${list.roundName}</a></li>--%>
-            <li><a href="<c:url value='/registRound/roundDetail?roundCode=${list.roundCode}'/>">${list.roundName}</a></li>
+            <li><a href="<c:url value='/adminManage/registRound/roundDetail?roundCode=${list.roundCode}'/>">${list.roundName}</a></li>
             <li>${list.regDate}</li>
             <li>${list.firstIdNo}</li>
         </c:forEach>
     </form>
 
     <%--    <button id="writeBtn" class="btn-write" onclick="location.href='<c:url value="/onlyAdmin/regist/addRound"/>'">등록하기</button>--%>
-    <button id="writeBtn" class="btn-write" onclick="location.href='<c:url value="/registRound/addRound"/>'">등록하기</button>
+    <button id="writeBtn" class="btn-write" onclick="location.href='<c:url value="/adminManage/registRound/addRound"/>'">등록하기</button>
 </ul>
 </body>
 </html>

@@ -117,4 +117,16 @@ public class LstServiceImpl implements LstService {
         return lstRegistDao.selectFileDown(map);
     }
 
+    // 홈 화면 세미나 리스트(2개)
+    @Override
+    public List<LstRegistDto> homeSeminarList() throws Exception {
+        return lstRegistDao.homeSeminarList();
+    }
+
+    // 홈 화면 부트캠프 리스트(2개)
+    @Override
+    public List<LstRegistDto> homeBootCampList() throws Exception {
+        return lstRegistDao.homeBootCampList();
+    }
+
 }
