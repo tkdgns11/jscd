@@ -4,7 +4,7 @@ window.onload = function () {
     const cardPay = document.getElementById("card");
     const kakaoPay = document.getElementById("kakaopay");
     const actShow = document.getElementById("account");
-    // 1-2. 복사하기 버튼 불러오기 후 변수에 담기
+    // 1-2. 계좌번호 복사하기 버튼 불러오기 후 변수에 담기
     const copyBtn = document.getElementById("copyBtn");
     // 1-3. 결제하기 버튼 불러오기 후 변수에 담기
     const lastPayBtn = document.getElementById("price-btn");
@@ -89,7 +89,8 @@ window.onload = function () {
     } else {
         console.error('Element with id "goQna" not found!');
     }
-}
+    
+} //window.onload 종료
 
 
 // lastPayBtn 버튼 클릭 이벤트 핸들러

@@ -4,7 +4,7 @@ let typingIdx = 0;
 let typingTxt;
 let tyInt;
 
-window.onload = function () {
+window.addEventListener('load', function () {
     // 주문내역 바로가기 연결
     const goOrderlist = document.getElementById("go_orderlist");
     // 마이페이지 바로가기 연결
@@ -40,7 +40,7 @@ window.onload = function () {
         typingBool = true;
         tyInt = setInterval(typing, 100); // 반복동작
     }
-}
+});
 
 // 주문내역 바로가기 연결
 function ToGoOrderlist() {

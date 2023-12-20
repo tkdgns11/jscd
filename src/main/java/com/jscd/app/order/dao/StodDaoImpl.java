@@ -36,10 +36,21 @@ public class StodDaoImpl implements StodDao {
     // 2. 결과 -> List<StodDTO> 형태로 반환
     // 3. selectList() : 매개변수로 받은 memberId를  selectOrderList 쿼리에 바인딩
     @Override
-    public List<StodDTO> selectOrderList(String id) throws Exception {
-        return sqlSession.selectList("selectOrderList", id);
+    public List<StodDTO> selectOrderList(String id, int start, int end) throws Exception {
+        Map<String, Object> params = new HashMap<>();
+        params.put("id", id);
+        params.put("start", start);
+        params.put("end", end);
+        return sqlSession.selectList("selectOrderList", params);
     }
-    
+
+    @Override
+    public int countOrderList(String id) throws Exception {
+        return sqlSession.selectOne("countOrderList", id);
+    }
+
+
+
     // '주문 상세 내역 조회'
     // 1. 결과 여러 개 반환 가능 -> 반환 타입 지정 : List<StodDTO>
     @Override

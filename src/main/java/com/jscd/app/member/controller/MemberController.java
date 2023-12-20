@@ -13,6 +13,10 @@ import com.jscd.app.member.dto.NaverLoginBo;
 //import com.jscd.app.member.dto.mailSender;
 import com.jscd.app.member.dto.MemberDto;
 import com.jscd.app.member.service.MemberService;
+import com.jscd.app.order.dto.CompanyInfoDTO;
+import com.jscd.app.order.dto.StodDTO;
+import com.jscd.app.order.service.CompanyInfoService;
+import com.jscd.app.order.service.StodService;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +27,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.*;
 import java.net.URLEncoder;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -35,12 +40,27 @@ public class MemberController {
 	private KakaoLoginBo kakaoLoginBo;
 	private String apiResult = null;
 	private InstructorInfoService infoService;
+	private final CompanyInfoService companyInfoService; //소희
+	private final StodService stodService; //소희
+
+
+//	@Autowired
+//	public MemberController(MemberService memberService, NaverLoginBo naverLoginBo,KakaoLoginBo kakaoLoginBo,InstructorInfoService infoService){
+//		this.memberService = memberService;
+//		this.naverLoginBo = naverLoginBo;
+//		this.kakaoLoginBo = kakaoLoginBo;
+//		this.infoService = infoService;
+//	}
+
+
 	@Autowired
-	public MemberController(MemberService memberService, NaverLoginBo naverLoginBo,KakaoLoginBo kakaoLoginBo,InstructorInfoService infoService){
+	public MemberController(MemberService memberService, NaverLoginBo naverLoginBo,KakaoLoginBo kakaoLoginBo,InstructorInfoService infoService, CompanyInfoService companyInfoService, StodService stodService){
 		this.memberService = memberService;
 		this.naverLoginBo = naverLoginBo;
 		this.kakaoLoginBo = kakaoLoginBo;
 		this.infoService = infoService;
+		this.companyInfoService = companyInfoService; //소희
+		this.stodService = stodService; //소 
 	}
 
 
@@ -408,6 +428,42 @@ public class MemberController {
 			return "redirect:/member/instructorIntro";
 		}
 		return "redirect:/member/instructorIntro";
+	}
+	
+	// 강의 신청 현황 이동
+//	@GetMapping("/lectureApplyState")
+//	public String showLectureApplyState() {
+//		// 필요한 로직이 있다면 이곳에 작성
+//		return "member/lectureApplyState";
+//	}
+
+	@GetMapping("/lectureApplyState")
+	public String showLectureApplyState(@RequestParam(defaultValue = "1") int page, Model model, MemberDto memberDto, CompanyInfoDTO companyInfoDto, HttpServletRequest request) throws Exception {
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
+
+		int itemsPerPage = 5; // 페이지당 보여줄 아이템 수 (StodServiceImpl.java - selectOrderList()와 연결 됨)
+		List<StodDTO> orderList = stodService.selectOrderList(id, page, itemsPerPage);
+		model.addAttribute("orderList", orderList);
+
+		memberDto = memberService.memberSelect(id);
+		model.addAttribute("memberDto", memberDto);
+		System.out.println(memberDto.toString());
+
+		companyInfoDto.setSlrNo(1); //231207 류소희 강의 등록 시 회사 번호도 등록해야함...
+		// 회사 정보 가져오기
+		companyInfoDto = companyInfoService.select(companyInfoDto.getSlrNo());
+		model.addAttribute("companyInfoDto", companyInfoDto);
+		System.out.println(companyInfoDto.toString());
+
+		int totalItems = stodService.countOrderList(id); // 전체 아이템 수를 조회
+		int totalPages = (int) Math.ceil((double) totalItems / itemsPerPage);
+		model.addAttribute("totalPages", totalPages);
+
+		// 현재 페이지 번호를 모델에 추가
+		model.addAttribute("currentPage", page);
+
+		return "member/lectureApplyState";
 	}
 
 

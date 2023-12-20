@@ -35,7 +35,7 @@
     <nav>
         <ul>
             <li><a href="/member/memberEdit">회원 정보 수정</a></li>
-            <li><a href="#">강의 신청 현황</a></li>
+            <li><a href="/member/lectureApplyState">강의 신청 현황</a></li>
             <c:if test="${memberDto.getGrade() eq '3'}">
                 <li><a href="/member/instructorIntro">강사 소개말 작성</a></li>
             </c:if>
