@@ -47,4 +47,8 @@ public interface LstRegistDao {
     // 첨부파일 수정
     public void updateFile(Map<String, Object> map) throws Exception;
 
+    // 홈 화면 세미나 리스트
+    List<LstRegistDto> homeSeminarList() throws Exception;
+    // 홈 화면 부트캠프 리스트
+    List<LstRegistDto> homeBootCampList() throws Exception;
 }

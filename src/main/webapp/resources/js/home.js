@@ -104,3 +104,95 @@ function showSlides01(n) {
     slides[n].style.display = "block";
     dots[n].className += " active";
 }
+
+// 세미나 버튼 클릭시 가장 최근 세미나 2개를 불러온다.
+function seminarSelect() {
+    $.ajax({
+        url: '/seminarList',
+        method: 'POST',
+        contentType: "application/json; charset=utf-8",
+        success: function(response) {
+            var receivedData = response;
+
+            $("#lectureWrap").empty();
+
+            $.each(receivedData.response, function(index, seminar) {
+                var contentDiv = $("<div>");
+                var ulElement = $("<ul>");
+                var discriptionli = $("<li>").text(seminar.discription);
+                var titleli = $("<li>").text(seminar.title);
+
+                var applyButtonli = $("<li>");
+                var applyButton = $("<input>")
+                    .attr({
+                        type: "button",
+                        class: "registeBtn",
+                        value: "선청하기"
+                    });
+
+                // 세미나 코드를 포함한 URL 생성
+                var seminarURL = $("<a>")
+                    .attr("href", "/smTraining/read?registCode=" + seminar.registCode)
+                    .append(applyButtonli.append(applyButton));
+
+                ulElement.append(discriptionli, titleli, seminarURL);
+
+                var imgElement = $("<img>")
+                    .attr("src", "/img/code.png");
+
+                contentDiv.append(ulElement, imgElement);
+
+                $("#lectureWrap").append(contentDiv);
+            });
+        },
+        error: function(error) {
+            console.log("error");
+        }
+    });
+}
+seminarSelect();
+
+function bootCampSelect() {
+    $.ajax({
+        url: '/bootCampList',
+        method: 'POST',
+        contentType: "application/json; charset=utf-8",
+        success: function(response) {
+            var receivedData = response;
+
+            $("#lectureWrap").empty();
+
+            $.each(receivedData.response, function(index, bootCamp) {
+                var contentDiv = $("<div>");
+                var ulElement = $("<ul>");
+                var discriptionli = $("<li>").text(bootCamp.discription);
+                var titleli = $("<li>").text(bootCamp.title);
+
+                var applyButtonli = $("<li>");
+                var applyButton = $("<input>")
+                    .attr({
+                        type: "button",
+                        class: "registeBtn",
+                        value: "선청하기"
+                    });
+
+                // 세미나 코드를 포함한 URL 생성
+                var seminarURL = $("<a>")
+                    .attr("href", "/btTraining/read?registCode=" + bootCamp.registCode)
+                    .append(applyButtonli.append(applyButton));
+
+                ulElement.append(discriptionli, titleli, seminarURL);
+
+                var imgElement = $("<img>")
+                    .attr("src", "/img/rocket.png");
+
+                contentDiv.append(ulElement, imgElement);
+
+                $("#lectureWrap").append(contentDiv);
+            });
+        },
+        error: function(error) {
+            console.log("error");
+        }
+    });
+}

@@ -37,7 +37,7 @@
             if(!confirm("해당 과정을 등록하시겠습니까?")) return;
             let form = $("#RoundAddForm");
             <%--form.attr("action", "<c:url value='/onlyAdmin/registRound/addRound'/>");--%>
-            form.attr("action", "<c:url value='/registRound/addRound'/>");
+            form.attr("action", "<c:url value='/adminManage/registRound/addRound'/>");
             form.attr("method", "post");
             form.submit();
         });
@@ -45,7 +45,7 @@
         $("#removeBtn").on("click", function() {
             let form = $("#RoundAddForm");
             <%--form.attr("action", "<c:url value='/onlyAdmin/registRound/removeRound?roundCode=${roundDto.roundCode}'/>");--%>
-            form.attr("action", "<c:url value='/registRound/removeRound?roundCode=${roundDto.roundCode}'/>");
+            form.attr("action", "<c:url value='/adminManage/registRound/removeRound?roundCode=${roundDto.roundCode}'/>");
             form.attr("method", "post");
             form.submit();
         });
@@ -53,7 +53,7 @@
         $("#modifyBtn").on("click", function() {
             let form = $("#RoundAddForm");
             <%--form.attr("action", "<c:url value='/onlyAdmin/registRound/modifyRound'/>");--%>
-            form.attr("action", "<c:url value='/registRound/modifyRound'/>");
+            form.attr("action", "<c:url value='/adminManage/registRound/modifyRound'/>");
             form.attr("method", "post");
             form.submit();
         })

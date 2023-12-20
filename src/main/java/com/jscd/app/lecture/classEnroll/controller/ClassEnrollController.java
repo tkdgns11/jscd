@@ -17,7 +17,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.List;
 
 @Controller
-@RequestMapping("/classEnroll")// /onlyAdimn/
+@RequestMapping("/adminManage/classEnroll")// /onlyAdimn/
+//@RequestMapping("/classEnroll")// /onlyAdimn/
 public class ClassEnrollController {
     @Autowired
     ClassEnrollService classEnrollService;
@@ -28,7 +29,6 @@ public class ClassEnrollController {
 
     @PostMapping("/modify")
     public String modify(ClassEnrollDto classEnrollDto, Model m, RedirectAttributes rattr){
-        System.out.println("classEnrollDto = " + classEnrollDto);
 
         try {
             int cnt = classEnrollService.modify(classEnrollDto);
@@ -37,7 +37,7 @@ public class ClassEnrollController {
                 throw new Exception("modify fail");
 
             rattr.addFlashAttribute("msg", "modify ok");
-            return "redirect:/classEnroll/list";
+            return "redirect:/adminManage/classEnroll/list";
         } catch (Exception e) {
             e.printStackTrace();
             m.addAttribute("classEnrollDto", classEnrollDto);
@@ -49,8 +49,6 @@ public class ClassEnrollController {
     @PostMapping("/write")
     public String write(ClassEnrollDto classEnrollDto, Model m, RedirectAttributes rattr){
 
-        System.out.println("classEnrollDto = " + classEnrollDto);
-
         try {
             int cnt = classEnrollService.write(classEnrollDto);
 
@@ -58,7 +56,7 @@ public class ClassEnrollController {
                 throw new Exception("write fail");
 
             rattr.addFlashAttribute("msg", "write ok");
-            return "redirect:/classEnroll/list";
+            return "redirect:/adminManage/classEnroll/list";
         } catch (Exception e) {
             e.printStackTrace();
 
@@ -102,7 +100,7 @@ public class ClassEnrollController {
             rattr.addFlashAttribute("msg", "remove fail");
         }
 
-        return "redirect:/classEnroll/list";
+        return "redirect:/adminManage/classEnroll/list";
     }
 
     // 게시물 하나 읽기

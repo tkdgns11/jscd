@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/jscdReset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/bootCamp.css"/>">
+    <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
     <title>BootCampList</title>
 </head>
 <body>
@@ -75,18 +76,18 @@
     <div id="btApplyList">
         <hr/>
         <c:forEach var="list" items="${list}">
-        <div id="btApplyBox">
-            <ul>
-                <li class="applyTxt">${list.startDate} 모집중</li>
-                <li class="btTitle">BootCamp</li>
-                <li class="btTitle">${list.title}</li>
-                <li class="applyTxt">담당 강사 ${list.title}</li>
-                <li class="applyTxt">${list.startDate}</li>
-                <li class="applyTxt2">${list.lastPrice} / Month</li>
-                <li class="applyTxt">${list.location}</li>
-            </ul>
-            <button type="button"><a href="<c:url value='/btTraining/read?registCode=${list.registCode}&courseCode=${list.courseCode}'/>">수강 신청</a></button>
-        </div>
+            <div id="btApplyBox">
+                <ul>
+                    <li class="applyTxt">~${list.startDate} 모집중</li>
+                    <li class="btTitle">BootCamp</li>
+                    <li class="btTitle">${list.title}</li>
+                    <li class="applyTxt">담당 강사 ${list.name}</li>
+                    <li class="applyTxt">${list.startDate} ${list.startTime}</li>
+                    <li class="applyTxt2">${list.lastPrice} / Month</li>
+                    <li class="applyTxt">${list.location}</li>
+                </ul>
+                <button type="button"><a href="<c:url value='/btTraining/read?registCode=${list.registCode}&courseCode=${list.courseCode}'/>">수강 신청</a></button>
+            </div>
         </c:forEach>
     </div>
 </div>

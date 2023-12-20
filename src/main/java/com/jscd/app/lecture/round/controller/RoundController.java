@@ -12,8 +12,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 @Controller
-//@RequestMapping("/onlyAdmin/registRound")
-@RequestMapping("/registRound")
+@RequestMapping("/adminManage/registRound")
+//@RequestMapping("/registRound")
 public class RoundController {
     @Autowired
     RoundService roundService;
@@ -23,9 +23,7 @@ public class RoundController {
     public String modifyRound(RoundDto roundDto, RedirectAttributes rattr, Model m) {
         try {
             roundService.modifyRound(roundDto);
-            // TODO 수정완료 메시지 전달
-//            return "redirect:/onlyAdmin/registRound/round";
-            return "redirect:/registRound/round";
+            return "redirect:/adminManage/registRound/round";
         } catch(Exception e) {
             e.printStackTrace();
             m.addAttribute(roundDto);
@@ -37,14 +35,12 @@ public class RoundController {
     @PostMapping("/removeRound")
     public String removeRound(Integer roundCode, Model m, RedirectAttributes rattr) throws Exception {
         try {
-            System.out.println("roundCode = " + roundCode);
             roundService.removeRound(roundCode);
         } catch(Exception e) {
             e.printStackTrace();
             rattr.addFlashAttribute("msg", "DEL_ERR");
         }
-//        return "redirect:/onlyadmin/registRound/round";
-        return "redirect:/registRound/round";
+        return "redirect:/adminManage/registRound/round";
     }
 
     // 등록된 회차 상세 확인 기능 구현
@@ -55,8 +51,7 @@ public class RoundController {
             m.addAttribute(roundDto);
         } catch(Exception e) {
             e.printStackTrace();
-//            return "redirect:/onlyAdmin/registRound/round";
-            return "redirect:/registRound/round";
+            return "redirect:/adminManage/registRound/round";
         }
         return "lecture/round/roundRegist";
     }
@@ -77,8 +72,7 @@ public class RoundController {
     public String addRound(RoundDto roundDto, Model m) throws Exception {
         try {
             roundService.addRound(roundDto);
-//            return "redirect:/onlyAdmin/registRound/round";
-            return "redirect:/registRound/round";
+            return "redirect:/adminManage/registRound/round";
         } catch(Exception e) {
             e.printStackTrace();
             m.addAttribute("roundDto", roundDto);
