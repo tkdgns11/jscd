@@ -29,3 +29,9 @@
 #myPageContentBox > nav > ul > li{width:200px; margin: 0 auto; padding:30px; border-bottom: 1px solid rgba(0,0,0,0.2)}
 #myPageContentBox > nav > ul > li > a{font-size: 25px;font-weight: bold; color: #182566}
 #myPageContentBox > nav > ul > li > a:hover{font-size: 25px;font-weight: bold; color: #0185FE}
+/*강사소개말*/
+ #introTitle{font-size: 24px;font-weight: 600;margin-bottom: 30px;color: rgba(0,0,0,0.4);border-bottom: 1px solid rgba(0,0,0,0.2);padding-bottom: 10px;width: 740px;}
+#intro{border: 0;font-size: 15px;background-color: #8b8b8b1c;resize: none;}
+#intro:focus {outline: none;}
+#instructorInfoBox{margin-top: 50px;margin-left: 50px}
+

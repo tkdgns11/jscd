@@ -291,7 +291,8 @@ public class MemberController {
 		String id = (String)session.getAttribute("id");
 		MemberDto memberDto = memberService.memberSelect(id);
 		model.addAttribute("memberDto",memberDto);
-		if(!pwd.equals(memberDto.getPwd())){
+		//암호화한 비밀번호와 매치
+		if(!passwordEncoder.matches(pwd,memberDto.getPwd())){
 			//일치하지 않는다면, 에러메세지 전달
 			model.addAttribute("msg","PWD_ERR");
 			return "redirect:/member/memberEdit";
@@ -304,6 +305,10 @@ public class MemberController {
 	@PostMapping("/memberEdit/modify")
 	public String memberEdit(MemberDto memberDto,Model model) {
 		try{
+			//비밀번호 암호화로 저장
+			String pwd = memberDto.getPwd();
+			String securePwd = passwordEncoder.encode(pwd);
+			memberDto.setPwd(securePwd);
 			memberService.memberEdit(memberDto);
 			model.addAttribute("msg","MOD_OK");
 		}catch (Exception e){

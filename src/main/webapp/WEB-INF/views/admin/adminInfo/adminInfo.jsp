@@ -40,7 +40,7 @@
     <input type="text" class="infoModifyInputBox" readonly name="birth" id="birth"
            value="<fmt:formatDate value="${adminDto.birth}" pattern="yyyy-MM-dd" type="date"/>"><br>
     <label>휴대전화</label>
-    <input type="text" class="infoModifyInputBox" readonly name="phone" id="phone" value="${adminDto.phone}"><br>
+    <input type="text" class="infoModifyInputBox" readonly name="phone" id="phone" value="${adminDto.phone}" oninput="autoHyphen(this)"><br>
     <br>
     <div id="adminBtnBox">
     <input type="button" value="수정" class="modifyBtn">
@@ -51,7 +51,12 @@
 
 <script>
 
+
+
     $(document).ready(function () {
+
+
+
 
 
         $(".modifyBtn").on("click", function () {
@@ -70,6 +75,12 @@
                 $("input[name=birth]").attr('type', 'date');
                 $("input[name=birth]").attr('readonly', false);
 
+
+                const autoHyphen = (target) => {
+                    target.value = target.value
+                        .replace(/[^0-9]/g, '')
+                        .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
+                }
 
 
             } else {
