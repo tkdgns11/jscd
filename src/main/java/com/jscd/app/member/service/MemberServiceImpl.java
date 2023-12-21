@@ -27,7 +27,7 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
 	@Bean
-	public BCryptPasswordEncoder passwordEncoder() {
+	public static BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 
