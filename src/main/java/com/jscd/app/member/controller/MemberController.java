@@ -13,9 +13,15 @@ import com.jscd.app.member.dto.NaverLoginBo;
 //import com.jscd.app.member.dto.mailSender;
 import com.jscd.app.member.dto.MemberDto;
 import com.jscd.app.member.service.MemberService;
+import com.jscd.app.order.dto.CompanyInfoDTO;
+import com.jscd.app.order.dto.StodDTO;
+import com.jscd.app.order.service.CompanyInfoService;
+import com.jscd.app.order.service.StodService;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +29,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.*;
 import java.net.URLEncoder;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -35,14 +42,35 @@ public class MemberController {
 	private KakaoLoginBo kakaoLoginBo;
 	private String apiResult = null;
 	private InstructorInfoService infoService;
+	private final CompanyInfoService companyInfoService; //소희
+	private final StodService stodService; //소희
+
+
+//	@Autowired
+//	public MemberController(MemberService memberService, NaverLoginBo naverLoginBo,KakaoLoginBo kakaoLoginBo,InstructorInfoService infoService){
+//		this.memberService = memberService;
+//		this.naverLoginBo = naverLoginBo;
+//		this.kakaoLoginBo = kakaoLoginBo;
+//		this.infoService = infoService;
+//	}
+
+
 	@Autowired
-	public MemberController(MemberService memberService, NaverLoginBo naverLoginBo,KakaoLoginBo kakaoLoginBo,InstructorInfoService infoService){
+	public MemberController(MemberService memberService, NaverLoginBo naverLoginBo,KakaoLoginBo kakaoLoginBo,InstructorInfoService infoService, CompanyInfoService companyInfoService, StodService stodService){
 		this.memberService = memberService;
 		this.naverLoginBo = naverLoginBo;
 		this.kakaoLoginBo = kakaoLoginBo;
 		this.infoService = infoService;
+		this.companyInfoService = companyInfoService; //소희
+		this.stodService = stodService; //소희
 	}
 
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
+	@Bean
+	public BCryptPasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 
 	//로그인 페이지 이동
 	@GetMapping("/login")
@@ -190,7 +218,7 @@ public class MemberController {
 		// 2. 홈으로 이동
 		return "redirect:/";
 	}
-	
+
 	//로그인 체크(회원인지 아닌지)
 	@PostMapping("/login")
 	@ResponseBody
@@ -204,7 +232,7 @@ public class MemberController {
 
 		//1. id, pwd 체크
 		//1-1 일치하지 않음.
-		if(!memberService.login(id, pwd)){
+		if(!memberService.login(id,pwd)){
 			String msg = URLEncoder.encode("id 또는 pwd가 일치하지 않습니다.", "utf-8");
 			map.put("redirect", "/member/login?msg="+msg);
 			return map;
@@ -244,9 +272,17 @@ public class MemberController {
 		Map<String, String> map = new HashMap<>();
 
 		try{
+			// 비밀번호 암호화
+			String pwd = memberDto.getPwd();
+			System.out.println("signup , pwd = " + pwd);
+			String securePwd = passwordEncoder.encode(pwd);
+			System.out.println("signup , securePwd = " + securePwd);
+			memberDto.setPwd(securePwd);
+
 			//회원가입에 성공했을 경우
 			System.out.println("hello, signup" + memberDto);
 			memberService.signup(memberDto);
+
 			//회원가입 시 약관 등록
 			memberService.insertTermsYN(memberDto);
 			map.put("redirect","/member/login");
@@ -274,7 +310,8 @@ public class MemberController {
 		String id = (String)session.getAttribute("id");
 		MemberDto memberDto = memberService.memberSelect(id);
 		model.addAttribute("memberDto",memberDto);
-		if(!pwd.equals(memberDto.getPwd())){
+		//암호화한 비밀번호와 매치
+		if(!passwordEncoder.matches(pwd,memberDto.getPwd())){
 			//일치하지 않는다면, 에러메세지 전달
 			model.addAttribute("msg","PWD_ERR");
 			return "redirect:/member/memberEdit";
@@ -287,6 +324,10 @@ public class MemberController {
 	@PostMapping("/memberEdit/modify")
 	public String memberEdit(MemberDto memberDto,Model model) {
 		try{
+			//비밀번호 암호화로 저장
+			String pwd = memberDto.getPwd();
+			String securePwd = passwordEncoder.encode(pwd);
+			memberDto.setPwd(securePwd);
 			memberService.memberEdit(memberDto);
 			model.addAttribute("msg","MOD_OK");
 		}catch (Exception e){
@@ -298,7 +339,7 @@ public class MemberController {
 
 	}
 
- //수정 후 읽기 페이지  ⭐️
+	//수정 후 읽기 페이지  ⭐️
 	@GetMapping("/memberEdit/read")
 	public String memberPwdChk(Model model, HttpServletRequest request) throws Exception{
 		//세션 값 가져와서 아이디 조회
@@ -389,7 +430,7 @@ public class MemberController {
 		}catch (Exception e){
 			e.printStackTrace();
 			model.addAttribute("msg", "READ_ERR");
-			return "redirect:/member/memberPwdChk";
+			return "redirect:/member/memberEdit";
 		}
 		return "/member/instructorIntro";
 	}
@@ -410,6 +451,43 @@ public class MemberController {
 		return "redirect:/member/instructorIntro";
 	}
 
+	// 강의 신청 현황 이동
+//	@GetMapping("/lectureApplyState")
+//	public String showLectureApplyState() {
+//		// 필요한 로직이 있다면 이곳에 작성
+//		return "member/lectureApplyState";
+//	}
+
+	@GetMapping("/lectureApplyState")
+	public String showLectureApplyState(@RequestParam(defaultValue = "1") int page, Model model, MemberDto memberDto, CompanyInfoDTO companyInfoDto, HttpServletRequest request) throws Exception {
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
+
+		int itemsPerPage = 5; // 페이지당 보여줄 아이템 수 (StodServiceImpl.java - selectOrderList()와 연결 됨)
+		List<StodDTO> orderList = stodService.selectOrderList(id, page, itemsPerPage);
+		model.addAttribute("orderList", orderList);
+
+		memberDto = memberService.memberSelect(id);
+		model.addAttribute("memberDto", memberDto);
+		System.out.println(memberDto.toString());
+
+		companyInfoDto.setSlrNo(1); //231207 류소희 강의 등록 시 회사 번호도 등록해야함...
+		// 회사 정보 가져오기
+		companyInfoDto = companyInfoService.select(companyInfoDto.getSlrNo());
+		model.addAttribute("companyInfoDto", companyInfoDto);
+		System.out.println(companyInfoDto.toString());
+
+		int totalItems = stodService.countOrderList(id); // 전체 아이템 수를 조회
+		int totalPages = (int) Math.ceil((double) totalItems / itemsPerPage);
+		model.addAttribute("totalPages", totalPages);
+
+		// 현재 페이지 번호를 모델에 추가
+		model.addAttribute("currentPage", page);
+
+		return "member/lectureApplyState";
+	}
+
 
 }
+
 

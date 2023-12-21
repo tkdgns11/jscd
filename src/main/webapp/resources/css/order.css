@@ -146,7 +146,7 @@ body {font-size: 1rem; line-height: 1.5;}
 #go_orderlist, #go_mypage {width: 100%; height: 80px; font-size: 20px;}
 
 .goDetail:active, .goLectureInfo:active {opacity: 0.5;}
-.goDetail, .goLectureInfo {cursor: pointer;} 
+.goDetail, .goLectureInfo {cursor: pointer;}
 #orderlist_goQna, #goFaq, #copyMail {font-size: 15px; color: #94a0ab; margin: 0 0 5px 0; height: 40px; width: 100%; background-color: #fff; border: solid 1px #dee3e9; border-radius: 10px;}
 #orderlist_goQna {margin-top: 15px;}
 #copyMail {background-color: #0185FE !important; color: #ffffff;}

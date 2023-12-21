@@ -16,19 +16,19 @@ window.onload = function () {
     const paymentMethods = [cardPay, kakaoPay, actShow];
 
     const newPaymentFunc = function() {
-            const isPaymentSelected = paymentMethods.some(function(button) {
-                return button.classList.contains("selected"); // "selected"는 선택된 버튼에 추가되는 클래스 이름이어야 합니다.
-            });
+        const isPaymentSelected = paymentMethods.some(function(button) {
+            return button.classList.contains("selected"); // "selected"는 선택된 버튼에 추가되는 클래스 이름이어야 합니다.
+        });
 
-            if (!isPaymentSelected) {
-                alert('결제 방법을 선택해주세요.');
-            } else {
-                paymentFunc();
-            }
-        };
+        if (!isPaymentSelected) {
+            alert('결제 방법을 선택해주세요.');
+        } else {
+            paymentFunc();
+        }
+    };
 
-        lastPayBtn.addEventListener("click", newPaymentFunc);
-        currentPaymentMethod = newPaymentFunc;
+    lastPayBtn.addEventListener("click", newPaymentFunc);
+    currentPaymentMethod = newPaymentFunc;
 
 
     const setPaymentMethod = function (paymentFunc) {
@@ -79,7 +79,7 @@ window.onload = function () {
     copyBtn.addEventListener("click", function () {
         ActNumcopys(); //3-1. 복사 버튼을 클릭했을 때 #slrActNum의 내용을 복사
     });
-    
+
     // 4. Q&A 게시판 이동
     if (goQna) {
         goQna.addEventListener("click", function() {
@@ -89,18 +89,18 @@ window.onload = function () {
     } else {
         console.error('Element with id "goQna" not found!');
     }
-    
+
 } //window.onload 종료
 
 
 // lastPayBtn 버튼 클릭 이벤트 핸들러
 async function handleLastPayBtnClick() {
-    
+
     // 1차 확인
     if (!confirm('강의 시작 하루 전 23:30까지 입금하지 않으면 주문이 취소됩니다.\n결제를 진행하시겠습니까?')) {
-        return; 
+        return;
     }
-    
+
     const odNo = "jscd" + dateChange(); // 주문고유번호 생성
     const id = document.getElementById("id").value; //'현재 로그인한 회원의 id'; 
     const registCode = document.getElementById("registCode").value; //'registCode 값';

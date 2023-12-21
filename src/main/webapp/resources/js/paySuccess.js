@@ -29,7 +29,7 @@ window.addEventListener('load', function () {
     } else {
         console.error('Element with id "go_mypage" not found!');
     }
-    
+
     // 7. 타이핑
     // 타이핑될 텍스트 가져오기
     typingTxt = $(".typing-txt").text();

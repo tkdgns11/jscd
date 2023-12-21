@@ -31,25 +31,25 @@
 <header>
   <jsp:include page="../header.jsp"/>
 </header>
-  <div id="myPagePwdChkBox">
-    <nav>
-      <ul>
-        <li><a href="/member/memberEdit">회원 정보 수정</a></li>
-        <li><a href="/member/lectureApplyState">강의 신청 현황</a></li>
-        <c:if test="${memberDto.getGrade() eq '3'}">
-          <li><a href="/member/instructorIntro">강사 소개말 등록</a></li>
-        </c:if>
-      </ul>
-    </nav>
-    <div>
-      <p>비밀번호 입력</p>
-      <div id="myPagePwdChk">
-        <input type="password" name="pwd" placeholder="&nbsp&nbsp&nbsp비밀번호 입력" id="pwd" style="padding-left: 15px;margin-bottom: 5px"><br>
-<%--        <font id="checkPwd" size="2"></font><br>--%>
-      </div>
-      <input type="button" value="확인" class="modifyBtn">
+<div id="myPagePwdChkBox">
+  <nav>
+    <ul>
+      <li><a href="/member/memberEdit">회원 정보 수정</a></li>
+      <li><a href="/member/lectureApplyState">강의 신청 현황</a></li>
+      <c:if test="${memberDto.getGrade() eq '3'}">
+        <li><a href="/member/instructorIntro">강사 소개말 등록</a></li>
+      </c:if>
+    </ul>
+  </nav>
+  <div>
+    <p>비밀번호 입력</p>
+    <div id="myPagePwdChk">
+      <input type="password" name="pwd" placeholder="&nbsp&nbsp&nbsp비밀번호 입력" id="pwd" style="padding-left: 15px;margin-bottom: 5px"><br>
+      <%--        <font id="checkPwd" size="2"></font><br>--%>
     </div>
+    <input type="button" value="확인" class="modifyBtn">
   </div>
+</div>
 <header>
   <jsp:include page="../footer.jsp"/>
 </header>

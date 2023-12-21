@@ -47,7 +47,7 @@ http://localhost:8080/order/paySuccess
             <section id="pay-success_notice">
                 <h3 class="display-none">수강신청 완료 상세 안내</h3>
                 <div class="display-none"><p class="typing-txt">수강신청 및 결제가 완료되었습니다 :)</p></div>
-<%--                <p>수강신청 및 결제가 완료되었습니다 :)</p>--%>
+                <%--                <p>수강신청 및 결제가 완료되었습니다 :)</p>--%>
                 <p id="receipt-text-01"></p>
             </section>
             <section class="display-none" id="odNo_notice">

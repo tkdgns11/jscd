@@ -63,17 +63,17 @@ http://localhost:8080/order/orderList
                     <div id="orderlist_content">
                         <div id="orderlist_content-title"
                              class="<c:choose>
-                    <c:when test="${order.status eq 'paid'}">paid</c:when>
-                    <c:when test="${order.status eq 'notPaid'}">notPaid</c:when>
-                    <c:when test="${order.status eq 'cancel'}">cancel</c:when>
+                    <c:when test="${order.status eq 'paid'}">paid</c:when>  <%-- 변경 1. lectureapply.status -> paid--%>
+                    <c:when test="${order.status eq 'notPaid'}">notPaid</c:when> <%-- 변경 1. lectureapply.status -> notPaid--%>
+                    <c:when test="${order.status eq 'cancel'}">cancel</c:when> <%-- 변경 1. lectureapply.status -> cancel--%>
                 </c:choose>">
                             <div>
                                 <c:choose>
-                                    <%--                          1. ${order.status} == 'paid' : 결제 완료--%>
+                                    <%--                        변경  1. ${lectureapply.status} == 'paid' : 결제 완료--%>
                                     <c:when test="${order.status eq 'paid'}">결제 완료</c:when>
-                                    <%--                          2.  ${order.status} == 'notPaid' : 결제 대기중--%>
+                                    <%--                          2.  ${lectureapply.status} == 'notPaid' : 결제 대기중--%>
                                     <c:when test="${order.status eq 'notPaid'}">결제 대기중</c:when>
-                                    <%--                          3.  ${order.status} == 'cancel' : 결제 취소--%>
+                                    <%--                          3.  ${lectureapply.status} == 'cancel' : 결제 취소--%>
                                     <c:when test="${order.status eq 'cancel'}">결제 취소</c:when>
                                     <%--                          3.  나머지 값 : 해당 값 그대로 표시--%>
                                     <c:otherwise>${order.status}</c:otherwise>
@@ -100,8 +100,8 @@ http://localhost:8080/order/orderList
                                             <%--                          1. ${order.status} == 'paid' : 결제 완료--%>
                                             <c:when test="${order.status eq 'paid'}">
                                                 <div id="img_paid_hover">
-                                                <img class="pay_img" id="img_paid" alt="payment status is paid"
-                                                     src="<c:url value="/img/paid.png"/>">
+                                                    <img class="pay_img" id="img_paid" alt="payment status is paid"
+                                                         src="<c:url value="/img/paid.png"/>">
                                                 </div>
                                             </c:when>
                                             <%--                          2.  ${order.status} == 'notPaid' : 결제 대기중--%>
@@ -166,7 +166,7 @@ http://localhost:8080/order/orderList
                         <div id="pagination_parent">
                             <div class="pagination">
                                 <c:forEach begin="1" end="${totalPages}" var="i">
-<%--                                    <a href="<c:url value='/order/orderList?page=${i}'/>">${i}</a>--%>
+                                    <%--                                    <a href="<c:url value='/order/orderList?page=${i}'/>">${i}</a>--%>
                                     <a href="<c:url value='/order/orderList?page=${i}'/>"
                                        <c:if test="${i eq currentPage}">class="active"</c:if>>${i}</a>
                                 </c:forEach>

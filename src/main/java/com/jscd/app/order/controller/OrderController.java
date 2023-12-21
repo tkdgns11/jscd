@@ -39,7 +39,7 @@ public class OrderController {
     //config.properties 파일 내 포트원 결제 API 이용하기 위한 계정 가져오기 위함
 //    @Value("${IMP_KEY}")
 //    private String impKey;
-    
+
 
     @Autowired
     public OrderController(OrderService orderService, CompanyInfoService companyInfoService, StodService stodService, MemberService memberService) {
@@ -57,7 +57,7 @@ public class OrderController {
             // 회원 정보 가져오기
             HttpSession session = request.getSession();
             String id = (String) session.getAttribute("id");
-            
+
             memberDto = memberService.memberSelect(id);
             model.addAttribute("memberDto", memberDto);
 
@@ -77,7 +77,7 @@ public class OrderController {
         }
         return "order/order";
     }
-    
+
     @PostMapping("/paySuccess")
     @ResponseBody
     public String submitOrder(@RequestBody  StodDTO stodDto) throws Exception {
@@ -217,7 +217,7 @@ public class OrderController {
         // 세션에서 로그인한 사용자의 ID 가져오기
         HttpSession session = request.getSession();
         String id = (String) session.getAttribute("id");
-        
+
         System.out.println("orederDetail 시작"+id+", odNo"+odNo);
         // 로그인한 사용자의 ID와 odNo를 사용하여 주문 상세 정보 조회
         List<StodDTO> orderDetail = stodService.selectOrderDetail(id, odNo);
@@ -229,7 +229,7 @@ public class OrderController {
         return "order/orderDetail";
     }
 
-    
+
     // 예외 발생 시 호출 및 exception.jsp 페이지로 이동
     @ExceptionHandler(Exception.class)
     public ModelAndView handleException(Exception e) {

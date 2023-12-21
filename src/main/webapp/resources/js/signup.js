@@ -24,11 +24,11 @@ function member(value){
     const checkboxStates = {};
 
     checkboxIds.forEach(id => {
-       if(document.getElementById(id).checked){
-           checkboxStates[id] = "Y";
-       }else{
-           checkboxStates[id] = "N";
-       }
+        if(document.getElementById(id).checked){
+            checkboxStates[id] = "Y";
+        }else{
+            checkboxStates[id] = "N";
+        }
 
 
     });
@@ -61,21 +61,21 @@ function member(value){
         const signupData = {"id":id.value, "pwd":pwd.value, "birth":birth.value, "name":name.value, "gender":gender,"phone":phone.value};
         const data= {...signupData, ...checkboxStates}
         console.log(data);
-            //회원가입일 경우
-            $.ajax({
-                url:"/member/signup",
-                type:"POST",
-                contentType: "application/json; charset=utf-8",
-                data:JSON.stringify(data),
-                error : function (error){
-                    console.log("error");
-                },
-                success : function (data){
-                    if(data.redirect){
-                        window.location.href = data.redirect;
-                    }
+        //회원가입일 경우
+        $.ajax({
+            url:"/member/signup",
+            type:"POST",
+            contentType: "application/json; charset=utf-8",
+            data:JSON.stringify(data),
+            error : function (error){
+                console.log("error");
+            },
+            success : function (data){
+                if(data.redirect){
+                    window.location.href = data.redirect;
                 }
-            });
+            }
+        });
 
 
     }

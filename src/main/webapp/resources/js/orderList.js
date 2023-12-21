@@ -14,7 +14,7 @@ window.onload = function () {
     const footer = document.querySelector('footer'); // footer 선택
     const fixedElement = document.getElementById("aside_orderlist_info"); // fixed 요소 선택
 
-    
+
     // 결제 상태에 따른 orderlist_content-title 색상 변화
     switch(statusElement.textContent.trim()) {
         case '결제 대기중':
@@ -67,7 +67,7 @@ window.onload = function () {
     } else {
         console.error('copyMail not found!');
     }
-    
+
     // aside_orderlist_info 영역 footer 닿으면 사라지기
     window.addEventListener("scroll", function() {
         var rect = footer.getBoundingClientRect(); // footer의 위치와 크기 정보를 가져옴

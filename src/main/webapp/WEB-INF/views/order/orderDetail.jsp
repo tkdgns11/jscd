@@ -36,8 +36,8 @@ http://localhost:8080/order/orderDetail?odNo=jscd20231212025948340
 </head>
 <body>
 <div id="root">
-<%--    <p class="display-none" id="go_mypage"></p>--%>
-<%--    <p class="display-none" id="go_orderlist"></p>--%>
+    <%--    <p class="display-none" id="go_mypage"></p>--%>
+    <%--    <p class="display-none" id="go_orderlist"></p>--%>
     <header>
         <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
     </header>

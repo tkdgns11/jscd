@@ -6,21 +6,21 @@
     <!--    주문 내역 조회-->
     <!--    로그인 아이디 / 주문번호 / 주문날짜 / 주문 상태 / 주문 상품 코드 / 주문 상품명 / 주문 상품 금액-->
     <!--    테이블 : member, stod, lstRegist-->
-<!--    <select id="selectOrderList" resultType="StodDTO">-->
-<!--        SELECT m.id,-->
-<!--               s.odNo,-->
-<!--               s.regDate,-->
-<!--               s.status,-->
-<!--               s.registCode,-->
-<!--               lr.title,-->
-<!--               lr.lastPrice,-->
-<!--               lr.startDate,-->
-<!--               lr.endDate-->
-<!--        FROM member m-->
-<!--                 JOIN stod s ON m.id = s.id-->
-<!--                 JOIN lstRegist lr ON s.registCode = lr.registCode-->
-<!--        WHERE m.id = #{id};-->
-<!--    </select>-->
+    <!--    <select id="selectOrderList" resultType="StodDTO">-->
+    <!--        SELECT m.id,-->
+    <!--               s.odNo,-->
+    <!--               s.regDate,-->
+    <!--               s.status,-->
+    <!--               s.registCode,-->
+    <!--               lr.title,-->
+    <!--               lr.lastPrice,-->
+    <!--               lr.startDate,-->
+    <!--               lr.endDate-->
+    <!--        FROM member m-->
+    <!--                 JOIN stod s ON m.id = s.id-->
+    <!--                 JOIN lstRegist lr ON s.registCode = lr.registCode-->
+    <!--        WHERE m.id = #{id};-->
+    <!--    </select>-->
     <select id="selectOrderList" resultType="StodDTO">
         SELECT m.id,
                s.odNo,

@@ -62,11 +62,11 @@
         <input type="text"  class="memberInfoInput" value="${memberDto.gender== 1 ? '남' : '여'}" readonly><br>
         <label class="memberInfoLabel">생년월일</label><br>
         <input type="text"  class="memberModifyInput"  name="birth" id="birth" value="${memberDto.birth}" name="birth"><br>
-<%--        <input type="date"  class="memberModifyInput"  name="birth" id="birth" value="${memberDto.birth}" name="birth"><br>--%>
+        <%--        <input type="date"  class="memberModifyInput"  name="birth" id="birth" value="${memberDto.birth}" name="birth"><br>--%>
         <label class="memberInfoLabel">휴대전화</label><br>
         <input type="text" value="${memberDto.phone}" name="phone" id="phone" class="memberModifyInput" oninput="autoHyphen(this)"><br>
         <div id="myPageBtnBox">
-        <input type="button" value="수정" class="modifyBtn" onclick="infoModify()">
+            <input type="button" value="수정" class="modifyBtn" onclick="infoModify()">
         </div>
         <div id="myPageDelBox">
             <a href="">회원 탈퇴</a>

@@ -1,16 +1,16 @@
-#loginWrap{margin: 100px auto; border: 1px solid grey; width: 960px; border-radius: 15px; display: flex; flex-direction: column; justify-content: center;align-items: center;box-shadow: 5px 5px 5px rgba(0,0,0,0.2)}
+#loginWrap{margin: 100px auto; width: 960px; border-radius: 15px; display: flex; flex-direction: column; justify-content: center;align-items: center;box-shadow: 0px 0px 30px rgba(0,0,0,0.1); padding: 20px;}
 #loginWrap > div{margin: 20px auto }
 
-hr{width: 90%;border: none; border-top: 1px solid grey; text-align: center; overflow: visible;}
+hr{width: 90%;border: none; border-top: 1px solid grey; text-align: center; overflow: visible; margin: 20px 0;}
 hr::after{content: "또는 이메일로 로그인";position: relative; top: -10px;background-color: white; padding: 0 10px; color:grey}
 #otherLogin {display: flex; flex-direction: column; justify-content: center; align-items: center;}
-#otherLogin img{width: 700px; height: 70px; margin-bottom: 10px; object-fit: cover; border-radius:18px; filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.5)); }
-
-
+#otherLogin img{width: 700px; height: 70px; margin-bottom: 10px; object-fit: cover; border-radius:18px; filter: drop-shadow(0px 0px 5px rgba(0,0,0,0.2)); }
 
 #loginHeader{display: flex; flex-direction: row; justify-content: center;}
-#loginHeader img{width: 50px; height: 50px;}
-#loginHeader h1{line-height: 50px; font-size: 50px; margin-left: 30px;}
+#loginHeader img{width: 55px; height: 50px;}
+#loginHeader h1{line-height: 50px; font-size: 30px; margin-left: 10px; margin-top: 3px; color: #0185FE; letter-spacing: 23px;}
+#loginHeader p {display: none;}
+
 #loginBox{width: 700px;}
 #loginBox input {
     margin: 0; /* 외부 여백을 초기화합니다. */
@@ -20,11 +20,12 @@ hr::after{content: "또는 이메일로 로그인";position: relative; top: -10p
 #loginBox img{width: 50px; height: 50px;object-fit: cover;}
 #loginBox input:focus {outline: none;}
 #loginBox input[type="text"], input[type="password"]{width: 100%;height: 50px; border-radius: 15px; font-size: 20px;}
-#loginInput{display: flex; flex-direction: column;border: 1px solid grey; border-radius: 15px; box-shadow: 5px 5px 5px rgba(0,0,0,0.2); margin-top: 15px;}
+#loginInput{display: flex; flex-direction: column;border: 1px solid #d1cccc; border-radius: 15px; box-shadow: 0 0 20px rgba(0,0,0,0.1); margin-top: 15px;}
 #loginInput div{display: flex; flex-direction: row; justify-content: center; align-items: center;}
-#loginInput div:nth-child(1){border-bottom: 1px solid grey;}
+#loginInput div:nth-child(1){border-bottom: 1px solid #0185FE;}
 #loginInput div img{margin: 10px 50px;}
 #rememberId{width: 25px; height: 25px; margin-top: 15px; margin-bottom: 15px;}
+#rememberId_section > p {padding-left: 10px; color: #7c838b;}
 #loginMenu{width: 700px;}
 #loginMenu div:nth-child(1){display: flex; flex-direction: row; align-items: center; margin: 10px;}
 #loginBtn{width: 700px;height: 70px; font-size: 30px;text-align: center; line-height: 70px; background-color: #18214F; color: #fff; cursor: pointer; border-radius: 15px;box-shadow: 5px 5px 5px rgba(0,0,0,0.2);}

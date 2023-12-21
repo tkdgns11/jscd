@@ -5,7 +5,11 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Home</title>
+	<!-- 탭 아이콘 & 글자 지정 -->
+	<link rel="icon" href="/img/mainlogo.png"/>
+	<link rel="apple-touch-icon" href="/img/mainlogo.png"/>
+	<title>정석코딩 - 일타 강사와 함께하는 찐개발자 특급 강의</title>
+
 	<script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
 	<link rel="stylesheet" type="text/css" href="<c:url value="/css/home.css"/>">
@@ -55,8 +59,8 @@
 				</span>
 				<span class="txt02">
 					<h1>책임감으로 가르칠 확실한</h1>&nbsp
-					<h2>'강사'</h2>
-					<h1>가 있습니다.</h1>
+					<h2>"강사"</h2>
+					<h1>가 있습니다</h1>
 				</span>
 			</div>
 
@@ -112,16 +116,18 @@
 
 		<div id="keyElementWrap">
 			<div id="keyElement">
-				<img src="<c:url value="/img/homeSquare.png"/>"/>
+				<%--				<img src="<c:url value="/img/homeSquare.png"/>"/>--%>
 				<ul>
+					<li>"</li>
 					<li>강사</li>
 					<li>|</li>
 					<li>학생</li>
 					<li>|</li>
 					<li>환경</li>
+					<li>"</li>
 				</ul>
 			</div>
-			<div id="keyElementTxt">
+			<div class="hidden" id="keyElementTxt">
 				<span>
 					<h1>코딩교육의</h1>&nbsp
 					<h2>3가지 핵심 요소</h2>
@@ -178,7 +184,7 @@
 		</div>
 		<%--하단 슬라이드 끝--%>
 		<%--유튜브--%>
-		<div id="youtubeBox">
+		<div class="hidden" id="youtubeBox">
 			<div>
 				<ul>
 					<li><a href="https://www.youtube.com/watch?v=6qcTq0HLhP8&t=273s"><img src="<c:url value="/img/youtube03.png"/>"></a></li>

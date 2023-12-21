@@ -43,7 +43,7 @@ public class StodServiceImpl implements StodService {
     public int countOrderList(String id) throws Exception {
         return stodDao.countOrderList(id);
     }
-    
+
     // 주문 상세 내역 조회
     @Override
     public List<StodDTO> selectOrderDetail(String id, String odNo) throws Exception {

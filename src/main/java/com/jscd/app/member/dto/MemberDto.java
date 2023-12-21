@@ -17,7 +17,7 @@ public class MemberDto {
 	private int grade;
 	private Date regDate;
 	private String firstIdNo;	// 시스템 컬럼은 안들어가도 되는거 아닌가?
-	private Date modifyDate;	
+	private Date modifyDate;
 	private String lastIdNo;
 	private String etc;
 	private String rememberId; //아이디 기억
