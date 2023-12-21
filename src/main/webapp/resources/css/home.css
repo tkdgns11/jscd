@@ -198,14 +198,14 @@
 
 
 .lectureContainer{margin-top: 50px; margin-bottom: 150px;}
-#lectureTxt{display: flex; flex-direction: column; justify-content: center; position: relative; width: 960px; margin: 80px auto;font-size: 30px; letter-spacing: 8px; padding: 80px 0;}
-@keyframes floatUp {0% {opacity: 0; transform: translateY(20px);} 100% {opacity: 1; transform: translateY(0);} }
-#lectureTxt {animation: floatUp 1s ease-in-out;}
+#lectureTxt{display: flex; flex-direction: column; justify-content: center; position: relative; width: 960px; margin: 80px auto; font-size: 30px; letter-spacing: 8px; padding: 40px 0;}
 .txt02{display: flex; flex-direction: row; margin-top: 25px;}
 .txt02 h2{color: #ED3269; font-weight: bold;}
 .lectureBtn input:hover{background-color: #0185FE; color: #FFFFFF;}
 .lectureBtn{width: 960px; margin: 10px auto;}
 .lectureBtn input {margin-right: 15px; width: 20%; height: 70px; font-size: 18px; border-radius: 35px; border: solid 1px #0185FE; color: #0185FE;}
+#seminarBtn, #bootCampBtn {font-weight: 600; letter-spacing: 5px;}
+#lecturetxt_section {background: #d7d5d5; height: 1px; margin-bottom: 120px;}
 
 /*#lectureWrap{background-color: #ED3269;}*/
 #lectureWrap{width: 1100px; height: 250px; margin: 30px auto; display: flex; flex-direction: row;justify-content: space-around; align-items: center;}
