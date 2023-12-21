@@ -325,7 +325,7 @@ public class MemberController {
 		return "/member/myPagePwdChk";
 	}
 
-	//비밀번호 확인 후, 일치한다면 마이페이지로 이동 ⭐️
+	//비밀번호 확인 후, 일치한다면 마이페이지로 이동 ⭐️이
 	@PostMapping("/memberEdit")
 	public String memberPwdChk(String pwd,Model model,HttpSession session)throws Exception{
 

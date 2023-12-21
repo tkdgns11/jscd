@@ -45,7 +45,8 @@ public class BtTrainingController {
 
             rattr.addFlashAttribute("msg", "write ok");
             // 신청서 제출 후 마이페이지 강의 신청 현황으로 이동
-            return null;
+            return "redirect:/member/memberEdit";
+//            return "/member/myPage";
         } catch (Exception e) {
             // 신청서 제출 실패시
             // 작성했던 내용, 에러 메세지와 함께 신청서 페이지로 이동
