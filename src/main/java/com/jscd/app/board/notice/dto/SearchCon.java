@@ -67,8 +67,12 @@ public class SearchCon {
 
 
     public Integer getOffset() {
-        return (page-1)*pageSize;
+        int offset = (page - 1) * pageSize;
+        return Math.max(offset, 0);
     }
+
+
+
 
     public String getQueryString(Integer page) {
         // ?page=10&pageSize=10&option=A&keyword=title

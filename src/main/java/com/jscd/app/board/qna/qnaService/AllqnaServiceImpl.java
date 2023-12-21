@@ -128,6 +128,10 @@ public class AllqnaServiceImpl implements AllqnaService {
         return allqnaDao.allqnaCategory(qnaCtNo);
     }
 
+//    @Override
+//    public List<AllqnaDto> getNonSecretSearchResultPage(SearchCondition sc) throws Exception {
+//     return null;
+//    }
 
 }
 
