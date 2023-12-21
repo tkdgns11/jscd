@@ -63,6 +63,8 @@
 					<h1>가 있습니다</h1>
 				</span>
 			</div>
+			
+			<hr id="lecturetxt_section"/>
 
 			<div class="lectureBtn">
 				<input type="button" class="cancleBtn" id="seminarBtn" value="세미나" onclick="seminarSelect();">
