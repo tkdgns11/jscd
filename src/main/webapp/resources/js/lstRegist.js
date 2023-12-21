@@ -2,7 +2,7 @@
 
 function courseSelect(value){
     $.ajax({
-        url: '/lstRegist/getData',
+        url: '/adminManage/lstRegist/getData',
         type: 'POST',
         contentType: "application/json; charset=utf-8",
         data: value,

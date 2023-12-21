@@ -78,8 +78,8 @@ public class SmTrainingController {
     @GetMapping("/duplicationChk")
     @ResponseBody
     public int idDuplication(String loginId, Integer registCode) throws Exception{
-        System.out.println("loginId = " + loginId);
-        System.out.println("registCode = " + registCode);
+//        System.out.println("loginId = " + loginId);
+//        System.out.println("registCode = " + registCode);
 
         // loginId, registCode를 smApplicationDto에 set
         SmApplicationDto smApplicationDto = new SmApplicationDto();
@@ -88,7 +88,7 @@ public class SmTrainingController {
 
         // smApplicationDto로 신청한 강의가 있는지 검색
         int cnt = smApplicationService.confirmApplcation(smApplicationDto);
-        System.out.println("cnt = " + cnt);
+//        System.out.println("cnt = " + cnt);
 
         return cnt;
     }
@@ -99,7 +99,7 @@ public class SmTrainingController {
         try {
             List<lstregistfileDto> list = lstService.seminarList();
             m.addAttribute("list", list);
-            System.out.println("Sminar_list = " + list);
+//            System.out.println("Sminar_list = " + list);
         } catch(Exception e) {
             e.printStackTrace();
         }
