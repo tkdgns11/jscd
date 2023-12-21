@@ -1,3 +1,6 @@
+
+signup.jsp
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -69,11 +72,13 @@
                 <img id="idImg" src="<c:url value="/img/signup_user.png"/>">
                 <input type="text" id="id" name="id" placeholder="아이디(Ex.ghdrlfehd@naver.com)">
                 <input type="button" id="idChkBtn" value="중복확인" onclick="idCheck()" class="signup_btn">
+                <input type="hidden" id="idChkYN" value="">
             </div>
             <div>
                 <img id="certificationImg" src="<c:url value="/img/signup_user.png"/>">
-                <input type="text" id="emailChkInput" name="인증번호" placeholder="인증번호를 입력해주세요." autocomplete="off">
+                <input type="text" id="certification" name="인증번호" placeholder="인증번호를 입력해주세요." autocomplete="off">
                 <input type="button" id="emailChkBtn" value="본인인증" class="signup_btn">
+                <input type="hidden" id="emailChkYN" value="">
             </div>
             <div>
                 <img src="<c:url value="/img/signup_pwd.png"/>">
@@ -91,12 +96,12 @@
                 <!-- 라디오 버튼 1 -->
                 <div id="radioBtn">
                     <label class="radio-label" style="border-right: none;">
-                        <input type="radio" class="radio-input"  id="male" name="gender" value="1">
+                        <input type="radio" class="radio-input"  id="male" name="gender" value="0">
                         <span style="border-right: 1px solid rgb(128, 128, 128); border-top-right-radius: 0px; border-bottom-right-radius: 0px;">남자</span>
                     </label>
                     <!-- 라디오 버튼 2 -->
                     <label class="radio-label" style="border-left: none;">
-                        <input type="radio" class="radio-input" id="female" name="gender" value="2">
+                        <input type="radio" class="radio-input" id="female" name="gender" value="1">
                         <span style="border-top-left-radius: 0px; border-bottom-left-radius: 0px;">여자</span>
                     </label>
                 </div>
@@ -189,7 +194,6 @@
     <jsp:include page="../footer.jsp" flush="true"/>
 </footer>
 
-
 <script>
     const modal = document.getElementById('modalWrap');
     const modal2 = document.getElementById('modalWrap2');
@@ -263,8 +267,6 @@
 
         })
     })
-
-
 </script>
 
 </body>
