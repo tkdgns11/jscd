@@ -199,7 +199,7 @@ public class MemberController {
 		// 2. 홈으로 이동
 		return "redirect:/";
 	}
-	
+
 	//로그인 체크(회원인지 아닌지)
 	@PostMapping("/login")
 	@ResponseBody
@@ -260,18 +260,40 @@ public class MemberController {
 			System.out.println("signup , securePwd = " + securePwd);
 			memberDto.setPwd(securePwd);
 
-			//회원가입에 성공했을 경우
-			System.out.println("hello, signup" + memberDto);
-			memberService.signup(memberDto);
+			// 여기까지는 성공해서 아래에서 map으로 error 넘겨도 db에 회원가입은 되는 상황
+			int signupCnt = memberService.signup(memberDto);
 
-			//회원가입 시 약관 등록
-			memberService.insertTermsYN(memberDto);
-			map.put("redirect","/member/login");
+			if(signupCnt == 1){
+				// 회원가입 성공시
+				System.out.println("signupCnt = " + signupCnt);
+				System.out.println("hello, signup = " + memberDto);
+			}else {
+				// 회원가입 실패시
+				System.out.println("signupCnt = " + signupCnt);
+				throw new Exception();
+			}
+
+			// 회원가입 시 약관 등록
+			int insertTermsYNCnt = memberService.insertTermsYN(memberDto); // 여기서 예외 발생하고 map에 error로 넘기느듯
+			if(insertTermsYNCnt == 1){
+				// 약관 등록 성공시
+				System.out.println("insertTermsYNCnt = " + signupCnt);
+			}else {
+				// 약관 등록 실패시
+				System.out.println("insertTermsYNCnt = " + signupCnt);
+				throw new Exception();
+			}
+
+			map.put("redirect", "/member/login");
+			System.out.println("map = " + map);
+			return map;
 		}catch (Exception e){
 			//회원가입에 실패했을 경우
-			map.put("error","회원가입에 실패했습니다.");
+			e.printStackTrace();
+			map.put("error", "회원가입에 실패했습니다.");
+			System.out.println("map = " + map);
+			return map;
 		}
-		return map;
 	}
 
 	//회원 개인정보수정 페이지 이동(비밀번호 확인 페이지)
@@ -291,8 +313,7 @@ public class MemberController {
 		String id = (String)session.getAttribute("id");
 		MemberDto memberDto = memberService.memberSelect(id);
 		model.addAttribute("memberDto",memberDto);
-		//암호화한 비밀번호와 매치
-		if(!passwordEncoder.matches(pwd,memberDto.getPwd())){
+		if(!pwd.equals(memberDto.getPwd())){
 			//일치하지 않는다면, 에러메세지 전달
 			model.addAttribute("msg","PWD_ERR");
 			return "redirect:/member/memberEdit";
@@ -305,10 +326,6 @@ public class MemberController {
 	@PostMapping("/memberEdit/modify")
 	public String memberEdit(MemberDto memberDto,Model model) {
 		try{
-			//비밀번호 암호화로 저장
-			String pwd = memberDto.getPwd();
-			String securePwd = passwordEncoder.encode(pwd);
-			memberDto.setPwd(securePwd);
 			memberService.memberEdit(memberDto);
 			model.addAttribute("msg","MOD_OK");
 		}catch (Exception e){
@@ -320,7 +337,7 @@ public class MemberController {
 
 	}
 
- //수정 후 읽기 페이지  ⭐️
+	//수정 후 읽기 페이지  ⭐️
 	@GetMapping("/memberEdit/read")
 	public String memberPwdChk(Model model, HttpServletRequest request) throws Exception{
 		//세션 값 가져와서 아이디 조회
@@ -434,4 +451,5 @@ public class MemberController {
 
 
 }
+
 
