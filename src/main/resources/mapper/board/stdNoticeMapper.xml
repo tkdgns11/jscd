@@ -12,7 +12,7 @@
     </delete>
 
     <delete id="delete" parameterType="map">
-        DELETE FROM stdnotice WHERE bno = #{bno} and writer = #{writer}
+        DELETE FROM stdnotice WHERE bno = #{bno}
     </delete>
 
     <insert id="insert" parameterType="stdNoticeDto">
@@ -23,7 +23,7 @@
     </insert>
 
     <select id="selectAll" resultType="stdNoticeDto">
-        SELECT bno, title, content, writer, viewCnt,  regDate
+        SELECT *
         FROM stdnotice
         ORDER BY regDate DESC, bno DESC
     </select>

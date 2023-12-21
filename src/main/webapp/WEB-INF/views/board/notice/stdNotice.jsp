@@ -14,9 +14,6 @@
 </head>
 <body>
 
-<header>
-    <jsp:include page="../../header.jsp"/>
-</header>
 
 <div id="topLetter">
    <span id="notice">학생 공지사항</span>
@@ -132,9 +129,7 @@
     });
 </script>
 
-<footer>
-    <jsp:include page="../../footer.jsp"/>
-</footer>
+
 
 </body>
 </html>

@@ -21,7 +21,7 @@
 
 
 
-<form action="" id="form">
+<form action="" id="form" value="">
     <div id="detailHd">
         <input type="hidden" name="bno" value="${noticeDto.bno}"><br>
         <input id="title" placeholder="제목에 핵심 내용을 요약해보세요." name="title" value="${noticeDto.title}" ${mode=="new" ? '' : 'readonly="readonly"' }><br>
@@ -32,11 +32,13 @@
 
         <div id="wrapCon">
             <textarea name="content" id="content" ${mode=="new" ? '' : 'readonly="readonly"'}>${noticeDto.content}</textarea>
+<%--            <input type="submit" value="Submit" onclick="return formCheck();" />--%>
 <%--            위지윅 적용--%>
             <script>
 
             ClassicEditor.create( document.querySelector( '#content' ), {
                 language: "ko"
+
             } );
 
             </script>
@@ -47,12 +49,13 @@
     </div>
 
     <div id="buttonBox">
+        <input type="button" id="listBtn" class="backBtn" value="목록">
+        <div id="eachBtn">
         <input type="button" id="writeBtn" class="registeBtn" value="${mode eq 'new' ? '등록' : ''}"
                style="display: ${mode eq 'new' ? 'inline-block' : 'none'}">
         <input type="button" id="modifyBtn" class="modifyBtn" value="${mode eq 'new' ? '' : '수정'}"
                style="display: ${mode eq 'new' ? 'none' : 'inline-block'}">
-        <input type="button" id="removeBtn" class="deleteBtn" value="삭제">
-        <input type="button" id="listBtn" class="backBtn" value="목록">
+        <input type="button" id="removeBtn" class="deleteBtn" value="삭제"></div>
     </div>
 </form>
 <script>
@@ -100,9 +103,10 @@
             form.attr("method", "post"); //포스트로 해서 전송
                           console.log(form);
 
-            if (formCheck()) {
+            // if (formCheck()) {
+            //     console.log(formCheck());
                  form.submit();
-            }
+            // }
         });
 
 
