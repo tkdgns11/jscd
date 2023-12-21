@@ -220,8 +220,10 @@ z-index: 1000; float: right;/">
             <span class="arrow up"></span>
         </div>
         <div class="box-content">
-            <a href="#">부트캠프</a>
-            <a href="#">세미나</a>
+            <a href="/adminManage/registCourse/course">과정등록</a>
+            <a href="/adminManage/registRound/round">회차등록</a>
+            <a href="/adminManage/classEnroll/list">과목등록</a>
+            <a href="/lstRegist/list">강의개설</a>
         </div>
     </div>
     <div class="box">
