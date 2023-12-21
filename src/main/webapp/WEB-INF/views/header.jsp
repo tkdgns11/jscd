@@ -40,8 +40,8 @@
                 <li id="apply">
                     <p>교육신청</p>
                     <ul class="Menu">
-                        <li><a href="<c:url value="/btTraining/list"/>#">부트캠프 신청</a></li>
-                        <li><a href="<c:url value="/smTraining/list"/>#">세미나 신청</a></li>
+                        <li><a href="<c:url value="/btTraining/list"/>">부트캠프 신청</a></li>
+                        <li><a href="<c:url value="/smTraining/list"/>">세미나 신청</a></li>
                     </ul>
                 </li>
                 <li id="community">
@@ -61,10 +61,10 @@
                 </li>
             </ul>
         </div>
-<%--        <div id="searchBox">--%>
-<%--            <img src="<c:url value="/img/readGlasses.png"/>">--%>
-<%--            <input type="text" placeholder="검색어를 입력해주세요.">--%>
-<%--        </div>--%>
+        <%--        <div id="searchBox">--%>
+        <%--            <img src="<c:url value="/img/readGlasses.png"/>">--%>
+        <%--            <input type="text" placeholder="검색어를 입력해주세요.">--%>
+        <%--        </div>--%>
         <div id="memberBox">
             <input type="button" value="${loginStatus}" class="deleteBtn" onClick="location.href='<c:url value='${loginPath}'/>'">
             <input type="button" value="${memberStatus}" class="registeBtn" onClick="location.href='<c:url value='${memberPath}'/>'">

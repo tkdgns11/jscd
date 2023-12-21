@@ -1,6 +1,7 @@
 package com.jscd.app.board.qna.qnaDao;
 
 import com.jscd.app.board.qna.qnaDto.AllqnaDto;
+import com.jscd.app.board.qna.qnaDto.QnActDto;
 import com.jscd.app.board.qna.qnaDto.SearchCondition;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,6 @@ public class AllqnaDaoImpl implements AllqnaDao {
     private static String namespace = "com.jscd.app.board.qna.allqnaMapper.";
     //1-1. 게시글 등록
     public int insert(AllqnaDto allqnaDto) throws Exception {
-        System.out.println("dao===="+allqnaDto);
         return session.insert(namespace+"insert", allqnaDto);
     } // int insert(String statement, Object parameter)
 
@@ -86,8 +86,8 @@ public class AllqnaDaoImpl implements AllqnaDao {
     }
     //3-2 대댓글 목록
     @Override
-    public List<AllqnaDto> cmtReplySelectList(Integer allqnaCmtNo) throws Exception {
-        return session.selectList(namespace+"cmtReplySelect", allqnaCmtNo);
+    public List<AllqnaDto> cmtReplySelectList(AllqnaDto allqnaDto) throws Exception {
+        return session.selectList(namespace+"cmtReplySelect", allqnaDto);
     }
     //3-3 대댓글 수정
     @Override
@@ -108,8 +108,6 @@ public class AllqnaDaoImpl implements AllqnaDao {
     //7 페이징 처리 및 검색
     @Override
     public int searchResultCnt(SearchCondition sc) throws Exception {
-        System.out.println("sc in searchResultCnt() = " + sc);
-        System.out.println("session = " + session);
         return session.selectOne(namespace+"searchResultCnt", sc);
     }
 
@@ -126,5 +124,11 @@ public class AllqnaDaoImpl implements AllqnaDao {
     }
 
 
+    //카테고리
+    @Override
+    public QnActDto allqnaCategory(Integer qnaCtNo) throws Exception {
+        System.out.println("카테고리 매퍼======="+session.selectOne(namespace+"allqnaCategory", qnaCtNo));
+        return null;
+    }
 
 }

@@ -134,4 +134,9 @@ public class MemberManageServiceImpl implements MemberManageService { //회원 �
         return manageDao.searchResultCnt(sc);
     }
 
+    @Override
+    public MemberDto readMember(Integer mebrNo) throws Exception {
+        return manageDao.selectMember(mebrNo);
+    }
+
 }

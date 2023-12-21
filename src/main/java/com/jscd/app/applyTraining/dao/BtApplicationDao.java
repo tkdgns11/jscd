@@ -25,7 +25,7 @@ public interface BtApplicationDao {
 
     int lectureApplyInsert(BtApplicationDto dto) throws Exception;
 
-    BtApplicationDto confirmApplcation(BtApplicationDto dto) throws Exception;
+    int confirmApplcation(BtApplicationDto dto) throws Exception;
 
     List<BtApplicationDto> searchSelectPage(SearchApplication sa) throws Exception;
 

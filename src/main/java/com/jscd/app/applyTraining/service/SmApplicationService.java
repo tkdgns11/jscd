@@ -24,7 +24,7 @@ public interface SmApplicationService {
 
     int lectureApplyInsert(SmApplicationDto dto) throws Exception;
 
-    SmApplicationDto confirmApplcation(SmApplicationDto dto) throws Exception;
+    int confirmApplcation(SmApplicationDto dto) throws Exception;
 
     List<SmApplicationDto> getSearchResultpage(SearchApplication sa) throws Exception;
 

@@ -12,17 +12,8 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/jscdReset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/myPage.css"/>">
-    <script type="text/javascript" src="<c:url value="/js/myPage.js"/>"></script>
-    <title>myPage</title>
+    <title>강사 소개말</title>
 
-    <style>
-        #introTitle{
-            font-size: 24px;
-            margin-bottom: 30px;
-        }
-
-
-    </style>
     <script>
         let msg = "${param.msg}";
         if (msg == "READ_ERR") alert("정보를 가져오는데 실패했습니다. 다시 시도해 주세요.");
@@ -41,14 +32,14 @@
             <li><a href="/member/memberEdit">회원 정보 수정</a></li>
             <li><a href="#">강의 신청 현황</a></li>
             <c:if test="${memberDto.getGrade() eq '3'}">
-                <li><a href="/member/instructorIntro">강사 소개말 작성</a></li>
+                <li><a href="/member/instructorIntro">강사 소개말 등록</a></li>
             </c:if>
         </ul>
     </nav>
-    <div id="instructorInfoBox" style="margin-top: 100px;margin-left: 50px">
+    <div id="instructorInfoBox">
         <h1 id="introTitle">강사 소개말</h1>
         <textarea rows="20" cols="80" name="intro" readonly id="intro" id="intro">${infoDto.getIntro()}</textarea>
-        <input type="button" value="수정" class="modifyBtn" style="margin-top: 150px;left: 3.5%">
+        <input type="button" value="수정" class="modifyBtn" style="margin-top: 170px;left: 3.5%">
         <input type="hidden" name="mebrNo" value="${memberDto.getMebrNo()}" id="mebrNo">
     </div>
 </div>
@@ -59,9 +50,6 @@
 
 <script>
     $(document).ready(function () {
-
-
-
 
 
         $('.modifyBtn').on("click", function () {

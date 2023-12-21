@@ -14,6 +14,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/jscdReset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/seminar.css"/>">
+    <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
 </head>
 <script>
     let msg = "${msg}";
@@ -66,37 +67,6 @@
     <hr/>
     <div>
         <div>
-            <img src="<c:url value="/img/curri.png"/>">
-            <h1>커리큘럼</h1>
-        </div>
-        <%--  231213 정수           표 형식으로 데이터 받아올까? 고민 좀--%>
-
-        <%--        일반 input형식 코드--%>
-        <%--        <c:forEach var="list" items="${list}">--%>
-        <%--            <input type="text" class="sminputTxt className" value="${list.className}" readonly>--%>
-        <%--            &nbsp&nbsp<input type="text" class="sminputTxt category" value="${list.category}" readonly>--%>
-        <%--            &nbsp&nbsp<input type="text" class="sminputTxt content" value="${list.content}" readonly>--%>
-        <%--        </c:forEach>--%>
-        <%--        <table border="5px" style="width:100%">--%>
-        <%--        표형식 코드--%>
-        <table id="smTable">
-            <tr>
-                <th>분류</th>
-                <th>주차</th>
-                <th>학습내용</th>
-            </tr>
-            <c:forEach var="list" items="${list}">
-                <tr>
-                    <td>${list.className}</td>
-                    <td>${list.category}</td>
-                    <td>${list.content}</td>
-                </tr>
-            </c:forEach>
-        </table>
-    </div>
-    <hr/>
-    <div>
-        <div>
             <img src="<c:url value="/img/calendar.png"/>">
             <h1>수강 기간</h1>
         </div>
@@ -109,7 +79,7 @@
             <img src="<c:url value="/img/lectureTime.png"/>">
             <h1>강의 시간</h1>
         </div>
-        <input type="text" class="sminputTxt" readonly>
+        <input type="text" class="Time" value="${lstRegistDto.startTime} ~ ${lstRegistDto.endTime}" readonly>
     </div>
     <hr/>
     <div>
@@ -117,7 +87,7 @@
             <img src="<c:url value="/img/instructorInfo.png"/>">
             <h1>강사 정보</h1>
         </div>
-        <input type="text" class="sminputTxt" readonly>
+        <input type="text" class="sminputTxt" value="${lstRegistDto.name}" readonly>
     </div>
     <hr/>
     <div>

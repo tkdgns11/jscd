@@ -22,7 +22,7 @@ public interface BtApplicationService {
     int write(BtApplicationDto dto) throws Exception;
 
     int lectureApplyInsert(BtApplicationDto dto) throws Exception;
-    BtApplicationDto confirmApplcation(BtApplicationDto dto) throws Exception;
+    int confirmApplcation(BtApplicationDto dto) throws Exception;
 
     List<BtApplicationDto> getSearchResultpage(SearchApplication sa) throws Exception;
 

@@ -56,8 +56,8 @@
     <!-- 상세보기 화면 update-->
     <update id="update" parameterType="InstructorInfoDto">
         update instructorInfo
-        set intro      = #{intro}
-          , status     = #{status}
+        set
+          status     = #{status}
           , hourPmt    = #{hourPmt}
           , etc        = #{etc}
           , modifyDate = now()

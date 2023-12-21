@@ -35,7 +35,7 @@
             <input type="text" name="title" value="${btApplicationDto.title}" readonly>
             <input type="hidden" name="lastPrice" value="${btApplicationDto.lastPrice}">
         </div>
-            <hr class="applicationHr">
+        <hr class="applicationHr">
         <div>
             <div class="question">Q. 본인의 프로그래밍 지식이나 경험 수준에 대해 선택해주세요. <span class="redText">(선택 1)</span></div>
             <div id="selAll">
@@ -95,16 +95,16 @@
             <div class="question">Q. 학업에 전념 <span class="redText">(하루 14시간 이상)</span> 하지 않거나 타인에게 피해를 주는 경우<br>
                 &emsp;퇴소 될 수 있습니다. 동의하십니까? <span class="redText">(선택 1)</span></div>
             <div id="selAll">
-            <label><input type="radio" name="agreeYN" value="Y" onclick="return(false);"
-            <c:if test="${btApplicationDto.agreeYN eq 'Y'}"> checked="checked"</c:if>>예</label><hr class="applicationHr">
-            <label><input type="radio" name="agreeYN" value="N" onclick="return(false);"
-            <c:if test="${btApplicationDto.agreeYN eq 'N'}"> checked="checked"</c:if>>아니오</label>
+                <label><input type="radio" name="agreeYN" value="Y" onclick="return(false);"
+                <c:if test="${btApplicationDto.agreeYN eq 'Y'}"> checked="checked"</c:if>>예</label><hr class="applicationHr">
+                <label><input type="radio" name="agreeYN" value="N" onclick="return(false);"
+                <c:if test="${btApplicationDto.agreeYN eq 'N'}"> checked="checked"</c:if>>아니오</label>
             </div>
         </div>
         <hr class="applicationHr">
         <div class="applicationInformation">
-        현재 승인 상태 :
-        <input type="text"  id="approvalYN" name="approvalYN" value="${btApplicationDto.approvalYN}" readonly>
+            현재 승인 상태 :
+            <input type="text"  id="approvalYN" name="approvalYN" value="${btApplicationDto.approvalYN}" readonly>
         </div>
         <br>
         &emsp;<input type="button" id="approvalBtn" class="registeBtn" value=" 승인">
@@ -114,36 +114,36 @@
     </form>
 </div>
 
-    <script>
-        $(document).ready(()=>{
-            // 승인
-            $("#approvalBtn").on("click", ()=>{
-                $("#approvalYN").val("승인");
-                alert("처리 결과 = " + $("#approvalYN").val());
+<script>
+    $(document).ready(()=>{
+        // 승인
+        $("#approvalBtn").on("click", ()=>{
+            $("#approvalYN").val("승인");
+            alert("처리 결과 = " + $("#approvalYN").val());
 
-                let form = $("#btApplicationForm");
-                form.attr("action", "<c:url value='/adminBtTraining/modify${searchApplication.queryString}'/>");
-                form.attr("method", "post");
-                form.submit();
-            });
-
-            // 미승인
-            $('#notApprovalBtn').on("click", ()=>{
-                $("#approvalYN").val("미승인");
-                alert("처리 결과 = " + $("#approvalYN").val());
-
-                let form = $("#btApplicationForm");
-                form.attr("action", "<c:url value='/adminBtTraining/modify${searchApplication.queryString}'/>");
-                form.attr("method", "post");
-                form.submit();
-            });
-
-            // 목록
-            $('#listBtn').on("click", ()=>{
-                location.href="<c:url value='/adminBtTraining/list${searchApplication.queryString}'/>";
-            });
-
+            let form = $("#btApplicationForm");
+            form.attr("action", "<c:url value='/adminManage/adminBtTraining/modify${searchApplication.queryString}'/>");
+            form.attr("method", "post");
+            form.submit();
         });
-    </script>
+
+        // 미승인
+        $('#notApprovalBtn').on("click", ()=>{
+            $("#approvalYN").val("미승인");
+            alert("처리 결과 = " + $("#approvalYN").val());
+
+            let form = $("#btApplicationForm");
+            form.attr("action", "<c:url value='/adminManage/adminBtTraining/modify${searchApplication.queryString}'/>");
+            form.attr("method", "post");
+            form.submit();
+        });
+
+        // 목록
+        $('#listBtn').on("click", ()=>{
+            location.href="<c:url value='/adminManage/adminBtTraining/list${searchApplication.queryString}'/>";
+        });
+
+    });
+</script>
 </body>
 </html>

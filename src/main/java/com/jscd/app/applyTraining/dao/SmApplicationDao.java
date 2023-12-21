@@ -26,7 +26,7 @@ public interface SmApplicationDao {
 
     int lectureApplyInsert(SmApplicationDto dto) throws Exception;
 
-    SmApplicationDto confirmApplcation(SmApplicationDto dto) throws Exception;
+    int confirmApplcation(SmApplicationDto dto) throws Exception;
 
     List<SmApplicationDto> searchSelectPage(SearchApplication sa) throws Exception;
 

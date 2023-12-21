@@ -13,8 +13,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.List;
 
 @Controller
-//@RequestMapping("/onlyAdmin/registCourse")
-@RequestMapping("/registCourse")
+@RequestMapping("/adminManage/registCourse")
+//@RequestMapping("/registCourse")
 public class CourseController {
     @Autowired
     CourseService courseService;
@@ -24,9 +24,7 @@ public class CourseController {
     public String modifyCourse(CourseDto courseDto, RedirectAttributes rattr, Model m) {
         try {
             courseService.modifyCourse(courseDto);
-            // TODO 수정완료 메시지 전달
-//            return "redirect:/onlyAdmin/registCourse/course";
-            return "redirect:/registCourse/course";
+            return "redirect:/adminManage/registCourse/course";
         } catch(Exception e) {
             e.printStackTrace();
             m.addAttribute(courseDto);
@@ -43,8 +41,7 @@ public class CourseController {
             e.printStackTrace();
             rattr.addFlashAttribute("msg", "DEL_ERR");
         }
-//        return "redirect:/onlyAdmin/registCourse/course";
-        return "redirect:/registCourse/course";
+        return "redirect:/adminManage/registCourse/course";
     }
 
     // 등록된 과정 상세 확인 기능 구현
@@ -55,8 +52,7 @@ public class CourseController {
             m.addAttribute(courseDto);
         } catch(Exception e) {
             e.printStackTrace();
-//            return "redirect:/onlyAdmin/registCourse/course";
-            return "redirect:/registCourse/course";
+            return "redirect:/adminManage/registCourse/course";
         }
         return "/lecture/course/courseRegist";
     }
@@ -77,8 +73,7 @@ public class CourseController {
     public String addCourse(CourseDto courseDto, Model m) throws Exception {
         try {
             courseService.addCourse(courseDto);
-//            return "redirect:/onlyAdmin/registCourse/course";
-            return "redirect:/registCourse/course";
+            return "redirect:/adminManage/registCourse/course";
         } catch(Exception e) {
             e.printStackTrace();
             m.addAttribute("courseDto", courseDto);

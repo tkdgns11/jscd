@@ -1,7 +1,10 @@
 package com.jscd.app.applyTraining.controller;
 
+import com.jscd.app.applyTraining.dto.BtApplicationDto;
 import com.jscd.app.applyTraining.dto.SmApplicationDto;
 import com.jscd.app.applyTraining.service.SmApplicationService;
+import com.jscd.app.lecture.classEnroll.dto.ClassEnrollDto;
+import com.jscd.app.lecture.classEnroll.service.ClassEnrollService;
 import com.jscd.app.lecture.lstRegist.dto.LstRegistDto;
 import com.jscd.app.lecture.lstRegist.dto.lstregistfileDto;
 import com.jscd.app.lecture.lstRegist.service.LstService;
@@ -11,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +28,8 @@ public class SmTrainingController {
     SmApplicationService smApplicationService;
     @Autowired
     LstService lstService;
+    @Autowired
+    ClassEnrollService classEnrollService;
 
     // 부트캠프 신청서 제출시
     @PostMapping("smApplication")
@@ -58,62 +64,33 @@ public class SmTrainingController {
         // 이미 생성된 세션이 있으면 기존의 세션 반환 없으면 null 반환
         HttpSession session = request.getSession(false);
 
-        // 신청한 강의 번호, session id 얻기
+        // session id, 신청한 강의 번호 얻기
         String id = (String)session.getAttribute("id");
-        System.out.println("id = " + id);
         Integer registCode = lstRegistDto.getRegistCode();
 
-        // 1. 로그인 상태라면 이미 신청한 회원인지 확인
-        if(id != null){
+        // id, registCode, title, lastPrice를 신청서 페이지로 전달
+        m.addAttribute("id" + id);
+        m.addAttribute("lstRegistDto" + lstRegistDto);
+        return "/applyTraining/smApplication";
+    }
 
-            // 1.2 신청한 강의 번호, session id를 smApplicationDto에 담기
-            SmApplicationDto smApplicationDto = new SmApplicationDto();
-            smApplicationDto.setRegistCode(registCode);
-            smApplicationDto.setId(id);
+    // 강의 신청 중복 확인
+    @GetMapping("/duplicationChk")
+    @ResponseBody
+    public int idDuplication(String loginId, Integer registCode) throws Exception{
+        System.out.println("loginId = " + loginId);
+        System.out.println("registCode = " + registCode);
 
-            // 1.3 smApplicationDto 이용하여 검색
-            try {
-                SmApplicationDto smApplicationDto2 = smApplicationService.confirmApplcation(smApplicationDto);
-                System.out.println("smApplicationDto2 검색 결과 = " + smApplicationDto2);
-                // 1.4.1 검색 결과가 중복 신청이라면 예외 발생
-                if (smApplicationDto2 != null)
-                    throw new Exception("duplicate application");
+        // loginId, registCode를 smApplicationDto에 set
+        SmApplicationDto smApplicationDto = new SmApplicationDto();
+        smApplicationDto.setId(loginId);
+        smApplicationDto.setRegistCode(registCode);
 
-                // 1.5 검색 결과가 중복이 아니라면
-                // mebrNo, id, registCode, title, lastPrice를 신청서 페이지로 전달
-                m.addAttribute("id" + id);
-                m.addAttribute("lstRegistDto" + lstRegistDto);
-                return "/applyTraining/smApplication";
-            } catch (Exception e) {
-                // 1.4.2 신청 중복 메시지와 함께 리턴
-                e.printStackTrace();
-                System.out.println("중복 신청 발생");
-                try {
-                    LstRegistDto lstRegistDto2 = lstService.seminarRead(registCode);
+        // smApplicationDto로 신청한 강의가 있는지 검색
+        int cnt = smApplicationService.confirmApplcation(smApplicationDto);
+        System.out.println("cnt = " + cnt);
 
-                    m.addAttribute("lstRegistDto", lstRegistDto2);
-                    m.addAttribute("msg", "duplicate application");
-                    return "/applyTraining/seminar";
-                } catch (Exception e2) {
-                    e2.printStackTrace();
-                    return "redirect:/smTraining/list";
-                }// try catch end
-            }// try catch end
-
-        }else{
-            // 3. 로그인 상태가 아니면
-            System.out.println("로그인 상태가 아님");
-            try {
-                LstRegistDto lstRegistDto2 = lstService.seminarRead(registCode);
-
-                m.addAttribute("lstRegistDto", lstRegistDto2);
-                m.addAttribute("msg", "login required");
-                return "/applyTraining/seminar";
-            } catch (Exception e) {
-                e.printStackTrace();
-                return "redirect:/smTraining/list";
-            }// try catch end
-        }// if else end
+        return cnt;
     }
 
     // 세미나 리스트 이동

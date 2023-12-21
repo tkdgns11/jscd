@@ -26,9 +26,11 @@
             margin-bottom: 20px;
         }
         #loadBox{
-            display: flex;
-            flex-direction: row;
-            margin-bottom: 50px;
+            margin: -3px 0 50px 0;
+            padding-right: 55px;
+            padding-left: 50px;
+            padding-bottom: 20px;
+            border: 1px solid #D9D9D9;
         }
         #addTitle{
             background-color: #0185FE;
@@ -53,7 +55,7 @@
             width: 600px;
             height: 500px;
             margin-bottom: 20px;
-            filter: drop-shadow(10px 8px 6px #c3c3c3);
+            /*filter: drop-shadow(10px 8px 6px #c3c3c3);*/
         }
 
     </style>
@@ -72,7 +74,7 @@
 
     <div id="loadBox">
         <p id="addTitle">주소</p>
-        <p id="jsAdd">서울 종로구 종로 69 서울YMCA 빌딩 5층 517호<br>
+        <p id="jsAdd">서울 종로구 종로 69 서울YMCA 빌딩 5층 517호
             1호선 종각역 8번출구 7m</p>
     </div>
 

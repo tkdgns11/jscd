@@ -17,8 +17,8 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-//@RequestMapping("/onlyAdmin/adminSmTraining")
-@RequestMapping("/adminSmTraining")
+@RequestMapping("/adminManage/adminSmTraining")
+//@RequestMapping("/adminSmTraining")
 public class AdminSmTrainingController {
     @Autowired
     SmApplicationService smApplicationService;
@@ -26,8 +26,6 @@ public class AdminSmTrainingController {
     // 승인 여부 처리시
     @PostMapping("modify")
     public String smApplicationModify(SmApplicationDto smApplicationDto, Integer page, Integer pageSize, Model m, RedirectAttributes rattr){
-
-        System.out.println("smApplicationDto = " + smApplicationDto);
 
         try {
             int cnt = smApplicationService.modify(smApplicationDto);
@@ -37,7 +35,7 @@ public class AdminSmTrainingController {
 
             rattr.addFlashAttribute("page", page);
             rattr.addFlashAttribute("pageSize", pageSize);
-            return "redirect:/adminSmTraining/list";
+            return "redirect:/adminManage/adminSmTraining/list";
         } catch (Exception e) {
             e.printStackTrace();
             m.addAttribute("smApplicationDto", smApplicationDto);
@@ -68,10 +66,8 @@ public class AdminSmTrainingController {
 
         try {
             int totalCnt = smApplicationService.getSearchResulCnt(sa);
-            System.out.println("totalCnt = " + totalCnt);
 
             ApplicationHandler applicationHandler = new ApplicationHandler(totalCnt, sa);
-            System.out.println("ApplicationHandler = " + applicationHandler);
 
             List<SmApplicationDto> list = smApplicationService.getSearchResultpage(sa);
 
