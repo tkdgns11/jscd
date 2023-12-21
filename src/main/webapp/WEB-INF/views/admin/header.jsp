@@ -21,13 +21,13 @@
 <body>
 <div id="adminHeader">
     <div id="adminLogoBox">
-        <a href="<c:url value='/'/>"><img src="<c:url value="/img/adminLogo.png"/>"></a>
+        <a href="<c:url value='/admin/home'/>"><img src="<c:url value="/img/adminLogo.png"/>"></a>
         <p>관리자 시스템</p>
     </div>
     <div id="adminLoginBox">
         <ul>
-            <li>로그인</li>
-            <li>회원가입</li>
+            <input type="button" value="로그아웃" class="deleteBtn" onClick="location.href='<c:url value='/admin/logout'/>'">
+            <input type="button" value="마이페이지" class="registeBtn" onClick="location.href='<c:url value='/admin/read'/>'">
         </ul>
     </div>
 </div>

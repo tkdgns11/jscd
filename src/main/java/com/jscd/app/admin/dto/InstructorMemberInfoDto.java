@@ -17,14 +17,14 @@ public class InstructorMemberInfoDto { //강사 + 회원 조인 Dto
     //    ㅡㅡㅡㅡㅡㅡㅡㅡ회원컬럼ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     private String id;
     private String name;
-    private Date birth;
+    private String birth;
     private String phone;
     private String acct;
 
     public InstructorMemberInfoDto(){}
 
     public InstructorMemberInfoDto(Integer iscrNo, Integer mebrNo, String intro, String status, Float hourPmt, Date regDate,
-                                   String firstIdNo, Date modifyDate, String lastIdNo, String etc, String id, String name, Date birth,
+                                   String firstIdNo, Date modifyDate, String lastIdNo, String etc, String id, String name, String birth,
                                    String phone, String acct) {
         this.iscrNo = iscrNo;
         this.mebrNo = mebrNo;
@@ -139,11 +139,11 @@ public class InstructorMemberInfoDto { //강사 + 회원 조인 Dto
         this.name = name;
     }
 
-    public Date getBirth() {
+    public String getBirth() {
         return birth;
     }
 
-    public void setBirth(Date birth) {
+    public void setBirth(String birth) {
         this.birth = birth;
     }
 

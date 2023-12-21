@@ -1,0 +1,258 @@
+@import "reset.css";
+
+#content {
+    width: 960px;
+    height: 1080px;
+    margin: 0 auto;
+}
+
+
+/** {*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*}*/
+
+/*html {*/
+/*    font-size: 10px;*/
+/*}*/
+
+ul, li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/*span {*/
+/*    display: inline-block;*/
+/*    font-size: 13px;*/
+/*    margin-bottom: 10px;*/
+/*}*/
+
+/*input {*/
+/*    margin-left: 10px;*/
+/*}*/
+
+#searchBox {
+    margin-top: 100px;
+}
+
+
+/*.lists {*/
+/*    hieght: 10px;*/
+/*}*/
+
+.board_list {
+    width: 100%;
+    border-top: 2px solid #000;
+}
+
+.board_list > div {
+    border-bottom: 1px solid #ddd;
+    font-size: 0;
+}
+
+.board_list > div.top {
+    border-bottom: 1px solid #999;
+}
+
+.board_list > div:last-child {
+    border-bottom: 1px solid #000;
+}
+
+.board_list > div > div {
+    display: inline-block;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 15px;
+
+}
+
+.board_list > div.top > div {
+    font-weight: 600;
+}
+
+.board_list .allqnaNo {
+    width: 5%;
+
+}
+
+.board_list .qnaCt {
+    width : 15%;
+}
+
+
+.board_list .title, .title2 {
+    width: 30%;
+    text-align: left;
+}
+
+.board_list .top .title, title2 {
+    text-align: center;
+
+}
+
+.board_list .writer {
+    width: 10%;
+}
+
+.board_list .regDate {
+    width: 25%;
+    margin-left : 10px;
+
+}
+
+.board_list .hit {
+    width: 5%;
+    text-align: right;
+    margin-left : 20px;
+}
+
+
+.board_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.board_page {
+    display: inline-block;
+    text-align: center;
+    font-size: 0;
+    margin-left: auto;
+    padding-left: 10vh;
+}
+
+.board_page a {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    box-sizing: border-box;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    border-left: 0;
+    line-height: 100%;
+}
+
+.board_page a.bt {
+    padding-top: 10px;
+    font-size: 1.2rem;
+    letter-spacing: -1px;
+}
+
+.board_page a.num {
+    padding-top: 9px;
+    font-size: 1.4rem;
+}
+
+.board_page a.num.on {
+    border-color: #0185FE;;
+    background: #0185FE;
+    color: #fff;
+}
+
+.board_list_wrap {
+    margin-top: 30px;
+}
+
+#searchBox {
+    margin-bottom: -30px;
+}
+
+.searchInput {
+    width: 715px;
+    height: 35px;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid;
+}
+
+select {
+    width: 150px;
+    height: 40px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.searchOption {
+    border-style: solid;
+}
+
+#checkSumit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#checkbox {
+    display: flex;
+    align-items: center;
+    margin-bottom: -30px;
+}
+
+.registeBtn {
+    text-align: center;
+    margin-bottom: -20px;
+}
+
+.paging a:hover {
+    background-color: #0185FE;; /* 마우스 호버시 배경색을 파란색으로 변경 */
+    color: white; /* 숫자 텍스트를 흰색으로 변경 */
+    border-color: #0185FE;; /* 테두리 색상을 파란색으로 변경 */
+}
+
+.paging {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 0;
+}
+
+.paging a {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    box-sizing: border-box;
+    vertical-align: middle;
+    border: 1.5px solid #ddd;
+    border-left: 0;
+    line-height: 100%;
+}
+
+.paging a.bt {
+    padding-top: 10px;
+    font-size: 1.2rem;
+    letter-spacing: -1px;
+}
+
+.paging a#pageNbr {
+    padding-top: 9px;
+    font-size: 12px;
+}
+
+.paging a.num.on {
+    border-color: #000;
+    background: #000;
+    color: #fff;
+}
+
+.paging a:first-child {
+    border-left: 1px solid #ddd;
+}
+
+
+.paging a {
+    width: 30px;
+    height: 30px;
+}
+
+
+/*.paging a.bt {*/
+/*    padding-top: 7px;*/
+/*}*/
+
+/*.paging a.num {*/
+/*    padding-top: 10px;*/
+/*}*/

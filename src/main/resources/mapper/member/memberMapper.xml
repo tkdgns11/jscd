@@ -19,9 +19,9 @@
 <!-- 회원 등록-->
     <insert id="insert" parameterType="memberDto">
 	     INSERT INTO MEMBER
-	         (id, name, nickname, birth, pwd, gender, phone, acct, status, grade, regDate, firstIdNo, etc)
+	         (id, name, nickname, birth, pwd, gender, phone, acct, regDate, firstIdNo, etc)
 	     VALUES
-	         (#{id}, #{name}, #{nickname}, #{birth}, #{pwd}, #{gender}, #{phone}, #{acct}, #{status}, #{grade}, now(), #{firstIdNo}, #{etc})
+	         (#{id}, #{name}, #{nickname}, #{birth}, #{pwd}, #{gender}, #{phone}, #{acct}, now(), #{firstIdNo}, #{etc})
     </insert>
 <!-- 개인 정보 수정-->
 	<update id="update" parameterType="memberDto">

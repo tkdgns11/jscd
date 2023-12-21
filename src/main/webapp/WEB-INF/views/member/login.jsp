@@ -34,7 +34,7 @@
             <div id="loginInput">
                 <div>
                     <img src="<c:url value="/img/signup_user.png"/>">
-                    <input type="text" id="id" name="id" placeholder="이메일을 입력해주세요.">
+                    <input type="text" id="id" name="id" placeholder="이메일을 입력해주세요." value="${cookie.id.value}">
                 </div>
                 <div>
                     <img src="<c:url value="/img/signup_pwd.png"/>">

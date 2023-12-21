@@ -51,14 +51,16 @@
             height: 100%;
             display: flex;
             text-decoration: none;
-            font-size: 25px;
+            font-size: 18px;
             align-items: center;
         }
 
         .admin_group {
             color: #f1f1f1;
             text-decoration: none;
-            font-size: 25px;
+            font-size: 18px;
+            padding-right: 15px;
+            padding-left: 10px;
         }
 
         #admin_title {
@@ -67,13 +69,13 @@
             color: #f1f1f1;
             padding: 1rem 1rem 1rem 1rem;
             text-decoration: none;
-            font-size: 25px;
+            font-size: 18px;
             align-items: center;
         }
 
 
         .box {
-            border: 1px solid #182566;
+            border: 1px solid #282828;
             margin-bottom: 10px;
         }
 
@@ -105,7 +107,7 @@
         }
 
         .box-header {
-            padding: 10px;
+            padding: 5px;
             cursor: pointer;
             position: relative;
         }
@@ -117,7 +119,7 @@
             z-index: 1;
             top: 0;
             left: 0;
-            background-color: #182566;
+            background-color: #282828;
             overflow-x: hidden;
             padding-top: 50px;
             float: left;
@@ -126,7 +128,7 @@
         .sidenav a {
             padding: 6px 8px 6px 16px;
             text-decoration: none;
-            font-size: 25px;
+            font-size: 18px;
             color: #f1f1f1;
             display: block;
         }
@@ -175,10 +177,10 @@
 </head>
 
 <body>
-<div id="headerBox" style="height: 50px; position: fixed; top: 0; left: 0; width: 100%;  background-color: #182566;  color: #f1f1f1;
+<div id="headerBox" style="height: 50px; position: fixed; top: 0; left: 0; width: 100%;  background-color: #282828;  color: #f1f1f1;
 z-index: 1000; float: right;/">
     <div id="headerTop">
-        <h1 id="admin_title" onclick="location='/admin/home'">정석코딩 관리자 시스템</h1>
+        <h1 id="admin_title" onclick="location='/admin/home'">JS ADMIN SYSTEM</h1>
         <ul>
             <li><a class="admin_group" href="<c:url value='/admin/logout'/>">로그아웃</a></li>
             <li><a>&nbsp;&nbsp;|&nbsp;&nbsp;</a></li>
@@ -208,8 +210,6 @@ z-index: 1000; float: right;/">
         </div>
         <div class="box-content">
             <a href="/adminManage/stdManage/list">학생정보</a>
-            <a href="#">성적관리</a>
-            <a href="#">출결관리</a>
             <a href="/adminManage/instructor/list">강사관리</a>
             <a href="/adminManage/memberManage/list">회원관리</a>
         </div>

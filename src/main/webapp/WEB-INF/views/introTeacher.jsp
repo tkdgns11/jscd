@@ -27,8 +27,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 10px;
-            margin-top: 10px;
+            margin-bottom: 30px;
+            margin-top: 40px;
         }
 
         #teacher {
@@ -41,6 +41,13 @@
             display: flex;
             flex-wrap: nowrap;
             justify-content: space-between;
+            margin-top: -170px;
+        }
+        .book2{
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            line-height: 110%;
         }
 
         #forMargin {
@@ -50,6 +57,7 @@
         .jcImg {
             object-fit: cover;
             filter: drop-shadow(10px 8px 6px #c3c3c3);
+            top:50%
         }
 
         .jungsukTitle {
@@ -59,17 +67,24 @@
 
         #teacherDesc {
             margin-bottom: 20px;
-            margin-left: 5px
+            margin-left: 5px;
+            line-height: 140%;
+
         }
 
         #teacherDesc2 {
             margin-top: -400px;
             margin-bottom: 200px;
             margin-left: 30px;
+            line-height: 140%;
         }
 
         .descWeight {
             font-weight: 740;
+        }
+
+        .jungsukText {
+
         }
     </style>
 </head>
@@ -120,7 +135,7 @@
             <div class="title">
                 <h2><strong>원장 약력</strong></h2>
             </div>
-            <p>
+            <p style="line-height: 130%">
                 前) 비트 캠프 전임강사<br>
                 前) 삼성 멀티 캠퍼스 강사<br>
                 前) 삼성전자 캐나다 웹 마스터<br>
@@ -130,14 +145,14 @@
             <div class="title">
                 <h2><strong>대표 저서</strong></h2>
             </div>
-            <div class="book">
+            <div class="book2">
                     <span id="forMargin">
                         <img src="../img/introTeacher/jungsuk.png" alt="java" class="jcImg">
                         <p class="jungsukText">
                         <h5 class="jungsukTitle">- Java의 정석</h5><br>
                         프로그래밍 언어 분야 스테디셀러</p>
                     </span>
-                <span>
+                     <span>
                         <img src="../img/introTeacher/cjungsuk.png" alt="c" class="jcImg">
                         <p class="jungsukText">
                         <h5 class="jungsukTitle" style="margin-top: 13px">- C언어의 정석</h5>

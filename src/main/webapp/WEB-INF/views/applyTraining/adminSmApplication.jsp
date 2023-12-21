@@ -35,7 +35,7 @@
             <input type="text" name="title" value="${smApplicationDto.title}" readonly>
             <input type="hidden" name="lastPrice" value="${smApplicationDto.lastPrice}">
         </div>
-            <hr class="applicationHr">
+        <hr class="applicationHr">
         <div>
             <div class="question">Q. 본인의 프로그래밍 지식이나 경험 수준에 대해 선택해주세요. <span class="redText">(선택 1)</span></div>
             <div id="selAll">
@@ -98,14 +98,14 @@
     </form>
 </div>
 
-    <script>
-        $(document).ready(()=>{
-            // 목록
-            $('#listBtn').on("click", ()=>{
-                location.href="<c:url value='/adminSmTraining/list?page=${page}&pageSize=${pageSize}'/>";
-            });
-
+<script>
+    $(document).ready(()=>{
+        // 목록
+        $('#listBtn').on("click", ()=>{
+            location.href="<c:url value='/adminManage/adminSmTraining/list?page=${page}&pageSize=${pageSize}'/>";
         });
-    </script>
+
+    });
+</script>
 </body>
 </html>

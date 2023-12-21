@@ -149,14 +149,14 @@
         <tr class="registTr">
             <th class="registTh">No.</th>
             <th class="registTh">제목</th>
-<%--            <th class="registTh">작성자</th>--%>
+            <%--            <th class="registTh">작성자</th>--%>
             <th class="registTh">작성시간</th>
         </tr>
         <c:forEach var="list" items="${list}">
             <tr class="registTr">
                 <td class="registTd">${list.registCode}</td>
-<%--                <td class="registTd"><a href="<c:url value='/onlyAdmin/lstRegist/detailRegist${ph.sc.queryString}&registCode=${list.registCode}'/>">${list.title}</a></td>--%>
-                <td class="registTd"><a href="<c:url value='/lstRegist/detailRegist${ph.sc.queryString}&registCode=${list.registCode}'/>">${list.title}</a></td>
+                    <%--                <td class="registTd"><a href="<c:url value='/onlyAdmin/lstRegist/detailRegist${ph.sc.queryString}&registCode=${list.registCode}'/>">${list.title}</a></td>--%>
+                <td class="registTd"><a href="<c:url value='/adminManage/lstRegist/detailRegist${ph.sc.queryString}&registCode=${list.registCode}'/>">${list.title}</a></td>
                 <td class="registTd">${list.regDate} </td>
             </tr>
         </c:forEach>
@@ -169,21 +169,21 @@
         </c:if>
         <c:if test="${totalCnt!=null && totalCnt!=0}">
             <c:if test="${ph.showPrev}">
-<%--                <a class="page" href="<c:url value='/onlyAdmin/lstRegist/list${ph.sc.getQueryString(ph.beginPage-1)}'/>">&lt;</a>--%>
-                <a class="page" href="<c:url value='/lstRegist/list${ph.sc.getQueryString(ph.beginPage-1)}'/>">&lt;</a>
+                <%--                <a class="page" href="<c:url value='/onlyAdmin/lstRegist/list${ph.sc.getQueryString(ph.beginPage-1)}'/>">&lt;</a>--%>
+                <a class="page" href="<c:url value='/adminManage/lstRegist/list${ph.sc.getQueryString(ph.beginPage-1)}'/>">&lt;</a>
             </c:if>
             <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
-<%--                <a class="page ${i==ph.sc.page? "paging-active" : ""}" href="<c:url value='/onlyAdmin/lstRegist/list${ph.sc.getQueryString(i)}'/>">${i}</a>--%>
-                <a class="page ${i==ph.sc.page? "paging-active" : ""}" href="<c:url value='/lstRegist/list${ph.sc.getQueryString(i)}'/>">${i}</a>
+                <%--                <a class="page ${i==ph.sc.page? "paging-active" : ""}" href="<c:url value='/onlyAdmin/lstRegist/list${ph.sc.getQueryString(i)}'/>">${i}</a>--%>
+                <a class="page ${i==ph.sc.page? "paging-active" : ""}" href="<c:url value='/adminManage/lstRegist/list${ph.sc.getQueryString(i)}'/>">${i}</a>
             </c:forEach>
             <c:if test="${ph.showNext}">
-<%--                <a class="page" href="<c:url value='/onlyAdmin/lstRegist/list${ph.sc.getQueryString(ph.endPage+1)}'/>">&gt;</a>--%>
-                <a class="page" href="<c:url value='/lstRegist/list${ph.sc.getQueryString(ph.endPage+1)}'/>">&gt;</a>
+                <%--                <a class="page" href="<c:url value='/onlyAdmin/lstRegist/list${ph.sc.getQueryString(ph.endPage+1)}'/>">&gt;</a>--%>
+                <a class="page" href="<c:url value='/adminManage/lstRegist/list${ph.sc.getQueryString(ph.endPage+1)}'/>">&gt;</a>
             </c:if>
         </c:if>
     </div>
-<%--    <button id="writeBtn" class="btn-write" onclick="location.href='<c:url value="/onlyAdmin/lstRegist/addRegist"/>'">강의 추가하기</button>--%>
-    <button id="writeBtn" class="btn-write" onclick="location.href='<c:url value="/lstRegist/addRegist"/>'">강의 추가하기</button>
+    <%--    <button id="writeBtn" class="btn-write" onclick="location.href='<c:url value="/onlyAdmin/lstRegist/addRegist"/>'">강의 추가하기</button>--%>
+    <button id="writeBtn" class="btn-write" onclick="location.href='<c:url value="/adminManage/lstRegist/addRegist"/>'">강의 추가하기</button>
 </div>
 </body>
 </html>
