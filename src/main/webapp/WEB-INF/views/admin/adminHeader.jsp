@@ -183,8 +183,8 @@ z-index: 1000; float: right;/">
         <h1 id="admin_title" onclick="location='/admin/home'">JS ADMIN SYSTEM</h1>
         <ul>
             <li><a class="admin_group" href="<c:url value='/admin/logout'/>">로그아웃</a></li>
-            <li><a>&nbsp;&nbsp;|&nbsp;&nbsp;</a></li>
-            <li><a class="admin_group" href="<c:url value='/admin/read'/>">개인정보수정</a></li>
+<%--            <li><a>&nbsp;&nbsp;|&nbsp;&nbsp;</a></li>--%>
+<%--            <li><a class="admin_group" href="<c:url value='/admin/read'/>">개인정보수정</a></li>--%>
         </ul>
     </div>
 </div>
@@ -196,16 +196,16 @@ z-index: 1000; float: right;/">
     </div>
     <div class="box">
         <div class="box-header" onclick="toggleBoxContent(this)">
-            <a href="#about"><i class="fa-solid fa-user"></i> My page</a>
+            <a href="#"><i class="fa-solid fa-user"></i> My page</a>
             <span class="arrow up"></span>
         </div>
         <div class="box-content">
-            <a href="#"></a>
+            <a href="<c:url value='/admin/read'/>">개인정보수정</a>
         </div>
     </div>
     <div class="box">
         <div class="box-header" onclick="toggleBoxContent(this)">
-            <a href="#about"><i class="fa-solid fa-circle-user"></i> 학사관리</a>
+            <a href="#"><i class="fa-solid fa-circle-user"></i> 학사관리</a>
             <span class="arrow up"></span>
         </div>
         <div class="box-content">

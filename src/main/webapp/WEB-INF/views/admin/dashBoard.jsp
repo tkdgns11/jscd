@@ -472,12 +472,26 @@
       width: 100%;
       height: 30%;
       border-bottom: 0.5px solid #828282;
+      color : wheat;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
     }
+
+
 
     #warp2-top-1 {
       width: 100%;
       height: 30%;
+      color : wheat;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
     }
+
+   .adminMemo {
+     margin-left : 2rem;
+   }
 
     #warp2-2 {
       width: 100%;
@@ -661,7 +675,7 @@
     <div class="warp1-layer21">
       <div class="warp1-layers layer1reset">
         <div class="titleArea">
-          <div class="title">Q&A 수강후기</div>
+          <div class="title">Q&A</div>
         </div>
         <hr>
         <div class="boardContents">
@@ -759,8 +773,24 @@
         <div id="memberName">steve</div>
         <div id="memberId">sanghoon@jungsuk.com</div>
       </div>
-      <div id="warp2-top-2"></div>
-      <div id="warp2-top-1"></div>
+      <div id="warp2-top-2">
+        <p class ="adminMemo" >
+          메모:<br><br>
+          날짜: 2023-12-20 <br><br>
+
+          - 최근 자바 시험에서 상당한 진전을 보임.<br>
+          - 추가적인 지원이 필요한 분야: 자바스크립트.<br>
+          - 김철수 학생이 코딩 클럽에 참여하도록 권장할 것.<br>
+        </p>
+      </div>
+      <div id="warp2-top-1">
+        <p class ="adminMemo">
+          날짜: 2023-12-21<br><br>
+
+          - 최근 두 주 동안 세 차례 결석.<br>
+          - 교사와의 면담에서 가정 문제로 인한 스트레스를 표현함.<br>
+        </p>
+      </div>
     </div>
     <div id="warp2-2"></div>
     <div id="warp2-3"></div>
