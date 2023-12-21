@@ -8,29 +8,32 @@ function member(value){
     const name = document.getElementById("name");
     const birth = document.getElementById("birth");
     const id = document.getElementById("id");
+    const idChkYN = document.getElementById("idChkYN").value;
+    const emailChkYN = document.getElementById("emailChkYN").value;
     const pwd = document.getElementById("pwd");
     const pwdChk = document.getElementById("pwdChk");
     const selectGender = document.getElementsByName("gender");
     let gender;
+
     for(const option of selectGender){
         if(option.checked){
             gender = option.value;
             break;
         }
     }
+
     const phone = document.getElementById("phone");
+
     //체크박스 체크 여부
     const checkboxIds = ["serviceChkYN", "privacyChkYN", "ageChkYN", "marketingChkYN"];
     const checkboxStates = {};
 
     checkboxIds.forEach(id => {
-        if(document.getElementById(id).checked){
-            checkboxStates[id] = "Y";
-        }else{
-            checkboxStates[id] = "N";
-        }
-
-
+       if(document.getElementById(id).checked){
+           checkboxStates[id] = "Y";
+       }else{
+           checkboxStates[id] = "N";
+       }
     });
 
     //모든 공백 체크 정규식
@@ -52,34 +55,43 @@ function member(value){
         !nameValid(name, nameReg) ||
         !birthValid(birth, birthReg) ||
         !idValid(id, idReg) ||
+        !idChkYNValid(idChkYN) ||
+        !emailChkYNValid(emailChkYN) ||
         !pwdValid(pwd, pwdChk, pwdReg) ||
         !genderValid(gender) ||
         !phoneValid(phone, phoneReg)
     ){
-        alert("유효성 검사 실패");
+        console.log("유효성 검사 실패");
     } else {
         const signupData = {"id":id.value, "pwd":pwd.value, "birth":birth.value, "name":name.value, "gender":gender,"phone":phone.value};
         const data= {...signupData, ...checkboxStates}
-        console.log(data);
-        //회원가입일 경우
-        $.ajax({
-            url:"/member/signup",
-            type:"POST",
-            contentType: "application/json; charset=utf-8",
-            data:JSON.stringify(data),
-            error : function (error){
-                console.log("error");
-            },
-            success : function (data){
-                if(data.redirect){
-                    window.location.href = data.redirect;
+        console.log("data = " + data);
+            //회원가입일 경우
+            $.ajax({
+                url:"/member/signup",
+                type:"POST",
+                contentType: "application/json; charset=utf-8",
+                data:JSON.stringify(data),
+                success : function (data){
+                    console.log("data.redirect = " + data.redirect);
+                    console.log("data.error = " + data.error);
+
+                    if(data.redirect){
+                        console.log("redirect 발생");
+                        console.log("회원가입에 성공했습니다.");
+                        window.location.href = data.redirect;
+                    }
+                    if(data.error){
+                        console.log("error 발생")
+                        console.log("약관등록에 실패했습니다.")
+                    }
+                },
+                error : function (){
+                    console.log("서버요청 실패\n관리자에게 문의해주세요.");
                 }
-            }
-        });
-
-
-    }
-}
+            }); // end ajax
+    } // end if else
+} // end member
 
 
 //이름 유효성 검사
@@ -95,29 +107,28 @@ function  nameValid(name, nameReg){
         alert("이름은 한글 2자~10자, 영문 4자~20자로 해주세요.");
         return false;
     }
-
     return true;
-
 }
+
 //생일 유효성 검사
 function  birthValid(birth, birthReg){
 
     //1. 생년월일 공백 확인
     if(birth.value==""){
-        alert("생년월일을 입력해주세요");
+        alert("생년월일을 입력해주세요.");
         return false;
     };
 
     //2. 생년월일 6자리 잘 적었는지
     if (!birthReg.test(birth.value)) {
-        alert("정규식에 안맞아");
+        alert("생년월일 6자리를 확인해주세요.");
         return false;
     }
     return true;
 }
 
 //아이디 유효성 검사
-function  idValid(id,idReg){
+function  idValid(id, idReg){
     //아이디 공백 확인
     if(id.value==""){
         alert("아이디를 입력해주세요.");
@@ -125,7 +136,26 @@ function  idValid(id,idReg){
     };
     //아이디 정규식 유효성 검사
     if(!idReg.test(id.value)){
-        alert("이메일 양식을 확인하세요.")
+        alert("이메일 양식을 확인해주세요.")
+        return false;
+    }
+    return true;
+}
+
+//아이디 중복확인 진행 검사
+function idChkYNValid(idChkYN){
+
+    if(idChkYN != 'Y'){
+        alert("아이디 중복확인을 확인해주세요.");
+        return false;
+    }
+    return true;
+}
+
+// 본인인증 진행 검사
+function emailChkYNValid(emailChkYN){
+    if(emailChkYN != 'Y'){
+        alert("본인인증을 확인해주세요.")
         return false;
     }
     return true;
@@ -136,30 +166,31 @@ function  pwdValid(pwd, pwdChk, pwdReg){
 
     //패스워드 공백 확인
     if(pwd.value==""){
-        alert("패스워드를 입력해주세요.");
+        alert("비밀번호를 입력해주세요.");
         return false;
     }
 
     //패스워드 확인 칸 공백 확인
     if(pwdChk.value==""){
-        alert("패스워드 확인을 위해 한번 더 입력해주세요.");
+        alert("비밀번호 확인을 위해 한번 더 입력해주세요.");
         return false;
     }
 
     //패스워드와 패스워드 확인 같은지
     if(pwd.value!==pwdChk.value){
-        alert("입력한 패스워드가 다릅니다. 확인해주세요.");
+        alert("입력한 비밀번호가 다릅니다. 확인해주세요.");
         return false;
     };
 
     //패스워드 정규식 유효성 검사
     if(!pwdReg.test(pwd.value)) {
-        alert("8~20자 영문 대소문자, 숫자, 특수문자를 사용하세요.");
+        alert("8~20자 영문 대소문자, 숫자, 특수문자를 사용해주세요.");
         return false;
     }
 
     return true;
 }
+
 //성별 유효성 검사
 function  genderValid(gender){
     //성별 null 또는 undefined인지
@@ -204,6 +235,8 @@ const idCheck = ()=>{
                 document.getElementById("idImg").src="/img/signup_user_red.png";
             }else{
                 alert('사용할 수 있는 아이디입니다.');
+                document.getElementById("idChkYN").value = 'Y';
+                console.log(document.getElementById('idChkYN').value);
                 document.getElementById("idImg").src="/img/signup_user.png";
             }
         },
@@ -220,7 +253,6 @@ const idCheck = ()=>{
  */
 $(document).ready(()=>{
     $('#emailChkBtn').click(()=>{
-        let emailChkBtn = $('#emailChkBtn').value;
 
         const email = $('#id').val(); //이메일 주소값 가져오기
         console.log(email);
@@ -240,14 +272,18 @@ $(document).ready(()=>{
         }); // end ajax
     });
 
-    $('#emailChkInput').blur(()=>{
-        const emailChkInputNo = $('#emailChkInput').val();
+    $('#certification').blur(()=>{
+        const certification = $('#certification').val();
 
-        if(emailChkInputNo === code){
+        if(certification === code){
             alert('인증번호가 일치합니다.')
+            document.getElementById("emailChkYN").value = 'Y';
+            console.log(document.getElementById('emailChkYN').value);
             document.getElementById("certificationImg").src="/img/signup_user.png";
         }else{
             alert('인증번호가 불일치합니다. 다시 확인해주세요.')
+            document.getElementById("emailChkYN").value = 'N';
+            console.log(document.getElementById('emailChkYN').value);
             document.getElementById("certificationImg").src="/img/signup_user_red.png";
         }
     }); // .blur end
