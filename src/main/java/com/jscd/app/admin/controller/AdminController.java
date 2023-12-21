@@ -48,11 +48,9 @@ public class AdminController {
         return new BCryptPasswordEncoder();
     }
 
-
-
     //관리자 홈
     @GetMapping("/home")
-    public String adminHome() {return "admin/dashBoard";}
+    public String adminHome() {return "redirect:/dashBoard/home";}
 
 
     //로그인 화면 보여주기

@@ -472,12 +472,26 @@
       width: 100%;
       height: 30%;
       border-bottom: 0.5px solid #828282;
+      color : wheat;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
     }
+
+
 
     #warp2-top-1 {
       width: 100%;
       height: 30%;
+      color : wheat;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
     }
+
+   .adminMemo {
+     margin-left : 2rem;
+   }
 
     #warp2-2 {
       width: 100%;
@@ -661,7 +675,7 @@
     <div class="warp1-layer21">
       <div class="warp1-layers layer1reset">
         <div class="titleArea">
-          <div class="title">Q&A 수강후기</div>
+          <div class="title">Q&A</div>
         </div>
         <hr>
         <div class="boardContents">
@@ -759,8 +773,25 @@
         <div id="memberName">steve</div>
         <div id="memberId">sanghoon@jungsuk.com</div>
       </div>
-      <div id="warp2-top-2"></div>
-      <div id="warp2-top-1"></div>
+      <div id="warp2-top-2">
+        <p class ="adminMemo" >
+          <span>관리자메모</span><br><br>
+          날짜: 2023-12-20 <br><br>
+
+          - 다음 주 월요일, 새로운 커리큘럼 개발을 위한 강사진 회의 예정. 회의 자료 준비 요망<br>
+          - 산업계 전문가들과의 네트워킹 이벤트 계획. 장소 선정 및 초청 명단 작성.<br>
+          - 최근 수강생들의 피드백을 검토하고, 강의 개선점에 대해 논의할 필요 있음.<br>
+        </p>
+      </div>
+      <div id="warp2-top-1">
+        <p class ="adminMemo">
+          날짜: 2023-12-21<br><br>
+
+          - 우수 학생을 위한 장학금 프로그램 검토 및 새로운 장학 기준 설정.
+          - 컴퓨터 랩의 오래된 장비들을 최신 모델로 교체 계획 수립. 예산안 및 공급업체 조사 필요.<br>
+          - 마케팅 전략 회의 예정. SNS 캠페인 및 전통 매체 광고 방안 논의.<br>
+        </p>
+      </div>
     </div>
     <div id="warp2-2"></div>
     <div id="warp2-3"></div>

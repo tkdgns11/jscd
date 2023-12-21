@@ -40,8 +40,10 @@ public class DashBoardViewController {
 
     @GetMapping("/home")
     public String DashBoard(Model model, HttpServletRequest request) throws Exception {
-
+        
         List<DailySummaryDto> dailySummaryDtoList = dashBoardService.initViewData();
+
+        System.out.println("dailySummaryDtoList = " + dailySummaryDtoList);
 
         model.addAttribute("dailySummaryDtoList", dailySummaryDtoList);
         model.addAttribute("weekData", dashBoardService.getWeekData());
