@@ -47,7 +47,7 @@
   </div>
   <div id="blue2">
     <div id = "blue2hd">Q. 국비와 다른 점이 무엇인가요?</div>
-    <div id = "blue2bd">강의 퀄리티, 학습 방법 및 관리, 상담 퀄리티에서<br>
+    <div id = "blue2bd">강의 퀄리티, 학습 방법 및 관리, 상담 퀄리티에서<br><br>
       많은 차이를 보입니다.<br><br>
       학습 환경 및 시설 또한 저희 학원이 우세합니다.<br><br>
       국비를 경험해 보지 못하신 분들은 검색해 보시거나<br><br>
@@ -57,7 +57,15 @@
 </div>
 
 <div id="curriculum">
-  <div id="imgboxNavi">정석코딩 부트캠프 커리큘럼</div>
+  <div id="imgboxNavi">
+    <div id="buttons">
+    <span id="circle1" style="color: #FF5F57">●</span>
+    <span id="circle2" style="color: #FEBC2E">●</span>
+    <span id="circle3" style="color: #28C840">●</span>
+    </div>
+    <div id="btmletter">정석코딩 부트캠프 커리큘럼</div>
+
+  </div>
   <div id="imgbox"><img src="/img/curriculum.png"></div>
 </div>
 <footer>

@@ -47,7 +47,7 @@
                 <li id="community">
                     <p>커뮤니티</p>
                     <ul class="Menu">
-                        <li><a href="<c:url value="/board/notice/list"/>">공지사항</a></li>
+                        <li><a href="<c:url value="/board/user/list"/>">공지사항</a></li>
                         <li><a href="${path}/board/qna/allqnaList">질문&답변</a></li>
                         <li><a href="${path}/board/faq">FAQ</a></li>
                     </ul>
@@ -55,7 +55,7 @@
                 <li id="manage">
                     <p>학사관리</p>
                     <ul class="Menu">
-                        <li><a href="#">공지사항</a></li>
+                        <li><a href="<c:url value="/board/userStd/list"/>">공지사항</a></li>
                         <li><a href="#">질문&답변</a></li>
                     </ul>
                 </li>

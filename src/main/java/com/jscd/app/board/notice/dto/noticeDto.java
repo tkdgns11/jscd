@@ -8,22 +8,9 @@ public class noticeDto {
     private String title;
     private String content;
     private String writer;
-    private int viewCnt;
+    private Integer viewCnt;
     private String modifyDate;
     private String regDate;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        noticeDto noticeDto = (com.jscd.app.board.notice.dto.noticeDto) o;
-        return Objects.equals(bno, noticeDto.bno) && Objects.equals(title, noticeDto.title) && Objects.equals(content, noticeDto.content) && Objects.equals(writer, noticeDto.writer);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(bno, title, content, writer);
-    }
 
     @Override
     public String toString() {
@@ -36,6 +23,19 @@ public class noticeDto {
                 ", modifyDate='" + modifyDate + '\'' +
                 ", regDate='" + regDate + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        noticeDto noticeDto = (noticeDto) o;
+        return Objects.equals(bno, noticeDto.bno) && Objects.equals(title, noticeDto.title) && Objects.equals(content, noticeDto.content) && Objects.equals(writer, noticeDto.writer);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(bno, title, content, writer);
     }
 
     public noticeDto() {
@@ -74,11 +74,11 @@ public class noticeDto {
         this.writer = writer;
     }
 
-    public int getViewCnt() {
+    public Integer getViewCnt() {
         return viewCnt;
     }
 
-    public void setViewCnt(int viewCnt) {
+    public void setViewCnt(Integer viewCnt) {
         this.viewCnt = viewCnt;
     }
 

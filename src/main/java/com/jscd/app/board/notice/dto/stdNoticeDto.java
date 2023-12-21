@@ -8,7 +8,7 @@ public class stdNoticeDto {
     private String title;
     private String content;
     private String writer;
-    private int viewCnt;
+    private Integer viewCnt;
     private String modifyDate;
     private String regDate;
 
@@ -44,11 +44,11 @@ public class stdNoticeDto {
         this.writer = writer;
     }
 
-    public int getViewCnt() {
+    public Integer getViewCnt() {
         return viewCnt;
     }
 
-    public void setViewCnt(int viewCnt) {
+    public void setViewCnt(Integer viewCnt) {
         this.viewCnt = viewCnt;
     }
 
@@ -73,25 +73,12 @@ public class stdNoticeDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         stdNoticeDto that = (stdNoticeDto) o;
-        return viewCnt == that.viewCnt && Objects.equals(bno, that.bno) && Objects.equals(title, that.title) && Objects.equals(content, that.content) && Objects.equals(writer, that.writer) && Objects.equals(modifyDate, that.modifyDate) && Objects.equals(regDate, that.regDate);
+        return Objects.equals(bno, that.bno) && Objects.equals(title, that.title) && Objects.equals(content, that.content) && Objects.equals(writer, that.writer) && Objects.equals(viewCnt, that.viewCnt) && Objects.equals(modifyDate, that.modifyDate) && Objects.equals(regDate, that.regDate);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(bno, title, content, writer, viewCnt, modifyDate, regDate);
-    }
-
-    @Override
-    public String toString() {
-        return "stdNoticeDto{" +
-                "bno=" + bno +
-                ", title='" + title + '\'' +
-                ", content='" + content + '\'' +
-                ", writer='" + writer + '\'' +
-                ", viewCnt=" + viewCnt +
-                ", modifyDate='" + modifyDate + '\'' +
-                ", regDate='" + regDate + '\'' +
-                '}';
     }
 
     public stdNoticeDto() {
