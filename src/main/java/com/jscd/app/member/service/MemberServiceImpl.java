@@ -1,18 +1,9 @@
 package com.jscd.app.member.service;
 
 import javax.servlet.http.HttpSession;
-import javax.swing.text.html.parser.Parser;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.jscd.app.applyTraining.dto.BtApplicationDto;
-import com.jscd.app.board.qna.qnaDto.AttachDto;
 import com.jscd.app.lecture.lstRegist.dto.LectureApplyDto;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.type.TypeReference;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -20,10 +11,6 @@ import org.springframework.stereotype.Service;
 import com.jscd.app.member.dao.MemberDao;
 import com.jscd.app.member.dto.MemberDto;
 
-import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.HashMap;
 import java.util.List;
 
 
@@ -92,5 +79,16 @@ public class MemberServiceImpl implements MemberService {
 	public List<LectureApplyDto> selectLecture(LectureApplyDto lectureApplyDto) throws Exception {
 		return memberDao.selectLecture(lectureApplyDto);
 	}
+
+	@Override
+	public int getGeneralMember() throws Exception {
+		return memberDao.countGeneral();
+	}
+
+	@Override
+	public int getStudentMember() throws Exception {
+		return memberDao.countStudent();
+	}
+
 }
 

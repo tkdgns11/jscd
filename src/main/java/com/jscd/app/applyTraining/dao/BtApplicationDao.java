@@ -9,6 +9,16 @@ import java.util.Map;
 public interface BtApplicationDao {
     int count() throws Exception;
 
+    int countWaiting() throws Exception; //승인대기중
+
+    int countApproval() throws Exception; //승인완료
+
+    int countNotApproval() throws Exception; //미승인
+
+    int countWaitPay() throws Exception; //결제대기
+
+    int countRegist() throws Exception; //등록완료
+
     int deleteAll() throws Exception;
 
     int delete(Integer stfmNo) throws Exception;

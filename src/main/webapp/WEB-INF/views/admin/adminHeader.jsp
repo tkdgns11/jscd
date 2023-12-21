@@ -128,7 +128,7 @@
         .sidenav a {
             padding: 6px 8px 6px 16px;
             text-decoration: none;
-            font-size: 18px;
+            font-size: 25px;
             color: #f1f1f1;
             display: block;
         }
@@ -230,8 +230,8 @@ z-index: 1000; float: right;/">
             <span class="arrow up"></span>
         </div>
         <div class="box-content">
-            <a href="<c:url value="/board/notice/list"/>">전체공지</a>
-            <a href="<c:url value="/board/stdNotice/list"/>">학생공지</a>
+            <a href="#">전체공지</a>
+            <a href="#">학생공지</a>
             <a href="#">FAQ</a>
         </div>
     </div>
@@ -241,7 +241,6 @@ z-index: 1000; float: right;/">
             <span class="arrow up"></span>
         </div>
         <div class="box-content">
-            <a href="#">강의실</a>
             <a href="/locker/adminList">사물함</a>
         </div>
     </div>
@@ -259,7 +258,6 @@ z-index: 1000; float: right;/">
         }
     }
 </script>
-
 
 </body>
 

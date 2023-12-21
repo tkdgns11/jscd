@@ -2,7 +2,13 @@ package com.jscd.app.admin.controller;
 
 
 import com.jscd.app.admin.dto.AdminDto;
+import com.jscd.app.admin.dto.DailySummaryDto;
 import com.jscd.app.admin.service.AdminService;
+import com.jscd.app.admin.service.DashBoardService;
+import com.jscd.app.applyTraining.service.BtApplicationService;
+import com.jscd.app.applyTraining.service.SmApplicationService;
+import com.jscd.app.lecture.lstRegist.service.LstService;
+import com.jscd.app.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -21,6 +27,7 @@ import javax.validation.Valid;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 	/*
 	작성일:20231126
@@ -32,17 +39,54 @@ import java.util.Date;
 @RequestMapping("/admin")
 public class AdminController {
 
-
-
     @Autowired
     AdminService adminService;
 
+    @Autowired
+    DashBoardService dashBoardService;
 
+    @Autowired
+    MemberService memberService;
 
-    //관리자 홈
+    @Autowired
+    LstService lstService;
+
+    @Autowired
+    BtApplicationService btApplicationService;
+
+    @Autowired
+    SmApplicationService smApplicationService;
+
+    //관리자 홈(대시보드)
     @GetMapping("/home")
-    public String adminHome() {return "admin/dashBoard";}
+    public String DashBoard(Model model, HttpServletRequest request) throws Exception {
 
+        List<DailySummaryDto> dailySummaryDtoList = dashBoardService.initViewData();
+
+        model.addAttribute("dailySummaryDtoList", dailySummaryDtoList);
+        model.addAttribute("weekData", dashBoardService.getWeekData());
+        model.addAttribute("monthData", dashBoardService.getMonthData());
+
+        model.addAttribute("member", memberService.getGeneralMember());
+        model.addAttribute("student", memberService.getStudentMember());
+        model.addAttribute("admin", adminService.getCountAdmin());
+
+        model.addAttribute("lstregist", lstService.getCountAll());
+        model.addAttribute("lstregistBT", lstService.getCountBT());
+        model.addAttribute("lstregistSM", lstService.getCountSM());
+
+        model.addAttribute("btWaitingNum", btApplicationService.getWaitingNum());
+        model.addAttribute("btApprovalNum", btApplicationService.getApprovalNum());
+        model.addAttribute("btNotApprovalNum", btApplicationService.getNotApprovalNum());
+        model.addAttribute("btWaitPayNum", btApplicationService.getWaitPayNum());
+        model.addAttribute("btRegistNum", btApplicationService.getRegistNum());
+
+        model.addAttribute("smWaitPayNum", smApplicationService.getWaitPayNum());
+        model.addAttribute("smRegistNum", smApplicationService.getRegistNum());
+
+
+        return "admin/dashBoard";
+    }
 
     //로그인 화면 보여주기
     @GetMapping("/login")
@@ -156,7 +200,4 @@ public class AdminController {
         }
         return "redirect:/admin/read";
     }
-
-
-
 }

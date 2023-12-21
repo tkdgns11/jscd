@@ -117,6 +117,21 @@ public class LstServiceImpl implements LstService {
         return lstRegistDao.selectFileDown(map);
     }
 
+    @Override
+    public int getCountAll() throws Exception {
+        return lstRegistDao.countRegist();
+    }
+
+    @Override
+    public int getCountBT() throws Exception {
+        return lstRegistDao.countBT();
+    }
+
+    @Override
+    public int getCountSM() throws Exception {
+        return lstRegistDao.countSM();
+    }
+
     // 홈 화면 세미나 리스트(2개)
     @Override
     public List<LstRegistDto> homeSeminarList() throws Exception {

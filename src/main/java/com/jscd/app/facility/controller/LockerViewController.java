@@ -39,16 +39,12 @@ public class LockerViewController {
     }
     @GetMapping("/dashboard")
     public String dashBoard(Model m, HttpServletRequest request){
+        return "admin/dashBoard2";
+    }
+
+    @GetMapping("/dashboard2")
+    public String dashBoard2(Model m, HttpServletRequest request){
+
         return "admin/dashBoard";
-    }
-
-    @GetMapping("/campMain")
-    public String campMain(Model m, HttpServletRequest request){
-        return "lecture/campMain";
-    }
-
-    @GetMapping("/temple")
-    public String adminTempl(Model m, HttpServletRequest request){
-        return "template";
     }
 }

@@ -12,15 +12,19 @@ import java.util.List;
 
 public interface MemberService {
 
-	 public boolean login(String id, String pwd) throws Exception;
-	 public MemberDto memberSelect(String id) throws Exception;
-	 public void logout(HttpSession session);
-	 public int signup(MemberDto memberDto) throws Exception;
-	 public int memberEdit(MemberDto memberDto) throws Exception;
-	 public int memberDelete(String id) throws Exception;
+	public boolean login(String id, String pwd) throws Exception;
+	public MemberDto memberSelect(String id) throws Exception;
+	public void logout(HttpSession session);
+	public int signup(MemberDto memberDto) throws Exception;
+	public int memberEdit(MemberDto memberDto) throws Exception;
+	public int memberDelete(String id) throws Exception;
 
-	 //회원 약관 동의
-	 public int insertTermsYN(MemberDto memberDto) throws  Exception;
-	 //마이페이지 강의 현황
-	 public List<LectureApplyDto> selectLecture(LectureApplyDto lectureApplyDto) throws Exception;
+	//회원 약관 동의
+	public int insertTermsYN(MemberDto memberDto) throws  Exception;
+	//마이페이지 강의 현황
+	public List<LectureApplyDto> selectLecture(LectureApplyDto lectureApplyDto) throws Exception;
+
+	int getGeneralMember() throws Exception;
+
+	int getStudentMember() throws Exception;
 }

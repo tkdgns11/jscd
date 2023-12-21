@@ -9,6 +9,16 @@ import java.util.Map;
 public interface BtApplicationService {
     int getCount() throws Exception;
 
+    int getWaitingNum()  throws Exception;
+
+    int getApprovalNum()  throws Exception;
+
+    int getNotApprovalNum()  throws Exception;
+
+    int getWaitPayNum()  throws Exception;
+
+    int getRegistNum()  throws Exception;
+
     int remove(Integer stfmNo) throws Exception;
 
     List<BtApplicationDto> getList() throws Exception;

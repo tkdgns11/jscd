@@ -21,6 +21,20 @@ public class SmApplicationDaoImpl implements SmApplicationDao {
         return session.selectOne(namespace + "count");
     }
 
+    //결제대기
+    @Override
+    public int countWaitPay() throws Exception {
+        System.out.println("session.selectOne(namespace + \"countWaitPay\") = " + session.selectOne(namespace + "countWaitPay"));
+        return session.selectOne(namespace + "countWaitPay");
+    }
+
+    //등록완료
+    @Override
+    public int countRegist() throws Exception {
+        return session.selectOne(namespace + "countRegist");
+    }
+
+
     @Override
     public int deleteAll() throws Exception{
         return session.delete(namespace + "deleteAll");

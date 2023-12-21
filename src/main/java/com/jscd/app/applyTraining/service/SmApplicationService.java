@@ -10,6 +10,11 @@ import java.util.Map;
 public interface SmApplicationService {
     int getCount() throws Exception;
 
+    int getWaitPayNum()  throws Exception;
+
+    int getRegistNum()  throws Exception;
+
+
     int remove(Integer stfmNo) throws Exception;
 
     List<SmApplicationDto> getList() throws Exception;

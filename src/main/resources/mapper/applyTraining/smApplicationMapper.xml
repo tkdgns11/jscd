@@ -36,7 +36,7 @@
     <select id="selectPage" parameterType="map" resultType="SmApplicationDto">
         select * from smstform
         order by stfmNo desc
-        limit #{offset}, #{pageSize}
+            limit #{offset}, #{pageSize}
     </select>
 
     <!--    (관리자 전용) 신청서 수정-->
@@ -96,6 +96,20 @@
         from smstform
         where true
         <include refid="searchApplication"/>
+    </select>
+
+    <!-- 결제대기 세미나 신청폼 개수-->
+    <select id="countWaitPay" resultType="int">
+        select count(*)
+        from smstform as a , lectureapply as b
+        where a.registCode = b.registCode and b.status = 'notPaid'
+    </select>
+
+    <!-- 등록 세미나 신청폼 개수-->
+    <select id="countRegist" resultType="int">
+        select count(*)
+        from smstform as a , lectureapply as b
+        where a.registCode = b.registCode and b.status = 'Paid'
     </select>
 
 </mapper>

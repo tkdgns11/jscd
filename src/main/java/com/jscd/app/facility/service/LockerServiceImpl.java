@@ -30,7 +30,7 @@ public class LockerServiceImpl implements LockerService {
     }
 
     //락커 등록
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int registerLocker(String lockerId, LockerDto lockerDto) {
         LockerDto checkLockerDto = lockerDao.selectLockerByIdForUpdate(lockerId);
@@ -43,7 +43,7 @@ public class LockerServiceImpl implements LockerService {
     }
 
     //락커 삭제
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int deleteLocker(String lockerId, LockerDto lockerDto) {
         LockerDto checkLockerDto = lockerDao.selectLockerByIdForUpdate(lockerId);
@@ -57,7 +57,7 @@ public class LockerServiceImpl implements LockerService {
     }
 
     //락커기간 연장
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int extendLocker(String lockerId, LockerDto lockerDto) {
         LockerDto checkLockerDto = lockerDao.selectLockerByIdForUpdate(lockerId);
@@ -71,9 +71,10 @@ public class LockerServiceImpl implements LockerService {
     }
 
     //락커 자리이동
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int moveLocker(LockerDto lockerDto, String newLockerId) {
+        System.out.println(" 락커이동 " );
 
         LockerDto newLocker = lockerDao.selectLockerByIdForUpdate(newLockerId);
 

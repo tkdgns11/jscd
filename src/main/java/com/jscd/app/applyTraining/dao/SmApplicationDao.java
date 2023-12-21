@@ -9,6 +9,9 @@ import java.util.Map;
 
 public interface SmApplicationDao {
     int count() throws Exception;
+    int countWaitPay() throws Exception; //결제대기
+
+    int countRegist() throws Exception; //등록완료
 
     int deleteAll() throws Exception;
 

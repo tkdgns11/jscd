@@ -11,10 +11,13 @@ import java.util.Map;
 
 @Repository
 public class LockerDaoImpl implements LockerDao {
-    private final SqlSession sqlSession;
-    private static final String namespace = "com.jscd.app.facility.LockerMapper.";
 
     @Autowired
+    private final SqlSession sqlSession;
+
+    @Autowired
+    private static final String namespace = "com.jscd.app.facility.LockerMapper.";
+
     public LockerDaoImpl(SqlSession sqlSession) {
         this.sqlSession = sqlSession;
     }

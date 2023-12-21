@@ -37,6 +37,17 @@ public class MemberDaoImpl implements MemberDao{
 	public int count() throws Exception {
 		return session.selectOne(namespace + "count");
 	}
+
+	@Override
+	public int countGeneral() throws Exception {
+		return session.selectOne(namespace + "countGeneral");
+	}
+
+	@Override
+	public int countStudent() throws Exception {
+		return session.selectOne(namespace + "countStudent");
+	}
+
 	@Override
 	public int deleteAll() throws Exception {
 		return session.delete(namespace + "deleteAll");
