@@ -18,7 +18,7 @@
     </div>
 
     <div id="topnav">
-        <a href="<c:url value='list'/>">공지사항</a>|
+        <a href="<c:url value='/board/user/list'/>">공지사항</a>|
         <a href="<c:url value='allqnaList'/>">QnA</a>|
         <a href="<c:url value="${path}/board/faq"/>">FAQ</a>
    </div>
@@ -28,7 +28,7 @@
             <input type = "checkbox" id = "myself">내가 작성한 글 보기
         </div>
         <div id="search">
-            <form action="<c:url value="/board/notice/list"/>" class="search-form" method="get">
+            <form action="<c:url value="/board/user/list"/>" class="search-form" method="get">
                 <select id="selectbox" name="option">
                     <option value="A" ${ph.sc.option=='A' || ph.sc.option=='' ? "selected" : ""}>제목+내용</option>
                     <option value="T" ${ph.sc.option=='T' ? "selected" : ""}>제목</option>
@@ -40,12 +40,6 @@
         </div>
     </div>
 
-<%--        <script>--%>
-<%--            let msg = "${msg}" //get 방식이라 모델에 있는 값이 param으로 전달 - 메세지가 안먹음 왠지 모르겠음 --%>
-<%--            if (msg=="wrt_ok") alert("등록 성공");--%>
-<%--            if (msg=="del_fin") alert("삭제 완료");--%>
-<%--            if (msg=="del_err") alert("삭제 실패");--%>
-<%--        </script> --%>
 
     <div id = "container">
         <table id="notitbl">
@@ -59,13 +53,13 @@
                 </tr>
             </thead>
             <tbody>
-                <c:forEach var="noticeDto" items="${list}">
+                <c:forEach var="stdNoticeDto" items="${list}">
                 <tr>
-                    <td>${noticeDto.bno}</td>
-                    <td><a href="<c:url value="/board/notice/read?bno=${noticeDto.bno}&page=${ph.sc.page}&pageSize=${ph.sc.pageSize}"/>">${noticeDto.title}</a></td>
-                    <td>${noticeDto.writer}</td>
-                    <td>${noticeDto.regDate}</td>
-                    <td>${noticeDto.viewCnt}</td>
+                    <td>${stdNoticeDto.bno}</td>
+                    <td><a href="<c:url value="/board/userStd/read?bno=${stdNoticeDto.bno}&page=${ph.sc.page}&pageSize=${ph.sc.pageSize}"/>">${stdNoticeDto.title}</a></td>
+                    <td>${stdNoticeDto.writer}</td>
+                    <td>${stdNoticeDto.regDate}</td>
+                    <td>${stdNoticeDto.viewCnt}</td>
                 </tr>
                 </c:forEach>
             </tbody>
@@ -79,22 +73,20 @@
             </c:if>
             <c:if test="${totalCnt!=null && totalCnt!=0}">
                 <c:if test="${ph.showPrev}">
-                    <a class="page" href="<c:url value="/board/notice/list${ph.sc.getQueryString(ph.beginPage-1)}"/>">&lt;</a>
+                    <a class="page" href="<c:url value="/board/userStd/list${ph.sc.getQueryString(ph.beginPage-1)}"/>">&lt;</a>
                 </c:if>
                 <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
-                    <a class="page ${i==ph.sc.page? "paging-active" : ""}" href="<c:url value="/board/notice/list${ph.sc.getQueryString(i)}"/>">${i}</a>
+                    <a class="page ${i==ph.sc.page? "paging-active" : ""}" href="<c:url value="/board/userStd/list${ph.sc.getQueryString(i)}"/>">${i}</a>
                 </c:forEach>
                 <c:if test="${ph.showNext}">
-                    <a class="page" href="<c:url value="/board/notice/list${ph.sc.getQueryString(ph.endPage+1)}"/>">&gt;</a>
+                    <a class="page" href="<c:url value="/board/userStd/list${ph.sc.getQueryString(ph.endPage+1)}"/>">&gt;</a>
                 </c:if>
             </c:if>
         </div>
 
 
 
-        <div>
-            <button type = "button" id="writeBtn" onclick="location.href='<c:url value ="/board/notice/write"/>'">글쓰기</button>
-        </div>
+
 
 
 

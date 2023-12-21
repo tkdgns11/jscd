@@ -16,7 +16,7 @@ public class MemberDaoImpl implements MemberDao{
 	@Autowired
 	private SqlSession session;
 	private static String namespace = "com.jscd.app.member.memberMapper.";
-	
+
 	@Override
 	public MemberDto selectUser(String id) throws Exception {
 		return session.selectOne(namespace + "select", id);

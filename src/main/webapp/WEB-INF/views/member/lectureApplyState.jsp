@@ -1,18 +1,10 @@
 <%--
-주문내역 확인 페이지
-http://localhost:8080/order/orderList
   Created by IntelliJ IDEA.
   User: soheepark
-  Date: 2023/12/12
-  Time: 16:06 PM
+  Date: 2023/12/20
+  Time: 12:32 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>--%>
-
-<%--<%@ page import="com.jscd.app.order.dto.OrderDTO" %>--%>
-<%--<% OrderDTO orderDto = (OrderDTO) request.getAttribute("orderDto"); %>--%>
-
-<%--<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.jscd.app.order.dto.StodDTO" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -29,15 +21,16 @@ http://localhost:8080/order/orderList
     <!-- 탭 아이콘 & 글자 지정 -->
     <link rel="icon" href="/img/logo.png"/>
     <link rel="apple-touch-icon" href="/img/logo.png"/>
-    <title>정석코딩 | 주문내역</title>
+    <title>정석코딩 | 강의 신청 현황</title>
 
     <!-- css 파일 불러오기 -->
     <link rel="stylesheet" href="/css/reset.css" type="text/css"/>
-    <link rel="stylesheet" href="/css/order.css" type="text/css"/>
+    <link rel="stylesheet" href="/css/lectureApplyState.css" type="text/css"/>
 
     <!--java script 파일 불러오기-->
-    <script src="/js/orderList_goDetail.js"></script>
     <script src="/js/orderList.js"></script>
+    <script src="/js/applyStatPay.js"></script>
+
 
     <%--폰트어썸 라이브러리 불러오기--%>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -55,107 +48,109 @@ http://localhost:8080/order/orderList
         <section id="section_orderlist">
             <section id="section_orderlist_title">
                 <div>
-                    <h2>내 구매 내역</h2>
+                    <h2>내 강의 신청 현황</h2>
                 </div>
             </section>
             <c:forEach items="${orderList}" var="order">
-                <section id="section_orderlist_contents">
-                    <div id="orderlist_content">
-                        <div id="orderlist_content-title"
-                             class="<c:choose>
-                    <c:when test="${order.status eq 'paid'}">paid</c:when>  <%-- 변경 1. lectureapply.status -> paid--%>
-                    <c:when test="${order.status eq 'notPaid'}">notPaid</c:when> <%-- 변경 1. lectureapply.status -> notPaid--%>
-                    <c:when test="${order.status eq 'cancel'}">cancel</c:when> <%-- 변경 1. lectureapply.status -> cancel--%>
+                <c:if test="${order.status eq 'paid' or order.status eq 'notPaid'}">
+                    <section id="section_orderlist_contents">
+                        <div id="orderlist_content">
+                            <div id="orderlist_content-title"
+                                 class="<c:choose>
+                    <c:when test="${order.status eq 'paid'}">paid</c:when>
+                    <c:when test="${order.status eq 'notPaid'}">notPaid</c:when>
+                    <c:when test="${order.status eq 'cancel'}">cancel</c:when>
                 </c:choose>">
-                            <div>
-                                <c:choose>
-                                    <%--                        변경  1. ${lectureapply.status} == 'paid' : 결제 완료--%>
-                                    <c:when test="${order.status eq 'paid'}">결제 완료</c:when>
-                                    <%--                          2.  ${lectureapply.status} == 'notPaid' : 결제 대기중--%>
-                                    <c:when test="${order.status eq 'notPaid'}">결제 대기중</c:when>
-                                    <%--                          3.  ${lectureapply.status} == 'cancel' : 결제 취소--%>
-                                    <c:when test="${order.status eq 'cancel'}">결제 취소</c:when>
-                                    <%--                          3.  나머지 값 : 해당 값 그대로 표시--%>
-                                    <c:otherwise>${order.status}</c:otherwise>
-                                </c:choose>
-                            </div>
-                        </div>
-                        <div id="orderlist_content-info">
-                            <div>
-                                <table id="order_date">
-                                    <tr>
-                                        <td class="order_date_title">주문일시</td>
-                                        <td>${order.regDate}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="order_date_title">주문번호</td>
-                                        <td>${order.odNo}</td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div id="order_content">
-                                <div id="order_state_photo">
-                                    <div>
-                                        <c:choose>
-                                            <%--                          1. ${order.status} == 'paid' : 결제 완료--%>
-                                            <c:when test="${order.status eq 'paid'}">
-                                                <div id="img_paid_hover">
-                                                    <img class="pay_img" id="img_paid" alt="payment status is paid"
-                                                         src="<c:url value="/img/paid.png"/>">
-                                                </div>
-                                            </c:when>
-                                            <%--                          2.  ${order.status} == 'notPaid' : 결제 대기중--%>
-                                            <c:when test="${order.status eq 'notPaid'}">
-                                                <img class="pay_img" id="img_not-paid" alt="payment status is not paid"
-                                                     src="<c:url value="/img/notPaid.png"/>">
-                                            </c:when>
-                                            <%--                          3.  ${order.status} == 'cancel' : 결제 취소--%>
-                                            <c:when test="${order.status eq 'cancel'}">
-                                                <img class="pay_img" id="img_pay-cancel" alt="payment status is cancel"
-                                                     src="<c:url value="/img/pay_cancel.png"/>">
-                                            </c:when>
-                                            <%--                          3.  나머지 값 : 해당 값 그대로 표시--%>
-                                            <c:otherwise>${order.status}</c:otherwise>
-                                        </c:choose>
-                                    </div>
+                                <div>
+                                    <c:choose>
+                                        <%--                          1. ${order.status} == 'paid' : 결제 완료--%>
+                                        <c:when test="${order.status eq 'paid'}">결제 완료</c:when>
+                                        <%--                          2.  ${order.status} == 'notPaid' : 결제 대기중--%>
+                                        <c:when test="${order.status eq 'notPaid'}">결제 대기중</c:when>
+                                        <%--                          3.  ${order.status} == 'cancel' : 결제 취소--%>
+                                        <c:when test="${order.status eq 'cancel'}">결제 취소</c:when>
+                                        <%--                          3.  나머지 값 : 해당 값 그대로 표시--%>
+                                        <c:otherwise>${order.status}</c:otherwise>
+                                    </c:choose>
                                 </div>
-                                <div id="orderlist_info">
-                                    <div>
-                                        <div id="orderlist_lecture-title">
-                                            <h2>${order.title}</h2>
+                            </div>
+                            <div id="orderlist_content-info">
+                                <div>
+                                    <table id="order_date">
+                                        <tr>
+                                            <td class="order_date_title">주문일시</td>
+                                            <td>${order.regDate}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="order_date_title">주문번호</td>
+                                            <td>${order.odNo}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div id="order_content">
+                                    <div id="order_state_photo">
+                                        <div>
+                                            <c:choose>
+                                                <%--                          1. ${order.status} == 'paid' : 결제 완료--%>
+                                                <c:when test="${order.status eq 'paid'}">
+                                                    <div id="img_paid_hover">
+                                                        <img class="pay_img" id="img_paid" alt="payment status is paid"
+                                                             src="<c:url value="/img/paid.png"/>">
+                                                    </div>
+                                                </c:when>
+                                                <%--                          2.  ${order.status} == 'notPaid' : 결제 대기중--%>
+                                                <c:when test="${order.status eq 'notPaid'}">
+                                                    <img class="pay_img" id="img_not-paid" alt="payment status is not paid"
+                                                         src="<c:url value="/img/notPaid.png"/>">
+                                                </c:when>
+                                                <%--                          3.  ${order.status} == 'cancel' : 결제 취소--%>
+                                                <c:when test="${order.status eq 'cancel'}">
+                                                    <img class="pay_img" id="img_pay-cancel" alt="payment status is cancel"
+                                                         src="<c:url value="/img/pay_cancel.png"/>">
+                                                </c:when>
+                                                <%--                          3.  나머지 값 : 해당 값 그대로 표시--%>
+                                                <c:otherwise>${order.status}</c:otherwise>
+                                            </c:choose>
                                         </div>
-                                        <div id="orderlist_lecture-date">
-                                            <table>
-                                                <tr>
-                                                    <td>시작일</td>
-                                                    <td>${order.startDate}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>종료일</td>
-                                                    <td>${order.endDate}</td>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                        <div id="orderlist_lecture-price">
-                                            <div id="orderlist_lecture-price_num">
-                                                <fmt:formatNumber type="number" value="${order.lastPrice}" pattern="#,##0" />
+                                    </div>
+                                    <div id="orderlist_info">
+                                        <div>
+                                            <div id="orderlist_lecture-title">
+                                                <h2>${order.title}</h2>
                                             </div>
-                                            <div id="orderlist_lecture-price_unit">원</div>
+                                            <div id="orderlist_lecture-date">
+                                                <table>
+                                                    <tr>
+                                                        <td>시작일</td>
+                                                        <td>${order.startDate}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>종료일</td>
+                                                        <td>${order.endDate}</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                            <div id="orderlist_lecture-price">
+                                                <div id="orderlist_lecture-price_num">
+                                                    <fmt:formatNumber type="number" value="${order.lastPrice}" pattern="#,##0" />
+                                                </div>
+                                                <div id="orderlist_lecture-price_unit">원</div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div id="orderlist_content-btns">
-                            <div>
-                                <input class="order_btns" id="orderlist_cancel_btn" type="button" value="결제 취소">
+                            <div id="orderlist_content-btns">
+                                <div>
+                                    <input class="order_btns" id="orderlist_cancel_btn" type="button" value="신청 승인">
+                                </div>
+                                <div>
+                                    <input class="goDetail" id="orderlist_goDetail" type="button" value="결제하기">
+                                </div>
                             </div>
-                            <div>
-                                <input class="goDetail" id="orderlist_goDetail" type="button" value="주문 상세" data-odno="${order.odNo}">
-                            </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
+                </c:if>
             </c:forEach>
             <section id="orderlist_paging">
                 <div id="section_paging">
@@ -167,7 +162,7 @@ http://localhost:8080/order/orderList
                             <div class="pagination">
                                 <c:forEach begin="1" end="${totalPages}" var="i">
                                     <%--                                    <a href="<c:url value='/order/orderList?page=${i}'/>">${i}</a>--%>
-                                    <a href="<c:url value='/order/orderList?page=${i}'/>"
+                                    <a href="<c:url value='/member/lectureApplyState?page=${i}'/>"
                                        <c:if test="${i eq currentPage}">class="active"</c:if>>${i}</a>
                                 </c:forEach>
                             </div>
@@ -271,3 +266,4 @@ http://localhost:8080/order/orderList
 
 
 </html>
+

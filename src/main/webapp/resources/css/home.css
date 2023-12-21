@@ -197,37 +197,66 @@
 }
 
 
-.lectureContainer{margin-top: 50px;}
-#lectureTxt{display: flex; flex-direction: column; justify-content: center; position: relative; width: 960px; margin: 25px auto;font-size: 30px;}
-.txt02{display: flex; flex-direction: row; margin-top: 10px;}
-.txt02 h2{color: #0F36C3; font-weight: bold}
-.lectureBtn input:hover{background-color: rgba(0,0,0,0.5); color: #FFFFFF}
+.lectureContainer{margin-top: 50px; margin-bottom: 150px;}
+#lectureTxt{display: flex; flex-direction: column; justify-content: center; position: relative; width: 960px; margin: 80px auto;font-size: 30px; letter-spacing: 8px; padding: 80px 0;}
+@keyframes floatUp {0% {opacity: 0; transform: translateY(20px);} 100% {opacity: 1; transform: translateY(0);} }
+#lectureTxt {animation: floatUp 1s ease-in-out;}
+.txt02{display: flex; flex-direction: row; margin-top: 25px;}
+.txt02 h2{color: #ED3269; font-weight: bold;}
+.lectureBtn input:hover{background-color: #0185FE; color: #FFFFFF;}
 .lectureBtn{width: 960px; margin: 10px auto;}
+.lectureBtn input {margin-right: 15px; width: 20%; height: 70px; font-size: 18px; border-radius: 35px; border: solid 1px #0185FE; color: #0185FE;}
 
-#lectureWrap{width: 1100px; height: 300px; margin: 0 auto; display: flex; flex-direction: row;justify-content: space-around; align-items: center;}
-#lectureWrap > div{ border: 1px solid rgba(0,0,0,0.2); width: 450px; height: 200px; border-radius: 15px; box-shadow: 5px 5px 5px rgba(0,0,0,0.5); display: flex; flex-direction: row; position: relative;}
+/*#lectureWrap{background-color: #ED3269;}*/
+#lectureWrap{width: 1100px; height: 250px; margin: 30px auto; display: flex; flex-direction: row;justify-content: space-around; align-items: center;}
+#lectureWrap > div{border: 1px solid rgba(0,0,0,0.2); width: 45%; height: 100%; border-radius: 16px; box-shadow: 0 0 25px rgba(0, 0, 0, 0.1); display: flex; flex-direction: row; position: relative;}
 #lectureWrap > div:hover{ color: rgba(0,0,0,0.1);}
-#lectureWrap > div > ul{display: flex;flex-direction:column;justify-content: center;margin-left: 20px;}
+#lectureWrap > div > ul{display: flex;flex-direction:column;justify-content: center;margin-left: 60px;}
 #lectureWrap > div > ul li{margin-top: 20px;}
 #lectureWrap > div > ul li:first-child{color: rgba(0,0,0,0.4);}
 #lectureWrap > div > ul li:nth-child(2){font-size: 30px;color: rgba(0,0,0,0.7); font-weight: bold;}
-#lectureWrap > div > img{width: 80px; height: 80px; position: absolute; right: 10%; top:40%;}
+#lectureWrap > div > img{width: 80px; height: 80px; position: absolute; right: 17%; top:40%;}
+#lectureWrap div ul a li input:hover {opacity: 0.5;}
+#lectureWrap div ul a li input {font-size: 15px; width: 90px; height: 40px;}
 
-#keyElement{position: relative; margin: 0 auto; width: 960px;height: 100px;}
-#keyElement img{width: 500px; height: 100px; position: absolute; filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.5));}
-#keyElement ul{position: absolute;left: 10%; top: 50%;transform: translate(-10%,-50%)}
-#keyElement ul li{float: left; font-size: 40px; color: #AFA95E; margin-left: 10px; }
+#keyElement{background-color: #0185FE; justify-content: center; position: relative;  width: 100%;height: 60px; padding-top: 20px; display: flex; justify-content: center; margin-bottom: 100px;}
+/*#keyElement img{width: 500px; height: 100px; position: absolute; filter: drop-shadow(0px 0px 20px rgba(0,0,0,0.5));}*/
+/*#keyElement ul{position: absolute;left: 10%; top: 50%;transform: translate(-10%,-50%)}*/
+#keyElement ul {top: 50%; }
+#keyElement ul li{float: left; font-size: 40px; color: #FFFFFF; margin-left: 70px; }
 
-#keyElementTxt{display: flex; flex-direction: column; justify-content: center; position: relative; width: 960px; margin: 25px auto;font-size: 30px;}
+#keyElementTxt{display: flex; flex-direction: column; justify-content: center; position: relative; width: 960px; margin: 70px auto;font-size: 30px; letter-spacing: 6px;}
 #keyElementTxt span:nth-child(1){height: 80px;}
 #keyElementTxt span:nth-child(2){margin-top: -40px;}
 #keyElementTxt span h1{ font-size: 30px; line-height: 80px;}
 #keyElementTxt span h2{ font-size: 30px; color: #ED3269; text-emphasis: filled #ED3269; }
-#keyElementTxt span h6{color: rgba(0,0,0,0.5); font-size: 20px;}
+#keyElementTxt span h6{color: rgba(0,0,0,0.5); font-size: 25px;}
 #keyElementTxt span:nth-child(1){display: flex; flex-direction: row;}
+#keyElementTxt > span {margin-bottom: 10px;}
+/* CSS */
+@keyframes floatUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
-#youtubeBox{display: flex; flex-direction: row; justify-content: space-around; width: 1200px; margin: 50px auto;}
-#youtubeBox div{width: 300px; height: 300px;}
-#youtubeBox div img{width: 300px; height: 200px;filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.5)); border-radius: 10px;}
-#youtubeBox > div > ul > li:nth-child(2){color: #0F36C3; font-size: 20px; margin-top: 10px;font-weight: bold;}
-#youtubeBox > div > ul > li:nth-child(3){color: rgba(0,0,0,0.5); margin-top: 10px;}
+.hidden {
+    opacity: 0;
+}
+
+.visible {
+    animation: floatUp 1s ease-in-out;
+}
+
+
+#youtubeBox{display: flex; flex-direction: row; justify-content: space-around; width: 1200px; margin: 200px auto; padding-bottom: 100px;}
+#youtubeBox div{width: 300px; height: 300px; margin: 0 40px;}
+#youtubeBox div img{width: 300px; height: 200px;filter: drop-shadow(0px 0px 20px rgba(0,0,0,0.5)); border-radius: 10px;}
+#youtubeBox > div > ul > li:nth-child(2){color: #0185FE; font-size: 23px; margin-top: 20px;font-weight: bold;}
+#youtubeBox > div > ul > li:nth-child(3){color: rgba(0,0,0,0.5); margin-top: 10px; }
+#youtubeBox div ul li {margin: 20px 0; line-height: 30px; font-size: 18px;}

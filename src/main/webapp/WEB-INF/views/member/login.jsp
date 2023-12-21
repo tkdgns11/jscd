@@ -13,7 +13,11 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/login.css"/>">
     <script type="text/javascript" src="<c:url value="/js/login.js"/>"></script>
-    <title>Login Page</title>
+
+    <!-- 탭 아이콘 & 글자 지정 -->
+    <link rel="icon" href="/img/mainlogo.png"/>
+    <link rel="apple-touch-icon" href="/img/mainlogo.png"/>
+    <title>정석코딩 | 로그인</title>
 </head>
 <body>
 <header>
@@ -21,8 +25,9 @@
 </header>
 <div id="loginWrap">
     <div id="loginHeader" style="border: none;">
-        <img src="<c:url value="/img/logo.png"/>">
-        <h1>정석코딩</h1>
+        <img src="<c:url value="/img/mainlogo.png"/>">
+        <p class="typing-txt">정석코딩</p>
+        <h1 id="receipt-text-01"></h1>
     </div>
     <div id="otherLogin">
         <a href="${urlKakao}"><img src="/img/kakaoLogin.png"></a>
@@ -30,7 +35,7 @@
     </div>
     <hr/>
     <form>
-    <div id="loginBox">
+        <div id="loginBox">
             <div id="loginInput">
                 <div>
                     <img src="<c:url value="/img/signup_user.png"/>">
@@ -43,25 +48,25 @@
             </div>
             <input type="hidden" name="toURL" value="${param.toURL}">
 
-    </div>
-    <div id="loginMenu">
-        <div>
-            <input type="checkbox"  id="rememberId" name="rememberId" ${empty cookie.id.value ? "":"checked"}>
-            <p>아이디 저장</p>
         </div>
-        <div id="loginBtn">
-            <h1>로그인</h1>
+        <div id="loginMenu">
+            <div id="rememberId_section">
+                <input type="checkbox"  id="rememberId" name="rememberId" ${empty cookie.id.value ? "":"checked"}>
+                <p>아이디 저장</p>
+            </div>
+            <div id="loginBtn">
+                <h1>로그인</h1>
+            </div>
+            <div>
+                <ul>
+                    <li><a href="">아이디 찾기</a></li>
+                    <li>|</li>
+                    <li><a href="">비밀번호 찾기</a></li>
+                    <li>|</li>
+                    <li><a href="/member/signup">회원가입</a></li>
+                </ul>
+            </div>
         </div>
-        <div>
-            <ul>
-                <li><a href="">아이디 찾기</a></li>
-                <li>|</li>
-                <li><a href="">비밀번호 찾기</a></li>
-                <li>|</li>
-                <li><a href="/member/signup">회원가입</a></li>
-            </ul>
-        </div>
-    </div>
     </form>
 </div>
 <footer style="flex-shrink: 0;" >

@@ -5,6 +5,7 @@ import com.jscd.app.board.notice.dto.noticeDto;
 import com.jscd.app.board.notice.dto.pageHandler;
 import com.jscd.app.board.notice.dto.stdNoticeDto;
 import com.jscd.app.board.notice.service.NoticeService;
+import com.jscd.app.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +26,8 @@ import java.util.List;
 public class noticeController {
     @Autowired
     NoticeService noticeService;
+    @Autowired
+    MemberService memberService;
 
     @GetMapping("/read")
     public String read(int bno, Integer page, Integer pageSize, Model m) { //읽어온 걸 jsp로 전달해야해서 model
@@ -69,8 +72,8 @@ public class noticeController {
     public String remove(Integer bno, Integer page, Integer pageSize, Model m, HttpSession session, RedirectAttributes rattr) {
 
 
-        String writer = "memeber494";
-//                (String)session.getAttribute("id");
+
+        String writer = (String)session.getAttribute("id");
 
 
         try {
@@ -94,39 +97,33 @@ public class noticeController {
     @GetMapping("/write")  //게시판 작성을 위한 빈 화면을 보여준다
     public String write(Model m, SearchCon sc) {
 
-        System.out.println("write get");
-
         m.addAttribute("mode", "new");
         m.addAttribute("page", sc.getPage());
         m.addAttribute("pageSize", sc.getPageSize());
-
-
-        System.out.println("sc = " + sc);
-
 
         return "board/notice/allNotice"; //읽기와 쓰기에 사용, 쓰기에 사용할 때는 mode=new , new가 아닐 때에는 읽기만!
     }
 
     @PostMapping("/write")
-    public String write(noticeDto noticeDto, HttpSession session, Model m, RedirectAttributes rattr) { //사용자가 입력한 정보를 다시 돌려줘야해서 그걸 model에 담아둬야함
+    public String write(noticeDto noticeDto, BindingResult bindingResult, Integer page, Integer pageSize, HttpSession session, Model m, RedirectAttributes rattr) { //사용자가 입력한 정보를 다시 돌려줘야해서 그걸 model에 담아둬야함
 
-//        BindingResult bindingResult
+//BindingResult bindingResult,
 //        List<ObjectError> allErrors = bindingResult.getAllErrors();
 //        for (ObjectError allError : allErrors) {
-//            System.out.println("allError = " + allError);  에러가 보이지 않는 문제가 있었음. 이렇게 해결함
+//            System.out.println("allError = " + allError);  //에러가 보이지 않는 문제가 있었음. 이렇게 해결함
 //        }
 
+        String writer = (String)session.getAttribute("id");
+        noticeDto.setWriter(writer);
 
         try {
 
             int rowCnt = noticeService.write(noticeDto);
-
           System.out.println(m);
-
             if (rowCnt != 1)
                 throw new Exception("Write Failed");
 
-            rattr.addFlashAttribute("msg", "wrt_ok"); //세션을 이용한 일회성 저장
+//            rattr.addFlashAttribute("msg", "wrt_ok"); //세션을 이용한 일회성 저장
 
             return "redirect:/board/notice/list";
 
@@ -142,8 +139,9 @@ public class noticeController {
 
     @PostMapping("/modify")
     public String modify(noticeDto noticeDto,Integer page, Integer pageSize, HttpSession session, Model m, RedirectAttributes rattr) { //사용자가 입력한 정보를 다시 돌려줘야해서 그걸 model에 담아둬야함
-//        String writer = (String) session.getAttribute("id");
-//        stdNoticeDto.setWriter(writer);
+
+        String writer = (String) session.getAttribute("id");
+        noticeDto.setWriter(writer);
 
 
         try {
@@ -176,10 +174,5 @@ public class noticeController {
 
 }
 
-//        private boolean loginCheck(HttpServletRequest request) {
-//            // 1. 세션을 얻어서
-//            HttpSession session = request.getSession();
-//            // 2. 세션에 id가 있는지 확인, 있으면 true를 반환
-//            return session.getAttribute("id")!=null;
-//        }
+
 

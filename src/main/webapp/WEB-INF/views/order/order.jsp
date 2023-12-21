@@ -21,7 +21,7 @@ http://localhost:8080/order/order?registCode=2
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- 탭 아이콘 & 글자 지정 -->
     <link rel="icon" href="/img/logo.png"/>
     <link rel="apple-touch-icon" href="/img/logo.png"/>
@@ -30,6 +30,9 @@ http://localhost:8080/order/order?registCode=2
     <!-- css 파일 불러오기 -->
     <link rel="stylesheet" href="/css/reset.css" type="text/css"/>
     <link rel="stylesheet" href="/css/order.css" type="text/css"/>
+
+    <%--폰트어썸 라이브러리 불러오기--%>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!--java script 파일 불러오기-->
     <script src="/js/order.js"></script>
@@ -151,7 +154,7 @@ http://localhost:8080/order/order?registCode=2
                 </section>
             </section>
         </section>
-        <aside class="aside_pay">
+        <aside class="aside_pay" id="aside_pay">
             <h2 class="display-none">결제 정보</h2>
             <section class="section_buyer-info">
                 <div class="buyer-info">
@@ -203,7 +206,7 @@ http://localhost:8080/order/order?registCode=2
                     </div>
                 </div>
             </section>
-            <input class="order_btns" id="goQna" type="button" value="Q&A 바로가기">
+            <input class="order_btns" id="goQna" type="button" value="   Q&A 바로가기">
             <footer class="bottom-fixed">
                 <div class="bottom-fixed_price">
                     <span class="bottom-fixed_pay-num">
@@ -216,11 +219,11 @@ http://localhost:8080/order/order?registCode=2
             </footer>
         </aside>
     </main>
-    <footer class="footer">
-        <jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
-    </footer>
-</div>
 
+</div>
+<footer class="footer">
+    <jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
+</footer>
 </body>
 
 

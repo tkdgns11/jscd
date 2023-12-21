@@ -11,9 +11,12 @@ public interface StodDao {
     int insertPayHty(StodDTO stodDTO) throws Exception;
 
     //    주문 내역 조회
-    List<StodDTO> selectOrderList(String id) throws Exception;
+    List<StodDTO> selectOrderList(String id, int start, int end) throws Exception;
     
     // 주문 상세 내역 조회
     // id, odNo 파라미터 반영
     List<StodDTO> selectOrderDetail(String id, String odNo) throws Exception;
+
+    // 전체 아이템 수 조회
+    int countOrderList(String id) throws Exception;
 }

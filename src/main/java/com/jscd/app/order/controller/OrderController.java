@@ -40,6 +40,7 @@ public class OrderController {
 //    @Value("${IMP_KEY}")
 //    private String impKey;
 
+
     @Autowired
     public OrderController(OrderService orderService, CompanyInfoService companyInfoService, StodService stodService, MemberService memberService) {
         this.orderService = orderService;
@@ -56,7 +57,7 @@ public class OrderController {
             // 회원 정보 가져오기
             HttpSession session = request.getSession();
             String id = (String) session.getAttribute("id");
-            
+
             memberDto = memberService.memberSelect(id);
             model.addAttribute("memberDto", memberDto);
 
@@ -76,7 +77,7 @@ public class OrderController {
         }
         return "order/order";
     }
-    
+
     @PostMapping("/paySuccess")
     @ResponseBody
     public String submitOrder(@RequestBody  StodDTO stodDto) throws Exception {
@@ -91,9 +92,26 @@ public class OrderController {
         return null;
     }
 
+//    @PostMapping("/paySuccess")
+//    @ResponseBody
+//    public String submitOrder(@RequestBody  StodDTO stodDto, @ModelAttribute("orderDto") OrderDTO orderDto, Model model) throws Exception {
+//        System.out.println("서버 측에서 주문 처리 중"+ stodDto);
+//
+//        //주문 정보 DB에 넣기
+//        stodService.insertStod(stodDto);
+//
+//        //결제 정보 DB에 넣기
+//        stodService.insertPayHty(stodDto);
+//
+//        // orderDto 정보 보내기
+//        model.addAttribute("orderDto", orderDto);
+//
+//        return "order/paySuccess";
+//    }
+
     @PostMapping("/actPaySuccess")
     @ResponseBody
-    public String submitOrder2(@RequestBody  StodDTO stodDto) throws Exception {
+    public String submitOrder2(@RequestBody  StodDTO stodDto, @ModelAttribute("orderDto") OrderDTO orderDto, Model model) throws Exception {
         System.out.println("서버 측에서 주문 처리 중"+ stodDto);
 
         //주문 정보 DB에 넣기
@@ -102,9 +120,27 @@ public class OrderController {
         //결제 정보 DB에 넣기
         stodService.insertPayHty(stodDto);
 
+        // orderDto 정보 보내기
+        model.addAttribute("orderDto", orderDto);
+        System.out.println(orderDto);
 
-        return null;
+        return "order/actPaySuccess";
     }
+//  원래
+//    @PostMapping("/actPaySuccess")
+//    @ResponseBody
+//    public String submitOrder2(@RequestBody  StodDTO stodDto) throws Exception {
+//        System.out.println("서버 측에서 주문 처리 중"+ stodDto);
+//
+//        //주문 정보 DB에 넣기
+//        stodService.insertStod(stodDto);
+//
+//        //결제 정보 DB에 넣기
+//        stodService.insertPayHty(stodDto);
+//
+//
+//        return null;
+//    }
 
 //    @PostMapping("/actPaySuccess")
 //    public String submitOrder2(@RequestBody StodDTO stodDto) throws Exception {
@@ -144,49 +180,65 @@ public class OrderController {
 
     // 주문 내역 조회 페이지 연결
     @GetMapping("/orderList")
-    public String getOrderList(Model model, HttpServletRequest request) throws Exception {
-        // 1. 로그인한 사용자의 아이디 이용하여 '주문 내역' 조회
-        // 세션에서 사용자 아이디 가져오기
+    public String getOrderList(@RequestParam(defaultValue = "1") int page, Model model, MemberDto memberDto, CompanyInfoDTO companyInfoDto, HttpServletRequest request) throws Exception {
         HttpSession session = request.getSession();
         String id = (String) session.getAttribute("id");
 
-        // 2. 가져온 아이디를 StodService의 selectOrderList()에 전달 후 '주문 내역' 조회
-        List<StodDTO> orderList = stodService.selectOrderList(id);
-        // 3. 조회한 '주문 내역'을 Model 객체에 추가 후 orderList.jsp에 전달
+        int itemsPerPage = 5; // 페이지당 보여줄 아이템 수 (StodServiceImpl.java - selectOrderList()와 연결 됨)
+        List<StodDTO> orderList = stodService.selectOrderList(id, page, itemsPerPage);
         model.addAttribute("orderList", orderList);
 
-        // 4. return 값 설정 : "/order/orderList" URL
+        memberDto = memberService.memberSelect(id);
+        model.addAttribute("memberDto", memberDto);
+        System.out.println(memberDto.toString());
+
+        companyInfoDto.setSlrNo(1); //231207 류소희 강의 등록 시 회사 번호도 등록해야함...
+        // 회사 정보 가져오기
+        companyInfoDto = companyInfoService.select(companyInfoDto.getSlrNo());
+        model.addAttribute("companyInfoDto", companyInfoDto);
+        System.out.println(companyInfoDto.toString());
+
+        int totalItems = stodService.countOrderList(id); // 전체 아이템 수를 조회
+        int totalPages = (int) Math.ceil((double) totalItems / itemsPerPage);
+        model.addAttribute("totalPages", totalPages);
+
+        // 현재 페이지 번호를 모델에 추가
+        model.addAttribute("currentPage", page);
+
         return "order/orderList";
     }
 
+
+
+
+
     @GetMapping("/orderDetail")
     public String selectOrderDetail(@RequestParam("odNo") String odNo, HttpServletRequest request, Model model) throws Exception {
-        // 세션에서 로그인한 사용자의 ID를 가져옵니다.
+        // 세션에서 로그인한 사용자의 ID 가져오기
         HttpSession session = request.getSession();
         String id = (String) session.getAttribute("id");
-        
+
         System.out.println("orederDetail 시작"+id+", odNo"+odNo);
-        // 로그인한 사용자의 ID와 odNo를 사용하여 주문 상세 정보를 조회합니다.
+        // 로그인한 사용자의 ID와 odNo를 사용하여 주문 상세 정보 조회
         List<StodDTO> orderDetail = stodService.selectOrderDetail(id, odNo);
         System.out.println("orderDetail ===" + orderDetail);
-        // Model 객체에 주문 상세 정보를 추가합니다.
+        // Model 객체에 주문 상세 정보 추가
         model.addAttribute("orderDetail", orderDetail);
 
-        // orderDetail.jsp 페이지를 반환합니다.
+        // orderDetail.jsp 페이지 반환
         return "order/orderDetail";
-        
     }
 
-    
+
     // 예외 발생 시 호출 및 exception.jsp 페이지로 이동
-//    @ExceptionHandler(Exception.class)
-//    public ModelAndView handleException(Exception e) {
-//        // 1. ModelAndView 객체 생성 : 예외 발생 시 exception.jsp 페이지로 이동
-//        ModelAndView modelAndView = new ModelAndView("order/exception");
-//        // 2. 예외 메시지 'errorMessage' 모델 속성으로 추가 (exception.jsp 페이지에서 사용할 수 있도록 하기 위함)
-//        modelAndView.addObject("errorMessage", e.getMessage());
-//        // 3. return값으로 ModelAndView 설정
-//        return modelAndView;
-//    }
+    @ExceptionHandler(Exception.class)
+    public ModelAndView handleException(Exception e) {
+        // 1. ModelAndView 객체 생성 : 예외 발생 시 exception.jsp 페이지로 이동
+        ModelAndView modelAndView = new ModelAndView("order/exception");
+        // 2. 예외 메시지 'errorMessage' 모델 속성으로 추가 (exception.jsp 페이지에서 사용할 수 있도록 하기 위함)
+        modelAndView.addObject("errorMessage", e.getMessage());
+//         3. return값으로 ModelAndView 설정
+        return modelAndView;
+    }
 
 }

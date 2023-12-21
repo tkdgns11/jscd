@@ -11,6 +11,8 @@ public class StodDTO {
     private int registCode;
     private String title;
     private int lastPrice;
+    private String startDate; //
+    private String endDate; //
 
     //companyDto
     private int slrNo;
@@ -45,13 +47,15 @@ public class StodDTO {
 
     public StodDTO(){}
 
-    public StodDTO(String id, String name, String phone, int registCode, String title, int lastPrice, int slrNo, String slrName, String slrNum, String companyName, String indst, String kind, String slrPhone, String regDate, int firstIdNo, String modifyDate, Integer lastIdNo, String etc, String slrAddr, String slrMail, String odNo, String status, String payType, String creditNum, String cardType, int instlFees, String payDay, String csrcNum, String payTime, String userActNum, String payName, String payBank) {
+    public StodDTO(String id, String name, String phone, int registCode, String title, int lastPrice, String startDate, String endDate, int slrNo, String slrName, String slrNum, String companyName, String indst, String kind, String slrPhone, String regDate, int firstIdNo, String modifyDate, Integer lastIdNo, String etc, String slrAddr, String slrMail, String odNo, String status, String payType, String creditNum, String cardType, int instlFees, String payDay, String csrcNum, String payTime, String userActNum, String payName, String payBank) {
         this.id = id;
         this.name = name;
         this.phone = phone;
         this.registCode = registCode;
         this.title = title;
         this.lastPrice = lastPrice;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.slrNo = slrNo;
         this.slrName = slrName;
         this.slrNum = slrNum;
@@ -126,6 +130,22 @@ public class StodDTO {
 
     public void setLastPrice(int lastPrice) {
         this.lastPrice = lastPrice;
+    }
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
     }
 
     public int getSlrNo() {
@@ -345,6 +365,8 @@ public class StodDTO {
                 ", registCode=" + registCode +
                 ", title='" + title + '\'' +
                 ", lastPrice=" + lastPrice +
+                ", startDate='" + startDate + '\'' +
+                ", endDate='" + endDate + '\'' +
                 ", slrNo=" + slrNo +
                 ", slrName='" + slrName + '\'' +
                 ", slrNum='" + slrNum + '\'' +

@@ -22,8 +22,14 @@ window.onload=function(){
         showSlides01(slideIndex01);
 
     }, sec);
-}
 
+    // 스크롤 시 해당 id 영역 떠오르기 효과 구현
+    window.addEventListener('scroll', function() {
+        applyFloatUpEffect('keyElementTxt');
+        applyFloatUpEffect('youtubeBox');
+    });
+
+}
 
 // Next/previous controls
 function moveSlides(n) {
@@ -195,4 +201,16 @@ function bootCampSelect() {
             console.log("error");
         }
     });
+}
+
+// 스크롤 시 해당 id 영역 떠오르기 효과 구현
+function applyFloatUpEffect(elementId) {
+    var element = document.getElementById(elementId);
+    var elementPosition = element.getBoundingClientRect().top;
+    var windowHeight = window.innerHeight;
+
+    if (elementPosition - windowHeight <= 0) {
+        element.classList.add('visible');
+        element.classList.remove('hidden');
+    }
 }
