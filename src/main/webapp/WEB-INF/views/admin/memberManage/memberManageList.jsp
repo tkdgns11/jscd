@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/adminInfo.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/jscdReset.css"/>">
 <style>
-    body{overflow: hidden;height: 100%}
+    body{height: 100%}
 </style>
 </head>
 <script>
@@ -30,13 +30,12 @@
 </header>
 
 <%--수정 -> 수정버튼 -> 읽기--%>
-
+<div id="infoTitleBox">
+    <h1>회원 정보 관리</h1>
+</div>
 <div id="infoContentBox">
-    <div id="infoTitleBox" style="margin-top: -30px">
-        <h1>회원 정보 관리</h1>
-    </div>
 
-    <div id="memManageSelectBox">
+
         <div id="memberSearchBox">
             <form action="" method="get" ;>
                 <select name="option">
@@ -50,25 +49,10 @@
                 <input type="submit" value="검색" class="deleteBtn">
             </form>
         </div>
-        <div id="memberUpdateBox">
-            <select name="grade" id="grade">
-                <option value="1">일반</option>
-                <option value="2">학생</option>
-                <option value="3">강사</option>
-                <option value="4">관리자(조교)</option>
-            </select>
-            <select name="status" id="status">
-                <option value="1">정상</option>
-                <option value="2">블랙</option>
-                <option value="3">탈퇴</option>
-                <option value="4">휴면</option>
-            </select>
-            <input type="button" value="등급/상태 수정" class="modifyBtn" onclick="statusUpdate()" style="width: 100px">
-        </div>
 
-    </div>
 
-    <div id="infoListBox">
+
+    <div id="memberListBox">
         <table>
             <tr>
                 <th style="width: 80px"><input type="checkbox" id="allCheckBox" onclick="allChecked()"
@@ -114,26 +98,44 @@
     </div>
 
 
-    <div id="infoNaviBox">
-        <c:if test="${page.totalCnt==null || page.totalCnt==0}">
-            <p id="noContent">등록된 회원이 없습니다 .</p>
-        </c:if>
 
-        <c:if test="${page.totalCnt!=null && page.totalCnt!=0}">
-            <p>
-                <c:if test="${page.showPrev}">
-                    <a href="<c:url value="/adminManage/memberManage/list${sc.getQueryString(page.beginPage-1)}"/>">&lt;</a>
-                </c:if>
-                <c:forEach var="i" begin="${page.beginPage}" end="${page.endPage}">
-                    <a href="<c:url value="/adminManage/memberManage/list${sc.getQueryString(i)}"/>"
-                       class="naviPage${i==sc.page? "-active" : ""}">${i}</a>
-                </c:forEach>
-                <c:if test="${page.showNext}">
-                    <a href="<c:url value="/adminManage/memberManage/list${sc.getQueryString(page.endPage+1)}"/>">&gt;</a>
-                </c:if>
-            </p>
-        </c:if>
+
+    <div id="memberUpdateBox" style="left: 75%">
+        <select name="grade" id="grade">
+            <option value="1">일반</option>
+            <option value="2">학생</option>
+            <option value="3">강사</option>
+            <option value="4">관리자(조교)</option>
+        </select>
+        <select name="status" id="status" style="width: 100px">
+            <option value="1">정상</option>
+            <option value="2">블랙</option>
+            <option value="3">탈퇴</option>
+            <option value="4">휴면</option>
+        </select>
+        <input type="button" value="등급/상태 수정" class="modifyBtn" onclick="statusUpdate()" style="width: 100px;height: 30px;">
     </div>
+</div>
+
+<div id="infoNaviBox">
+    <c:if test="${page.totalCnt==null || page.totalCnt==0}">
+        <p id="noContent">등록된 회원이 없습니다 .</p>
+    </c:if>
+
+    <c:if test="${page.totalCnt!=null && page.totalCnt!=0}">
+        <p>
+            <c:if test="${page.showPrev}">
+                <a href="<c:url value="/adminManage/memberManage/list${sc.getQueryString(page.beginPage-1)}"/>">&lt;</a>
+            </c:if>
+            <c:forEach var="i" begin="${page.beginPage}" end="${page.endPage}">
+                <a href="<c:url value="/adminManage/memberManage/list${sc.getQueryString(i)}"/>"
+                   class="naviPage${i==sc.page? "-active" : ""}">${i}</a>
+            </c:forEach>
+            <c:if test="${page.showNext}">
+                <a href="<c:url value="/adminManage/memberManage/list${sc.getQueryString(page.endPage+1)}"/>">&gt;</a>
+            </c:if>
+        </p>
+    </c:if>
 </div>
 
 <script>

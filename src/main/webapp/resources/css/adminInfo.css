@@ -1,32 +1,62 @@
-#infoContentBox {margin-top: 100px;position: relative;}
-#infoTitleBox {position: absolute;margin-top: -20px;left: 15%;}
+#infoContentBox {margin-top: 80px; position: absolute;}
+#infoTitleBox {position: absolute; top: 100px; left: 220px;}
 #infoTitleBox > h1 {font-size: 23px;font-weight: 600;}
-#infoSelectBox {position: absolute;display: flex;flex-direction: row;left: 45%;}
-#infoSelectBox select {height: 30px;}
-#infoSelectBox select[name=status] {width: 160px;margin-top: 5px;}
-#infoSelectBox input {height: 30px;}
-#infoSearchBox {margin-right: 15px;}
-#infoUpdateBox {margin-top: -5px;}
-#infoListBox {position: absolute;width: 70%;margin-left: 15%;margin-top: 70px;}
-#infoListBox input[type=checkbox] {width: 18px;height: 18px;}
-#infoListBox table {width: 100%;font-size: 14px}
-#infoListBox th {border-bottom: 3px solid rgba(0,0,0,0.2);border-collapse: collapse;table-layout: fixed;height: 40px;font-weight: 600;text-align: center;vertical-align: middle;}
-#infoListBox td {border-bottom: 2px solid rgba(0,0,0,0.2);border-collapse: collapse;table-layout: fixed;height: 40px;text-align: center;vertical-align: middle;}
-#infoNaviBox {position: absolute;margin-top: 38%;left: 47%;}
+
+#memberSearchBox {position: absolute;right: 4.5%; top: 30px;}
+#memberSearchBox select {height: 30px;}
+#memberSearchBox input {height: 30px;}
+
+#stdSearchBox {position: absolute;right: -5.5%; top: 30px;}
+#stdSearchBox select {height: 30px;}
+#stdSearchBox input {height: 30px;}
+
+#instructorSearchBox {position: absolute;margin-left: 92%;width: 400px; top: 30px;}
+#instructorSearchBox select {height: 30px;}
+#instructorSearchBox input {height: 30px;}
+
+#memberUpdateBox select {height: 30px;}
+#memberUpdateBox select[name=status] {width: 160px;margin-top: 5px;}
+#memberUpdateBox{margin-top:10px; margin-left: 75%;}
+
+#stdUpdateBox select {height: 30px;}
+#stdUpdateBox select[name=status] {width: 160px;margin-top: 5px;}
+#stdUpdateBox{margin-top:10px; width: 350px; float: left; height: 50px; margin-left: 81%;}
+
+#instructorUpdateBox select {height: 30px;}
+#instructorUpdateBox select[name=status] {width: 160px;margin-top: 5px;}
+#instructorUpdateBox{margin-top:10px; width: 400px;margin-left: 95.5%;}
+
+
+#memberListBox {position: relative; width: 80%; height: auto; overflow: hidden; margin-left: 16%; margin-top: 70px;}
+#memberListBox table {width: 100%; font-size: 14px}
+#memberListBox input[type=checkbox] {width: 18px;height: 18px;}
+#memberListBox th {border-bottom: 3px solid rgba(0,0,0,0.2);border-collapse: collapse;table-layout: fixed;height: 40px;font-weight: 600;text-align: center;vertical-align: middle;}
+#memberListBox td {border-bottom: 2px solid rgba(0,0,0,0.2);border-collapse: collapse;table-layout: fixed;height: 40px;text-align: center;vertical-align: middle;}
+
+#stdListBox {position: relative; width: 90%; height: auto; overflow: hidden; margin-left: 16%; margin-top: 70px;}
+#stdListBox table {width: 100%; font-size: 14px}
+#stdListBox input[type=checkbox] {width: 18px;height: 18px;}
+#stdListBox th {border-bottom: 3px solid rgba(0,0,0,0.2);border-collapse: collapse;table-layout: fixed;height: 40px;font-weight: 600;text-align: center;vertical-align: middle;}
+#stdListBox td {border-bottom: 2px solid rgba(0,0,0,0.2);border-collapse: collapse;table-layout: fixed;height: 40px;text-align: center;vertical-align: middle;}
+
+#instructorListBox {position: relative; width: 100%; height: auto; overflow: hidden; margin-left: 16%; margin-top: 70px;}
+#instructorListBox table {width: 100%; font-size: 14px}
+#instructorListBox input[type=checkbox] {width: 18px;height: 18px;}
+#instructorListBox th {border-bottom: 3px solid rgba(0,0,0,0.2);border-collapse: collapse;table-layout: fixed;height: 40px;font-weight: 600;text-align: center;vertical-align: middle;}
+#instructorListBox td {border-bottom: 2px solid rgba(0,0,0,0.2);border-collapse: collapse;table-layout: fixed;height: 40px;text-align: center;vertical-align: middle;}
+
+
+
+
+#infoNaviBox {position: absolute; bottom: 7%; left: 50%}
 /*내비 다른페이지*/
 .naviPage {font-size: 17px;padding: 9px;color: black}
 /*내비 현재페이지*/
 .naviPage-active {padding: 5px 10px;font-size: 17px;font-weight: 600;border: 1px solid rgba(0, 0, 0, 0.7);color: #0185FE;}
 #delBtnBox{position: absolute;margin-top: 3%;left: 79%;}
 /*상세보기 페이지 css*/
-#memManageSelectBox {position: absolute;display: flex;flex-direction: row;left: 43%;}
-#memManageSelectBox select {height: 30px;}
-#memManageSelectBox select[name=status] {width: 95.25px;margin-top: 5px;}
-#memManageSelectBox input {height: 30px;}
 #noContent {margin-top: -350px;font-weight: 650;}
 .detailBtn {border: 1px solid rgba(0, 0, 0, 0.7);background-color: #ffffff;width: 80px;height: 25px;border-radius: 8px;}
-#memberSearchBox {margin-left: -10px;margin-right: 20px;}
-#memberUpdateBox {margin-top: -5px;}
 
 #infoDetailBox { margin-top: 5%;margin-left: 40%;}
 .infoInputBox {width: 400px;height: 36px;border: 0;border-bottom: 1px solid rgba(0, 0, 0, 0.2);margin: 8px 0 20px 0;padding-top: 4px;padding-left: 10px;pointer-events : none;}
