@@ -13,6 +13,8 @@ public interface MemberDao {
     int insertUser(MemberDto memberDto) throws Exception;
     int updateUser(MemberDto memberDto) throws Exception;
     int count() throws Exception;
+    int countGeneral() throws Exception;
+    int countStudent() throws Exception;
     int deleteAll() throws Exception;
     //회원 약관
     int insertTermsYN(MemberDto memberDto) throws Exception;

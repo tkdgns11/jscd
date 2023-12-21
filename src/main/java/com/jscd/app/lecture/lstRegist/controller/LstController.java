@@ -34,8 +34,8 @@ import java.util.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/adminManage/lstRegist")
-//@RequestMapping("/lstRegist")
+//@RequestMapping("/onlyAdmin/lstRegist")
+@RequestMapping("/lstRegist")
 public class LstController {
     // 로그 선언
     private static final Logger logger = LoggerFactory.getLogger(LstController.class);
@@ -72,10 +72,7 @@ public class LstController {
         return "/lecture/lstRegist/lstRegistList";
     }
 
-    /*
-     * List<CourseDto> 등록페이지에서 여러가지 과정들중 하나를 선택하기위해 불러옴
-     * 새롭게 등록하는것을 구분하기 위해 mode라는 이름으로 new값을 주면서 jsp에 전달해줌.
-     */
+
     //2.강의 등록
     // 강의 추가하는 페이지 이동 기능 구현
     @GetMapping("/addRegist")
@@ -93,22 +90,20 @@ public class LstController {
     //강의 등록
     @PostMapping("/addRegist")
     public String addRegist(LstRegistDto lstRegistDto, Model m, MultipartHttpServletRequest mpRequest) throws Exception {
-
+        System.out.println("lstRegistDto = " + lstRegistDto);
         try {
             lstService.addRegist(lstRegistDto, mpRequest);
-            return "redirect:/adminManage/lstRegist/list";
+            return "redirect:/lstRegist/list";
         } catch(Exception e) {
             e.printStackTrace();
             m.addAttribute("lstRegistDto", lstRegistDto);
             return "/lecture/lstRegist/lstRegistRegist";
         }
     }
-
     //3.강의 상세
     // 등록된 강의 상세 확인 기능 구현(세부항목)
     @GetMapping("/detailRegist")
     public String detailRegist(Integer registCode, Model m) throws Exception {
-
         try {
             Map<String, Object> lstRegistDto = lstService.readRegist(registCode);
             m.addAttribute("lstRegistDto", lstRegistDto);
@@ -119,11 +114,10 @@ public class LstController {
 
         } catch(Exception e) {
             e.printStackTrace();
-            return "redirect:/adminManage/lstRegist/list";
+            return "redirect:/lstRegist/list";
         }
         return "/lecture/lstRegist/lstRegistRegist";
     }
-
     //4.강의 삭제
     // 등록된 강의 삭제 기능 구현
     @PostMapping("/removeRegist")
@@ -134,7 +128,8 @@ public class LstController {
             e.printStackTrace();
             rattr.addFlashAttribute("msg", "DEL_ERR");
         }
-        return "redirect:/adminManage/lstRegist/list"+sc.getQueryString();
+//        return "redirect:/onlyAdmin/lstRegist/list;
+        return "redirect:/lstRegist/list"+sc.getQueryString();
     }
 
 
@@ -150,7 +145,8 @@ public class LstController {
         try {
             // hidden에 담긴 정보들과 form에 담겨있는 각종 컬럼들의 값들을 service로 전달한다.
             lstService.modifyRegist(lstRegistDto, files, fileNames, mpRequest);
-            return "redirect:/adminManage/lstRegist/list"+sc.getQueryString();
+//            return "redirect:/onlyAdmin/lstRegist/list";
+            return "redirect:/lstRegist/list"+sc.getQueryString();
         } catch(Exception e) {
             e.printStackTrace();
             m.addAttribute(lstRegistDto);
@@ -174,6 +170,7 @@ public class LstController {
         response.getOutputStream().write(fileByte);
         response.getOutputStream().flush();
         response.getOutputStream().close();
+
     }
 
     //디비에 접근해서 courseCode에 해당하는 데이터 가져오기
@@ -192,5 +189,6 @@ public class LstController {
         }
         return map;
     }
+
 
 }

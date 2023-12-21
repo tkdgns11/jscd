@@ -19,6 +19,32 @@ public class BtApplicationServiceImpl implements BtApplicationService {
         return btApplicationDao.count();
     }
 
+
+    @Override
+    public int getWaitingNum() throws Exception {
+        return btApplicationDao.countWaiting();
+    }
+
+    @Override
+    public int getApprovalNum() throws Exception {
+        return btApplicationDao.countApproval();
+    }
+
+    @Override
+    public int getNotApprovalNum() throws Exception {
+        return btApplicationDao.countNotApproval();
+    }
+
+    @Override
+    public int getWaitPayNum() throws Exception {
+        return btApplicationDao.countWaitPay();
+    }
+
+    @Override
+    public int getRegistNum() throws Exception {
+        return btApplicationDao.countRegist();
+    }
+
     @Override
     public int remove(Integer stfmNo) throws Exception{
         return btApplicationDao.delete(stfmNo);

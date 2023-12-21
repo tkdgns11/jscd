@@ -21,6 +21,16 @@ public class SmApplicationServiceImpl implements SmApplicationService {
     }
 
     @Override
+    public int getWaitPayNum() throws Exception {
+        return smApplicationDao.countWaitPay();
+    }
+
+    @Override
+    public int getRegistNum() throws Exception {
+        return smApplicationDao.countRegist();
+    }
+
+    @Override
     public int remove(Integer stfmNo) throws Exception{
         return smApplicationDao.delete(stfmNo);
     }

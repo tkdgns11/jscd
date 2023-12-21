@@ -43,13 +43,23 @@ public class LstRegistDaoImpl implements LstRegistDao {
         return session.update(namespace + "update", dto);
     }
 
-
     //6.강의 카운트
 
     @Override
     public int countRegist() throws Exception {
         return session.selectOne(namespace + "count");
     }
+
+    @Override
+    public int countBT() throws Exception {
+        return  session.selectOne(namespace + "countBT");
+    }
+
+    @Override
+    public int countSM() throws Exception {
+        return session.selectOne(namespace + "countSM");
+    }
+
     //7.강의 전체 삭제
     @Override
     public int removeRegist(Integer registCode) throws Exception {

@@ -8,6 +8,20 @@
 	<select id="count" resultType="int">
 		SELECT count(*) FROM MEMBER
 	</select>
+
+	<!-- 일반회원 전체 개수 조회-->
+	<select id="countGeneral" resultType="int">
+		SELECT count(*) FROM MEMBER
+		where grade = '1'
+	</select>
+
+	<!-- 학생회원 전체 개수 조회-->
+	<select id="countStudent" resultType="int">
+		SELECT count(*) FROM MEMBER
+		where grade = '2'
+	</select>
+
+
 	<!-- 회원상태에 따른 조회-->
 	<select id="select" resultType="memberDto">
 		SELECT

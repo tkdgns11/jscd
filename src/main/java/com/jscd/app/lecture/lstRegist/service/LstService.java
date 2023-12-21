@@ -39,9 +39,18 @@ public interface LstService {
     //첨부파일 다운로드
     public Map<String, Object> selectFileDown(Map<String, Object> map) throws Exception;
 
+    int getCountAll() throws Exception;
+
+    int getCountBT() throws Exception;
+
+    int getCountSM() throws Exception;
+
     // 홈 화면 세미나 리스트
     List<LstRegistDto> homeSeminarList() throws Exception;
     // 홈 화면 부트캠프 리스트
     List<LstRegistDto> homeBootCampList() throws Exception;
+
+
+
 
 }

@@ -20,6 +20,36 @@ public class BtApplicationDaoImpl implements BtApplicationDao {
         return session.selectOne(namespace + "count");
     }
 
+    //승인대기중
+    @Override
+    public int countWaiting() throws Exception {
+        return session.selectOne(namespace + "countWaiting");
+    }
+
+    //승인완료
+    @Override
+    public int countApproval() throws Exception {
+        return session.selectOne(namespace + "countApproval");
+    }
+
+    //미승인
+    @Override
+    public int countNotApproval() throws Exception {
+        return session.selectOne(namespace + "countNotApproval");
+    }
+
+    //결제대기
+    @Override
+    public int countWaitPay() throws Exception {
+        return session.selectOne(namespace + "countWaitPay");
+    }
+
+    //등록완료
+    @Override
+    public int countRegist() throws Exception {
+        return session.selectOne(namespace + "countRegist");
+    }
+
     @Override
     public int deleteAll() throws Exception{
         return session.delete(namespace + "deleteAll");

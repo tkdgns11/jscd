@@ -36,7 +36,7 @@
     <select id="selectPage" parameterType="map" resultType="BtApplicationDto">
         select * from btstform
         order by stfmNo desc
-        limit #{offset}, #{pageSize}
+            limit #{offset}, #{pageSize}
     </select>
 
     <!--    (관리자 전용) 부트캠프 신청서 수정 및 승인시 사용-->
@@ -100,6 +100,41 @@
         from btstform
         where true
         <include refid="searchApplication"/>
+    </select>
+
+    <!-- 승인대기중 부트캠프 신청폼 개수-->
+    <select id="countWaiting" resultType="int">
+        select count(*)
+        from btstform
+        where approvalYN = '대기 중'
+    </select>
+
+    <!-- 승인 부트캠프 신청폼 개수-->
+    <select id="countApproval" resultType="int">
+        select count(*)
+        from btstform
+        where approvalYN = '승인'
+    </select>
+
+    <!-- 미승인 부트캠프 신청폼 개수-->
+    <select id="countNotApproval" resultType="int">
+        select count(*)
+        from btstform
+        where approvalYN = '미승인'
+    </select>
+
+    <!-- 결제대기 부트캠프 신청폼 개수-->
+    <select id="countWaitPay" resultType="int">
+        select count(*)
+        from btstform as a , lectureapply as b
+        where a.approvalYN = '승인' and a.registCode = b.registCode and b.status = 'notPaid'
+    </select>
+
+    <!-- 등록 부트캠프 신청폼 개수-->
+    <select id="countRegist" resultType="int">
+        select count(*)
+        from btstform as a , lectureapply as b
+        where a.approvalYN = '승인' and a.registCode = b.registCode and b.status = 'Paid'
     </select>
 
 </mapper>

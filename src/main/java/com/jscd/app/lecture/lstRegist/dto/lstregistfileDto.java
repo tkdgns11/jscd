@@ -10,12 +10,11 @@ public class lstregistfileDto {
     // 세미나 리스트에서 필요한 lstregist 컬럼
     private String status;
     private String title;
-    private String courseCategory;
 
     public lstregistfileDto() {
     }
 
-    public lstregistfileDto(Integer fileNo, Integer registCode, String originFileName, String storedFileName, String fileSize, String status, String title, String courseCategory) {
+    public lstregistfileDto(Integer fileNo, Integer registCode, String originFileName, String storedFileName, String fileSize, String status, String title) {
         this.fileNo = fileNo;
         this.registCode = registCode;
         this.originFileName = originFileName;
@@ -23,7 +22,6 @@ public class lstregistfileDto {
         this.fileSize = fileSize;
         this.status = status;
         this.title = title;
-        this.courseCategory = courseCategory;
     }
 
     public Integer getFileNo() {
@@ -82,14 +80,6 @@ public class lstregistfileDto {
         this.title = title;
     }
 
-    public String getCourseCategory() {
-        return courseCategory;
-    }
-
-    public void setCourseCategory(String courseCategory) {
-        this.courseCategory = courseCategory;
-    }
-
     @Override
     public String toString() {
         return "lstregistfileDto{" +
@@ -100,7 +90,6 @@ public class lstregistfileDto {
                 ", fileSize='" + fileSize + '\'' +
                 ", status='" + status + '\'' +
                 ", title='" + title + '\'' +
-                ", courseCategory='" + courseCategory + '\'' +
                 '}';
     }
 }

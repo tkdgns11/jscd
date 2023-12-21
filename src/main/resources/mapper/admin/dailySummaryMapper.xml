@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jscd.app.mapper.DailySummaryMapper">
+
+    <insert id="insert" parameterType="DailySummaryDto">
+        INSERT INTO dailySummary
+        (date, pageviews, visitors, orders, revenue, signups, inquiries, reviews, regDate)
+        VALUES (#{date}, #{pageviews}, #{visitors}, #{orders}, #{revenue}, #{signups}, #{inquiries}, #{reviews}, now())
+    </insert>
+
+    <!-- 최근7일 전체 정보 조회 -->
+    <select id="selectRecentData" resultType="DailySummaryDto">
+        SELECT *
+        FROM dailySummary
+        WHERE STR_TO_DATE(date, '%Y-%m-%d') BETWEEN CURDATE() - INTERVAL 6 DAY AND CURDATE()
+        order by date desc ;
+    </select>
+
+
+    <!-- 최근7일 전체 정보 조회 -->
+    <select id="selectWeekData" resultType="map">
+        SELECT
+            SUM(orders) AS weekOrders,
+            SUM(revenue) AS weekRevenue,
+            SUM(visitors) AS weekVisitors,
+            SUM(signups) AS weekSignups,
+            SUM(inquiries) AS weekInquiries,
+            SUM(reviews) AS weekReviews
+        FROM
+            dailySummary
+        WHERE
+            STR_TO_DATE(date, '%Y-%m-%d') BETWEEN CURDATE() - INTERVAL 6 DAY AND CURDATE();
+    </select>
+
+    <!-- 이번달 전체 정보 조회 -->
+    <select id="selectMonthData" resultType="map">
+        SELECT
+            SUM(orders) AS monthOrders,
+            SUM(revenue) AS monthRevenue,
+            SUM(visitors) AS monthVisitors,
+            SUM(signups) AS monthSignups,
+            SUM(inquiries) AS monthInquires,
+            SUM(reviews) AS monthReviews
+        FROM
+            dailySummary
+        WHERE
+            YEAR(STR_TO_DATE(date, '%Y-%m-%d')) = YEAR(CURDATE())
+          AND MONTH(STR_TO_DATE(date, '%Y-%m-%d')) = MONTH(CURDATE());
+    </select>
+
+
+</mapper>

@@ -76,6 +76,7 @@ public class LockerController {
     //자리이동
     @PatchMapping("/{newLockerId}/move")
     public ResponseEntity<?> moveLocker(@PathVariable String newLockerId, @RequestBody LockerDto lockerDto) {
+        System.out.println(" 락커이동 진입 ");
         try {
             int result = lockerService.moveLocker(lockerDto, newLockerId);
             if (result == 2) {

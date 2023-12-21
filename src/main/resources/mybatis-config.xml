@@ -25,6 +25,7 @@
 		<typeAlias alias="AllqnaDto" type="com.jscd.app.board.qna.qnaDto.AllqnaDto"/>
 		<typeAlias alias="AdminDto" type="com.jscd.app.admin.dto.AdminDto"/>
 		<typeAlias alias="LockerDto" type="com.jscd.app.facility.dto.LockerDto"/>
+		<typeAlias alias="DailySummaryDto" type="com.jscd.app.admin.dto.DailySummaryDto"/>
 		<typeAlias alias="MemberManageDto" type="com.jscd.app.admin.dto.MemberManageDto"/>
 
 		<typeAlias alias="noticeDto" type="com.jscd.app.board.notice.dto.noticeDto"/>

@@ -21,6 +21,11 @@ public interface LstRegistDao {
     int modifyRegist(LstRegistDto dto) throws Exception;
     //6.강의 개수
     int countRegist() throws Exception;
+
+    int countBT() throws Exception;
+
+    int countSM() throws Exception;
+
     //7.강의 전체 삭제
     int removeAllRegist(Integer registCode) throws Exception;
 
