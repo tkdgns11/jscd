@@ -75,4 +75,19 @@
 		  and B.registCode = #{registCode};
 	</select>
 
+<!--	이메일 찾기-->
+	<select id="selectEmail" parameterType="memberDto" resultType="String">
+		select id from member
+		where name = #{name} and birth = #{birth} and phone = #{phone}
+	</select>
+
+<!--	비밀번호 재설정-->
+	<update id="updatePwd" parameterType="memberDto">
+		UPDATE MEMBER
+		SET
+			pwd = #{pwd},
+			modifyDate = now()
+		WHERE id = #{id}
+	</update>
+
 </mapper>
