@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/jscdReset.css"/>">
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
     <style>
-        body{overflow: hidden;height: 100%}
+        body{height: 100%}
     </style>
 
 </head>
@@ -29,15 +29,13 @@
 <header>
     <jsp:include page="../adminHeader.jsp"/>
 </header>
-
+<div id="infoTitleBox">
+    <h1>강사 정보 관리</h1>
+</div>
 <div id="infoContentBox">
 
-    <div id="infoTitleBox">
-        <h1>강사 정보 관리</h1>
-    </div>
 
-    <div id="infoSelectBox">
-        <div id="infoSearchBox">
+        <div id="instructorSearchBox">
         <form action="/adminManage/instructor/list" method="get">
             <select name="option">
                 <option value="T" ${sc.option=='T' || sc.option=='' ? "selected" : ""}>이름</option>
@@ -50,20 +48,10 @@
             <input type="submit" value="검색" class="deleteBtn">
         </form>
         </div>
-        <div id="infoUpdateBox">
-        <select name="status" id="status">
-            <option value="" disabled selected>변경할 상태를 골라주세요</option>
-            <option value="1">이직</option>
-            <option value="2">재직</option>
-            <option value="3">휴직</option>
-            <option value="4">퇴직</option>
-        </select>
-            <input type="button" value="수정" class="modifyBtn" onclick="statusUpdate()">
-        </div>
-    </div>
 
 
-    <div id="infoListBox">
+
+    <div id="instructorListBox">
         <table>
             <tr>
                 <th style="width: 80px"><input type="checkbox" id="allCheckBox"
@@ -106,27 +94,40 @@
         </table>
     </div>
 
-    <div id="infoNaviBox">
-        <c:if test="${page.totalCnt==null || page.totalCnt==0}">
-            <p id="noContent">등록된 강사가 없습니다 .</p>
-        </c:if>
-        <c:if test="${page.totalCnt!=null && page.totalCnt!=0}">
-            <c:if test="${page.showPrev}">
-                <a href="<c:url value="/adminManage/instructor/list${sc.getQueryString(page.beginPage-1)}"/>">&lt;&lt;</a>
-            </c:if>
-            <c:forEach var="i" begin="${page.beginPage}" end="${page.endPage}">
-                <a href="<c:url value="/adminManage/instructor/list${sc.getQueryString(i)}"/>"
-                   class="naviPage${i==sc.page? "-active" : ""}"
-                >${i}</a>
-            </c:forEach>
 
-            <c:if test="${page.showNext}">
-                <a href="<c:url value="/adminManage/instructor/list${sc.getQueryString(page.endPage+1)}"/>">&gt;&gt;</a>
-            </c:if>
-        </c:if>
+
+    <div id="instructorUpdateBox">
+        <select name="status" id="status">
+            <option value="" disabled selected>변경할 상태를 골라주세요</option>
+            <option value="1">이직</option>
+            <option value="2">재직</option>
+            <option value="3">휴직</option>
+            <option value="4">퇴직</option>
+        </select>
+        <input type="button" value="수정" class="modifyBtn" onclick="statusUpdate()" style="height: 30px">
     </div>
 
 
+</div>
+
+<div id="infoNaviBox">
+    <c:if test="${page.totalCnt==null || page.totalCnt==0}">
+        <p id="noContent">등록된 강사가 없습니다 .</p>
+    </c:if>
+    <c:if test="${page.totalCnt!=null && page.totalCnt!=0}">
+        <c:if test="${page.showPrev}">
+            <a href="<c:url value="/adminManage/instructor/list${sc.getQueryString(page.beginPage-1)}"/>">&lt;&lt;</a>
+        </c:if>
+        <c:forEach var="i" begin="${page.beginPage}" end="${page.endPage}">
+            <a href="<c:url value="/adminManage/instructor/list${sc.getQueryString(i)}"/>"
+               class="naviPage${i==sc.page? "-active" : ""}"
+            >${i}</a>
+        </c:forEach>
+
+        <c:if test="${page.showNext}">
+            <a href="<c:url value="/adminManage/instructor/list${sc.getQueryString(page.endPage+1)}"/>">&gt;&gt;</a>
+        </c:if>
+    </c:if>
 </div>
 
 <script>

@@ -12,8 +12,7 @@
 
     <style>
         body {
-            overflow: hidden;
-            height: 100%
+            height: 100%;
         }
     </style>
 </head>
@@ -34,13 +33,12 @@
     <jsp:include page="../adminHeader.jsp"/>
 </header>
 
+<div id="infoTitleBox">
+    <h1>학생 정보 관리</h1>
+</div>
 <div id="infoContentBox">
-    <div id="infoTitleBox">
-        <h1>학생 정보 관리</h1>
-    </div>
 
-    <div id="infoSelectBox">
-        <div id="infoSearchBox">
+        <div id="stdSearchBox">
             <form action="/adminManage/stdManage/list" method="get">
                 <select name="option" id="selectList">
                     <option value="T" ${sc.option=='T' || sc.option=='' ? "selected" : ""}>이름</option>
@@ -52,20 +50,9 @@
                        placeholder="검색어를 입력해주세요">
                 <input type="submit" value="검색" class="deleteBtn">
             </form>
-
-        </div>
-        <div id="infoUpdateBox">
-            <select name="status" id="status">
-                <option value="" disabled selected>변경할 상태를 골라주세요</option>
-                <option value="1">수강예정</option>
-                <option value="2">수강중</option>
-                <option value="3">수료</option>
-            </select>
-            <input type="button" value="수정" class="modifyBtn" onclick="statusUpdate()">
-        </div>
     </div>
 
-    <div id="infoListBox">
+    <div id="stdListBox">
         <table>
             <tr>
                 <th style="width: 80px"><input type="checkbox" id="allCheckBox"
@@ -78,9 +65,7 @@
                 <th style="width: 100px;">기수</th>
                 <th style="width:100px;">상태</th>
                 <th style="width:250px;">가입일</th>
-                <th style="width:100px;"><input type="button" value="삭제" class="deleteBtn" onclick="stdDelete()"
-                                                style="height: 23px">
-                </th>
+                <th style="width:100px;"></th>
             </tr>
 
 
@@ -115,24 +100,37 @@
     <%--        <input type="button" value="삭제" class="deleteBtn" onclick="stdDelete()" style="height: 30px">--%>
     <%--    </div>--%>
 
-    <div id="infoNaviBox">
-        <c:if test="${totalCnt==null || totalCnt==0}">
-            <p id="noContent">등록된 학생이 없습니다 .</p>
-        </c:if>
-        <c:if test="${totalCnt!=null && totalCnt!=0}">
-            <c:if test="${page.showPrev}">
-                <a href="<c:url value="/adminManage/stdManage/list${sc.getQueryString(page.beginPage-1)}"/>">&lt;&lt;</a>
-            </c:if>
-            <c:forEach var="i" begin="${page.beginPage}" end="${page.endPage}">
-                <a href="<c:url value="/adminManage/stdManage/list${sc.getQueryString(i)}"/>"
-                   class="naviPage${i==sc.page? "-active" : ""}"
-                >${i}</a>
-            </c:forEach>
-            <c:if test="${page.showNext}">
-                <a href="<c:url value="/adminManage/stdManage/list${sc.getQueryString(page.endPage+1)}"/>">&gt;&gt;</a>
-            </c:if>
-        </c:if>
+
+
+    <div id="stdUpdateBox">
+        <select name="status" id="status">
+            <option value="" disabled selected>변경할 상태를 골라주세요</option>
+            <option value="1">수강예정</option>
+            <option value="2">수강중</option>
+            <option value="3">수료</option>
+        </select>
+        <input type="button" value="수정" class="modifyBtn" onclick="statusUpdate()" style="height: 30px;">
+        <input type="button" value="삭제" class="modifyBtn" onclick="stdDelete()" style="height: 30px">
     </div>
+</div>
+
+<div id="infoNaviBox">
+    <c:if test="${totalCnt==null || totalCnt==0}">
+        <p id="noContent">등록된 학생이 없습니다 .</p>
+    </c:if>
+    <c:if test="${totalCnt!=null && totalCnt!=0}">
+        <c:if test="${page.showPrev}">
+            <a href="<c:url value="/adminManage/stdManage/list${sc.getQueryString(page.beginPage-1)}"/>">&lt;&lt;</a>
+        </c:if>
+        <c:forEach var="i" begin="${page.beginPage}" end="${page.endPage}">
+            <a href="<c:url value="/adminManage/stdManage/list${sc.getQueryString(i)}"/>"
+               class="naviPage${i==sc.page? "-active" : ""}"
+            >${i}</a>
+        </c:forEach>
+        <c:if test="${page.showNext}">
+            <a href="<c:url value="/adminManage/stdManage/list${sc.getQueryString(page.endPage+1)}"/>">&gt;&gt;</a>
+        </c:if>
+    </c:if>
 </div>
 
 <script>

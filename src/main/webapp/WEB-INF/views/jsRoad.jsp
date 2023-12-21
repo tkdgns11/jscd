@@ -30,7 +30,7 @@
             padding-right: 55px;
             padding-left: 50px;
             padding-bottom: 20px;
-            border: 1px solid #D9D9D9;
+            /*border: 1px solid #D9D9D9;*/
         }
         #addTitle{
             background-color: #0185FE;
