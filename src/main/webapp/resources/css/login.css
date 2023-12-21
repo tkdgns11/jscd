@@ -24,6 +24,7 @@ hr::after{content: "또는 이메일로 로그인";position: relative; top: -10p
 #loginInput div{display: flex; flex-direction: row; justify-content: center; align-items: center;}
 #loginInput div:nth-child(1){border-bottom: 1px solid #a1c5e6;}
 #loginInput div img{margin: 10px 50px;}
+#loginInput div input {margin-right: 30px; padding: 0 30px;}
 #rememberId{width: 25px; height: 25px; margin-top: 15px; margin-bottom: 15px;}
 #rememberId_section > p {padding-left: 10px; color: #7c838b;}
 #loginMenu{width: 700px;}
