@@ -6,6 +6,21 @@
     <!--    주문 내역 조회-->
     <!--    로그인 아이디 / 주문번호 / 주문날짜 / 주문 상태 / 주문 상품 코드 / 주문 상품명 / 주문 상품 금액-->
     <!--    테이블 : member, stod, lstRegist-->
+    <!--    <select id="selectOrderList" resultType="StodDTO">-->
+    <!--        SELECT m.id,-->
+    <!--               s.odNo,-->
+    <!--               s.regDate,-->
+    <!--               s.status,-->
+    <!--               s.registCode,-->
+    <!--               lr.title,-->
+    <!--               lr.lastPrice,-->
+    <!--               lr.startDate,-->
+    <!--               lr.endDate-->
+    <!--        FROM member m-->
+    <!--                 JOIN stod s ON m.id = s.id-->
+    <!--                 JOIN lstRegist lr ON s.registCode = lr.registCode-->
+    <!--        WHERE m.id = #{id};-->
+    <!--    </select>-->
     <select id="selectOrderList" resultType="StodDTO">
         SELECT m.id,
                s.odNo,
@@ -13,12 +28,25 @@
                s.status,
                s.registCode,
                lr.title,
-               lr.lastPrice
+               lr.lastPrice,
+               lr.startDate,
+               lr.endDate
         FROM member m
                  JOIN stod s ON m.id = s.id
                  JOIN lstRegist lr ON s.registCode = lr.registCode
-        WHERE m.id = #{id};
+        WHERE m.id = #{id}
+        ORDER BY s.regDate DESC
+            LIMIT #{start}, #{end};
     </select>
+
+    <select id="countOrderList" resultType="int">
+        SELECT COUNT(*)
+        FROM member m
+                 JOIN stod s ON m.id = s.id
+                 JOIN lstRegist lr ON s.registCode = lr.registCode
+        WHERE m.id = #{id}
+    </select>
+
 
 
     <!--    구매 상세 내역 조회-->
@@ -65,7 +93,6 @@
         WHERE m.id = #{id} AND s.odNo = #{odNo};
     </select>
 
-
     <!-- 사용자 결제 완료 시 주문 이력 테이블에 주문 정보 담기 위함 -->
     <insert id="insertStod" parameterType="StodDTO">
         INSERT INTO stod (odNo, registCode, id, status, lastPrice, payType)
@@ -80,19 +107,6 @@
                 #{kind}, #{slrPhone}, #{creditNum}, #{status}, #{cardType}, #{instlFees}, #{slrAddr}, #{payDay},
                 #{payTime})
     </insert>
-
-    <!--    <update id="updateStod" parameterType="StodDTO">-->
-    <!--        UPDATE stod-->
-    <!--        SET classEnrollNo = #{classEnrollNo}, id = #{id}, status = #{status}, lstPrice = #{lstPrice}, payType = #{payType}-->
-    <!--        WHERE odNo = #{odNo}-->
-    <!--    </update>-->
-
-    <!--    &lt;!&ndash; 주문 상태만 수정 &ndash;&gt;-->
-    <!--    <update id="updateStodStatus" parameterType="StodDTO">-->
-    <!--        UPDATE stod-->
-    <!--        SET status = #{status}-->
-    <!--        WHERE odNo = #{odNo}-->
-    <!--    </update>-->
 
 
 </mapper>

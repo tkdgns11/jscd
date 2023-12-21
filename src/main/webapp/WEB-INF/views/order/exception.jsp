@@ -11,7 +11,13 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Exception Page</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- 탭 아이콘 & 글자 지정 -->
+    <link rel="icon" href="/img/logo.png"/>
+    <link rel="apple-touch-icon" href="/img/logo.png"/>
+    <title>정석코딩 | 오류</title>
 </head>
 <body>
 <h1>에러가 발생하였습니다. 다시 시도해주십시오.</h1>

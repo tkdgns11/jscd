@@ -8,7 +8,7 @@ import com.jscd.app.member.dto.MemberDto;
 import java.util.List;
 
 public interface MemberDao {
-	MemberDto selectUser(String id) throws Exception;
+    MemberDto selectUser(String id) throws Exception;
     int deleteUser(String id) throws Exception;
     int insertUser(MemberDto memberDto) throws Exception;
     int updateUser(MemberDto memberDto) throws Exception;

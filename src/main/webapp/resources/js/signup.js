@@ -46,8 +46,10 @@ function member(value){
     var idReg = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
     // 비밀번호 정규식
     var pwdReg = /^[A-Za-z0-9`~!@#\$%\^&\*\(\)\{\}\[\]\-_=+\\|;:'"<>,./?]{8,20}$/
+
     // 휴대폰 번호 정규식
     var phoneReg = /^(\+82|0)\s?(10|11|16|17|18|19)-?[0-9]{3,4}-?[0-9]{4}$/
+
 
     if(
         !nameValid(name, nameReg) ||
@@ -203,17 +205,19 @@ function  genderValid(gender){
 function  phoneValid(phone, phoneReg){
     //핸드폰 번호 공백 확인
     if(phone.value==""){
-        alert("연락처를 확인해주세요.");
+        alert("연락처를 확인하세요.");
         return false;
     }
 
     //핸드폰 번호 정규식 유효성 검사
     if(!phoneReg.test(phone.value)){
-        alert("연락처 번호를 확인해주세요.");
+        alert("연락처 번호를 확인하세요");
         return false;
     }
 
     return true;
+
+
 }
 
 // 아이디 중복체크
@@ -225,11 +229,9 @@ const idCheck = ()=>{
         url : '/member/idChk?id='+id,
         success: (email)=>{
             console.log("비교할 id = " + email);
-
             if(id == email){
                 alert('사용할 수 없는 아이디입니다.');
-                document.getElementById("idChkYN").value = 'N';
-                console.log(document.getElementById('idChkYN').value);
+                $('#id').css('color', 'red');
                 document.getElementById("idImg").src="/img/signup_user_red.png";
             }else{
                 alert('사용할 수 있는 아이디입니다.');

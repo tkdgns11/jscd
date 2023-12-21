@@ -47,14 +47,14 @@ http://localhost:8080/order/paySuccess
             <section id="pay-success_notice">
                 <h3 class="display-none">수강신청 완료 상세 안내</h3>
                 <div class="display-none"><p class="typing-txt">수강신청 및 결제가 완료되었습니다 :)</p></div>
-<%--                <p>수강신청 및 결제가 완료되었습니다 :)</p>--%>
+                <%--                <p>수강신청 및 결제가 완료되었습니다 :)</p>--%>
                 <p id="receipt-text-01"></p>
             </section>
-            <section id="odNo_notice">
+            <section class="display-none" id="odNo_notice">
                 <h3 class="display-none">주문 고유 번호</h3>
                 <p>[주문번호]<br>jscd123//수정필요</p>
             </section>
-            <section id="pay_info_notice">
+            <section class="display-none" id="pay_info_notice">
                 <h3 class="display-none">결제 정보</h3>
                 <div class="pay_info_amount">
                     <span class="pay_info_amount_title">결제금액</span>
@@ -68,7 +68,7 @@ http://localhost:8080/order/paySuccess
                     <span class="pay_info_type_showType">카드//수정필요</span>
                 </div>
             </section>
-            <section id="pay-success_lecture_notice">
+            <section class="display-none" id="pay-success_lecture_notice">
                 <h3 class="display-none">주문 강의 정보</h3>
                 <div>
                     <span class="pay-success_lecture_notice_title">주문 강의명</span>

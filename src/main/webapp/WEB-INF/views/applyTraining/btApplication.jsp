@@ -32,9 +32,9 @@
         <div>
             <div class="question">Q. 본인의 프로그래밍 지식이나 경험 수준에 대해 선택해주세요. <span class="redText">(선택 1)</span></div>
             <div id="selAll">
-            <label><input type="radio" name="level" value="낮음">낮음</label><hr class="applicationHr">
-            <label><input type="radio" name="level" value="중간">중간</label><hr class="applicationHr">
-            <label><input type="radio" name="level" value="높은">높은</label>
+                <label><input type="radio" name="level" value="낮음">낮음</label><hr class="applicationHr">
+                <label><input type="radio" name="level" value="중간">중간</label><hr class="applicationHr">
+                <label><input type="radio" name="level" value="높은">높은</label>
             </div>
         </div>
         <br>
@@ -46,20 +46,20 @@
         <div>
             <div class="question">Q. 정석코딩 부트캠프에 참여하려는 목적을 선택해주세요. <span class="redText">(선택 1)</span></div>
             <div id="selAll">
-            <label><input type="radio" name="attdPps" value="실무에서 필요">실무에서 필요</label><hr class="applicationHr">
-            <label><input type="radio" name="attdPps" value="취업 준비 or 이직 준비">취업 준비 or 이직 준비</label><hr class="applicationHr">
-            <label><input type="radio" name="attdPps" value="개인적인 관심">개인적인 관심</label><hr class="applicationHr">
-            <label><input type="radio" name="attdPps" value="기타">기타</label>
+                <label><input type="radio" name="attdPps" value="실무에서 필요">실무에서 필요</label><hr class="applicationHr">
+                <label><input type="radio" name="attdPps" value="취업 준비 or 이직 준비">취업 준비 or 이직 준비</label><hr class="applicationHr">
+                <label><input type="radio" name="attdPps" value="개인적인 관심">개인적인 관심</label><hr class="applicationHr">
+                <label><input type="radio" name="attdPps" value="기타">기타</label>
             </div>
         </div>
         <br>
         <div>
             <div class="question">Q. 정석코딩 부트캠프에 대한 정보를 얻으신 경로를 선택해주세요. <span class="redText">(선택 1)</span></div>
             <div id="selAll">
-            <label><input type="radio" name="attdPath" value="페이스북, 인스타 등 SNS">페이스북, 인스타 등 SNS</label><hr class="applicationHr">
-            <label><input type="radio" name="attdPath" value="정석코딩 네이버 카페">정석코딩 네이버 카페</label><hr class="applicationHr">
-            <label><input type="radio" name="attdPath" value="지인 추천">지인 추천</label><hr class="applicationHr">
-            <label><input type="radio" name="attdPath" value="기타">기타</label>
+                <label><input type="radio" name="attdPath" value="페이스북, 인스타 등 SNS">페이스북, 인스타 등 SNS</label><hr class="applicationHr">
+                <label><input type="radio" name="attdPath" value="정석코딩 네이버 카페">정석코딩 네이버 카페</label><hr class="applicationHr">
+                <label><input type="radio" name="attdPath" value="지인 추천">지인 추천</label><hr class="applicationHr">
+                <label><input type="radio" name="attdPath" value="기타">기타</label>
             </div>
         </div>
         <br>
@@ -77,8 +77,8 @@
             <div class="question">Q. 학업에 전념 <span class="redText">(하루 14시간 이상)</span> 하지 않거나 타인에게 피해를 주는 경우<br>
                 &emsp;퇴소 될 수 있습니다. 동의하십니까? <span class="redText">(선택 1)</span></div>
             <div id="selAll">
-            <label><input type="radio" name="agreeYN" value="Y">예</label><hr class="applicationHr">
-            <label><input type="radio" name="agreeYN" value="N">아니오</label>
+                <label><input type="radio" name="agreeYN" value="Y">예</label><hr class="applicationHr">
+                <label><input type="radio" name="agreeYN" value="N">아니오</label>
             </div>
         </div>
         <br>

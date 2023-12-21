@@ -1,59 +1,59 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.jscd.app.member.memberMapper">
 
-<!-- 회원 전체 개수 조회-->
-    <select id="count" resultType="int">
-        SELECT count(*) FROM MEMBER
-    </select>
-<!-- 회원상태에 따른 조회-->
-    <select id="select" resultType="memberDto">
-    	SELECT 
-    		mebrNo, id, name, nickname, birth, pwd, phone, gender,
-    		acct, status, grade, regDate, firstIdNo, modifyDate, lastIdNo, etc
-    	FROM MEMBER
-    	WHERE id = #{id}
-    </select>
-<!-- 회원 등록-->
-    <insert id="insert" parameterType="memberDto">
-	     INSERT INTO MEMBER
-	         (id, name, nickname, birth, pwd, gender, phone, acct, regDate, firstIdNo, etc)
-	     VALUES
-	         (#{id}, #{name}, #{nickname}, #{birth}, #{pwd}, #{gender}, #{phone}, #{acct}, now(), #{firstIdNo}, #{etc})
-    </insert>
-<!-- 개인 정보 수정-->
+	<!-- 회원 전체 개수 조회-->
+	<select id="count" resultType="int">
+		SELECT count(*) FROM MEMBER
+	</select>
+	<!-- 회원상태에 따른 조회-->
+	<select id="select" resultType="memberDto">
+		SELECT
+			mebrNo, id, name, nickname, birth, pwd, phone, gender,
+			acct, status, grade, regDate, firstIdNo, modifyDate, lastIdNo, etc
+		FROM MEMBER
+		WHERE id = #{id}
+	</select>
+	<!-- 회원 등록-->
+	<insert id="insert" parameterType="memberDto">
+		INSERT INTO MEMBER
+		(id, name, nickname, birth, pwd, gender, phone, acct, regDate, firstIdNo, etc)
+		VALUES
+			(#{id}, #{name}, #{nickname}, #{birth}, #{pwd}, #{gender}, #{phone}, #{acct}, now(), #{firstIdNo}, #{etc})
+	</insert>
+	<!-- 개인 정보 수정-->
 	<update id="update" parameterType="memberDto">
-	    UPDATE MEMBER
-	    	SET
-	    	    nickname = #{nickname},
-	    	    birth = #{birth},
-	    	    pwd = #{pwd},
-	    	    phone = #{phone},
-	    	    modifyDate = now()
-	    WHERE id = #{id}
+		UPDATE MEMBER
+		SET
+			nickname = #{nickname},
+			birth = #{birth},
+			pwd = #{pwd},
+			phone = #{phone},
+			modifyDate = now()
+		WHERE id = #{id}
 	</update>
 
-<!--  회원탈퇴 시 상태를 변경 -->
-    <delete id="delete">
-        DELETE FROM MEMBER
-        WHERE
-        id = #{id}
-    </delete>
-<!--전체 회원 삭제-->
+	<!--  회원탈퇴 시 상태를 변경 -->
+	<delete id="delete">
+		DELETE FROM MEMBER
+		WHERE
+			id = #{id}
+	</delete>
+	<!--전체 회원 삭제-->
 	<delete id="deleteAll">
 		DELETE FROM MEMBER
 	</delete>
 
-<!--	약관 동의 테이블-->
+	<!--	약관 동의 테이블-->
 	<insert id="insertTerms" parameterType="memberDto">
 		INSERT INTO TERMSAGREE
 		(id, serviceChkYN, privacyChkYN, ageChkYN, marketingChkYN, regDate, firstIdNo)
 		VALUES
-		(#{id}, #{serviceChkYN}, #{serviceChkYN}, #{ageChkYN}, #{marketingChkYN}, now(), #{firstIdNo})
+			(#{id}, #{serviceChkYN}, #{serviceChkYN}, #{ageChkYN}, #{marketingChkYN}, now(), #{firstIdNo})
 	</insert>
-<!--	마이페이지 강의 현황-->
+	<!--	마이페이지 강의 현황-->
 	<select id="selectLecture" parameterType="LectureApplyDto" resultType="LectureApplyDto">
 		select A.stdApplyNo, A.id, A.registCode, A.status, B.title, B.lastPrice
 		from lectureapply AS A, lstregist AS B
