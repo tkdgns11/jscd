@@ -77,8 +77,8 @@ public class BtTrainingController {
     @GetMapping("/duplicationChk")
     @ResponseBody
     public int idDuplication(String loginId, Integer registCode) throws Exception{
-        System.out.println("loginId = " + loginId);
-        System.out.println("registCode = " + registCode);
+//        System.out.println("loginId = " + loginId);
+//        System.out.println("registCode = " + registCode);
 
         // loginId, registCode를 btApplicationDto에 set
         BtApplicationDto btApplicationDto = new BtApplicationDto();
@@ -87,7 +87,7 @@ public class BtTrainingController {
 
         // btApplicationDto로 신청한 강의가 있는지 검색
         int cnt = btApplicationService.confirmApplcation(btApplicationDto);
-        System.out.println("cnt = " + cnt);
+//        System.out.println("cnt = " + cnt);
 
         return cnt;
     }
@@ -98,7 +98,7 @@ public class BtTrainingController {
 
         try {
             List<LstRegistDto> list = lstService.bootCampList();
-            System.out.println(list);
+//            System.out.println(list);
 
             m.addAttribute("list", list);
         } catch(Exception e) {
@@ -115,7 +115,7 @@ public class BtTrainingController {
             LstRegistDto lstRegistDto = lstService.bootCampRead(registCode);
             List<ClassEnrollDto> classList = classEnrollService.getBootList(courseCode);
             m.addAttribute(lstRegistDto);
-            System.out.println("lstRegistDto = " + lstRegistDto);
+//            System.out.println("lstRegistDto = " + lstRegistDto);
             m.addAttribute("list", classList);
         } catch(Exception e) {
             e.printStackTrace();
