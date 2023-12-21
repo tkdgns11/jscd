@@ -23,6 +23,10 @@ public class AdminDaoImpl implements AdminDao {
         return session.selectOne(namespace + "countAdmin");
     }
 
+    public int countAssistant() throws Exception {
+        return session.selectOne(namespace + "countAssistant");
+    }
+
     @Override
     public AdminDto selectAdmin(String id) throws Exception {
         return session.selectOne(namespace + "selectAdmin", id);

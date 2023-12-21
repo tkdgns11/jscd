@@ -17,4 +17,5 @@ public interface AdminDao {
 
     void deleteAllAdmin() throws Exception;
     int countAdmin()throws Exception;
+    int countAssistant() throws Exception;
 }

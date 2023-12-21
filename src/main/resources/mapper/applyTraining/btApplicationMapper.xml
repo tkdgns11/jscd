@@ -125,16 +125,24 @@
 
     <!-- 결제대기 부트캠프 신청폼 개수-->
     <select id="countWaitPay" resultType="int">
-        select count(*)
-        from btstform as a , lectureapply as b
-        where a.approvalYN = '승인' and a.registCode = b.registCode and b.status = 'notPaid'
+        SELECT COUNT(*)
+        FROM (
+                 SELECT a.*
+                 FROM btstform as a
+                          INNER JOIN lectureapply as b ON a.registCode = b.registCode
+                 WHERE a.approvalYN = '승인' AND b.status = 'notPaid'
+             ) AS subquery;
     </select>
 
     <!-- 등록 부트캠프 신청폼 개수-->
     <select id="countRegist" resultType="int">
-        select count(*)
-        from btstform as a , lectureapply as b
-        where a.approvalYN = '승인' and a.registCode = b.registCode and b.status = 'Paid'
+        SELECT COUNT(*)
+        FROM (
+                 SELECT a.*
+                 FROM btstform AS a
+                          INNER JOIN lectureapply AS b ON a.registCode = b.registCode
+                 WHERE a.approvalYN = '승인' AND b.status = 'Paid'
+             ) AS subquery;
     </select>
 
 </mapper>

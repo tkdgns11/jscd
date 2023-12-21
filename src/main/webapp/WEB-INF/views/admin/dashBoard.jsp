@@ -147,12 +147,13 @@
       justify-content: flex-start;
       align-items: center;
       margin-top: 1rem;
+      white-space: nowrap; /* 줄바꿈 방지 */
     }
 
     .todolistTitle {
       width: 16%;
       height: 50%;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       font-weight: 500;
       text-align: center;
       line-height: 100%;
@@ -162,10 +163,6 @@
       justify-content: center;
       align-items: center;
     }
-
-    /*.forFlexUp {*/
-    /*    flex:1.1*/
-    /*}*/
 
     .row2 {
       margin-left: 1rem;
@@ -491,6 +488,7 @@
 
    .adminMemo {
      margin-left : 2rem;
+     margin-right: 2rem;
    }
 
     #warp2-2 {
@@ -527,6 +525,11 @@
       margin-bottom: 1.2rem;
       float: right;
       box-shadow: 0 0.5rem 0.5rem 0 rgba(0, 0, 0, 0.1);
+    }
+
+    #memoTitle {
+      color: #a1c5e6;
+      font-size: 1rem;
     }
 
     /*#visitorGraph {*/
@@ -572,7 +575,8 @@
               <div class="todolists">
                 <div class="todolistTitle">일반 <span class="todolistNum">${member}</span></div>
                 <div class="todolistTitle">학생 <span class="todolistNum">${student}</span></div>
-                <div class="todolistTitle">관리자 <span class="todolistNum">${admin}</span></div>
+                <div class="todolistTitle">원장님 <span class="todolistNum">${admin}</span></div>
+                <div class="todolistTitle">조교 <span class="todolistNum">${assistant}</span></div>
               </div>
             </div>
           </div>
@@ -775,20 +779,16 @@
       </div>
       <div id="warp2-top-2">
         <p class ="adminMemo" >
-          <span>관리자메모</span><br><br>
+          <br><span id="memoTitle">관리자메모</span><br><br>
           날짜: 2023-12-20 <br><br>
 
-          - 다음 주 월요일, 새로운 커리큘럼 개발을 위한 강사진 회의 예정. 회의 자료 준비 요망<br>
-          - 산업계 전문가들과의 네트워킹 이벤트 계획. 장소 선정 및 초청 명단 작성.<br>
-          - 최근 수강생들의 피드백을 검토하고, 강의 개선점에 대해 논의할 필요 있음.<br>
+          - 우수 학생을 위한 장학금 프로그램 검토 및 새로운 장학 기준 설정.
         </p>
       </div>
       <div id="warp2-top-1">
         <p class ="adminMemo">
           날짜: 2023-12-21<br><br>
 
-          - 우수 학생을 위한 장학금 프로그램 검토 및 새로운 장학 기준 설정.
-          - 컴퓨터 랩의 오래된 장비들을 최신 모델로 교체 계획 수립. 예산안 및 공급업체 조사 필요.<br>
           - 마케팅 전략 회의 예정. SNS 캠페인 및 전통 매체 광고 방안 논의.<br>
         </p>
       </div>
