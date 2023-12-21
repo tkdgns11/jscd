@@ -46,8 +46,10 @@ public class AllqnaController {
     public Map<String, String> write(@RequestBody AllqnaDto allqnaDto, Model model, HttpSession session, RedirectAttributes rttr) {
         Map<String, String> map = new HashMap<>();
 
-        //String writer = (String) session.getAttribute("id"); 로그인하면 아이디 가져오기
-        //allqnaDto.setWriter(writer);
+//        String writer = (String) session.getAttribute("id"); //로그인하면 아이디 가져오기
+//        allqnaDto.setWriter(writer);
+
+        System.out.println("게시글등록 ======="+allqnaDto);
 
         try {
 
@@ -73,7 +75,7 @@ public class AllqnaController {
     //1-2. 게시글 목록 읽기 (페이징 처리) 페이지 이동
     @GetMapping("/allqnaList")
     public String allqnaList(SearchCondition sc, Model model, AllqnaDto allqnaDto) throws Exception {
-
+        System.out.println("게시글 목록 sc = " + sc);
         try {
 
             int totalCnt = allqnaService.getSearchResultCnt(sc);
@@ -85,6 +87,10 @@ public class AllqnaController {
             model.addAttribute("list", list);
             model.addAttribute("ph", pageHandler);
 
+
+            //비밀글
+//            List<AllqnaDto> nonSecretList = allqnaService.getNonSecretSearchResultPage(sc);
+//            model.addAttribute("nonSecretList", nonSecretList);
 
             return "/board/qna/allqnaList";
 

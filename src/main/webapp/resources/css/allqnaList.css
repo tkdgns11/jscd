@@ -1,258 +1,59 @@
-@import "reset.css";
-
-#content {
-    width: 960px;
-    height: 1080px;
-    margin: 0 auto;
-}
+/*main {background-color: #777777;}*/
+/*.board_main {background-color: yellow;}*/
+/*#main_submit {background-color: #777777;}*/
+/*#main_contents {background-color: #0F36C3;}*/
 
 
-/** {*/
-/*    margin: 0;*/
-/*    padding: 0;*/
-/*}*/
+/*board_header 영역*/
+.board_header {background-color: rgba(0,0,0,2); color: #ffffff; padding-left: 15%; padding-top: 40px; padding-bottom: 40px;}
+#board_header_txt_title {font-size: 35px; font-weight: 550; margin-bottom: 10px;}
+#board_header_txt_content {font-size: 20px;}
+#boacrd_main_sub {width: 70%;margin: 0 auto; display: flex;}
+#board_aside {width: 20%; padding: 50px 30px;}
+#board_aside_title {font-size: 15px; margin-bottom: 25px;}
+#board_aside_contents {font-size: 20px; padding-left: 13px;}
+#board_aside_contents div {margin-bottom: 20px;}
 
-/*html {*/
-/*    font-size: 10px;*/
-/*}*/
-
-ul, li {
-    list-style: none;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-/*span {*/
-/*    display: inline-block;*/
-/*    font-size: 13px;*/
-/*    margin-bottom: 10px;*/
-/*}*/
-
-/*input {*/
-/*    margin-left: 10px;*/
-/*}*/
-
-#searchBox {
-    margin-top: 100px;
-}
+/*board_main_contents 영역*/
+#board_main_contents {width: 80%; padding: 50px 30px;}
+#main_header {font-size: 28px; font-weight: 500; padding-bottom: 10px; border-bottom: solid 2px #000000;}
+/*#main_submit {padding-bottom: 15px; display: flex; border-bottom: solid 1px #777777; flex-direction: row;}*/
+/*#section_check_sub { display: flex; margin-top: 50px;}*/
+/*#except_secret, #my_contents {display: flex;}*/
+/*#section_check_sub div {padding-right: 30px;}*/
+/*#section_check_sub div input {margin-right: 10px;}*/
 
 
-/*.lists {*/
-/*    hieght: 10px;*/
-/*}*/
+/*main search  부분*/
+#main_search{display: flex; flex-direction: column; width: 100%; height: 100px; margin-top: 20px; position: relative;}
+#search_contents{display: flex; flex-direction: row;}
+#search_select select{border: 1px solid rgba(0,0,0,0.2); width: 150px; height: 40px; border-radius: 10px;}
+#search_select select option{text-align: center;}
 
-.board_list {
-    width: 100%;
-    border-top: 2px solid #000;
-}
+#search_contents{width: 100%;position: relative;}
+#searchbar{width: 80%; margin-top: 10px;}
+#searchbar input{width: 80%; height: 40px; border: 1px solid rgba(0,0,0,0.2); border-radius: 10px;}
+#search_btn{position: absolute; right: 10px; margin-top: 10px;}
+/*main 비밀글,내가작성한 글보기, 등록 부분*/
+#main_submit{display: flex; flex-direction: row; width: 100%; height: 50px; display: flex; flex-direction: row; position: relative;}
+#main_submit input[type="checkbox"] {width: 15px;height: 15px;}
 
-.board_list > div {
-    border-bottom: 1px solid #ddd;
-    font-size: 0;
-}
+#except_secret{position: absolute; left: 0px; bottom: 0px;}
+#my_contents{position: absolute; left: 120px; bottom: 0px;}
+#submit_btn{position: absolute; right: 10px; bottom: 0px;}
 
-.board_list > div.top {
-    border-bottom: 1px solid #999;
-}
+#main_contents {padding: 20px 20px; font-size: 20px; border-bottom: solid 1px #777777;}
+#info_header {display: flex; height: 50px; align-items: center;}
+#info_header_category {padding: 1px; }
+#category_title {background-color: #04AA6D; padding: 10px; border-radius: 17px; font-size: 15px; color: white;}
+#info_header_title {font-size: 25px; padding: 10px; font-weight: 550;  }
+#info_footer {display: flex; font-weight: 100;}
+#footer_user_info {width: 70%; font-size: 15px;}
+#content_info {width: 30%; font-size: 15px;}
+#info_content{margin: 20px 0; font-size: 17px;}
 
-.board_list > div:last-child {
-    border-bottom: 1px solid #000;
-}
+#section_paging{display: flex; justify-content: center; margin : 50px 0;}
+#paging_per{display: flex;}
+#paging_group{display : flex;}
 
-.board_list > div > div {
-    display: inline-block;
-    padding: 20px 0;
-    text-align: center;
-    font-size: 15px;
-
-}
-
-.board_list > div.top > div {
-    font-weight: 600;
-}
-
-.board_list .allqnaNo {
-    width: 5%;
-
-}
-
-.board_list .qnaCt {
-    width : 15%;
-}
-
-
-.board_list .title, .title2 {
-    width: 30%;
-    text-align: left;
-}
-
-.board_list .top .title, title2 {
-    text-align: center;
-
-}
-
-.board_list .writer {
-    width: 10%;
-}
-
-.board_list .regDate {
-    width: 25%;
-    margin-left : 10px;
-
-}
-
-.board_list .hit {
-    width: 5%;
-    text-align: right;
-    margin-left : 20px;
-}
-
-
-.board_container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-
-.board_page {
-    display: inline-block;
-    text-align: center;
-    font-size: 0;
-    margin-left: auto;
-    padding-left: 10vh;
-}
-
-.board_page a {
-    display: inline-block;
-    width: 32px;
-    height: 32px;
-    box-sizing: border-box;
-    vertical-align: middle;
-    border: 1px solid #ddd;
-    border-left: 0;
-    line-height: 100%;
-}
-
-.board_page a.bt {
-    padding-top: 10px;
-    font-size: 1.2rem;
-    letter-spacing: -1px;
-}
-
-.board_page a.num {
-    padding-top: 9px;
-    font-size: 1.4rem;
-}
-
-.board_page a.num.on {
-    border-color: #0185FE;;
-    background: #0185FE;
-    color: #fff;
-}
-
-.board_list_wrap {
-    margin-top: 30px;
-}
-
-#searchBox {
-    margin-bottom: -30px;
-}
-
-.searchInput {
-    width: 715px;
-    height: 35px;
-    border-radius: 8px;
-    text-align: center;
-    border: 1px solid;
-}
-
-select {
-    width: 150px;
-    height: 40px;
-    border-radius: 8px;
-    text-align: center;
-}
-
-.searchOption {
-    border-style: solid;
-}
-
-#checkSumit {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#checkbox {
-    display: flex;
-    align-items: center;
-    margin-bottom: -30px;
-}
-
-.registeBtn {
-    text-align: center;
-    margin-bottom: -20px;
-}
-
-.paging a:hover {
-    background-color: #0185FE;; /* 마우스 호버시 배경색을 파란색으로 변경 */
-    color: white; /* 숫자 텍스트를 흰색으로 변경 */
-    border-color: #0185FE;; /* 테두리 색상을 파란색으로 변경 */
-}
-
-.paging {
-    margin-top: 30px;
-    text-align: center;
-    font-size: 0;
-}
-
-.paging a {
-    display: inline-block;
-    width: 35px;
-    height: 35px;
-    box-sizing: border-box;
-    vertical-align: middle;
-    border: 1.5px solid #ddd;
-    border-left: 0;
-    line-height: 100%;
-}
-
-.paging a.bt {
-    padding-top: 10px;
-    font-size: 1.2rem;
-    letter-spacing: -1px;
-}
-
-.paging a#pageNbr {
-    padding-top: 9px;
-    font-size: 12px;
-}
-
-.paging a.num.on {
-    border-color: #000;
-    background: #000;
-    color: #fff;
-}
-
-.paging a:first-child {
-    border-left: 1px solid #ddd;
-}
-
-
-.paging a {
-    width: 30px;
-    height: 30px;
-}
-
-
-/*.paging a.bt {*/
-/*    padding-top: 7px;*/
-/*}*/
-
-/*.paging a.num {*/
-/*    padding-top: 10px;*/
-/*}*/
+.ellipsis {white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}

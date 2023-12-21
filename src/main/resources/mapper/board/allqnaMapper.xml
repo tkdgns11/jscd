@@ -6,9 +6,9 @@
     <!--    1-1. 게시글 등록-->
     <insert id="insert" parameterType="allqnaDto">
         INSERT INTO allQnA
-            (qnaCtNo, title, content, writer, openYN, regDate)
+            (title, content, writer, openYN, regDate, ctName)
         VALUES
-            (#{qnaCtNo}, #{title}, #{content}, #{writer}, #{openYN}, now())
+            ( #{title}, #{content}, #{writer}, #{openYN}, now(), #{ctName})
     </insert>
     <!--    1-2. 게시글 목록 읽기-->
     <select id="selectAll" resultType="allqnaDto">
@@ -17,7 +17,7 @@
     </select>
 
     <sql id="selectFromAllQnA">
-        SELECT allqnaNo, qnaCtNo, title, writer, content, hit, openYN, regDate
+        SELECT allqnaNo, ctName, title, writer, content, hit, openYN, regDate
         FROM allQnA
     </sql>
 
@@ -138,7 +138,7 @@
     </sql>
 
     <select id="searchSelectPage" parameterType="SearchCondition" resultType="AllqnaDto">
-        SELECT allqnaNo, qnaCtNo, title, content, writer, hit, openYN, regDate
+        SELECT allqnaNo, title, content, writer, hit, openYN, regDate, ctName
         FROM  allQnA
         WHERE true
         <include refid="searchCondition"/>

@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
 <!DOCTYPE html>
@@ -18,133 +19,183 @@
 <header>
     <jsp:include page="/WEB-INF/views/header.jsp"/>
 </header>
-
-
-<div id="content">
-    <div class="board_wrap">
-        <div class="board_title">
+<main>
+    <section class="board_header">
+        <div id="board_header_txt">
+            <div id="board_header_txt_title">묻고 답해요</div>
+            <div id="board_header_txt_content">Q&A</div>
         </div>
-
-        <div id="top_container">
-            <form id="searchBox" action="<c:url value="/board/qna/allqnaList"/>" method="get" name="searchForm">
-                <select class="searchOption" name="option">
-                    <option value="TC" ${ph.sc.option=='TC' || ph.sc.option=='' ? "selected" : ""}>제목+내용</option>
-                    <option value="T" ${ph.sc.option=='T' ? "selected" : ""}>제목</option>
-                    <option value="W" ${ph.sc.option=='W' ? "selected" : ""}>작성자</option>
-                    <%--                    <option value="I">아이디</option>--%>
-                </select>
-                <input type="text" name="keyword" class="searchInput" value="${ph.sc.keyword}" placeholder="원하는 키워드를 입력하세요">
-                <button type="submit" class="backBtn" value="검색">검색</button>
-                <%--                <input type="hidden" name="page" value="1">--%>
-                <input type="hidden" name="pageSize" value="10">
-            </form>
-            <br><br><br>
-
-        </div>
-        <br><br><br>
-        <div id="checkSumit">
-        <div id="checkbox">
-            <input type="checkbox" class="secret" name="secret" value="secret"> <span>비밀글 제외</span>&emsp;&emsp;&emsp;
-            <input type="checkbox" name="myWriting" value=""> <span>내가 작성한 글 보기</span>
-        </div>
-
-            <button value="등록" id="registBtn" class="registeBtn"><a style="padding: 20px;" href="<c:url value="/board/qna/allqnaWrite"/>">등록</a></button>
-        </div>
-
-        <div class="board_list_wrap">
-            <div class="board_list">
-                <div class="top">
-                    <div class="allqnaNo">번호</div>
-                    <div class="qnaCt">분류</div>
-                    <div class="title">제목</div>
-                    <div class="writer">글쓴이</div>
-                    <div class="regDate">작성일</div>
-                    <div class="hit">조회수</div>
+    </section>
+    <section class="board_main">
+        <section id="boacrd_main_sub">
+            <section id="board_aside">
+                <div id="board_aside_title">커뮤니티</div>
+                <div id="board_aside_contents">
+                    <div><a id="board_aside_notice" href="#">공지사항</a></div>
+                    <div><a id="board_aside_qna" href="#">Q&A</a></div>
+                    <div><a id="board_aside_faq" href="#">FAQ</a></div>
                 </div>
+            </section>
+            <section id="board_main_contents">
+                <section id="main_header">
+                    <h2>전체</h2>
+                </section>
+
+                <form action="<c:url value="/board/qna/allqnaList"/>" method="get" name="searchForm">
+                <section id="main_search">
+                    <div id="search_select">
+                        <select name="option">
+                            <option name="" value="TC" ${ph.sc.option=='TC' || ph.sc.option=='' ? "selected" : ""}>제목+내용</option>
+                            <option value="T" ${ph.sc.option=='T' ? "selected" : ""}>제목</option>
+                            <option value="W" ${ph.sc.option=='W' ? "selected" : ""}>작성자</option>
+                        </select>
+                    </div>
+                    <div id="search_contents">
+                        <div id="searchbar">
+                            <input type="search" name="keyword" placeholder="원하는 키워드를 입력하세요">
+                        </div>
+                        <div id="search_btn">
+                            <input type="submit"  class="modifyBtn" value="검색">
+                        </div>
+                    </div>
+                </section>
+                </form>
+                <hr/>
+
+                <section id="main_submit">
+                    <div id="except_secret">
+                        <input type="checkbox" class="secret" name="secret" value="secret"> 비밀글 제외
+                    </div>
+                    <div id="my_contents">
+                        <input type="checkbox" name="myWriting" value="">
+                        <span>내가 작성한 글 보기</span>
+                    </div>
+                    <span id="submit_btn">
+                        <input type="button" value="등록" id="registBtn" class="registeBtn" onclick="window.location.href='/board/qna/allqnaWrite'">
+
+                    </span>
+                </section>
+                <hr/>
 
                 <c:forEach var="list" items="${list}">
-                    <div class="lists">
-                        <div class="allqnaNo">${list.allqnaNo}</div>
-                        <div class="qnaCt">${list.qnaCtNo}</div>
-                        <div class="title2" id="title" data-openyn="${list.openYN}">
-                            <c:if test="${empty param.secret}">
-                                <c:choose>
-                                    <c:when test="${list.openYN eq 'Y' || empty list.openYN || list.openYN eq null}">
-                                        <a href="${path}/board/qna/allqnaDetail?allqnaNo=${list.allqnaNo}" onclick="onTitle(event)">${list.title}</a>
-                                    </c:when>
-                                    <c:when test="${list.openYN eq 'N'}">
-                                        비밀글은 작성자와 관리자만 볼 수 있습니다.
-                                    </c:when>
-                                    <c:when test="${list.openYN eq 'N' && not empty param.secret}">
+                <section id="main_contents">
+                    <div id="main_content_per">
+                        <div id="main_content_info">
+                            <div id="info_header">
+                                <div id="info_header_category">
+                                    <p id="category_title">${list.ctName}</p>
+                                </div>
+                                <div id="info_header_title" data-openyn="${list.openYN}">
+                                    <c:if test="${empty param.secret}">
+                                        <c:choose>
+                                            <c:when test="${list.openYN eq 'Y' || empty list.openYN || list.openYN eq null}">
+                                                <a href="${path}/board/qna/allqnaDetail?allqnaNo=${list.allqnaNo}">${list.title}</a>
+                                            </c:when>
+                                            <c:when test="${list.openYN eq 'N'}">
+                                                비밀글은 작성자와 관리자만 볼 수 있습니다.
+                                            </c:when>
+                                            <c:when test="${list.openYN eq 'N' && not empty param.secret}">
 
-                                    </c:when>
-                                </c:choose>
-                            </c:if>
+                                            </c:when>
+                                        </c:choose>
+                                    </c:if>
+                                </div>
+                            </div>
+
+                            <div id="info_content">
+                                <c:if test="${empty param.secret}">
+                                    <c:choose>
+                                        <c:when test="${list.openYN eq 'Y' || empty list.openYN || list.openYN eq null}">
+                                            <p class="ellipsis">${list.content}</p>
+                                        </c:when>
+                                        <c:when test="${list.openYN eq 'N'}">
+                                           비밀글입니다.
+                                        </c:when>
+                                        <c:when test="${list.openYN eq 'N' && not empty param.secret}">
+                                        </c:when>
+                                    </c:choose>
+                                </c:if>
+                            </div>
+                            <div id="info_footer">
+                                <div id="footer_user_info">
+                                    <span id="user_info_name">${list.writer}</span>
+                                    <span id="user_info_id">(${list.writer})</span>
+                                    <span id="user_info_date">${list.regDate}</span>
+                                </div>
+                                <div id="content_info">
+                                    <span id="board_num">${list.allqnaNo}</span>
+                                    <span id="hit_num">list.hit</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="writer">${list.writer}</div>
-                        <div class="regDate">${list.regDate}</div>
-                        <div class="hit">${list.hit}</div>
                     </div>
+                </section>
 
-                </c:forEach>
-            </div>
-        </div>
+            </c:forEach>
+                <section id="paging">
+                    <div id="section_paging">
+                        <div id="paging_group">
 
+                            <c:if test="${totalCnt==null || totalCnt==0}">
+                                <div id="empty"> 게시물이 없습니다.</div>
+                            </c:if>
 
-        <br>
-        <div class="paging-container">
-            <div class="paging">
-                <c:if test="${totalCnt==null || totalCnt==0}">
-                    <div id="empty"> 게시물이 없습니다.</div>
-                </c:if>
-                <c:if test="${totalCnt!=null && totalCnt!=0}">
-                    <c:if test="${ph.showPrev}">
-                        <a id="pageNbr" class="bt page"
-                           href="<c:url value="/board/qna/allqnaList${ph.sc.getQueryString(ph.beginPage-1)}"/>">&lt;</a>
-                    </c:if>
-                    <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
-                        <a id="pageNbr" class="page ${i==ph.sc.page? "paging-active" : ""}"
-                           href="<c:url value="/board/qna/allqnaList${ph.sc.getQueryString(i)}"/>">${i}</a>
-                    </c:forEach>
-                    <c:if test="${ph.showNext}">
-                        <a id="pageNbr" class="bt page"
-                           href="<c:url value="/board/qna/allqnaList${ph.sc.getQueryString(ph.endPage+1)}"/>">&gt;</a>
-                    </c:if>
-                </c:if>
-            </div>
+<%--                            <div id="paging_group_fst">--%>
+<%--                                <input type="button" value="<<   처음">--%>
+<%--                            </div>--%>
 
+                            <div class="paging">
+                                <c:if test="${totalCnt==null || totalCnt==0}">
+                                    <div id="empty"> 게시물이 없습니다.</div>
+                                </c:if>
+                                <c:if test="${totalCnt!=null && totalCnt!=0}">
+                                    <c:if test="${ph.showPrev}">
+                                        <input type="button" id="pageNbr" class="bt page"
+                                           href="<c:url value="/board/qna/allqnaList${ph.sc.getQueryString(ph.beginPage-1)}"/>">&lt;</input>
+                                    </c:if>
+                                    <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
+                                        <a id="pageNbr" class="page ${i==ph.sc.page? "paging-active" : ""}"
+                                           href="<c:url value="/board/qna/allqnaList${ph.sc.getQueryString(i)}"/>">${i}</a>
+                                    </c:forEach>
+                                    <c:if test="${ph.showNext}">
+                                        <input type="button" id="pageNbr" class="bt page"
+                                           href="<c:url value="/board/qna/allqnaL9ist${ph.sc.getQueryString(ph.endPage+1)}"/>">&gt;</a>
+                                    </c:if>
+                                </c:if>
+                            </div>
 
-
-        </div>
-    </div>
-</div>
-</div>
-
-
+<%--                            <div id="paging_group_end">--%>
+<%--                                <input type="button" value="마지막   >>">--%>
+<%--                            </div>--%>
+                        </div>
+                    </div>
+                </section>
+            </section>
+        </section>
+    </section>
+</main>
 <footer>
     <jsp:include page="/WEB-INF/views/footer.jsp"/>
 </footer>
+</body>
 
 <script>
-
-
-<%--    비밀글 체크 --%>
     document.addEventListener('DOMContentLoaded', function () {
         const secretCheckboxes = document.querySelectorAll('.secret');
 
         secretCheckboxes.forEach(function (secretCheckbox) {
             secretCheckbox.addEventListener('change', function () {
                 const isChecked = this.checked;
-                const lists = document.querySelectorAll('.lists');
+                const sections = document.querySelectorAll('#main_contents');
 
-                lists.forEach(function (list) {
-                    const title = list.querySelector('.title2');
+                sections.forEach(function (section) {
+                    const title = section.querySelector('#info_header_title');
                     const openYNValue = title.getAttribute('data-openyn');
 
                     if (isChecked && openYNValue === 'N') {
-                        list.style.display = 'none';
+                        section.style.display = 'none';
                     } else {
-                        list.style.display = 'block';
+                        section.style.display = 'block';
                     }
                 });
             });
@@ -153,20 +204,11 @@
 
 
 
-//제목버튼 누르고 상세보기 들어갔을때 등록하기 버튼 안보이게
-
-
-//
-// function onPostClick(event){
-//     event.preventDefault(); // 기본 동작(링크 이동)을 막음
-//     window.location.href = event.currentTarget.getAttribute('href');
-// }
-//
 
 </script>
 
 
-</body>
+
 </html>
 
 

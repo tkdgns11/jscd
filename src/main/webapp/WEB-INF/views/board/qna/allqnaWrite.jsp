@@ -26,35 +26,41 @@
     <div id="detailHd">
         <input type="hidden" id="allqnaNo" name="allqnaNo" value="${allqnaList.allqnaNo}">
         <%--            <label>카테고리</label>--%>
-        <select name="qnaCtNo" id="allqnaCategory">
-            <option value="0" disabled selected>분류</option>
-            <option value="1">부트캠프</option>
-            <option value="2">세미나</option>
-            <option value="3">결제 및 환불</option>
-            <option value="4">사이트 이용</option>
-            <option value="5">학원관련</option>
-            <option value="6">기타</option>
+        <select name="ctName" id="allqnaCategory">
+            <option value="분류" disabled selected>분류</option>
+            <option value="부트캠프">부트캠프</option>
+            <option value="세미나">세미나</option>
+            <option value="결제 및 환불">결제 및 환불</option>
+            <option value="사이트 이용">사이트 이용</option>
+            <option value="학원관련">학원관련</option>
+            <option value="기타">기타</option>
         </select>
         <br><br>
 
         <input type="text" id="title" name="title" placeholder="제목에 핵심 내용을 요약해보세요." value="${allqnaList.title}">
         <span>작성 <input type="text" id="regDate" name="regDate" value="${allqnaList.regDate} " readonly> ･</span>
-        <%--        <span>수정 ･<input type="text" id="modifyDate" name="modifyDate" value="${allqnaList.modifyDate} " readonly></span>--%>
+        <%--        <span>수정 ･<input type="text" id="modifyDatZe" name="modifyDate" value="${allqnaList.modifyDate} " readonly></span>--%>
         <span>조회수 <input type="text" id="viewCnt" name="viewCnt" value=" ${allqnaList.hit}" readonly></span><br>
         <span>작성자 <input type="text" name="writer" id="writer" value=" ${allqnaList.writer}" readonly></span><br>
 
         <div id="wrapCon">
             <textarea id="content" name="content">${allqnaList.content}</textarea>
-            <%--위지윅 적용--%>
-            <%--                <script>--%>
-            <%--                    ClassicEditor--%>
-            <%--                        .create(document.querySelector('#content'))--%>
-            <%--                        .catch(error=>{--%>
-            <%--                            console.error(error);--%>
-            <%--                        });--%>
-            <%--                </script>--%>
+<%--            위지윅 적용--%>
+                            <script>
+                                document.addEventListener("DOMContentLoaded", function() {
+                                    ClassicEditor
+                                        .create(document.querySelector('#content'))
+                                        .then(newEditor => {
+                                            editor = newEditor;
+                                        })
+                                        .catch(error => {
+                                            console.error(error);
+                                        });
+                                });
+
+                            </script>
         </div>
-        <%--        <label for="file">파일 첨부:</label>--%>
+
         <div id="wrapAtc">
             <%--                id = file -> upload 바꿈--%>
             <input type="file" id="upload" name="file" class="attachBtn">

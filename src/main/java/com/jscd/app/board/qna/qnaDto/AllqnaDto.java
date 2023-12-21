@@ -27,13 +27,11 @@ public class AllqnaDto {
     private Date modifyDate;
     private Integer lastIdNo;
     private String etc;
+    private String ctName;
 
+    AllqnaDto () {}
 
-
-    public AllqnaDto() {
-    }
-
-    public AllqnaDto(Integer allqnaNo, Integer allqnaCmtNo, Integer allqnaCmtNum, Integer allqnaParentCmtNo, Integer depth, Integer allqnaCmtReplyNo, Integer qnaCtNo, Integer mebrNo, String title, String writer, String content, String cmtWriter, String cmtContent, Integer hit, String openYN, Date regDate, Date cmtRegDate, Integer firstIdNo, Date modifyDate, Integer lastIdNo, String etc) {
+    public AllqnaDto(Integer allqnaNo, Integer allqnaCmtNo, Integer allqnaCmtNum, Integer allqnaParentCmtNo, Integer depth, Integer allqnaCmtReplyNo, Integer qnaCtNo, Integer mebrNo, String title, String writer, String content, String cmtWriter, String cmtContent, Integer hit, String openYN, Date regDate, Date cmtRegDate, Integer firstIdNo, Date modifyDate, Integer lastIdNo, String etc, String ctName) {
         this.allqnaNo = allqnaNo;
         this.allqnaCmtNo = allqnaCmtNo;
         this.allqnaCmtNum = allqnaCmtNum;
@@ -55,6 +53,7 @@ public class AllqnaDto {
         this.modifyDate = modifyDate;
         this.lastIdNo = lastIdNo;
         this.etc = etc;
+        this.ctName = ctName;
     }
 
     public Integer getAllqnaNo() {
@@ -225,6 +224,14 @@ public class AllqnaDto {
         this.etc = etc;
     }
 
+    public String getCtName() {
+        return ctName;
+    }
+
+    public void setCtName(String ctName) {
+        this.ctName = ctName;
+    }
+
     @Override
     public String toString() {
         return "AllqnaDto{" +
@@ -249,6 +256,7 @@ public class AllqnaDto {
                 ", modifyDate=" + modifyDate +
                 ", lastIdNo=" + lastIdNo +
                 ", etc='" + etc + '\'' +
+                ", ctName='" + ctName + '\'' +
                 '}';
     }
 }

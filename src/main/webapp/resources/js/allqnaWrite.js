@@ -1,18 +1,30 @@
 
-
-
+// 에디터의 내용을 가져오는 함수
 
 //게시글 등록
 function allqnaWrite() {
         console.log("등록");
-    const qnaCtNo = document.getElementById("allqnaCategory").value;
+
+
+    // const content = CKEDITOR.instances.content.getData();
+
+    const ctName = document.getElementById("allqnaCategory").value;
     const writer = document.getElementById("writer").value;
     const title = document.getElementById("title").value;
-    const content = document.getElementById("content").value;
-    const openYN = document.querySelector('input[name="openYN"]:checked');
+    const editorData = editor.getData();
+    const div = document.createElement("div");
+    div.innerHTML = editorData;
+    const content = div.textContent || div.innerText || "";
+    const openYN = document.querySelector('input[name="openYN"]:checked').value;
+
+    console.log("등록======="+ctName);
+    console.log("writer======="+writer.value);
+    console.log("title======="+title.value);
+    console.log("content======="+content);
+    console.log("등록======="+openYN.value);
 
     // 카테고리, 제목, 내용, 공개여부가 모두 입력되었는지 확인합니다.
-    if (qnaCtNo === "") {
+    if (ctName === "") {
         alert("카테고리를 선택해주세요.");
         return false;
     }
@@ -29,8 +41,10 @@ function allqnaWrite() {
         return false;
     }
 
-    const allqnaData = {"qnaCtNo": qnaCtNo, "title": title, "writer": writer, "content": content, "openYN": openYN.value};
+    const allqnaData = {ctName: ctName, title: title, writer: writer, content: content, openYN: openYN};
     console.log(allqnaData);
+
+
 
     $.ajax({
         url: "/board/qna/allqnaWrite",
@@ -458,5 +472,5 @@ function replyCmtCancel(index) {
         });
     }
 
-
+//     비밀글 체크
 
