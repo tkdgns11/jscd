@@ -33,7 +33,6 @@ public class stdNoticeController {
         try {
             stdNoticeDto stdNoticeDto = stdNoticeService.read(bno); //서비스에서 읽고 dto로 받기
 
-//            System.out.println("stdNoticeDto = " + stdNoticeDto);
 
             m.addAttribute(stdNoticeDto); //이름 생략가능 -> 타입의 첫글자가 소문자로 바뀌고 이름으로 저장
             m.addAttribute("page", page); //여기서 잘 모르겠음;; page? 를 sc에서 가져오는 거 아니었나?
@@ -47,8 +46,8 @@ public class stdNoticeController {
     @GetMapping("/list")
     public String list(SearchCon sc, Model m, HttpServletRequest request) throws Exception {
 
-            if(!loginCheck(request))
-                return "redirect:/member/login?toUrl="+request.getRequestURL();  // 로그인을 안했으면 로그인 화면으로 이동
+//            if(!loginCheck(request))
+//                return "redirect:/member/login?toUrl="+request.getRequestURL();  // 로그인을 안했으면 로그인 화면으로 이동
 
         try {
             int totalCnt = stdNoticeService.getSearchResultCnt(sc);
@@ -96,15 +95,14 @@ public class stdNoticeController {
     }
 
     @GetMapping("/write")  //게시판 작성을 위한 빈 화면을 보여준다
+
     public String write(Model m, SearchCon sc) {
 
-        System.out.println("write get");
 
         m.addAttribute("mode", "new");
         m.addAttribute("page", sc.getPage());
         m.addAttribute("pageSize", sc.getPageSize());
-        System.out.println(m);
-        System.out.println("sc = " + sc);
+
 
         return "board/notice/stdNotice"; //읽기와 쓰기에 사용, 쓰기에 사용할 때는 mode=new , new가 아닐 때에는 읽기만!
     }
@@ -113,8 +111,8 @@ public class stdNoticeController {
     public String write(stdNoticeDto stdNoticeDto, HttpSession session, Model m, RedirectAttributes rattr) { //사용자가 입력한 정보를 다시 돌려줘야해서 그걸 model에 담아둬야함
 
         String writer = (String)session.getAttribute("id");
-        stdNoticeDto.setWriter(writer); //Dto에 작성자 저장
-        System.out.println("여기까지 왔음");
+        stdNoticeDto.setWriter(writer);
+
 
         try {
 
@@ -172,13 +170,7 @@ public class stdNoticeController {
             return "board/notice/stdNoticeList";
 
         }
-    }
+    }}
 
-    private boolean loginCheck(HttpServletRequest request) {
-        // 1. 세션 얻기
-        HttpSession session = request.getSession();
-        // 2. 세션에 id가 있는지 확인, 있으면 true를 반환
-        return session.getAttribute("id")!=null;
-    }
-}
+
 

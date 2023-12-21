@@ -4,34 +4,34 @@
 
 <mapper namespace="com.jscd.app.board.stdNoticeMapper">
     <select id="count" resultType="int">
-        SELECT count(*) FROM stdnotibd
+        SELECT count(*) FROM stdnotice
     </select>
 
     <delete id="deleteAll">
-        DELETE FROM stdnotibd
+        DELETE FROM stdnotice
     </delete>
 
     <delete id="delete" parameterType="map">
-        DELETE FROM stdnotibd WHERE bno = #{bno} and writer = #{writer}
+        DELETE FROM stdnotice WHERE bno = #{bno}
     </delete>
 
     <insert id="insert" parameterType="stdNoticeDto">
-        INSERT INTO stdnotibd
+        INSERT INTO stdnotice
             (title, content, writer)
         VALUES
             (#{title}, #{content}, #{writer})
     </insert>
 
     <select id="selectAll" resultType="stdNoticeDto">
-        SELECT bno, title, content, writer, viewCnt,  regDate
-        FROM stdnotibd
+        SELECT *
+        FROM stdnotice
         ORDER BY regDate DESC, bno DESC
     </select>
 
 
     <sql id="selectFromNotice">
         SELECT *
-        FROM stdnotibd
+        FROM stdnotice
     </sql>
 
     <select id="select" parameterType="int" resultType="stdNoticeDto">
@@ -46,7 +46,7 @@
     </select>
 
     <update id="update" parameterType="stdNoticeDto">
-        UPDATE stdnotibd
+        UPDATE stdnotice
         SET   title = #{title}
           , content = #{content}
           , modifyDate = #{modifyDate}
@@ -54,13 +54,13 @@
     </update>
 
 <!--    <update id="updateCommentCnt" parameterType="map">-->
-<!--        UPDATE stdnotibd-->
+<!--        UPDATE stdnotice-->
 <!--        SET   commentCnt = commentCnt + #{cnt}-->
 <!--        WHERE bno = #{bno}-->
 <!--    </update>-->
 
     <update id="increaseViewCnt" parameterType="int">
-        UPDATE stdnotibd
+        UPDATE stdnotice
         SET   viewCnt = viewCnt + 1
         WHERE bno = #{bno}
     </update>
@@ -83,7 +83,7 @@
 
     <select id="searchSelectPage" parameterType="SearchCon" resultType="noticeDto">
         SELECT bno, title, content, writer, viewCnt, regDate
-        FROM stdnotibd
+        FROM stdnotice
         WHERE true
         <include refid="searchCondition"/>
         ORDER BY regDate DESC, bno DESC
@@ -92,7 +92,7 @@
 
     <select id="searchResultcnt" parameterType="SearchCon" resultType="int">
         SELECT count(*)
-        FROM stdnotibd
+        FROM stdnotice
         WHERE true
         <include refid="searchCondition"/>
     </select>

@@ -60,26 +60,16 @@
                 <li id="community">
                     <p>커뮤니티</p>
                     <ul class="Menu">
-                        <li><a href="<c:url value="/board/notice/list"/>">
-                            <i class="fa-solid fa-bullhorn" style="color: #4a4a4a;"></i>
-                            &nbsp;&nbsp;공지사항</a></li>
-                        <li><a href="${path}/board/qna/allqnaList">
-                            <i class="fa-solid fa-comment-dots" style="color: #4a4a4a;"></i>
-                            &nbsp;&nbsp;질문&답변</a></li>
-                        <li><a href="${path}/board/faq">
-                            <i class="fa-solid fa-circle-question" style="color: #4a4a4a;"></i>
-                            &nbsp;&nbsp;FAQ</a></li>
+                        <li><a href="<c:url value="/board/user/list"/>">공지사항</a></li>
+                        <li><a href="${path}/board/qna/allqnaList">질문&답변</a></li>
+                        <li><a href="${path}/board/faq">FAQ</a></li>
                     </ul>
                 </li>
                 <li id="manage">
                     <p>학사관리</p>
                     <ul class="Menu">
-                        <li><a href="#">
-                            <i class="fa-solid fa-bullhorn" style="color: #4a4a4a;"></i>
-                            &nbsp;&nbsp;공지사항</a></li>
-                        <li><a href="#">
-                            <i class="fa-solid fa-comment-dots" style="color: #4a4a4a;"></i>
-                            &nbsp;&nbsp;질문&답변</a></li>
+                        <li><a href="<c:url value="/board/userStd/list"/>">공지사항</a></li>
+                        <li><a href="#">질문&답변</a></li>
                     </ul>
                 </li>
             </ul>
