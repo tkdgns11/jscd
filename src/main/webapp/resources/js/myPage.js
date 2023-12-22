@@ -1,4 +1,4 @@
-
+ 
 
 function infoModify() {
     const pwdChk = document.getElementById("pwd2");

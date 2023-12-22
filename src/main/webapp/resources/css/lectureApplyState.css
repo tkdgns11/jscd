@@ -16,7 +16,7 @@
 .section_lecture-price_info {padding: 50px 0; border-bottom: solid 1px #9da2a7;}
 .section_howpay {padding: 30px 0;}
 #payBtns {margin: 60px 0 20px 0; display: flex; justify-content: center;}
-.aside_pay {position: fixed; right: 16%; top: 15%;}
+.aside_pay {position: fixed; right: 6%; top: 15%;}
 
 #pay-success_main, .orderDetail_main {width: 50%; margin: 100px auto 300px auto;}
 #pay-success_main-content, #orderDetail_main-content {padding: 30px; background-color: #ffffff; box-shadow: 0 0 40px rgba(0, 0, 0, 0.15); border-radius: 7px;}
@@ -47,9 +47,9 @@
 #section_orderlist {width: 65%;}
 #orderlist_member_contents {display: flex;}
 #aside_orderlist_info section {margin-bottom: 10px;}
-#member_name {margin-top: 8%; font-size: 23px;}
-#member_id {font-size: 18px; color: #575e65; margin-top: 5px; text-decoration-line: underline;}
-#aside_orderlist_info {position: fixed; top: 15%; right: 13%; width: 450px;}
+#member_name {margin-top: 8%; font-size: 17px;}
+#member_id {font-size: 14px; color: #575e65; margin-top: 5px; text-decoration-line: underline;}
+#aside_orderlist_info {position: fixed; top: 15%; right: 10%; width: 350px;}
 #section_orderlist_contents {background-color: #ffffff; margin: 20px 0; border-radius: 16px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.15); }
 #orderlist_content-title {background-color: #49a3ff; padding: 20px 30px; border-radius: 16px 16px 0 0; font-size: 30px; font-weight: 550; color: #ffffff; letter-spacing: 10px;}
 #orderlist_content-info {padding: 20px 30px;}
@@ -147,10 +147,10 @@ body {font-size: 1rem; line-height: 1.5;}
 #copyBtn {height: 25px; width: 200px; margin: 5px;}
 #orderlist_copyBtn {height: 25px; width: 100%;}
 #go_orderlist, #go_mypage {width: 100%; height: 80px; font-size: 20px;}
-
+ 
 .goDetail:active, .goLectureInfo:active {opacity: 0.5;}
 .goDetail, .goLectureInfo {cursor: pointer;}
-#orderlist_goQna, #goFaq, #copyMail {font-size: 15px; color: #94a0ab; margin: 0 0 5px 0; height: 40px; width: 100%; background-color: #fff; border: solid 1px #dee3e9; border-radius: 10px;}
+#orderlist_goQna, #goFaq, #copyMail {font-size: 12px; color: #94a0ab; margin: 0 0 5px 0; height: 40px; width: 100%; background-color: #fff; border: solid 1px #dee3e9; border-radius: 10px;}
 #orderlist_goQna {margin-top: 15px;}
 #copyMail {background-color: #0185FE !important; color: #ffffff;}
 #orderlist_content-btns {display: flex; border-bottom-right-radius: 16px; border-bottom-left-radius: 16px;}
@@ -181,8 +181,10 @@ input[type="button"]{ font-family: FontAwesome; }
 .price-pay-num-unit {width: 70%; justify-content: right;}
 .terms-agreement {margin: 15px 0 18px 0;}
 
-#orderlist_member_contents, #orderlist_slr-account-info, #orderlist_contact {background-color: #ffffff; padding: 30px; border: solid 2px #dee3e9; justify-content: center; border-radius: 10px;}
-#member_img {width: 30%; justify-content: center;}
+#orderlist_member_contents {background-color: #ffffff; padding: 10px; border: solid 2px #dee3e9; justify-content: center; border-radius: 10px;}
+#orderlist_slr-account-info, #orderlist_contact {background-color: #ffffff; padding: 10px 30px; border: solid 2px #dee3e9; justify-content: center; border-radius: 10px;}
+#member_img {width: 20%; justify-content: center;}
+#member_img > img {width: 50px; height: 50px; padding-top: 5px;}
 #member_content {width: 55%;}
 #slr-account-content {padding: 20px 0;}
 #account-content_text tr td {padding: 5px 25px 5px 0; color: #7c838b;}

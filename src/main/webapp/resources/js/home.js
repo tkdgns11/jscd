@@ -25,7 +25,7 @@ window.onload=function(){
 
     // 스크롤 시 해당 id 영역 떠오르기 효과 구현
     window.addEventListener('scroll', function() {
-        applyFloatUpEffect('lectureTxt');
+        applyFloatUpEffect('lectureTxt'); 
         applyFloatUpEffect('keyElementTxt');
         applyFloatUpEffect('youtubeBox');
     });

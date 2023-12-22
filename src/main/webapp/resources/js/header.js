@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+ document.addEventListener('DOMContentLoaded', function () {
     var menus = {
         'about': document.querySelector('#about .Menu'),
         'apply': document.querySelector('#apply .Menu'),

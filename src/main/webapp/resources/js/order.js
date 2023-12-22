@@ -10,6 +10,9 @@ window.onload = function () {
     const lastPayBtn = document.getElementById("price-btn");
     // q&a 바로가기 연결
     const goQna = document.getElementById("goQna");
+    // aside_orderlist_info 영역 footer 닿으면 사라지는 기능 위한 변수
+    const footer = document.querySelector('footer'); // footer 선택
+    const fixedElement = document.getElementById("aside_pay");  // fixed 요소 선택
 
     let currentPaymentMethod = null;
 
@@ -89,6 +92,20 @@ window.onload = function () {
     } else {
         console.error('Element with id "goQna" not found!');
     }
+
+    // aside_pay 영역 footer 닿으면 사라지기
+    window.addEventListener("scroll", function() {
+        var rect = footer.getBoundingClientRect(); // footer의 위치와 크기 정보를 가져옴
+        var footerHeight = document.body.scrollHeight - window.innerHeight; // footer의 높이 계산
+
+        if (rect.top < window.innerHeight) {
+            // 스크롤이 footer에 닿으면 fixed 요소의 top 위치를 늘림
+            fixedElement.style.top = (15 + footerHeight) + '%';
+        } else {
+            // 그렇지 않으면 원래 위치로
+            fixedElement.style.top = '15%';
+        }
+    });
 
 } //window.onload 종료
 

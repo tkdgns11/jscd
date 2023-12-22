@@ -1,4 +1,4 @@
-window.addEventListener('load', function () {
+ window.addEventListener('load', function () {
     const orderButtons = document.querySelectorAll('.goDetail');
 
     orderButtons.forEach(function(button) {

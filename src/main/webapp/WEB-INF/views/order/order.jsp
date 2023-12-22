@@ -1,5 +1,5 @@
 <%--
-실결제 진행 페이지
+실결제 진행 페이지 
 http://localhost:8080/order/order?registCode=2
   Created by IntelliJ IDEA.
   User: soheepark
@@ -23,8 +23,8 @@ http://localhost:8080/order/order?registCode=2
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- 탭 아이콘 & 글자 지정 -->
-    <link rel="icon" href="/img/logo.png"/>
-    <link rel="apple-touch-icon" href="/img/logo.png"/>
+    <link rel="icon" href="/img/mainlogo.png"/>
+    <link rel="apple-touch-icon" href="/img/mainlogo.png"/>
     <title>정석코딩 | 결제</title>
 
     <!-- css 파일 불러오기 -->
@@ -207,7 +207,7 @@ http://localhost:8080/order/order?registCode=2
                 </div>
             </section>
             <input class="order_btns" id="goQna" type="button" value="   Q&A 바로가기">
-            <footer class="bottom-fixed">
+            <div class="bottom-fixed">
                 <div class="bottom-fixed_price">
                     <span class="bottom-fixed_pay-num">
                         <c:if test="${orderDto != null && orderDto.registCode == pageScope.registCode}">
@@ -216,7 +216,7 @@ http://localhost:8080/order/order?registCode=2
                     </span>
                     <span class="bottom-fixed_pay-unit">원</span>
                 </div>
-            </footer>
+            </div>
         </aside>
     </main>
 

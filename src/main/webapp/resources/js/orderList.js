@@ -68,7 +68,7 @@ window.onload = function () {
         console.error('copyMail not found!');
     }
 
-    // aside_orderlist_info 영역 footer 닿으면 사라지기
+    //  _orderlist_info 영역 footer 닿으면 사라지기
     window.addEventListener("scroll", function() {
         var rect = footer.getBoundingClientRect(); // footer의 위치와 크기 정보를 가져옴
         var footerHeight = document.body.scrollHeight - window.innerHeight; // footer의 높이 계산
