@@ -13,35 +13,73 @@
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/login.css"/>">
-    <script type="text/javascript" src="<c:url value="/js/login.js"/>"></script>
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/jscdReset.css"/>">
+
 
 
     <!-- 탭 아이콘 & 글자 지정 -->
     <link rel="icon" href="/img/mainlogo.png"/>
     <link rel="apple-touch-icon" href="/img/mainlogo.png"/>
     <title>정석코딩 | 비밀번호 찾기</title>
+
+
+    <style>
+
+        #findEmailBox input[type=text] {
+            width: 350px;
+            height: 40px;
+            background-color: rgba(0, 0, 0, 0.1);
+            border: 0;
+            border-radius: 5px;
+
+        }
+
+        #findEmailBox input[type=text]:focus {
+            outline: none;
+        }
+
+        #findPwdBtn {
+            width: 450px;
+            height: 40px;
+            font-size: 19px;
+            background-color: #0185FE;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 5px;
+            letter-spacing: 10px;
+            font-weight: 600;
+            border: 0;
+            margin-top: 15px;
+            margin-left: 0;
+            margin-bottom: 30px;
+        }
+        .findPwdBtn{border: 1px solid rgba(0,0,0,0.7);background-color: #ffffff; width: 90px; height: 40px; border-radius: 8px; cursor:pointer}
+
+    </style>
 </head>
+
+
 <body>
 <header>
-    <jsp:include page="../header.jsp"/>
+    <jsp:include page="../../header.jsp"/>
 </header>
-<div>
-    <h1>비밀번호 찾기</h1>
-    <div>
-        아이디 : <input type="text" name="id" id="id">
-        <input type="button" id="idChkBtn" value="아이디 확인" onclick="idCheck()">
+<div id="loginWrap">
+    <div id="loginHeader" style="border: none;">
+        <h1>비밀번호찾기</h1>
+    </div>
+    <div id="findEmailBox">
+        <input type="text" name="id" id="id" placeholder="이메일 입력">
+        <input type="button" id="idChkBtn" value="이메일 확인" class="findPwdBtn" onclick="idCheck()"><br><br>
         <input type="hidden" id="idChkYN" value="">
-
-        <input type="button" id="emailChkValueBtn" value="인증번호 받기" class="signup_btn"><br>
         <input type="text" id="certification" name="인증번호" placeholder="인증번호를 입력해주세요." autocomplete="off">
+        <input type="button" id="emailChkValueBtn" value="인증번호 받기" class="findPwdBtn"><br>
         <font id="checkPwd" size="2"></font><br>
         <input type="hidden" id="emailChkYN" value="">
-
-        <input type="button" value="비밀번호 찾기" id="findPwdBtn">
     </div>
+    <input type="button" value="비밀번호 찾기" id="findPwdBtn">
 </div>
 <footer style="flex-shrink: 0;">
-    <jsp:include page="../footer.jsp" flush="true"/>
+    <jsp:include page="../../footer.jsp" flush="true"/>
 </footer>
 
 <script>
@@ -53,7 +91,7 @@
 
 
         if (idChk != 'Y') {
-            alert("아이디 존재여부를 확인해주세요.");
+            alert("이메일 존재여부를 확인해주세요.");
             return false;
         }
         return true;
@@ -72,7 +110,7 @@
     }
 
 
-    //존재하는 아이디인지 체크
+    //존재하는 이메일인지 체크
     const idCheck = () => {
         const id = document.getElementById('id').value;
 
@@ -81,12 +119,11 @@
             url: '/member/idChk?id=' + id,
             success: (email) => {
                 if (id == email) {
-                    alert('존재하는 아이디 입니다.본인인증을 진행해주세요.');
-                    alert(id)
+                    alert('존재하는 이메일 입니다.본인인증을 진행해주세요.');
                     document.getElementById("idChkYN").value = 'Y';
-                    console.log("아이디 존재 여부 = " + document.getElementById('idChkYN').value);
+                    console.log("이메일 존재 여부 = " + document.getElementById('idChkYN').value);
                 } else {
-                    alert('존재하지않는 아이디 입니다');
+                    alert('존재하지않는 이메일 입니다');
                 }
             },
             error: () => {
@@ -109,7 +146,6 @@
             if (!idChkYNValid(idChkYN) || !emailChkYNValid(emailChkYN)) {
                 return;
             } else {
-                alert(email)
                 location.href = "/member/pwdModify?id=" + email;
             }
 
@@ -121,7 +157,6 @@
         $('#emailChkValueBtn').click(() => {
 
             const email = $('#id').val(); //이메일 주소값 가져오기
-            console.log(email);
 
             $.ajax({
                 type: 'get',
@@ -134,7 +169,7 @@
                 error: () => {
                     alert("서버 요청 실패")
                 }
-            }); // end ajax
+            });
         });
 
 
@@ -147,13 +182,15 @@
                 $("#checkPwd").attr("color", "green");
                 $("#certification").css("border", "1.5px solid green");
                 document.getElementById("emailChkYN").value = 'Y';
-                console.log("인증번호 일치 = " + document.getElementById('emailChkYN').value);
+                console.log("인증번호 값 = " + document.getElementById("emailChkYN").value)
             } else {
                 // alert('인증번호가 불일치합니다. 다시 확인해주세요.')
                 $("#checkPwd").html("인증번호 불일치");
                 $("#checkPwd").attr("color", "red");
                 $("#certification").css("border", "1.5px solid red");
-                console.log("인증번호 불일치 = " + document.getElementById('emailChkYN').value);
+                document.getElementById("emailChkYN").value = 'N';
+                console.log("인증번호 값 = " + document.getElementById("emailChkYN").value)
+
             }
         });
 

@@ -1,6 +1,6 @@
 <%--
   Created by IntelliJ IDEA.
-  User: jskang 
+  User: jskang
   Date: 12/6/23
   Time: 12:37
   To change this template use File | Settings | File Templates.
@@ -56,15 +56,17 @@
         <label class="memberInfoLabel">비밀번호 변경</label><br>
         <input type="password" class="password" id="pwd1" style="margin-bottom:15px"><br>
         <label class="memberInfoLabel">비밀번호 변경 확인</label><br>
-        <input type="password" name="pwd" class="password" id="pwd2">
+        <input type="password" name="pwd" class="password" id="pwd2" style="margin-bottom:5px"><br>
         <font id="checkPwd" size="2"></font><br>
-        <label class="memberInfoLabel">성별</label><br>
+        <input type="hidden" id="pwdChkYN" value="">
+        <label class="memberInfoLabel" style="margin-top: 10%">성별</label><br>
         <input type="text"  class="memberInfoInput" value="${memberDto.gender== 1 ? '남' : '여'}" readonly><br>
         <label class="memberInfoLabel">생년월일</label><br>
-        <input type="text"  class="memberModifyInput"  name="birth" id="birth" value="${memberDto.birth}" name="birth"><br>
-        <%--        <input type="date"  class="memberModifyInput"  name="birth" id="birth" value="${memberDto.birth}" name="birth"><br>--%>
+        <input type="text"  class="memberModifyInput"  name="birth" id="birth" value="${memberDto.birth}" name="birth" placeholder="생년월일 6자리를 입력해주세요(Ex.950324)"><br>
         <label class="memberInfoLabel">휴대전화</label><br>
         <input type="text" value="${memberDto.phone}" name="phone" id="phone" class="memberModifyInput" oninput="autoHyphen(this)"><br>
+        <label class="memberInfoLabel">환불 계좌번호</label><br>
+        <input type="text" value="${memberDto.acct}" class="memberModifyInput" id="acct" name="acct" placeholder="은행명 / 예금주 / 계좌번호 형식으로 입력해주세요."><br>
         <div id="myPageBtnBox">
             <input type="button" value="수정" class="modifyBtn" onclick="infoModify()">
         </div>
@@ -81,3 +83,5 @@
 
 </body>
 </html>
+
+
