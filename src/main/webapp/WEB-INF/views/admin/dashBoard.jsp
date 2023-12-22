@@ -395,7 +395,7 @@
 
     #warp2 {
       width: 25%;
-      height: 120%;
+      height: 100%;
       float: right;
       margin-top: 1rem;
       margin-right: 2rem;
@@ -476,7 +476,6 @@
     }
 
 
-
     #warp2-top-1 {
       width: 100%;
       height: 30%;
@@ -493,39 +492,40 @@
 
     #warp2-2 {
       width: 100%;
-      height: 17.5%;
+      /*height: calc(40% - 1rem);*/
+      height: calc(45% - 1rem);
       background-color: #32F1FF;
       float: right;
       margin-bottom: 1rem;
       box-shadow: 0 0.5rem 0.5rem 0 rgba(0, 0, 0, 0.1);
     }
 
-    #warp2-3 {
-      width: 100%;
-      height: 17.5%;
-      background-color: #FAFA96;
-      margin-bottom: 1rem;
-      float: right;
-      box-shadow: 0 0.5rem 0.5rem 0 rgba(0, 0, 0, 0.1);
-    }
+    /*#warp2-3 {*/
+    /*  width: 100%;*/
+    /*  height: 17.5%;*/
+    /*  background-color: #FAFA96;*/
+    /*  margin-bottom: 1rem;*/
+    /*  float: right;*/
+    /*  box-shadow: 0 0.5rem 0.5rem 0 rgba(0, 0, 0, 0.1);*/
+    /*}*/
 
-    #warp2-4 {
-      width: 100%;
-      height: 17.5%;
-      background-color: #FF96FF;
-      margin-bottom: 1rem;
-      float: right;
-      box-shadow: 0 0.5rem 0.5rem 0 rgba(0, 0, 0, 0.1);
-    }
+    /*#warp2-4 {*/
+    /*  width: 100%;*/
+    /*  height: 17.5%;*/
+    /*  background-color: #FF96FF;*/
+    /*  margin-bottom: 1rem;*/
+    /*  float: right;*/
+    /*  box-shadow: 0 0.5rem 0.5rem 0 rgba(0, 0, 0, 0.1);*/
+    /*}*/
 
-    #warp2-5 {
-      width: 100%;
-      height: 17.5%;
-      background-color: #B21EF1;
-      margin-bottom: 1.2rem;
-      float: right;
-      box-shadow: 0 0.5rem 0.5rem 0 rgba(0, 0, 0, 0.1);
-    }
+    /*#warp2-5 {*/
+    /*  width: 100%;*/
+    /*  height: 17.5%;*/
+    /*  background-color: #B21EF1;*/
+    /*  margin-bottom: 1.2rem;*/
+    /*  float: right;*/
+    /*  box-shadow: 0 0.5rem 0.5rem 0 rgba(0, 0, 0, 0.1);*/
+    /*}*/
 
     #memoTitle {
       color: #a1c5e6;
@@ -802,6 +802,10 @@
 <script>
 
   window.onload = function () {
+
+
+    let msg = "${param.msg}";
+    if (msg != "") alert("원장님만 접근 가능한 페이지 입니다.");
 
     // DailySummaryDto 리스트를 자바스크립트 객체 배열로 변환
     let dailySummaryData = [

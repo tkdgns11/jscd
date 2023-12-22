@@ -4,6 +4,26 @@
 
 <mapper namespace="com.jscd.app.facility.LockerMapper">
 
+    <select id="selectAlert" resultType="map">
+<![CDATA[
+        SELECT e.name as name , e.id as email, m.lockerCode as lockerCode, m.lockerID as lockerID
+         FROM member e,
+        (SELECT * FROM lockerDetail WHERE DATEDIFF(endDate, CURDATE()) = 3 ) m
+        WHERE e.ID = m.mebrID;
+        ]]>
+    </select>
+
+    <update id="expiredDelete" >
+        UPDATE lockerDetail
+        SET statusCode = 2,
+            mebrNO     = NULL,
+            mebrID     = NULL,
+            startDate  = NULL,
+            endDate    = NULL
+        WHERE DATEDIFF(endDate, CURDATE()) = -1 ;
+    </update>
+
+
     <!-- 관리자 락커 사용중인 회원 조회-->
     <select id="adminSelectLockers" resultType="LockerDto">
         SELECT
@@ -56,7 +76,6 @@
     </update>
 
     <!-- 락커 삭제 -->
-    <!--    그냥 delete가 성능면에서 낫나?-->
     <update id="deleteLocker" parameterType="String">
         UPDATE lockerDetail
         SET statusCode = 2,
