@@ -100,16 +100,25 @@
 
     <!-- 결제대기 세미나 신청폼 개수-->
     <select id="countWaitPay" resultType="int">
-        select count(*)
-        from smstform as a , lectureapply as b
-        where a.registCode = b.registCode and b.status = 'notPaid'
+        SELECT COUNT(*)
+        FROM (
+                 SELECT a.*
+                 FROM smstform AS a
+                          JOIN lectureapply AS b ON a.registCode = b.registCode
+                 WHERE b.status = 'notPaid'
+             ) AS subquery;
     </select>
 
     <!-- 등록 세미나 신청폼 개수-->
     <select id="countRegist" resultType="int">
-        select count(*)
-        from smstform as a , lectureapply as b
-        where a.registCode = b.registCode and b.status = 'Paid'
+        SELECT COUNT(*)
+        FROM btstform AS a
+                 JOIN (
+            SELECT registCode
+            FROM lectureapply
+            WHERE status = 'Paid'
+        ) AS b ON a.registCode = b.registCode
+        WHERE a.approvalYN = '승인';
     </select>
 
 </mapper>

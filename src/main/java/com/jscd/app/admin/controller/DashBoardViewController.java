@@ -43,8 +43,6 @@ public class DashBoardViewController {
         
         List<DailySummaryDto> dailySummaryDtoList = dashBoardService.initViewData();
 
-        System.out.println("dailySummaryDtoList = " + dailySummaryDtoList);
-
         model.addAttribute("dailySummaryDtoList", dailySummaryDtoList);
         model.addAttribute("weekData", dashBoardService.getWeekData());
         model.addAttribute("monthData", dashBoardService.getMonthData());
@@ -52,6 +50,7 @@ public class DashBoardViewController {
         model.addAttribute("member", memberService.getGeneralMember());
         model.addAttribute("student", memberService.getStudentMember());
         model.addAttribute("admin", adminService.getCountAdmin());
+        model.addAttribute("assistant", adminService.getCountAssistant());
 
         model.addAttribute("lstregist", lstService.getCountAll());
         model.addAttribute("lstregistBT", lstService.getCountBT());
@@ -62,10 +61,6 @@ public class DashBoardViewController {
         model.addAttribute("btNotApprovalNum", btApplicationService.getNotApprovalNum());
         model.addAttribute("btWaitPayNum", btApplicationService.getWaitPayNum());
         model.addAttribute("btRegistNum", btApplicationService.getRegistNum());
-
-        System.out.println("smApplicationService.getWaitPayNum() = " + smApplicationService.getWaitPayNum());
-        System.out.println("smApplicationService.getRegistNum() = " + smApplicationService.getRegistNum());
-
 
         model.addAttribute("smWaitPayNum", smApplicationService.getWaitPayNum());
         model.addAttribute("smRegistNum", smApplicationService.getRegistNum());

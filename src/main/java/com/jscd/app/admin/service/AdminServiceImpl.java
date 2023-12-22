@@ -44,5 +44,10 @@ public class AdminServiceImpl implements AdminService { //관리자
         return adminDao.countAdmin();
     }
 
+    @Override
+    public int getCountAssistant() throws Exception {
+        return adminDao.countAssistant();
+    }
+
 
 }
