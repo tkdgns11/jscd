@@ -10,7 +10,7 @@
 /* 포커스 시 기본 아웃라인 제거 */
 #wrap input:focus {outline: none;}
 #wrap input[type="text"], input[type="password"]{ width: 350px; height: 50px; font-size: 15px;}
-#wrap input[type="button"]:hover {opacity: 0.5; cursor: pointer;}
+#wrap:hover {opacity: 0.5; cursor: pointer;}
 #wrap{margin: 80px auto; width:960px;}
 #wrap img{width: 40px; height: 40px;}
 #wrap > div{border: 1px solid #a1c5e6; width: 60%; margin: 20px auto; border-radius: 15px;}

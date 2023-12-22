@@ -12,7 +12,7 @@ window.onload = function () {
     const goQna = document.getElementById("goQna");
     // aside_orderlist_info 영역 footer 닿으면 사라지는 기능 위한 변수
     const footer = document.querySelector('footer'); // footer 선택
-    const fixedElement = document.getElementById("aside_pay"); // fixed 요소 선택
+    const fixedElement = document.getElementById("aside_pay");  // fixed 요소 선택
 
     let currentPaymentMethod = null;
 

@@ -1,5 +1,5 @@
 <%--
-    에러 발생 페이지
+    에러 발생 페이지 
   Created by IntelliJ IDEA.
   User: soheepark
   Date: 2023/12/13

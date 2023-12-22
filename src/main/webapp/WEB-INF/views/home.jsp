@@ -9,6 +9,7 @@
 	<link rel="icon" href="/img/mainlogo.png"/>
 	<link rel="apple-touch-icon" href="/img/mainlogo.png"/>
 	<title>정석코딩 - 일타 강사와 함께하는 찐개발자 특급 강의</title>
+	
 
 	<script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">

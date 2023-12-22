@@ -1,4 +1,4 @@
-// typing() 내에서 참조 위한 전역 변수 선언
+ // typing() 내에서 참조 위한 전역 변수 선언
 let typingBool = false;
 let typingIdx = 0;
 let typingTxt;

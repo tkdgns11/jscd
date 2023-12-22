@@ -1,5 +1,5 @@
 <%--
-주문 상세 내역 페이지
+주문 상세 내역 페이지 
 http://localhost:8080/order/orderDetail?odNo=jscd20231212025948340
   Created by IntelliJ IDEA.
   User: soheepark

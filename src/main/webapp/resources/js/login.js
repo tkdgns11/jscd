@@ -55,7 +55,7 @@ function login(){
     });
 }
 
-// 타이핑 효과
+// 타이핑 효과 
 function typing() {
     if (typingIdx < typingTxt.length) {
         // 타이핑될 텍스트 길이만큼 반복

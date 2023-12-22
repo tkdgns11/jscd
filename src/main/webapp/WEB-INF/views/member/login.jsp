@@ -27,7 +27,7 @@
 <header>
     <jsp:include page="../header.jsp"/>
 </header>
-<div id="loginWrap">
+<div id="loginWrap"> 
     <div id="loginHeader" style="border: none;">
         <img src="<c:url value="/img/mainlogo.png"/>">
         <p class="typing-txt">정석코딩</p>

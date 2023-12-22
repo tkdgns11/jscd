@@ -246,7 +246,7 @@
                 <div id="contact-btn">
                     <div>
                         <input class="order_btns" id="orderlist_goQna" type="button" value="&nbsp;&nbsp;&nbsp;질문&답변  바로가기">
-                    </div>
+                    </div> 
                     <div>
                         <input class="order_btns" id="goFaq" type="button" value="&nbsp;&nbsp;&nbsp;FAQ  바로가기">
                     </div>

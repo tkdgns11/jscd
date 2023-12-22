@@ -1,5 +1,5 @@
 <%--
-결제 완료 페이지 (계좌이체)
+결제 완료 페이지 (계좌이체) 
 http://localhost:8080/order/actPaySuccess
   Created by IntelliJ IDEA.
   User: soheepark

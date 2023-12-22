@@ -1,6 +1,6 @@
 <%--
 주문내역 확인 페이지
-http://localhost:8080/order/orderList
+http://localhost:8080/order/orderList 
   Created by IntelliJ IDEA.
   User: soheepark
   Date: 2023/12/12
