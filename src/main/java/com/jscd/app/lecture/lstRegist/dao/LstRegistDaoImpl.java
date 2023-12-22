@@ -71,33 +71,67 @@ public class LstRegistDaoImpl implements LstRegistDao {
     public int searchResultCnt(SearchCondition sc) throws Exception {
         return session.selectOne(namespace+"searchResultCnt", sc);
     }
-
     @Override
     public List<LstRegistDto> searchSelectPage(SearchCondition sc) throws Exception {
         return session.selectList(namespace+"searchSelectPage", sc);
     }
 
-    //9.세미나
+    // 9.세미나
+    // 9.1 세미나 목록 불러오기
     @Override
     public List<lstregistfileDto> getSeminarList() throws Exception {
         return session.selectList(namespace + "seminarList");
     }
-
+    // 9.2 세미나 세부사항 확인하기
     @Override
     public LstRegistDto readSeminar(Integer registCode) throws Exception {
         return session.selectOne(namespace + "seminarDetail", registCode);
     }
+    // 9.3 세미나 목록 페이징 처리
+    @Override
+    public List<lstregistfileDto> seminarPaging(Map map) throws Exception {
+        return session.selectList(namespace + "seminarPaging", map);
+    }
+    // 9.4 세미나 진행예정 목록 페이징 처리
+    @Override
+    public List<lstregistfileDto> appointSMList(Map map) throws Exception {
+        return session.selectList(namespace + "appointSMList", map);
+    }
+    // 9.5 세미나 진행 중 목록 페이징 처리
+    @Override
+    public List<lstregistfileDto> processSMList(Map map) throws Exception {
+        return session.selectList(namespace + "processSMList", map);
+    }
 
-    //10.부트캠프
+    // 10.부트캠프
+    // 10.1 부트캠프 목록 불러오기
     @Override
     public List<LstRegistDto> getBootCampList() throws Exception {
         return session.selectList(namespace + "bootCampList");
     }
 
-    //부트캠프 세부항목 읽기
+    // 10.2 부트캠프 세부항목 읽기
     @Override
     public LstRegistDto readBootCamp(Integer registCode) throws Exception {
         return session.selectOne(namespace + "bootCampDetail", registCode);
+    }
+
+    // 10.3 부트캠프 목록 페이징 처리
+    @Override
+    public List<LstRegistDto> bootCampPaging(Map map) throws Exception {
+        return session.selectList(namespace + "bootCampPaging", map);
+    }
+
+    // 10.4 진행예정 부트캠프 목록 페이징 처리
+    @Override
+    public List<LstRegistDto> appointBTList(Map map) throws Exception {
+        return session.selectList(namespace + "appointBTList", map);
+    }
+
+    // 10.5 진행 중 부트캠프 목록 페이징 처리
+    @Override
+    public List<LstRegistDto> processBTList(Map map) throws Exception {
+        return session.selectList(namespace + "processBTList", map);
     }
 
     //강의 첨부 파일

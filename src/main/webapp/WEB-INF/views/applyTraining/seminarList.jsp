@@ -14,6 +14,8 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/jscdReset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/seminar.css"/>">
+    <link rel="icon" href="/img/mainlogo.png"/>
+    <link rel="apple-touch-icon" href="/img/mainlogo.png"/>
     <title>seminarList</title>
 </head>
 <body>
@@ -70,21 +72,17 @@
             </div>
         </c:forEach>
     </div>
-    <%--    <div id="smApplyList">--%>
-    <%--        <c:forEach var="list" items="${list}">--%>
-    <%--            <a href="<c:url value="/smTraining/read?registCode=${list.registCode}"/>">--%>
-    <%--                <div>--%>
-    <%--                    <ul>--%>
-    <%--                        <li>${list.status}</li>--%>
-    <%--                        <li>${list.courseCategory}</li>--%>
-    <%--                        <span id="smApplySpan"></span>--%>
-    <%--                    </ul>--%>
-    <%--                    <img src="<c:url value="/upload/img${list.storedFileName}"/>">--%>
-    <%--                </div>--%>
-    <%--                <p>${list.title}</p>--%>
-    <%--            </a>--%>
-    <%--        </c:forEach>--%>
-    <%--    </div>--%>
+    <div id="NaviFoot">
+        <c:if test="${ph.showPrev}">
+            <a href="<c:url value='/smTraining/list?page=${ph.beginPage - 1}&pageSize=${ph.pageSize} '/>">&lt;</a>
+        </c:if>
+        <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
+            <a href="<c:url value='/smTraining/list?page=${i}&pageSize=${ph.pageSize} '/>">${i}</a>
+        </c:forEach>
+        <c:if test="${ph.showNext}">
+            <a href="<c:url value='/smTraining/list?page=${ph.endPage + 1}&pageSize=${ph.pageSize} '/>">&gt;</a>
+        </c:if>
+    </div>
 </div>
 <footer>
     <jsp:include page="../footer.jsp"/>

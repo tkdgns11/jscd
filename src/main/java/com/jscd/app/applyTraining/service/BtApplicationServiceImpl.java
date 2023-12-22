@@ -70,10 +70,12 @@ public class BtApplicationServiceImpl implements BtApplicationService {
         return btApplicationDao.update(dto);
     }
 
+    // 부트캠프 폼 작성
     @Override
     public int write(BtApplicationDto dto) throws Exception{
         return btApplicationDao.insert(dto);
     }
+//    부트캠프 폼 상태
 
     @Override
     public int lectureApplyInsert(BtApplicationDto dto) throws Exception{

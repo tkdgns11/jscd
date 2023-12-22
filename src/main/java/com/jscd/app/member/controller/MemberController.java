@@ -474,40 +474,54 @@ public class MemberController {
 	}
 
 	// 강의 신청 현황 이동
-//	@GetMapping("/lectureApplyState")
-//	public String showLectureApplyState() {
-//		// 필요한 로직이 있다면 이곳에 작성
-//		return "member/lectureApplyState";
-//	}
-
 	@GetMapping("/lectureApplyState")
-	public String showLectureApplyState(@RequestParam(defaultValue = "1") int page, Model model, MemberDto memberDto, CompanyInfoDTO companyInfoDto, HttpServletRequest request) throws Exception {
+	public String showLectureApplyState(LectureApplyDto lectureApplyDto,Model m,HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
+		lectureApplyDto.setId(id);
+		// lectureApply에 있는 정보가 필요해.
+		try {
 
-		int itemsPerPage = 5; // 페이지당 보여줄 아이템 수 (StodServiceImpl.java - selectOrderList()와 연결 됨)
-		List<StodDTO> orderList = stodService.selectOrderList(id, page, itemsPerPage);
-		model.addAttribute("orderList", orderList);
+			List<LectureApplyDto> list = memberService.selectLecture(lectureApplyDto);
+			m.addAttribute("list",list);
+			System.out.println("applylist = " + list);
 
-		memberDto = memberService.memberSelect(id);
-		model.addAttribute("memberDto", memberDto);
-		System.out.println(memberDto.toString());
+		} catch (Exception e){
 
-		companyInfoDto.setSlrNo(1); //231207 류소희 강의 등록 시 회사 번호도 등록해야함...
-		// 회사 정보 가져오기
-		companyInfoDto = companyInfoService.select(companyInfoDto.getSlrNo());
-		model.addAttribute("companyInfoDto", companyInfoDto);
-		System.out.println(companyInfoDto.toString());
-
-		int totalItems = stodService.countOrderList(id); // 전체 아이템 수를 조회
-		int totalPages = (int) Math.ceil((double) totalItems / itemsPerPage);
-		model.addAttribute("totalPages", totalPages);
-
-		// 현재 페이지 번호를 모델에 추가
-		model.addAttribute("currentPage", page);
+		}
 
 		return "member/lectureApplyState";
 	}
+
+
+//	@GetMapping("/lectureApplyState")
+//	public String showLectureApplyState(@RequestParam(defaultValue = "1") int page, Model model, MemberDto memberDto, CompanyInfoDTO companyInfoDto, HttpServletRequest request) throws Exception {
+//		HttpSession session = request.getSession();
+//		String id = (String) session.getAttribute("id");
+//
+//		int itemsPerPage = 5; // 페이지당 보여줄 아이템 수 (StodServiceImpl.java - selectOrderList()와 연결 됨)
+//		List<StodDTO> orderList = stodService.selectOrderList(id, page, itemsPerPage);
+//		model.addAttribute("orderList", orderList);
+//
+//		memberDto = memberService.memberSelect(id);
+//		model.addAttribute("memberDto", memberDto);
+//		System.out.println(memberDto.toString());
+//
+//		companyInfoDto.setSlrNo(1); //231207 류소희 강의 등록 시 회사 번호도 등록해야함...
+//		// 회사 정보 가져오기
+//		companyInfoDto = companyInfoService.select(companyInfoDto.getSlrNo());
+//		model.addAttribute("companyInfoDto", companyInfoDto);
+//		System.out.println(companyInfoDto.toString());
+//
+//		int totalItems = stodService.countOrderList(id); // 전체 아이템 수를 조회
+//		int totalPages = (int) Math.ceil((double) totalItems / itemsPerPage);
+//		model.addAttribute("totalPages", totalPages);
+//
+//		// 현재 페이지 번호를 모델에 추가
+//		model.addAttribute("currentPage", page);
+//
+//		return "member/lectureApplyState";
+//	}
 
 
 	//아이디 찾기 화면 보여주기

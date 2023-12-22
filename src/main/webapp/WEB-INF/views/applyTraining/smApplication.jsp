@@ -135,8 +135,8 @@
         // 제출
         $("#writeBtn").on("click", () => {
             let form = $("#smApplicationForm");
-            form.attr("action", "<c:url value='/smTraining/smApplication'/>");
-            form.attr("method", "post");
+            <%--form.attr("action", "<c:url value='/smTraining/smApplication'/>");--%>
+            <%--form.attr("method", "post");--%>
 
             // (용호) 유효성 검사 후 제출
             // if(formCheck())

@@ -8,6 +8,7 @@ public class LstRegistDto {
     private String title;
     private String discription;
     private Integer courseCode;
+    private String courseCategory;
     private String subject1;
     private String subject2;
     private String subject3;
@@ -48,15 +49,15 @@ public class LstRegistDto {
     private String etc;
     private String courseName;
 
-
     public LstRegistDto() {
     }
 
-    public LstRegistDto(Integer registCode, String title, String discription, Integer courseCode, String subject1, String subject2, String subject3, String subject4, String subject5, Integer price1, Integer price2, Integer price3, Integer price4, Integer price5, String onOff, String status, Integer minNum, Integer maxNum, String location, Integer currentNum, String startDate, String endDate, String startTime, String endTime, String name, String book, String material, Integer totalPrice, String discount, Integer lastPrice, String content, String regDate, Integer firstIdNo, String modifyDate, Integer lastIdNo, String etc, String courseName) {
+    public LstRegistDto(Integer registCode, String title, String discription, Integer courseCode, String courseCategory, String subject1, String subject2, String subject3, String subject4, String subject5, Integer price1, Integer price2, Integer price3, Integer price4, Integer price5, String onOff, String status, Integer minNum, Integer maxNum, String location, Integer currentNum, String startDate, String endDate, String startTime, String endTime, String name, String book, String material, Integer totalPrice, String discount, Integer lastPrice, String content, String regDate, Integer firstIdNo, String modifyDate, Integer lastIdNo, String etc, String courseName) {
         this.registCode = registCode;
         this.title = title;
         this.discription = discription;
         this.courseCode = courseCode;
+        this.courseCategory = courseCategory;
         this.subject1 = subject1;
         this.subject2 = subject2;
         this.subject3 = subject3;
@@ -122,6 +123,14 @@ public class LstRegistDto {
 
     public void setCourseCode(Integer courseCode) {
         this.courseCode = courseCode;
+    }
+
+    public String getCourseCategory() {
+        return courseCategory;
+    }
+
+    public void setCourseCategory(String courseCategory) {
+        this.courseCategory = courseCategory;
     }
 
     public String getSubject1() {
@@ -395,6 +404,7 @@ public class LstRegistDto {
                 ", title='" + title + '\'' +
                 ", discription='" + discription + '\'' +
                 ", courseCode=" + courseCode +
+                ", courseCategory='" + courseCategory + '\'' +
                 ", subject1='" + subject1 + '\'' +
                 ", subject2='" + subject2 + '\'' +
                 ", subject3='" + subject3 + '\'' +

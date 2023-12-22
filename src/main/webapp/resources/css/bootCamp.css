@@ -13,6 +13,7 @@
 #BootCampNav a{color: #ffffff;font-weight: bold; margin: 0px 15px;}
 #BootCampNav > ul{display: flex; width: 100%;justify-content: center;}
 #BootCampNav li{margin-right: 5px;}
+#NaviFoot {width: 960px; margin: 0 auto;}
 /*부트캠프 목록 중간*/
 #btProcess{display: flex; flex-direction: column; align-items: center;}
 #btProcess > h1{font-size: 50px; font-weight: bold; color: #0185FE; margin-top: 20px;}

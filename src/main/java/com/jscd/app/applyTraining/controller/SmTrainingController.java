@@ -1,6 +1,7 @@
 package com.jscd.app.applyTraining.controller;
 
 import com.jscd.app.applyTraining.dto.BtApplicationDto;
+import com.jscd.app.applyTraining.dto.LecturePageHandler;
 import com.jscd.app.applyTraining.dto.SmApplicationDto;
 import com.jscd.app.applyTraining.service.SmApplicationService;
 import com.jscd.app.lecture.classEnroll.dto.ClassEnrollDto;
@@ -19,7 +20,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/smTraining")
@@ -95,16 +98,79 @@ public class SmTrainingController {
 
     // 세미나 리스트 이동
     @GetMapping("/list")
-    public String smTrainingList(Model m) throws Exception {
+    public String smTrainingList(Integer page, Integer pageSize, Model m) throws Exception {
+
+        if(page==null) page=1;
+        if(pageSize==null) pageSize = 9;
+
         try {
-            List<lstregistfileDto> list = lstService.seminarList();
+            int totalCnt = lstService.getCountSM();
+            LecturePageHandler lecturePageHandler = new LecturePageHandler(totalCnt, page, pageSize);
+
+            Map map = new HashMap();
+            map.put("offset", (page-1) * pageSize);
+            map.put("pageSize", pageSize);
+
+            List<lstregistfileDto> list = lstService.seminarPaging(map);
+
             m.addAttribute("list", list);
-//            System.out.println("Sminar_list = " + list);
+            m.addAttribute("ph", lecturePageHandler);
         } catch(Exception e) {
             e.printStackTrace();
         }
         return "/applyTraining/seminarList";
     }
+
+    // 부트캠프 진행예정일 때 리스트 이동
+//    @GetMapping("/appointSMList")
+//    public String smAppointList(Integer page, Integer pageSize, Model m) throws Exception {
+//        if(page == null) page=1;
+//        if(pageSize == null) pageSize = 9;
+//
+//        try {
+//            // TODO 진행예정 세미나 카운팅 새로 해야함.
+//            int totalCnt = lstService.getCountSM();
+//            LecturePageHandler lecturePageHandler = new LecturePageHandler(totalCnt, page, pageSize);
+//
+//            Map map = new HashMap();
+//            map.put("offset", (page-1) * pageSize);
+//            map.put("pageSize", pageSize);
+//
+//            List<LstRegistDto> list = lstService.appointSMList(map);
+//
+//            m.addAttribute("list", list);
+//            m.addAttribute("ph", lecturePageHandler);
+//        } catch(Exception e) {
+//            e.printStackTrace();
+//        }
+//        return "/applyTraining/appointBootCampList";
+//    }
+
+    // 부트캠프 진행중일 때 리스트 이동
+//    @GetMapping("/processBTList")
+//    public String smProcessList(Integer page, Integer pageSize, Model m) throws Exception {
+//        if(page == null) page = 1;
+//        if(pageSize ==  null) pageSize = 9;
+//
+//        try {
+//            // TODO 진행 중 부트캠프 카운팅 다시해야함.
+//            int totalCnt = lstService.getCountBT();
+//            LecturePageHandler lecturePageHandler = new LecturePageHandler(totalCnt, page, pageSize);
+//
+//            Map map = new HashMap();
+//            map.put("offset", (page-1) * pageSize);
+//            map.put("pageSize", pageSize);
+//
+//            List<LstRegistDto> list = lstService.appointBTList(map);
+//
+//            m.addAttribute("list", list);
+//            m.addAttribute("ph", lecturePageHandler);
+//        } catch(Exception e) {
+//            e.printStackTrace();
+//        }
+//        return "/applyTraining/processBootCampList";
+//    }
+
 
     // 세미나 세부페이지 이동
     @GetMapping("/read")

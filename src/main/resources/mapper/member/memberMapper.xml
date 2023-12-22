@@ -69,25 +69,11 @@
 	</insert>
 	<!--	마이페이지 강의 현황-->
 	<select id="selectLecture" parameterType="LectureApplyDto" resultType="LectureApplyDto">
-		select A.stdApplyNo, A.id, A.registCode, A.status, B.title, B.lastPrice
-		from lectureapply AS A, lstregist AS B
-		where  A.id = #{id}
-		  and B.registCode = #{registCode};
-	</select>
+		select a.stdApplyNo, a.id, a.registCode, a.status, b.title, b.courseCode, b.lastPrice, b.startDate, b.endDate
+		from lectureapply a, lstregist b
+		where a.registCode = b.registCode
+		  and a.id=#{id};
 
-<!--	이메일 찾기-->
-	<select id="selectEmail" parameterType="memberDto" resultType="String">
-		select id from member
-		where name = #{name} and birth = #{birth} and phone = #{phone}
 	</select>
-
-<!--	비밀번호 재설정-->
-	<update id="updatePwd" parameterType="memberDto">
-		UPDATE MEMBER
-		SET
-			pwd = #{pwd},
-			modifyDate = now()
-		WHERE id = #{id}
-	</update>
 
 </mapper>

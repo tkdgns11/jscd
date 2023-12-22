@@ -29,8 +29,9 @@ public interface BtApplicationService {
 
     int modify(BtApplicationDto dto) throws Exception;
 
+    //
     int write(BtApplicationDto dto) throws Exception;
-
+    //    부트캠프 폼 상태
     int lectureApplyInsert(BtApplicationDto dto) throws Exception;
     int confirmApplcation(BtApplicationDto dto) throws Exception;
 

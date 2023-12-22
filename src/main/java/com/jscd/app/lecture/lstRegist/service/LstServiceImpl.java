@@ -31,8 +31,8 @@ public class LstServiceImpl implements LstService {
     @Override
     public void addRegist(LstRegistDto lstRegistDto,  MultipartHttpServletRequest mpRequest) throws Exception {
         lstRegistDao.addRegist(lstRegistDto);
-        System.out.println("service lstRegistDto = " + lstRegistDto);
-        System.out.println("mpRequest = " + mpRequest);
+//        System.out.println("service lstRegistDto = " + lstRegistDto);
+//        System.out.println("mpRequest = " + mpRequest);
         List<Map<String,Object>> list = fileUtils.parseInsertFileInfo(lstRegistDto, mpRequest);
         int size = list.size();
         for(int i=0; i<size; i++){
@@ -87,23 +87,36 @@ public class LstServiceImpl implements LstService {
     public List<lstregistfileDto> seminarList() throws Exception {
         return lstRegistDao.getSeminarList();
     }
-
     @Override
     public LstRegistDto seminarRead(Integer registCode) throws Exception {
         LstRegistDto lstRegistDto = lstRegistDao.readSeminar(registCode);
         return lstRegistDto;
     }
+    @Override
+    public List<lstregistfileDto> seminarPaging(Map map) throws Exception {
+        return lstRegistDao.seminarPaging(map);
+    }
+
     //8.부트캠프
     @Override
     public List<LstRegistDto> bootCampList() throws Exception {
         return lstRegistDao.getBootCampList();
     }
-
     @Override
     public LstRegistDto bootCampRead(Integer registCode) throws Exception {
         LstRegistDto lstRegistDto = lstRegistDao.readBootCamp(registCode);
         return lstRegistDto;
     }
+    @Override
+    public List<LstRegistDto> bootCampPaging(Map map) throws Exception {
+        return lstRegistDao.bootCampPaging(map);
+    }
+    // 8.4 진행예정 부트캠프 리스트
+    @Override
+    public List<LstRegistDto> appointBTList(Map map) throws Exception {
+        return lstRegistDao.appointBTList(map);
+    }
+
 
     // 첨부파일 조회
     @Override

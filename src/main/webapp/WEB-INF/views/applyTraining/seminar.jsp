@@ -17,6 +17,8 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/jscdReset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/seminar.css"/>">
+    <link rel="icon" href="/img/mainlogo.png"/>
+    <link rel="apple-touch-icon" href="/img/mainlogo.png"/>
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
 </head>
 <script>
