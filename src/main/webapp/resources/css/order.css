@@ -13,7 +13,7 @@
 .section_lecture-price_info {padding: 50px 0; border-bottom: solid 1px #9da2a7;}
 .section_howpay {padding: 30px 0;}
 #payBtns {margin: 60px 0 20px 0; display: flex; justify-content: center;}
-.aside_pay {position: fixed; right: 16%; top: 15%;}
+.aside_pay {position: fixed; right: 10%; top: 15%;}
 
 #pay-success_main, .orderDetail_main {width: 50%; margin: 100px auto 300px auto;}
 #pay-success_main-content, #orderDetail_main-content {padding: 30px; background-color: #ffffff; box-shadow: 0 0 40px rgba(0, 0, 0, 0.15); border-radius: 7px;}
@@ -46,7 +46,7 @@
 #aside_orderlist_info section {margin-bottom: 10px;}
 #member_name {margin-top: 8%; font-size: 23px;}
 #member_id {font-size: 18px; color: #575e65; margin-top: 5px; text-decoration-line: underline;}
-#aside_orderlist_info {position: fixed; top: 15%; right: 13%; width: 450px;}
+#aside_orderlist_info {position: fixed; top: 15%; right: 6%; width: 450px;}
 #section_orderlist_contents {background-color: #ffffff; margin: 20px 0; border-radius: 16px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.15); }
 #orderlist_content-title {background-color: #49a3ff; padding: 20px 30px; border-radius: 16px 16px 0 0; font-size: 30px; font-weight: 550; color: #ffffff; letter-spacing: 10px;}
 #orderlist_content-info {padding: 20px 30px;}
@@ -215,3 +215,5 @@ input[type="button"]{ font-family: FontAwesome; }
 #paging_group_fst input {border-bottom-left-radius: 16px; border-right: solid 1px #ffffff; border-top: 0; border-bottom: 0; border-left: 0;}
 #paging_group_end input {border-bottom-right-radius: 16px; border: 0;}
 #section_paging {border-radius: 16px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);}
+
+#contact input[type="button"] {font-family: "Font Awesome";}

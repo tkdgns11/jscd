@@ -318,12 +318,3 @@ function checkSelectAll()  {
     }
 
 }
-
-//전체 체크
-function selectAll(selectAll)  {
-
-    const checkboxes= document.querySelectorAll(".terms");
-    checkboxes.forEach((checkbox) => {
-        checkbox.checked = selectAll.checked
-    })
-}

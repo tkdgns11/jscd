@@ -19,8 +19,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- 탭 아이콘 & 글자 지정 -->
-    <link rel="icon" href="/img/logo.png"/>
-    <link rel="apple-touch-icon" href="/img/logo.png"/>
+    <link rel="icon" href="/img/mainlogo.png"/>
+    <link rel="apple-touch-icon" href="/img/mainlogo.png"/>
     <title>정석코딩 | 강의 신청 현황</title>
 
     <!-- css 파일 불러오기 -->
@@ -33,7 +33,7 @@
 
 
     <%--폰트어썸 라이브러리 불러오기--%>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 <body>
@@ -245,14 +245,14 @@
                 </div>
                 <div id="contact-btn">
                     <div>
-                        <input class="order_btns" id="orderlist_goQna" type="button" value="Q&A 바로가기">
+                        <input class="order_btns" id="orderlist_goQna" type="button" value="&nbsp;&nbsp;&nbsp;질문&답변  바로가기">
                     </div>
                     <div>
-                        <input class="order_btns" id="goFaq" type="button" value="FAQ 바로가기">
+                        <input class="order_btns" id="goFaq" type="button" value="&nbsp;&nbsp;&nbsp;FAQ  바로가기">
                     </div>
                     <div>
                         <h2 class="display-none" id="slrMail_copy">${companyInfoDto.slrMail}</h2>
-                        <input class="order_btns" id="copyMail" type="button" value="1:1 메일 문의">
+                        <input class="order_btns" id="copyMail" type="button" value="&nbsp;&nbsp;&nbsp;1 : 1  메일 문의">
                     </div>
                 </div>
             </section>

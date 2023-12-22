@@ -13,7 +13,11 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/jscdReset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/signup.css"/>">
     <script type="text/javascript" src="<c:url value="/js/signup.js"/>"></script>
-    <title>회원가입 폼</title>
+
+    <!-- 탭 아이콘 & 글자 지정 -->
+    <link rel="icon" href="/img/mainlogo.png"/>
+    <link rel="apple-touch-icon" href="/img/mainlogo.png"/>
+    <title>정석코딩 | 회원가입</title>
     <style>
 
         /* //모달팝업을 감싸고 있는 최상위 부모 */
@@ -38,6 +42,7 @@
             margin: 0 auto;
             border: 1px solid #777;
             background-color: #fff;
+            border-radius: 20px;
         }
     </style>
 
@@ -49,8 +54,9 @@
 <form>
     <div id="wrap">
         <div id="signupHeader" style="border: none; box-shadow: none;">
-            <img src="<c:url value="/img/logo.png"/>">
-            <h1>정석코딩</h1>
+            <img src="<c:url value="/img/mainlogo.png"/>">
+            <p class="typing-txt">정석코딩</p>
+            <h1 id="receipt-text-01"></h1>
         </div>
         <div style="margin-top: 50px;">
             <input type="hidden" name="mebrNo" >
@@ -94,7 +100,7 @@
                 <div id="radioBtn">
                     <label class="radio-label" style="border-right: none;">
                         <input type="radio" class="radio-input"  id="male" name="gender" value="0">
-                        <span style="border-right: 1px solid rgb(128, 128, 128); border-top-right-radius: 0px; border-bottom-right-radius: 0px;">남자</span>
+                        <span style="border-right: solid 1px #61b1fa; ; border-top-right-radius: 0px; border-bottom-right-radius: 0px;">남자</span>
                     </label>
                     <!-- 라디오 버튼 2 -->
                     <label class="radio-label" style="border-left: none;">
@@ -109,28 +115,28 @@
             </div>
         </div>
         <div id="termsBox">
-            <div>
+            <div id="termsBox_title">
                 <input type="checkbox" class="selectAll" id="selectAll" name="selectAll" onclick="window.selectAll(this)">
                 <p>전체 동의</p>
             </div>
             <div>
                 <input type="checkbox" class="terms" id="serviceChkYN" name="serviceChkYN" onclick="checkSelectAll()">
-                <p>서비스 이용약관 동의 (필수)</p>
+                <p class="termsBox_element">서비스 이용약관 동의 (필수)</p>
                 <p class="termsDetail"><span id="detailBtn">상세보기></span></p>
             </div>
             <div>
                 <input type="checkbox" class="terms" id="privacyChkYN" name="privacyChkYN" onclick="checkSelectAll()">
-                <p>개인정보 수집 및 이용 동의 (필수)</p>
+                <p class="termsBox_element">개인정보 수집 및 이용 동의 (필수)</p>
                 <p class="termsDetail"><span id="detailBtn2">상세보기></span></p>
             </div>
             <div>
                 <input type="checkbox" class="terms" id="ageChkYN" name="ageChkYN" onclick="checkSelectAll()">
-                <p>만 14세 이상입니다 (필수)</p>
+                <p class="termsBox_element">만 14세 이상입니다 (필수)</p>
                 <p class="termsDetail"><span id="detailBtn3">상세보기></span></p>
             </div>
             <div style="border: none">
                 <input type="checkbox" class="terms" id="marketingChkYN" name="marketingChkYN" onclick="checkSelectAll()">
-                <p>마케팅 수신 동의 (선택)</p>
+                <p class="termsBox_element">마케팅 수신 동의 (선택)</p>
                 <p class="termsDetail"><span id="detailBtn4">상세보기></span></p>
             </div>
         </div>
@@ -265,7 +271,40 @@
         })
     })
 </script>
+<script>
+    window.onload = function() {
+        typing();
+    };
+    //로고 텍스트 타이핑 효과
+    function typing() {
+        let typingBool = false;
+        let typingIdx = 0;
+        let typingTxt;
+        let tyInt;
 
+        // 타이핑될 텍스트 가져오기
+        typingTxt = $(".typing-txt").text();
+        typingTxt = typingTxt.split(""); // 한글자씩 분리
+
+        if (typingBool == false) {
+            // 타이핑이 진행되지 않았다면
+            typingBool = true;
+            tyInt = setInterval(typing, 220); // 반복동작
+        }
+
+        function typing() {
+            if (typingIdx < typingTxt.length) {
+                // 타이핑될 텍스트 길이만큼 반복
+                $("#receipt-text-01").append(typingTxt[typingIdx]);
+                // 한글자씩 이어붙임
+                typingIdx++;
+            } else {
+                //끝나면 반복종료
+                clearInterval(tyInt);
+            }
+        }
+    }
+</script>
 </body>
 
 </html>

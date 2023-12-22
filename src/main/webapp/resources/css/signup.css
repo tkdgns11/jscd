@@ -9,22 +9,24 @@
 }
 /* 포커스 시 기본 아웃라인 제거 */
 #wrap input:focus {outline: none;}
-#wrap input[type="text"], input[type="password"]{ width: 300px; height: 50px; font-size: 15px;}
+#wrap input[type="text"], input[type="password"]{ width: 350px; height: 50px; font-size: 15px;}
+#wrap input[type="button"]:hover {opacity: 0.5; cursor: pointer;}
 #wrap{margin: 80px auto; width:960px;}
-#wrap img{width: 50px; height: 50px;}
-#wrap > div{border: 1px solid rgb(128, 128, 128); width: 60%; margin: 20px auto; border-radius: 15px;box-shadow: 5px 5px 5px rgba(0,0,0,0.5)}
+#wrap img{width: 40px; height: 40px;}
+#wrap > div{border: 1px solid #a1c5e6; width: 60%; margin: 20px auto; border-radius: 15px;}
 #wrap > div > div{display: flex; position: relative;}
-#wrap > div > div img{margin: 0px 50px 0px 50px}
-#wrap > div > div {border-bottom: 1px solid rgb(128, 128, 128);}
+#wrap > div > div img{margin: 5px 40px;}
+/*#wrap > div > div img{margin: 5px 50px 5px 62px;}*/
+#wrap > div > div {border-bottom: 1px solid #a1c5e6;}
 #signupHeader{display: flex; flex-direction: row; justify-content: center;}
-#signupHeader h1{line-height: 50px; font-size: 50px; margin-left: 30px;}
-#idChkBtn, #emailChkBtn{border:none; width: 130px; cursor: pointer;}
+#signupHeader h1{line-height: 50px; font-size: 30px; margin-left: 30px; color: #0185FE; letter-spacing: 23px;}
+#signupHeader > p {display: none;}
+#idChkBtn, #emailChkBtn{border:none; width: 130px; cursor: pointer; background-color: #61b1fa; color: #FFFFFF; font-weight: 500; letter-spacing: 3px;}
 #idChkBtn{border-radius: 0px 15px 0px 0px;}
-#idChkBtn:hover{ cursor: pointer; background-color: rgba(0,0,0,0.1); }
-#emailChkBtn:hover{ cursor: pointer; background-color: rgba(0,0,0,0.1); }
+/*#idChkBtn:hover{ cursor: pointer; background-color: rgba(0,0,0,0.1); }*/
+/*#emailChkBtn:hover{ cursor: pointer; background-color: rgba(0,0,0,0.1); }*/
 #phoneBox{display: flex; flex-direction: row; align-items: center;}
 #phoneBox label{line-height: 50px;margin: 0 12px;}
-
 
 
 .radioBox{display: flex; flex-direction: row; align-items: center;}
@@ -33,16 +35,29 @@
 /* 선택된 라디오 버튼의 스타일 */
 #male:checked + span {width: 150px;height: 30px;border-radius: 9px 0px 0px 9px;background-color: #2196F3;color: #fff;}
 #female:checked + span {width: 150px;height: 30px;border-radius: 0px 9px 9px 0px;background-color: #2196F3;color: #fff;}
-.radio-label span{cursor: pointer;background-color: #fff;display: inline-block;width: 150px;height: 30px;text-align: center;line-height: 30px;border-radius: 10px;}
-.radio-label span:hover{ background-color: rgba(0,0,0,0.1); }
-#radioBtn{border: 1px solid rgb(128, 128, 128); border-radius: 10px; display:flex; flex-direction: row;}
+.radio-label span{color: #389df8; font-weight: 500; cursor: pointer;background-color: #fff;display: inline-block;width: 150px;height: 30px;text-align: center;line-height: 30px;border-radius: 10px;}
+/*.radio-label span:hover{ background-color: rgba(0,0,0,0.1); }*/
+.radio-label span:hover {cursor: pointer; opacity: 0.5;}
+#radioBtn{border: 1px solid #61b1fa; border-radius: 10px; display:flex; flex-direction: row;}
 #btnBox{ width: 300px;  display: flex; flex-direction: row; justify-content: center;}
-#signupBtn{width: 200px;height: 50px; border-radius: 15px;font-size: 30px;text-align: center; line-height: 50px; background-color: #18214F; color: #fff; cursor: pointer; box-shadow: 5px 5px 5px rgba(0,0,0,0.5)}
-#cancleBtn{width: 200px;height: 50px; border-radius: 15px;font-size: 30px;text-align: center; line-height: 50px; background-color: #FF4646; color: #fff; cursor: pointer; box-shadow: 5px 5px 5px rgba(0,0,0,0.5)}
+#signupBtn{width: 200px;height: 50px; border-radius: 15px;font-size: 20px;text-align: center; line-height: 50px; background-color: #0185FE; color: #fff; cursor: pointer;}
+#cancleBtn{width: 200px;height: 50px; border-radius: 15px;font-size: 20px;text-align: center; line-height: 50px; background-color: #FFFFFF; color: #b7b6b6; cursor: pointer; border: solid 1px #d0cdcd !important;}
 #memberDel{background-color: white;cursor: pointer;color: #666666}
 
 #termsBox > div{height: 50px;}
 #termsBox > div > input{width: 20px; height: 20px; margin-left: 65px; margin-top: 15px;margin-right: 30px;}
-#termsBox > div > p{line-height: 50px;color: rgba(0,0,0,0.8);}
+#termsBox > div > p{line-height: 50px;}
 .termsDetail{margin-left: auto;}
-.termsDetail span{color: rgba(0,0,0,0.5); margin-right: 10px; cursor: pointer;}
+.termsDetail span{ margin-right: 10px; cursor: pointer;}
+
+#termsBox_title {color: #56595d; font-weight: 550;}
+.termsBox_element {color: #666a6e;}
+.termsDetail {color: #949ba2;}
+.termsDetail:hover {text-decoration-line: underline;}
+
+.signModalBox {border-radius: 20px;}
+.modalBody h1, .modalBody textarea {margin-left: 15px;}
+#agreeBtn, #agreeBtn2, #agreeBtn3, #agreeBtn4 {margin-left: 15px;}
+#agreeBtn, #agreeBtn2, #agreeBtn3, #agreeBtn4, #closeBtn, #closeBtn2, #closeBtn3, #closeBtn4 {border-radius: 20px; width: 45px; padding: 5px; cursor: pointer;}
+#agreeBtn, #agreeBtn2, #agreeBtn3, #agreeBtn4 {border: 0; color: #FFFFFF; background-color: #0185FE;}
+#closeBtn, #closeBtn2, #closeBtn3, #closeBtn4 {border: solid 1px #d0cdcd; background-color: #FFFFFF; color: #b7b6b6;}
