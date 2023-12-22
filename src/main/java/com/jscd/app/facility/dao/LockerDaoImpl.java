@@ -116,4 +116,14 @@ public class LockerDaoImpl implements LockerDao {
         return sqlSession.selectList(namespace + "membersWithLockersExpiringIn3Days");
     }
 
+    @Override
+    public List<Map<String, Object>> selectAlert() throws Exception {
+        return sqlSession.selectList(namespace + "selectAlert");
+    }
+
+    @Override
+    public int expiredDelete() throws Exception {
+        return sqlSession.update(namespace + "expiredDelete");
+    }
+
 }

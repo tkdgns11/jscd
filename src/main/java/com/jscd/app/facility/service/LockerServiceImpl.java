@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Objects;
+import java.util.Map;
 
 @Service
 public class LockerServiceImpl implements LockerService {
@@ -95,4 +95,17 @@ public class LockerServiceImpl implements LockerService {
 
         return lockerDao.insertLocker(newLocker) + lockerDao.deleteLocker(oldLocker.getLockerID());
     }
+
+    @Override
+    @Transactional
+    public List<Map<String, Object>> lockerAlert() throws Exception {
+
+        return lockerDao.selectAlert();
+    }
+
+    @Override
+    public int deleteExpiredLockers() throws Exception {
+        return lockerDao.expiredDelete();
+    }
+
 }

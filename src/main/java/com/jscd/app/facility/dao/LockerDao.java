@@ -3,6 +3,7 @@ package com.jscd.app.facility.dao;
 import com.jscd.app.facility.dto.LockerDto;
 
 import java.util.List;
+import java.util.Map;
 
 public interface LockerDao {
 
@@ -44,4 +45,9 @@ public interface LockerDao {
     List<LockerDto> lockersExpiringIn3Days();
 
     List<String> membersWithLockersExpiringIn3Days();
+
+    List<Map<String, Object>> selectAlert() throws Exception;
+
+    int expiredDelete() throws Exception;
+
 }
