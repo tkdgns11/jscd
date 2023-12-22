@@ -49,16 +49,21 @@
 
     <!--    폼 제출시 lectureapply테이블에 같이 insert-->
     <insert id="lectureApplyInsert" parameterType="BtApplicationDto">
-        insert into lectureapply(id, registCode)
-        values (#{id}, #{registCode})
+        insert into lectureapply(id, registCode, stfmNo)
+        values (#{id}, #{registCode}, #{stfmNo})
     </insert>
 
     <!--    (신청자 전용) 신청서 제출시 사용하는 insert-->
     <insert id="insert" parameterType="BtApplicationDto">
         insert into btstform (mebrNo, id, registCode, title, lastPrice, status, level, levelDetail, attdPps,
-                              attdPath, intro, expect, agreeYN)
+        attdPath, intro, expect, agreeYN)
         values (#{mebrNo}, #{id}, #{registCode}, #{title}, #{lastPrice}, #{status}, #{level}, #{levelDetail}, #{attdPps},
-                #{attdPath}, #{intro}, #{expect}, #{agreeYN})
+        #{attdPath}, #{intro}, #{expect}, #{agreeYN})
+        <selectKey keyProperty="stfmNo" resultType="BtApplicationDto" order="AFTER">
+            SELECT *
+            FROM btstform
+            WHERE stfmNo = LAST_INSERT_ID()
+        </selectKey>
     </insert>
 
     <!--    (신청자 전용) 신청서 페이지 이동시 중복 신청 검색-->
@@ -125,24 +130,16 @@
 
     <!-- 결제대기 부트캠프 신청폼 개수-->
     <select id="countWaitPay" resultType="int">
-        SELECT COUNT(*)
-        FROM (
-                 SELECT a.*
-                 FROM btstform as a
-                          INNER JOIN lectureapply as b ON a.registCode = b.registCode
-                 WHERE a.approvalYN = '승인' AND b.status = 'notPaid'
-             ) AS subquery;
+        select count(*)
+        from btstform as a , lectureapply as b
+        where a.approvalYN = '승인' and a.registCode = b.registCode and b.status = 'notPaid'
     </select>
 
     <!-- 등록 부트캠프 신청폼 개수-->
     <select id="countRegist" resultType="int">
-        SELECT COUNT(*)
-        FROM (
-                 SELECT a.*
-                 FROM btstform AS a
-                          INNER JOIN lectureapply AS b ON a.registCode = b.registCode
-                 WHERE a.approvalYN = '승인' AND b.status = 'Paid'
-             ) AS subquery;
+        select count(*)
+        from btstform as a , lectureapply as b
+        where a.approvalYN = '승인' and a.registCode = b.registCode and b.status = 'Paid'
     </select>
 
 </mapper>

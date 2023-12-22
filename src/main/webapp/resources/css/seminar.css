@@ -13,6 +13,7 @@
 #seminarNav a{color: #ffffff;font-weight: bold; margin: 0px 15px;}
 #seminarNav > ul{display: flex; width: 100%;justify-content: center;}
 #seminarNav li{margin-right: 5px;}
+#NaviFoot {width: 960px; margin: 0 auto;}
 /*세미나 목록 중간*/
 #smProcess{display: flex; flex-direction: column; align-items: center;}
 #smProcess > h1{font-size: 50px; font-weight: bold; color: #0185FE; margin-top: 20px;}
@@ -24,7 +25,7 @@
 #imgBox > div:nth-child(even){display: flex; margin-top: auto;}
 #imgBox > div:nth-child(even) > img{width: 100px; height: 100px; }
 /*세미나 목록 신청 상자*/
-#smApplyList{width: 1200px; position: relative; margin: 100px auto;}
+#smApplyList{width: 1200px; position: relative; margin: 100px auto;display: flex; flex-direction: row; flex-wrap: wrap;justify-content: space-around}
 #smApplyBox{width: 260px; height: 180px;}
 #smApplyBox > div{ width: 350px; height: 150px; display: flex; flex-direction: row; box-shadow: 5px 5px 5px rgba(0,0,0,0.5)}
 #smApplyBox > a > div > div {width: 130px; height: 150px; position: relative;}

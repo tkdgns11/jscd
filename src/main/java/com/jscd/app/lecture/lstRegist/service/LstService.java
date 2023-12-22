@@ -21,18 +21,25 @@ public interface LstService {
     int removeRegist(Integer registCode) throws Exception;
     //5.강의 수정
     public void modifyRegist(LstRegistDto lstRegistDto, String[] files, String[] fileName, MultipartHttpServletRequest mpRequest) throws Exception;
-
     //6. 검색 및 페이지 처리
     int getSearchResultCnt(SearchCondition sc) throws Exception;
     List<LstRegistDto> getSearchResultPage(SearchCondition sc) throws Exception;
+
     //세미나 리스트 불러오기
     List<lstregistfileDto> seminarList() throws Exception;
     //세미나 세부항목 불러오기
     LstRegistDto seminarRead(Integer registCode) throws Exception;
+    //(회원) 세미나 리스트 페이징
+    List<lstregistfileDto> seminarPaging(Map map) throws Exception;
+
     //부트캠프 리스트 불러오기
     List<LstRegistDto> bootCampList() throws Exception;
     //부트캠프 세부항목 불러오기
     LstRegistDto bootCampRead(Integer registCode) throws Exception;
+    //(회원) 부트캠프 리스트 페이징
+    List<LstRegistDto> bootCampPaging(Map map) throws Exception;
+    //(회원) 부트캠프 진행예정 페이징
+    List<LstRegistDto> appointBTList(Map map) throws Exception;
 
     // 첨부파일 조회
     public List<Map<String, Object>> selectFileList(Integer registCode) throws Exception;

@@ -9,24 +9,27 @@ import java.util.Map;
 
 public interface LstRegistDao {
 
-    //1.강의 목록
+    // 1.강의 목록
     List<LstRegistDto> getRegistList() throws Exception;
-    //2.강의 등록
+
+    // 2.강의 등록
     int addRegist(LstRegistDto dto) throws Exception;
-    //3.강의 상세
+
+    // 3.강의 상세
     Map<String, Object> readRegist(Integer registCode) throws Exception;
-    //4.강의 삭제
+
+    // 4.강의 삭제
     int removeRegist(Integer registCode) throws Exception;
-    //5.강의 수정
+
+    // 5.강의 수정
     int modifyRegist(LstRegistDto dto) throws Exception;
-    //6.강의 개수
+
+    // 6.강의 개수
     int countRegist() throws Exception;
-
     int countBT() throws Exception;
-
     int countSM() throws Exception;
 
-    //7.강의 전체 삭제
+    // 7.강의 전체 삭제
     int removeAllRegist(Integer registCode) throws Exception;
 
     //8.검색 및 페이지
@@ -38,10 +41,24 @@ public interface LstRegistDao {
     List<lstregistfileDto> getSeminarList() throws Exception;
     // 9.2 세미나 세부사항 확인하기
     LstRegistDto readSeminar(Integer registCode) throws Exception;
+    // 9.3 세미나 목록 페이징 처리
+    List<lstregistfileDto> seminarPaging(Map map) throws Exception;
+    // 9.4 세미나 진행예정 페이징 처리
+    List<lstregistfileDto> appointSMList(Map map) throws Exception;
+    // 9.5 세미나 진행 중 페이징 처리
+    List<lstregistfileDto> processSMList(Map map) throws Exception;
 
     //10.부트캠프
+    // 10.1 부트캠프 목록 불러오기
     List<LstRegistDto> getBootCampList() throws Exception;
+    // 10.2 부트캠프 세부사항 확인하기
     LstRegistDto readBootCamp(Integer registCode) throws Exception;
+    // 10.3 부트캠프 목록 페이징 처리
+    List<LstRegistDto> bootCampPaging(Map map) throws Exception;
+    // 10.4 부트캠프 진행예정 페이징 처리
+    List<LstRegistDto> appointBTList(Map map) throws Exception;
+    // 10.5 부트캠프 진행 중 목록 페이징 처리
+    List<LstRegistDto> processBTList(Map map) throws Exception;
 
     // 첨부파일 업로드
     public int InsertFile(Map<String, Object> map) throws Exception;

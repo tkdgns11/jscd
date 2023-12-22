@@ -80,11 +80,13 @@ public class BtApplicationDaoImpl implements BtApplicationDao {
         return session.update(namespace + "update", dto);
     }
 
+    //부트캠프 폼 작성
     @Override
     public int insert(BtApplicationDto dto) throws Exception{
         return session.insert(namespace + "insert", dto);
     }
 
+//    부트캠프 폼 상태
     @Override
     public int lectureApplyInsert(BtApplicationDto dto) throws Exception{
         return session.insert(namespace + "lectureApplyInsert", dto);

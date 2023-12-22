@@ -13,13 +13,9 @@
     <select id="countBT" resultType="int">
     <![CDATA[
         SELECT COUNT(*)
-        FROM (
-                 SELECT *
-                 FROM lstRegist
-                 WHERE courseCode = '1'
-                   AND startDate <= CURDATE()
-             ) AS subquery;
-
+        FROM lstRegist
+        WHERE courseCode = '1'
+          AND startDate <= CURDATE();
         ]]>
     </select>
 
@@ -27,12 +23,9 @@
     <select id="countSM" resultType="int">
         <![CDATA[
         SELECT COUNT(*)
-        FROM (
-                 SELECT *
-                 FROM lstRegist
-                 WHERE courseCode = '2'
-                   AND startDate <= CURDATE()
-             ) AS subquery;
+        FROM lstRegist
+        WHERE courseCode = '2'
+          AND startDate <= CURDATE();
         ]]>
     </select>
 
@@ -129,26 +122,79 @@
         <include refid="searchCondition"/>
     </select>
 
-    <!--    세미나 리스트화면으로 이동-->
+    <!--    (회원) 신청 세미나 리스트-->
     <select id="seminarList" resultType="lstregistfileDto">
         select *
         from lstRegist lr right Join lstregistfile lf on lr.registCode = lf.registCode
-        where status LIKE "진행예정" AND courseCode NOT LIKE 1
+        where courseCode NOT LIKE 1
         ORDER BY lr.regDate DESC, lr.registCode DESC
     </select>
 
+    <!--    (회원) 세미나 리스트 페이징 처리 -->
+    <select id="seminarPaging" parameterType="map" resultType="lstregistfileDto">
+        select *
+        from lstRegist lr right Join lstregistfile lf on lr.registCode = lf.registCode
+        where courseCode NOT LIKE 1
+        ORDER BY lr.regDate DESC, lr.registCode DESC
+            limit #{offset}, #{pageSize}
+    </select>
+
+    <!--    (회원) 진행예정 세미나 리스트 페이징 처리-->
+    <select id="appointSMList" parameterType="map" resultType="lstregistfileDto">
+        select *
+        from lstRegist lr right join lstregistfile lf on lr.registCode lf.registCode
+        where courseCode NOT LIKE 1 AND status like "진행예정"
+        order by regDate desc, registCode desc
+            limit #{offset}, #{pageSize}
+    </select>
+
+    <!--    (회원) 진행 중 세미나 리스트 페이징 처리-->
+    <select id="processSMList" parameterType="map" resultType="lstregistfileDto">
+        select *
+        from lstRegist lr right join lstregistfile lf on lr.registCode lf.registCode
+        where courseCode NOT LIKE 1 AND status like "진행 중"
+        order by regDate desc, registCode desc
+            limit #{offset}, #{pageSize}
+    </select>
+
+    <!--    (회원) 세미나 세부 사항 -->
     <select id="seminarDetail" parameterType="int" resultType="lstRegistDto">
         <include refid="selectFromlstRegist"/>
         where registCode = #{registCode}
     </select>
 
-
+    <!--  (회원) 신청 부트캠프 리스트 -->
     <select id="bootCampList" resultType="lstRegistDto">
         <include refid="selectFromlstRegist"/>
-        where status LIKE "진행예정" AND courseCode LIKE 1
+        where courseCode LIKE 1
         ORDER BY regDate DESC, registCode DESC
     </select>
 
+    <!--    (회원) 부트캠프 리스트 페이징 처리 -->
+    <select id="bootCampPaging" parameterType="map" resultType="lstRegistDto">
+        <include refid="selectFromlstRegist"/>
+        where courseCode like 1
+        order by regDate desc, registCode desc
+        limit #{offset}, #{pageSize}
+    </select>
+
+    <!--    (회원) 진행예정 부트캠프 리스트 페이징 처리-->
+    <select id="appointBTList" parameterType="map" resultType="lstRegistDto">
+        <include refid="selectFromlstRegist"/>
+        where courseCode like 1 and status like "진행예정"
+        order by regDate desc, registCode desc
+        limit #{offset}, #{pageSize}
+    </select>
+
+    <!--    (회원) 진행 중 부트캠프 리스트 페이징 처리-->
+    <select id="processBTList" parameterType="map" resultType="lstRegistDto">
+        <include refid="selectFromlstRegist"/>
+        where courseCode NOT LIKE 1 AND status like "진행 중"
+        order by regDate desc, registCode desc
+        limit #{offset}, #{pageSize}
+    </select>
+
+    <!--    (회원) 부트캠프 세부 사항 -->
     <select id="bootCampDetail" parameterType="int" resultType="lstRegistDto">
         <include refid="selectFromlstRegist"/>
         where registCode = #{registCode}
@@ -192,7 +238,7 @@
         FROM lstregist
         where status like "진행예정" and courseCode not like 1
         ORDER BY regDate DESC, registCode DESC
-        limit 2
+            limit 2
     </select>
 
     <!--    홈 화면 부트캠프 리스트-->
@@ -201,6 +247,6 @@
         from lstregist
         where status like "진행예정" and courseCode like 1
         ORDER BY regDate DESC, registCode DESC
-        limit 2
+            limit 2
     </select>
 </mapper>

@@ -223,7 +223,7 @@ z-index: 1000; float: right;/">
             <a href="/adminManage/registCourse/course">과정등록</a>
             <a href="/adminManage/registRound/round">회차등록</a>
             <a href="/adminManage/classEnroll/list">과목등록</a>
-            <a href="/lstRegist/list">강의개설</a>
+            <a href="/adminManage/lstRegist/list">강의개설</a>
         </div>
     </div>
     <div class="box">

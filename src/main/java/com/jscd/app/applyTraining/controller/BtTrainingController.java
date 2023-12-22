@@ -1,5 +1,6 @@
 package com.jscd.app.applyTraining.controller;
 
+import com.jscd.app.applyTraining.dto.LecturePageHandler;
 import com.jscd.app.applyTraining.dto.BtApplicationDto;
 import com.jscd.app.applyTraining.service.BtApplicationService;
 import com.jscd.app.lecture.classEnroll.dto.ClassEnrollDto;
@@ -18,7 +19,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/btTraining")
@@ -35,9 +38,10 @@ public class BtTrainingController {
     // 부트캠프 신청서 제출
     @PostMapping("btApplication")
     public String btApplicationWrite(BtApplicationDto btApplicationDto, Model m, RedirectAttributes rattr){
-
+        System.out.println("시작 btApplicationDto = " + btApplicationDto);
         try {
             int cnt = btApplicationService.write(btApplicationDto);
+            System.out.println("폼 작성 후 btApplicationDto = " + btApplicationDto);
             btApplicationService.lectureApplyInsert(btApplicationDto);
 
             if(cnt != 1)
@@ -95,17 +99,79 @@ public class BtTrainingController {
 
     // 부트캠프 리스트 이동
     @GetMapping("/list")
-    public String btTrainingList(Model m) throws Exception {
+    public String btTrainingList(Integer page, Integer pageSize, Model m) throws Exception {
+
+        if(page == null) page=1;
+        if(pageSize == null) pageSize = 2;
 
         try {
-            List<LstRegistDto> list = lstService.bootCampList();
-//            System.out.println(list);
+            int totalCnt = lstService.getCountBT();
+            System.out.println("totalCnt = " + totalCnt);
+            LecturePageHandler lecturePageHandler = new LecturePageHandler(totalCnt, page, pageSize);
+
+            Map map = new HashMap();
+            map.put("offset", (page-1) * pageSize);
+            map.put("pageSize", pageSize);
+            System.out.println("bootHandler = " + lecturePageHandler);
+
+            List<LstRegistDto> list = lstService.bootCampPaging(map);
 
             m.addAttribute("list", list);
+            m.addAttribute("ph", lecturePageHandler);
         } catch(Exception e) {
             e.printStackTrace();
         }
         return "/applyTraining/bootCampList";
+    }
+
+    // 부트캠프 진행예정일 때 리스트 이동
+    @GetMapping("/appointBTList")
+    public String btAppointList(Integer page, Integer pageSize, Model m) throws Exception {
+        if(page == null) page=1;
+        if(pageSize == null) pageSize = 2;
+
+        try {
+            // TODO 진행예정 부트캠프 카운팅 새로 해야함.
+            int totalCnt = lstService.getCountBT();
+            LecturePageHandler lecturePageHandler = new LecturePageHandler(totalCnt, page, pageSize);
+
+            Map map = new HashMap();
+            map.put("offset", (page-1) * pageSize);
+            map.put("pageSize", pageSize);
+
+            List<LstRegistDto> list = lstService.appointBTList(map);
+
+            m.addAttribute("list", list);
+            m.addAttribute("ph", lecturePageHandler);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return "/applyTraining/appointBootCampList";
+    }
+
+    // 부트캠프 진행중일 때 리스트 이동
+    @GetMapping("/processBTList")
+    public String btProcessList(Integer page, Integer pageSize, Model m) throws Exception {
+        if(page == null) page = 1;
+        if(pageSize ==  null) pageSize = 2;
+
+        try {
+            // TODO 진행 중 부트캠프 카운팅 다시해야함.
+            int totalCnt = lstService.getCountBT();
+            LecturePageHandler lecturePageHandler = new LecturePageHandler(totalCnt, page, pageSize);
+
+            Map map = new HashMap();
+            map.put("offset", (page-1) * pageSize);
+            map.put("pageSize", pageSize);
+
+            List<LstRegistDto> list = lstService.appointBTList(map);
+
+            m.addAttribute("list", list);
+            m.addAttribute("ph", lecturePageHandler);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return "/applyTraining/processBootCampList";
     }
 
     // 부트캠프 세부페이지 이동
