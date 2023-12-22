@@ -27,4 +27,8 @@ public interface MemberService {
 	int getGeneralMember() throws Exception;
 
 	int getStudentMember() throws Exception;
-}
+	String getEmail(MemberDto memberDto)throws Exception;
+	int modifyPwd(MemberDto memberDto)throws Exception;
+
+
+	}

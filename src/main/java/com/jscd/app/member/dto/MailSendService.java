@@ -56,4 +56,20 @@ public class MailSendService {
             e.printStackTrace();
         }
     }
+
+    //비밀번호 찾기 이메일 양식
+    public String findPwd(String email) {
+        makeRandomNumber();
+        String setFrom = "jyh931229@gmail.com"; // email-config에 설정한 자신의 이메일 주소를 입력
+        String toMail = email;
+        String title = "비밀번호 찾기 인증 이메일 입니다."; // 이메일 제목
+        String content =
+                "정석코딩에 방문해주셔서 감사합니다." + 	//html 형식으로 작성 !
+                        "<br><br>" +
+                        "인증 번호는 " + authNumber + "입니다." +
+                        "<br>" +
+                        "해당 인증번호를 인증번호 확인란에 기입하여 주세요."; //이메일 내용 삽입
+        mailSend(setFrom, toMail, title, content);
+        return Integer.toString(authNumber);
+    }
 }

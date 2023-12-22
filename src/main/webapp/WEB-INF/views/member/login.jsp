@@ -19,6 +19,10 @@
     <link rel="apple-touch-icon" href="/img/mainlogo.png"/>
     <title>정석코딩 | 로그인</title>
 </head>
+<script>
+    let msg = "${param.msg}";
+    if (msg == "PWD_UP_OK") alert("비밀번호가 재설정 되었습니다.");
+</script>
 <body>
 <header>
     <jsp:include page="../header.jsp"/>
@@ -59,9 +63,9 @@
             </div>
             <div>
                 <ul>
-                    <li><a href="">아이디 찾기</a></li>
+                    <li><a href="/member/findEmail">아이디 찾기</a></li>
                     <li>|</li>
-                    <li><a href="">비밀번호 찾기</a></li>
+                    <li><a href="/member/findPwd">비밀번호 찾기</a></li>
                     <li>|</li>
                     <li><a href="/member/signup">회원가입</a></li>
                 </ul>
