@@ -3,6 +3,7 @@
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 
 <!DOCTYPE html>
@@ -31,9 +32,9 @@
             <section id="board_aside">
                 <div id="board_aside_title">커뮤니티</div>
                 <div id="board_aside_contents">
-                    <div><a id="board_aside_notice" href="#">공지사항</a></div>
-                    <div><a id="board_aside_qna" href="#">Q&A</a></div>
-                    <div><a id="board_aside_faq" href="#">FAQ</a></div>
+                    <div><a id="board_aside_notice" href="<c:url value="/board/user/list"/>">공지사항</a></div>
+                    <div><a id="board_aside_qna" href="${path}/board/qna/allqnaList">Q&A</a></div>
+                    <div><a id="board_aside_faq" href="${path}/board/faq">FAQ</a></div>
                 </div>
             </section>
             <section id="board_main_contents">
@@ -135,7 +136,7 @@
                 <section id="paging">
                     <div id="section_paging">
                         <div id="paging_group">
-
+<%--                            게시물이 없습니다 가 두개입니다 뭘 지워야 할 지 몰라 안 지웠으니 지워주세요--%>
                             <c:if test="${totalCnt==null || totalCnt==0}">
                                 <div id="empty"> 게시물이 없습니다.</div>
                             </c:if>
@@ -159,7 +160,7 @@
                                     </c:forEach>
                                     <c:if test="${ph.showNext}">
                                         <input type="button" id="pageNbr" class="bt page"
-                                           href="<c:url value="/board/qna/allqnaL9ist${ph.sc.getQueryString(ph.endPage+1)}"/>">&gt;</a>
+                                           href="<c:url value="/board/qna/allqnaList${ph.sc.getQueryString(ph.endPage+1)}"/>">&gt;</input>
                                     </c:if>
                                 </c:if>
                             </div>

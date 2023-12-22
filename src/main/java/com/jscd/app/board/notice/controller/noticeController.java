@@ -97,6 +97,8 @@ public class noticeController {
     @GetMapping("/write")  //게시판 작성을 위한 빈 화면을 보여준다
     public String write(Model m, SearchCon sc) {
 
+
+
         m.addAttribute("mode", "new");
         m.addAttribute("page", sc.getPage());
         m.addAttribute("pageSize", sc.getPageSize());
@@ -113,13 +115,13 @@ public class noticeController {
 //            System.out.println("allError = " + allError);  //에러가 보이지 않는 문제가 있었음. 이렇게 해결함
 //        }
 
-        String writer = (String)session.getAttribute("id");
+        String writer = (String)session.getAttribute("adminId");
         noticeDto.setWriter(writer);
 
         try {
 
             int rowCnt = noticeService.write(noticeDto);
-          System.out.println(m);
+
             if (rowCnt != 1)
                 throw new Exception("Write Failed");
 

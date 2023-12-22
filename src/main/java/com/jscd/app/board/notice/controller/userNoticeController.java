@@ -30,8 +30,6 @@ public class userNoticeController {
     @GetMapping("/read")
     public String read(int bno, Integer page, Integer pageSize, Model m, HttpServletRequest request) { //읽어온 걸 jsp로 전달해야해서 model
 
-        if(!loginCheck(request))
-            return "redirect:/member/login?toUrl="+request.getRequestURL();
 
         try {
             noticeDto noticeDto = noticeService.read(bno); //서비스에서 읽고 dto로 받기

@@ -84,7 +84,7 @@
         }
 
         $('#listBtn').on('click', function () {
-            location.href = "<c:url value='list?page=${page}&pageSize=${pageSize}'/>";
+            location.href = "<c:url value='list?page=${page} &pageSize=${pageSize}'/>";
         });
 
         $('#removeBtn').on('click', function () {
@@ -99,14 +99,12 @@
         $('#writeBtn').on('click', function () {
             console.log("Write button clicked");
             let form = $('#form');
-            form.attr("action", "<c:url value='/board/notice/write'/>");
+            form.attr("action", "<c:url value='/board/notice/write?page=${page}&pageSize=${pageSize}'/>");
             form.attr("method", "post"); //포스트로 해서 전송
                           console.log(form);
 
-            // if (formCheck()) {
-            //     console.log(formCheck());
-                 form.submit();
-            // }
+            form.submit();
+
         });
 
 
