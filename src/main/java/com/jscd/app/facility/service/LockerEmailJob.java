@@ -4,9 +4,10 @@ import java.util.List;
 import java.util.Map;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+//import org.quartz.Job;
+//import org.quartz.JobExecutionContext;
+//import org.quartz.JobExecutionException;
 import org.quartz.Job;
-import org.quartz.JobExecutionContext;
-import org.quartz.JobExecutionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -22,16 +23,16 @@ public class LockerEmailJob implements Job {
     @Autowired
     JavaMailSenderImpl mailSender;
 
-    @Override
-    public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
-        try {
-            List<Map<String, Object>> list = lockerService.lockerAlert();
-            System.out.println("list = " + list);
-            alertEmail(list);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
+//    @Override
+//    public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
+//        try {
+//            List<Map<String, Object>> list = lockerService.lockerAlert();
+//            System.out.println("list = " + list);
+//            alertEmail(list);
+//        } catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 
     //이메일 보낼 양식
     public void alertEmail(List<Map<String, Object>> list) {
