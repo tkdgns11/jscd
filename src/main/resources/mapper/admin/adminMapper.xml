@@ -12,10 +12,18 @@
         values (#{id}, #{name}, #{pwd},#{grade})
     </insert>
 
-    <!--   관리자 수-->
+    <!--   최고관리자 수-->
     <select id="countAdmin" resultType="int">
         select count(*)
-        from admin;
+        from admin
+        where grade = '1'
+    </select>
+
+    <!--   조교 수-->
+    <select id="countAssistant" resultType="int">
+        select count(*)
+        from admin
+        where grade = '2'
     </select>
 
     <!--    select 쿼리문-->

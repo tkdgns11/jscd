@@ -37,6 +37,7 @@ public class MemberManageController {
         try {
             //1. 총 데이터 개수를 페이징 클래스에 전달 -> 페이징 초기화
             int listCnt = manageService.getSearchResultCnt(sc);
+            System.out.println("게시물 개수 listCnt = " + listCnt);
             Pageable pageable = new Pageable(sc, listCnt);
             //2. 페이징 클래스를 넘기고, 데이터가 담긴 list 반환
             List<MemberManageDto> list = manageService.getSearchPage(sc);
@@ -60,6 +61,7 @@ public class MemberManageController {
 
         try { //전달 받은 회원번호로 회원 select
             MemberManageDto memberDto = manageService.read(mebrNo);
+            System.out.println("회원 상세보기 memberDto = " + memberDto);
             //jsp에 전달
             model.addAttribute("memberDto", memberDto);
             model.addAttribute("page", page);

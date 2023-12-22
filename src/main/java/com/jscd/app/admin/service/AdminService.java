@@ -15,4 +15,5 @@ public interface AdminService {
 
     int removeAdmin(String id) throws Exception;
     int getCountAdmin()throws Exception;
+    int getCountAssistant() throws Exception;
 }

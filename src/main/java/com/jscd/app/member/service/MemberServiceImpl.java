@@ -90,5 +90,15 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.countStudent();
 	}
 
+	@Override
+	public String getEmail(MemberDto memberDto)throws Exception{
+		return memberDao.selectEmail(memberDto);
+	}
+
+	@Override
+	public int modifyPwd(MemberDto memberDto)throws Exception{
+		return memberDao.updatePwd(memberDto);
+	}
+
 }
 

@@ -13,9 +13,13 @@
     <select id="countBT" resultType="int">
     <![CDATA[
         SELECT COUNT(*)
-        FROM lstRegist
-        WHERE courseCode = '1'
-          AND startDate <= CURDATE();
+        FROM (
+                 SELECT *
+                 FROM lstRegist
+                 WHERE courseCode = '1'
+                   AND startDate <= CURDATE()
+             ) AS subquery;
+
         ]]>
     </select>
 
@@ -23,9 +27,12 @@
     <select id="countSM" resultType="int">
         <![CDATA[
         SELECT COUNT(*)
-        FROM lstRegist
-        WHERE courseCode = '2'
-          AND startDate <= CURDATE();
+        FROM (
+                 SELECT *
+                 FROM lstRegist
+                 WHERE courseCode = '2'
+                   AND startDate <= CURDATE()
+             ) AS subquery;
         ]]>
     </select>
 

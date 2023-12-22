@@ -510,6 +510,75 @@ public class MemberController {
 	}
 
 
+	//아이디 찾기 화면 보여주기
+	@GetMapping("/findEmail")
+	public String findEmail(){
+		return "/member/findEmail";
+	}
+
+	//이름,생년월일,전화번호 요청받아 이메일 넘겨주기
+	@PostMapping("/findEmail")
+	public String returnEmail(MemberDto memberDto,Model model)
+	{
+		try{
+			System.out.println("넘어온 회원 객체 memberDto = " + memberDto);
+			//회원 정보에 해당하는 아이디를 찾고,
+			String id = memberService.getEmail(memberDto);
+			if(id == null) throw new Exception("Email Error");
+			model.addAttribute("id",id);
+		}catch (Exception e){
+			e.printStackTrace();
+			model.addAttribute("msg", "EMAIL_ERR");
+			return "redirect:/member/findEmail";
+		}
+		return "/member/findEmailResult";
+	}
+
+	//비밀번호 찾기 화면 보여주기
+	@GetMapping("/findPwd")
+	public String findPwd(){
+		return "/member/findPwd";
+	}
+
+	//비밀번호 찾기 이메일 인증
+	@GetMapping("/findEmailChk")
+	@ResponseBody
+	public String findEmailChk(String email){
+		System.out.println("이메일 인증 요청이 들어옴");
+		System.out.println("이메일 인증할 이메일 : " + email);
+
+		return mailService.findPwd(email);
+	}
+
+	//비밀번호 재설정 화면 보여주기
+	@GetMapping("/pwdModify")
+	public String pwdModifyForm(String id,Model model){
+		model.addAttribute("id",id);
+		return "/member/pwdModify";
+
+	}
+
+	@PostMapping("/pwdModify")
+	public String pwdModify(MemberDto memberDto,Model model){
+		try{
+			//비밀번호 암호화로 저장
+			String pwd = memberDto.getPwd();
+			String securePwd = passwordEncoder.encode(pwd);
+			memberDto.setPwd(securePwd);
+			System.out.println("비밀번호 재설정 memberDto = " + memberDto);
+			memberService.modifyPwd(memberDto);
+			model.addAttribute("msg","PWD_UP_OK");
+		}catch (Exception e){
+			e.printStackTrace();
+			model.addAttribute("msg","PWD_UP_ERR");
+			return "redirect:/member/pwdModify?id="+memberDto.getId();
+		}
+		return "redirect:/member/login/";
+	}
+
+
+
+
 }
 
 

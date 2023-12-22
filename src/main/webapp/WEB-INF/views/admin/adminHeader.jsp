@@ -232,9 +232,9 @@ z-index: 1000; float: right;/">
             <span class="arrow up"></span>
         </div>
         <div class="box-content">
-            <a href="#">전체공지</a>
-            <a href="#">학생공지</a>
-            <a href="#">FAQ</a>
+            <a href="<c:url value="/board/notice/list"/>">전체공지</a>
+            <a href="<c:url value="/board/stdNotice/list"/>">학생공지</a>
+<%--            <a href="#">FAQ</a>--%>
         </div>
     </div>
     <div class="box">

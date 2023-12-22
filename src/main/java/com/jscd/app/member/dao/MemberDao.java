@@ -20,4 +20,8 @@ public interface MemberDao {
     int insertTermsYN(MemberDto memberDto) throws Exception;
     //마이페이지 강의 현황
     public List<LectureApplyDto> selectLecture(LectureApplyDto lectureApplyDto) throws Exception;
-}
+    String selectEmail(MemberDto memberDto)throws Exception;
+    int updatePwd(MemberDto memberDto)throws Exception;
+
+
+    }

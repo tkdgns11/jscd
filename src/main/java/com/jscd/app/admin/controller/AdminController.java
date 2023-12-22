@@ -68,7 +68,6 @@ public class AdminController {
         return "redirect:/admin/login";
     }
 
-
     //로그인 하기
     @PostMapping("/login")
     public String adminLogin(String id, String pwd, String adminIdCheck, String manageURL, HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {

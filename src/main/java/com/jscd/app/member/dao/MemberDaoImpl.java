@@ -64,4 +64,15 @@ public class MemberDaoImpl implements MemberDao{
 		return session.selectList(namespace+"selectLecture", lectureApplyDto);
 	}
 
+	@Override
+	public String selectEmail(MemberDto memberDto)throws Exception{
+		return session.selectOne(namespace+"selectEmail",memberDto);
+	}
+
+	@Override
+	public int updatePwd(MemberDto memberDto)throws Exception{
+		return session.update(namespace+"updatePwd",memberDto);
+	}
+
+
 }
