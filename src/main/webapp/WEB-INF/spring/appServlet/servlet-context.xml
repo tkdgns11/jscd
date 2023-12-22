@@ -27,6 +27,9 @@
         <beans:property name="suffix" value=".jsp" />
     </beans:bean>
 
+<!--    <beans:bean id="swagger2Config" class="com.jscd.app.docs.SwaggerConfig"></beans:bean>-->
+<!--    <resources location="classpath:/META-INF/resources/" mapping="swagger-ui.html"></resources>-->
+<!--    <resources location="classpath:/META-INF/resources/webjars/" mapping="/webjars/**"></resources>-->
 
     <context:component-scan base-package="com.jscd.app" />
 
@@ -45,7 +48,6 @@
 
     <!-- 소희 : RestTemplate 빈 추가 -->
     <beans:bean id="restTemplate" class="org.springframework.web.client.RestTemplate" />
-
 
 
 <!--접근 불가 인터셉터 등록-->
