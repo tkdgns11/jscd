@@ -24,17 +24,24 @@
   <title>관리자 로그인</title>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&family=Noto+Serif+KR:wght@900&display=swap" rel="stylesheet">
   <style>
+    body{height: 100%;overflow: hidden}
+
     #adminLogoBox{position: absolute;font-weight: 80; color: #AFA95E;}
+    #adminLogoBox span{ color: #0185FE; letter-spacing: 10px; font-weight: 600; font-size: 40px;
+    }
+
     #adminContent{width: 960px; height: 700px; margin: 0 auto;position: relative;}
-    #adminLogoBox{position: absolute;margin: 50px 380px;width: 300px;}
-    #adminImg{position: absolute;margin: 130px 280px;}
-    #adminLogin{position: absolute;margin: 450px 230px;}
-    #adminBtn{width: 500px;height: 50px;border: 0;color: white;background-color: #18214F;font-size: 24px;}
+    #adminLogoBox{position: absolute;margin: 30px 350px;width: 300px;}
+    #adminImg{position: absolute;margin: 110px 280px;}
+    #adminLogin{position: absolute;margin: 420px 290px;}
+    #adminBtn{width: 400px;height: 50px;border: 0;color: white;background-color: #0185FE;font-size: 24px;border-radius: 10px}
     #adminBtn:hover{background-color: #D9D9D9;}
-    .adminInput{width: 495px;height: 50px;background-color: #D9D9D9;border: 0;margin-bottom: 15px;}
+    .adminInput{width: 400px;height: 50px;background-color: #D9D9D9;border: 0;margin-bottom: 15px;border-radius: 10px}
     #adminIdCheck{width: 20px;height: 20px;color:#D9D9D9;position: relative;bottom: 10px;}
     #adminIdCheckLabel{position: relative;top: -14px;}
-    #adminMsg{ position: absolute;margin: 400px 360px;}
+    #adminMsg{ position: absolute;margin: 350px 380px;width: 300px}
+    .adminInput:focus {outline: none;}
+
 
   </style>
 </head>
@@ -43,8 +50,8 @@
 
 <div id="adminContent">
   <div id="adminLogoBox" onclick="location.href='/'">
-    <img src="/img/logo.png" style="width: 40px; height: auto;margin-bottom: -10px;">
-    <span style="font-size: 40px; font-family: 'Noto Serif KR';">정석코딩</span>
+    <img src="/img/mainlogo.png" style="width: 65px; height: auto;margin-bottom: -10px;">
+    <span>정석코딩</span>
   </div>
 
   <div id="adminImg">
@@ -53,14 +60,14 @@
 
   <div id="adminMsg">
     <c:if test="${not empty param.msg}">
-      <i style="color: red">${URLDecoder.decode(param.msg)}</i>
+      <p style="color: red;font-weight: 600">${URLDecoder.decode(param.msg)}</p>
     </c:if>
   </div>
 
 
-  <div id="adminLogin" style="position: absolute;">
+  <div id="adminLogin">
     <form action="/admin/login" method="post">
-      <input type="text" name="id" placeholder="관리자 ID" class="adminInput" value="<%=value%>"><br>
+      <input type="text" name="id" placeholder="관리자 ID" class="adminInput" value="<%=value%>" autofocus><br>
       <input type="password" name="pwd" placeholder="관리자 PWD" class="adminInput"><br>
       <input type="checkbox" id="adminIdCheck" name="adminIdCheck" value="check" <%=check%>>
       <label for="adminIdCheck" id="adminIdCheckLabel">아이디 저장</label>
