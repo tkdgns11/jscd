@@ -20,10 +20,10 @@
 .password:focus {outline: none;}
 .memberInfoLabel{color: rgba(0,0,0,0.3);font-weight: 500;}
 #myPageBox{margin-top: 2%;margin-left: 20%;}
-#myPageBtnBox{margin-left: 43%;margin-bottom: 7px;}
+#myPageBtnBox{margin-left: 39%;margin-bottom: 7px;margin-top: 30px}
 #myPageDelBox{margin-left: 89%;margin-top: 30px;}
 #myPageDelBox > a{color:rgba(0,0,0,0.3);border-bottom: 1px solid rgba(0,0,0,0.3);}
-#myPageContentBox{display: flex; flex-direction: row; height: 800px; position: relative;}
+#myPageContentBox{height: 920px;display: flex; flex-direction: row; position: relative}
 #myPageContentBox > nav{height: 100%; border-right: 1px solid rgba(0,0,0,0.2)}
 #myPageContentBox > nav > ul{width: 300px;}
 #myPageContentBox > nav > ul > li{width:200px; margin: 0 auto; padding:30px; border-bottom: 1px solid rgba(0,0,0,0.2)}

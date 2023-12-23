@@ -33,11 +33,12 @@
       background-color: #D9D9D9;
       position: relative;
       display: flex;
+      justify-content: center;
     }
 
     #warp1 {
       margin: 0;
-      width: 75%;
+      width: 100%;
       height: 100%;
     }
 
@@ -45,7 +46,8 @@
       overflow: hidden;
       /*margin: 1rem;*/
       margin-top: 1rem;
-      margin-left: 1rem;
+      margin-right : 0;
+      /*margin-left: 1rem;*/
       margin-bottom: 1rem;
       width: calc(100% - 2rem);
       height: 40%;
@@ -53,7 +55,7 @@
 
     #warp1-layer3Area {
       margin-left: 1rem;
-      margin-right: 1rem;
+      /*margin-right: 1rem;*/
       padding-right: 2rem;
       width: calc(100% - 1rem);
       height: 100%;
@@ -181,7 +183,10 @@
       flex-warp: nowrap;
       justify-content: space-between;
       align-items: center;
-      margin: 1rem;
+      /*margin: 1rem;*/
+      /*margin-right: 1rem;*/
+      margin-top: 1rem;
+      margin-bottom: 1rem;
     }
 
     #visitStatusArea {
@@ -194,7 +199,7 @@
 
     #visitCircleArea {
       height: 100%;
-      margin-right: 2rem;
+      margin-right: 1rem;
       display: flex;
       align-items: center;
     }
@@ -238,11 +243,13 @@
     }
 
     #visitorGraphWarp {
-      width: 100%;
+      width: 80%;
       height: 80%;
       display: flex;
       justify-content: center;
       align-items: center;
+      overflow-x: auto;
+      overflow-y: hidden;
     }
 
     #daySummaryArea {
@@ -250,7 +257,7 @@
     }
 
     #monthSummary {
-      margin-right: 2rem;
+      margin-right: 1rem;
     }
 
     .warp1-layers {
@@ -532,9 +539,10 @@
       font-size: 1rem;
     }
 
-    /*#visitorGraph {*/
-    /*    overflow-x: auto;*/
-    /*}*/
+    #visitorGraph {
+        overflow-x: auto;
+      margin-right: 1rem;
+    }
 
   </style>
   <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
@@ -624,7 +632,7 @@
         </div>
         <hr>
         <div id="visitorGraphWarp" style="overflow-x: auto; overflow-y: hidden;">
-          <svg id="visitorGraph" width="500" height="400"></svg>
+          <svg id="visitorGraph" width="800" height="400"></svg>
         </div>
       </div>
       <div class="warp1-layers" id="daySummary">
@@ -767,37 +775,37 @@
       </div>
     </div>
   </div>
-  <div id="warp2">
-    <div id="warp2-top">
-      <div id="warp2-top-3">
-        <div id="profileImgArea">
-          <div id="profileImgCircle">
-          </div>
-        </div>
-        <div id="memberName">steve</div>
-        <div id="memberId">sanghoon@jungsuk.com</div>
-      </div>
-      <div id="warp2-top-2">
-        <p class ="adminMemo" >
-          <br><span id="memoTitle">관리자메모</span><br><br>
-          날짜: 2023-12-20 <br><br>
+<%--  <div id="warp2">--%>
+<%--    <div id="warp2-top">--%>
+<%--      <div id="warp2-top-3">--%>
+<%--        <div id="profileImgArea">--%>
+<%--          <div id="profileImgCircle">--%>
+<%--          </div>--%>
+<%--        </div>--%>
+<%--        <div id="memberName">steve</div>--%>
+<%--        <div id="memberId">sanghoon@jungsuk.com</div>--%>
+<%--      </div>--%>
+<%--      <div id="warp2-top-2">--%>
+<%--        <p class ="adminMemo" >--%>
+<%--          <br><span id="memoTitle">관리자메모</span><br><br>--%>
+<%--          날짜: 2023-12-20 <br><br>--%>
 
-          - 우수 학생을 위한 장학금 프로그램 검토 및 새로운 장학 기준 설정.
-        </p>
-      </div>
-      <div id="warp2-top-1">
-        <p class ="adminMemo">
-          날짜: 2023-12-21<br><br>
+<%--          - 우수 학생을 위한 장학금 프로그램 검토 및 새로운 장학 기준 설정.--%>
+<%--        </p>--%>
+<%--      </div>--%>
+<%--      <div id="warp2-top-1">--%>
+<%--        <p class ="adminMemo">--%>
+<%--          날짜: 2023-12-21<br><br>--%>
 
-          - 마케팅 전략 회의 예정. SNS 캠페인 및 전통 매체 광고 방안 논의.<br>
-        </p>
-      </div>
-    </div>
-    <div id="warp2-2"></div>
-    <div id="warp2-3"></div>
-    <div id="warp2-4"></div>
-    <div id="warp2-5"></div>
-  </div>
+<%--          - 마케팅 전략 회의 예정. SNS 캠페인 및 전통 매체 광고 방안 논의.<br>--%>
+<%--        </p>--%>
+<%--      </div>--%>
+<%--    </div>--%>
+<%--    <div id="warp2-2"></div>--%>
+<%--    <div id="warp2-3"></div>--%>
+<%--    <div id="warp2-4"></div>--%>
+<%--    <div id="warp2-5"></div>--%>
+<%--  </div>--%>
 </div>
 <script>
 

@@ -15,11 +15,11 @@
 	</properties>
 
 	<!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-s3 -->
-	<dependency>
-		<groupId>com.amazonaws</groupId>
-		<artifactId>aws-java-sdk-s3</artifactId>
-		<version>1.12.595</version>
-	</dependency>
+<!--	<dependency>-->
+<!--		<groupId>com.amazonaws</groupId>-->
+<!--		<artifactId>aws-java-sdk-s3</artifactId>-->
+<!--		<version>1.12.595</version>-->
+<!--	</dependency>-->
 
 	<!-- 포트원 라이브러리 (결제 API) -->
 	<repositories>
@@ -72,6 +72,12 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<version>1.18.30</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.13.3</version>
 		</dependency>
 
 		<dependency>
@@ -293,6 +299,7 @@
 			<artifactId>jackson-core-asl</artifactId>
 			<version>1.9.13</version>
 		</dependency>
+
 		<!--이메일 인증 -->
 		<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
 		<dependency>
@@ -300,12 +307,14 @@
 			<artifactId>mail</artifactId>
 			<version>1.4.7</version>
 		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 			<version>2.8.6</version>
 		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
 		<dependency>
 			<groupId>org.springframework</groupId>
