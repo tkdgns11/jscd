@@ -78,12 +78,12 @@ function member(value){
 
                     if(data.redirect){
                         console.log("redirect 발생");
-                        console.log("회원가입에 성공했습니다.");
+                        console.log("회원가입 성공");
                         window.location.href = data.redirect;
                     }
                     if(data.error){
                         console.log("error 발생")
-                        console.log("약관등록에 실패했습니다.")
+                        console.log("약관등록 실패")
                     }
                 },
                 error : function (){
@@ -133,7 +133,7 @@ function  idValid(id, idReg){
     if(id.value==""){
         alert("아이디를 입력해주세요.");
         return false;
-    };
+    }
     //아이디 정규식 유효성 검사
     if(!idReg.test(id.value)){
         alert("이메일 양식을 확인해주세요.")
@@ -216,8 +216,6 @@ function  phoneValid(phone, phoneReg){
     }
 
     return true;
-
-
 }
 
 // 아이디 중복체크
@@ -231,17 +229,15 @@ const idCheck = ()=>{
             console.log("비교할 id = " + email);
             if(id == email){
                 alert('사용할 수 없는 아이디입니다.');
-                $('#id').css('color', 'red');
                 document.getElementById("idImg").src="/img/signup_user_red.png";
             }else{
                 alert('사용할 수 있는 아이디입니다.');
                 document.getElementById("idChkYN").value = 'Y';
-                console.log(document.getElementById('idChkYN').value);
                 document.getElementById("idImg").src="/img/signup_user.png";
             }
         },
         error : ()=>{
-            alert("서버 요청 실패")
+            alert("서버 요청 실패\n관리자에게 문의해주세요.")
         }
     }); // end ajax
 }
@@ -254,12 +250,13 @@ const idCheck = ()=>{
 $(document).ready(()=>{
     $('#emailChkBtn').click(()=>{
 
-        const email = $('#id').val(); //이메일 주소값 가져오기
+        //이메일 주소값 가져오기
+        const email = $('#id').val();
         console.log(email);
 
         $.ajax({
             type:'get',
-            url : '/member/mailChk?email='+email, // get방식이라서 url 뒤에 email을 줄 수 있다.
+            url : '/member/mailChk?email='+email,
             success: (data)=>{
                 console.log(data);
                 code=data;
@@ -267,7 +264,7 @@ $(document).ready(()=>{
                 alert("인증번호가 전송됐습니다.");
             },
             error : ()=>{
-                alert("서버 요청 실패")
+                alert("서버 요청 실패\n관리자에게 문의해주세요.")
             }
         }); // end ajax
     });

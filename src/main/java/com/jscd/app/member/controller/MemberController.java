@@ -4,17 +4,12 @@ import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.jscd.app.admin.dto.InstructorInfoDto;
 import com.jscd.app.admin.dto.InstructorMemberInfoDto;
 import com.jscd.app.admin.service.InstructorInfoService;
-import com.jscd.app.applyTraining.dto.BtApplicationDto;
-import com.jscd.app.board.qna.qnaDto.AttachDto;
 import com.jscd.app.lecture.lstRegist.dto.LectureApplyDto;
 import com.jscd.app.member.dto.KakaoLoginBo;
 import com.jscd.app.member.dto.MailSendService;
 import com.jscd.app.member.dto.NaverLoginBo;
-//import com.jscd.app.member.dto.mailSender;
 import com.jscd.app.member.dto.MemberDto;
 import com.jscd.app.member.service.MemberService;
-import com.jscd.app.order.dto.CompanyInfoDTO;
-import com.jscd.app.order.dto.StodDTO;
 import com.jscd.app.order.service.CompanyInfoService;
 import com.jscd.app.order.service.StodService;
 import org.json.simple.JSONObject;
@@ -393,20 +388,24 @@ public class MemberController {
 	@GetMapping("/idChk")
 	@ResponseBody
 	public String idChk(String id){
-		System.out.println("비교할 이메일 아이디 = " + id);
+		System.out.println("비교할 이메일 id = " + id);
 
 		String email = "";
 
 		try {
+			// 비교할 이메일 id로 검색
 			MemberDto memberDto = memberService.memberSelect(id);
+			// 검색한 결과에서 이메일 id 얻기
 			email = memberDto.getId();
 
+			// 검색한 결과 이메일 id가 있다면 email변수에 담아서 return
 			System.out.println("email = " + email);
+			return email;
 		} catch (Exception e) {
-			e.printStackTrace();
+			// 검색한 결과 이메일 id가 없다면 email변수에 "" 담아서 return
+			System.out.println("email = " + email);
+			return email;
 		}
-
-		return email;
 	}
 
 	//이메일 인증
