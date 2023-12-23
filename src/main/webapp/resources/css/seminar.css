@@ -8,6 +8,7 @@
 #seminarList li{display: flex; margin-top: 30px;}
 #seminarList li h1{width: 50px; height: 50px; background-color: #FFFFFF; color: #0185FE; text-align: center; line-height: 50px; border-radius: 5px; font-size: 25px; font-weight: bold; margin: 0px 20px; box-shadow: 5px 5px 5px rgba(0,0,0,0.4)}
 #seminarList li p{line-height: 50px; font-weight: bold; font-size: 30px;text-shadow: 5px 5px 5px rgba(0,0,0,0.2);}
+#seminarListImg{margin-top: 109px; margin-left: 50%; width: 500px; object-fit: cover;}
 #seminarNav{background-color: #ED3269; color: #ffffff; height: 50px;}
 #seminarNav li{line-height: 50px; font-weight: bold;}
 #seminarNav a{color: #ffffff;font-weight: bold; margin: 0px 15px;}
