@@ -78,7 +78,7 @@
             <input type="text" name="birth" id="birth"
                    placeholder="생년월일 6자리(ex.950324)"><br>
         </div>
-        <input type="submit" value="찾기" id="findEmail">
+        <input type="submit" value="확인" id="findEmail">
     </div>
     <footer style="flex-shrink: 0;">
         <jsp:include page="../../footer.jsp" flush="true"/>

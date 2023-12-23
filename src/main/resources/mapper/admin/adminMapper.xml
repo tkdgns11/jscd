@@ -56,6 +56,7 @@
     <update id="updateAdmin" parameterType="AdminDto">
         update admin
         set nickname   = #{nickname},
+            pwd = #{pwd},
             birth      = #{birth},
             phone      = #{phone},
             modifyDate = now()

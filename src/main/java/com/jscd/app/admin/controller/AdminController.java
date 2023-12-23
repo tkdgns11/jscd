@@ -150,11 +150,14 @@ public class AdminController {
     @PostMapping("/modify")
     public String adminModify(AdminDto adminDto, Model model, HttpSession session) {
         try {
-            System.out.println("adminDto = " + adminDto);
             //현재 세션에 저장된 관리자 id를 가져옴
             String adminId = (String) session.getAttribute("adminId");
-            //업데이트할 객체에 id를 넣어줌
+            //비밀번호 암호화
+            String pwd = adminDto.getPwd();
+            String securePwd = passwordEncoder.encode(pwd);
+
             adminDto.setId(adminId);
+            adminDto.setPwd(securePwd);
             adminService.modifyAdmin(adminDto);
             //수정 성공 시, msg 모델에 넘겨줌
             model.addAttribute("msg", "MOD_OK");

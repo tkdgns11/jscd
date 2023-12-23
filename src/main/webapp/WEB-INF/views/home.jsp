@@ -15,6 +15,11 @@
 	<link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
 	<link rel="stylesheet" type="text/css" href="<c:url value="/css/home.css"/>">
 	<script type="text/javascript" src="<c:url value="/js/home.js"/>"></script>
+
+	<script>
+		let msg = "${param.msg}";
+		if (msg != "") alert("학생만 접근 가능한 페이지 입니다.");
+	</script>
 </head>
 <body>
 <header>

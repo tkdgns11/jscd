@@ -51,6 +51,7 @@
 
 
 <!--접근 불가 인터셉터 등록-->
+<!--    관리자 페이지 - 원장/조교 제한 나누기-->
     <interceptors>
         <interceptor>
             <mapping path="/adminManage/memberManage/*"/>
@@ -63,5 +64,14 @@
             <beans:bean id="AdminGradeCheckInterceptor" class="com.jscd.app.admin.AdminGradeCheckInterceptor" />
         </interceptor>
     </interceptors>
+
+<!--    일반 페이지 - 학사관리 일반등급은 들어가지 못하게-->
+    <interceptors>
+        <interceptor>
+            <mapping path="/board/userStd/*"/>
+            <beans:bean id="StdGradeCheckInterceptor" class="com.jscd.app.member.controller.StdGradeCheckInterceptor" />
+        </interceptor>
+    </interceptors>
+
 
 </beans:beans>
