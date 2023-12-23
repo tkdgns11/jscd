@@ -55,12 +55,9 @@ public class stdNoticeController {
 
             pageHandler pageHandler = new pageHandler(totalCnt, sc);
 
-
-
             List<stdNoticeDto> list = stdNoticeService.getSearchResultPage(sc);
             m.addAttribute("list", list);
             m.addAttribute("ph", pageHandler);
-
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -68,7 +65,7 @@ public class stdNoticeController {
             m.addAttribute("totalCnt", 0);
         }
 
-        return "board/notice/stdNoticeList"; // 로그인을 한 상태이면, 게시판 화면으로 이동
+        return "board/notice/stdNoticeList";
     }
 
     @PostMapping("/remove") //게시물 삭제 POST방식만 있음

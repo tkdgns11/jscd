@@ -25,8 +25,7 @@
     <div id="detailHd">
         <input type="hidden" name="bno" value="${noticeDto.bno}"><br>
         <input id="title" placeholder="제목에 핵심 내용을 요약해보세요." name="title" value="${noticeDto.title}" ${mode=="new" ? '' : 'readonly="readonly"' }><br>
-        <span>작성 <input type="text" id="regDate" name="regDate" value="${noticeDto.regDate} " readonly> ･</span>
-        <span>수정 <input type="text" id="modifyDate" name="modifyDate" value="${noticeDto.modifyDate} " readonly>･</span>
+        <span>작성 <input type="text" id="regDate" name="regDate" value="${noticeDto.modifyDate} " readonly> ･</span>
         <span>조회수 <input type="text" id="viewCnt" name="viewCnt" value=" ${noticeDto.viewCnt}" readonly></span><br>
         <span>작성자 <input type="text" name="writer" id="writer" value=" ${noticeDto.writer}" readonly></span><br>
 
@@ -60,7 +59,11 @@
 </form>
 <script>
     let msg = "${msg}";
-    if (msg == "wrt_err") alert("등록 실패!!!! 다시 시도 바람")
+    if (msg == "wrt_err") alert("등록에 실패!! 다시 시도 바랍니다.")
+    if(msg=="del_err") alert("삭제 실패!! 다시 시도 바랍니다.")
+    if (msg=="modify_err") alert ("권한이 없습니다.")
+    if (msg=="mod_err")alert("수정 실패!! 다시 시도 바랍니다")
+
 </script>
 
 <script>
@@ -84,7 +87,7 @@
         }
 
         $('#listBtn').on('click', function () {
-            location.href = "<c:url value='list?page=${page}&pageSize=${pageSize}'/>";
+            location.href = "<c:url value='list?page=${page} &pageSize=${pageSize}'/>";
         });
 
         $('#removeBtn').on('click', function () {
@@ -99,14 +102,12 @@
         $('#writeBtn').on('click', function () {
             console.log("Write button clicked");
             let form = $('#form');
-            form.attr("action", "<c:url value='/board/notice/write'/>");
+            form.attr("action", "<c:url value='/board/notice/write?page=${page}&pageSize=${pageSize}'/>");
             form.attr("method", "post"); //포스트로 해서 전송
                           console.log(form);
 
-            // if (formCheck()) {
-            //     console.log(formCheck());
-                 form.submit();
-            // }
+            form.submit();
+
         });
 
 

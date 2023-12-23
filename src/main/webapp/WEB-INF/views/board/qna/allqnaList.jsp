@@ -3,7 +3,7 @@
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%String sessionId = session.getId();%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 
 <!DOCTYPE html>
@@ -32,9 +32,9 @@
             <section id="board_aside">
                 <div id="board_aside_title">커뮤니티</div>
                 <div id="board_aside_contents">
-                    <div><a id="board_aside_notice" href="#">공지사항</a></div>
-                    <div><a id="board_aside_qna" href="#">Q&A</a></div>
-                    <div><a id="board_aside_faq" href="#">FAQ</a></div>
+                    <div><a id="board_aside_notice" href="<c:url value="/board/user/list"/>">공지사항</a></div>
+                    <div><a id="board_aside_qna" href="${path}/board/qna/allqnaList">Q&A</a></div>
+                    <div><a id="board_aside_faq" href="${path}/board/faq">FAQ</a></div>
                 </div>
             </section>
             <section id="board_main_contents">
@@ -65,10 +65,7 @@
 
                 <section id="main_submit">
                     <div id="except_secret">
-
-                        <input type="checkbox" id="secretCheckbox" class="secret" name="secret" value="secret"> 비밀글 제외
-
-
+                        <input type="checkbox" class="secret" name="secret" value="secret"> 비밀글 제외
                     </div>
                     <div id="my_contents">
                         <input type="checkbox" name="myWriting" value="">
@@ -80,7 +77,6 @@
                     </span>
                 </section>
                 <hr/>
-
 
                 <c:forEach var="list" items="${list}">
                 <section id="main_contents">
@@ -94,22 +90,16 @@
                                     <c:if test="${empty param.secret}">
                                         <c:choose>
                                             <c:when test="${list.openYN eq 'Y' || empty list.openYN || list.openYN eq null}">
-                                                <a href="${path}/board/qna/allqnaDetail?allqnaNo=${list.allqnaNo}" onclick="allqnaDetail()">${list.title}</a>
-
+                                                <a href="${path}/board/qna/allqnaDetail?allqnaNo=${list.allqnaNo}">${list.title}</a>
                                             </c:when>
-                                            <c:when test="${list.openYN eq 'N' && list.writer eq sessionScope.id}">
-                                                <a href="${path}/board/qna/allqnaDetail?allqnaNo=${list.allqnaNo}" onclick="allqnaDetail()">${list.title}</a>
-
-                                            </c:when>
-                                            <c:when test="${list.openYN eq 'N' && list.writer ne sessionScope.id}">
+                                            <c:when test="${list.openYN eq 'N'}">
                                                 비밀글은 작성자와 관리자만 볼 수 있습니다.
                                             </c:when>
                                             <c:when test="${list.openYN eq 'N' && not empty param.secret}">
-                                                비밀글은 작성자와 관리자만 볼 수 있습니다.
+
                                             </c:when>
                                         </c:choose>
                                     </c:if>
-
                                 </div>
                             </div>
 
@@ -130,12 +120,12 @@
                             <div id="info_footer">
                                 <div id="footer_user_info">
                                     <span id="user_info_name">${list.writer}</span>
-                                    <span id="user_info_id">(이름)</span>
+                                    <span id="user_info_id">(${list.writer})</span>
                                     <span id="user_info_date">${list.regDate}</span>
                                 </div>
                                 <div id="content_info">
-                                    <span id="board_num">No. ${list.allqnaNo}</span>
-                                    <span id="hit_num">${list.hit}</span>
+                                    <span id="board_num">${list.allqnaNo}</span>
+                                    <span id="hit_num">list.hit</span>
                                 </div>
                             </div>
                         </div>
@@ -146,7 +136,7 @@
                 <section id="paging">
                     <div id="section_paging">
                         <div id="paging_group">
-
+<%--                            게시물이 없습니다 가 두개입니다 뭘 지워야 할 지 몰라 안 지웠으니 지워주세요--%>
                             <c:if test="${totalCnt==null || totalCnt==0}">
                                 <div id="empty"> 게시물이 없습니다.</div>
                             </c:if>
@@ -170,7 +160,7 @@
                                     </c:forEach>
                                     <c:if test="${ph.showNext}">
                                         <input type="button" id="pageNbr" class="bt page"
-                                           href="<c:url value="/board/qna/allqnaL9ist${ph.sc.getQueryString(ph.endPage+1)}"/>">&gt;</a>
+                                           href="<c:url value="/board/qna/allqnaList${ph.sc.getQueryString(ph.endPage+1)}"/>">&gt;</input>
                                     </c:if>
                                 </c:if>
                             </div>
@@ -191,38 +181,29 @@
 </body>
 
 <script>
-    // 페이지가 로드될 때 실행되는 함수
-    document.addEventListener("DOMContentLoaded", function() {
-        const secretCheckbox = document.getElementById("secretCheckbox");
+    document.addEventListener('DOMContentLoaded', function () {
+        const secretCheckboxes = document.querySelectorAll('.secret');
 
-        secretCheckbox.addEventListener("change", function() {
-            console.log("비밀글제외체크");
-            const isChecked = secretCheckbox.checked;
-            console.log("checked=======" + isChecked);
+        secretCheckboxes.forEach(function (secretCheckbox) {
+            secretCheckbox.addEventListener('change', function () {
+                const isChecked = this.checked;
+                const sections = document.querySelectorAll('#main_contents');
 
-            let requestURL = "board/qna/allqnaList";
+                sections.forEach(function (section) {
+                    const title = section.querySelector('#info_header_title');
+                    const openYNValue = title.getAttribute('data-openyn');
 
-            if (isChecked) {
-                requestURL += '?secret=secret'; // 체크되었을 때만 secret 파라미터 추가
-            }
-
-            console.log('Request URL:', requestURL);
-
-            fetch(requestURL)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
+                    if (isChecked && openYNValue === 'N') {
+                        section.style.display = 'none';
+                    } else {
+                        section.style.display = 'block';
                     }
-                    return response.text();
-                })
-                .then(data => {
-                    console.log(data);
-                })
-                .catch(error => {
-                    console.error(error);
                 });
+            });
         });
     });
+
+
 
 
 </script>

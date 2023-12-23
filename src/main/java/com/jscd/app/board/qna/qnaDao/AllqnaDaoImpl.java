@@ -31,18 +31,13 @@ public class AllqnaDaoImpl implements AllqnaDao {
 
     //1-3 게시글 1개 읽기
     public AllqnaDto select(Integer allqnaNo) throws Exception {
-
         return session.selectOne(namespace + "select", allqnaNo);
     }
 
     //1-4. 게시글 수정
     @Override
     public int update(AllqnaDto allqnaDto) throws Exception {
-
-        System.out.println("게시글수정 컨트롤러==="+allqnaDto);
         return session.update(namespace+"update", allqnaDto);
-
-
     } // int update(String statement, Object parameter)
 
     //1-5. 게시글 삭제
@@ -130,20 +125,10 @@ public class AllqnaDaoImpl implements AllqnaDao {
 
 
     //카테고리
-//    @Override
-//    public QnActDto allqnaCategory(Integer qnaCtNo) throws Exception {
-//       session.selectOne(namespace+"allqnaCategory", qnaCtNo));
-//        return null;
-//    }
-
     @Override
-    public int searchResultCntExepctSecret(SearchCondition sc) throws Exception {
-        return session.selectOne(namespace+"searchResultCntExepctSecret", sc);
-    }
-
-    @Override
-    public List<AllqnaDto> searchSelectPageExceptSecret(SearchCondition sc) throws Exception {
-        return session.selectList(namespace+"searchSelectPageExceptSecret", sc);
+    public QnActDto allqnaCategory(Integer qnaCtNo) throws Exception {
+        System.out.println("카테고리 매퍼======="+session.selectOne(namespace+"allqnaCategory", qnaCtNo));
+        return null;
     }
 
 }

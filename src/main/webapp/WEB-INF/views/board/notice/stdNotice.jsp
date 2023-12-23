@@ -27,8 +27,7 @@
     <div id="detailHd">
         <input type="hidden" name="bno" value="${stdNoticeDto.bno}"><br>
         <input id="title" placeholder="제목에 핵심 내용을 요약해보세요." name="title" value="${stdNoticeDto.title}" ${mode=="new" ? '' : 'readonly="readonly"'}><br>
-        <span>작성 <input type="text" id="regDate" name="regDate" value="${stdNoticeDto.regDate} " readonly> ･</span>
-        <span>수정 <input type="text" id="modifyDate" name="modifyDate" value="${stdNoticeDto.modifyDate} " readonly>･</span>
+        <span>작성 <input type="text" id="regDate" name="regDate" value="${stdNoticeDto.modifyDate} " readonly> ･</span>
         <span>조회수 <input type="text" id="viewCnt" name="viewCnt" value=" ${stdNoticeDto.viewCnt}" readonly></span><br>
         <span>작성자 <input type="text" name="writer" id="writer" value=" ${stdNoticeDto.writer}" ></span><br>
     </div>

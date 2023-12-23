@@ -51,10 +51,6 @@ public interface AllqnaDao {
     //8 조회수 처리
     int increaseViewCnt(Integer allqnaNo) throws Exception;
 
-//    QnActDto allqnaCategory(Integer qnaCtNo) throws Exception;
-
-    int searchResultCntExepctSecret(SearchCondition sc) throws Exception;
-
-    List<AllqnaDto> searchSelectPageExceptSecret(SearchCondition sc) throws Exception;
+    QnActDto allqnaCategory(Integer qnaCtNo) throws Exception;
 
 }

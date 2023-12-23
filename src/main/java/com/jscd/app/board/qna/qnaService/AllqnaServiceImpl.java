@@ -18,7 +18,7 @@ public class AllqnaServiceImpl implements AllqnaService {
     //1-1. 게시글 등록
     @Override
     public int write(AllqnaDto allqnaDto) throws Exception {
-
+        System.out.println("service===="+allqnaDto);
         return allqnaDao.insert(allqnaDto);
     }
     //1-2. 게시글 목록 읽기 (페이징 처리)
@@ -121,22 +121,12 @@ public class AllqnaServiceImpl implements AllqnaService {
         return allqnaDao.searchSelectPage(sc);
     }
 
-    @Override
-    public int searchResultCntExepctSecret(SearchCondition sc) throws Exception {
-        return allqnaDao.searchResultCntExepctSecret(sc);
-    }
-
-    @Override
-    public List<AllqnaDto> searchSelectPageExceptSecret(SearchCondition sc) throws Exception {
-        return allqnaDao.searchSelectPage(sc);
-    }
-
 
     //카테고리
-//    @Override
-//    public QnActDto allqnaCategory(Integer qnaCtNo) throws Exception {
-//        return allqnaDao.allqnaCategory(qnaCtNo);
-//    }
+    @Override
+    public QnActDto allqnaCategory(Integer qnaCtNo) throws Exception {
+        return allqnaDao.allqnaCategory(qnaCtNo);
+    }
 
 //    @Override
 //    public List<AllqnaDto> getNonSecretSearchResultPage(SearchCondition sc) throws Exception {

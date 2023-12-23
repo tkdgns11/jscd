@@ -41,8 +41,13 @@ public class NoticeServiceImpl implements NoticeService {
 
     @Override
     public int write(noticeDto noticeDto) throws Exception {
-//        throw new Exception("test");
-        return noticeDao.insert(noticeDto);
+        Date date = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String today = dateFormat.format(date);
+        noticeDto.setModifyDate(today);
+        int result = noticeDao.insert(noticeDto);
+        return result;
+//        return noticeDao.insert(noticeDto);
     }
 
     @Override
@@ -69,9 +74,7 @@ public class NoticeServiceImpl implements NoticeService {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         String today = dateFormat.format(date);
         noticeDto.setModifyDate(today);
-        System.out.println("today = " + today);
         int result = noticeDao.update(noticeDto);
-        System.out.println("result = " + result);
         return result;
 
 

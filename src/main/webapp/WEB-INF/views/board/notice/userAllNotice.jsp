@@ -27,12 +27,18 @@
     <div id="detailHd">
         <input type="hidden" name="bno" value="${noticeDto.bno}"><br>
         <input id="title" placeholder="제목에 핵심 내용을 요약해보세요." name="title" value="${noticeDto.title}" ${mode=="new" ? '' : 'readonly="readonly"' }><br>
-        <span>작성 <input type="text" id="regDate" name="regDate" value="${noticeDto.regDate} " readonly> ･</span>
-        <span>수정 <input type="text" id="modifyDate" name="modifyDate" value="${noticeDto.modifyDate} " readonly>･</span>
+        <span>작성 <input type="text" id="regDate" name="regDate" value="${noticeDto.modifyDate} " readonly> ･</span>
         <span>조회수 <input type="text" id="viewCnt" name="viewCnt" value=" ${noticeDto.viewCnt}" readonly></span><br>
         <span>작성자 <input type="text" name="writer" id="writer" value=" ${noticeDto.writer}" readonly></span><br>
         <div id="wrapCon">
             <textarea name="content" id="content" ${mode=="new" ? '' : 'readonly="readonly"'}>${noticeDto.content}</textarea>
+            <script>
+                $('#content').on('input', function() {
+                var extractTxt = $(this).val().replace(/(<([^>]+)>)/gi, '');
+                    console.log(extractTxt);
+                });
+            </script>
+
         </div>
     </div>
 
