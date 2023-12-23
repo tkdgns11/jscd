@@ -228,7 +228,7 @@ public class MemberController {
 		//1. id, pwd 체크
 		//1-1 일치하지 않음.
 		if(!memberService.login(id,pwd)){
-			String msg = URLEncoder.encode("id 또는 pwd가 일치하지 않습니다.", "utf-8");
+			String msg = URLEncoder.encode("id 또는 pwd를 확인해주세요.", "utf-8");
 			map.put("redirect", "/member/login?msg="+msg);
 			return map;
 		}

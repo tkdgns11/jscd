@@ -45,7 +45,7 @@ function member(value){
     // 이메일 검사 정규식
     var idReg = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
     // 비밀번호 정규식
-    var pwdReg = /^[A-Za-z0-9`~!@#\$%\^&\*\(\)\{\}\[\]\-_=+\\|;:'"<>,./?]{8,20}$/
+    var pwdReg = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@#$%^&+=!]).{8,20}$/
 
     // 휴대폰 번호 정규식
     var phoneReg = /^(\+82|0)\s?(10|11|16|17|18|19)-?[0-9]{3,4}-?[0-9]{4}$/
@@ -314,4 +314,14 @@ function checkSelectAll()  {
         selectAll.checked = false;
     }
 
-} 
+}
+
+
+function selectAll(checkbox) {
+    // 전체 동의 체크 박스의 상태에 따라 다른 동작 수행
+    var checkboxes = document.getElementsByClassName('terms');
+
+    for (var i = 0; i < checkboxes.length; i++) {
+        checkboxes[i].checked = checkbox.checked;
+    }
+}

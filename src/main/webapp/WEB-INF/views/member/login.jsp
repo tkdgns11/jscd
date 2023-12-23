@@ -51,7 +51,9 @@
                 </div>
             </div>
             <input type="hidden" name="toURL" value="${param.toURL}">
-
+            <div id="msgBox">
+                ${param.msg}
+            </div>
         </div>
         <div id="loginMenu">
             <div id="rememberId_section">

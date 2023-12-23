@@ -37,3 +37,5 @@ hr::after{content: "또는 이메일로 로그인";position: relative; top: -10p
 #loginMenu ul li{float: left; padding: 20px; color: #bbbbbb;}
 #loginMenu ul li a {color: inherit;}
 #loginMenu ul li a:hover {text-decoration-line: underline;}
+
+#msgBox{width: 100%; text-align: center; color: red; margin-top: 10px;}
