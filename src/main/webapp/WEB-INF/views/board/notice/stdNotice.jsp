@@ -11,12 +11,11 @@
     <link rel="stylesheet" href="<c:url value='/css/jscdReset.css'/>">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/translations/ko.js"></script>
 </head>
 <body>
-
-
 <div id="topLetter">
-   <span id="notice">학생 공지사항</span>
+    <span id="notice">학생 공지사항</span>
 </div>
 <script>
     let msg = "${msg}";
@@ -42,19 +41,21 @@
                     console.error(error);
                 });
         </script>
-        </div>
-        <div id="wrapAtc">
-            <input type="file" id="upload" class="attachBtn">
-        </div>
+    </div>
+    <div id="wrapAtc">
+        <input type="file" id="upload" class="attachBtn">
     </div>
 
+
     <div id="buttonBox">
+        <input type="button" id="listBtn" class="backBtn" value="목록">
+        <div id="eachBtn">
         <input type="button" id="writeBtn" class="registeBtn" value="${mode eq 'new' ? '등록' : ''}"
                style="display: ${mode eq 'new' ? 'inline-block' : 'none'}">
         <input type="button" id="modifyBtn" class="modifyBtn" value="${mode eq 'new' ? '' : '수정'}"
                style="display: ${mode eq 'new' ? 'none' : 'inline-block'}">
         <input type="button" id="removeBtn" class="deleteBtn" value="삭제">
-        <input type="button" id="listBtn" class="backBtn" value="목록">
+        </div>
     </div>
 </form>
 <script>
@@ -127,8 +128,5 @@
         })
     });
 </script>
-
-
-
 </body>
 </html>

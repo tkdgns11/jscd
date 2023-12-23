@@ -52,8 +52,11 @@ public interface AllqnaService {
     List<AllqnaDto> getSearchResultPage(SearchCondition sc) throws Exception;
 
     //카테고리
-    QnActDto allqnaCategory(Integer qnaCtNo) throws Exception;
+//    QnActDto allqnaCategory(Integer qnaCtNo) throws Exception;
 
 //    List<AllqnaDto> getNonSecretSearchResultPage(SearchCondition sc);
+    int searchResultCntExepctSecret(SearchCondition sc) throws Exception;
+
+    List<AllqnaDto> searchSelectPageExceptSecret(SearchCondition sc) throws Exception;
 
 }
