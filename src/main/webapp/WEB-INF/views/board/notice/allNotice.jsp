@@ -19,8 +19,6 @@
     <span id="notice">공지사항</span>
 </div>
 
-
-
 <form action="" id="form" value="">
     <div id="detailHd">
         <input type="hidden" name="bno" value="${noticeDto.bno}"><br>
@@ -28,7 +26,7 @@
         <span>작성 <input type="text" id="regDate" name="regDate" value="${noticeDto.modifyDate} " readonly> ･</span>
         <span>조회수 <input type="text" id="viewCnt" name="viewCnt" value=" ${noticeDto.viewCnt}" readonly></span><br>
         <span>작성자 <input type="text" name="writer" id="writer" value=" ${noticeDto.writer}" readonly></span><br>
-
+    </div>
         <div id="wrapCon">
             <textarea name="content" id="content" ${mode=="new" ? '' : 'readonly="readonly"'}>${noticeDto.content}</textarea>
 <%--            <input type="submit" value="Submit" onclick="return formCheck();" />--%>
@@ -45,7 +43,7 @@
         <div id="wrapAtc">
             <input type="file" id="upload" class="attachBtn">
         </div>
-    </div>
+
 
     <div id="buttonBox">
         <input type="button" id="listBtn" class="backBtn" value="목록">
@@ -54,7 +52,8 @@
                style="display: ${mode eq 'new' ? 'inline-block' : 'none'}">
         <input type="button" id="modifyBtn" class="modifyBtn" value="${mode eq 'new' ? '' : '수정'}"
                style="display: ${mode eq 'new' ? 'none' : 'inline-block'}">
-        <input type="button" id="removeBtn" class="deleteBtn" value="삭제"></div>
+        <input type="button" id="removeBtn" class="deleteBtn" value="삭제">
+        </div>
     </div>
 </form>
 <script>

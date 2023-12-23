@@ -56,9 +56,12 @@
             </section>
             </form>
             <hr/>
-                <div>
-                    <button type = "button" id="writeBtn" onclick="location.href='<c:url value ="/board/stdNotice/write"/>'">글쓰기</button>
-                </div>
+                <section id="main_submit">
+                <span id="submit_btn">
+                    <button type = "button" id="writeBtn" CLASS="registeBtn" onclick="location.href='<c:url value ="/board/stdNotice/write"/>'">등록</button>
+                </span>
+                </section>
+                <hr/>
         <c:forEach var="stdNoticeDto" items="${list}">
         <section id="main_contents">
             <div id="main_content_per">
