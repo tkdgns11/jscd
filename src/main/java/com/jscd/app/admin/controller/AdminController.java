@@ -63,8 +63,8 @@ public class AdminController {
     //로그아웃
     @GetMapping("/logout")
     public String adminLogout(HttpSession session) {
-        //세션 종료
-        session.invalidate();
+        //관리자 아이디만 지우기
+        session.removeAttribute("adminId");
         return "redirect:/admin/login";
     }
 

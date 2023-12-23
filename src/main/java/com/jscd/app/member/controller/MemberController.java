@@ -214,7 +214,7 @@ public class MemberController {
 		//카카오 로그인일 경우?
 
 		// 1. 세션을 종료
-		session.invalidate();
+		session.removeAttribute("id");
 		// 2. 홈으로 이동
 		return "redirect:/";
 	}

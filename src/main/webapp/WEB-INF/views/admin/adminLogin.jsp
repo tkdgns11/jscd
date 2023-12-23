@@ -31,15 +31,15 @@
     }
 
     #adminContent{width: 960px; height: 700px; margin: 0 auto;position: relative;}
-    #adminLogoBox{position: absolute;margin: 50px 350px;width: 300px;}
-    #adminImg{position: absolute;margin: 130px 280px;}
-    #adminLogin{position: absolute;margin: 400px 290px;}
+    #adminLogoBox{position: absolute;margin: 30px 350px;width: 300px;}
+    #adminImg{position: absolute;margin: 110px 280px;}
+    #adminLogin{position: absolute;margin: 420px 290px;}
     #adminBtn{width: 400px;height: 50px;border: 0;color: white;background-color: #0185FE;font-size: 24px;border-radius: 10px}
     #adminBtn:hover{background-color: #D9D9D9;}
     .adminInput{width: 400px;height: 50px;background-color: #D9D9D9;border: 0;margin-bottom: 15px;border-radius: 10px}
     #adminIdCheck{width: 20px;height: 20px;color:#D9D9D9;position: relative;bottom: 10px;}
     #adminIdCheckLabel{position: relative;top: -14px;}
-    #adminMsg{ position: absolute;margin: 400px 360px;}
+    #adminMsg{ position: absolute;margin: 350px 380px;width: 300px}
     .adminInput:focus {outline: none;}
 
 
