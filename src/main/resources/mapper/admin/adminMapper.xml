@@ -76,4 +76,7 @@
         from admin
     </delete>
 
+    <!--대시보드-->
+
+
 </mapper>

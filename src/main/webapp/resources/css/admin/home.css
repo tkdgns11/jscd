@@ -1,4 +1,15 @@
-html, body {width: 100%;height: 100%;}
-#adminContent{display: flex; flex-direction: row; width: 100%; height: calc(100% - 80px);   margin-top: 80px; position: absolute; top: 0; left: 0;}
-#adminContent > nav{background-color: rgba(0,0,0,0.8); height: 100%; width: 300px;}
-#adminContent > main{background-color: #ffffff; height: 100%; width: 100%;}
+/*틀 잡아놓기*/
+html, body {width: 100%;height: auto;}
+#adminContent{display: flex; flex-direction: row; width: 100%; height: calc(100% - 80px);  margin-top: 80px; position: absolute; top: 0; left: 0;}
+#adminContent > nav{background-color: rgba(0,0,0,0.8); height: auto; width: 300px;}
+#adminContent > main{ width: calc(100% - 300px); height: auto; position: relative;}
+
+
+/*main 안에*/
+#dashboardBox{width: 90%; height: 100%; margin: 0 auto; background-color: #ffffff; display: flex; justify-content: space-around; position: relative;}
+#dashboardBox > div{border: 0; position: absolute; box-shadow: 0 0 20px rgba(0,0,0,0.2); border-radius: 10px;}
+#barChartBox{width: 400px; height: 350px; top: 20px; left: 50px;}
+#lineChartBox{width: 400px; height: 350px; top: 20px; left: 500px;}
+#pieChartBox{width: 400px; height: 500px; top: 20px; left: 950px;}
+#barChartHorizontalBox{width: 850px; height: 380px; top: 380px; left: 50px;}
+#todayBox{width: 400px; height: 200px; top: 550px; left: 950px;}

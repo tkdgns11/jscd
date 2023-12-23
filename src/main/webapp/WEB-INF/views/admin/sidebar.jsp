@@ -21,8 +21,8 @@
   <li>
     <a href="#">정석코딩</a>
     <ul class="submenu">
-      <li><a href="/admin/home">대시보드</a></li>
       <li><a href="/">정석코딩 바로가기</a></li>
+      <li><a href="/admin/home">대시보드</a></li>
     </ul>
   </li>
   <li>
@@ -36,21 +36,30 @@
   <li>
     <a href="#">교육등록</a>
     <ul class="submenu">
-      <li><a href="#">부트캠프</a></li>
-      <li><a href="#">세미나</a></li>
+      <li><a href="/adminManage/registCourse/course">과정등록</a></li>
+      <li><a href="/adminManage/registRound/round">회차등록</a></li>
+      <li><a href="/adminManage/classEnroll/list">과목등록</a></li>
+      <li><a href="/adminManage/lstRegist/list">강의개설</a></li>
     </ul>
   </li>
   <li>
     <a href="#">커뮤니티</a>
     <ul class="submenu">
-      <li><a href="#">전체공지</a></li>
-      <li><a href="#">학생공지</a></li>
+      <li><a href="<c:url value="/board/notice/list"/>">전체공지</a></li>
+      <li><a href="<c:url value="/board/stdNotice/list"/>">학생공지</a></li>
+    </ul>
+  </li>
+  <li>
+    <a href="#">신청관리 </a>
+    <ul class="submenu">
+      <li><a href="<c:url value="#"/>">부트캠프 폼</a></li>
+      <li><a href="<c:url value="#"/>">세미나 폼</a></li>
     </ul>
   </li>
   <li>
     <a href="#">시설물</a>
     <ul class="submenu">
-      <li><a href="#">강의실</a></li>
+<%--       <li><a href="#">강의실</a></li>--%>
       <li><a href="#">사물함</a></li>
     </ul>
   </li>
