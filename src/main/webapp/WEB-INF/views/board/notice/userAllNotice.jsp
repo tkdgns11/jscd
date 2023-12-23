@@ -33,10 +33,8 @@
         <div id="wrapCon">
             <textarea name="content" id="content" ${mode=="new" ? '' : 'readonly="readonly"'}>${noticeDto.content}</textarea>
             <script>
-                $('#content').on('input', function() {
-                var extractTxt = $(this).val().replace(/(<([^>]+)>)/gi, '');
-                    console.log(extractTxt);
-                });
+                var editorContent = editorContent.getData()
+                var convertContent = editorContent.replace(/(<([^>]+)>)/gi, '');
             </script>
 
         </div>
