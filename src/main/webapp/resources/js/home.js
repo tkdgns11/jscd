@@ -134,7 +134,7 @@ function seminarSelect() {
                     .attr({
                         type: "button",
                         class: "registeBtn",
-                        value: "선청하기"
+                        value: "신청하기"
                     });
 
                 // 세미나 코드를 포함한 URL 생성
@@ -180,7 +180,7 @@ function bootCampSelect() {
                     .attr({
                         type: "button",
                         class: "registeBtn",
-                        value: "선청하기"
+                        value: "신청하기"
                     });
 
                 // 세미나 코드를 포함한 URL 생성

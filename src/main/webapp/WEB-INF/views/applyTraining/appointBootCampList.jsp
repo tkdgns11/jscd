@@ -43,11 +43,11 @@
         </header>
         <div id="BootCampNav">
             <ul>
-                <li><a href="#">전체 BootCamp</a></li>
+                <li><a href="<c:url value="/btTraining/list"/>">전체 BootCamp</a></li>
                 <li>|</li>
-                <li><a href="#">진행 예정 BootCamp</a></li>
+                <li><a href="<c:url value="/btTraining/appointBTList"/>">진행 예정 BootCamp</a></li>
                 <li>|</li>
-                <li><a href="#">진행 중인 BootCamp</a></li>
+                <li><a href="<c:url value="/btTraining/processBTList"/>">진행 중인 BootCamp</a></li>
             </ul>
         </div>
         <div id="btProcess">
@@ -94,13 +94,13 @@
     </div>
     <div id="NaviFoot">
         <c:if test="${ph.showPrev}">
-            <a href="<c:url value='/btTraining/list?page=${ph.beginPage - 1}&pageSize=${ph.pageSize} '/>">&lt;</a>
+            <a href="<c:url value='/btTraining/appointBTList?page=${ph.beginPage - 1}&pageSize=${ph.pageSize} '/>">&lt;</a>
         </c:if>
         <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
-            <a href="<c:url value='/btTraining/list?page=${i}&pageSize=${ph.pageSize} '/>">${i}</a>
+            <a href="<c:url value='/btTraining/appointBTList?page=${i}&pageSize=${ph.pageSize} '/>">${i}</a>
         </c:forEach>
         <c:if test="${ph.showNext}">
-            <a href="<c:url value='/btTraining/list?page=${ph.endPage + 1}&pageSize=${ph.pageSize} '/>">&gt;</a>
+            <a href="<c:url value='/btTraining/appointBTList?page=${ph.endPage + 1}&pageSize=${ph.pageSize} '/>">&gt;</a>
         </c:if>
     </div>
 </div>
