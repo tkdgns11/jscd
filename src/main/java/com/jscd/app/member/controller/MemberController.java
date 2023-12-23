@@ -527,7 +527,7 @@ public class MemberController {
 	//아이디 찾기 화면 보여주기
 	@GetMapping("/findEmail")
 	public String findEmail(){
-		return "/member/findEmail";
+		return "/member/findEmailPwd/findEmail";
 	}
 
 	//이름,생년월일,전화번호 요청받아 이메일 넘겨주기
@@ -545,13 +545,13 @@ public class MemberController {
 			model.addAttribute("msg", "EMAIL_ERR");
 			return "redirect:/member/findEmail";
 		}
-		return "/member/findEmailResult";
+		return "/member/findEmailPwd/findEmailResult";
 	}
 
 	//비밀번호 찾기 화면 보여주기
 	@GetMapping("/findPwd")
 	public String findPwd(){
-		return "/member/findPwd";
+		return "/member/findEmailPwd/findPwd";
 	}
 
 	//비밀번호 찾기 이메일 인증
@@ -560,6 +560,7 @@ public class MemberController {
 	public String findEmailChk(String email){
 		System.out.println("이메일 인증 요청이 들어옴");
 		System.out.println("이메일 인증할 이메일 : " + email);
+		System.out.println("인증 이메일 : " + email);
 
 		return mailService.findPwd(email);
 	}
@@ -568,10 +569,11 @@ public class MemberController {
 	@GetMapping("/pwdModify")
 	public String pwdModifyForm(String id,Model model){
 		model.addAttribute("id",id);
-		return "/member/pwdModify";
 
+		return "/member/findEmailPwd/pwdModify";
 	}
 
+	//비밀번호 재설정
 	@PostMapping("/pwdModify")
 	public String pwdModify(MemberDto memberDto,Model model){
 		try{
@@ -594,5 +596,4 @@ public class MemberController {
 
 
 }
-
 

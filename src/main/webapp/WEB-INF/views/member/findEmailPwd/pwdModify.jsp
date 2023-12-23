@@ -19,6 +19,39 @@
     <link rel="icon" href="/img/mainlogo.png"/>
     <link rel="apple-touch-icon" href="/img/mainlogo.png"/>
     <title>정석코딩 | 비밀번호 재설정</title>
+
+    <style>
+
+        #findPwdBox input[type=password] {
+            width: 350px;
+            height: 40px;
+            background-color: rgba(0, 0, 0, 0.1);
+            border: 0;
+            border-radius: 5px;
+
+        }
+
+        #findPwdBox input[type=password]:focus {
+            outline: none;
+        }
+
+        #findPwdBtn {
+            width: 357px;
+            height: 40px;
+            font-size: 19px;
+            background-color: #0185FE;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 5px;
+            letter-spacing: 10px;
+            font-weight: 600;
+            border: 0;
+            margin-top: 15px;
+            margin-left: 0;
+            margin-bottom: 30px;
+        }
+
+    </style>
 </head>
 <script>
     let msg = "${param.msg}";
@@ -26,24 +59,38 @@
 </script>
 <body>
 <header>
-    <jsp:include page="../header.jsp"/>
+    <jsp:include page="../../header.jsp"/>
 </header>
-<div>
-    <h1>비밀번호 재설정 </h1>
-    비밀번호 재설정
-    비밀번호 :<input type="password" class="password" id="pwd1"><br>
-    비밀번호 확인 : <input type="password" name="pwd" class="password" id="pwd2">
-    <font id="checkPwd" size="2"></font><br>
-    <input type="hidden" name="id" value="${id}" id="id">
-    <input type="button" value="등록" onclick="infoModify()">
-
-
+<div id="loginWrap">
+    <div id="loginHeader" style="border: none;">
+        <h1>비밀번호재설정</h1>
+    </div>
+    <div id="findPwdBox">
+        <input type="password" id="pwd1" placeholder="비밀번호 입력"><br><br>
+        <input type="password" id="pwd2" name="pwd" class="password" placeholder="비밀번호 확인"><br>
+        <font id="checkPwd" size="2"></font><br>
+        <input type="hidden" id="pwdChkYN" value="">
+        <input type="hidden" name="id" value="${id}" id="id">
+    </div>
+    <input type="button" value="비밀번호 등록" id="findPwdBtn" onclick="infoModify()">
 </div>
+
 <footer style="flex-shrink: 0;">
-    <jsp:include page="../footer.jsp" flush="true"/>
+    <jsp:include page="../../footer.jsp" flush="true"/>
 </footer>
 
 <script>
+
+    function pwdChkYNValid() {
+        let pwdChkYN = document.getElementById('pwdChkYN').value;
+
+
+        if (pwdChkYN != 'Y') {
+            alert("패스워드가 일치하지 않습니다. 다시 입력해주세요.")
+            return false;
+        }
+        return true;
+    }
 
     function pwdValid(pwdChk, pwdReg) {
 
@@ -70,11 +117,12 @@
 
     function infoModify() {
         const pwdChk = document.getElementById("pwd2");
+        const pwdChkYN = document.getElementById("pwdChkYN").value;
 
         //정규식
         var pwdReg = /^[A-Za-z0-9`~!@#\$%\^&\*\(\)\{\}\[\]\-_=+\\|;:'"<>,./?]{8,20}$/
 
-        if (!pwdValid(pwdChk, pwdReg)) {
+        if (!pwdValid(pwdChk, pwdReg) || !pwdChkYNValid(pwdChkYN)) {
             return;
         } else {
             //회원 정보 수정 진행
@@ -99,7 +147,7 @@
     $(document).ready(function () {
 
         //비밀번호 일치 여부 효과
-        $(".password").on("propertychange change keyup paste input", function() {
+        $(".password").on("propertychange change keyup paste input", function () {
 
             let pass1 = $("#pwd1").val();
             let pass2 = $("#pwd2").val();
@@ -109,11 +157,14 @@
                     $("#checkPwd").html("비밀번호 일치");
                     $("#checkPwd").attr("color", "green");
                     $("#pwd2").css("border", "1.5px solid green");
+                    document.getElementById("pwdChkYN").value = 'Y';
+                    console.log("비밀번호 두개가 일치하냐 = " + document.getElementById("pwdChkYN").value)
                 } else {
                     $("#checkPwd").html("비밀번호 불일치");
                     $("#checkPwd").attr("color", "red");
                     $("#pwd2").css("border", "1.5px solid red");
-
+                    document.getElementById("pwdChkYN").value = 'N';
+                    console.log("비밀번호 두개가 일치하냐 = " + document.getElementById("pwdChkYN").value)
                 }
             }
 

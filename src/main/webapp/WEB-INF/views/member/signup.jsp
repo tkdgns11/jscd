@@ -99,12 +99,12 @@
                 <!-- 라디오 버튼 1 -->
                 <div id="radioBtn">
                     <label class="radio-label" style="border-right: none;">
-                        <input type="radio" class="radio-input"  id="male" name="gender" value="0">
+                        <input type="radio" class="radio-input"  id="male" name="gender" value="1">
                         <span style="border-right: solid 1px #61b1fa; ; border-top-right-radius: 0px; border-bottom-right-radius: 0px;">남자</span>
                     </label>
                     <!-- 라디오 버튼 2 -->
                     <label class="radio-label" style="border-left: none;">
-                        <input type="radio" class="radio-input" id="female" name="gender" value="1">
+                        <input type="radio" class="radio-input" id="female" name="gender" value="2">
                         <span style="border-top-left-radius: 0px; border-bottom-left-radius: 0px;">여자</span>
                     </label>
                 </div>

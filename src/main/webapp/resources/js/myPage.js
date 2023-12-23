@@ -1,12 +1,22 @@
- 
+function pwdChkYNValid() {
+    let pwdChkYN = document.getElementById('pwdChkYN').value;
+
+    if (pwdChkYN != 'Y') {
+        alert("패스워드가 일치하지 않습니다. 다시 입력해주세요.")
+        return false;
+    }
+    return true;
+}
 
 function infoModify() {
     const pwdChk = document.getElementById("pwd2");
+    const pwdChkYN = document.getElementById("pwdChkYN").value;
+
 
     //정규식
     var pwdReg = /^[A-Za-z0-9`~!@#\$%\^&\*\(\)\{\}\[\]\-_=+\\|;:'"<>,./?]{8,20}$/
 
-    if (!pwdValid(pwdChk, pwdReg)) {
+    if (!pwdValid(pwdChk, pwdReg) || !pwdChkYNValid(pwdChkYN)) {
         return;
     } else {
         //회원 정보 수정 진행
@@ -20,12 +30,14 @@ function infoModify() {
         var birth = document.getElementById('birth');
         var phone = document.getElementById('phone');
         var id = document.getElementById('id');
+        var acct = document.getElementById('acct');
 
         form.appendChild(nickname);
         form.appendChild(pwd);
         form.appendChild(birth);
         form.appendChild(phone);
         form.appendChild(id);
+        form.appendChild(acct);
         console.log(form)
         document.body.appendChild(form);
         form.submit();
@@ -58,6 +70,11 @@ function pwdValid(pwdChk, pwdReg) {
     return true;
 }
 
+const autoHyphen = (target) => {
+    target.value = target.value
+        .replace(/[^0-9]/g, '')
+        .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
+}
 
 
 $(document).ready(function () {
@@ -67,16 +84,9 @@ $(document).ready(function () {
     $('#nickname').focus();
     $('#nickname')[0].setSelectionRange(len, len);
 
-    //전화번호 자동 하이픈
-    const autoHyphen = (target) => {
-        target.value = target.value
-            .replace(/[^0-9]/g, '')
-            .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
-    }
-
-
     //비밀번호 일치 여부 효과
-    $(".password").on("propertychange change keyup paste input", function() {
+    //비밀번호 일치 여부 효과
+    $(".password").on("propertychange change keyup paste input", function () {
 
         let pass1 = $("#pwd1").val();
         let pass2 = $("#pwd2").val();
@@ -86,14 +96,18 @@ $(document).ready(function () {
                 $("#checkPwd").html("비밀번호 일치");
                 $("#checkPwd").attr("color", "green");
                 $("#pwd2").css("border", "1.5px solid green");
+                document.getElementById("pwdChkYN").value = 'Y';
+                console.log("비밀번호 두개가 일치하냐 = " + document.getElementById("pwdChkYN").value)
             } else {
                 $("#checkPwd").html("비밀번호 불일치");
                 $("#checkPwd").attr("color", "red");
                 $("#pwd2").css("border", "1.5px solid red");
-
+                document.getElementById("pwdChkYN").value = 'N';
+                console.log("비밀번호 두개가 일치하냐 = " + document.getElementById("pwdChkYN").value)
             }
         }
 
     })
 
 })
+

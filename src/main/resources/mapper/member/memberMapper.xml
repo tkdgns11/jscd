@@ -45,6 +45,7 @@
 			birth = #{birth},
 			pwd = #{pwd},
 			phone = #{phone},
+			acct = #{acct},
 			modifyDate = now()
 		WHERE id = #{id}
 	</update>
