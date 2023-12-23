@@ -28,6 +28,12 @@ public class DailySummaryDaoImpl implements DailySummaryDao {
         return session.insert(namespace + "insert", dto);
     }
 
+    //매출액 추가
+    @Override
+    public int updateRevenue(Map map) throws Exception {
+        return session.insert(namespace + "updateRevenue", map);
+    }
+
 
     //최근 7일 전체 정보 조회
     @Override

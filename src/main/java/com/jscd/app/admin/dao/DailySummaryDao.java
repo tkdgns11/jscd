@@ -14,5 +14,8 @@ public interface DailySummaryDao {
 
     Map<String, Object> selectMonthData();
 
+    //매출액 추가
+    int updateRevenue(Map map) throws Exception;
+
     List<DailySummaryDto> selectDailySummary();
 }

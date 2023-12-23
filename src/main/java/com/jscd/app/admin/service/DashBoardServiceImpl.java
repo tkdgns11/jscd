@@ -20,6 +20,7 @@ public class DashBoardServiceImpl implements DashBoardService {
         return dailySummaryDao.selectDailySummary();
     }
 
+
     // 최근 7일 데이터 조회
     @Override
     public Map<String, Object> getWeekData() {

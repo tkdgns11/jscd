@@ -10,6 +10,12 @@
         VALUES (#{date}, #{pageviews}, #{visitors}, #{orders}, #{revenue}, #{signups}, #{inquiries}, #{reviews}, now())
     </insert>
 
+    <update id="updateRevenue" parameterType="map">
+        UPDATE dailySummery
+        SET revenue = revenue + #{lastPrice}
+        WHERE date = CURDATE()
+    </update>
+
     <!-- 최근7일 전체 정보 조회 -->
     <select id="selectRecentData" resultType="DailySummaryDto">
         SELECT *

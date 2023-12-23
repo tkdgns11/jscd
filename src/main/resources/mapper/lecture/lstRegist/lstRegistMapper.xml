@@ -274,4 +274,11 @@
         ORDER BY regDate DESC, registCode DESC
             limit 2
     </select>
+
+    <update id="updateStatus">
+        UPDATE lstRegist
+        SET status = '진행중'
+        WHERE DATE(startDate) = CURDATE()
+    </update>
+
 </mapper>

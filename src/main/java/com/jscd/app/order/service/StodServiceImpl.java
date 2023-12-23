@@ -1,15 +1,22 @@
 package com.jscd.app.order.service;
 
+import com.jscd.app.admin.dao.DailySummaryDao;
 import com.jscd.app.order.dao.StodDao;
 import com.jscd.app.order.dto.StodDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class StodServiceImpl implements StodService {
 
     private final StodDao stodDao;
+
+    @Autowired
+    DailySummaryDao dailySummaryDao;
 
     public StodServiceImpl(StodDao stodDao) {
         this.stodDao = stodDao;
@@ -24,6 +31,12 @@ public class StodServiceImpl implements StodService {
     // 결재 내역 테이블에 데이터 저장
     @Override
     public int insertPayHty(StodDTO stodDTO) throws Exception {
+
+        //집계 테이블 매출액에 결제금액 추가.
+        Map map = new HashMap();
+        map.put("lastPrice", stodDTO.getLastPrice());
+        dailySummaryDao.updateRevenue(map);
+
         return stodDao.insertPayHty(stodDTO);
     }
 

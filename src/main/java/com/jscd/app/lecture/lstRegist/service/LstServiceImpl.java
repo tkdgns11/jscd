@@ -192,4 +192,9 @@ public class LstServiceImpl implements LstService {
         return lstRegistDao.homeBootCampList();
     }
 
+    @Override
+    public void lstRegistInprocess() throws Exception {
+        lstRegistDao.updateInProcess();
+    }
+
 }
