@@ -28,6 +28,12 @@ public interface LstRegistDao {
     int countRegist() throws Exception;
     int countBT() throws Exception;
     int countSM() throws Exception;
+    // 6.1 진행예정 개수
+    int countAppointBT() throws Exception;
+    int countAppointSM() throws Exception;
+    // 6.2 진행중 개수
+    int countProcessBT() throws Exception;
+    int countProcessSM() throws Exception;
 
     // 7.강의 전체 삭제
     int removeAllRegist(Integer registCode) throws Exception;

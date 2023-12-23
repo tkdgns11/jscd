@@ -29,6 +29,31 @@
         ]]>
     </select>
 
+    <!--   진행예정 부트캠프 게시물 개수 -->
+    <select id="countAppointBT" resultType="int">
+        select count(*)
+        from lstRegist
+        where coursecode like 1 and status like "진행예정"
+    </select>
+    <!--   진행예정 세미나 게시물 개수 -->
+    <select id="countAppointSM" resultType="int">
+        select count(*)
+        from lstRegist
+        where coursecode not like 1 and status like "진행예정"
+    </select>
+    <!--   진행 중 부트캠프 게시물 개수 -->
+    <select id="countProcessBT" resultType="int">
+        select count(*)
+        from lstRegist
+        where coursecode like 1 and status like "진행 중"
+    </select>
+    <!--   진행 중 세미나 게시물 개수 -->
+    <select id="countProcessSM" resultType="int">
+        select count(*)
+        from lstRegist
+        where coursecode not like 1 and status like "진행 중"
+    </select>
+
 
     <!--      강의 등록하기 -->
     <insert id="insert" parameterType="lstRegistDto">
@@ -142,18 +167,18 @@
     <!--    (회원) 진행예정 세미나 리스트 페이징 처리-->
     <select id="appointSMList" parameterType="map" resultType="lstregistfileDto">
         select *
-        from lstRegist lr right join lstregistfile lf on lr.registCode lf.registCode
-        where courseCode NOT LIKE 1 AND status like "진행예정"
-        order by regDate desc, registCode desc
+        from lstRegist lr right join lstregistfile lf on lr.registCode = lf.registCode
+        where lr.courseCode NOT LIKE 1 AND lr.status like "진행예정"
+        order by lr.regDate desc, lr.registCode desc
             limit #{offset}, #{pageSize}
     </select>
 
     <!--    (회원) 진행 중 세미나 리스트 페이징 처리-->
     <select id="processSMList" parameterType="map" resultType="lstregistfileDto">
         select *
-        from lstRegist lr right join lstregistfile lf on lr.registCode lf.registCode
-        where courseCode NOT LIKE 1 AND status like "진행 중"
-        order by regDate desc, registCode desc
+        from lstRegist lr right join lstregistfile lf on lr.registCode = lf.registCode
+        where lr.courseCode NOT LIKE 1 AND lr.status like "진행 중"
+        order by lr.regDate desc, lr.registCode desc
             limit #{offset}, #{pageSize}
     </select>
 
@@ -189,7 +214,7 @@
     <!--    (회원) 진행 중 부트캠프 리스트 페이징 처리-->
     <select id="processBTList" parameterType="map" resultType="lstRegistDto">
         <include refid="selectFromlstRegist"/>
-        where courseCode NOT LIKE 1 AND status like "진행 중"
+        where courseCode LIKE 1 AND status like "진행 중"
         order by regDate desc, registCode desc
         limit #{offset}, #{pageSize}
     </select>

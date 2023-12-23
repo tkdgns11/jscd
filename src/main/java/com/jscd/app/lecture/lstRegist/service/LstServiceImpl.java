@@ -96,6 +96,16 @@ public class LstServiceImpl implements LstService {
     public List<lstregistfileDto> seminarPaging(Map map) throws Exception {
         return lstRegistDao.seminarPaging(map);
     }
+    // 7.4 진행예정 세미나 리스트
+    @Override
+    public List<lstregistfileDto> appointSMList(Map map) throws Exception {
+        return lstRegistDao.appointSMList(map);
+    }
+    // 7.5 세미나 진행 페이징
+    @Override
+    public List<lstregistfileDto> processSMList(Map map) throws Exception {
+        return lstRegistDao.processSMList(map);
+    }
 
     //8.부트캠프
     @Override
@@ -111,10 +121,15 @@ public class LstServiceImpl implements LstService {
     public List<LstRegistDto> bootCampPaging(Map map) throws Exception {
         return lstRegistDao.bootCampPaging(map);
     }
-    // 8.4 진행예정 부트캠프 리스트
+    // 8.4 부트캠프 진행예정 리스트
     @Override
     public List<LstRegistDto> appointBTList(Map map) throws Exception {
         return lstRegistDao.appointBTList(map);
+    }
+    // 7.5 부트캠프 진행 페이징
+    @Override
+    public List<LstRegistDto> processBTList(Map map) throws Exception {
+        return lstRegistDao.processBTList(map);
     }
 
 
@@ -143,6 +158,26 @@ public class LstServiceImpl implements LstService {
     @Override
     public int getCountSM() throws Exception {
         return lstRegistDao.countSM();
+    }
+    // 진행예정 부트캠프 카운팅
+    @Override
+    public int getAppointCountBT() throws Exception {
+        return lstRegistDao.countAppointBT();
+    }
+    // 진행 중 부트캠프 카운팅
+    @Override
+    public int getProcessCountBT() throws Exception {
+        return lstRegistDao.countProcessBT();
+    }
+    // 진행예정 세미나 카운팅
+    @Override
+    public int getAppointCountSM() throws Exception {
+        return lstRegistDao.countAppointSM();
+    }
+    // 진행 중 세미나 카운팅
+    @Override
+    public int getProcessCountSM() throws Exception {
+        return lstRegistDao.countProcessSM();
     }
 
     // 홈 화면 세미나 리스트(2개)

@@ -45,11 +45,11 @@
         </header>
         <div id="seminarNav">
             <ul>
-                <li><a href="#">전체 세미나</a></li>
+                <li><a href="<c:url value="/smTraining/list"/>">전체 세미나</a></li>
                 <li>|</li>
-                <li><a href="#">진행 예정 세미나</a></li>
+                <li><a href="<c:url value="/smTraining/appointSMList"/>">진행 예정 세미나</a></li>
                 <li>|</li>
-                <li><a href="#">진행 중인 세미나</a></li>
+                <li><a href="<c:url value="/smTraining/processSMList"/>">진행 중인 세미나</a></li>
             </ul>
         </div>
     </div>
