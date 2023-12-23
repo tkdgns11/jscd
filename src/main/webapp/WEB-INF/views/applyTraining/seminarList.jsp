@@ -41,6 +41,7 @@
                     <p>몰입감 넘치는 학습 분위기</p>
                 </li>
             </ul>
+            <img id="seminarListImg" src="<c:url value="/img/applyTrainingTeacher.png"/>">
         </header>
         <div id="seminarNav">
             <ul>

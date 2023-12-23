@@ -29,30 +29,14 @@
 		</repository>
 	</repositories>
 
-	<!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
-	<dependency>
-		<groupId>ch.qos.logback</groupId>
-		<artifactId>logback-classic</artifactId>
-		<version>1.4.11</version>
-		<!--            <scope>test</scope>-->
-	</dependency>
-
-	<!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-access -->
-	<dependency>
-		<groupId>ch.qos.logback</groupId>
-		<artifactId>logback-access</artifactId>
-		<version>1.4.11</version>
-	</dependency>
-
-	<!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
-	<dependency>
-		<groupId>org.springframework</groupId>
-		<artifactId>spring-context-support</artifactId>
-		<version>${org.springframework-version}</version>
-	</dependency>
-
-
 	<dependencies>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.16.0</version>
+		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/org.quartz-scheduler/quartz -->
 		<dependency>
 			<groupId>org.quartz-scheduler</groupId>
