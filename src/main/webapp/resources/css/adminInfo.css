@@ -30,20 +30,20 @@
 #memberListBox {position: relative; width: 80%; height: auto; overflow: hidden; margin-left: 16%; margin-top: 70px;}
 #memberListBox table {width: 100%; font-size: 14px}
 #memberListBox input[type=checkbox] {width: 18px;height: 18px;}
-#memberListBox th {border-bottom: 3px solid rgba(0,0,0,0.2);border-collapse: collapse;table-layout: fixed;height: 40px;font-weight: 600;text-align: center;vertical-align: middle;}
-#memberListBox td {border-bottom: 2px solid rgba(0,0,0,0.2);border-collapse: collapse;table-layout: fixed;height: 40px;text-align: center;vertical-align: middle;}
+#memberListBox th {border-bottom: 2px solid rgba(0,0,0,0.2);border-collapse: collapse;table-layout: fixed;height: 40px;font-weight: 600;text-align: center;vertical-align: middle;}
+#memberListBox td {border-bottom: 1px solid rgba(0,0,0,0.2);border-collapse: collapse;table-layout: fixed;height: 40px;text-align: center;vertical-align: middle;}
 
 #stdListBox {position: relative; width: 90%; height: auto; overflow: hidden; margin-left: 16%; margin-top: 70px;}
 #stdListBox table {width: 100%; font-size: 14px}
 #stdListBox input[type=checkbox] {width: 18px;height: 18px;}
-#stdListBox th {border-bottom: 3px solid rgba(0,0,0,0.2);border-collapse: collapse;table-layout: fixed;height: 40px;font-weight: 600;text-align: center;vertical-align: middle;}
-#stdListBox td {border-bottom: 2px solid rgba(0,0,0,0.2);border-collapse: collapse;table-layout: fixed;height: 40px;text-align: center;vertical-align: middle;}
+#stdListBox th {border-bottom: 2px solid rgba(0,0,0,0.2);border-collapse: collapse;table-layout: fixed;height: 40px;font-weight: 600;text-align: center;vertical-align: middle;}
+#stdListBox td {border-bottom: 1px solid rgba(0,0,0,0.2);border-collapse: collapse;table-layout: fixed;height: 40px;text-align: center;vertical-align: middle;}
 
 #instructorListBox {position: relative; width: 100%; height: auto; overflow: hidden; margin-left: 16%; margin-top: 70px;}
 #instructorListBox table {width: 100%; font-size: 14px}
 #instructorListBox input[type=checkbox] {width: 18px;height: 18px;}
-#instructorListBox th {border-bottom: 3px solid rgba(0,0,0,0.2);border-collapse: collapse;table-layout: fixed;height: 40px;font-weight: 600;text-align: center;vertical-align: middle;}
-#instructorListBox td {border-bottom: 2px solid rgba(0,0,0,0.2);border-collapse: collapse;table-layout: fixed;height: 40px;text-align: center;vertical-align: middle;}
+#instructorListBox th {border-bottom: 2px solid rgba(0,0,0,0.2);border-collapse: collapse;table-layout: fixed;height: 40px;font-weight: 600;text-align: center;vertical-align: middle;}
+#instructorListBox td {border-bottom: 1px solid rgba(0,0,0,0.2);border-collapse: collapse;table-layout: fixed;height: 40px;text-align: center;vertical-align: middle;}
 
 
 

@@ -20,7 +20,7 @@
     <title>정석코딩 | 로그인</title>
 </head>
 <script>
-    let msg = "${param.msg}";
+    let msg = "${param.PWDmsg}";
     if (msg == "PWD_UP_OK") alert("비밀번호가 재설정 되었습니다.");
 </script>
 <body>
