@@ -58,6 +58,5 @@ public interface LstService {
     List<LstRegistDto> homeBootCampList() throws Exception;
 
 
-
-
+    void lstRegistInprocess() throws Exception;
 }

@@ -243,8 +243,8 @@
     }
 
     #visitorGraphWarp {
-      width: 80%;
-      height: 80%;
+      width: 98%;
+      height: 98%;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -492,10 +492,10 @@
       justify-content: flex-start;
     }
 
-   .adminMemo {
-     margin-left : 2rem;
-     margin-right: 2rem;
-   }
+    .adminMemo {
+      margin-left : 2rem;
+      margin-right: 2rem;
+    }
 
     #warp2-2 {
       width: 100%;
@@ -540,7 +540,7 @@
     }
 
     #visitorGraph {
-        overflow-x: auto;
+      overflow-x: auto;
       margin-right: 1rem;
     }
 
@@ -632,7 +632,7 @@
         </div>
         <hr>
         <div id="visitorGraphWarp" style="overflow-x: auto; overflow-y: hidden;">
-          <svg id="visitorGraph" width="800" height="400"></svg>
+          <svg id="visitorGraph" width="650" height="350"></svg>
         </div>
       </div>
       <div class="warp1-layers" id="daySummary">
@@ -775,37 +775,37 @@
       </div>
     </div>
   </div>
-<%--  <div id="warp2">--%>
-<%--    <div id="warp2-top">--%>
-<%--      <div id="warp2-top-3">--%>
-<%--        <div id="profileImgArea">--%>
-<%--          <div id="profileImgCircle">--%>
-<%--          </div>--%>
-<%--        </div>--%>
-<%--        <div id="memberName">steve</div>--%>
-<%--        <div id="memberId">sanghoon@jungsuk.com</div>--%>
-<%--      </div>--%>
-<%--      <div id="warp2-top-2">--%>
-<%--        <p class ="adminMemo" >--%>
-<%--          <br><span id="memoTitle">관리자메모</span><br><br>--%>
-<%--          날짜: 2023-12-20 <br><br>--%>
+  <%--  <div id="warp2">--%>
+  <%--    <div id="warp2-top">--%>
+  <%--      <div id="warp2-top-3">--%>
+  <%--        <div id="profileImgArea">--%>
+  <%--          <div id="profileImgCircle">--%>
+  <%--          </div>--%>
+  <%--        </div>--%>
+  <%--        <div id="memberName">steve</div>--%>
+  <%--        <div id="memberId">sanghoon@jungsuk.com</div>--%>
+  <%--      </div>--%>
+  <%--      <div id="warp2-top-2">--%>
+  <%--        <p class ="adminMemo" >--%>
+  <%--          <br><span id="memoTitle">관리자메모</span><br><br>--%>
+  <%--          날짜: 2023-12-20 <br><br>--%>
 
-<%--          - 우수 학생을 위한 장학금 프로그램 검토 및 새로운 장학 기준 설정.--%>
-<%--        </p>--%>
-<%--      </div>--%>
-<%--      <div id="warp2-top-1">--%>
-<%--        <p class ="adminMemo">--%>
-<%--          날짜: 2023-12-21<br><br>--%>
+  <%--          - 우수 학생을 위한 장학금 프로그램 검토 및 새로운 장학 기준 설정.--%>
+  <%--        </p>--%>
+  <%--      </div>--%>
+  <%--      <div id="warp2-top-1">--%>
+  <%--        <p class ="adminMemo">--%>
+  <%--          날짜: 2023-12-21<br><br>--%>
 
-<%--          - 마케팅 전략 회의 예정. SNS 캠페인 및 전통 매체 광고 방안 논의.<br>--%>
-<%--        </p>--%>
-<%--      </div>--%>
-<%--    </div>--%>
-<%--    <div id="warp2-2"></div>--%>
-<%--    <div id="warp2-3"></div>--%>
-<%--    <div id="warp2-4"></div>--%>
-<%--    <div id="warp2-5"></div>--%>
-<%--  </div>--%>
+  <%--          - 마케팅 전략 회의 예정. SNS 캠페인 및 전통 매체 광고 방안 논의.<br>--%>
+  <%--        </p>--%>
+  <%--      </div>--%>
+  <%--    </div>--%>
+  <%--    <div id="warp2-2"></div>--%>
+  <%--    <div id="warp2-3"></div>--%>
+  <%--    <div id="warp2-4"></div>--%>
+  <%--    <div id="warp2-5"></div>--%>
+  <%--  </div>--%>
 </div>
 <script>
 

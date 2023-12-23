@@ -10,11 +10,9 @@ public interface LockerService {
 
     List<LockerDto> adminGetLockers();
 
-    List<LockerDto> getAllLockers();
-
     LockerDto getLocker(String lockerId);
 
-    int registerLocker(String lockerId, LockerDto lockerDto);
+    int registerLocker(LockerDto lockerDto) throws Exception;
 
     int extendLocker(String lockerId, LockerDto lockerDto);
 
@@ -22,5 +20,5 @@ public interface LockerService {
 
     int deleteLocker(String lockerId, LockerDto lockerDto);
 
-    int deleteExpiredLockers() throws Exception;
+    void deleteExpiredLockers() throws Exception;
 }

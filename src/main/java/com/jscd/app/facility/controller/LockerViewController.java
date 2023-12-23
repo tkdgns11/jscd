@@ -33,6 +33,16 @@ public class LockerViewController {
         return "facility/locker";
     }
 
+    @GetMapping("/useList")
+    public String lockerUseList(Model model, HttpServletRequest request) {
+
+        List<LockerDto> lockerDtoList = lockerService.adminGetLockers();
+
+        model.addAttribute("lockerList", lockerDtoList);
+
+        return "facility/locker";
+    }
+
     @GetMapping("/student")
     public String student(Model m, HttpServletRequest request){
         return "admin/stdManage/studentDetail";

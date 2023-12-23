@@ -11,43 +11,27 @@ public interface LockerDao {
 
     List<LockerDto> selectAllLockers();
 
+    List<LockerDto> selectExpiredLockers();
+
     LockerDto selectLockerById(String lockerId);
 
     LockerDto selectLockerByIdForUpdate(String lockerId);
 
-    // 새로운 락커 등록
+    //새로운 락커 등록
     int insertLocker(LockerDto lockerDto);
 
-    // 락커 기간 연장
-    int updateLockerEndDate(String lockerId, Integer extendDays);
+    //자리이동 락커 등록
+    int insertMoveLocker(LockerDto lockerDto);
+
+    //사용기간 만료 전 삭제
+    int insertForEndingUsage(LockerDto lockerDto);
 
     // 락커 삭제
-    int deleteLocker(String lockerId);
+    int deleteLocker(LockerDto lockerDto);
 
-    int countActiveLockers();
-
-    int countAllLockers();
-
-    int countFloor4Lockers();
-
-    int countFloor5Lockers();
-
-    List<LockerDto> listActiveLockers();
-
-    int countActiveFloor4Lockers();
-
-    int countActiveFloor5Lockers();
-
-    int countUnusedFloor4Lockers();
-
-    int countUnusedFloor5Lockers();
-
-    List<LockerDto> lockersExpiringIn3Days();
-
-    List<String> membersWithLockersExpiringIn3Days();
+    // 락커 기간 연장
+    int insertExtendsLocker(LockerDto lockerDto);
 
     List<Map<String, Object>> selectAlert() throws Exception;
-
-    int expiredDelete() throws Exception;
 
 }

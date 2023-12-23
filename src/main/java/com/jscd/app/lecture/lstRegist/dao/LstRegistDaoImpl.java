@@ -22,21 +22,25 @@ public class LstRegistDaoImpl implements LstRegistDao {
     public List<LstRegistDto> getRegistList() throws Exception {
         return session.selectList(namespace + "selectAll");
     }
+
     //2.강의 등록
     @Override
     public int addRegist(LstRegistDto lstRegistDto) throws Exception {
         return session.insert(namespace + "insert", lstRegistDto);
     }
+
     //3.강의 상세
     @Override
     public Map<String, Object> readRegist(Integer registCode) throws Exception {
         return session.selectOne(namespace + "select", registCode);
     }
+
     //4.강의 삭제
     @Override
     public int removeAllRegist(Integer registCode) throws Exception {
         return session.delete(namespace + "deleteAll", registCode);
     }
+
     //5.강의 수정
     @Override
     public int modifyRegist(LstRegistDto dto) throws Exception {
@@ -52,7 +56,7 @@ public class LstRegistDaoImpl implements LstRegistDao {
 
     @Override
     public int countBT() throws Exception {
-        return  session.selectOne(namespace + "countBT");
+        return session.selectOne(namespace + "countBT");
     }
 
     @Override
@@ -69,11 +73,12 @@ public class LstRegistDaoImpl implements LstRegistDao {
     //8.검색 및 페이지
     @Override
     public int searchResultCnt(SearchCondition sc) throws Exception {
-        return session.selectOne(namespace+"searchResultCnt", sc);
+        return session.selectOne(namespace + "searchResultCnt", sc);
     }
+
     @Override
     public List<LstRegistDto> searchSelectPage(SearchCondition sc) throws Exception {
-        return session.selectList(namespace+"searchSelectPage", sc);
+        return session.selectList(namespace + "searchSelectPage", sc);
     }
 
     // 9.세미나
@@ -82,21 +87,25 @@ public class LstRegistDaoImpl implements LstRegistDao {
     public List<lstregistfileDto> getSeminarList() throws Exception {
         return session.selectList(namespace + "seminarList");
     }
+
     // 9.2 세미나 세부사항 확인하기
     @Override
     public LstRegistDto readSeminar(Integer registCode) throws Exception {
         return session.selectOne(namespace + "seminarDetail", registCode);
     }
+
     // 9.3 세미나 목록 페이징 처리
     @Override
     public List<lstregistfileDto> seminarPaging(Map map) throws Exception {
         return session.selectList(namespace + "seminarPaging", map);
     }
+
     // 9.4 세미나 진행예정 목록 페이징 처리
     @Override
     public List<lstregistfileDto> appointSMList(Map map) throws Exception {
         return session.selectList(namespace + "appointSMList", map);
     }
+
     // 9.5 세미나 진행 중 목록 페이징 처리
     @Override
     public List<lstregistfileDto> processSMList(Map map) throws Exception {
@@ -137,22 +146,24 @@ public class LstRegistDaoImpl implements LstRegistDao {
     //강의 첨부 파일
     @Override
     public int InsertFile(Map<String, Object> map) throws Exception {
-        return session.insert(namespace+"InsertFile", map);
+        return session.insert(namespace + "InsertFile", map);
     }
+
     //강의 첨부 파일 조회
     @Override
     public List<Map<String, Object>> selectFileList(Integer registCode) throws Exception {
-        return session.selectList(namespace+"selectFileList",registCode);
+        return session.selectList(namespace + "selectFileList", registCode);
     }
 
     @Override
     public Map<String, Object> selectFileDown(Map<String, Object> map) throws Exception {
-        return session.selectOne(namespace+"selectFileDown", map);
+        return session.selectOne(namespace + "selectFileDown", map);
     }
+
     //강의 첨부 파일 수정
     @Override
     public void updateFile(Map<String, Object> map) throws Exception {
-        session.update(namespace+"updateFile", map);
+        session.update(namespace + "updateFile", map);
     }
 
     @Override
@@ -163,5 +174,10 @@ public class LstRegistDaoImpl implements LstRegistDao {
     @Override
     public List<LstRegistDto> homeBootCampList() throws Exception {
         return session.selectList(namespace + "homeBootCampList");
+    }
+
+    @Override
+    public void updateInProcess() throws Exception {
+        session.update(namespace + "updateStatus");
     }
 }

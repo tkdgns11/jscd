@@ -5,7 +5,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,10 +26,14 @@ public class LockerDaoImpl implements LockerDao {
         return sqlSession.selectList(namespace + "adminSelectLockers");
     }
 
-
     @Override
     public List<LockerDto> selectAllLockers() {
         return sqlSession.selectList(namespace + "selectAllLockers");
+    }
+
+    @Override
+    public List<LockerDto> selectExpiredLockers() {
+        return sqlSession.selectList(namespace + "selectExpiredLockers");
     }
 
     @Override
@@ -49,81 +52,28 @@ public class LockerDaoImpl implements LockerDao {
     }
 
     @Override
-    public int updateLockerEndDate(String lockerId, Integer extendDays) {
-        Map<String, Object> params = new HashMap<>();
-        params.put("lockerId", lockerId);
-        params.put("extendDays", extendDays);
-        return sqlSession.update(namespace + "updateLockerEndDate", params);
+    public int insertMoveLocker(LockerDto lockerDto) {
+        return sqlSession.insert(namespace + "insertMoveLocker", lockerDto);
     }
 
     @Override
-    public int deleteLocker(String lockerId) {
-        return sqlSession.update(namespace + "deleteLocker", lockerId);
+    public int insertForEndingUsage(LockerDto lockerDto) {
+        return sqlSession.insert(namespace + "insertForEndingUsage", lockerDto);
     }
 
     @Override
-    public int countActiveLockers() {
-        return sqlSession.selectOne(namespace + "countActiveLockers");
+    public int deleteLocker(LockerDto lockerDto) {
+        lockerDto.setStatusCode(2);
+        return sqlSession.update(namespace + "deleteLocker", lockerDto);
     }
 
     @Override
-    public int countAllLockers() {
-        return sqlSession.selectOne(namespace + "countAllLockers");
-    }
-
-    @Override
-    public int countFloor4Lockers() {
-        return sqlSession.selectOne(namespace + "countFloor4Lockers");
-    }
-
-    @Override
-    public int countFloor5Lockers() {
-        return sqlSession.selectOne(namespace + "countFloor5Lockers");
-    }
-
-    @Override
-    public List<LockerDto> listActiveLockers() {
-        return sqlSession.selectList(namespace + "listActiveLockers");
-    }
-
-    @Override
-    public int countActiveFloor4Lockers() {
-        return sqlSession.selectOne(namespace + "countActiveFloor4Lockers");
-    }
-
-    @Override
-    public int countActiveFloor5Lockers() {
-        return sqlSession.selectOne(namespace + "countActiveFloor5Lockers");
-    }
-
-    @Override
-    public int countUnusedFloor4Lockers() {
-        return sqlSession.selectOne(namespace + "countUnusedFloor4Lockers");
-    }
-
-    @Override
-    public int countUnusedFloor5Lockers() {
-        return sqlSession.selectOne(namespace + "countUnusedFloor5Lockers");
-    }
-
-    @Override
-    public List<LockerDto> lockersExpiringIn3Days() {
-        return sqlSession.selectList(namespace + "lockersExpiringIn3Days");
-    }
-
-    @Override
-    public List<String> membersWithLockersExpiringIn3Days() {
-        return sqlSession.selectList(namespace + "membersWithLockersExpiringIn3Days");
+    public int insertExtendsLocker(LockerDto lockerDto) {
+        return sqlSession.insert(namespace + "insertExtendsLocker", lockerDto);
     }
 
     @Override
     public List<Map<String, Object>> selectAlert() throws Exception {
         return sqlSession.selectList(namespace + "selectAlert");
     }
-
-    @Override
-    public int expiredDelete() throws Exception {
-        return sqlSession.update(namespace + "expiredDelete");
-    }
-
 }

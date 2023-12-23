@@ -73,4 +73,5 @@ public interface LstRegistDao {
     List<LstRegistDto> homeSeminarList() throws Exception;
     // 홈 화면 부트캠프 리스트
     List<LstRegistDto> homeBootCampList() throws Exception;
+    void updateInProcess() throws Exception;
 }
