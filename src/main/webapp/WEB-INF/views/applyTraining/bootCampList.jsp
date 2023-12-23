@@ -10,12 +10,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
 <head>
+    <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/jscdReset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/bootCamp.css"/>">
     <link rel="icon" href="/img/mainlogo.png"/>
     <link rel="apple-touch-icon" href="/img/mainlogo.png"/>
-    <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
     <title>BootCampList</title>
 </head>
 <body>

@@ -104,7 +104,7 @@ public class SmTrainingController {
         if(pageSize==null) pageSize = 9;
 
         try {
-            int totalCnt = lstService.getCountSM();
+            int totalCnt = lstService.countTotalSM();
             LecturePageHandler lecturePageHandler = new LecturePageHandler(totalCnt, page, pageSize);
 
             Map map = new HashMap();
