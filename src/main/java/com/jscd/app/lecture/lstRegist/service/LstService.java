@@ -57,6 +57,8 @@ public interface LstService {
     int getCountBT() throws Exception;
 
     int getCountSM() throws Exception;
+    int countTotalBT() throws Exception;
+    int countTotalSM() throws Exception;
     // 진행예정 부트캠프 카운팅
     int getAppointCountBT() throws Exception;
     // 진행 중 부트캠프 카운팅

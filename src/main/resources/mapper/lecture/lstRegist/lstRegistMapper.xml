@@ -29,6 +29,18 @@
         ]]>
     </select>
 
+<!--    (회원)부트캠프 페이징 처리를 위한 부트캠프 게시물 카운팅-->
+    <select id="bootCampCount" resultType="int">
+        SELECT COUNT(*)
+        FROM lstRegist
+        WHERE courseCode like 1
+    </select>
+<!--    (회원)세미나 페이징 처리를 위한 세미나 게시물 카운팅-->
+    <select id="seminarCount" resultType="int">
+        SELECT COUNT(*)
+        FROM lstRegist
+        WHERE courseCode not like 1
+    </select>
     <!--   진행예정 부트캠프 게시물 개수 -->
     <select id="countAppointBT" resultType="int">
         select count(*)
@@ -193,6 +205,7 @@
         <include refid="selectFromlstRegist"/>
         where courseCode LIKE 1
         ORDER BY regDate DESC, registCode DESC
+        limit #{offset}, #{pageSize}
     </select>
 
     <!--    (회원) 부트캠프 리스트 페이징 처리 -->
@@ -268,7 +281,7 @@
 
     <!--    홈 화면 부트캠프 리스트-->
     <select id="homeBootCampList" resultType="lstRegistDto">
-        select registCode, title, discription, regDate
+        select registCode, courseCode, title, discription, regDate
         from lstregist
         where status like "진행예정" and courseCode like 1
         ORDER BY regDate DESC, registCode DESC

@@ -183,9 +183,9 @@ function bootCampSelect() {
                         value: "신청하기"
                     });
 
-                // 세미나 코드를 포함한 URL 생성
+                // 부트캠프 코드를 포함한 URL 생성
                 var seminarURL = $("<a>")
-                    .attr("href", "/btTraining/read?registCode=" + bootCamp.registCode)
+                    .attr("href", "/btTraining/read?registCode=" + bootCamp.registCode + "&courseCode="+bootCamp.courseCode)
                     .append(applyButtonli.append(applyButton));
 
                 ulElement.append(discriptionli, titleli, seminarURL);
