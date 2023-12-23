@@ -13,6 +13,8 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/jscdReset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/lstRegistRegist.css"/>">
+    <link rel="icon" href="/img/mainlogo.png"/>
+    <link rel="apple-touch-icon" href="/img/mainlogo.png"/>
     <script type="text/javascript" src="<c:url value="/js/lstRegist.js"/>"></script>
     <title>정석코딩 강의 등록</title>
 </head>
@@ -285,6 +287,98 @@
 </div>
 <script>
     $(document).ready(function() {
+        // // form에 비어있는 값 있는지 확인하는 기능
+        // let formCheck = function(){
+        //     let form = document.getElementById("seminarRegistForm");
+        //     if(form.title.value==""){
+        //         alert("강의 제목을 입력해 주세요.");
+        //         form.title.focus();
+        //         return false;
+        //     }
+        //     if(form.description.value==""){
+        //         alert("강의 소개를 입력해 주세요.");
+        //         form.description.focus();
+        //         return false;
+        //     }
+        //     if(form.course.value==""){
+        //         alert("강의 과정을 선택해 주세요.");
+        //         form.course.focus();
+        //         return false;
+        //     }
+        //     if(form.onOff.value==""){
+        //         alert("온/오프를 선택해 주세요.");
+        //         form.onOff.focus();
+        //         return false;
+        //     }
+        //     if(form.status.value==""){
+        //         alert("진행 상태를 선택해 주세요.");
+        //         form.status.focus();
+        //         return false;
+        //     }
+        //     if(form.minNum.value==""){
+        //         alert("최소 인원을 선택해 주세요.");
+        //         form.minNum.focus();
+        //         return false;
+        //     }
+        //     if(form.maxNum.value==""){
+        //         alert("최대 인원을 선택해 주세요.");
+        //         form.maxNum.focus();
+        //         return false;
+        //     }
+        //     if(form.location.value==""){
+        //         alert("강의 장소를 선택해 주세요.");
+        //         form.description.focus();
+        //         return false;
+        //     }
+        //     if(form.startDate.value==""){
+        //         alert("강의 시작일을 선택해 주세요.");
+        //         form.startDate.focus();
+        //         return false;
+        //     }
+        //     if(form.endDate.value==""){
+        //         alert("강의 종료일을 선택해 주세요.");
+        //         form.endDate.focus();
+        //         return false;
+        //     }
+        //     if(form.startTime.value==""){
+        //         alert("강의 시작 시간을 선택해 주세요.");
+        //         form.startTime.focus();
+        //         return false;
+        //     }
+        //     if(form.endTime.value==""){
+        //         alert("강의 종료 시간을 선택해 주세요.");
+        //         form.endTime.focus();
+        //         return false;
+        //     }
+        //     if(form.name.value==""){
+        //         alert("강사 이름을 입력해 주세요.");
+        //         form.name.focus();
+        //         return false;
+        //     }
+        //     if(form.book.value==""){
+        //         alert("교재를 입력해 주세요.");
+        //         form.book.focus();
+        //         return false;
+        //     }
+        //     if(form.material.value==""){
+        //         alert("준비물을 입력해 주세요.");
+        //         form.material.focus();
+        //         return false;
+        //     }
+        //     if(form.discount.value==""){
+        //         alert("할인율을 선택해 주세요.");
+        //         form.discount.focus();
+        //         return false;
+        //     }
+        //     if(form.content.value==""){
+        //         alert("강의 내용를 입력해 주세요.");
+        //         form.description.focus();
+        //         return false;
+        //     }
+        //
+        //     return true;
+        // }
+
         $("#registRegistBt").on("click", function(e) {
             e.preventDefault();
             if(!confirm("해당 게시물을 등록하시겠습니까?")) return;
@@ -295,7 +389,11 @@
             form.attr("action", "<c:url value='/adminManage/lstRegist/addRegist'/>");
             form.attr("method", "post");
             form.attr("enctype", "multipart/form-data");
+
             form.submit();
+            // if(formCheck()) {
+            //     form.submit();
+            // }
         });
 
         $("#registModifyBt").on("click", function() {
@@ -339,7 +437,11 @@
             form.attr("action", "<c:url value='/adminManage/lstRegist/modifyRegist${searchCondition.queryString}'/>");
             form.attr("method", "post");
             form.attr("enctype", "multipart/form-data");
+
             form.submit();
+            // if(formCheck()) {
+            //     form.submit();
+            // }
         });
 
         $("#registRemoveBt").on("click", function() {
