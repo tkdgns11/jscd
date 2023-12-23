@@ -28,6 +28,8 @@ public interface LstRegistDao {
     int countRegist() throws Exception;
     int countBT() throws Exception;
     int countSM() throws Exception;
+    int countTotalBT() throws Exception;
+    int countTotalSM() throws Exception;
     // 6.1 진행예정 개수
     int countAppointBT() throws Exception;
     int countAppointSM() throws Exception;

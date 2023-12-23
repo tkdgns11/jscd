@@ -17,7 +17,7 @@
     </select>
 
     <sql id="selectFromAllQnA">
-        SELECT allqnaNo, ctName, title, writer, content, hit, openYN, regDate
+        SELECT allqnaNo, title, writer, content, hit, openYN, regDate, ctName
         FROM allQnA
     </sql>
 
@@ -32,8 +32,10 @@
         UPDATE allQnA
         SET   title = #{title}
           , content = #{content}
-          , writer = #{writer}
-          , regDate = now()
+          , openYN = #{openYN}
+          , ctName = #{ctName}
+--           , writer = #{writer}
+--           , regDate = now()
         WHERE allqnaNo = #{allqnaNo}
     </update>
     <!--    1-5. 게시글 삭제-->
@@ -119,6 +121,26 @@
     </delete>
 
     <!--    5 비밀글 제외-->
+<!--    5-1 비밀글 제외한 나머지 글 카운트-->
+    <select id="searchResultCntExepctSecret" parameterType="SearchCondition" resultType="int">
+        SELECT count(*)
+        FROM  allQnA
+        WHERE openYN = 'Y'
+        <include refid="searchCondition"/>
+    </select>
+
+<!--    5-2 비밀글 제외한 나머지 글 목록-->
+    <select id="searchSelectPageExceptSecret" parameterType="SearchCondition" resultType="AllqnaDto">
+        SELECT allqnaNo, title, content, writer, hit, openYN, regDate, ctName
+        FROM  allQnA
+        WHERE openYN = 'Y'
+        <include refid="searchCondition"/>
+        ORDER BY regDate DESC, allqnaNo DESC
+
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+
     <!--    6 내가 작성한 글 보기-->
 
     <!--    7 게시글 페이징 처리-->

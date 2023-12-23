@@ -78,7 +78,7 @@
             <img src="<c:url value="/img/lectureTime.png"/>">
             <h1>강의 시간</h1>
         </div>
-        <input type="text" class="Time" value="${lstRegistDto.startTime} ~ ${lstRegistDto.endTime}" readonly>
+        <input type="text" class="sminputTxt" value="${lstRegistDto.startTime} ~ ${lstRegistDto.endTime}" readonly>
     </div>
     <hr/>
     <div>

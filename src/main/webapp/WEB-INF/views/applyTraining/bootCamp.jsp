@@ -33,7 +33,6 @@
 
 <div id="btDetailInfo">
     <div>
-        <%--231214. 정수 제목이 좀 밋밋한데...고민좀 확인 되면 주석 지워주세요 --%>
         <h1>${lstRegistDto.onOff}&nbsp${lstRegistDto.title}</h1>
     </div>
     <hr/>
@@ -56,16 +55,6 @@
             <img src="<c:url value="/img/curri.png"/>">
             <h1>커리큘럼</h1>
         </div>
-        <%--  231213 정수           표 형식으로 데이터 받아올까? 고민 좀--%>
-
-<%--        일반 input형식 코드--%>
-<%--        <c:forEach var="list" items="${list}">--%>
-<%--            <input type="text" class="btinputTxt className" value="${list.className}" readonly>--%>
-<%--            &nbsp&nbsp<input type="text" class="btinputTxt category" value="${list.category}" readonly>--%>
-<%--            &nbsp&nbsp<input type="text" class="btinputTxt content" value="${list.content}" readonly>--%>
-<%--        </c:forEach>--%>
-<%--        <table border="5px" style="width:100%">--%>
-<%--        표형식 코드--%>
         <table id="btTable">
             <tr>
                 <th>분류</th>
@@ -96,7 +85,7 @@
             <img src="<c:url value="/img/lectureTime.png"/>">
             <h1>강의 시간</h1>
         </div>
-        <input type="text" class="btinputTxt" readonly>
+        <input type="text" class="btinputTxt" value="${lstRegistDto.startTime} ~ ${lstRegistDto.endTime}" readonly>
     </div>
     <hr/>
     <div>
@@ -104,7 +93,7 @@
             <img src="<c:url value="/img/instructorInfo.png"/>">
             <h1>강사 정보</h1>
         </div>
-        <input type="text" class="btinputTxt" readonly>
+        <input type="text" class="btinputTxt" value="${lstRegistDto.name}"readonly>
     </div>
     <hr/>
     <div>

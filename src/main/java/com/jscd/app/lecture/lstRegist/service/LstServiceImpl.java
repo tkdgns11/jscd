@@ -159,6 +159,15 @@ public class LstServiceImpl implements LstService {
     public int getCountSM() throws Exception {
         return lstRegistDao.countSM();
     }
+
+    @Override
+    public int countTotalBT() throws Exception {
+        return lstRegistDao.countTotalBT();
+    }
+    @Override
+    public int countTotalSM() throws Exception {
+        return lstRegistDao.countTotalSM();
+    }
     // 진행예정 부트캠프 카운팅
     @Override
     public int getAppointCountBT() throws Exception {

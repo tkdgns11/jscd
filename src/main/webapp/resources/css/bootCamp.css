@@ -48,10 +48,10 @@
 #btDetailInfo > div > div > h1{margin-bottom: 20px; color: rgba(0,0,0,0.7); font-size: 30px; font-weight: bold; line-height: 50px;}
 #btDetailInfo > div > h2{margin-bottom: 20px;}
 #btDetailInfo > div > h3{color: red;}
-.btinputTxt{box-shadow: 5px 5px 5px rgba(0,0,0,0.2);border: 1px solid rgba(0,0,0,0.1); border-radius: 5px;width: 100%; height: 60px;}
+.btinputTxt{box-shadow: 5px 5px 5px rgba(0,0,0,0.2);border: 1px solid rgba(0,0,0,0.1); border-radius: 5px;width: 100%; height: 60px; font-size:20px;}
 /*.className{box-shadow: 5px 5px 5px rgba(0,0,0,0.2);border: 1px solid rgba(0,0,0,0.1); border-radius: 5px;width: 20%; height: 60px;}*/
 /*.category{box-shadow: 5px 5px 5px rgba(0,0,0,0.2);border: 1px solid rgba(0,0,0,0.1); border-radius: 5px;width: 20%; height: 60px;}*/
-.Date{box-shadow: 5px 5px 5px rgba(0,0,0,0.2);border: 1px solid rgba(0,0,0,0.1); border-radius: 5px;width: 45%; height: 60px;}
+.Date{box-shadow: 5px 5px 5px rgba(0,0,0,0.2);border: 1px solid rgba(0,0,0,0.1); border-radius: 5px;width: 45%; height: 60px; font-size:20px;}
 #btTable{height: 300px; width: 100%;  background-color: rgba(0,0,0,0.1); border-radius: 10px; text-align: center; box-shadow: 5px 5px 5px rgba(0,0,0,0.2);}
 #btTable tr{font-size: 20px; height: 60px;}
 #btTable tr > th, #btTable tr > td{line-height: 60px;}

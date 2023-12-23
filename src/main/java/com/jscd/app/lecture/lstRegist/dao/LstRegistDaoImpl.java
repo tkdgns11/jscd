@@ -63,6 +63,14 @@ public class LstRegistDaoImpl implements LstRegistDao {
     public int countSM() throws Exception {
         return session.selectOne(namespace + "countSM");
     }
+    @Override
+    public int countTotalBT() throws Exception {
+        return session.selectOne(namespace + "bootCampCount");
+    }
+    @Override
+    public int countTotalSM() throws Exception {
+        return session.selectOne(namespace + "seminarCount");
+    }
     // 6.1 진행예정 카운팅
     // 부트캠프
     @Override

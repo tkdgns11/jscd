@@ -55,7 +55,7 @@ public class HomeController {
 
 	@PostMapping("/seminarList")
 	@ResponseBody
-	public Map<String, Object> homeSeminarList(Model m) throws Exception{
+	public Map<String, Object> homeSeminarList() throws Exception{
 		Map<String, Object> map = new HashMap<>();
 
 		try {
@@ -69,7 +69,7 @@ public class HomeController {
 
 	@PostMapping("/bootCampList")
 	@ResponseBody
-	public Map<String, Object> homeBootCampList(Model m) throws Exception{
+	public Map<String, Object> homeBootCampList() throws Exception{
 		Map<String, Object> map = new HashMap<>();
 
 		try {
