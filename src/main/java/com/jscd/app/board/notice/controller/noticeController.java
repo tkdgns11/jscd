@@ -73,7 +73,8 @@ public class noticeController {
 
 
 
-        String writer = (String)session.getAttribute("id");
+        String writer = (String) session.getAttribute("adminId");
+
 
 
         try {
@@ -125,7 +126,7 @@ public class noticeController {
             if (rowCnt != 1)
                 throw new Exception("Write Failed");
 
-//            rattr.addFlashAttribute("msg", "wrt_ok"); //세션을 이용한 일회성 저장
+//            rattr.addFlashAttribute("msg", "wrt_ok");
 
             return "redirect:/board/notice/list";
 
@@ -142,14 +143,17 @@ public class noticeController {
     @PostMapping("/modify")
     public String modify(noticeDto noticeDto,Integer page, Integer pageSize, HttpSession session, Model m, RedirectAttributes rattr) { //사용자가 입력한 정보를 다시 돌려줘야해서 그걸 model에 담아둬야함
 
-        String writer = (String) session.getAttribute("id");
-        noticeDto.setWriter(writer);
+        String writer = (String) session.getAttribute("adminId");
+        String noticeWriter= noticeDto.getWriter();
+
+        if (!writer.equals(noticeWriter)){
+            m.addAttribute("msg","modify_err");
+            return "board/notice/allNotice";
+        }
 
 
         try {
             int rowCnt = noticeService.modify(noticeDto);
-
-            System.out.println("rowCnt = " + rowCnt);
 
             if (rowCnt != 1)
                 throw new Exception("Modify Failed");
