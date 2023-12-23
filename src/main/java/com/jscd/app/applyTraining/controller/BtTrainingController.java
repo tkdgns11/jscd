@@ -132,7 +132,7 @@ public class BtTrainingController {
 
         try {
             // TODO 진행예정 부트캠프 카운팅 새로 해야함.
-            int totalCnt = lstService.getCountBT();
+            int totalCnt = lstService.getAppointCountBT();
             LecturePageHandler lecturePageHandler = new LecturePageHandler(totalCnt, page, pageSize);
 
             Map map = new HashMap();
@@ -157,14 +157,15 @@ public class BtTrainingController {
 
         try {
             // TODO 진행 중 부트캠프 카운팅 다시해야함.
-            int totalCnt = lstService.getCountBT();
+            int totalCnt = lstService.getProcessCountBT();
             LecturePageHandler lecturePageHandler = new LecturePageHandler(totalCnt, page, pageSize);
 
             Map map = new HashMap();
             map.put("offset", (page-1) * pageSize);
             map.put("pageSize", pageSize);
 
-            List<LstRegistDto> list = lstService.appointBTList(map);
+//            List<LstRegistDto> list = lstService.appointBTList(map);
+            List<LstRegistDto> list = lstService.processBTList(map);
 
             m.addAttribute("list", list);
             m.addAttribute("ph", lecturePageHandler);

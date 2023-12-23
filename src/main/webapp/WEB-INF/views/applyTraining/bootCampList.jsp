@@ -44,11 +44,11 @@
         </header>
         <div id="BootCampNav">
             <ul>
-                <li><a href="#">전체 BootCamp</a></li>
+                <li><a href="<c:url value="/btTraining/list"/>">전체 BootCamp</a></li>
                 <li>|</li>
-                <li><a href="#">진행 예정 BootCamp</a></li>
+                <li><a href="<c:url value="/btTraining/appointBTList"/>">진행 예정 BootCamp</a></li>
                 <li>|</li>
-                <li><a href="#">진행 중인 BootCamp</a></li>
+                <li><a href="<c:url value="/btTraining/processBTList"/>">진행 중인 BootCamp</a></li>
             </ul>
         </div>
         <div id="btProcess">

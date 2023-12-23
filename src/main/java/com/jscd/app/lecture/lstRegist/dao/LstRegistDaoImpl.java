@@ -59,6 +59,28 @@ public class LstRegistDaoImpl implements LstRegistDao {
     public int countSM() throws Exception {
         return session.selectOne(namespace + "countSM");
     }
+    // 6.1 진행예정 카운팅
+    // 부트캠프
+    @Override
+    public int countAppointBT() throws Exception {
+        return session.selectOne(namespace + "countAppointBT");
+    }
+    // 세미나
+    @Override
+    public int countAppointSM() throws Exception {
+        return session.selectOne(namespace + "countAppointSM");
+    }
+    // 6.2 진행중 카운팅
+    // 부트캠프
+    @Override
+    public int countProcessBT() throws Exception {
+        return session.selectOne(namespace + "countProcessBT");
+    }
+    // 세미나
+    @Override
+    public int countProcessSM() throws Exception {
+        return session.selectOne(namespace + "countProcessSM");
+    }
 
     //7.강의 전체 삭제
     @Override

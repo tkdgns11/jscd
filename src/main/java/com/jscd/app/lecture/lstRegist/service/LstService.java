@@ -31,6 +31,10 @@ public interface LstService {
     LstRegistDto seminarRead(Integer registCode) throws Exception;
     //(회원) 세미나 리스트 페이징
     List<lstregistfileDto> seminarPaging(Map map) throws Exception;
+    //(회원) 세미나 진행예정 페이징
+    List<lstregistfileDto> appointSMList(Map map) throws Exception;
+    //(회원) 세미나 진행 페이징
+    List<lstregistfileDto> processSMList(Map map) throws Exception;
 
     //부트캠프 리스트 불러오기
     List<LstRegistDto> bootCampList() throws Exception;
@@ -40,6 +44,8 @@ public interface LstService {
     List<LstRegistDto> bootCampPaging(Map map) throws Exception;
     //(회원) 부트캠프 진행예정 페이징
     List<LstRegistDto> appointBTList(Map map) throws Exception;
+    //(회원) 부트캠프 진행 페이징
+    List<LstRegistDto> processBTList(Map map) throws Exception;
 
     // 첨부파일 조회
     public List<Map<String, Object>> selectFileList(Integer registCode) throws Exception;
@@ -51,13 +57,17 @@ public interface LstService {
     int getCountBT() throws Exception;
 
     int getCountSM() throws Exception;
+    // 진행예정 부트캠프 카운팅
+    int getAppointCountBT() throws Exception;
+    // 진행 중 부트캠프 카운팅
+    int getProcessCountBT() throws Exception;
+    // 진행예정 세미나 카운팅
+    int getAppointCountSM() throws Exception;
+    // 진행 중 세미나 카운팅
+    int getProcessCountSM() throws Exception;
 
     // 홈 화면 세미나 리스트
     List<LstRegistDto> homeSeminarList() throws Exception;
     // 홈 화면 부트캠프 리스트
     List<LstRegistDto> homeBootCampList() throws Exception;
-
-
-
-
 }
