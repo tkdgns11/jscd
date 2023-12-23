@@ -565,8 +565,8 @@ public class MemberController {
 		return mailService.findPwd(email);
 	}
 
-	//비밀번호 재설정 화면 보여주기
-	@GetMapping("/pwdModify")
+	//비밀번호 재설정 화면 보여주기_이메일 get으로 노출 시, 비번 아무나 바꿀 수 있어서 post로 수정
+	@PostMapping("/pwdModifyForm")
 	public String pwdModifyForm(String id,Model model){
 		model.addAttribute("id",id);
 

@@ -16,7 +16,6 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/jscdReset.css"/>">
 
 
-
     <!-- 탭 아이콘 & 글자 지정 -->
     <link rel="icon" href="/img/mainlogo.png"/>
     <link rel="apple-touch-icon" href="/img/mainlogo.png"/>
@@ -53,7 +52,15 @@
             margin-left: 0;
             margin-bottom: 30px;
         }
-        .findPwdBtn{border: 1px solid rgba(0,0,0,0.7);background-color: #ffffff; width: 90px; height: 40px; border-radius: 8px; cursor:pointer}
+
+        .findPwdBtn {
+            border: 1px solid rgba(0, 0, 0, 0.7);
+            background-color: #ffffff;
+            width: 90px;
+            height: 40px;
+            border-radius: 8px;
+            cursor: pointer
+        }
 
     </style>
 </head>
@@ -71,7 +78,7 @@
         <input type="text" name="id" id="id" placeholder="이메일 입력">
         <input type="button" id="idChkBtn" value="이메일 확인" class="findPwdBtn" onclick="idCheck()"><br><br>
         <input type="hidden" id="idChkYN" value="">
-        <input type="text" id="certification" name="인증번호" placeholder="인증번호를 입력해주세요." autocomplete="off">
+        <input type="text" id="certification" placeholder="인증번호를 입력해주세요." autocomplete="off">
         <input type="button" id="emailChkValueBtn" value="인증번호 받기" class="findPwdBtn"><br>
         <font id="checkPwd" size="2"></font><br>
         <input type="hidden" id="emailChkYN" value="">
@@ -146,7 +153,21 @@
             if (!idChkYNValid(idChkYN) || !emailChkYNValid(emailChkYN)) {
                 return;
             } else {
-                location.href = "/member/pwdModify?id=" + email;
+                //form - post로 id 담아서 화면 이동
+                const form = document.createElement('form');
+                form.setAttribute('method', 'post');
+                form.setAttribute('action', '/member/pwdModifyForm');
+
+                //닉네임,비밀번호,생일,휴대전화
+                var id = document.getElementById('id');
+
+                form.appendChild(id);
+                document.body.appendChild(form);
+                $('#loginWrap').css('display', 'none');
+
+
+                form.submit();
+
             }
 
 

@@ -77,4 +77,13 @@
 
 	</select>
 
+	<!--	비밀번호 재설정-->
+	<update id="updatePwd" parameterType="memberDto">
+		UPDATE MEMBER
+		SET
+			pwd = #{pwd},
+			modifyDate = now()
+		WHERE id = #{id}
+	</update>
+
 </mapper>

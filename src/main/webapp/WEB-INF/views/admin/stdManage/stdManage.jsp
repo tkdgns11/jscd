@@ -134,6 +134,7 @@
                 form.appendChild(mebrNo);
                 console.log(form)
                 document.body.appendChild(form);
+                $('#infoDetailBox').css('display','none');
                 form.submit();
             }
 

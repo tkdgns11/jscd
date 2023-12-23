@@ -137,6 +137,9 @@
             form.appendChild(id);
             form.appendChild(pwd);
             document.body.appendChild(form);
+            $('#loginWrap').css('display', 'none');
+
+
             form.submit();
 
         }

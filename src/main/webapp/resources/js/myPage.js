@@ -40,6 +40,8 @@ function infoModify() {
         form.appendChild(acct);
         console.log(form)
         document.body.appendChild(form);
+        $('#myPageBox').css('display','none');
+
         form.submit();
 
     }
