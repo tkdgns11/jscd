@@ -2,6 +2,9 @@
          pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +17,6 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/jscdReset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/allqnaWrite.css"/>">
     <script type="text/javascript" src="<c:url value="/js/allqnaWrite.js"/>"></script>
-    <script src="https://kit.fontawesome.com/4e5b2f86bb.js" crossorigin="anonymous"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js"></script>
 </head>
 <body>
@@ -25,59 +27,76 @@
 
 <form id="form">
     <div id="detailHd">
+<%--        <div type="hidden" id="id" data-id="${id.id}"></div>--%>
         <input type="hidden" id="allqnaNo" name="allqnaNo" value="${allqnaList.allqnaNo}">
         <%--            <label>카테고리</label>--%>
-        <select name="ctName" id="allqnaCategory">
+        <select name="ctName" id="allqnaCategory" ${mode=="new" ? '' : 'disabled="disabled"' }>
             <option value="분류" disabled selected>분류</option>
-            <option value="부트캠프">부트캠프</option>
-            <option value="세미나">세미나</option>
-            <option value="결제 및 환불">결제 및 환불</option>
-            <option value="사이트 이용">사이트 이용</option>
-            <option value="학원관련">학원관련</option>
-            <option value="기타">기타</option>
+            <option value="부트캠프" ${allqnaList.ctName eq '부트캠프' ? 'selected' : ''}>부트캠프</option>
+            <option value="세미나" ${allqnaList.ctName eq '세미나' ? 'selected' : ''}>세미나</option>
+            <option value="결제 및 환불" ${allqnaList.ctName eq '결제 및 환불' ? 'selected' : ''}>결제 및 환불</option>
+            <option value="사이트 이용"  ${allqnaList.ctName eq '사이트 이용' ? 'selected' : ''}>사이트 이용</option>
+            <option value="학원관련" ${allqnaList.ctName eq '학원관련' ? 'selected' : ''}>학원관련</option>
+            <option value="기타" ${allqnaList.ctName eq '기타' ? 'selected' : ''}>기타</option>
         </select>
         <br><br>
 
-        <input type="text" id="title" name="title" placeholder="제목에 핵심 내용을 요약해보세요." value="${allqnaList.title}">
-        <span>작성 <input type="text" id="regDate" name="regDate" value="${allqnaList.regDate} " readonly> ･</span>
+        <input type="text" id="title" name="title" placeholder="제목에 핵심 내용을 요약해보세요."
+               value="${allqnaList.title}"  ${mode eq 'new' ? '' : 'readonly=readonly'}>
+        <span>작성일<input type="text" id="regDate" name="regDate"
+                        value="<fmt:formatDate pattern='yyyy-MM-dd' value='${allqnaList.regDate}' />" readonly>.</span>
+
         <%--        <span>수정 ･<input type="text" id="modifyDatZe" name="modifyDate" value="${allqnaList.modifyDate} " readonly></span>--%>
         <span>조회수 <input type="text" id="viewCnt" name="viewCnt" value=" ${allqnaList.hit}" readonly></span><br>
         <span>작성자 <input type="text" name="writer" id="writer" value=" ${allqnaList.writer}" readonly></span><br>
 
         <div id="wrapCon">
-            <textarea id="content" name="content">${allqnaList.content}</textarea>
-<%--            위지윅 적용--%>
-                            <script>
-                                document.addEventListener("DOMContentLoaded", function() {
-                                    ClassicEditor
-                                        .create(document.querySelector('#content'))
-                                        .then(newEditor => {
-                                            editor = newEditor;
-                                        })
-                                        .catch(error => {
-                                            console.error(error);
-                                        });
-                                });
+            <textarea id="content"
+                      name="content" style=" padding:10px; width:672px; height:519px;"
+            ${mode eq 'new' ? '' : 'readonly=readonly'}>${allqnaList.content}</textarea>
 
-                            </script>
+            <%--            위지윅 적용--%>
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const contentTextarea = document.querySelector('#content');
+
+                    // textarea가 읽기 전용이 아닐 때만 에디터 생성
+                    if (!contentTextarea.hasAttribute('readonly')) {
+                        ClassicEditor
+                            .create(contentTextarea)
+                            .then(newEditor => {
+                                editor = newEditor;
+                            })
+                            .catch(error => {
+                                console.error(error);
+                            });
+                    }
+                });
+            </script>
         </div>
 
         <div id="wrapAtc">
             <%--                id = file -> upload 바꿈--%>
-            <input type="file" id="upload" name="file" class="attachBtn">
+            <input type="file" id="upload" name="file" class="attachBtn" ${mode eq 'new' ? '' : 'hidden'}>
         </div>
-    </div>
-    <%--       id 바꿈 btnBox -> buttonBox--%>
-    <div id="buttonBox">
-        <input type="button" id="listBtn" class="backBtn" onclick="" value="목록">
-        <div id="eachBtn">
-        <input type="button" id="writeBtn" class="registeBtn" onclick="allqnaWrite();" value="등록">
-        <input type="button" id="removeBtn" class="deleteBtn" onclick="allqnaDelete()" value="삭제">
+        <%--       id 바꿈 btnBox -> buttonBox--%>
+        <div id="bottomBox">
+
+            <div id="buttonBox">
+                <input type="button" id="writeBtn" class="registeBtn"
+                       onclick="allqnaWrite();" ${mode eq 'new' ? '' : 'hidden'} value="등록">
+                <input type="button" id="modifyBtn" class="modifyBtn"
+                       onclick="allqnaEdit();" ${mode eq 'new' ? 'hidden' : ''} value="수정">
+                <input type="button" id="removeBtn" class="deleteBtn"
+                       onclick="allqnaDelete()" ${mode eq 'new' ? 'hidden' : ''} value="삭제">
+                <input type="button" id="listBtn" class="backBtn" onclick="" value="목록">
+            </div>
+
+
         </div>
-    </div>
 
-    </form>
-
+</form>
+</form>
 <section id="cmmtBox" style="${mode == 'new' ? 'display: none;' : ''}">
     <div id="cmmtLetter"><i class="fa-solid fa-comment"></i> 답변</div>
     <div id="cmmtContent">
@@ -148,6 +167,15 @@
 
     </div>
 </div>
+
+
+<c:if test="${not empty msg}">
+    <script>
+        alert('${msg}');
+        location.href='<c:out value="${pageContext.request.contextPath}"/>${url}';
+    </script>
+</c:if>
+
 
 
 </body>

@@ -123,7 +123,12 @@
                 <footer>
                     <jsp:include page="/WEB-INF/views/footer.jsp"/>
                 </footer>
+
+
 </body>
+<script>
+
+</script>
 
 
 </html>
