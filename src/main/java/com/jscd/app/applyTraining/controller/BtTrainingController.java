@@ -102,7 +102,7 @@ public class BtTrainingController {
     public String btTrainingList(Integer page, Integer pageSize, Model m) throws Exception {
 
         if(page == null) page=1;
-        if(pageSize == null) pageSize = 2;
+        if(pageSize == null) pageSize = 5;
 
         try {
             int totalCnt = lstService.countTotalBT();
@@ -126,7 +126,7 @@ public class BtTrainingController {
     @GetMapping("/appointBTList")
     public String btAppointList(Integer page, Integer pageSize, Model m) throws Exception {
         if(page == null) page=1;
-        if(pageSize == null) pageSize = 2;
+        if(pageSize == null) pageSize = 5;
 
         try {
             int totalCnt = lstService.getAppointCountBT();
@@ -150,7 +150,7 @@ public class BtTrainingController {
     @GetMapping("/processBTList")
     public String btProcessList(Integer page, Integer pageSize, Model m) throws Exception {
         if(page == null) page = 1;
-        if(pageSize ==  null) pageSize = 2;
+        if(pageSize ==  null) pageSize = 5;
 
         try {
             int totalCnt = lstService.getProcessCountBT();

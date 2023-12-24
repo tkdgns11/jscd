@@ -101,7 +101,7 @@ public class SmTrainingController {
     public String smTrainingList(Integer page, Integer pageSize, Model m) throws Exception {
 
         if(page==null) page=1;
-        if(pageSize==null) pageSize = 9;
+        if(pageSize==null) pageSize = 12;
 
         try {
             int totalCnt = lstService.countTotalSM();
@@ -125,7 +125,7 @@ public class SmTrainingController {
     @GetMapping("/appointSMList")
     public String smAppointList(Integer page, Integer pageSize, Model m) throws Exception {
         if(page == null) page=1;
-        if(pageSize == null) pageSize = 9;
+        if(pageSize == null) pageSize = 12;
 
         try {
             int totalCnt = lstService.getAppointCountSM();
@@ -149,7 +149,7 @@ public class SmTrainingController {
     @GetMapping("/processSMList")
     public String smProcessList(Integer page, Integer pageSize, Model m) throws Exception {
         if(page == null) page = 1;
-        if(pageSize ==  null) pageSize = 9;
+        if(pageSize ==  null) pageSize = 12;
 
         try {
             int totalCnt = lstService.getProcessCountSM();
