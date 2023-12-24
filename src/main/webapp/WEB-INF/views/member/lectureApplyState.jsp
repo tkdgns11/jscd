@@ -51,26 +51,27 @@
                     <h2>내 강의 신청 현황</h2>
                 </div>
             </section>
-            <c:forEach items="${orderList}" var="order">
-                <c:if test="${order.status eq 'paid' or order.status eq 'notPaid'}">
+<%--            <c:forEach items="${orderList}" var="order">--%>
+            <c:forEach var="lectureApply" items="${list}">
+                <c:if test="${lectureApply.status eq 'paid' or lectureApply.status eq 'notPaid'}">
                     <section id="section_orderlist_contents">
                         <div id="orderlist_content">
                             <div id="orderlist_content-title"
                                  class="<c:choose>
-                    <c:when test="${order.status eq 'paid'}">paid</c:when>
-                    <c:when test="${order.status eq 'notPaid'}">notPaid</c:when>
-                    <c:when test="${order.status eq 'cancel'}">cancel</c:when>
+                    <c:when test="${lectureApply.status eq 'paid'}">paid</c:when>
+                    <c:when test="${lectureApply.status eq 'notPaid'}">notPaid</c:when>
+                    <c:when test="${lectureApply.status eq 'cancel'}">cancel</c:when>
                 </c:choose>">
                                 <div>
                                     <c:choose>
                                         <%--                          1. ${order.status} == 'paid' : 결제 완료--%>
-                                        <c:when test="${order.status eq 'paid'}">결제 완료</c:when>
+                                        <c:when test="${lectureApply.status eq 'paid'}">결제 완료</c:when>
                                         <%--                          2.  ${order.status} == 'notPaid' : 결제 대기중--%>
-                                        <c:when test="${order.status eq 'notPaid'}">결제 대기중</c:when>
+                                        <c:when test="${lectureApply.status eq 'notPaid'}">결제 대기중</c:when>
                                         <%--                          3.  ${order.status} == 'cancel' : 결제 취소--%>
-                                        <c:when test="${order.status eq 'cancel'}">결제 취소</c:when>
+                                        <c:when test="${lectureApply.status eq 'cancel'}">결제 취소</c:when>
                                         <%--                          3.  나머지 값 : 해당 값 그대로 표시--%>
-                                        <c:otherwise>${order.status}</c:otherwise>
+                                        <c:otherwise>${lectureApply.status}</c:otherwise>
                                     </c:choose>
                                 </div>
                             </div>
@@ -79,11 +80,11 @@
                                     <table id="order_date">
                                         <tr>
                                             <td class="order_date_title">주문일시</td>
-                                            <td>${order.regDate}</td>
+                                            <td>${lectureApply.regDate}</td>
                                         </tr>
                                         <tr>
                                             <td class="order_date_title">주문번호</td>
-                                            <td>${order.odNo}</td>
+                                            <td>${lectureApply.odNo}</td>
                                         </tr>
                                     </table>
                                 </div>
@@ -92,47 +93,47 @@
                                         <div>
                                             <c:choose>
                                                 <%--                          1. ${order.status} == 'paid' : 결제 완료--%>
-                                                <c:when test="${order.status eq 'paid'}">
+                                                <c:when test="${lectureApply.status eq 'paid'}">
                                                     <div id="img_paid_hover">
                                                         <img class="pay_img" id="img_paid" alt="payment status is paid"
                                                              src="<c:url value="/img/paid.png"/>">
                                                     </div>
                                                 </c:when>
                                                 <%--                          2.  ${order.status} == 'notPaid' : 결제 대기중--%>
-                                                <c:when test="${order.status eq 'notPaid'}">
+                                                <c:when test="${lectureApply.status eq 'notPaid'}">
                                                     <img class="pay_img" id="img_not-paid" alt="payment status is not paid"
                                                          src="<c:url value="/img/notPaid.png"/>">
                                                 </c:when>
                                                 <%--                          3.  ${order.status} == 'cancel' : 결제 취소--%>
-                                                <c:when test="${order.status eq 'cancel'}">
+                                                <c:when test="${lectureApply.status eq 'cancel'}">
                                                     <img class="pay_img" id="img_pay-cancel" alt="payment status is cancel"
                                                          src="<c:url value="/img/pay_cancel.png"/>">
                                                 </c:when>
                                                 <%--                          3.  나머지 값 : 해당 값 그대로 표시--%>
-                                                <c:otherwise>${order.status}</c:otherwise>
+                                                <c:otherwise>${lectureApply.status}</c:otherwise>
                                             </c:choose>
                                         </div>
                                     </div>
                                     <div id="orderlist_info">
                                         <div>
                                             <div id="orderlist_lecture-title">
-                                                <h2>${order.title}</h2>
+                                                <h2>${lectureApply.title}</h2>
                                             </div>
                                             <div id="orderlist_lecture-date">
                                                 <table>
                                                     <tr>
                                                         <td>시작일</td>
-                                                        <td>${order.startDate}</td>
+                                                        <td>${lectureApply.startDate}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>종료일</td>
-                                                        <td>${order.endDate}</td>
+                                                        <td>${lectureApply.endDate}</td>
                                                     </tr>
                                                 </table>
                                             </div>
                                             <div id="orderlist_lecture-price">
                                                 <div id="orderlist_lecture-price_num">
-                                                    <fmt:formatNumber type="number" value="${order.lastPrice}" pattern="#,##0" />
+                                                    <fmt:formatNumber type="number" value="${lectureApply.lastPrice}" pattern="#,##0" />
                                                 </div>
                                                 <div id="orderlist_lecture-price_unit">원</div>
                                             </div>
@@ -182,6 +183,7 @@
                 </div>
             </section>
         </section>
+
         <aside id="aside_orderlist_info">
             <section id="orderlist_member_info">
                 <h2 class="display-none">회원 정보</h2>

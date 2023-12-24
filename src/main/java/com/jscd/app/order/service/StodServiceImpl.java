@@ -28,6 +28,16 @@ public class StodServiceImpl implements StodService {
         return stodDao.insertStod(stodDTO);
     }
 
+    //
+    @Override
+    public void updateStatusToPaid(String id, int registCode) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("id", id);
+        params.put("registCode", registCode);
+
+        stodDao.updateStatusToPaid(params);
+    }
+    
     // 결재 내역 테이블에 데이터 저장
     @Override
     public int insertPayHty(StodDTO stodDTO) throws Exception {
