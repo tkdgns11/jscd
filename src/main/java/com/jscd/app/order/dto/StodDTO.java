@@ -11,8 +11,8 @@ public class StodDTO {
     private int registCode;
     private String title;
     private int lastPrice;
-    private String startDate; //
-    private String endDate; //
+    private String startDate; 
+    private String endDate; 
 
     //companyDto
     private int slrNo;
@@ -27,7 +27,7 @@ public class StodDTO {
     private String modifyDate;
     private Integer lastIdNo;
     private String etc;
-    private String slrAddr; //추가
+    private String slrAddr;
     private String slrMail;
 
     private String odNo;
@@ -38,8 +38,8 @@ public class StodDTO {
     private String creditNum;
     private String cardType;
     private int instlFees;
-    private String payDay; //
-    private String csrcNum; //
+    private String payDay; 
+    private String csrcNum; 
     private String payTime;
     private String userActNum;
     private String payName;

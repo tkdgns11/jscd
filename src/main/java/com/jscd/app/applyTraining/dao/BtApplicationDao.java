@@ -31,6 +31,9 @@ public interface BtApplicationDao {
 
     int update(BtApplicationDto dto) throws Exception;
 
+    // 소희 추가
+    void updateLectureapply(BtApplicationDto dto) throws Exception;
+
     // 부트캠프 폼 작성
     int insert(BtApplicationDto dto) throws Exception;
 //    부트캠프 폼 상태

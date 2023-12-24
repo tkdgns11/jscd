@@ -30,11 +30,11 @@ public class StodDaoImpl implements StodDao {
     public int insertPayHty(StodDTO stodDTO) throws Exception {
         return sqlSession.insert(namespace + "insertPayHty", stodDTO);
     }
-    
-    //
+
+    // lectureApply.status == 'paid' update
     @Override
-    public void updateStatusToPaid(Map<String, Object> params) {
-        sqlSession.update("updateStatusToPaid", params);
+    public int updateStatusToPaid(Map<String, Object> params) {
+        return sqlSession.update("updateStatusToPaid", params);
     }
 
     // '주문 내역 조회'

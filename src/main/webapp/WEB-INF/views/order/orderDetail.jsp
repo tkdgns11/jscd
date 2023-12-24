@@ -36,8 +36,6 @@ http://localhost:8080/order/orderDetail?odNo=jscd20231212025948340
 </head>
 <body>
 <div id="root">
-    <%--    <p class="display-none" id="go_mypage"></p>--%>
-    <%--    <p class="display-none" id="go_orderlist"></p>--%>
     <header>
         <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
     </header>
@@ -54,7 +52,6 @@ http://localhost:8080/order/orderDetail?odNo=jscd20231212025948340
                     <h3 class="display-none">영수증 제목</h3>
                     <div>
                         <div class="receipt-text">
-                                <%-- <p class="typing" id="receipt-text-01">For your level up !</p>--%>
                             <p class="typing" id="receipt-text-01"></p>
                             <p id="receipt-text-02">정석코딩</p>
                         </div>

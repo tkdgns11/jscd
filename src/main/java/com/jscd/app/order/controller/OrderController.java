@@ -17,6 +17,7 @@ import com.jscd.app.order.service.StodService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -39,8 +40,7 @@ public class OrderController {
     //config.properties 파일 내 포트원 결제 API 이용하기 위한 계정 가져오기 위함
 //    @Value("${IMP_KEY}")
 //    private String impKey;
-
-
+    
     @Autowired
     public OrderController(OrderService orderService, CompanyInfoService companyInfoService, StodService stodService, MemberService memberService) {
         this.orderService = orderService;
@@ -78,40 +78,39 @@ public class OrderController {
         return "order/order";
     }
 
+    @Transactional
     @PostMapping("/paySuccess")
     @ResponseBody
-    public String submitOrder(@RequestBody  StodDTO stodDto) throws Exception {
+    public String submitOrder(@RequestBody StodDTO stodDto) {
         System.out.println("서버 측에서 주문 처리 중"+ stodDto);
 
-        //주문 정보 DB에 넣기
-        stodService.insertStod(stodDto);
+        try {
+            //주문 정보 DB에 넣기
+            stodService.insertStod(stodDto);
 
-        //결제 정보 DB에 넣기
-        stodService.insertPayHty(stodDto);
+            //결제 정보 DB에 넣기
+            stodService.insertPayHty(stodDto);
 
-        //주문 상태를 'paid'로 업데이트
-        stodService.updateStatusToPaid(stodDto.getId(), stodDto.getRegistCode());
+            //주문 상태를 'paid'로 업데이트 전에 로그 출력
+            System.out.println("Before updateStatusToPaid()");
 
-        return null;
+            stodService.updateStatusToPaid(stodDto.getId(), stodDto.getRegistCode());
+
+            //주문 상태를 'paid'로 업데이트 후에 로그 출력
+            System.out.println("After updateStatusToPaid()");
+
+            System.out.println("stodDto.getId(): " + stodDto.getId());
+            System.out.println("stodDto.getRegistCode(): " + stodDto.getRegistCode());
+            System.out.println("stodDto.getStatus(): " + stodDto.getStatus());
+
+
+            return "order/paySuccess";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Fail: " + e.getMessage();
+        }
     }
-
-//    @PostMapping("/paySuccess")
-//    @ResponseBody
-//    public String submitOrder(@RequestBody  StodDTO stodDto, @ModelAttribute("orderDto") OrderDTO orderDto, Model model) throws Exception {
-//        System.out.println("서버 측에서 주문 처리 중"+ stodDto);
-//
-//        //주문 정보 DB에 넣기
-//        stodService.insertStod(stodDto);
-//
-//        //결제 정보 DB에 넣기
-//        stodService.insertPayHty(stodDto);
-//
-//        // orderDto 정보 보내기
-//        model.addAttribute("orderDto", orderDto);
-//
-//        return "order/paySuccess";
-//    }
-
+    
     @PostMapping("/actPaySuccess")
     @ResponseBody
     public String submitOrder2(@RequestBody  StodDTO stodDto, @ModelAttribute("orderDto") OrderDTO orderDto, Model model) throws Exception {
@@ -127,50 +126,8 @@ public class OrderController {
         model.addAttribute("orderDto", orderDto);
         System.out.println(orderDto);
 
-        //주문 상태를 'paid'로 업데이트
-        stodService.updateStatusToPaid(stodDto.getId(), stodDto.getRegistCode());
-
         return "order/actPaySuccess";
     }
-//  원래
-//    @PostMapping("/actPaySuccess")
-//    @ResponseBody
-//    public String submitOrder2(@RequestBody  StodDTO stodDto) throws Exception {
-//        System.out.println("서버 측에서 주문 처리 중"+ stodDto);
-//
-//        //주문 정보 DB에 넣기
-//        stodService.insertStod(stodDto);
-//
-//        //결제 정보 DB에 넣기
-//        stodService.insertPayHty(stodDto);
-//
-//
-//        return null;
-//    }
-
-//    @PostMapping("/actPaySuccess")
-//    public String submitOrder2(@RequestBody StodDTO stodDto) throws Exception {
-//        System.out.println("서버 측에서 주문 처리 중" + stodDto);
-//
-//        // 주문 정보 DB에 넣기
-//        stodService.insertStod(stodDto);
-//
-//        // 결제 정보 DB에 넣기
-//        stodService.insertPayHty(stodDto);
-//
-//        // "/order/actPaySuccess" 뷰 이름 반환
-//        return "redirect:/order/actPaySuccess?odNo=" + stodDto.getOdNo();
-//    }
-//
-//    @GetMapping("/order/actPaySuccess")
-//    public String showOrderSuccess(@RequestParam String odNo, Model model) {
-//        StodDTO stodDto = stodService.getStodByOdNo(odNo);
-//        model.addAttribute("stodDto", stodDto);
-//        return "/order/actPaySuccess";
-//    }
-
-
-
 
     // 카드 결제 완료 페이지 연결
     @GetMapping("/paySuccess")
@@ -213,10 +170,6 @@ public class OrderController {
 
         return "order/orderList";
     }
-
-
-
-
 
     @GetMapping("/orderDetail")
     public String selectOrderDetail(@RequestParam("odNo") String odNo, HttpServletRequest request, Model model) throws Exception {

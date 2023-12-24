@@ -25,29 +25,39 @@ public class StodServiceImpl implements StodService {
     // 주문 내역 테이블에 데이터 저장
     @Override
     public int insertStod(StodDTO stodDTO) throws Exception {
-        return stodDao.insertStod(stodDTO);
+        int result = stodDao.insertStod(stodDTO);
+        if (result != 1) {
+            throw new Exception("insertStod failed");
+        }
+        return result;
     }
 
-    //
+    // lectureApply.status == 'paid' update
     @Override
-    public void updateStatusToPaid(String id, int registCode) {
+    public void updateStatusToPaid(String id, int registCode) throws Exception {
         Map<String, Object> params = new HashMap<>();
         params.put("id", id);
         params.put("registCode", registCode);
 
-        stodDao.updateStatusToPaid(params);
+        int result = stodDao.updateStatusToPaid(params);
+        if (result != 1) {
+            throw new Exception("updateStatusToPaid failed");
+        }
     }
-    
-    // 결재 내역 테이블에 데이터 저장
+
+    // 결제내역 테이블에 데이터 저장
     @Override
     public int insertPayHty(StodDTO stodDTO) throws Exception {
+        int result = stodDao.insertPayHty(stodDTO);
+        if (result != 1) {
+            throw new Exception("insertPayHty failed");
+        }
 
-        //집계 테이블 매출액에 결제금액 추가.
         Map map = new HashMap();
         map.put("lastPrice", stodDTO.getLastPrice());
         dailySummaryDao.updateRevenue(map);
 
-        return stodDao.insertPayHty(stodDTO);
+        return result;
     }
 
     // 주문 내역 조회

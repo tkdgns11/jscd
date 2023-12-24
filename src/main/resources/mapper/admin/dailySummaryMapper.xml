@@ -11,7 +11,7 @@
     </insert>
 
     <update id="updateRevenue" parameterType="map">
-        UPDATE dailySummery
+        UPDATE dailySummary
         SET revenue = revenue + #{lastPrice}
         WHERE date = CURDATE()
     </update>

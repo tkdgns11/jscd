@@ -44,7 +44,13 @@
         update btstform
         set  status = #{status}, level = #{level}, levelDetail = #{levelDetail}, attdPps = #{attdPps}, attdPath = #{attdPath}, intro = #{intro},
              expect = #{expect}, agreeYN = #{agreeYN}, approvalYN = #{approvalYN}, modifyDate = now()
-        where stfmNo = #{stfmNo}
+        where stfmNo = #{stfmNo};
+    </update>
+
+    <update id="updateLectureapply" parameterType="BtApplicationDto">
+        update lectureapply
+        set approvalYN = #{approvalYN}
+        where stfmNo = #{stfmNo};
     </update>
 
     <!--    폼 제출시 lectureapply테이블에 같이 insert-->

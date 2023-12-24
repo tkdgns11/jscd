@@ -498,7 +498,6 @@ public class MemberController {
 	public String showLectureApplyState(
 			@RequestParam(defaultValue = "1") int page,
 			LectureApplyDto lectureApplyDto,
-//                MemberDto memberDto,
 			Model m,
 			CompanyInfoDTO companyInfoDto,
 			HttpServletRequest request) {
@@ -517,7 +516,6 @@ public class MemberController {
 			m.addAttribute("lectureList", lectureList);
 
 			// 멤버 정보 가져오기
-//            memberDto = memberService.memberSelect(id);
 			MemberDto memberDto = memberService.memberSelect(id);
 			m.addAttribute("memberDto", memberDto);
 			System.out.println(memberDto.toString());
@@ -527,12 +525,13 @@ public class MemberController {
 			companyInfoDto = companyInfoService.select(companyInfoDto.getSlrNo());
 			m.addAttribute("companyInfoDto", companyInfoDto);
 
-			// 주문 정보 가져오기
 			int itemsPerPage = 5;
-			List<StodDTO> orderList = stodService.selectOrderList(id, page, itemsPerPage);
-			m.addAttribute("orderList", orderList);
-			m.addAttribute("currentPage", page);
+					int totalItems = stodService.countOrderList(id); // 전체 아이템 수를 조회
+		int totalPages = (int) Math.ceil((double) totalItems / itemsPerPage);
+		m.addAttribute("totalPages", totalPages);
 
+		// 현재 페이지 번호를 모델에 추가
+		m.addAttribute("currentPage", page);
 
 		} catch (Exception e){
 

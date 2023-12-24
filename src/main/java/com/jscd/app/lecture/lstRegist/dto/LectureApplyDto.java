@@ -4,6 +4,7 @@ public class LectureApplyDto {
     private String id;
     private Integer registCode;
     private Integer stdApplyNo;
+    private String approvalYN; //추가
     private String status;
     private String title;
     private String lastPrice;
@@ -20,10 +21,11 @@ public class LectureApplyDto {
     public LectureApplyDto() {
     }
 
-    public LectureApplyDto(String id, Integer registCode, Integer stdApplyNo, String status, String title, String lastPrice, Integer courseCode, String startDate, String endDate, Integer odNo, String regDate, String payType) {
+    public LectureApplyDto(String id, Integer registCode, Integer stdApplyNo, String approvalYN, String status, String title, String lastPrice, Integer courseCode, String startDate, String endDate, Integer odNo, String regDate, String payType) {
         this.id = id;
         this.registCode = registCode;
         this.stdApplyNo = stdApplyNo;
+        this.approvalYN = approvalYN;
         this.status = status;
         this.title = title;
         this.lastPrice = lastPrice;
@@ -34,7 +36,6 @@ public class LectureApplyDto {
         this.regDate = regDate;
         this.payType = payType;
     }
-
 
     public String getId() {
         return id;
@@ -58,6 +59,14 @@ public class LectureApplyDto {
 
     public void setStdApplyNo(Integer stdApplyNo) {
         this.stdApplyNo = stdApplyNo;
+    }
+
+    public String getApprovalYN() {
+        return approvalYN;
+    }
+
+    public void setApprovalYN(String approvalYN) {
+        this.approvalYN = approvalYN;
     }
 
     public String getStatus() {
@@ -138,6 +147,7 @@ public class LectureApplyDto {
                 "id='" + id + '\'' +
                 ", registCode=" + registCode +
                 ", stdApplyNo=" + stdApplyNo +
+                ", approvalYN='" + approvalYN + '\'' +
                 ", status='" + status + '\'' +
                 ", title='" + title + '\'' +
                 ", lastPrice='" + lastPrice + '\'' +

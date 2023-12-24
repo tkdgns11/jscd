@@ -11,9 +11,9 @@ public interface StodDao {
 
     int insertPayHty(StodDTO stodDTO) throws Exception;
     
-    //
-    void updateStatusToPaid(Map<String, Object> params);
-
+    // lectureApply.status == 'paid' update
+    int updateStatusToPaid(Map<String, Object> params);
+    
     //    주문 내역 조회
     List<StodDTO> selectOrderList(String id, int start, int end) throws Exception;
     

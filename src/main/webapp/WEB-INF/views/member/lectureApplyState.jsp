@@ -28,12 +28,14 @@
     <link rel="stylesheet" href="/css/lectureApplyState.css" type="text/css"/>
 
     <!--java script 파일 불러오기-->
-    <script src="/js/orderList.js"></script>
-    <script src="/js/applyStatPay.js"></script>
+    <script type="text/javascript" src="/js/orderList.js"></script>
+    <script type="text/javascript" src="/js/lectureApplyState.js"></script>
 
 
     <%--폰트어썸 라이브러리 불러오기--%>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
 </head>
 <body>
@@ -41,17 +43,13 @@
     <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 </header>
 <div id="root">
-
-    <%--<c:forEach items="${orderList}" var="order">--%>
     <main id="main_orderlist">
-        <%--        <div id="main_orderlist_contents">--%>
         <section id="section_orderlist">
             <section id="section_orderlist_title">
                 <div>
                     <h2>내 강의 신청 현황</h2>
                 </div>
             </section>
-<%--            <c:forEach items="${orderList}" var="order">--%>
             <c:forEach var="lectureApply" items="${list}">
                 <c:if test="${lectureApply.status eq 'paid' or lectureApply.status eq 'notPaid'}">
                     <section id="section_orderlist_contents">
@@ -76,7 +74,7 @@
                                 </div>
                             </div>
                             <div id="orderlist_content-info">
-                                <div>
+                                <div class="display-none">
                                     <table id="order_date">
                                         <tr>
                                             <td class="order_date_title">주문일시</td>
@@ -101,12 +99,14 @@
                                                 </c:when>
                                                 <%--                          2.  ${order.status} == 'notPaid' : 결제 대기중--%>
                                                 <c:when test="${lectureApply.status eq 'notPaid'}">
-                                                    <img class="pay_img" id="img_not-paid" alt="payment status is not paid"
+                                                    <img class="pay_img" id="img_not-paid"
+                                                         alt="payment status is not paid"
                                                          src="<c:url value="/img/notPaid.png"/>">
                                                 </c:when>
                                                 <%--                          3.  ${order.status} == 'cancel' : 결제 취소--%>
                                                 <c:when test="${lectureApply.status eq 'cancel'}">
-                                                    <img class="pay_img" id="img_pay-cancel" alt="payment status is cancel"
+                                                    <img class="pay_img" id="img_pay-cancel"
+                                                         alt="payment status is cancel"
                                                          src="<c:url value="/img/pay_cancel.png"/>">
                                                 </c:when>
                                                 <%--                          3.  나머지 값 : 해당 값 그대로 표시--%>
@@ -133,7 +133,8 @@
                                             </div>
                                             <div id="orderlist_lecture-price">
                                                 <div id="orderlist_lecture-price_num">
-                                                    <fmt:formatNumber type="number" value="${lectureApply.lastPrice}" pattern="#,##0" />
+                                                    <fmt:formatNumber type="number" value="${lectureApply.lastPrice}"
+                                                                      pattern="#,##0"/>
                                                 </div>
                                                 <div id="orderlist_lecture-price_unit">원</div>
                                             </div>
@@ -143,10 +144,33 @@
                             </div>
                             <div id="orderlist_content-btns">
                                 <div>
-                                    <input class="order_btns" id="orderlist_cancel_btn" type="button" value="신청 승인">
+                                    <c:choose>
+                                        <c:when test="${lectureApply.courseCode eq 2}">
+                                            <input class="orderlist_cancel_btn approval" type="button" value="승인">
+                                        </c:when>
+                                        <c:otherwise>
+                                            <c:choose>
+                                                <c:when test="${lectureApply.approvalYN eq '승인'}">
+                                                    <input class="orderlist_cancel_btn approval" type="button"
+                                                           value="${lectureApply.approvalYN}">
+                                                </c:when>
+                                                <c:when test="${lectureApply.approvalYN eq '미승인'}">
+                                                    <input class="orderlist_cancel_btn disapproval" type="button"
+                                                           value="${lectureApply.approvalYN}">
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <input class="orderlist_cancel_btn others" type="button"
+                                                           value="${lectureApply.approvalYN}">
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </c:otherwise>
+                                    </c:choose>
                                 </div>
                                 <div>
-                                    <input class="goDetail" id="orderlist_goDetail" type="button" value="결제하기">
+                                    <input class="goDetail" id="orderlist_goDetail_${lectureApply.registCode}"
+                                           type="button" value="결제하기" data-registCode="${lectureApply.registCode}"
+                                           data-status="${lectureApply.status}"
+                                           data-approval="${lectureApply.approvalYN}">
                                 </div>
                             </div>
                         </div>
@@ -247,8 +271,9 @@
                 </div>
                 <div id="contact-btn">
                     <div>
-                        <input class="order_btns" id="orderlist_goQna" type="button" value="&nbsp;&nbsp;&nbsp;질문&답변  바로가기">
-                    </div> 
+                        <input class="order_btns" id="orderlist_goQna" type="button"
+                               value="&nbsp;&nbsp;&nbsp;질문&답변  바로가기">
+                    </div>
                     <div>
                         <input class="order_btns" id="goFaq" type="button" value="&nbsp;&nbsp;&nbsp;FAQ  바로가기">
                     </div>
