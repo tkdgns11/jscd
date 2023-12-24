@@ -10,6 +10,8 @@ import com.jscd.app.member.dto.MailSendService;
 import com.jscd.app.member.dto.NaverLoginBo;
 import com.jscd.app.member.dto.MemberDto;
 import com.jscd.app.member.service.MemberService;
+import com.jscd.app.order.dto.CompanyInfoDTO;
+import com.jscd.app.order.dto.StodDTO;
 import com.jscd.app.order.service.CompanyInfoService;
 import com.jscd.app.order.service.StodService;
 import org.json.simple.JSONObject;
@@ -473,8 +475,33 @@ public class MemberController {
 	}
 
 	// 강의 신청 현황 이동
+//	@GetMapping("/lectureApplyState")
+//	public String showLectureApplyState(LectureApplyDto lectureApplyDto,Model m,HttpServletRequest request) {
+//		HttpSession session = request.getSession();
+//		String id = (String) session.getAttribute("id");
+//		lectureApplyDto.setId(id);
+//		// lectureApply에 있는 정보가 필요해.
+//		try {
+//
+//			List<LectureApplyDto> list = memberService.selectLecture(lectureApplyDto);
+//			m.addAttribute("list",list);
+//			System.out.println("applylist = " + list);
+//
+//		} catch (Exception e){
+//
+//		}
+//
+//		return "member/lectureApplyState";
+//	}
+
 	@GetMapping("/lectureApplyState")
-	public String showLectureApplyState(LectureApplyDto lectureApplyDto,Model m,HttpServletRequest request) {
+	public String showLectureApplyState(
+			@RequestParam(defaultValue = "1") int page,
+			LectureApplyDto lectureApplyDto,
+//                MemberDto memberDto,
+			Model m,
+			CompanyInfoDTO companyInfoDto,
+			HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
 		lectureApplyDto.setId(id);
@@ -485,12 +512,35 @@ public class MemberController {
 			m.addAttribute("list",list);
 			System.out.println("applylist = " + list);
 
+			// 강의 정보 가져오기
+			List<LectureApplyDto> lectureList = memberService.selectLecture(lectureApplyDto);
+			m.addAttribute("lectureList", lectureList);
+
+			// 멤버 정보 가져오기
+//            memberDto = memberService.memberSelect(id);
+			MemberDto memberDto = memberService.memberSelect(id);
+			m.addAttribute("memberDto", memberDto);
+			System.out.println(memberDto.toString());
+
+			// 회사 정보 가져오기
+			companyInfoDto.setSlrNo(1);
+			companyInfoDto = companyInfoService.select(companyInfoDto.getSlrNo());
+			m.addAttribute("companyInfoDto", companyInfoDto);
+
+			// 주문 정보 가져오기
+			int itemsPerPage = 5;
+			List<StodDTO> orderList = stodService.selectOrderList(id, page, itemsPerPage);
+			m.addAttribute("orderList", orderList);
+			m.addAttribute("currentPage", page);
+
+
 		} catch (Exception e){
 
 		}
 
 		return "member/lectureApplyState";
 	}
+
 
 
 //	@GetMapping("/lectureApplyState")

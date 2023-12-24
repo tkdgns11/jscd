@@ -30,6 +30,12 @@ public class StodDaoImpl implements StodDao {
     public int insertPayHty(StodDTO stodDTO) throws Exception {
         return sqlSession.insert(namespace + "insertPayHty", stodDTO);
     }
+    
+    //
+    @Override
+    public void updateStatusToPaid(Map<String, Object> params) {
+        sqlSession.update("updateStatusToPaid", params);
+    }
 
     // '주문 내역 조회'
     // 1. MyBatis의 selectList() 사용 -> selectOrderList 쿼리 실행

@@ -108,5 +108,23 @@
                 #{payTime})
     </insert>
 
+<!--    현재 로그인한 회원의 id를 가져와서-->
+<!--    lectureApply 테이블의 id와 stod 테이블의 id가 같고,-->
+<!--    lectureApply 테이블의 registCode 컬럼의 데이터값과 stod 테이블의 registCode 컬럼의 데이터가 같을 때,-->
+<!--    lectureApply 테이블의 status 컬럼의 값을 'paid'로 update-->
+    <update id="updateStatusToPaid" parameterType="map">
+        UPDATE lectureApply
+        SET status = 'paid'
+        WHERE id IN (
+            SELECT s.id
+            FROM stod s
+            WHERE s.id = #{id}
+              AND s.registCode = #{registCode}
+              AND s.status = 'paid'
+        )
+          AND registCode = #{registCode}
+    </update>
+
+
 
 </mapper>

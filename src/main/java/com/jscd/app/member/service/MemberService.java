@@ -23,7 +23,8 @@ public interface MemberService {
 	public int insertTermsYN(MemberDto memberDto) throws  Exception;
 	//마이페이지 강의 현황
 	public List<LectureApplyDto> selectLecture(LectureApplyDto lectureApplyDto) throws Exception;
-
+	//<payhty.status> == 'paid'일 때, <stod.status> && <lectureApply.status> == 'paid' update
+//	void updateStatusToPaid(LectureApplyDto lectureApplyDto);
 	int getGeneralMember() throws Exception;
 
 	int getStudentMember() throws Exception;

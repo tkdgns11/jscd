@@ -89,6 +89,9 @@ public class OrderController {
         //결제 정보 DB에 넣기
         stodService.insertPayHty(stodDto);
 
+        //주문 상태를 'paid'로 업데이트
+        stodService.updateStatusToPaid(stodDto.getId(), stodDto.getRegistCode());
+
         return null;
     }
 
@@ -123,6 +126,9 @@ public class OrderController {
         // orderDto 정보 보내기
         model.addAttribute("orderDto", orderDto);
         System.out.println(orderDto);
+
+        //주문 상태를 'paid'로 업데이트
+        stodService.updateStatusToPaid(stodDto.getId(), stodDto.getRegistCode());
 
         return "order/actPaySuccess";
     }

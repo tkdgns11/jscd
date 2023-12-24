@@ -10,6 +10,9 @@ public interface StodService {
 
     //결제 이력 테이블에 데이터 저장
     public int insertPayHty(StodDTO stodDTO) throws Exception;
+    
+    //
+    void updateStatusToPaid(String id, int registCode);
 
     // '주문 내역' 데이터 조회
 //    public List<StodDTO> selectOrderList(String id) throws Exception;

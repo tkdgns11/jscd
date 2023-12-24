@@ -80,6 +80,12 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.selectLecture(lectureApplyDto);
 	}
 
+	//<payhty.status> == 'paid'일 때, <stod.status> && <lectureApply.status> == 'paid' update
+//	@Override
+//	public void updateStatusToPaid(LectureApplyDto lectureApplyDto) {
+//		memberDao.updateStatusToPaid(lectureApplyDto);
+//	}
+	
 	@Override
 	public int getGeneralMember() throws Exception {
 		return memberDao.countGeneral();

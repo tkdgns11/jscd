@@ -64,6 +64,12 @@ public class MemberDaoImpl implements MemberDao{
 		return session.selectList(namespace+"selectLecture", lectureApplyDto);
 	}
 
+	//<payhty.status> == 'paid'일 때, <stod.status> && <lectureApply.status> == 'paid' update
+//	@Override
+//	public void updateStatusToPaid(LectureApplyDto lectureApplyDto) {
+//		session.update("com.example.mapper.MemberMapper.updateStatusToPaid", lectureApplyDto);
+//	}
+
 	@Override
 	public String selectEmail(MemberDto memberDto)throws Exception{
 		return session.selectOne(namespace+"selectEmail",memberDto);
