@@ -28,20 +28,20 @@
     </select>
 
 <!--    사용기간 종료된 락커 선택-->
-    <select id="selectExpiredLockers" resultType="LockerDto">
-        SELECT *
-        FROM lockerDetail
-        WHERE lockerID IN (
-            SELECT lockerID
-            FROM lockerDetail
-            WHERE historyNO = (
-                SELECT MAX(historyNO)
-                FROM lockerDetail
-                GROUP BY lockerID
-            )
-        ) AND DATEDIFF(endDate, CURDATE()) = -1
-          AND statusCode = 1;
-    </select>
+<!--    <select id="selectExpiredLockers" resultType="LockerDto">-->
+<!--        SELECT *-->
+<!--        FROM lockerDetail-->
+<!--        WHERE lockerID IN (-->
+<!--            SELECT lockerID-->
+<!--            FROM lockerDetail-->
+<!--            WHERE historyNO = (-->
+<!--                SELECT MAX(historyNO)-->
+<!--                FROM lockerDetail-->
+<!--                GROUP BY lockerID-->
+<!--            )-->
+<!--        ) AND DATEDIFF(endDate, CURDATE()) = -1-->
+<!--          AND statusCode = 1;-->
+<!--    </select>-->
 
 
     <!-- 관리자 락커 사용중인 회원 조회-->

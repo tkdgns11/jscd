@@ -119,12 +119,13 @@
                         </div>
                     </div>
                 </section>
-
-                <footer>
-                    <jsp:include page="/WEB-INF/views/footer.jsp"/>
-                </footer>
-
-
+            </section>
+        </section>
+    </section>
+</main>
+        <footer>
+            <jsp:include page="/WEB-INF/views/footer.jsp"/>
+        </footer>
 </body>
 <script>
 
