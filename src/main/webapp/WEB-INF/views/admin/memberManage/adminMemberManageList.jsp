@@ -40,10 +40,8 @@
             <h1>회원 정보 관리</h1>
         </div>
         <div id="infoContentBox">
-
-
             <div id="memberSearchBox">
-                <form action="" method="get" ;>
+                <form action="" method="get">
                     <select name="option">
                         <option value="T" ${sc.option=='T' || sc.option=='' ? "selected" : ""}>이름</option>
                         <option value="W" ${sc.option=='W' || sc.option=='' ? "selected" : ""}>아이디</option>
@@ -55,9 +53,6 @@
                     <input type="submit" value="검색" class="deleteBtn">
                 </form>
             </div>
-
-
-
             <div id="memberListBox">
                 <table>
                     <tr>

@@ -13,3 +13,7 @@ html, body {width: 100%;height: auto;}
 #pieChartBox{width: 400px; height: 500px; top: 20px; left: 950px;}
 #barChartHorizontalBox{width: 850px; height: 380px; top: 380px; left: 50px;}
 #todayBox{width: 400px; height: 200px; top: 550px; left: 950px;}
+.Clock {width: 400px; height: 200px; top: 550px; left: 950px; background-color: black; display: flex; flex-direction: column; justify-content: center; align-items: center;}
+#Clockday {color: #F0C420; font-size: 30px;}
+#Clock {color: #F0C420;font-size: 50px;}
+

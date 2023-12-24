@@ -24,6 +24,7 @@
 		<typeAlias alias="SearchCondition" type="com.jscd.app.admin.domain.SearchCondition"/>
 		<typeAlias alias="AllqnaDto" type="com.jscd.app.board.qna.qnaDto.AllqnaDto"/>
 		<typeAlias alias="AdminDto" type="com.jscd.app.admin.dto.AdminDto"/>
+		<typeAlias alias="DashboardDto" type="com.jscd.app.admin.dto.DashboardDto"/>
 		<typeAlias alias="LockerDto" type="com.jscd.app.facility.dto.LockerDto"/>
 		<typeAlias alias="DailySummaryDto" type="com.jscd.app.admin.dto.DailySummaryDto"/>
 		<typeAlias alias="MemberManageDto" type="com.jscd.app.admin.dto.MemberManageDto"/>

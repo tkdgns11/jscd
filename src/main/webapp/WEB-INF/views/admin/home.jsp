@@ -27,6 +27,35 @@
         <jsp:include page="sidebar.jsp"/>
     </nav>
     <main>
+
+        <input type="hidden" class="memberStatus" value="${memberStatus.memberCnt}">
+        <input type="hidden" class="memberStatus" value="${memberStatus.studentCnt}">
+        <input type="hidden" class="memberStatus" value="${memberStatus.teacherCnt}">
+        <input type="hidden" class="memberStatus" value="${memberStatus.managerCnt}">
+        <input type="hidden" class="memberStatus" value="${memberStatus.firstManagerCnt}">
+        <input type="hidden" class="memberStatus" value="${memberStatus.memberTotalCnt}">
+
+        <input type="hidden" class="salesStatus" value="${salesStatus.btPriceTotal}">
+        <input type="hidden" class="salesStatus" value="${salesStatus.smPriceTotal}">
+
+        <input type="hidden" class="lstRegistStatus" value="${lstRegistStatus.btProceedingCnt}">
+        <input type="hidden" class="lstRegistStatus" value="${lstRegistStatus.btExpectedCnt}">
+        <input type="hidden" class="lstRegistStatus" value="${lstRegistStatus.btEndCnt}">
+        <input type="hidden" class="lstRegistStatus" value="${lstRegistStatus.btTotalCnt}">
+        <input type="hidden" class="lstRegistStatus" value="${lstRegistStatus.smProceedingCnt}">
+        <input type="hidden" class="lstRegistStatus" value="${lstRegistStatus.smExpectedCnt}">
+        <input type="hidden" class="lstRegistStatus" value="${lstRegistStatus.smEndCnt}">
+        <input type="hidden" class="lstRegistStatus" value="${lstRegistStatus.smTotalCnt}">
+
+        <input type="hidden" class="qnaCategoryStatus" value="${qnaCategoryStatus.qnaBtCnt}">
+        <input type="hidden" class="qnaCategoryStatus" value="${qnaCategoryStatus.qnaSmCnt}">
+        <input type="hidden" class="qnaCategoryStatus" value="${qnaCategoryStatus.qnaPayRefCnt}">
+        <input type="hidden" class="qnaCategoryStatus" value="${qnaCategoryStatus.qnaSiteUseCnt}">
+        <input type="hidden" class="qnaCategoryStatus" value="${qnaCategoryStatus.qnaAcademyCnt}">
+        <input type="hidden" class="qnaCategoryStatus" value="${qnaCategoryStatus.qnaEtcCnt}">
+        <input type="hidden" class="qnaCategoryStatus" value="${qnaCategoryStatus.qnaTotalCnt}">
+
+
         <div id="dashboardBox">
             <div id="barChartBox">
                 <canvas id="bar-chart" width="300" height="230"></canvas>
@@ -40,10 +69,9 @@
             <div id="barChartHorizontalBox">
                 <canvas id="bar-chart-horizontal" width="600" height="250"></canvas>
             </div>
-            <div id="todayBox">
-                <h1>today</h1>
-                <h1>전체 방문자 수 : </h1>
-                <h1>일일 방문자 수 : </h1>
+            <div class="Clock">
+                <div id="Clockday">00/00/00</div>
+                <div id="Clock">00:00</div>
             </div>
         </div>
     </main>

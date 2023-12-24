@@ -58,7 +58,7 @@
 #noContent {margin-top: -350px;font-weight: 650;}
 .detailBtn {border: 1px solid rgba(0, 0, 0, 0.7);background-color: #ffffff;width: 80px;height: 25px;border-radius: 8px;}
 
-#infoDetailBox { margin-top: 5%;margin-left: 40%;}
+#infoDetailBox { margin-top: 10px;margin-left: 40%;}
 .infoInputBox {width: 400px;height: 36px;border: 0;border-bottom: 1px solid rgba(0, 0, 0, 0.2);margin: 8px 0 20px 0;padding-top: 4px;padding-left: 10px;pointer-events : none;}
 .infoInputBox:focus {outline: none;}
 .infoModifyInputBox:focus {outline: none;}

@@ -52,8 +52,8 @@
   <li>
     <a href="#">신청관리 </a>
     <ul class="submenu">
-      <li><a href="<c:url value="#"/>">부트캠프 폼</a></li>
-      <li><a href="<c:url value="#"/>">세미나 폼</a></li>
+      <li><a href="<c:url value="/adminManage/adminBtTraining/list"/>">부트캠프 폼</a></li>
+      <li><a href="<c:url value="/adminManage/adminSmTraining/list"/>">세미나 폼</a></li>
     </ul>
   </li>
   <li>

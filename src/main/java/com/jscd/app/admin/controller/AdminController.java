@@ -3,6 +3,7 @@ package com.jscd.app.admin.controller;
 
 import com.jscd.app.admin.dto.AdminDto;
 import com.jscd.app.admin.service.AdminService;
+import com.jscd.app.admin.dto.DashboardDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -49,16 +50,30 @@ public class AdminController {
     }
 
     //관리자 홈
+
     @GetMapping("/home")
 //    public String adminHome() {return "redirect:/dashBoard/home";}
-    public String adminHome() {
+    public String adminHome(Model m) throws Exception {
+        DashboardDto dashboardDto = new DashboardDto();
 
+        // 대시보드
+        //1.회원현황 - 전체 회원 수, 일반 회원 수(1), 학생 수(2), 강사 수(3), 관리자 수(4)
+        dashboardDto = adminService.memberStatus();
+        m.addAttribute("memberStatus", dashboardDto);
+        System.out.println("memberStatus dashboardDto = " + dashboardDto);
+        //2.학원매출 - 부트캠프 매출, 세미나 매출
+        dashboardDto = adminService.salesStatus();
+        m.addAttribute("salesStatus", dashboardDto);
+        //3.강의현황 - 진행 중 부트캠프, 진행 예정 부트캠프, 진행 중 세미나, 진행 예정 세미나, 종료 강의
+        dashboardDto = adminService.lstRegistStatus();
+        m.addAttribute("lstRegistStatus", dashboardDto);
+        //4.qna(전체) 게시글 카테고리 분류 - 부트캠프 게시글 수, 세미나 게시글 수, 결제 및 환불 게시글 수, 사이트 이용 게시글 수, 학원 관련 게시글 수, 기타 게시글 수
+        dashboardDto = adminService.qnaCategoryStatus();
+        m.addAttribute("qnaCategoryStatus", dashboardDto);
 
-
-
-        return "/admin/home";
+        //return "/admin/home";
+        return "redirect:/dashBoard/home";
     }
-
 
     //로그인 화면 보여주기
     @GetMapping("/login")

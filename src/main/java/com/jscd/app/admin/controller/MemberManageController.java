@@ -73,7 +73,7 @@ public class MemberManageController {
             return "redirect:/adminManage/memberManage/list";
         }
 
-        return "/admin/memberManage/memberManage";
+        return "/admin/memberManage/adminMemberManage";
     }
 
 
