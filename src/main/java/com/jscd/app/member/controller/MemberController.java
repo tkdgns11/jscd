@@ -582,7 +582,7 @@ public class MemberController {
 			memberDto.setPwd(securePwd);
 			System.out.println("비밀번호 재설정 memberDto = " + memberDto);
 			memberService.modifyPwd(memberDto);
-			model.addAttribute("msg","PWD_UP_OK");
+			model.addAttribute("PWDmsg","PWD_UP_OK");
 		}catch (Exception e){
 			e.printStackTrace();
 			model.addAttribute("msg","PWD_UP_ERR");

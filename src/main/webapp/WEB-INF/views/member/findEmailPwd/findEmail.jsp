@@ -21,7 +21,7 @@
         <title>정석코딩 | 아이디 찾기</title>
         <style>
             #findEmailBox {
-                margin-left: 20%;
+                /*margin-left: 40px;*/
             }
 
             #findEmailBox input[type=text] {
@@ -52,6 +52,10 @@
                 margin-bottom: 30px;
                 /*margin-left: 10px;*/
             }
+            #findEmailTitle{ line-height: 50px; font-size: 30px; margin-left: 10px; margin-top: 3px; color: #0185FE; letter-spacing: 10px;}
+            #findEmailHeader{display: flex; flex-direction: row; justify-content: center;
+                border: none;margin-left: 360px}
+
 
         </style>
     </head>
@@ -66,8 +70,8 @@
         <jsp:include page="../../header.jsp"/>
     </header>
     <div id="loginWrap">
-        <div id="loginHeader" style="border: none;margin-left: 360px">
-            <h1>이메일찾기</h1>
+        <div id="findEmailHeader">
+            <h1 id="findEmailTitle">아이디 찾기</h1>
         </div>
 
         <div id="findEmailBox">

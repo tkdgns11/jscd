@@ -34,7 +34,7 @@
     #adminLogoBox{position: absolute;margin: 30px 350px;width: 300px;}
     #adminImg{position: absolute;margin: 110px 280px;}
     #adminLogin{position: absolute;margin: 420px 290px;}
-    #adminBtn{width: 400px;height: 50px;border: 0;color: white;background-color: #0185FE;font-size: 24px;border-radius: 10px}
+    #adminBtn{width: 410px;height: 50px;border: 0;color: white;background-color: #0185FE;font-size: 24px;border-radius: 10px}
     #adminBtn:hover{background-color: #D9D9D9;}
     .adminInput{width: 400px;height: 50px;background-color: #D9D9D9;border: 0;margin-bottom: 15px;border-radius: 10px}
     #adminIdCheck{width: 20px;height: 20px;color:#D9D9D9;position: relative;bottom: 10px;}
@@ -50,7 +50,7 @@
 
 <div id="adminContent">
   <div id="adminLogoBox" onclick="location.href='/'">
-    <img src="/img/mainlogo.png" style="width: 65px; height: auto;margin-bottom: -10px;">
+    <img src="/img/mainlogo.png" style="width: 65px; height: auto;margin-bottom: -15px;">
     <span>정석코딩</span>
   </div>
 

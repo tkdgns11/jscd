@@ -30,13 +30,25 @@ public class StdGradeCheckInterceptor implements HandlerInterceptor{
             throws Exception {
 
         //현재 로그인된 관리자의 등급 추출
+        boolean login = request.getSession().getAttribute("id") == null;
         String id = (String)request.getSession().getAttribute("id");
-        int grade = memberService.memberSelect(id).getGrade();
-        System.out.println("grade = " + grade); //학생등급 = 2
+        int grade = 0;
+
+        try {
+            //로그인을 안 했다면, 널포인트 예외 발생 -> 예외 처리
+            grade = memberService.memberSelect(id).getGrade();
+
+        }catch (Exception e){
+            e.printStackTrace();
+            //접근 막음
+            String msg = URLEncoder.encode("학생만 접근 가능한 페이지 입니다.", "utf-8");
+            //메세지 띄우고 홈으로 이동
+            response.sendRedirect("/?msg="+msg);
+            return false;
+        }
 
         //등급이 일반이라면,
-        if(grade == 1){
-            System.out.println("<< 학생만 접근 가능 >>");
+        if(grade == 1 || login){
             String msg = URLEncoder.encode("학생만 접근 가능한 페이지 입니다.", "utf-8");
             //메세지 띄우고 홈으로 이동
             response.sendRedirect("/?msg="+msg);

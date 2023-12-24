@@ -62,6 +62,23 @@
             cursor: pointer
         }
 
+        #findPwdHeader {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            border: none;
+            margin-left: 360px
+        }
+
+        #findPwdTitle {
+            line-height: 50px;
+            font-size: 30px;
+            margin-left: 10px;
+            margin-top: 3px;
+            color: #0185FE;
+            letter-spacing: 10px;
+        }
+
     </style>
 </head>
 
@@ -71,8 +88,8 @@
     <jsp:include page="../../header.jsp"/>
 </header>
 <div id="loginWrap">
-    <div id="loginHeader" style="border: none;">
-        <h1>비밀번호찾기</h1>
+    <div id="findPwdHeader">
+        <h1 id="findPwdTitle">비밀번호 찾기</h1>
     </div>
     <div id="findEmailBox">
         <input type="text" name="id" id="id" placeholder="이메일 입력">
@@ -83,7 +100,7 @@
         <font id="checkPwd" size="2"></font><br>
         <input type="hidden" id="emailChkYN" value="">
     </div>
-    <input type="button" value="비밀번호 찾기" id="findPwdBtn">
+    <input type="button" value="확인" id="findPwdBtn">
 </div>
 <footer style="flex-shrink: 0;">
     <jsp:include page="../../footer.jsp" flush="true"/>
@@ -176,7 +193,12 @@
 
         //인증번호 받기를 누르면, 인증번호 메서드 실행
         $('#emailChkValueBtn').click(() => {
+            //이메일이 유효한지 확인
+            if (!idChkYNValid(idChkYN)) {
+                return;
+            }
 
+            //유효하다면, 인증번호 전송
             const email = $('#id').val(); //이메일 주소값 가져오기
 
             $.ajax({
