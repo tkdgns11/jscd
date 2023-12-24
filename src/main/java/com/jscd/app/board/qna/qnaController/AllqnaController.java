@@ -28,40 +28,39 @@ import java.util.logging.Logger;
 @RequestMapping("/board/qna/*")
 public class AllqnaController {
 
-    private static final Logger logger = Logger.getLogger(AllqnaController.class.getName());
+    //    private static final Logger logger = Logger.getLogger(AllqnaController.class.getName());
     @Autowired
     AllqnaService allqnaService;
 
 
     //1-1. 게시글 등록 페이지 이동
     @GetMapping("/allqnaWrite")
-    public String write(Model model, HttpSession session, RedirectAttributes rattr, AllqnaDto allqnaDto) {
+    public String write(Model model, HttpSession session, AllqnaDto allqnaDto, HttpServletRequest request) {
 
-//        String writer = (String)session.getAttribute("id");
-//        allqnaDto.setWriter(writer);
-//
-//        if (writer==null){
-//            model.addAttribute("errorMessage", "로그인이 필요합니다.");
-//            return "redirect:/board/qna/allqnaList";
-//        }
+        String writer = (String) session.getAttribute("id");
+        allqnaDto.setWriter(writer);
+
+        if (writer == null) {
+            request.setAttribute("msg", "로그인이 필요합니다.");
+            request.setAttribute("url", "/board/qna/allqnaList");
+        }
 
         model.addAttribute("mode", "new");
         return "/board/qna/allqnaWrite";
     }
 
+
     //게시글 등록하기
     @PostMapping("/allqnaWrite")
     @ResponseBody
-    public Map<String, String> write(@RequestBody AllqnaDto allqnaDto, Model model, HttpSession session, RedirectAttributes rttr) {
+    public Map<String, String> write(@RequestBody AllqnaDto allqnaDto, Model model, RedirectAttributes rttr, HttpSession session) {
         Map<String, String> map = new HashMap<>();
-//        String writer = (String) session.getAttribute("id"); //로그인하면 아이디 가져오기
-//        System.out.println("writer========"+writer);
-//        allqnaDto.setWriter(writer);
 
-
-        System.out.println("게시글등록 =======" + allqnaDto);
+        String writer = (String)session.getAttribute("id");
+        allqnaDto.setWriter(writer);
 
         try {
+
 
             if (allqnaService.write(allqnaDto) != 1) {
                 throw new Exception("Write faild");
@@ -83,48 +82,58 @@ public class AllqnaController {
     }
 
     //1-2. 게시글 목록 읽기 (페이징 처리) 페이지 이동
-//    @GetMapping("/allqnaList")
-//    public String allqnaList(SearchCondition sc, Model model, AllqnaDto allqnaDto, @RequestParam(name = "secret", required = false) String secret) throws Exception {
-//
-//        try {
-//
-//            int totalCnt = allqnaService.getSearchResultCnt(sc);
-//            model.addAttribute("totalCnt", totalCnt);
-//            System.out.println("전체게시글======="+totalCnt);
-//
-//            PageHandler pageHandler = new PageHandler(totalCnt, sc);
-//
-//            List<AllqnaDto> list = allqnaService.getSearchResultPage(sc);
-//            model.addAttribute("list", list);
-//            model.addAttribute("ph", pageHandler);
-//
-//
-//            return "/board/qna/allqnaList";
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            model.addAttribute("msg", "LIST_ERR");
-//            model.addAttribute("totalCnt", 0);
-//
-//            return "/board/qna/allqnaList";
-//        }
-//
-//    }
+    @GetMapping("/allqnaList")
+    public String allqnaList(SearchCondition sc, Model model, AllqnaDto allqnaDto, @RequestParam(name = "secret", required = false) String secret) throws Exception {
+
+        try {
+
+            int totalCnt = allqnaService.getSearchResultCnt(sc);
+            model.addAttribute("totalCnt", totalCnt);
+
+            PageHandler pageHandler = new PageHandler(totalCnt, sc);
+
+            List<AllqnaDto> list = allqnaService.getSearchResultPage(sc);
+            model.addAttribute("list", list);
+            model.addAttribute("ph", pageHandler);
+
+
+            return "/board/qna/allqnaList";
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("msg", "LIST_ERR");
+            model.addAttribute("totalCnt", 0);
+
+            return "/board/qna/allqnaList";
+        }
+
+    }
 
     //1-3. 게시글 상세페이지 및 수정
 //    1-3(2). 게시글 상세페이지
     @GetMapping("/allqnaDetail")
-    public String read(Integer allqnaNo, SearchCondition sc, RedirectAttributes rttr, Model model) {
-        System.out.println(allqnaNo);
+    public String read(Integer allqnaNo, SearchCondition sc, RedirectAttributes rttr, Model model,HttpSession session, HttpServletRequest request) {
+
+       String id = (String) session.getAttribute("id");
+       model.addAttribute("id", id);
+
+//        request.setAttribute("msg2", "해당 게시글의 작성자만 사용할 수 있는 기능입니다.");
+//        request.setAttribute("url2", "/board/qna/allqnaDetail?allqnaNo="+allqnaNo);
+
+
         try {
             //상세 내용 읽기
             AllqnaDto allqnaDto = allqnaService.read(allqnaNo);
             model.addAttribute("allqnaList", allqnaDto);
-
+//            model.addAttribute("allqnaList", id);
 
             //댓글 내용 읽기
             List<AllqnaDto> cmtlist = allqnaService.cmtRead(allqnaNo);
             model.addAttribute("comment", cmtlist);
+
+//
+//            request.setAttribute("msg2", "해당 글의 작성자면 수정할 수 있습니다.");
+//            request.setAttribute("url", "/board/qna/allqnaDetail?allqnaNo="+allqnaNo);
 
 
         } catch (Exception e) {
@@ -138,21 +147,19 @@ public class AllqnaController {
     }
 
 
+
+
     //1-3(2) 수정된 내용 등록하기
     @PostMapping("/allqnaModify")
     @ResponseBody
     public String allqnaModify(@RequestBody AllqnaDto allqnaDto, Model model, RedirectAttributes rttr) throws Exception {
-        System.out.println("게시글수정======"+allqnaDto);
-        int test = allqnaService.modify(allqnaDto);
 
-        System.out.println("게시글수정 디비==="+test);
-        System.out.println();
         model.addAttribute("modified", allqnaDto);
 
 
         rttr.addFlashAttribute("result", "modify success");
 
-        return "redirect:/board/qna/allqnaDetail?allqnaNo=" + allqnaDto.getAllqnaNo();
+        return "redirect:/board/qna/allqnaList";
 
     }
 
@@ -163,20 +170,27 @@ public class AllqnaController {
     public Map<String, String> remove(@RequestBody AllqnaDto allqnaDto, SearchCondition sc, RedirectAttributes rattr, HttpSession session) {
         Map<String, String> map = new HashMap<>();
 
-        String writer = (String) session.getAttribute("id");
         String msg = "DEL_OK";
-        writer = "대댓글111111ㅇㅇ";
-
-
+        String id = (String) session.getAttribute("id");
+        String writer = allqnaDto.getWriter();
+        System.out.println("삭제성공==="+id);
         try {
-            if (allqnaService.remove(allqnaDto.getAllqnaNo(), writer) != 1)
-                throw new Exception("Delete failed.");
-
-            map.put("redirect", "/board/qna/allqnaList");
+            // writer와 id가 일치하는 경우에만 삭제 시도
+            if (writer.equals(id)) {
+                System.out.println("삭제성공==="+allqnaDto);
+                System.out.println("id==="+id);
+                if (allqnaService.remove(allqnaDto.getAllqnaNo(), writer) != 1)
+                    throw new Exception("Delete failed.");
+                map.put("redirect", "/board/qna/allqnaList");
+            } else {
+                System.out.println("삭제실패==="+allqnaDto);
+                // writer와 id가 일치하지 않는 경우
+                throw new Exception("Writer and ID mismatch.");
+            }
         } catch (Exception e) {
             e.printStackTrace();
             msg = "DEL_ERR";
-            map.put("redirect", "/board/qna/allqnaList");
+            map.put("redirect", "/board/qna/allqnaDetail?allqnaNo="+allqnaDto.getAllqnaNo());
         }
 
         //rattr.addFlashAttribute("msg", msg);
@@ -411,42 +425,37 @@ public class AllqnaController {
 
 
 
-
-    //게시글 목록
-    @GetMapping("/allqnaList")
-    public String handleQnaListRequests(@RequestParam(name = "secret", required = false) String secret, SearchCondition sc, Model model) throws Exception {
-        int totalCnt;
-        PageHandler pageHandler;
-        List<AllqnaDto> list;
-        System.out.println("secret 값: " + secret);
-
-        if (secret != null && secret.equals("secret")) {
-            totalCnt = allqnaService.searchResultCntExepctSecret(sc);
-            list = allqnaService.searchSelectPageExceptSecret(sc);
-            System.out.println("비밀글=====" + totalCnt);
-            System.out.println("---------------------------------");
-
-            model.addAttribute("totalCnt", totalCnt);
-            pageHandler = new PageHandler(totalCnt, sc);
-            model.addAttribute("list", list);
-            model.addAttribute("ph", pageHandler);
-
-            return "/board/qna/allqnaList?secret=secret";
-
-        } else {
-            totalCnt = allqnaService.getSearchResultCnt(sc);
-            list = allqnaService.getSearchResultPage(sc);
-            System.out.println("전체글=====" + totalCnt);
-            System.out.println("---------------------------------");
-
-            model.addAttribute("totalCnt", totalCnt);
-            pageHandler = new PageHandler(totalCnt, sc);
-            model.addAttribute("list", list);
-            model.addAttribute("ph", pageHandler);
-
-            return "/board/qna/allqnaList";
-        }
-    }
+//
+//    //게시글 목록
+//    @GetMapping("/allqnaList")
+//    public String handleQnaListRequests(@RequestParam(name = "secret", required = false) String secret, SearchCondition sc, Model model) throws Exception {
+//        int totalCnt;
+//        PageHandler pageHandler;
+//        List<AllqnaDto> list;
+//
+//        if (secret != null && secret.equals("secret")) {
+//            totalCnt = allqnaService.searchResultCntExepctSecret(sc);
+//            list = allqnaService.searchSelectPageExceptSecret(sc);
+//
+//            model.addAttribute("totalCnt", totalCnt);
+//            pageHandler = new PageHandler(totalCnt, sc);
+//            model.addAttribute("list", list);
+//            model.addAttribute("ph", pageHandler);
+//
+//            return "/board/qna/allqnaList?secret=secret";
+//
+//        } else {
+//            totalCnt = allqnaService.getSearchResultCnt(sc);
+//            list = allqnaService.getSearchResultPage(sc);
+//
+//            model.addAttribute("totalCnt", totalCnt);
+//            pageHandler = new PageHandler(totalCnt, sc);
+//            model.addAttribute("list", list);
+//            model.addAttribute("ph", pageHandler);
+//
+//            return "/board/qna/allqnaList";
+//        }
+//    }
 
 
 
