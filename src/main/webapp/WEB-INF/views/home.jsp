@@ -78,47 +78,6 @@
 			</div>
 			<div id="lectureWrap">
 			</div>
-			<%--			231220 유재경 이쪽은 필요없어지면 정리하겠습니다.--%>
-			<%--			<c:forEach var="seminarList" items="${seminarList}">--%>
-			<%--				<div id="lectureWrap">--%>
-			<%--					<div>--%>
-			<%--						<ul>--%>
-			<%--							<li>객체지향 설계 기초 정복 ! -> ${seminarList.discription}</li>--%>
-			<%--							<li>객체 지향 디자인 패턴 -> ${seminarList.title}</li>--%>
-			<%--							<a href="<c:url value="/smTraining/read?registCode=${seminarList.registCode}"/>"><li><input type="button" class="registeBtn" value="신청하기"></li></a>--%>
-			<%--						</ul>--%>
-			<%--						<img src="<c:url value="/img/code.png"/>">--%>
-			<%--					</div>--%>
-			<%--&lt;%&ndash;					<div>&ndash;%&gt;--%>
-			<%--&lt;%&ndash;						<ul>&ndash;%&gt;--%>
-			<%--&lt;%&ndash;							<li>데이터베이스 설계 마스터 -> ${seminarList.discription}</li>&ndash;%&gt;--%>
-			<%--&lt;%&ndash;							<li>DB 모델링 기본 ->  ${seminarList.title}</li>&ndash;%&gt;--%>
-			<%--&lt;%&ndash;							<a href ="<c:url value="/smTraining/read?registCode=${seminarList.registCode}"/>"><li><input type="button" class="registeBtn" value="신청하기"></li></a>&ndash;%&gt;--%>
-			<%--&lt;%&ndash;						</ul>&ndash;%&gt;--%>
-			<%--&lt;%&ndash;						<img src="<c:url value="/img/database.png"/>">&ndash;%&gt;--%>
-			<%--&lt;%&ndash;					</div>&ndash;%&gt;--%>
-			<%--				</div>--%>
-			<%--			</c:forEach>--%>
-			<%--			<c:forEach var="bootCampList" items="${bootCampList}">--%>
-			<%--				<div id="lectureWrap">--%>
-			<%--					<div>--%>
-			<%--						<ul>--%>
-			<%--							<li>객체지향 설계 기초 정복 ! -> ${bootCampList.discription}</li>--%>
-			<%--							<li>객체 지향 디자인 패턴 -> ${bootCampList.title}</li>--%>
-			<%--							<a href="<c:url value="/btTraining/read?registCode=${bootCampList.registCode}"/>"><li><input type="button" class="registeBtn" value="신청하기"></li></a>--%>
-			<%--						</ul>--%>
-			<%--						<img src="<c:url value="/img/rocket.png"/>">--%>
-			<%--					</div>--%>
-			<%--						&lt;%&ndash;					<div>&ndash;%&gt;--%>
-			<%--						&lt;%&ndash;						<ul>&ndash;%&gt;--%>
-			<%--						&lt;%&ndash;							<li>데이터베이스 설계 마스터 -> ${seminarList.discription}</li>&ndash;%&gt;--%>
-			<%--						&lt;%&ndash;							<li>DB 모델링 기본 ->  ${seminarList.title}</li>&ndash;%&gt;--%>
-			<%--						&lt;%&ndash;							<a href ="<c:url value="/smTraining/read?registCode=${seminarList.registCode}"/>"><li><input type="button" class="registeBtn" value="신청하기"></li></a>&ndash;%&gt;--%>
-			<%--						&lt;%&ndash;						</ul>&ndash;%&gt;--%>
-			<%--						&lt;%&ndash;						<img src="<c:url value="/img/database.png"/>">&ndash;%&gt;--%>
-			<%--						&lt;%&ndash;					</div>&ndash;%&gt;--%>
-			<%--				</div>--%>
-			<%--			</c:forEach>--%>
 		</div>
 		<%--			lecture 끝--%>
 

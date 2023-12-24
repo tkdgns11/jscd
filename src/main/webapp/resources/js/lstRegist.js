@@ -23,13 +23,13 @@ function courseSelect(value){
                 var priceName = "price" + index;
 
                 var inputElement = $("<input>")
-                    .attr("class", "lectureDetail")
+                    .attr("class", "infoInput")
                     .attr("type", "text")
                     .attr("readonly", "readonly")
                     .attr("name", subjectName)
                     .val(className)[0];
                 var inputElement2 = $("<input>")
-                    .attr("class", "lectureDetail")
+                    .attr("class", "infoInput")
                     .attr("type", "text")
                     .attr("readonly", "readonly")
                     .attr("name", priceName)
