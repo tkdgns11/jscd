@@ -1,0 +1,30 @@
+/* lstRegistList */
+#infoContentBox {margin-top: 80px; position: absolute;}
+#infoTitleBox {position: absolute; top: 100px; left: 100px;}
+#infoTitleBox > h1 {font-size: 23px;font-weight: 600;}
+
+#lectureSearchBox {position: absolute; right: 4.5%; top: 30px;}
+#lectureSearchBox select {height: 30px;}
+#lectureSearchBox input {height: 30px;}
+
+#lectureListBox {position: relative; width: 80%; height: auto; overflow: hidden; margin-left: 16%; margin-top: 70px;}
+#lectureListBox table {width: 100%; font-size: 14px}
+#lectureListBox th {border-bottom: 2px solid rgba(0,0,0,0.2);border-collapse: collapse;table-layout: fixed;height: 40px;font-weight: 600;text-align: center;vertical-align: middle;}
+#lectureListBox td {border-bottom: 1px solid rgba(0,0,0,0.2);border-collapse: collapse;table-layout: fixed;height: 40px;text-align: center;vertical-align: middle;}
+#lectureListBox input {height: 30px;}
+
+#NaviBox {position: absolute; bottom: 7%; left: 43%;}
+.page {font-size: 17px; padding: 9px; color: black;}
+.page-paging-active {padding: 5px 10px; font-size: 17px; font-weight: 600; border: 1px solid rgba(0, 0, 0, 0.7); color: #0185FE;}
+#noContent {margin-top: -350px; font-weight: 650;}
+
+/*lstRegistRegist*/
+#infoDetailBox {width: 960px; margin: 0 auto; justify-content: center;}
+.infoInput {width: 400px;height: 36px;border: 0;border-bottom: 1px solid rgba(0, 0, 0, 0.2);margin: 8px 0 20px 0;padding-top: 4px;padding-left: 10px;pointer-events : none;}
+.infoInput:focus {outline: none;}
+.Date {width: 200px;}
+.contentBox {width: 500px; height: 250px;}
+#infoTitle { font-size: 20px;font-weight: 600;margin: 80px 180px 40px;}
+#infoDetailBox > label {font-size: 16px;font-weight: 500;color:rgba(0, 0, 0, 0.4);}
+.modifySelect {height: 30px;width: 200px;}
+
