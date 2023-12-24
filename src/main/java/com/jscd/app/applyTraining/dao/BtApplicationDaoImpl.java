@@ -79,6 +79,12 @@ public class BtApplicationDaoImpl implements BtApplicationDao {
     public int update(BtApplicationDto dto) throws Exception{
         return session.update(namespace + "update", dto);
     }
+    
+    // 소희 추가
+    @Override
+    public void updateLectureapply(BtApplicationDto dto) throws Exception {
+        session.update(namespace + "updateLectureapply", dto);
+    }
 
     //부트캠프 폼 작성
     @Override

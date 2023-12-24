@@ -35,13 +35,6 @@ http://localhost:8080/order/actPaySuccess
     <header class="header">
         <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
     </header>
-
-    <%--  <h1>Payment Success</h1>--%>
-    <%--  <div>Order Number: ${stodDto.odNo}</div>--%>
-    <%--  <div>Registration Code: ${stodDto.registCode}</div>--%>
-    <%--  <div>Title: ${stodDto.title}</div>--%>
-    <%--  <div>Last Price: ${stodDto.lastPrice}</div>--%>
-    <%--  --%>
     <main id="pay-success_main">
         <section id="pay-success_main-content">
             <section id="pay-success_header">

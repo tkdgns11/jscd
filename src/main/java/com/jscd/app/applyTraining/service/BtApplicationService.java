@@ -29,7 +29,9 @@ public interface BtApplicationService {
 
     int modify(BtApplicationDto dto) throws Exception;
 
-    //
+    // 소희 : 새로 추가된 메서드
+    void updateBoth(BtApplicationDto dto) throws Exception;
+    
     int write(BtApplicationDto dto) throws Exception;
     //    부트캠프 폼 상태
     int lectureApplyInsert(BtApplicationDto dto) throws Exception;

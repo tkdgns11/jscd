@@ -5,6 +5,7 @@ import com.jscd.app.applyTraining.dto.BtApplicationDto;
 import com.jscd.app.applyTraining.dto.SearchApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -95,6 +96,14 @@ public class BtApplicationServiceImpl implements BtApplicationService {
     @Override
     public int getSearchResulCnt(SearchApplication sa) throws Exception{
         return btApplicationDao.searchResultCnt(sa);
+    }
+    
+    // 소희 추가
+    @Transactional
+    @Override
+    public void updateBoth(BtApplicationDto dto) throws Exception {
+        btApplicationDao.update(dto);
+        btApplicationDao.updateLectureapply(dto);
     }
 
 }

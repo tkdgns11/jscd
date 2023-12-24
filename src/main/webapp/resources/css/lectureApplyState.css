@@ -156,8 +156,9 @@ body {font-size: 1rem; line-height: 1.5;}
 #orderlist_content-btns {display: flex; border-bottom-right-radius: 16px; border-bottom-left-radius: 16px;}
 #orderlist_content-btns div {width: 50%;}
 #orderlist_content-btns div input {width: 100%; border: solid 1px #dee3e9; height: 70px; font-size: 18px; font-weight: 600;}
-#orderlist_cancel_btn {border-bottom-left-radius: 16px; background-color: #ffffff; color: #c1c9d0;}
-#orderlist_goDetail {border-bottom-right-radius: 16px; background-color: #ffffff; color: #0185FE;}
+.orderlist_cancel_btn {border-bottom-left-radius: 16px; background-color: #ffffff;}
+/*.orderlist_cancel_btn:hover {opacity: 0.5;}*/
+.goDetail {border-bottom-right-radius: 16px; background-color: #ffffff; color: #0185FE;}
 
 input[type="button"]{ font-family: FontAwesome; }
 
@@ -220,3 +221,10 @@ input[type="button"]{ font-family: FontAwesome; }
 #paging_group_fst input {border-bottom-left-radius: 16px; border-right: solid 1px #ffffff; border-top: 0; border-bottom: 0; border-left: 0;}
 #paging_group_end input {border-bottom-right-radius: 16px; border: 0;}
 #section_paging {border-radius: 16px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);}
+
+/* ${lectureApply.approvalYN} 값에 따른 색상 변화 */
+.approval {color: #29ad29;}
+.disapproval {color: red;}
+.others {color: #c1c9d0;}
+/*.goDetail 비활성화 되었을 때 효과 부여*/
+input.goDetail[disabled] {color: #c1c9d0; cursor: default; opacity: 1;}
