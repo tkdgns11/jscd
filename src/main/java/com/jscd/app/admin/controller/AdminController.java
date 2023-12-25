@@ -71,8 +71,7 @@ public class AdminController {
         dashboardDto = adminService.qnaCategoryStatus();
         m.addAttribute("qnaCategoryStatus", dashboardDto);
 
-        return "/admin/home";
-        //return "redirect:/dashBoard/home";
+        return "redirect:/dashBoard/home";
     }
 
     //로그인 화면 보여주기
