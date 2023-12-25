@@ -9,7 +9,11 @@ public interface LockerDao {
 
     List<LockerDto> adminSelectLockers();
 
+    List<LockerDto> mebrSelectLockers();
+
     List<LockerDto> selectAllLockers();
+
+    List<LockerDto> SelectMebrIDLockers(String mebrID);
 
     List<LockerDto> selectExpiredLockers();
 

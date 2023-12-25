@@ -10,6 +10,10 @@ public interface LockerService {
 
     List<LockerDto> adminGetLockers();
 
+    List<LockerDto> mebrGetLockers();
+
+    List<LockerDto> mebrIDLockers(String mebrID) throws Exception;
+
     LockerDto getLocker(String lockerId);
 
     int registerLocker(LockerDto lockerDto) throws Exception;

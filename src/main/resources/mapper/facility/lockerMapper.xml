@@ -4,6 +4,7 @@
 
 <mapper namespace="com.jscd.app.facility.LockerMapper">
 
+    <!--    사용기간 3일남은 락커들 뽑기-->
     <select id="selectAlert" resultType="map">
 <![CDATA[
         SELECT
@@ -27,21 +28,19 @@
         ]]>
     </select>
 
-<!--    사용기간 종료된 락커 선택-->
-<!--    <select id="selectExpiredLockers" resultType="LockerDto">-->
-<!--        SELECT *-->
-<!--        FROM lockerDetail-->
-<!--        WHERE lockerID IN (-->
-<!--            SELECT lockerID-->
-<!--            FROM lockerDetail-->
-<!--            WHERE historyNO = (-->
-<!--                SELECT MAX(historyNO)-->
-<!--                FROM lockerDetail-->
-<!--                GROUP BY lockerID-->
-<!--            )-->
-<!--        ) AND DATEDIFF(endDate, CURDATE()) = -1-->
-<!--          AND statusCode = 1;-->
-<!--    </select>-->
+    <!--    사용기간 종료된 락커 선택-->
+    <select id="selectExpiredLockers" resultType="LockerDto">
+        SELECT ld.*
+        FROM lockerDetail ld
+                 INNER JOIN (
+            SELECT lockerID, MAX(historyNO) AS MaxHistoryNO
+            FROM lockerDetail
+            GROUP BY lockerID
+        ) AS sub ON ld.lockerID = sub.lockerID AND ld.historyNO = sub.MaxHistoryNO
+        WHERE DATEDIFF(ld.endDate, CURDATE()) = -1
+          AND ld.statusCode = 1;
+    </select>
+
 
 
     <!-- 관리자 락커 사용중인 회원 조회-->
@@ -64,19 +63,42 @@
                         ld.lockerID = groupedld.lockerID AND ld.historyNO = groupedld.MaxHistoryNO;
     </select>
 
-    <!-- 일반회원 사용중인 락커 조회-->
-    <select id="SelectUseLockers" resultType="LockerDto">
+    <!-- 일반회원 락커 사용중인 회원 조회-->
+    <select id="mebrSelectLockers" resultType="LockerDto">
         SELECT
-            e.lockerCode AS lockerCode,
-            e.lockerID AS lockerID,
-            CAST(e.lockerNO AS CHAR) AS lockerNo,
-            (SELECT m.name FROM member m WHERE m.id = e.mebrID) AS name,
-            e.mebrID AS mebrID,
-            DATE_FORMAT(e.endDate, '%Y-%m-%d') AS endDateString,
-            CAST((SELECT DATEDIFF(e.endDate, CURDATE()) FROM lockerDetail WHERE lockerID = e.lockerID) AS CHAR) AS remainDays
+            ld.lockerCode AS lockerCode,
+            ld.lockerID AS lockerID,
+            CAST(ld.lockerNO AS CHAR) AS lockerNo,
+            ld.mebrID AS mebrID
         FROM
-            lockerDetail e
-        where e.
+            lockerDetail ld
+                INNER JOIN
+            (SELECT lockerID, MAX(historyNO) AS MaxHistoryNO
+             FROM lockerDetail
+             GROUP BY lockerID) groupedld
+            ON
+                        ld.lockerID = groupedld.lockerID AND ld.historyNO = groupedld.MaxHistoryNO;
+    </select>
+
+    <!-- mebrID로 사용중인 락커 조회-->
+    <select id="SelectMebrLockers" parameterType="String" resultType="LockerDto" >
+        SELECT
+            ld.lockerCode AS lockerCode,
+            ld.lockerID AS lockerID,
+            CAST(ld.lockerNO AS CHAR) AS lockerNo,
+            (SELECT m.name FROM member m WHERE m.id = ld.mebrID) AS name,
+            ld.mebrID AS mebrID,
+            DATE_FORMAT(ld.endDate, '%Y-%m-%d') AS endDateString,
+            CAST(DATEDIFF(ld.endDate, CURDATE()) AS CHAR) AS remainDays
+        FROM
+            lockerDetail ld
+                INNER JOIN
+            (SELECT lockerID, MAX(historyNO) AS MaxHistoryNO
+             FROM lockerDetail
+             GROUP BY lockerID) groupedld
+            ON ld.lockerID = groupedld.lockerID AND ld.historyNO = groupedld.MaxHistoryNO
+        WHERE
+            ld.mebrID = #{mebrId};
     </select>
 
     <!-- 특정 락커 정보 조회 -->

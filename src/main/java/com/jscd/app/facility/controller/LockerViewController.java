@@ -30,17 +30,27 @@ public class LockerViewController {
 
         model.addAttribute("lockerList", lockerDtoList);
 
-        return "facility/locker";
+        return "facility/lockerAdmin";
     }
 
-    @GetMapping("/useList")
-    public String lockerUseList(Model model, HttpServletRequest request) {
+    @GetMapping("/mebrList")
+    public String lockerUseList(Model model, HttpServletRequest request) throws Exception {
 
-        List<LockerDto> lockerDtoList = lockerService.adminGetLockers();
+        List<LockerDto> lockerDtoList = lockerService.mebrGetLockers();
+        List<LockerDto> mebrLockerDtoList = null;
 
+        boolean loginCheck = request.getSession().getAttribute("id") != null; //로그인 했으면 true, 로그인 안했으면 false
+
+        if(loginCheck) {
+            String mebrID = (String)request.getSession().getAttribute("id");
+            mebrLockerDtoList = lockerService.mebrIDLockers(mebrID);
+        }
+
+        model.addAttribute("loginCheck",loginCheck);
         model.addAttribute("lockerList", lockerDtoList);
+        model.addAttribute("mebrLockerDtoList", mebrLockerDtoList);
 
-        return "facility/locker";
+        return "facility/lockerMebr";
     }
 
     @GetMapping("/student")

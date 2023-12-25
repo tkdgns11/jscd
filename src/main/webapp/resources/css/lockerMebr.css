@@ -91,13 +91,13 @@ body {
 }
 
 .location > button:hover {
-    background-color: yellow;
+    background-color: #FFFA82;
 }
 
 .boundary {
     overflow: hidden;
-    width: 98%;
-    height: 98%;
+    width: 90%;
+    height: 80%;
     border: 2px solid black;
     border-radius: 10px;
     margin-left: auto;
@@ -137,7 +137,7 @@ body {
 }
 
 .locker {
-    background-color: lightgray;
+    background-color: #FFD1B7;
     width: 7vw;
     height: 10vh;
     border: 2px solid black;
@@ -146,9 +146,9 @@ body {
 }
 
 .locker5 {
-    background-color: lightgray;
+    background-color: #FFD1B7;
     width: 9vw;
-    height: 11vh;
+    height: 10vh;
     border: 2px solid black;
     margin: 0.5px;
     overflow: hidden;
@@ -164,13 +164,13 @@ body {
     text-align: center;
 }
 
-.locker:hover {
-    background-color: goldenrod;
-}
+/*.locker:hover {*/
+/*    background-color: goldenrod;*/
+/*}*/
 
-.locker5:hover {
-    background-color: goldenrod;
-}
+/*.locker5:hover {*/
+/*    background-color: goldenrod;*/
+/*}*/
 
 
 .locker h1 {

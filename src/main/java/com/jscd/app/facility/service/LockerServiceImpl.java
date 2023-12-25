@@ -5,6 +5,7 @@ import com.jscd.app.facility.dao.LockerDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,20 @@ public class LockerServiceImpl implements LockerService {
     //관리자 락커리스트 페이지
     @Override
     public List<LockerDto> adminGetLockers() { return lockerDao.adminSelectLockers(); }
+
+    //일반유저 락커리스트 페이지
+    @Override
+    public List<LockerDto> mebrGetLockers() { return lockerDao.mebrSelectLockers(); }
+
+    @Override
+    public List<LockerDto> mebrIDLockers(String mebrID) throws Exception {
+        try {
+            return lockerDao.SelectMebrIDLockers(mebrID);
+        } catch (Exception e) {
+            throw new Exception("회원 ID에 해당하는 락커 정보 조회 중 오류 발생: " + e.getMessage());
+        }
+    }
+
 
     @Override
     public LockerDto getLocker(String lockerId) {
