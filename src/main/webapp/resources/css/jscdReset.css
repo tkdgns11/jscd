@@ -7,3 +7,8 @@
 .deleteBtn{border: 1px solid rgba(0,0,0,0.7);background-color: #ffffff; width: 80px; height: 40px; border-radius: 8px; cursor:pointer}
 .backBtn{border: 1px solid rgba(0,0,0,0.7);background-color: #ffffff; width: 80px; height: 40px; border-radius: 8px; cursor:pointer}
 
+.registeBtn:hover {opacity: 0.5;}
+.modifyBtn:hover {opacity: 0.5;}
+.cancleBtn:hover {opacity: 0.5;}
+.deleteBtn:hover {opacity: 0.5;}
+.backBtn:hover {opacity: 0.5;}

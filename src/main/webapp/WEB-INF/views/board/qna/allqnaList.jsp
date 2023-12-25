@@ -10,9 +10,17 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>게시판 첫 페이지</title>
+    <!-- 탭 아이콘 & 글자 지정 -->
+    <link rel="icon" href="/img/mainlogo.png"/>
+    <link rel="apple-touch-icon" href="/img/mainlogo.png"/>
+    <title>정석코딩 | 전체 질문&답변</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="<c:url value='/css/allqnaList.css'/>">
+    <script type="text/javascript" src="<c:url value="/js/board_nav.js"/>"></script>
+    <%--폰트어썸 라이브러리 불러오기--%>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
 </head>
 <body>
 <header>

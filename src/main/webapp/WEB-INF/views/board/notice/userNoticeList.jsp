@@ -14,6 +14,8 @@
     <link rel="apple-touch-icon" href="/img/mainlogo.png"/>
     <title>정석코딩 | 전체 공지사항</title>
     <link rel="stylesheet" href="<c:url value='/css/noticeList.css'/>">
+    <script type="text/javascript" src="<c:url value="/js/noticeList.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/board_nav.js"/>"></script>
     <%--폰트어썸 라이브러리 불러오기--%>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
           integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
@@ -76,25 +78,33 @@
                         <div id="board_content_per">
                         <a href="<c:url value="/board/user/read?bno=${noticeDto.bno}&page=${ph.sc.page}&pageSize=${ph.sc.pageSize}"/>">${noticeDto.title}</a>
                         <p class="ellipsis">${noticeDto.content}</p>
+                            <div id="board_content_footer">
+                                <div>
                         <span id="user_info_date">${noticeDto.regDate}</span>
-                        <span id="user_info_id">글쓴이: ${noticeDto.writer}</span>
-                        <span id="hit_num"><i class="fa-regular fa-eye"></i> ${noticeDto.viewCnt}</span>
+                        <span id="user_info_id">&nbsp;&nbsp;
+                            <i class="fa-solid fa-user-pen fa-xs" style="color: #afb1b6;"></i>
+                                ${noticeDto.writer}</span>
+                                </div>
+                        <span id="hit_num"><i class="fa-regular fa-eye" style="color: #afb1b6;"></i> ${noticeDto.viewCnt}</span>
+                            </div>
                         </div>
                     </c:forEach>
                 </div>
-                <div>
+                <div id="board_paging">
                     <c:if test="${totalCnt==null || totalCnt==0}">
                         <p>게시물이 없습니다.</p>
                     </c:if>
                     <c:if test="${totalCnt!=null && totalCnt!=0}">
                         <c:if test="${ph.showPrev}">
-                            <a class="page" href="<c:url value="/board/user/list${ph.sc.getQueryString(ph.beginPage-1)}"/>">이전</a>
+                            <a class="page" href="<c:url value="/board/user/list${ph.sc.getQueryString(ph.beginPage-1)}"/>">
+                                <i class="fa-solid fa-backward-step"></i></a>
                         </c:if>
                         <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
                             <a class="page ${i==ph.sc.page? "paging-active" : ""}" href="<c:url value="/board/user/list${ph.sc.getQueryString(i)}"/>">${i}</a>
                         </c:forEach>
                         <c:if test="${ph.showNext}">
-                            <a class="page" href="<c:url value="/board/user/list${ph.sc.getQueryString(ph.endPage+1)}"/>">다음</a>
+                            <a class="page" href="<c:url value="/board/user/list${ph.sc.getQueryString(ph.endPage+1)}"/>">
+                                <i class="fa-solid fa-forward-step"></i></a>
                         </c:if>
                     </c:if>
                 </div>
