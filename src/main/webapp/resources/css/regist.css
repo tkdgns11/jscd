@@ -19,12 +19,12 @@
 #noContent {margin-top: -350px; font-weight: 650;}
 
 /*lstRegistRegist*/
-#infoDetailBox {width: 960px; margin: 0 auto; justify-content: center;}
-.infoInput {width: 400px;height: 36px;border: 0;border-bottom: 1px solid rgba(0, 0, 0, 0.2);margin: 8px 0 20px 0;padding-top: 4px;padding-left: 10px;pointer-events : none;}
-.infoInput:focus {outline: none;}
-.Date {width: 200px;}
-.contentBox {width: 500px; height: 250px;}
-#infoTitle { font-size: 20px;font-weight: 600;margin: 80px 180px 40px;}
-#infoDetailBox > label {font-size: 16px;font-weight: 500;color:rgba(0, 0, 0, 0.4);}
-.modifySelect {height: 30px;width: 200px;}
+/*#infoDetailBox {width: 960px; margin: 0 auto; justify-content: center;}*/
+/*.infoInput {width: 400px;height: 36px;border: 0;border-bottom: 1px solid rgba(0, 0, 0, 0.2);margin: 8px 0 20px 0;padding-top: 4px;padding-left: 10px;pointer-events : none;}*/
+/*.infoInput:focus {outline: none;}*/
+/*.Date {width: 200px;}*/
+/*.contentBox {width: 500px; height: 250px;}*/
+/*#infoTitle { font-size: 20px;font-weight: 600;margin: 80px 180px 40px;}*/
+/*#infoDetailBox > label {font-size: 16px;font-weight: 500;color:rgba(0, 0, 0, 0.4);}*/
+/*.modifySelect {height: 30px;width: 200px;}*/
 
