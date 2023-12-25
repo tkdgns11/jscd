@@ -10,7 +10,7 @@ public class StdMemberManageDto { //학생+회원 조인 Dto
     private String id;
     private String name;
     private String alias;
-    private Date birth;
+    private String birth;
     private String phone;
     private String acct;
 
@@ -21,7 +21,7 @@ public class StdMemberManageDto { //학생+회원 조인 Dto
     private String status;
     private String etc;
 
-    public StdMemberManageDto(Integer mebrNo, String id, String name, String alias, Date birth, String phone, Date regDate, String gisu, String status, String etc) {
+    public StdMemberManageDto(Integer mebrNo, String id, String name, String alias, String birth, String phone, Date regDate, String gisu, String status, String etc) {
         this.mebrNo = mebrNo;
         this.id = id;
         this.name = name;
@@ -77,11 +77,11 @@ public class StdMemberManageDto { //학생+회원 조인 Dto
         this.alias = alias;
     }
 
-    public Date getBirth() {
+    public String getBirth() {
         return birth;
     }
 
-    public void setBirth(Date birth) {
+    public void setBirth(String birth) {
         this.birth = birth;
     }
 
