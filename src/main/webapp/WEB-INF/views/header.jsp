@@ -44,9 +44,6 @@
                         <li><a href="/member/jscdRoad">
                             <i class="fa-solid fa-map-location-dot" style="color: #4a4a4a;"></i>
                             &nbsp;&nbsp;찾아오시는 길</a></li>
-                        <li><a href="<c:url value="/locker/mebrList"/>">
-                            <i class="fa-solid fa-city" style="color: #4a4a4a;"></i>
-                            &nbsp;&nbsp;사물함</a></li>
                     </ul>
                 </li>
                 <li id="apply">
@@ -82,6 +79,9 @@
                         <li><a href="#">
                             <i class="fa-solid fa-comment-dots" style="color: #4a4a4a;"></i>
                             &nbsp;&nbsp;질문&답변</a></li>
+                        <li><a href="<c:url value="/locker/mebrList"/>">
+                            <i class="fa-solid fa-city" style="color: #4a4a4a;"></i>
+                            &nbsp;&nbsp;사물함</a></li>
                     </ul>
                 </li>
             </ul>
