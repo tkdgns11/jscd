@@ -40,11 +40,11 @@
                 <input type="hidden" id="fileNameDel" name="fileNameDel[]" value="">
 
                 <label style="margin-right: 3px;">강의 제목</label>
-                <input type="text" class="infoInput" name="title" value="${lstRegistDto.title}" ${mode == "new" ? '' : 'readonly="readonly"'} placeholder="개설할 강의 제목을 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='강의에 대한 소개를 입력해주세요.'" >
+                <input type="text" name="title" value="${lstRegistDto.title}" ${mode == "new" ? '' : 'readonly="readonly"'} placeholder="개설할 강의 제목을 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='강의에 대한 소개를 입력해주세요.'" >
                 <br>
 
                 <label style="">강의 소개</label>
-                <input type="text" class="infoInput" name="discription" value="${lstRegistDto.discription}" ${mode == "new" ? '' : 'readonly="readonly"'} placeholder="개설할 강의의 설명을 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='개설할 강의의 설명을 입력해주세요.'" >
+                <input type="text" name="discription" value="${lstRegistDto.discription}" ${mode == "new" ? '' : 'readonly="readonly"'} placeholder="개설할 강의의 설명을 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='개설할 강의의 설명을 입력해주세요.'" >
                 <br>
 
                 <label style="">과정 선택</label>
@@ -59,13 +59,13 @@
                         <br>
                     </c:when>
                     <c:when test="${mode ne 'new'}">
-                        <input type="text" class="infoInput" name="courseCode" value="${lstRegistDto.courseName}" ${mode=='new' ? '' : 'disabled="disabled"'}>
+                        <input type="text" name="courseCode" value="${lstRegistDto.courseName}" ${mode=='new' ? '' : 'disabled="disabled"'}>
                         <br>
                     </c:when>
                 </c:choose>
 
                 <label style="">과목구분</label>
-                <input type="text" class="infoInput" name="courseCategory" value="${lstRegistDto.courseCategory}" ${mode=='new' ? '' : 'disabled="disabled"'} placeholder="세미나 개설시 입력해주세요 ex)디자인패턴 - JAVA" onfocus="this.placeholder=''" onblur="this.placeholder='세미나 개설시 입력해주세요 ex)디자인패턴 - JAVA'">
+                <input type="text" name="courseCategory" value="${lstRegistDto.courseCategory}" ${mode=='new' ? '' : 'disabled="disabled"'} placeholder="세미나 개설시 입력해주세요 ex)디자인패턴 - JAVA" onfocus="this.placeholder=''" onblur="this.placeholder='세미나 개설시 입력해주세요 ex)디자인패턴 - JAVA'">
                 <br>
 
                 <label style="">세부사항</label>
@@ -85,7 +85,7 @@
                 </div>
 
                 <label style="">온/오프라인</label>
-                <select class="modifySelect" name="onOff" value="${lstRegistDto.onOff}" ${mode=='new' ? '' : 'disabled="disabled"'}>
+                <select name="onOff" value="${lstRegistDto.onOff}" ${mode=='new' ? '' : 'disabled="disabled"'}>
                     <c:choose>
                         <c:when test="${mode eq 'new'}">
                             <option value="" disabled selected>온/오프옵션을 선택해주세요.</option>
@@ -100,7 +100,7 @@
                 <br>
 
                 <label style="">진행 상태</label>
-                <select class="modifySelect" name="status" value="${lstRegistDto.status}" ${mode=='new' ? '' : 'disabled="disabled"'}>
+                <select name="status" value="${lstRegistDto.status}" ${mode=='new' ? '' : 'disabled="disabled"'}>
                     <c:choose>
                         <c:when test="${mode eq 'new'}">
                             <option value="" disabled selected>진행상태옵션을 선택해주세요.</option>
@@ -116,11 +116,11 @@
                 <br>
 
                 <label style="">최소 인원</label>
-                <input type="number" class="infoInput" name="minNum" min="5" max="30" value="${lstRegistDto.minNum}" ${mode == "new" ? '' : 'readonly="readonly"'}>
+                <input type="number" name="minNum" min="5" max="30" value="${lstRegistDto.minNum}" ${mode == "new" ? '' : 'readonly="readonly"'}>
                 <br>
 
                 <label style="">최대 인원</label>
-                <input type="number" class="infoInput" name="maxNum" min="5" max="30" value="${lstRegistDto.maxNum}" ${mode == "new" ? '' : 'readonly="readonly"'}>
+                <input type="number" name="maxNum" min="5" max="30" value="${lstRegistDto.maxNum}" ${mode == "new" ? '' : 'readonly="readonly"'}>
                 <br>
 
                 <label style="">강의 장소</label>
@@ -141,32 +141,32 @@
 
                 <label style="">수강기간</label><br>
                 <label style="">시작일</label>
-                <input type="date" class="infoInput Date" name="startDate" value="${lstRegistDto.startDate}" ${mode == "new" ? '' : 'readonly="readonly"'}>
+                <input type="date" name="startDate" value="${lstRegistDto.startDate}" ${mode == "new" ? '' : 'readonly="readonly"'}>
                 <label style="">종료일</label>
-                <input type="date" class="infoInput Date" name="endDate" value="${lstRegistDto.endDate}" ${mode == "new" ? '' : 'readonly="readonly"'}>
+                <input type="date" name="endDate" value="${lstRegistDto.endDate}" ${mode == "new" ? '' : 'readonly="readonly"'}>
                 <br>
 
                 <label style="">수강시간</label><br>
                 <label style="">시작 시간</label>
-                <input type="time" class="infoInput Date" name="startTime" value="${lstRegistDto.startTime}" ${mode == "new" ? '' : 'readonly="readonly"'}>
+                <input type="time" name="startTime" value="${lstRegistDto.startTime}" ${mode == "new" ? '' : 'readonly="readonly"'}>
                 <label style="">종료 시간</label>
-                <input type="time" class="infoInput Date" name="endTime" value="${lstRegistDto.endTime}" ${mode == "new" ? '' : 'readonly="readonly"'}>
+                <input type="time" name="endTime" value="${lstRegistDto.endTime}" ${mode == "new" ? '' : 'readonly="readonly"'}>
                 <br>
 
                 <label style="">강사</label>
-                <input type="text" class="infoInput" name="name" value="${lstRegistDto.name}" ${mode == "new" ? '' : 'readonly="readonly"'}>
+                <input type="text" name="name" value="${lstRegistDto.name}" ${mode == "new" ? '' : 'readonly="readonly"'}>
                 <br>
 
                 <label style="">교재</label>
-                <input type="text" class="infoInput" name="book" value="${lstRegistDto.book}" ${mode == "new" ? '' : 'readonly="readonly"'}>
+                <input type="text" name="book" value="${lstRegistDto.book}" ${mode == "new" ? '' : 'readonly="readonly"'}>
                 <br>
 
                 <label style="">준비물</label>
-                <input type="text" class="infoInput" name="material" value="${lstRegistDto.material}" ${mode == "new" ? '' : 'readonly="readonly"'}>
+                <input type="text" name="material" value="${lstRegistDto.material}" ${mode == "new" ? '' : 'readonly="readonly"'}>
                 <br>
 
                 <label style="">가격</label>
-                <input type="text" class="infoInput" name="totalPrice" value="${lstRegistDto.totalPrice}" readonly="readonly">
+                <input type="text" name="totalPrice" value="${lstRegistDto.totalPrice}" readonly="readonly">
                 <br>
 
                 <label style="">할인율</label>
@@ -189,7 +189,7 @@
                 <br>
 
                 <label style="">총 가격</label>
-                <input type="text" class="infoInput" name="lastPrice" value="${lstRegistDto.lastPrice}" readonly="readonly">
+                <input type="text" name="lastPrice" value="${lstRegistDto.lastPrice}" readonly="readonly">
                 <br>
 
                 <label style="">내용</label><br>
@@ -197,7 +197,7 @@
                 <br>
 
                 <label style="">첨부파일</label>
-                <input type="file" class="infoInput" name="file" id="file" accept="<c:url value="/img/upload/img/*"/>"  onchange="setThumbnail(event)" multiple ${mode == "new" ? '' : 'readonly="readonly"'}>
+                <input type="file" name="file" id="file" accept="<c:url value="/img/upload/img/*"/>"  onchange="setThumbnail(event)" multiple ${mode == "new" ? '' : 'readonly="readonly"'}>
                 <div id="imgContainer"></div>
 
                 <script>
