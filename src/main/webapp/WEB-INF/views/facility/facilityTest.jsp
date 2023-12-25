@@ -16,7 +16,7 @@
             text-decoration: none;
         }
     </style>
-        </head>
+</head>
 <body>
 <br>
 <h1>사물함 테스트 버튼입니다</h1>
@@ -27,7 +27,11 @@
 </div>
 <br><br>
 <button>
-    <a href="#">유저 사물함</a>
+    <a href="/locker/mebrList">유저 사물함</a>
+</button>
+<br><br>
+<button>
+    <a href="/locker/mebrList">마이페이지 사물함 </a>
 </button>
 </body>
 </html>

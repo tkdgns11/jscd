@@ -25,10 +25,19 @@ public class LockerDaoImpl implements LockerDao {
     public List<LockerDto> adminSelectLockers() {
         return sqlSession.selectList(namespace + "adminSelectLockers");
     }
+    @Override
+    public List<LockerDto> mebrSelectLockers() {
+        return sqlSession.selectList(namespace + "mebrSelectLockers");
+    }
 
     @Override
     public List<LockerDto> selectAllLockers() {
         return sqlSession.selectList(namespace + "selectAllLockers");
+    }
+
+    @Override
+    public List<LockerDto> SelectMebrIDLockers(String mebrID) {
+        return sqlSession.selectList(namespace + "SelectMebrLockers",mebrID);
     }
 
     @Override

@@ -684,96 +684,96 @@
       </div>
     </div>
 
-    <div class="warp1-layer21">
-      <div class="warp1-layers layer1reset">
-        <div class="titleArea">
-          <div class="title">Q&A</div>
-        </div>
-        <hr>
-        <div class="boardContents">
-          <div class="boardContentsRows">
-            <div class="boardImgArea">
-              <img id="img_area" alt="board_img">
-            </div>
-            <div class="boardContentsArea">
-              <div class="contentsTitle">[문의] 사이즈 조건표가 어떻게 되나요?</div>
-              <div class="contentsWriter">Steve | 2023-12-18 19:00</div>
-            </div>
-          </div>
-          <div class="boardContentsRows">
-            <div class="boardImgArea">
+<%--    <div class="warp1-layer21">--%>
+<%--      <div class="warp1-layers layer1reset">--%>
+<%--        <div class="titleArea">--%>
+<%--          <div class="title">Q&A</div>--%>
+<%--        </div>--%>
+<%--        <hr>--%>
+<%--        <div class="boardContents">--%>
+<%--          <div class="boardContentsRows">--%>
+<%--            <div class="boardImgArea">--%>
+<%--              <img id="img_area" alt="board_img">--%>
+<%--            </div>--%>
+<%--            <div class="boardContentsArea">--%>
+<%--              <div class="contentsTitle">[문의] 사이즈 조건표가 어떻게 되나요?</div>--%>
+<%--              <div class="contentsWriter">Steve | 2023-12-18 19:00</div>--%>
+<%--            </div>--%>
+<%--          </div>--%>
+<%--          <div class="boardContentsRows">--%>
+<%--            <div class="boardImgArea">--%>
 
-            </div>
-            <div class="boardContentsArea">
-              <div class="contentsTitle">[구매평] 좋은 제품 감사합니다</div>
-              <div class="contentsWriter">Tom | 2023-12-18 18:00</div>
-            </div>
-          </div>
-          <div class="boardContentsRows">
-            <div class="boardImgArea">
+<%--            </div>--%>
+<%--            <div class="boardContentsArea">--%>
+<%--              <div class="contentsTitle">[구매평] 좋은 제품 감사합니다</div>--%>
+<%--              <div class="contentsWriter">Tom | 2023-12-18 18:00</div>--%>
+<%--            </div>--%>
+<%--          </div>--%>
+<%--          <div class="boardContentsRows">--%>
+<%--            <div class="boardImgArea">--%>
 
-            </div>
-            <div class="boardContentsArea">
-              <div class="contentsTitle">[구매평] 좋은 제품 감사합니다.</div>
-              <div class="contentsWriter">Merry | 2023-12-18 17:00</div>
-            </div>
-          </div>
-          <div class="boardContentsRows">
-            <div class="boardImgArea">
+<%--            </div>--%>
+<%--            <div class="boardContentsArea">--%>
+<%--              <div class="contentsTitle">[구매평] 좋은 제품 감사합니다.</div>--%>
+<%--              <div class="contentsWriter">Merry | 2023-12-18 17:00</div>--%>
+<%--            </div>--%>
+<%--          </div>--%>
+<%--          <div class="boardContentsRows">--%>
+<%--            <div class="boardImgArea">--%>
 
-            </div>
-            <div class="boardContentsArea">
-              <div class="contentsTitle">[구매평] 좋은 제품 감사합니다.</div>
-              <div class="contentsWriter">Merry | 2023-12-18 17:00</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="warp1-layers layer1reset">
-        <div class="titleArea">
-          <div class="title">공지사항</div>
-        </div>
-        <hr>
-        <div class="boardContents">
-          <div class="boardContentsRows">
-            <div class="boardImgArea circleImgArea">
+<%--            </div>--%>
+<%--            <div class="boardContentsArea">--%>
+<%--              <div class="contentsTitle">[구매평] 좋은 제품 감사합니다.</div>--%>
+<%--              <div class="contentsWriter">Merry | 2023-12-18 17:00</div>--%>
+<%--            </div>--%>
+<%--          </div>--%>
+<%--        </div>--%>
+<%--      </div>--%>
+<%--      <div class="warp1-layers layer1reset">--%>
+<%--        <div class="titleArea">--%>
+<%--          <div class="title">공지사항</div>--%>
+<%--        </div>--%>
+<%--        <hr>--%>
+<%--        <div class="boardContents">--%>
+<%--          <div class="boardContentsRows">--%>
+<%--            <div class="boardImgArea circleImgArea">--%>
 
-            </div>
-            <div class="boardContentsArea">
-              <div class="contentsTitle">[게시판 작성] 한파 배송안내</div>
-              <div class="contentsWriter">Jessica | 2023-12-17 13:00</div>
-            </div>
-          </div>
-          <div class="boardContentsRows">
-            <div class="boardImgArea circleImgArea">
+<%--            </div>--%>
+<%--            <div class="boardContentsArea">--%>
+<%--              <div class="contentsTitle">[게시판 작성] 한파 배송안내</div>--%>
+<%--              <div class="contentsWriter">Jessica | 2023-12-17 13:00</div>--%>
+<%--            </div>--%>
+<%--          </div>--%>
+<%--          <div class="boardContentsRows">--%>
+<%--            <div class="boardImgArea circleImgArea">--%>
 
-            </div>
-            <div class="boardContentsArea">
-              <div class="contentsTitle">[게시판 댓글] 좋은 이벤트 감사합니다!</div>
-              <div class="contentsWriter">Steve | 2023-12-16 13:00</div>
-            </div>
-          </div>
-          <div class="boardContentsRows">
-            <div class="boardImgArea circleImgArea">
+<%--            </div>--%>
+<%--            <div class="boardContentsArea">--%>
+<%--              <div class="contentsTitle">[게시판 댓글] 좋은 이벤트 감사합니다!</div>--%>
+<%--              <div class="contentsWriter">Steve | 2023-12-16 13:00</div>--%>
+<%--            </div>--%>
+<%--          </div>--%>
+<%--          <div class="boardContentsRows">--%>
+<%--            <div class="boardImgArea circleImgArea">--%>
 
-            </div>
-            <div class="boardContentsArea">
-              <div class="contentsTitle">[입력폼 참여] 사용자 조사</div>
-              <div class="contentsWriter">Steve | 2023-12-15 13:00</div>
-            </div>
-          </div>
-          <div class="boardContentsRows">
-            <div class="boardImgArea circleImgArea">
+<%--            </div>--%>
+<%--            <div class="boardContentsArea">--%>
+<%--              <div class="contentsTitle">[입력폼 참여] 사용자 조사</div>--%>
+<%--              <div class="contentsWriter">Steve | 2023-12-15 13:00</div>--%>
+<%--            </div>--%>
+<%--          </div>--%>
+<%--          <div class="boardContentsRows">--%>
+<%--            <div class="boardImgArea circleImgArea">--%>
 
-            </div>
-            <div class="boardContentsArea">
-              <div class="contentsTitle">[입력폼 참여] 사용자 조사</div>
-              <div class="contentsWriter">Steve | 2023-12-15 13:00</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+<%--            </div>--%>
+<%--            <div class="boardContentsArea">--%>
+<%--              <div class="contentsTitle">[입력폼 참여] 사용자 조사</div>--%>
+<%--              <div class="contentsWriter">Steve | 2023-12-15 13:00</div>--%>
+<%--            </div>--%>
+<%--          </div>--%>
+<%--        </div>--%>
+<%--      </div>--%>
+<%--    </div>--%>
   </div>
   <%--  <div id="warp2">--%>
   <%--    <div id="warp2-top">--%>

@@ -80,6 +80,9 @@
                         <li><a href="#">
                             <i class="fa-solid fa-comment-dots" style="color: #4a4a4a;"></i>
                             &nbsp;&nbsp;질문&답변</a></li>
+                        <li><a href="<c:url value="/locker/mebrList"/>">
+                            <i class="fa-solid fa-city" style="color: #4a4a4a;"></i>
+                            &nbsp;&nbsp;사물함</a></li>
                     </ul>
                 </li>
             </ul>
