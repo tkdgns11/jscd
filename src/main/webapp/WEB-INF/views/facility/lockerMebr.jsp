@@ -406,8 +406,6 @@
             if (!loginCheck) {
                 let Check = confirm("이 기능을 사용하려면 로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?");
 
-                alert(window.location.pathname)
-
                 if (Check) {
                     window.location.href = "/member/login?toURL=" + window.location.pathname;
                 }
