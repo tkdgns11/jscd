@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
 <!DOCTYPE html>
@@ -27,7 +27,9 @@
 
 <form id="form">
     <div id="detailHd">
-<%--        <div type="hidden" id="id" data-id="${id.id}"></div>--%>
+        <c:set var="id" value="${id}" />
+            <input type="hidden" id="id" value="${id}" >
+
         <input type="hidden" id="allqnaNo" name="allqnaNo" value="${allqnaList.allqnaNo}">
         <%--            <label>카테고리</label>--%>
         <select name="ctName" id="allqnaCategory" ${mode=="new" ? '' : 'disabled="disabled"' }>
@@ -89,7 +91,7 @@
                        onclick="allqnaEdit();" ${mode eq 'new' ? 'hidden' : ''} value="수정">
                 <input type="button" id="removeBtn" class="deleteBtn"
                        onclick="allqnaDelete()" ${mode eq 'new' ? 'hidden' : ''} value="삭제">
-                <input type="button" id="listBtn" class="backBtn" onclick="" value="목록">
+                <input type="button" id="listBtn" class="backBtn" onclick="location.href='${path}/board/qna/allqnaList'" value="목록">
             </div>
 
 
@@ -111,10 +113,6 @@
         <div id="main_content_info" ${commentCount == 0 ? 'display: none;' : ''}>
             <div id="info_top" >
                 <div id="cmmtUserinfo">
-                    <span id="userInfoId">${commentList.cmtWriter}</span>
-                    <span id="userInfoWriter1">${allqnaList.writer == commentList.cmtWriter ? '작성자' : hidden}</span>
-                    <span id="userInfoWriter2">${allqnaList.writer == commentList.cmtWriter ? hidden : '지식공유자'}</span>
-                    <span id="userInfoDate">･ <fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${commentList.regDate}" /></span>
 
                 </div>
             </div>
@@ -127,7 +125,7 @@
 
 <br/>
 <div>
-    <div style="background-color: #f1f1f1; border-radius: 10px;">
+    <div style="background-color: #f1f1f1; border-radius: 10px; padding:20px;">
         <c:forEach var="commentList" items="${comment}" varStatus="loop">
             <div>
                     <%--                    원댓글 --%>
@@ -136,27 +134,34 @@
                 <input type="hidden" id="allqnaCmtReplyNo${loop.index}" name="allqnaCmtReplyNo"
                        value="${commentList.allqnaCmtReplyNo}">
 
-                작성자 : <br/> <input type="text" id="cmtWriter${loop.index}" name="cmtWriter"
-                                   value="${commentList.cmtWriter}" readonly><br/>
-                내용 : <br/><textarea id="cmtContent${loop.index}" name="cmtContent" rows="4" readonly
+                        <span id="userInfoId">${commentList.cmtWriter}</span>
+<%--                        <span id="userInfoWriter1">${allqnaList.writer == id ? '작성자' : 'hidden'}></span>--%>
+                        <span id="userInfoWriter2">${allqnaList.writer == commentList.cmtWriter ? '작성자' : '지식공유자'}</span>
+                        <span id="userInfoRegDate">작성일</span><span id="userInfoDate">･ <fmt:formatDate pattern="yyyy-MM-dd" value="${commentList.regDate}" /></span>
+
+                <br/><textarea class="cmtContent" id="cmtContent${loop.index}" name="cmtContent" rows="4" readonly
                                     style="height:70px">${commentList.cmtContent}</textarea><br/>
-                <input type="button" id="cmtEditBtn${loop.index}" onclick="cmtEdit(${loop.index})" value="수정">
-                <input type="button" onclick="cmtDelete(${loop.index})" value="삭제"><br/>
-                <input type="button" id="replyBoxWrite${loop.index}" onclick="replyBlock(${loop.index})"
+                       <div id="cmtWriteContainer">
+                           <hr>
+
+                <input type="button" class="cmtEditBtn" id="cmtEditBtn${loop.index}" onclick="cmtEdit(${loop.index})" value="수정">
+                <input type="button" class="cmtDelete" onclick="cmtDelete(${loop.index})" value="삭제">
+                <input type="button" class="replyBoxWrite"  id="replyBoxWrite${loop.index}" onclick="replyBlock(${loop.index})"
                        value="답변">
+                       </div>
 
                     <%--대댓글--%>
-                <div id="replyContainer${loop.index}" style="display: none;">
+                <div class="replyContainer" id="replyContainer${loop.index}" style="display: none;">
                         <%--    대댓글 목록 담는 박스 --%>
                     <div id="replyListBox${commentList.allqnaCmtNo}" style="margin-left: 70px">
                     </div>
                     <br>
                         <%--    대댓글 작성 폼 --%>
-                    <div id="replyBox${loop.index}" style="margin-left: 50px">
+                    <div id="replyBox${loop.index}" >
                         <input type="hidden" id="allqnaCmtReplyNo${loop.index}" name="allqnaCmtReplyNO"
                                value="${commentList.allqnaCmtReplyNo}">
-                        답변 작성자 :<br> <input type="text" id="cmtReplyWriter${loop.index}" name="cmtWriter"><br/>
-                        답변 내용 :<br/><textarea id="cmtReplyContent${loop.index}" name="cmtContent" rows="4"></textarea><br/>
+<%--                        답변 작성자 :<br> <input type="text" id="cmtReplyWriter${loop.index}" name="cmtWriter"><br/>--%>
+                       <br/><textarea id="cmtReplyContent${loop.index}" name="cmtContent" rows="4" style="width:600px; border-radius: 10px; border:1px solid #888888"></textarea><br/>
                         <input type="button" onclick="replyCmtWrite(${loop.index})" value="답변등록">
                         <input type="button" onclick="replyCmtCancel(${loop.index})" value="답변닫기">
                     </div>
@@ -170,13 +175,13 @@
 
 
 <c:if test="${not empty msg}">
-    <script>
-        alert('${msg}');
-        location.href='<c:out value="${pageContext.request.contextPath}"/>${url}';
-    </script>
+<script>
+    alert('${msg}');
+    location.href='<c:out value="${pageContext.request.contextPath}"/>${url}';
+</script>
 </c:if>
 
 
 
-</body>
+</bod
 </html>

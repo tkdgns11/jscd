@@ -75,54 +75,51 @@ function allqnaWrite() {
 
 // 게시글 수정 - 수정하기 버튼 눌렀을때
 function allqnaEdit() {
-
     console.log("수정버튼");
 
-    // var writer = document.getElementById("writer").value;
-    // var id = document.getElementById('id').dataset.id;
-    //
-    // console.log("id"+id);
-    // console.log("writer"+writer);
-    //
-    // if (writer != id) {
-    //     alert("해당 게시글의 작성자만 사용할 수 있는 기능입니다.");
-    //     return false;
-    // }
+    var writer = document.getElementById("writer").value.trim();
+    var id = document.getElementById("id").value;
 
+    console.log("id==" + id);
+    console.log("writer==" + writer);
 
-    // const writer = document.getElementById("writer").value;
-    // if(writer!='${id}'){
-    //     alert("해당 글의 작성자만 수정할 수 있습니다.");
-    // return false;
-    // }
+    if (writer !== id) {
+        alert("해당 게시글의 작성자만 사용할 수 있는 기능입니다.");
+        return false;
+    }
+    if (id === ''|| id === null) {
+        alert("로그인이 필요한 기능입니다.");
+    }
+
+    confirm("해당 글을 수정하시겠습니까?");
 
 // a. 수정버튼 누르면 게시글 reaonly, disabled상태 제거됨 (수정가능)
-    document.getElementById('title').readOnly = false;
-    document.getElementById('allqnaCategory').removeAttribute('disabled');
+        document.getElementById('title').readOnly = false;
+        document.getElementById('allqnaCategory').removeAttribute('disabled');
 
-    console.log("수정버튼2");
-    const contentTextarea = document.querySelector('#content');
-    contentTextarea.removeAttribute('readonly');
-    console.log("수정버튼3");
+        console.log("수정버튼2");
+        const contentTextarea = document.querySelector('#content');
+        contentTextarea.removeAttribute('readonly');
+        console.log("수정버튼3");
 
-    // b. 에디터 나타남
-    ClassicEditor
-        .create(contentTextarea)
-        .then(newEditor => {
-            editor = newEditor;
-        })
-        .catch(error => {
-            console.error(error);
-        });
+        // b. 에디터 나타남
+        ClassicEditor
+            .create(contentTextarea)
+            .then(newEditor => {
+                editor = newEditor;
+            })
+            .catch(error => {
+                console.error(error);
+            });
 
-    //c. 수정버튼은 수정완료 버튼으로 바뀜
-    const editButton = document.getElementById('modifyBtn');
-    editButton.value = '수정완료';
+        //c. 수정버튼은 수정완료 버튼으로 바뀜
+        const editButton = document.getElementById('modifyBtn');
+        editButton.value = '수정완료';
 
-    //d. 수정완료 버튼 누르면
-    editButton.onclick = function () {
-        allqnaModify();
-    };
+        //d. 수정완료 버튼 누르면
+        editButton.onclick = function () {
+            allqnaModify();
+        };
 }
 
 
@@ -143,14 +140,16 @@ function allqnaModify() {
     //
 
 
-    if (ctName === ""|| ctName === "분류") {
-        return   alert("카테고리를 선택해주세요.");;
+    if (ctName === "" || ctName === "분류") {
+        return alert("카테고리를 선택해주세요.");
+        ;
     }
     if (title === "") {
         return alert("제목을 입력해주세요.");
     }
     if (content === "") {
-        return alert("내용을 입력해주세요.");;
+        return alert("내용을 입력해주세요.");
+        ;
     }
     // if (openYN === undefined || openYN === "") {
     //     alert("공개 여부를 선택해주세요.");
@@ -163,12 +162,11 @@ function allqnaModify() {
     //writer: writer,
 
 
-    console.log("ctName======="+ctName);
+    console.log("ctName=======" + ctName);
     // console.log("writer======="+writer.value);
-    console.log("title======="+title);
-    console.log("content======="+content);
-    console.log("openYN======="+openYN);
-
+    console.log("title=======" + title);
+    console.log("content=======" + content);
+    console.log("openYN=======" + openYN);
 
 
     //g.컨트롤러로 값 보냄
@@ -182,13 +180,13 @@ function allqnaModify() {
         },
         success: function (data) {
             console.log("게시글 수정 성공");
-            console.log("data==="+data.content);
-            console.log("data===="+data.title);
+            console.log("data===" + data.content);
+            console.log("data====" + data.title);
 
             document.getElementById('title').readOnly = true;
             document.getElementById('allqnaCategory').disabled = true;
-            document.getElementById('open').disabled = true;
-            document.getElementById('close').disabled = true;
+            // document.getElementById('open').disabled = true;
+            // document.getElementById('close').disabled = true;
 
             // 'readOnly' 속성 설정
             const content = document.getElementById('content');
@@ -202,7 +200,6 @@ function allqnaModify() {
             }
 
 
-
             const modifyBtn = document.getElementById('modifyBtn');
             modifyBtn.value = '수정';
             modifyBtn.onclick = function () {
@@ -213,8 +210,10 @@ function allqnaModify() {
     });
 
     return true;
-
 }
+
+
+
 
 
 
@@ -256,10 +255,13 @@ function cmtWrite() {
     console.log("cmtWrite");
     //변수만들고
     const allqnaNo = document.getElementById("allqnaNo").value;
-    const cmtWriter = document.getElementById("cmtWriterRegi").value;
     const cmtContent = document.getElementById("cmtContentRegi").value;
     //변수를 객체로 만들어
-    const allqnaCmtData = {"allqnaNo": allqnaNo, "cmtWriter": cmtWriter, "cmtContent": cmtContent};
+
+    console.log("allqnaNo==="+allqnaNo);
+    console.log("cmtContent==="+cmtContent);
+
+    const allqnaCmtData = {"allqnaNo": allqnaNo, "cmtContent": cmtContent};
     //ajax로 보낸다.
     $.ajax({
         url: "/board/qna/allqnaCmtWrite",
@@ -271,9 +273,13 @@ function cmtWrite() {
         },
         success: function (data) {
             console.log("성공");
-            setTimeout(function () {
-                location.reload();
-            }, 500);
+            const writer = document.getElementById("writer").value.trim();
+            const id = document.getElementById("id").value;
+            console.log("writer="+writer);
+            console.log("id="+id);
+            // setTimeout(function () {
+            //     location.reload();
+            // }, 500);
 
         }
     });
@@ -366,14 +372,14 @@ function replyCmtWrite(index) {
 
     const allqnaNo = document.getElementById("allqnaNo").value;
     const allqnaCmtNo = document.getElementById("allqnaCmtNo" + index).value;
-    const cmtReplyWriter = document.getElementById("cmtReplyWriter" + index).value;
+    // const cmtReplyWriter = document.getElementById("cmtReplyWriter" + index).value;
     const cmtReplyContent = document.getElementById("cmtReplyContent" + index).value;
 
 
     const allqnaCmtReplyData = {
         "allqnaNo": allqnaNo,
         "allqnaCmtNo": allqnaCmtNo,
-        "cmtWriter": cmtReplyWriter,
+        // "cmtWriter": cmtReplyWriter,
         "cmtContent": cmtReplyContent
     };
 
@@ -468,7 +474,7 @@ function replyBlock(index) {
                 const allqnaCmtReplyNo = document.createElement('input'); //allqnaCmtReplyNo
                 const replyWriter = document.createElement('input'); //cmtReplyWriter
                 const replyContent = document.createElement('input'); //cmtReplyContent
-                // const regDate = document.createElement('input'); //regDate
+                const regDate = document.createElement('input'); //regDate
                 const replyEdit = document.createElement("input");
                 const replyDelete = document.createElement("input");
                 allqnaCmtReplyNo.setAttribute("type", "hidden");
@@ -487,12 +493,12 @@ function replyBlock(index) {
                 replyContent.setAttribute('name', 'replyContent' + index);
                 replyContent.setAttribute('value', value.cmtContent);
                 replyContent.setAttribute('readonly', true);
-                //
-                // regDate.setAttribute("type", "text");
-                // regDate.setAttribute('id', 'replyRegDate' + index);
-                // regDate.setAttribute('name', 'replyRegDate' + index);
-                // regDate.setAttribute('value', value.regDate);
-                // regDate.setAttribute('readonly', true);
+
+                regDate.setAttribute("type", "text");
+                regDate.setAttribute('id', 'replyRegDate' + index);
+                regDate.setAttribute('name', 'replyRegDate' + index);
+                regDate.setAttribute('value', value.regDate);
+                regDate.setAttribute('readonly', true);
 
                 replyEdit.setAttribute("type", "button");
                 replyEdit.setAttribute('id', 'replyEditBtn' + index);
@@ -517,6 +523,8 @@ function replyBlock(index) {
                 replyContent.style.display = 'block';
                 replyEdit.style.display = 'inline-block';
                 replyDelete.style.display = 'inline-block';
+
+
 
 
 
