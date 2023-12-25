@@ -526,12 +526,12 @@ public class MemberController {
 			m.addAttribute("companyInfoDto", companyInfoDto);
 
 			int itemsPerPage = 5;
-					int totalItems = stodService.countOrderList(id); // 전체 아이템 수를 조회
-		int totalPages = (int) Math.ceil((double) totalItems / itemsPerPage);
-		m.addAttribute("totalPages", totalPages);
+			int totalItems = stodService.countOrderList(id); // 전체 아이템 수를 조회
+			int totalPages = (int) Math.ceil((double) totalItems / itemsPerPage);
+			m.addAttribute("totalPages", totalPages);
 
-		// 현재 페이지 번호를 모델에 추가
-		m.addAttribute("currentPage", page);
+			// 현재 페이지 번호를 모델에 추가
+			m.addAttribute("currentPage", page);
 
 		} catch (Exception e){
 
@@ -644,4 +644,3 @@ public class MemberController {
 
 
 }
-
