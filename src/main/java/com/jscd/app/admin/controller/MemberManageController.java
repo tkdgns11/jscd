@@ -52,8 +52,7 @@ public class MemberManageController {
             model.addAttribute("msg", "LIST_ERR");
             return "redirect:/admin/home";
         }
-//        return "/admin/memberManage/memberManageList";
-        return "/admin/memberManage/adminMemberManageList";
+        return "/admin/memberManage/memberManageList";
     }
 
 
