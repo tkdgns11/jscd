@@ -16,12 +16,17 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/jscdReset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/admin/header.css"/>">
-    <title>Title</title>
+
+    <!-- 탭 아이콘 & 글자 지정 -->
+    <link rel="icon" href="/img/white_mainlogo.png"/>
+    <link rel="apple-touch-icon" href="/img/white_mainlogo.png"/>
+    <title>정석코딩 - 관리자 시스템 </title>
+    
 </head>
 <body>
 <div id="adminHeader">
     <div id="adminLogoBox">
-        <a href="<c:url value='/admin/home'/>"><img src="<c:url value="/img/adminLogo.png"/>"></a>
+        <a href="<c:url value='/admin/home'/>"><img src="<c:url value="/img/white_mainlogo.png"/>"></a>
         <p>관리자 시스템</p>
     </div>
     <div id="adminLoginBox">

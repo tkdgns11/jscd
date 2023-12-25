@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -14,8 +15,8 @@
 <footer>
     <div id="footerContent">
         <div id="footerLeft">
-            <img id="mainlogo_footer" src="/img/white_mainlogo.png"/><br/>
-            <p>정석코딩</p>
+            <a href="<c:url value='/'/>"><img id="mainlogo_footer" src="/img/white_mainlogo.png"/><br/></a>
+            <a href="<c:url value='/'/>"><p>정석코딩</p></a>
         </div>
         <div id="footerRight">
             <div id="snsBox">
@@ -51,7 +52,7 @@
                 </ul>
             </div>
             <div id="addrBox">
-                <span>상호명 : 정석코딩 | 대표 : 남궁성 | 메일 : castello@naver.com | 사업자 번호 : 816-47-00297</span>
+                <span>상호명 : 정석코딩 | 대표 : 남궁성 | 메일 : castello@naver.com | 사업자 번호 : 816-47-00000</span>
                 <span>주소 : 서울 종로구 종로2가 서울 YMCA 빌딩 5층 517호</span>
             </div>
             <div id="copyRight">

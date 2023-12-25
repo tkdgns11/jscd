@@ -79,6 +79,7 @@ function member(value){
                     if(data.redirect){
                         console.log("redirect 발생");
                         console.log("회원가입 성공");
+                        alert('정석코딩 회원이 되신 것을 환영합니다 !'); //회원가입 환영 Alert 추가
                         window.location.href = data.redirect;
                     }
                     if(data.error){
@@ -262,6 +263,8 @@ $(document).ready(()=>{
                 code=data;
                 // 인증번호가 전송됐습니다. alert가 너무 느리게 나오는 상황.
                 alert("인증번호가 전송됐습니다.");
+                // 본인인증 버튼의 value 값을 '인증 확인'으로 변경
+                $('#emailChkBtn').prop('value', '인증확인');
             },
             error : ()=>{
                 alert("서버 요청 실패\n관리자에게 문의해주세요.")
