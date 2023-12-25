@@ -9,9 +9,15 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>게시판 첫 페이지</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- 탭 아이콘 & 글자 지정 -->
+    <link rel="icon" href="/img/mainlogo.png"/>
+    <link rel="apple-touch-icon" href="/img/mainlogo.png"/>
+    <title>정석코딩 | 전체 공지사항</title>
     <link rel="stylesheet" href="<c:url value='/css/noticeList.css'/>">
+    <%--폰트어썸 라이브러리 불러오기--%>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
 </head>
 <body>
 <header>
@@ -21,19 +27,26 @@
     <section id="boardList_header">
         <div>
             <h1>공지사항</h1>
+            <h3>정석코딩의 최신 소식을 접해보세요</h3>
         </div>
     </section>
     <section id="boardList_content">
         <div id="boardList_nav">
             <ul>
-                <li><a href="<c:url value="/board/user/list"/>">공지사항</a></li>
-                <li><a href="<c:url value="/board/qna/allqnaList"/>">질문&답변</a></li>
-                <li><a href="<c:url value="/board/faq"/>">Faq</a></li>
+                <li><a href="<c:url value="/board/user/list"/>">
+                    <i class="fa-solid fa-bullhorn" style="color: #73b4f0;"></i>
+                    &nbsp;&nbsp;공지사항</a></li>
+                <li><a href="<c:url value="/board/qna/allqnaList"/>">
+                    <i class="fa-solid fa-comment-dots" style="color: #73b4f0;"></i>
+                    &nbsp;&nbsp;질문&답변</a></li>
+                <li><a href="<c:url value="/board/faq"/>">
+                    <i class="fa-solid fa-circle-question" style="color: #73b4f0;"></i>
+                    &nbsp;&nbsp;Faq</a></li>
             </ul>
         </div>
         <div id="boardList_main">
             <div id="boardList_main_header">
-                <p>게시판 목록 헤더</p>
+                <p>&nbsp;</p>
             </div>
             <div id=boardList_main_search>
                 <form action="<c:url value="/board/user/list"/>" method="get">
@@ -47,7 +60,7 @@
                         </div>
                         <div id="boardList_search_input">
                             <div>
-                                <input type="text" name="keyword" value="${ph.sc.keyword}" placeholder="키워드를 입력하세요.">
+                                <input type="text" name="keyword" value="${ph.sc.keyword}" placeholder="&nbsp;&nbsp;&nbsp;키워드를 입력하세요">
                             </div>
                             <div id="search_btn">
                                 <input type="submit" id="searchBtn" class="modifyBtn" value="검색">
@@ -60,11 +73,13 @@
             <div id="boardList_main_content">
                 <div>
                     <c:forEach var="noticeDto" items="${list}">
+                        <div id="board_content_per">
                         <a href="<c:url value="/board/user/read?bno=${noticeDto.bno}&page=${ph.sc.page}&pageSize=${ph.sc.pageSize}"/>">${noticeDto.title}</a>
                         <p class="ellipsis">${noticeDto.content}</p>
                         <span id="user_info_date">${noticeDto.regDate}</span>
                         <span id="user_info_id">글쓴이: ${noticeDto.writer}</span>
                         <span id="hit_num"><i class="fa-regular fa-eye"></i> ${noticeDto.viewCnt}</span>
+                        </div>
                     </c:forEach>
                 </div>
                 <div>
@@ -84,7 +99,9 @@
                     </c:if>
                 </div>
             </div>
+            <div id="empty_space"></div>
         </div>
+        
     </section>
 </main>
 <footer>

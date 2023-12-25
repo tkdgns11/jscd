@@ -21,7 +21,16 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/jscdReset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/myPage.css"/>">
     <script type="text/javascript" src="<c:url value="/js/myPage.js"/>"></script>
-    <title>myPage</title>
+
+    <!-- 탭 아이콘 & 글자 지정 -->
+    <link rel="icon" href="/img/white_mainlogo.png"/>
+    <link rel="apple-touch-icon" href="/img/white_mainlogo.png"/>
+    <title>정석코딩 | myPage</title>
+
+    <%--폰트어썸 라이브러리 불러오기--%>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
 </head>
 <script>
@@ -40,6 +49,7 @@
         <ul>
             <li><a href="/member/memberEdit">회원 정보 수정</a></li>
             <li><a href="/member/lectureApplyState">강의 신청 현황</a></li>
+            <li><a href="/order/orderList">내 주문 내역</a></li>
             <c:if test="${memberDto.getGrade() eq '3'}">
                 <li><a href="/member/instructorIntro">강사 소개말 등록</a></li>
             </c:if>
