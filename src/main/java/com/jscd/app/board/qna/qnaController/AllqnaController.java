@@ -28,9 +28,10 @@ import java.util.logging.Logger;
 @RequestMapping("/board/qna/*")
 public class AllqnaController {
 
-    //    private static final Logger logger = Logger.getLogger(AllqnaController.class.getName());
     @Autowired
     AllqnaService allqnaService;
+
+
 
 
     //1-1. 게시글 등록 페이지 이동
@@ -60,8 +61,6 @@ public class AllqnaController {
         allqnaDto.setWriter(writer);
 
         try {
-
-
             if (allqnaService.write(allqnaDto) != 1) {
                 throw new Exception("Write faild");
             }
@@ -83,7 +82,10 @@ public class AllqnaController {
 
     //1-2. 게시글 목록 읽기 (페이징 처리) 페이지 이동
     @GetMapping("/allqnaList")
-    public String allqnaList(SearchCondition sc, Model model, AllqnaDto allqnaDto, @RequestParam(name = "secret", required = false) String secret) throws Exception {
+    public String allqnaList(SearchCondition sc, Model model, AllqnaDto allqnaDto, @RequestParam(name = "secret", required = false) String secret, HttpSession session) throws Exception {
+
+        String id = (String) session.getAttribute("id");
+        model.addAttribute("id", id);
 
         try {
 
@@ -117,15 +119,22 @@ public class AllqnaController {
        String id = (String) session.getAttribute("id");
        model.addAttribute("id", id);
 
-//        request.setAttribute("msg2", "해당 게시글의 작성자만 사용할 수 있는 기능입니다.");
-//        request.setAttribute("url2", "/board/qna/allqnaDetail?allqnaNo="+allqnaNo);
 
+        if (id == null) {
+            request.setAttribute("msg", "로그인이 필요합니다.");
+            request.setAttribute("url", "/board/qna/allqnaList");
+
+        }
 
         try {
             //상세 내용 읽기
-            AllqnaDto allqnaDto = allqnaService.read(allqnaNo);
+            AllqnaDto allqnaDto = new AllqnaDto();
+
+            allqnaDto = allqnaService.read(allqnaNo);
             model.addAttribute("allqnaList", allqnaDto);
 //            model.addAttribute("allqnaList", id);
+            System.out.println("글 작성자="+allqnaDto.getWriter());
+
 
             //댓글 내용 읽기
             List<AllqnaDto> cmtlist = allqnaService.cmtRead(allqnaNo);
@@ -173,12 +182,9 @@ public class AllqnaController {
         String msg = "DEL_OK";
         String id = (String) session.getAttribute("id");
         String writer = allqnaDto.getWriter();
-        System.out.println("삭제성공==="+id);
         try {
             // writer와 id가 일치하는 경우에만 삭제 시도
             if (writer.equals(id)) {
-                System.out.println("삭제성공==="+allqnaDto);
-                System.out.println("id==="+id);
                 if (allqnaService.remove(allqnaDto.getAllqnaNo(), writer) != 1)
                     throw new Exception("Delete failed.");
                 map.put("redirect", "/board/qna/allqnaList");
@@ -204,7 +210,11 @@ public class AllqnaController {
     public Map<String, String> cmtWrite(@RequestBody AllqnaDto allqnaDto, Model model, SearchCondition sc, RedirectAttributes rttr, HttpSession session) {
         Map<String, String> map = new HashMap<>();
 
-        //String writer = (String) session.getAttribute("id");
+        String id = (String) session.getAttribute("id");
+         allqnaDto.setCmtWriter(id);
+        System.out.println("댓글 id==="+allqnaDto.getCmtWriter());
+        System.out.println("글 id==="+allqnaDto.getCmtWriter());
+
 
         try {
             //댓글 등록 실패하면 1이 아님
@@ -234,6 +244,9 @@ public class AllqnaController {
     @ResponseBody
     public Map<String, String> allqnaCmtModify(@RequestBody AllqnaDto allqnaDto, Model model, SearchCondition sc, RedirectAttributes rttr, HttpSession session) {
         Map<String, String> map = new HashMap<>();
+
+        String id = (String) session.getAttribute("id");
+        allqnaDto.setCmtWriter(id);
 
         //String writer = (String) session.getAttribute("id");
         System.out.println(allqnaDto);

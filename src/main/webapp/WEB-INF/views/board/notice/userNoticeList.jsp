@@ -18,100 +18,77 @@
     <jsp:include page="/WEB-INF/views/header.jsp"/>
 </header>
 <main>
-    <section class="board_header">
-        <div id="board_header_txt">
-            <div id="board_header_txt_title">공지사항</div>
-            <div id="board_header_txt_content">Notice</div>
+    <section id="boardList_header">
+        <div>
+            <h1>공지사항</h1>
         </div>
     </section>
-    <section class="board_main">
-        <section id="boacrd_main_sub">
-            <section id="board_aside">
-                <div id="board_aside_title"></div>
-                <div id="board_aside_contents">
-                    <div><a id="board_aside_notice" href="<c:url value="/board/user/list"/>">공지사항</a></div>
-                    <div><a id="board_aside_qna" href="${path}/board/qna/allqnaList">질문&답변</a></div>
-                    <div><a id="board_aside_faq" href="${path}/board/faq">FAQ</a></div>
-                </div>
-            </section>
-            <section id="board_main_contents">
-                <section id="main_header">
-                    <h2>전체</h2>
-                </section>
-
-            <form action="<c:url value="/board/user/list"/>" class="search-form" method="get">
-            <section id="main_search">
-                <div id="search_select">
-                <select name="option">
-                    <option value="A" ${ph.sc.option=='A' || ph.sc.option=='' ? "selected" : ""}>제목+내용</option>
-                    <option value="T" ${ph.sc.option=='T' ? "selected" : ""}>제목</option>
-                    <option value="W" ${ph.sc.option=='W' ? "selected" : ""}>작성자</option>
-                </select>
-                </div>
-                <div id="search_contents">
-                    <div id="searchbar">
-                        <input type="text" name="keyword" value="${ph.sc.keyword}" >
+    <section id="boardList_content">
+        <div id="boardList_nav">
+            <ul>
+                <li><a href="<c:url value="/board/user/list"/>">공지사항</a></li>
+                <li><a href="<c:url value="/board/qna/allqnaList"/>">질문&답변</a></li>
+                <li><a href="<c:url value="/board/faq"/>">Faq</a></li>
+            </ul>
+        </div>
+        <div id="boardList_main">
+            <div id="boardList_main_header">
+                <p>게시판 목록 헤더</p>
+            </div>
+            <div id=boardList_main_search>
+                <form action="<c:url value="/board/user/list"/>" method="get">
+                    <div>
+                        <div id="boardList_search_option">
+                            <select name="option">
+                                <option value="A" ${ph.sc.option=='A' || ph.sc.option=='' ? "selected" : ""}>제목+내용</option>
+                                <option value="T" ${ph.sc.option=='T' ? "selected" : ""}>제목</option>
+                                <option value="W" ${ph.sc.option=='W' ? "selected" : ""}>작성자</option>
+                            </select>
+                        </div>
+                        <div id="boardList_search_input">
+                            <div>
+                                <input type="text" name="keyword" value="${ph.sc.keyword}" placeholder="키워드를 입력하세요.">
+                            </div>
+                            <div id="search_btn">
+                                <input type="submit" id="searchBtn" class="modifyBtn" value="검색">
+                            </div>
+                        </div>
                     </div>
-                    <div id="search_btn">
-                        <input type="submit" id="searchBtn" class="modifyBtn" value="검색">
-                    </div>
-                </div>
-            </section>
-            </form>
+                </form>
+            </div>
             <hr/>
-
-            <c:forEach var="noticeDto" items="${list}">
-            <section id="main_contents">
-                <div id="main_content_per">
-                    <div id="main_content_info">
-                        <div id="info_header">
-                            <div id="info_header_category">
-                                <p id="category_title">N.</p>
-                            </div>
-                            <div id="info_header_title">
-                                <a href="<c:url value="/board/user/read?bno=${noticeDto.bno}&page=${ph.sc.page}&pageSize=${ph.sc.pageSize}"/>">${noticeDto.title}</a>
-                            </div>
-                        </div>
-                        <div id="info_content">
-                            <p class="ellipsis">${noticeDto.content}</p>
-                        </div>
-                        <div id="info_footer">
-                            <div id="footer_user_info">
-                                <span id="user_info_date">${noticeDto.regDate}</span>
-                                <span id="user_info_id">글쓴이: ${noticeDto.writer}</span>
-                            </div>
-                            <div id="content_info">
-                                <span id="hit_num"><i class="fa-regular fa-eye"></i> ${noticeDto.viewCnt}</span>
-                            </div>
-                        </div>
-                    </div>
+            <div id="boardList_main_content">
+                <div>
+                    <c:forEach var="noticeDto" items="${list}">
+                        <a href="<c:url value="/board/user/read?bno=${noticeDto.bno}&page=${ph.sc.page}&pageSize=${ph.sc.pageSize}"/>">${noticeDto.title}</a>
+                        <p class="ellipsis">${noticeDto.content}</p>
+                        <span id="user_info_date">${noticeDto.regDate}</span>
+                        <span id="user_info_id">글쓴이: ${noticeDto.writer}</span>
+                        <span id="hit_num"><i class="fa-regular fa-eye"></i> ${noticeDto.viewCnt}</span>
+                    </c:forEach>
                 </div>
-            </section>
-        </c:forEach>
-
-
-        <section id="paging">
-            <div id="section_paging">
-                <div id="paging_group">
-                    <div class="paging">
-                        <c:if test="${totalCnt==null || totalCnt==0}">
-                            <div> 게시물이 없습니다. </div>
+                <div>
+                    <c:if test="${totalCnt==null || totalCnt==0}">
+                        <p>게시물이 없습니다.</p>
+                    </c:if>
+                    <c:if test="${totalCnt!=null && totalCnt!=0}">
+                        <c:if test="${ph.showPrev}">
+                            <a class="page" href="<c:url value="/board/user/list${ph.sc.getQueryString(ph.beginPage-1)}"/>">이전</a>
                         </c:if>
-                        <c:if test="${totalCnt!=null && totalCnt!=0}">
-                            <c:if test="${ph.showPrev}">
-                                <a class="page" href="<c:url value="/board/user/list${ph.sc.getQueryString(ph.beginPage-1)}"/>">이전</a>
-                            </c:if>
-                            <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
-                                <a class="page ${i==ph.sc.page? "paging-active" : ""}" href="<c:url value="/board/user/list${ph.sc.getQueryString(i)}"/>">${i}</a>
-                            </c:forEach>
-                            <c:if test="${ph.showNext}">
-                                <a class="page" href="<c:url value="/board/user/list${ph.sc.getQueryString(ph.endPage+1)}"/>">다음</a>
-                            </c:if>
+                        <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
+                            <a class="page ${i==ph.sc.page? "paging-active" : ""}" href="<c:url value="/board/user/list${ph.sc.getQueryString(i)}"/>">${i}</a>
+                        </c:forEach>
+                        <c:if test="${ph.showNext}">
+                            <a class="page" href="<c:url value="/board/user/list${ph.sc.getQueryString(ph.endPage+1)}"/>">다음</a>
                         </c:if>
-                    </div>
+                    </c:if>
                 </div>
             </div>
-        </section>
-
+        </div>
+    </section>
+</main>
+<footer>
+    <jsp:include page="/WEB-INF/views/footer.jsp"/>
+</footer>
 </body>
 </html>

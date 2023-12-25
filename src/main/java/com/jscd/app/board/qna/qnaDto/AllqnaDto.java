@@ -29,7 +29,7 @@ public class AllqnaDto {
     private String etc;
     private String ctName;
 
-    AllqnaDto () {}
+    public AllqnaDto() {}
 
     public AllqnaDto(Integer allqnaNo, Integer allqnaCmtNo, Integer allqnaCmtNum, Integer allqnaParentCmtNo, Integer depth, Integer allqnaCmtReplyNo, Integer qnaCtNo, Integer mebrNo, String title, String writer, String content, String cmtWriter, String cmtContent, Integer hit, String openYN, Date regDate, Date cmtRegDate, Integer firstIdNo, Date modifyDate, Integer lastIdNo, String etc, String ctName) {
         this.allqnaNo = allqnaNo;

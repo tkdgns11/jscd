@@ -53,7 +53,7 @@
                     </div>
                     <div id="search_contents">
                         <div id="searchbar">
-                                <input type="text" name="keyword" value="${ph.sc.keyword}" >
+                            <input type="text" name="keyword" value="${ph.sc.keyword}" >
                         </div>
                         <div id="search_btn">
                             <input type="submit" id="searchBtn" class="modifyBtn" value="검색">
@@ -123,10 +123,7 @@
                         </div>
                     </div>
                 </section>
-            </section>
-        </section>
-    </section>
-</main>
+
 <footer>
     <jsp:include page="/WEB-INF/views/footer.jsp"/>
 </footer>

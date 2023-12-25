@@ -1,8 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<c:set var = "path" value = "${pageContext.request.contextPath}"/>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <%@ page import="javax.servlet.http.HttpSession" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
@@ -44,14 +44,16 @@
                     <section id="main_search">
                         <div id="search_select">
                             <select name="option">
-                                <option value="A" ${ph.sc.option=='A' || ph.sc.option=='' ? "selected" : ""}>제목+내용</option>
+                                <option value="A" ${ph.sc.option=='A' || ph.sc.option=='' ? "selected" : ""}>제목+내용
+                                </option>
                                 <option value="T" ${ph.sc.option=='T' ? "selected" : ""}>제목</option>
                                 <option value="W" ${ph.sc.option=='W' ? "selected" : ""}>작성자</option>
                             </select>
                         </div>
                         <div id="search_contents">
                             <div id="searchbar">
-                                <input type="text" name="keyword" value="${ph.sc.keyword}" style="padding-left: 30px;" placeholder="키워드를 입력하세요" >
+                                <input type="text" name="keyword" value="${ph.sc.keyword}" style="padding-left: 30px;"
+                                       placeholder="키워드를 입력하세요">
                             </div>
                             <div id="search_btn">
                                 <input type="submit" id="searchBtn" class="modifyBtn" value="검색">
@@ -60,40 +62,43 @@
                     </section>
 
                     <div id="submit_btn">
-                        <input type="button" value="등록" id="registBtn" class="registeBtn" onclick="window.location.href='/board/qna/allqnaWrite'">
+                        <input type="button" value="등록" id="registBtn" class="registeBtn"
+                               onclick="window.location.href='/board/qna/allqnaWrite'">
 
                     </div>
                 </form>
                 <hr/>
 
-
+                <c:set var="id" value="${id}"/>
+                <input type="hidden" id="id" value="${id}">
                 <c:forEach var="list" items="${list}">
-                <section id="main_contents">
-                    <div id="main_content_per">
-                        <div id="main_content_info">
-                            <div id="info_header">
-                                <div id="info_header_category">
-                                    <p id="category_title">${list.ctName}</p>
+                    <section id="main_contents">
+                        <div id="main_content_per">
+                            <div id="main_content_info">
+                                <div id="info_header">
+                                    <div id="info_header_category">
+                                        <p id="category_title">${list.ctName}</p>
+                                    </div>
+                                    <div id="info_header_title">
+                                        <a href="/board/qna/allqnaDetail?allqnaNo=${list.allqnaNo}">${list.title}</a>
+                                    </div>
                                 </div>
-                                <div id="info_header_title">
-                                    <a href="/board/qna/allqnaDetail?allqnaNo=${list.allqnaNo}">${list.title}</a>
+                                <div id="info_content">
+                                    <p class="ellipsis">${list.content}</p>
                                 </div>
-                            </div>
-                            <div id="info_content">
-                                <p class="ellipsis">${list.content}</p>
-                            </div>
-                            <div id="info_footer">
-                                <div id="footer_user_info">
-                                    <span id="user_info_date"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${list.regDate}" /></span>
-                                    <span id="user_info_id">글쓴이: ${list.writer}</span>
-                                </div>
-                                <div id="content_info">
-                                    <span id="hit_num"><i class="fa-regular fa-eye"></i> ${list.hit} </span>
+                                <div id="info_footer">
+                                    <div id="footer_user_info">
+                                        <span id="user_info_date"><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
+                                                                                  value="${list.regDate}"/></span>
+                                        <span id="user_info_id">글쓴이: ${list.writer}</span>
+                                    </div>
+                                    <div id="content_info">
+                                        <span id="hit_num"><i class="fa-regular fa-eye"></i> ${list.hit} </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
                 </c:forEach>
 
 
@@ -102,17 +107,20 @@
                         <div id="paging_group">
                             <div class="paging">
                                 <c:if test="${totalCnt==null || totalCnt==0}">
-                                    <div> 게시물이 없습니다. </div>
+                                    <div> 게시물이 없습니다.</div>
                                 </c:if>
                                 <c:if test="${totalCnt!=null && totalCnt!=0}">
                                     <c:if test="${ph.showPrev}">
-                                        <a class="page" href="<c:url value="/board/qna/allqnaList${ph.sc.getQueryString(ph.beginPage-1)}"/>">이전</a>
+                                        <a class="page"
+                                           href="<c:url value="/board/qna/allqnaList${ph.sc.getQueryString(ph.beginPage-1)}"/>">이전</a>
                                     </c:if>
                                     <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
-                                        <a class="page ${i==ph.sc.page? "paging-active" : ""}" href="<c:url value="/board/qna/allqnaList${ph.sc.getQueryString(i)}"/>">${i}</a>
+                                        <a class="page ${i==ph.sc.page? "paging-active" : ""}"
+                                           href="<c:url value="/board/qna/allqnaList${ph.sc.getQueryString(i)}"/>">${i}</a>
                                     </c:forEach>
                                     <c:if test="${ph.showNext}">
-                                        <a class="page" href="<c:url value="/board/qna/allqnaList${ph.sc.getQueryString(ph.endPage+1)}"/>">다음</a>
+                                        <a class="page"
+                                           href="<c:url value="/board/qna/allqnaList${ph.sc.getQueryString(ph.endPage+1)}"/>">다음</a>
                                     </c:if>
                                 </c:if>
                             </div>
@@ -123,13 +131,16 @@
         </section>
     </section>
 </main>
-        <footer>
-            <jsp:include page="/WEB-INF/views/footer.jsp"/>
-        </footer>
+<footer>
+    <jsp:include page="/WEB-INF/views/footer.jsp"/>
+</footer>
 </body>
-<script>
 
-</script>
-
+<c:if test="${not empty msg}">
+    <script>
+        alert('${msg}');
+        location.href = '<c:out value="${pageContext.request.contextPath}"/>${url}';
+    </script>
+</c:if>
 
 </html>
