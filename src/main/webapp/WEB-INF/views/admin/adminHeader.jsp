@@ -233,7 +233,7 @@ z-index: 1000; float: right;/">
         </div>
         <div class="box-content">
             <a href="/adminManage/adminBtTraining/list">부트캠프</a>
-            <a href="adminManage/adminSmTraining/list">세미나</a>
+            <a href="/adminManage/adminSmTraining/list">세미나</a>
         </div>
     </div>
     <div class="box">
