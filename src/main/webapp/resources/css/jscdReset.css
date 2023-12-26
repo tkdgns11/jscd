@@ -2,10 +2,14 @@
 
 
 .registeBtn{border: 0;background-color: #0185FE; color: #ffffff; width: 80px; height: 40px; border-radius: 8px; cursor:pointer}
-.modifyBtn{border: 0; background-color: rgba(0,0,0,0.2); width: 80px; height: 40px; border-radius: 8px; cursor:pointer}
+/*.modifyBtn{border: 0; background-color: rgba(0,0,0,0.2); width: 80px; height: 40px; border-radius: 8px; cursor:pointer;}*/
+.modifyBtn {border: 0; color: #FFFFFF; font-weight: 500; background-color: rgb(103 101 101 / 65%); width: 80px; height: 40px; border-radius: 8px; cursor:pointer;}
 .cancleBtn{border: 1px solid rgba(0,0,0,0.7);background-color: #ffffff; width: 80px; height: 40px; border-radius: 8px; cursor:pointer}
-.deleteBtn{border: 1px solid rgba(0,0,0,0.7);background-color: #ffffff; width: 80px; height: 40px; border-radius: 8px; cursor:pointer}
+/*.deleteBtn{border: 1px solid rgba(0,0,0,0.7);background-color: #ffffff; width: 80px; height: 40px; border-radius: 8px; cursor:pointer}*/
+.deleteBtn {border: 0; width: 80px; height: 40px; border-radius: 8px; cursor:pointer; background-color: rgb(238, 108, 108); color: #FFFFFF;}
 .backBtn{border: 1px solid rgba(0,0,0,0.7);background-color: #ffffff; width: 80px; height: 40px; border-radius: 8px; cursor:pointer}
+.searchBtn {border: solid 1px #7d7777; background-color: #FFFFFF; color: #7d7777; width: 50px; height: 40px; border-radius: 8px; cursor:pointer;}
+.searchBtn:hover {opacity: 0.5;}
 
 .registeBtn:hover {opacity: 0.5;}
 .modifyBtn:hover {opacity: 0.5;}

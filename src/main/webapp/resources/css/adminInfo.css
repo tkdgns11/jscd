@@ -67,7 +67,8 @@
 /*231226 강정수 css 수정
 */
 
-#infoTitleBox{font-size: 30px;}
+#infoTitleBox{font-size: 25px; color: #353739; letter-spacing: 2px; padding-bottom: 13px; border-bottom: solid 1px #ebeaea; margin-top: 20px;}
+#infoTitleBox {font-family: "Font Awesome";}
 
 #infoDetailBox{width: 60%; margin: 0 auto; }
 .infoInputBox{width: 400px;height: 36px;border: 0;border-bottom: 1px solid rgba(0, 0, 0, 0.2);margin: 8px 0 20px 0;padding-top: 4px;padding-left: 10px;pointer-events : none;}
@@ -86,29 +87,38 @@
 
 /*회원 관리 테이블*/
 #memberInfo{display: flex; flex-direction: column; width: 80%; margin: 20px auto;}
-#main_content_controll{display: flex; flex-direction: column; align-items: flex-end; margin: 20px;}
+#main_content_controll{display: flex; flex-direction: column; align-items: flex-end; margin: 40px 20px;}
 
 /*검색*/
-#memberSearchBox select{width: 100px; height: 40px; border-radius: 10px;}
-#memberSearchBox input[type=text]{height: 40px;  width: 250px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.2);}
+#memberSearchBox select{width: 100px; height: 40px; border-radius: 10px; text-align: center; color: #7c838b;}
+#memberSearchBox input[type=text]{height: 40px;  width: 250px; border-radius: 10px; border: 1px solid rgb(118 118 118); padding: 0 10px;}
 
 /*상태 수정*/
 #memberUpdateBox{margin-top: 20px;}
-#memberUpdateBox select{width: 100px; height: 40px; border-radius: 10px;}
+#memberUpdateBox select{width: 100px; height: 40px; border-radius: 10px; text-align: center; color: #7c838b;}
 #memberUpdateBox input{width: 100px; height: 40px; border-radius: 10px;}
 
 #instructorUpdateBox{margin-top: 20px;}
-#instructorUpdateBox select{width: 200px; height: 40px; border-radius: 10px;}
+/*#instructorUpdateBox select{width: 200px; height: 40px; border-radius: 10px; text-align: center; color: #7c838b;}*/
 #stdUpdateBox{margin-top: 20px;}
-#stdUpdateBox select{width: 200px; height: 40px; border-radius: 10px;}
+#stdUpdateBox select, #instructorUpdateBox select {width: 200px; height: 40px; border-radius: 10px; text-align: center; color: #7c838b;}
 #memberUpdateBox input{width: 100px; height: 40px; border-radius: 10px;}
 /*내비게이션*/
 #infoNaviBox{width:100%; margin: 20px auto; text-align: center;}
 /*테이블*/
 #memberListBox  table{border:1px solid rgba(0,0,0,0.2); width: 100%;}
-#memberListBox  table  tr th {background-color: rgba(0,0,0,0.5); text-align: center; border-bottom: 1px solid rgba(0,0,0,0.2);}
+#memberListBox  table  tr th {background-color: #dbd8d8; text-align: center; border-bottom: 1px solid rgba(0,0,0,0.2); padding: 8px 0;}
 #memberListBox  table  tr td {text-align: center; padding: 10px;}
 #th_phone{width: 300px;}
+
+/*#modifyBtn_stdManage {color: #FFFFFF; font-weight: 500; background-color: rgb(103 101 101 / 65%) !important;}*/
+/*.searchBtn_stdManage {border: solid 1px #7d7777; background-color: #FFFFFF; color: #7d7777; width: 50px; height: 40px; border-radius: 8px; cursor:pointer;}*/
+/*.searchBtn_stdManage:hover {opacity: 0.5;}*/
+.detailBtn {background-color: #FFFFFF; border-radius: 3px; border: solid 1px #bbbbbb; color: #353739;}
+
+#infoNaviBox a {color: #353739;}
+#infoNaviBox a:hover {text-decoration-line: underline;}
+
 
 /*과정 등록*/
 .infoDetailClass{display: flex; flex-direction: column;}

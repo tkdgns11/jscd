@@ -30,7 +30,7 @@
         <p>관리자 시스템</p>
     </div>
     <div id="adminLoginBox">
-        <input type="button" value="로그아웃" class="deleteBtn" onClick="location.href='<c:url value='/admin/logout'/>'">
+        <input type="button" value="로그아웃" class="cancleBtn" onClick="location.href='<c:url value='/admin/logout'/>'">
         <input type="button" value="마이페이지" class="registeBtn" onClick="location.href='<c:url value='/admin/read'/>'">
     </div>
 </div>
