@@ -82,7 +82,7 @@ hr {height: 1px; border: 0; border-bottom: solid 1px #abd7ff; width: 85%; margin
 #empty_space {width: 100%; height: 80px;}
 #board_content_per {border-bottom: solid 1px #abd7ff;}
 #board_content_per {padding: 0 20px 35px 20px; margin-bottom: 35px;}
-#board_content_per a {font-weight: 500; font-size: 30px; color: #0185FE;}
+#board_content_per a {font-weight: 500; font-size: 30px; color: #000000;}
 #board_content_per a:hover {text-decoration-line: underline;}
 #board_content_per p {margin-bottom: 17px; color: #5e646a;}
 #board_content_footer {width: 100%; display: flex; color: #afb1b6;}
