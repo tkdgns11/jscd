@@ -16,7 +16,14 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/admin/home.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/adminInfo.css"/>">
-    <title>Home</title>
+    <!-- 탭 아이콘 & 글자 지정 -->
+    <link rel="icon" href="/img/white_mainlogo.png"/>
+    <link rel="apple-touch-icon" href="/img/white_mainlogo.png"/>
+    <title>정석코딩 관리자 | 회원 정보 관리</title>
+    <%--폰트어썸 라이브러리 불러오기--%>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <script>
         window.onload=function (){
             let msg = "${param.msg}";
@@ -37,7 +44,9 @@
     <main>
         <div id="memberInfo">
             <div id="infoTitleBox">
-                <h1>회원 정보 관리</h1>
+                <h1>
+                    <i class="fa-solid fa-user" style="color: #353739;"></i>
+                    &nbsp;&nbsp;회원 정보 관리</h1>
             </div>
             <div id="main_content_controll">
                 <div id="memberSearchBox">
@@ -50,7 +59,7 @@
                         </select>
                         <input type="text" name="keyword" value="${param.keyword}" id="keywordInput"
                                placeholder="검색어를 입력해주세요"/>
-                        <input type="submit" value="검색" class="deleteBtn"/>
+                        <input type="submit" value="검색" class="searchBtn"/>
                     </form>
                 </div>
                 <div id="memberUpdateBox">

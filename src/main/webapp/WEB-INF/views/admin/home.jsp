@@ -16,7 +16,10 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/admin/home.css"/>">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <script type="text/javascript" src="<c:url value="/js/admin/home.js"/>"></script>
-    <title>Home</title>
+    <!-- 탭 아이콘 & 글자 지정 -->
+    <link rel="icon" href="/img/white_mainlogo.png"/>
+    <link rel="apple-touch-icon" href="/img/white_mainlogo.png"/>
+    <title>정석코딩 관리자 | 대시보드</title>
 </head>
 <body>
 <header>
