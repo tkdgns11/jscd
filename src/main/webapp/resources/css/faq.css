@@ -1,26 +1,29 @@
-.innerbox{overflow: auto; height:700px; margin: 20px auto; display: flex; max-width: 70%; flex-wrap: wrap; justify-content: space-between; box-sizing: content-box;}
+.innerbox{overflow: auto; height:700px; margin: 20px auto; display: flex; width: 90%; flex-wrap: wrap; justify-content: space-between; box-sizing: content-box;}
 .innerbox > div {flex: 0 1 calc(50% - 10px); margin-bottom: 20px; box-sizing: border-box; }
 .innerbox > div:nth-child(-n+2) {margin-bottom: 20px;}
 @media (max-width: 768px) {.innerbox > div {flex: 0 1 calc(100% - 10px); }}
 #pink1, #pink2,#blue1,#blue2{ width:490px;  border-radius: 30px 30px 0px 0px; padding: 10px;}
-#pink1hd,#pink2hd{ height: 55px; background: #ED3269;  border-radius: 30px 30px 0px 0px; text-align: center; line-height: 55px; font-size:  32px; font-weight: bold; color: #FFFFFF;  }
-#blue1hd,#blue2hd{ height: 55px; background: #0185F2;  border-radius: 30px 30px 0px 0px;  text-align: center;  line-height: 55px; font-size: 24px; font-weight: bold; color: #FFFFFF; }
-#pink1bd,#pink2bd,#blue1bd,#blue2bd { height: 200px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 0 0 30px 30px; overflow: auto;;}
-#blue1bd,#blue2bd{font-size: 20px; font-weight: bold; padding: 30px;}
+#pink1hd,#pink2hd{ height: 55px; background: #ED3269;  border-radius: 30px 30px 0px 0px; text-align: center; line-height: 55px; font-size:  21px; font-weight: bold; color: #FFFFFF;  }
+#blue1hd,#blue2hd{ height: 55px; background: #0185F2;  border-radius: 30px 30px 0px 0px;  text-align: center;  line-height: 55px; font-size: 21px; font-weight: bold; color: #FFFFFF; }
+#pink1bd,#pink2bd,#blue1bd,#blue2bd { height: 200px; box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25); border-radius: 0 0 30px 30px; overflow: auto;;}
+#blue1bd,#blue2bd{font-size: 20px; font-weight: bold; padding: 30px; line-height: 1.5;}
 #pink1, #pink2 {padding-bottom : 0; margin-bottom : 0;}
 #pink2 {padding-left : 0; padding-right : 10px;}
 #blue2 {padding-left : 0px; padding-right : 10px;}
 #blue1bd {height : 200px;}
 /* 첫번째 핑크상자 글씨 크기(가 달라서 id를 따로 설정함) */
-#fstLt{font-size: 32px; font-weight: bold; text-align: center; margin: 0;}
-#scdLt{font-size: 24px; font-weight: bold; text-align: center;margin: 0;}
+#fstLt{font-size: 25px; font-weight: 550; text-align: center; margin: 0;}
+#scdLt{font-size: 18px; font-weight: 550; text-align: center;margin: 0;}
 #pink1bd{display:flex; flex-direction: row;  align-items: center;justify-content: center; height : 250px;}
 #pink2bd{font-size: 32px; font-weight: bold; display:flex; flex-direction: row ;justify-content: center; align-items: center;height : 250px;}
 #bookimg{float: left; margin-right: 20px;}
 #bookimg img{ width: 100px; height: auto; border-radius : 10px;}
-#letters a{text-decoration-line: none; display: block}
+#letters a{text-decoration-line: none; display: block; color: #353739;}
+#letters a:hover {text-decoration-line: underline;}
+#pink2bd div a:hover {text-decoration-line: underline;}
+#pink2bd div a {color: #353739; font-size: 25px;}
 #pink2bd iframe{width: 160px; height: 90px; margin: 0 auto ;}
-#curriculum{ margin: 0 auto 0 auto ; width:70%; overflow: hidden;}
+#curriculum{ margin: 0 auto 0 auto ; width:90%; overflow: hidden;}
 #imgboxNavi{padding-top: 15px; height: 39px; background: #3C62E7;  text-align: center; border-radius: 10px 10px 0px 0px; font-size: 24px; color: #FFFFFF; font-weight: bold; }
 #imgboxNavi span{margin-right: 5px;}
 #buttons{display: flex; margin-left: 20px; width: 50px}
