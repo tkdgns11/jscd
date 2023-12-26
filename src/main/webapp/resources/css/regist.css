@@ -35,6 +35,7 @@
 /*검색*/
 #lectureSearchBox select{width: 100px; height: 40px; border-radius: 10px;}
 #lectureSearchBox input[type=text]{height: 40px;  width: 250px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.2);}
+lectureSearchBox input[type=submit]{height: 40px;  width: 250px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.2);}
 #lectureWriteBox{margin-top: 20px;}
 /*테이블*/
 #lectureListBox table{border:1px solid rgba(0,0,0,0.2); width: 100%;}
