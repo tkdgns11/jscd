@@ -30,12 +30,9 @@
 </head>
 <body>
 <header>
-    <jsp:include page="../../admin/header.jsp"/>
+    <jsp:include page="../../admin/adminHeader.jsp"/>
 </header>
 <div id="adminContent">
-    <nav>
-        <jsp:include page="../../admin/sidebar.jsp"/>
-    </nav>
     <main>
 
         <div id="infoTitleBox">
