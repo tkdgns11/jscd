@@ -42,7 +42,7 @@
                 </div>
                 <div id="lectureWriteBox">
                     <%--    <button id="writeBtn" class="btn-write" onclick="location.href='<c:url value="/onlyAdmin/lstRegist/addRegist"/>'">강의 추가하기</button>--%>
-                    <input type="button" class="modifyBtn" value="공지 등록" onclick="location.href='<c:url value="/adminManage/lstRegist/addRegist"/>'">
+                    <input type="button" class="modifyBtn" value="공지 등록" onclick="location.href='<c:url value="/board/notice/write"/>'">
                 </div>
 
             </div>

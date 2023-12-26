@@ -53,10 +53,6 @@
                         <input type="submit" id="smApplicationListSearch" class="cancleBtn" value="검색">
                     </form>
                 </div>
-                <div id="lectureWriteBox">
-                    <%--    <button id="writeBtn" class="btn-write" onclick="location.href='<c:url value="/onlyAdmin/lstRegist/addRegist"/>'">강의 추가하기</button>--%>
-                    <input type="button" class="modifyBtn" value="강의 추가" onclick="location.href='<c:url value="/adminManage/lstRegist/addRegist"/>'">
-                </div>
 
             </div>
             <div id="lectureListBox">

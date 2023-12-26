@@ -30,7 +30,7 @@
             </div>
             <div id="main_content_controll">
                 <div id="lectureSearchBox">
-                    <form id="registHead" action="" method="get">
+                    <form id="registHead" action="#" method="get">
                         <select class="search-option" name="option">
                             <option value="A" ${ph.sc.option=='A' || ph.sc.option=='' ? "selected" : ""}>제목+내용</option>
                             <option value="T" ${ph.sc.option=='T' ? "selected" : ""}>제목만</option>
@@ -42,7 +42,7 @@
                 </div>
                 <div id="lectureWriteBox">
                     <%--    <button id="writeBtn" class="btn-write" onclick="location.href='<c:url value="/onlyAdmin/lstRegist/addRegist"/>'">강의 추가하기</button>--%>
-                    <input type="button" class="modifyBtn" value="공지 등록" onclick="location.href='<c:url value="/adminManage/lstRegist/addRegist"/>'">
+                    <input type="button" class="modifyBtn" value="공지 등록" onclick="location.href='<c:url value="/board/stdNotice/write"/>'">
                 </div>
 
             </div>
