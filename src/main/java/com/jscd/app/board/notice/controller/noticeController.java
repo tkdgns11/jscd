@@ -56,6 +56,7 @@ public class noticeController {
 
             List<noticeDto> list = noticeService.getSearchResultPage(sc);
             m.addAttribute("list", list);
+            System.out.println("list = " + list);
             m.addAttribute("ph", pageHandler);
 
 
