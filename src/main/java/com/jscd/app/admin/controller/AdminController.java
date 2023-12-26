@@ -52,7 +52,6 @@ public class AdminController {
     //관리자 홈
 
     @GetMapping("/home")
-//    public String adminHome() {return "redirect:/dashBoard/home";}
     public String adminHome(Model m) throws Exception {
         DashboardDto dashboardDto = new DashboardDto();
 
@@ -71,7 +70,7 @@ public class AdminController {
         dashboardDto = adminService.qnaCategoryStatus();
         m.addAttribute("qnaCategoryStatus", dashboardDto);
 
-        return "redirect:/dashBoard/home";
+        return "/admin/home";
     }
 
     //로그인 화면 보여주기

@@ -8,6 +8,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,12 +18,12 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/adminInfo.css"/>">
     <title>Home</title>
     <script>
-    window.onload=function (){
-    let msg = "${param.msg}";
-    if (msg == "LIST_ERR") alert("회원 목록을 가져오는데 실패했습니다. 다시 시도해 주세요.");
-    if (msg == "MOD_ERR") alert("수정에 실패했습니다. 다시 시도해 주세요.");
-    if (msg == "MOD_OK") alert("성공적으로 수정되었습니다.");
-    }
+        window.onload=function (){
+            let msg = "${param.msg}";
+            if (msg == "LIST_ERR") alert("회원 목록을 가져오는데 실패했습니다. 다시 시도해 주세요.");
+            if (msg == "MOD_ERR") alert("수정에 실패했습니다. 다시 시도해 주세요.");
+            if (msg == "MOD_OK") alert("성공적으로 수정되었습니다.");
+        }
     </script>
 </head>
 <body>
@@ -34,40 +35,54 @@
         <jsp:include page="../sidebar.jsp"/>
     </nav>
     <main>
-
-        <%--수정 -> 수정버튼 -> 읽기--%>
-        <div id="infoTitleBox">
-            <h1>회원 정보 관리</h1>
-        </div>
-        <div id="infoContentBox">
-            <div id="memberSearchBox">
-                <form action="" method="get">
-                    <select name="option">
-                        <option value="T" ${sc.option=='T' || sc.option=='' ? "selected" : ""}>이름</option>
-                        <option value="W" ${sc.option=='W' || sc.option=='' ? "selected" : ""}>아이디</option>
-                        <option value="R" ${sc.option=='R' || sc.option=='' ? "selected" : ""}>등급</option>
-                        <option value="Q" ${sc.option=='Q' || sc.option=='' ? "selected" : ""}>상태</option>
+        <div id="memberInfo">
+            <div id="infoTitleBox">
+                <h1>회원 정보 관리</h1>
+            </div>
+            <div id="main_content_controll">
+                <div id="memberSearchBox">
+                    <form action="#" method="get">
+                        <select name="option" id="memberSearchBox_select">
+                            <option value="T" ${sc.option=='T' || sc.option=='' ? "selected" : ""}>이름</option>
+                            <option value="W" ${sc.option=='W' || sc.option=='' ? "selected" : ""}>아이디</option>
+                            <option value="R" ${sc.option=='R' || sc.option=='' ? "selected" : ""}>등급</option>
+                            <option value="Q" ${sc.option=='Q' || sc.option=='' ? "selected" : ""}>상태</option>
+                        </select>
+                        <input type="text" name="keyword" value="${param.keyword}" id="keywordInput"
+                               placeholder="검색어를 입력해주세요"/>
+                        <input type="submit" value="검색" class="deleteBtn"/>
+                    </form>
+                </div>
+                <div id="memberUpdateBox">
+                    <select name="grade" id="grade">
+                        <option value="1">일반</option>
+                        <option value="2">학생</option>
+                        <option value="3">강사</option>
+                        <option value="4">관리자(조교)</option>
                     </select>
-                    <input type="text" name="keyword" type="text" value="${param.keyword}" id="keywordInput"
-                           placeholder="검색어를 입력해주세요">
-                    <input type="submit" value="검색" class="deleteBtn">
-                </form>
+                    <select name="status" id="status" style="width: 100px">
+                        <option value="1">정상</option>
+                        <option value="2">블랙</option>
+                        <option value="3">탈퇴</option>
+                        <option value="4">휴면</option>
+                    </select>
+                    <input type="button" value="등급/상태 수정" class="modifyBtn" onclick="statusUpdate()">
+                </div>
             </div>
             <div id="memberListBox">
                 <table>
                     <tr>
-                        <th style="width: 80px"><input type="checkbox" id="allCheckBox" onclick="allChecked()"
-                        ></th>
-                        <th style="width: 80px">No.</th>
-                        <th style="width: 300px;">아이디</th>
+                        <th style="width: 50px;"><input type="checkbox" id="allCheckBox" onclick="allChecked()"></th>
+                        <th style="width: 50px;">No.</th>
+                        <th style="width: 200px;">아이디</th>
                         <th style="width: 100px;">이름</th>
-                        <th style="width: 250px;">닉네임</th>
+                        <th style="width: 100px;">닉네임</th>
                         <th style="width: 100px;">성별</th>
-                        <th style="width: 250px;">휴대전화</th>
-                        <th style="width: 100px;">등급</th>
-                        <th style="width: 100px;">상태</th>
-                        <th style="width: 250px;">가입일</th>
-                        <th style="width: 100px;"></th>
+                        <th style="width: 150px;">휴대전화</th>
+                        <th style="width: 150px;">등급</th>
+                        <th style="width: 80px;">상태</th>
+                        <th style="width: 200px;">가입일</th>
+                        <th style="width: 100px;">비고</th>
                     </tr>
                     <c:forEach var="memberDto" items="${list}">
                         <tr>
@@ -82,7 +97,7 @@
                             <td>${memberDto.name}</td>
                             <td>${memberDto.nickname}</td>
                             <td>${memberDto.gender}</td>
-                            <td>${memberDto.phone}</td>
+                            <td id="td_phone">${memberDto.phone}</td>
                             <td>${memberDto.grade}</td>
                             <td>${memberDto.status}</td>
                             <td><fmt:formatDate value="${memberDto.regDate}"
@@ -97,51 +112,30 @@
                     </c:forEach>
                 </table>
             </div>
+            <div id="infoNaviBox">
+                <c:if test="${page.totalCnt==null || page.totalCnt==0}">
+                    <p id="noContent">등록된 회원이 없습니다 .</p>
+                </c:if>
 
-
-
-
-            <div id="memberUpdateBox" style="left: 75%">
-                <select name="grade" id="grade">
-                    <option value="1">일반</option>
-                    <option value="2">학생</option>
-                    <option value="3">강사</option>
-                    <option value="4">관리자(조교)</option>
-                </select>
-                <select name="status" id="status" style="width: 100px">
-                    <option value="1">정상</option>
-                    <option value="2">블랙</option>
-                    <option value="3">탈퇴</option>
-                    <option value="4">휴면</option>
-                </select>
-                <input type="button" value="등급/상태 수정" class="modifyBtn" onclick="statusUpdate()" style="width: 100px;height: 30px;">
+                <c:if test="${page.totalCnt!=null && page.totalCnt!=0}">
+                    <p>
+                        <c:if test="${page.showPrev}">
+                            <a href="<c:url value="/adminManage/memberManage/list${sc.getQueryString(page.beginPage-1)}"/>">&lt;</a>
+                        </c:if>
+                        <c:forEach var="i" begin="${page.beginPage}" end="${page.endPage}">
+                            <a href="<c:url value="/adminManage/memberManage/list${sc.getQueryString(i)}"/>"
+                               class="naviPage${i==sc.page? "-active" : ""}">${i}</a>
+                        </c:forEach>
+                        <c:if test="${page.showNext}">
+                            <a href="<c:url value="/adminManage/memberManage/list${sc.getQueryString(page.endPage+1)}"/>">&gt;</a>
+                        </c:if>
+                    </p>
+                </c:if>
             </div>
-        </div>
-
-        <div id="infoNaviBox">
-            <c:if test="${page.totalCnt==null || page.totalCnt==0}">
-                <p id="noContent">등록된 회원이 없습니다 .</p>
-            </c:if>
-
-            <c:if test="${page.totalCnt!=null && page.totalCnt!=0}">
-                <p>
-                    <c:if test="${page.showPrev}">
-                        <a href="<c:url value="/adminManage/memberManage/list${sc.getQueryString(page.beginPage-1)}"/>">&lt;</a>
-                    </c:if>
-                    <c:forEach var="i" begin="${page.beginPage}" end="${page.endPage}">
-                        <a href="<c:url value="/adminManage/memberManage/list${sc.getQueryString(i)}"/>"
-                           class="naviPage${i==sc.page? "-active" : ""}">${i}</a>
-                    </c:forEach>
-                    <c:if test="${page.showNext}">
-                        <a href="<c:url value="/adminManage/memberManage/list${sc.getQueryString(page.endPage+1)}"/>">&gt;</a>
-                    </c:if>
-                </p>
-            </c:if>
         </div>
     </main>
 </div>
 </body>
-
 <script>
     function allChecked(target) {
 

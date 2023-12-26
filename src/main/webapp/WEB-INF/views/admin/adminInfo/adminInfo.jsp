@@ -6,61 +6,58 @@
     <title>개인 정보 수정</title>
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
-    <link rel="stylesheet" type="text/css" href="<c:url value="/css/home.css"/>">
-    <link rel="stylesheet" type="text/css" href="<c:url value="/css/adminInfo.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/jscdReset.css"/>">
-    <style>
-        body {
-            overflow: hidden;
-            height: 100%
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/admin/home.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/adminInfo.css"/>">
+
+    <script>
+        let msg = "${param.msg}";
+        if (msg == "MOD_OK") alert("성공적으로 수정되었습니다.");
+        if (msg == "READ_ERR") alert("정보를 가져오는데 실패했습니다. 다시 시도해 주세요.");
+    </script>
 
 </head>
 <body>
-<script>
-    let msg = "${param.msg}";
-    if (msg == "MOD_OK") alert("성공적으로 수정되었습니다.");
-    if (msg == "READ_ERR") alert("정보를 가져오는데 실패했습니다. 다시 시도해 주세요.");
-</script>
-
-
 <header>
-    <jsp:include page="../adminHeader.jsp"/>
+    <jsp:include page="../header.jsp"/>
 </header>
-
-
-<div id="infoDetailBox">
-    <h2 id="infoTitle" style="margin-bottom: 50px">개인 정보 수정</h2>
-    <label style="margin-right: 40px;">아이디</label>
-    <input type="text" class="infoInputBox" readonly value="${adminDto.id}"><br>
-    <label style="margin-right: 55px;">이름</label>
-    <input type="text" class="infoInputBox" readonly value="${adminDto.name}"><br>
-    <label style="margin-right: 40px;">닉네임</label>
-    <input type="text" name="nickname" class="infoModifyInputBox" id="nickname"
-           value="${adminDto.nickname}"><br>
-    <label style="margin-right: 30px;">비밀번호</label>
-    <input type="password" id="pwd1" class="password"><br>
-    <label>비밀번호 확인</label>
-    <input type="password" class="password" id="pwd2" name="pwd">
-    <font id="checkPwd" size="2"></font><br>
-    <input type="hidden" id="pwdChkYN" value="">
-    <label style="margin-right: 30px;">생년월일</label>
-    <input class="infoModifyInputBox" name="birth" id="birth" type="date"
-           value="<fmt:formatDate value="${adminDto.birth}" pattern="yyyy-MM-dd" type="date"/>"><br>
-    <label style="margin-right: 30px;">휴대전화</label>
-    <input type="text" class="infoModifyInputBox" name="phone" id="phone" value="${adminDto.phone}"
-           oninput="autoHyphen(this)"><br>
-    <br>
-    <div id="adminBtnBox">
-        <input type="button" value="수정" class="modifyBtn">
-        <input type="button" value="취소" class="deleteBtn" onclick="location.href='/admin/home'">
-    </div>
-
+<div id="adminContent">
+    <nav>
+        <jsp:include page="../sidebar.jsp"/>
+    </nav>
+    <main>
+        <div id="infoDetailBox">
+            <h2 id="infoTitle" style="margin-bottom: 50px">개인 정보 수정</h2>
+            <label style="margin-right: 40px;">아이디</label>
+            <input type="text" class="infoInputBox" readonly value="${adminDto.id}"><br>
+            <label style="margin-right: 55px;">이름</label>
+            <input type="text" class="infoInputBox" readonly value="${adminDto.name}"><br>
+            <label style="margin-right: 40px;">닉네임</label>
+            <input type="text" name="nickname" class="infoModifyInputBox" id="nickname"
+                   value="${adminDto.nickname}"><br>
+            <label style="margin-right: 30px;">비밀번호</label>
+            <input type="password" id="pwd1" class="password"><br>
+            <label>비밀번호 확인</label>
+            <input type="password" class="password" id="pwd2" name="pwd">
+            <font id="checkPwd" size="2"></font><br>
+            <input type="hidden" id="pwdChkYN" value="">
+            <label style="margin-right: 30px;">생년월일</label>
+            <input class="infoModifyInputBox" name="birth" id="birth" type="date"
+                   value="<fmt:formatDate value="${adminDto.birth}" pattern="yyyy-MM-dd" type="date"/>"><br>
+            <label style="margin-right: 30px;">휴대전화</label>
+            <input type="text" class="infoModifyInputBox" name="phone" id="phone" value="${adminDto.phone}"
+                   oninput="autoHyphen(this)"><br>
+            <br>
+            <div id="adminBtnBox">
+                <input type="button" value="수정" class="modifyBtn">
+                <input type="button" value="취소" class="deleteBtn" onclick="location.href='/admin/home'">
+            </div>
+        </div>
+    </main>
 </div>
 
-<script>
 
+<script>
     function pwdChkYNValid() {
         let pwdChkYN = document.getElementById('pwdChkYN').value;
 
@@ -164,8 +161,6 @@
 
 
     })
-
-
 </script>
 
 </body>

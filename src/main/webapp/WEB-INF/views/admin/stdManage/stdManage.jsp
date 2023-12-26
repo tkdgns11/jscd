@@ -39,8 +39,8 @@
     <input type="text" class="infoInputBox" readonly value="${stdDto.name}"><br>
     <label>생년월일</label>
     <input type="text" class="infoInputBox" readonly value="${stdDto.birth}"><br>
-<%--    <input type="text" class="infoInputBox" readonly--%>
-<%--           value="<fmt:formatDate value="${stdDto.birth}" pattern="yyyy-MM-dd" type="date"/>"><br>--%>
+    <%--    <input type="text" class="infoInputBox" readonly--%>
+    <%--           value="<fmt:formatDate value="${stdDto.birth}" pattern="yyyy-MM-dd" type="date"/>"><br>--%>
 
 
     <label>휴대전화</label>

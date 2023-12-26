@@ -89,15 +89,18 @@ public class AllqnaController {
 
         try {
 
+            System.out.println("sc = " + sc);
             int totalCnt = allqnaService.getSearchResultCnt(sc);
             model.addAttribute("totalCnt", totalCnt);
 
-            PageHandler pageHandler = new PageHandler(totalCnt, sc);
 
+            PageHandler pageHandler = new PageHandler(totalCnt, sc);
+            model.addAttribute("ph", pageHandler);
+            System.out.println("pageHandler = " + pageHandler);
             List<AllqnaDto> list = allqnaService.getSearchResultPage(sc);
             model.addAttribute("list", list);
-            model.addAttribute("ph", pageHandler);
 
+            System.out.println("list = " + list);
 
             return "/board/qna/allqnaList";
 

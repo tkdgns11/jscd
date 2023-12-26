@@ -76,16 +76,16 @@
                 <div>
                     <c:forEach var="noticeDto" items="${list}">
                         <div id="board_content_per">
-                        <a href="<c:url value="/board/user/read?bno=${noticeDto.bno}&page=${ph.sc.page}&pageSize=${ph.sc.pageSize}"/>">${noticeDto.title}</a>
-                        <p class="ellipsis">${noticeDto.content}</p>
+                            <a href="<c:url value="/board/user/read?bno=${noticeDto.bno}&page=${ph.sc.page}&pageSize=${ph.sc.pageSize}"/>">${noticeDto.title}</a>
+                            <p class="ellipsis">${noticeDto.content}</p>
                             <div id="board_content_footer">
                                 <div>
-                        <span id="user_info_date">${noticeDto.regDate}</span>
-                        <span id="user_info_id">&nbsp;&nbsp;
-                            <i class="fa-solid fa-user-pen fa-xs" style="color: #afb1b6;"></i>
-                                ${noticeDto.writer}</span>
+                                    <span id="user_info_date">${noticeDto.regDate}</span>
+                                    <span id="user_info_id">&nbsp;&nbsp;
+                                        <i class="fa-solid fa-user-pen fa-xs" style="color: #afb1b6;"></i>
+                                            ${noticeDto.writer}</span>
                                 </div>
-                        <span id="hit_num"><i class="fa-regular fa-eye" style="color: #afb1b6;"></i> ${noticeDto.viewCnt}</span>
+                                <span id="hit_num"><i class="fa-regular fa-eye" style="color: #afb1b6;"></i> ${noticeDto.viewCnt}</span>
                             </div>
                         </div>
                     </c:forEach>

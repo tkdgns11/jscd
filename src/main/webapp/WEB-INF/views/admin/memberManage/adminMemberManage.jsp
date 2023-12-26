@@ -31,16 +31,12 @@
     <jsp:include page="../header.jsp"/>
 </header>
 <div id="adminContent">
-    <nav style="height: 100%">
+    <nav>
         <jsp:include page="../sidebar.jsp"/>
     </nav>
     <main>
-
-
         <div id="infoDetailBox">
-
             <h2 id="infoTitle">회원 상세보기</h2>
-
             <label style="margin-right: 3px;">회원번호</label>
             <input type="text" class="infoInputBox" name="mebrNo" id="mebrNo" readonly value="${memberDto.mebrNo}"><br>
             <label style="margin-right: 15px;">아이디</label>
@@ -66,7 +62,6 @@
                    value="<fmt:formatDate value="${memberDto.regDate}" pattern="yyyy-MM-dd" type="date"/>"><br>
             <label style="margin-right: 25px;">비고</label>
             <input type="text" class="infoModifyInputBox" id="etc" name="etc" readonly value="${memberDto.etc}"><br>
-
             <div id="adminBtnBox">
                 <input type="button" value="수정" class="modifyBtn">
                 <input type="button" value="목록" class="backBtn"
