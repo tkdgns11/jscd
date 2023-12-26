@@ -23,12 +23,14 @@
 </head>
 <body>
 <header>
-    <jsp:include page="../../admin/adminHeader.jsp"/>
+    <jsp:include page="/WEB-INF/views/admin/header.jsp"/>
 </header>
 <div id="adminContent">
-
+    <nav>
+        <jsp:include page="/WEB-INF/views/admin/sidebar.jsp"/>
+    </nav>
     <main>
-        <div id="infoDetailBox">
+        <div id="infoDetailBox" class="infoDetailClass">
             <h1 id="infoTitle">정석코딩 강의 ${mode == "new" ? '등록' : '세부사항'}</h1>
 
             <form id="registForm" action="" enctype="multipart/form-data">
@@ -49,10 +51,10 @@
                 <c:choose>
                     <c:when test="${mode eq 'new'}">
                         <select class="modifySelect" name="courseCode" onchange="courseSelect(this.value)">
-                        <option value="" disabled selected>과정을 선택해주세요.</option>
-                        <c:forEach var="list" items="${list}">
-                            <option value="${list.courseCode}">${list.courseName}</option>
-                        </c:forEach>
+                            <option value="" disabled selected>과정을 선택해주세요.</option>
+                            <c:forEach var="list" items="${list}">
+                                <option value="${list.courseCode}">${list.courseName}</option>
+                            </c:forEach>
                         </select>
                         <br>
                     </c:when>
@@ -259,9 +261,14 @@
                     <input type="button" class="backBtn" id="registListBt" value="돌아가기">
                 </div>
             </form>
+
+
         </div>
     </main>
 </div>
+</body>
+
+
 <script>
     $(document).ready(function() {
         $("#registRegistBt").on("click", function(e) {
@@ -335,5 +342,4 @@
         });
     });
 </script>
-</body>
 </html>

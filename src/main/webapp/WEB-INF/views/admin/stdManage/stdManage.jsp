@@ -7,65 +7,74 @@
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&family=Noto+Serif+KR:wght@900&display=swap"
           rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
-    <link rel="stylesheet" type="text/css" href="<c:url value="/css/home.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/admin/home.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/adminInfo.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/jscdReset.css"/>">
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+    <script>
+        let msg = "${param.msg}";
+        if (msg == "READ_ERR") alert("정보를 가져오는데 실패했습니다. 다시 시도해 주세요.");
+        if (msg == "DEL_ERR") alert("삭제에 실패했습니다. 다시 시도해 주세요.");
+        if (msg == "MOD_OK") alert("성공적으로 수정되었습니다.");
+        if (msg == "MOD_ERR") alert("수정에 실패했습니다.다시 시도해 주세요.");
+
+    </script>
 </head>
 <body>
-<script>
-    let msg = "${param.msg}";
-    if (msg == "READ_ERR") alert("정보를 가져오는데 실패했습니다. 다시 시도해 주세요.");
-    if (msg == "DEL_ERR") alert("삭제에 실패했습니다. 다시 시도해 주세요.");
-    if (msg == "MOD_OK") alert("성공적으로 수정되었습니다.");
-    if (msg == "MOD_ERR") alert("수정에 실패했습니다.다시 시도해 주세요.");
-
-</script>
-
 <header>
-    <jsp:include page="../adminHeader.jsp"/>
+    <jsp:include page="../header.jsp"/>
 </header>
+<div id="adminContent">
+    <nav>
+        <jsp:include page="../sidebar.jsp"/>
+    </nav>
+    <main>
 
-<div id="infoDetailBox">
+        <div id="infoDetailBox">
 
-    <h2 id="infoTitle">학생 상세보기</h2>
-
-
-    <label style="margin-right: 3px;">회원 번호</label>
-    <input type="text" class="infoInputBox" readonly name="mebrNo" id="mebrNo" value="${stdDto.mebrNo}"><br>
-    <label style="margin-right: 15px;">아이디</label>
-    <input type="text" class="infoInputBox" readonly value="${stdDto.id}"><br>
-    <label style="margin-right: 25px;">이름</label>
-    <input type="text" class="infoInputBox" readonly value="${stdDto.name}"><br>
-    <label>생년월일</label>
-    <input type="text" class="infoInputBox" readonly value="${stdDto.birth}"><br>
-    <%--    <input type="text" class="infoInputBox" readonly--%>
-    <%--           value="<fmt:formatDate value="${stdDto.birth}" pattern="yyyy-MM-dd" type="date"/>"><br>--%>
+            <h2 id="infoTitle">학생 상세보기</h2>
 
 
-    <label>휴대전화</label>
-    <input type="text" class="infoInputBox" readonly value="${stdDto.phone}"><br>
-    <label style="margin-right: 25px;">기수</label>
-    <input type="text" class="infoModifyInputBox" name="gisu" id="gisu" readonly value="${stdDto.gisu}"><br>
-    <label style="margin-right: 25px;">상태</label>
-    <input type="text" class="infoModifyInputBox" name="status" id="status" readonly value="${stdDto.status}"><br>
-    <label style="margin-right: 25px;">계좌</label>
-    <input type="text" class="infoInputBox" readonly value="${stdDto.acct}"><br>
-    <label style="margin-right: 15px;">가입일</label>
-    <input type="text" class="infoInputBox" readonly
-           value="<fmt:formatDate value="${stdDto.regDate}" pattern="yyyy-MM-dd" type="date"/>"><br>
-    <label style="margin-right: 25px;">비고</label>
-    <input type="text" class="infoModifyInputBox" name="etc" id="etc" readonly value="${stdDto.etc}"><br>
+            <label style="margin-right: 3px;">회원 번호</label>
+            <input type="text" class="infoInputBox" readonly name="mebrNo" id="mebrNo" value="${stdDto.mebrNo}"><br>
+            <label style="margin-right: 15px;">아이디</label>
+            <input type="text" class="infoInputBox" readonly value="${stdDto.id}"><br>
+            <label style="margin-right: 25px;">이름</label>
+            <input type="text" class="infoInputBox" readonly value="${stdDto.name}"><br>
+            <label>생년월일</label>
+            <input type="text" class="infoInputBox" readonly value="${stdDto.birth}"><br>
+            <%--    <input type="text" class="infoInputBox" readonly--%>
+            <%--           value="<fmt:formatDate value="${stdDto.birth}" pattern="yyyy-MM-dd" type="date"/>"><br>--%>
 
-    <div id="stdBtnBox">
-        <input type="submit" value="수정" class="modifyBtn">
-        <input type="button" value="삭제" class="deleteBtn">
-        <input type="button" value="목록" class="backBtn"
-               onclick="location.href='/adminManage/stdManage/list?page=${page}'">
-    </div>
 
+            <label>휴대전화</label>
+            <input type="text" class="infoInputBox" readonly value="${stdDto.phone}"><br>
+            <label style="margin-right: 25px;">기수</label>
+            <input type="text" class="infoModifyInputBox" name="gisu" id="gisu" readonly value="${stdDto.gisu}"><br>
+            <label style="margin-right: 25px;">상태</label>
+            <input type="text" class="infoModifyInputBox" name="status" id="status" readonly value="${stdDto.status}"><br>
+            <label style="margin-right: 25px;">계좌</label>
+            <input type="text" class="infoInputBox" readonly value="${stdDto.acct}"><br>
+            <label style="margin-right: 15px;">가입일</label>
+            <input type="text" class="infoInputBox" readonly
+                   value="<fmt:formatDate value="${stdDto.regDate}" pattern="yyyy-MM-dd" type="date"/>"><br>
+            <label style="margin-right: 25px;">비고</label>
+            <input type="text" class="infoModifyInputBox" name="etc" id="etc" readonly value="${stdDto.etc}"><br>
+
+            <div id="stdBtnBox">
+                <input type="submit" value="수정" class="modifyBtn">
+                <input type="button" value="삭제" class="deleteBtn">
+                <input type="button" value="목록" class="backBtn"
+                       onclick="location.href='/adminManage/stdManage/list?page=${page}'">
+            </div>
+
+        </div>
+    </main>
 </div>
 
+
+
+</body>
 
 <script>
 
@@ -146,5 +155,4 @@
     })
 
 </script>
-</body>
 </html>

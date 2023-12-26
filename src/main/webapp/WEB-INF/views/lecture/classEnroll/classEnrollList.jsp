@@ -46,7 +46,7 @@
                     <%--검색 부분--%>
                 </div>
                 <div id="lectureWriteBox">
-                    <input type="button" class="modifyBtn" value="강의 추가" onclick="location.href='<c:url value="/adminManage/lstRegist/addRegist"/>'">
+                    <input type="button" class="modifyBtn" value="강의 추가" onclick="location.href='<c:url value="/adminManage/classEnroll/write"/>'">
                 </div>
 
             </div>

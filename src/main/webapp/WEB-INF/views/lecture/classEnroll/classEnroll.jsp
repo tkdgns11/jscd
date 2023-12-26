@@ -3,91 +3,70 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
 <html>
 <head>
-    <title>classEnroll</title>
+    <title>과목 등록</title>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/admin/home.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/adminInfo.css"/>">
+    <script>
+        let msg = "${msg}";
+        if(msg == "write fail") alert("게시물 등록 실패")
+        if(msg == "modify fail") alert("게시물 수정 실패")
+    </script>
 </head>
 <body>
-<script>
-    let msg = "${msg}";
-    if(msg == "write fail") alert("게시물 등록 실패")
-    if(msg == "modify fail") alert("게시물 수정 실패")
-</script>
+<header>
+    <jsp:include page="/WEB-INF/views/admin/header.jsp"/>
+</header>
+<div id="adminContent">
+    <nav>
+        <jsp:include page="/WEB-INF/views/admin/sidebar.jsp"/>
+    </nav>
+    <main>
+        <form id="classEnrollForm" name="" action="" method="post">
+          <div id="infoDetailBox" class="infoDetailClass">
+            <h2 id="infoTitle">과목 등록</h2>
+            <input type="hidden" class="infoInputBox" name="classCode" value="${classEnrollDto.classCode}">
+            <label style="margin-right: 3px;">강의 선택</label>
+            <select id="courseName" name="courseCode" ${mode=="new" ? "" : "disabled='disabled'"} onchange="autoClassName()">
+                <c:forEach var="courseDto" items="${courseList}">
+                    <option name="courseCode" value="${courseDto.courseCode}"
+                            <c:if test="${classEnrollDto.courseCode eq courseDto.courseCode}">
+                                selected="selected"</c:if>>${courseDto.courseName}</option>
+                </c:forEach>
+            </select>
+            <label style="margin-right: 3px;">회차 선택</label>
+            <select id="roundName"  name="roundCode" ${mode=="new" ? "" : "disabled='disabled'"} onchange="autoClassName()">
+                <c:forEach var="roundDto" items ="${roundList}">
+                    <option name="roundCode" value="${roundDto.roundCode}"
+                            <c:if test="${classEnrollDto.roundCode eq roundDto.roundCode}">
+                                selected="selected"</c:if>>${roundDto.roundName}</option>
+                </c:forEach>
+            </select>
+            <label style="margin-right: 3px;">강의 이름</label>
+            <input type="text" id="className" class="infoInputBox" name="className" value ="${classEnrollDto.className}" readonly="readonly">
+            <label style="margin-right: 3px;">가격</label>
+            <input type="text" id="price" class="infoInputBox" name="price" ${mode=="new" ? "" : "readonly='readonly'"} onchange="calculate()" value="${classEnrollDto.price}원"  >
+            <label style="margin-right: 3px;">비교</label>
+            <textarea id="etc" name="etc" ${mode=="new" ? "" : "readonly='readonly'"}>${classEnrollDto.etc}</textarea>
+            <div id="classEnrollBtn">
+                <c:if test="${mode eq 'new'}">
+                    <button type="button" id="classEnrollWriteBt" class="registeBtn">등록하기</button>
+                </c:if>
+                <c:if test="${mode ne 'new'}">
+                    <button type="button" id="classEnrollModifyBt" class="modifyBtn">수정하기</button>
+                    <button type="button" id="classEnrollRemoveBt" class="deleteBtn">삭제하기</button>
+                </c:if>
+                <button type="button" id="classEnrollListBt" class="backBtn">돌아가기</button>
+            </div>
+          </div>
+        </form>
+    </main>
+</div>
 
-classEnroll
-<form id="classEnrollForm" name="" action="" method="post">
 
-    <input type="hidden" name="classCode" value="${classEnrollDto.classCode}">
-    <%--        <c:forEach var="courseDto" items="${courseList}">--%>
-    <%--            <input type="text" value="${courseDto.courseCode}">--%>
-    <%--        </c:forEach>--%>
 
-    강의 선택
-    <select id="courseName" name="courseCode" ${mode=="new" ? "" : "disabled='disabled'"} onchange="autoClassName()">
-        <c:forEach var="courseDto" items="${courseList}">
-            <option name="courseCode" value="${courseDto.courseCode}"
-                    <c:if test="${classEnrollDto.courseCode eq courseDto.courseCode}">
-                        selected="selected"</c:if>>${courseDto.courseName}</option>
-        </c:forEach>
-    </select>
-
-    회차 선택
-    <select id="roundName" name="roundCode" ${mode=="new" ? "" : "disabled='disabled'"} onchange="autoClassName()">
-        <c:forEach var="roundDto" items ="${roundList}">
-            <option name="roundCode" value="${roundDto.roundCode}"
-                    <c:if test="${classEnrollDto.roundCode eq roundDto.roundCode}">
-                        selected="selected"</c:if>>${roundDto.roundName}</option>
-        </c:forEach>
-    </select>
-
-    강의 이름
-    <input type="text" id="className" name="className" value ="${classEnrollDto.className}" readonly="readonly">
-    <br>
-
-    가격
-    <input type="text" id="price" name="price" ${mode=="new" ? "" : "readonly='readonly'"} onchange="calculate()" value="${classEnrollDto.price}"  >원
-
-    할인율
-    <select id="discount" name="discount" ${mode=="new" ? "" : "disabled='disabled'"} onchange="calculate()">
-        <option value="0%"
-                <c:if test="${classEnrollDto.discount eq '0%'}">
-                    selected="selected"</c:if>> 0%</option>
-        <option value="10%"
-                <c:if test="${classEnrollDto.discount eq '10%'}">
-                    selected="selected"</c:if>> 10%</option>
-        <option value="20%"
-                <c:if test="${classEnrollDto.discount eq '20%'}">
-                    selected="selected"</c:if>> 20%</option>
-        <option value="30%"
-                <c:if test="${classEnrollDto.discount eq '30%'}">
-                    selected="selected"</c:if>> 30%</option>
-        <option value="40%"
-                <c:if test="${classEnrollDto.discount eq '40%'}">
-                    selected="selected"</c:if>> 40%</option>
-        <option value="50%"
-                <c:if test="${classEnrollDto.discount eq '50%'}">
-                    selected="selected"</c:if>> 50%</option>
-    </select>
-
-    할인 가격
-    <input type="text" id="lstPrice" name="lstPrice" value="${classEnrollDto.lstPrice}" readonly="readonly">원
-    <br>
-
-    비고<br>
-    <textarea id="etc" name="etc" ${mode=="new" ? "" : "readonly='readonly'"}>${classEnrollDto.etc}</textarea>
-
-    <br>
-    <c:if test="${mode eq 'new'}">
-        <button type="button" id="classEnrollWriteBt">등록하기</button>
-    </c:if>
-
-    <c:if test="${mode ne 'new'}">
-        <button type="button" id="classEnrollModifyBt">수정하기</button>
-        <button type="button" id="classEnrollRemoveBt">삭제하기</button>
-    </c:if>
-
-    <button type="button" id="classEnrollListBt">돌아가기</button>
-</form>
-
+</body>
 <script>
     // 강의 이름 자동 완성 함수 값이 바뀌면 실행
     const autoClassName = () => {
@@ -197,7 +176,6 @@ classEnroll
         });
     });
 </script>
-</body>
 </html>
 
 

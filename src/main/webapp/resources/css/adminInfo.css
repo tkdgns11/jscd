@@ -109,3 +109,8 @@
 #memberListBox  table  tr th {background-color: rgba(0,0,0,0.5); text-align: center; border-bottom: 1px solid rgba(0,0,0,0.2);}
 #memberListBox  table  tr td {text-align: center; padding: 10px;}
 #th_phone{width: 300px;}
+
+/*과정 등록*/
+.infoDetailClass{display: flex; flex-direction: column;}
+/*과목등록*/
+#classEnrollBtn{margin-top: 20px;}
