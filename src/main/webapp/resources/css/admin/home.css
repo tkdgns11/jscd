@@ -1,8 +1,8 @@
 /*틀 잡아놓기*/
-html, body {width: 100%;height: auto;}
+html, body {width: 100%;height: auto; }
 #adminContent{display: flex; flex-direction: row; width: 100%; height: calc(100% - 80px);  margin-top: 80px; position: absolute; top: 0; left: 0;}
 #adminContent > nav{background-color: rgba(0,0,0,0.8); height: auto; width: 300px;}
-#adminContent > main{ width: calc(100% - 300px); height: auto; position: relative;}
+#adminContent > main{ width: calc(100% - 300px); height: auto; position: relative; overflow-x: scroll}
 
 
 /*main 안에*/
