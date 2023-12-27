@@ -27,6 +27,7 @@ function login(){
     const id = document.getElementById("id");
     const pwd = document.getElementById("pwd");
     const rememberIdChk = document.getElementById("rememberId");
+    const toURL = document.getElementById("toURL");
     let rememberId;
 
     if(rememberIdChk.checked){
@@ -36,7 +37,7 @@ function login(){
     }
 
 
-    let loginData = {"id":id.value, "pwd":pwd.value, "rememberId":rememberId};
+    let loginData = {"id":id.value, "pwd":pwd.value, "rememberId":rememberId,"toURL":toURL.value};
 
     $.ajax({
         url:"/member/login",
