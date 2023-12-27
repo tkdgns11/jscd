@@ -16,10 +16,16 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/jscdReset.css"/>">
     <link rel="stylesheet" tyep="text/css" href="<c:url value="/css/admin/home.css"/>">
-    <link rel="stylesheet" tyep="text/css" href="<c:url value="/css/regist.css"/>">
-    <link rel="icon" href="/img/mainlogo.png"/>
-    <link rel="apple-touch-icon" href="/img/mainlogo.png"/>
-    <title>정석코딩 회차 등록</title>
+<%--    <link rel="stylesheet" tyep="text/css" href="<c:url value="/css/regist.css"/>">--%>
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/adminInfo.css"/>">
+    <!-- 탭 아이콘 & 글자 지정 -->
+    <link rel="icon" href="/img/white_mainlogo.png"/>
+    <link rel="apple-touch-icon" href="/img/white_mainlogo.png"/>
+    <title>정석코딩 관리자 | 회차 등록</title>
+    <%--폰트어썸 라이브러리 불러오기--%>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
 </head>
 <body>
 <header>
@@ -30,20 +36,21 @@
         <jsp:include page="../../admin/sidebar.jsp"/>
     </nav>
     <main>
-        <div id="lectureInfo">
+        <div id="memberInfo">
             <div id="infoTitleBox">
-                <h1>정석코딩 회차 목록</h1>
+                <h1><i class="fa-solid fa-repeat" style="color: #353739;"></i>
+                    &nbsp;&nbsp;정석코딩 회차 목록</h1>
             </div>
             <div id="main_content_controll">
                 <div id="lectureSearchBox">
                     <%--검색 부분--%>
                 </div>
                 <div id="lectureWriteBox">
-                    <button id="writeBtn" class="modifyBtn" onclick="location.href='<c:url value="/adminManage/registRound/addRound"/>'">등록하기</button>
+                    <button id="writeBtn" class="registeBtn" onclick="location.href='<c:url value="/adminManage/registRound/addRound"/>'">등록하기</button>
                 </div>
 
             </div>
-            <div id="lectureListBox">
+            <div id="memberListBox">
                 <table>
                     <tr>
                         <th>과목 번호</th>
@@ -58,7 +65,7 @@
                                         ${list.roundCode}
                                 </td>
                                 <td>
-                                    <a href="<c:url value='/adminManage/registRound/roundDetail?roundCode=${list.roundCode}'/>">${list.roundName}</a>
+                                    <a class="subject_name" href="<c:url value='/adminManage/registRound/roundDetail?roundCode=${list.roundCode}'/>">${list.roundName}</a>
                                 </td>
                                 <td>
                                         <%--                                    <fmt:formatDate value="${list.regDate}" pattern="yyyy-MM-dd"></fmt:formatDate>--%>
