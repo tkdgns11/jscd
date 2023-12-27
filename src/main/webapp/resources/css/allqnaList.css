@@ -66,13 +66,15 @@ input:focus {outline: none; border: 1px solid rgba(0,0,0,0.2);}
 #boardList_nav > ul > li > a{font-weight: 550;font-size: 20px; color: #73b4f0; letter-spacing: 3px;}
 #boardList_nav > ul > li > a.active {color: #2e77b7;}
 #boardList_main{width: 900px;display: flex; flex-direction: column; justify-content: center; align-items: center;}
-#boardList_main_header{width: 85%; margin: 35px auto; border-bottom: solid 1px #abd7ff;}
+#boardList_main_header{width: 85%; margin: 5px auto; border-bottom: solid 1px #abd7ff;}
 hr {height: 1px; border: 0; border-bottom: solid 1px #abd7ff; width: 85%; margin: 35px auto;}
 #boardList_search_option select{width:25%; height: 40px;border-radius: 3px; margin: 10px 10px 0 10px; border: 1px solid #cfdce7; text-align: center; color: #757575;}
 #boardList_search_input{display: flex;}
 #boardList_search_input input[type=text]{width:430px; height: 40px;border-radius: 3px; margin: 10px; border: 1px solid #cfdce7; padding: 0 30px;}
 #search_btn{margin: 10px;}
-#search_btn input {border-radius: 3px !important; background-color: #3d9aee; color: #FFFFFF; font-weight: 500; letter-spacing: 2px;}
+#search_btn input{border-radius: 3px !important; background-color: #3d9aee; color: #FFFFFF; font-weight: 500; letter-spacing: 2px;}
+#write_btn input{background-color: #3d9aee;border-radius: 3px;margin-top: 10px}
+
 
 /*main content*/
 #boardList_main_content {width: 85%; margin: 0 auto;}

@@ -55,19 +55,26 @@
                     <div>
                         <div id="boardList_search_option">
                             <select name="option">
-                                <option value="A" ${ph.sc.option=='A' || ph.sc.option=='' ? "selected" : ""}>제목+내용</option>
+                                <option value="A" ${ph.sc.option=='A' || ph.sc.option=='' ? "selected" : ""}>제목+내용
+                                </option>
                                 <option value="T" ${ph.sc.option=='T' ? "selected" : ""}>제목</option>
                                 <option value="W" ${ph.sc.option=='W' ? "selected" : ""}>작성자</option>
                             </select>
                         </div>
                         <div id="boardList_search_input">
                             <div>
-                                <input type="text" name="keyword" value="${ph.sc.keyword}" placeholder="&nbsp;&nbsp;&nbsp;키워드를 입력하세요">
+                                <input type="text" name="keyword" value="${ph.sc.keyword}"
+                                       placeholder="&nbsp;&nbsp;&nbsp;키워드를 입력하세요">
                             </div>
                             <div id="search_btn">
                                 <input type="submit" id="searchBtn" class="modifyBtn" value="검색">
                             </div>
+                            <div id="write_btn">
+                                <input type="button" id="writeBtn" value="등록" class="modifyBtn"
+                                       onclick="location.href='/board/qna/allqnaWrite'">
+                            </div>
                         </div>
+
                     </div>
                 </form>
             </div>
@@ -97,14 +104,17 @@
                     </c:if>
                     <c:if test="${totalCnt!=null && totalCnt!=0}">
                         <c:if test="${ph.showPrev}">
-                            <a class="page" href="<c:url value="/board/user/list${ph.sc.getQueryString(ph.beginPage-1)}"/>">
+                            <a class="page"
+                               href="<c:url value="/board/qna/allqnaList${ph.sc.getQueryString(ph.beginPage-1)}"/>">
                                 <i class="fa-solid fa-backward-step"></i></a>
                         </c:if>
                         <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
-                            <a class="page ${i==ph.sc.page? "paging-active" : ""}" href="<c:url value="/board/user/list${ph.sc.getQueryString(i)}"/>">${i}</a>
+                            <a class="page ${i==ph.sc.page? "paging-active" : ""}"
+                               href="<c:url value="/board/qna/allqnaList${ph.sc.getQueryString(i)}"/>">${i}</a>
                         </c:forEach>
                         <c:if test="${ph.showNext}">
-                            <a class="page" href="<c:url value="/board/user/list${ph.sc.getQueryString(ph.endPage+1)}"/>">
+                            <a class="page"
+                               href="<c:url value="/board/qna/allqnaList${ph.sc.getQueryString(ph.endPage+1)}"/>">
                                 <i class="fa-solid fa-forward-step"></i></a>
                         </c:if>
                     </c:if>
