@@ -4,7 +4,10 @@
 <head>
     <meta charset="utf-8">
 
-    <title>찾아오시는 길</title>
+    <!-- 탭 아이콘 & 글자 지정 -->
+    <link rel="icon" href="/img/mainlogo.png"/>
+    <link rel="apple-touch-icon" href="/img/mainlogo.png"/>
+    <title>정석코딩 | 정석코딩 위치</title>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2282f0ae50d3344aacbb4711c04360bd"></script>
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/reset.css'/>">
 

@@ -70,7 +70,7 @@
 #infoTitleBox{font-size: 25px; color: #353739; letter-spacing: 2px; padding-bottom: 13px; border-bottom: solid 1px #ebeaea; margin-top: 20px;}
 #infoTitleBox {font-family: "Font Awesome";}
 
-#infoDetailBox{width: 60%; margin: 0 auto; }
+#infoDetailBox{width: 60%; margin: 30px auto; }
 .infoInputBox{width: 400px;height: 36px;border: 0;border-bottom: 1px solid rgba(0, 0, 0, 0.2);margin: 8px 0 20px 0;padding-top: 4px;padding-left: 10px;pointer-events : none;}
 .infoInputBox:focus {outline: none;}
 .infoModifyInputBox:focus {outline: none;}

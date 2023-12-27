@@ -20,7 +20,10 @@
     <link rel="icon" href="/img/mainlogo.png"/>
     <link rel="apple-touch-icon" href="/img/mainlogo.png"/>
 <%--    <script type="text/javascript" src="<c:url value="/js/bootCamp.js"/>"></script>--%>
-    <title>bootCampDetail</title>
+    <!-- 탭 아이콘 & 글자 지정 -->
+    <link rel="icon" href="/img/mainlogo.png"/>
+    <link rel="apple-touch-icon" href="/img/mainlogo.png"/>
+    <title>정석코딩 | 부트캠프 소개</title>
 </head>
 <body>
 

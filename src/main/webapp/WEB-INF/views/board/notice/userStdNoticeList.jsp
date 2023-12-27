@@ -12,7 +12,7 @@
     <!-- 탭 아이콘 & 글자 지정 -->
     <link rel="icon" href="/img/mainlogo.png"/>
     <link rel="apple-touch-icon" href="/img/mainlogo.png"/>
-    <title>정석코딩 | 학생 공지사항</title>
+    <title>정석코딩 | 학사 공지사항</title>
     <link rel="stylesheet" href="<c:url value='/css/noticeList.css'/>">
     <script type="text/javascript" src="<c:url value="/js/noticeList.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/js/board_nav.js"/>"></script>
@@ -29,7 +29,7 @@
     <section id="boardList_header">
         <div>
             <h1>학사 공지사항</h1>
-            <h3>Student Notice</h3>
+            <h3>정석코딩 학생분들께 알려드립니다</h3>
         </div>
     </section>
     <section id="boardList_content">
@@ -38,12 +38,12 @@
                 <li><a href="<c:url value="/board/userStd/list"/>">
                     <i class="fa-solid fa-bullhorn" style="color: #73b4f0;"></i>
                     &nbsp;&nbsp;학생 공지사항</a></li>
-                <li><a href="<c:url value="/board/qna/allqnaList"/>">
+                <li><a href="<c:url value="/board/qna/allqnaList"/>"> <!--학사 질문&답변으로 연결해야함-->
                     <i class="fa-solid fa-comment-dots" style="color: #73b4f0;"></i>
                     &nbsp;&nbsp;질문&답변</a></li>
                 <li><a href="<c:url value="/board/faq"/>">
-                    <i class="fa-solid fa-circle-question" style="color: #73b4f0;"></i>
-                    &nbsp;&nbsp;Faq</a></li>
+                    <i class="fa-solid fa-city" style="color: #73b4f0;"></i> <!--사물함으로 연결해야함-->
+                    &nbsp;&nbsp;사물함</a></li>
             </ul>
         </div>
         <div id="boardList_main">

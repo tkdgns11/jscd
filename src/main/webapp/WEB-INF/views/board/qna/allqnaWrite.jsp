@@ -11,7 +11,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QnA</title>
+    <!-- 탭 아이콘 & 글자 지정 -->
+    <link rel="icon" href="/img/mainlogo.png"/>
+    <link rel="apple-touch-icon" href="/img/mainlogo.png"/>
+    <title>정석코딩 | 질문&답변 작성</title>
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/jscdReset.css"/>">
@@ -125,7 +128,7 @@
 
 <br/>
 <div>
-    <div style="background-color: #f1f1f1; border-radius: 10px; padding:20px;">
+    <div style="border-radius: 10px; padding:20px;">
         <c:forEach var="commentList" items="${comment}" varStatus="loop">
             <div>
                     <%--                    원댓글 --%>

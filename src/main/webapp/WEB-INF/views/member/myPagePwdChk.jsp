@@ -22,8 +22,8 @@
   <script type="text/javascript" src="<c:url value="/js/myPagePwdChk.js"/>"></script>
 
   <!-- 탭 아이콘 & 글자 지정 -->
-  <link rel="icon" href="/img/white_mainlogo.png"/>
-  <link rel="apple-touch-icon" href="/img/white_mainlogo.png"/>
+  <link rel="icon" href="/img/mainlogo.png"/>
+  <link rel="apple-touch-icon" href="/img/mainlogo.png"/>
   <title>정석코딩 | myPage</title>
 
   <%--폰트어썸 라이브러리 불러오기--%>
@@ -41,13 +41,21 @@
   <jsp:include page="../header.jsp"/>
 </header>
 <div id="myPagePwdChkBox">
-  <nav>
+  <nav class="myPageNav">
     <ul>
-      <li><a href="/member/memberEdit">회원 정보 수정</a></li>
-      <li><a href="/member/lectureApplyState">강의 신청 현황</a></li>
-      <li><a href="/order/orderList">내 주문 내역</a></li>
+      <li><a href="/member/memberEdit">
+        <i class="fa-solid fa-wrench" style="color: #7e8087;"></i>
+        &nbsp;&nbsp;회원 정보 수정</a></li>
+      <li><a href="/member/lectureApplyState">
+        <i class="fa-solid fa-clock-rotate-left" style="color: #7e8087;"></i>
+        &nbsp;&nbsp;강의 신청 현황</a></li>
+      <li><a href="/order/orderList">
+        <i class="fa-solid fa-comment-dollar" style="color: #7e8087;"></i>
+        &nbsp;&nbsp;내 주문 내역</a></li>
       <c:if test="${memberDto.getGrade() eq '3'}">
-        <li><a href="/member/instructorIntro">강사 소개말 등록</a></li>
+        <li><a href="/member/instructorIntro">
+          <i class="fa-solid fa-wand-sparkles" style="color: #7e8087;"></i>
+          &nbsp;&nbsp;강사 소개말 등록</a></li>
       </c:if>
     </ul>
   </nav>

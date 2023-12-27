@@ -55,7 +55,7 @@ http://localhost:8080/order/orderList
         <section id="section_orderlist">
             <section id="section_orderlist_title">
                 <div>
-                    <h2>내 구매 내역</h2>
+                    <h2>내 주문 내역</h2>
                 </div>
             </section>
             <c:forEach items="${orderList}" var="order">

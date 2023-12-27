@@ -39,7 +39,7 @@
     </nav>
     <main>
         <div id="infoDetailBox">
-            <h2 id="록">회원 상세보기</h2>
+            <h2 id="infoTitle">회원 상세보기</h2>
             <label style="margin-right: 3px;">회원번호</label>
             <input type="text" class="infoInputBox" name="mebrNo" id="mebrNo" readonly value="${memberDto.mebrNo}"><br>
             <label style="margin-right: 15px;">아이디</label>

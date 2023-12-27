@@ -16,7 +16,10 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/seminar.css"/>">
     <link rel="icon" href="/img/mainlogo.png"/>
     <link rel="apple-touch-icon" href="/img/mainlogo.png"/>
-    <title>seminarList</title>
+    <!-- 탭 아이콘 & 글자 지정 -->
+    <link rel="icon" href="/img/mainlogo.png"/>
+    <link rel="apple-touch-icon" href="/img/mainlogo.png"/>
+    <title>정석코딩 | 세미나 강의 목록</title>
 </head>
 <body>
 
