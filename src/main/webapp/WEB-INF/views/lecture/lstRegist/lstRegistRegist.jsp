@@ -152,7 +152,9 @@
                 <input class="dateBox" type="date" name="endDate" value="${lstRegistDto.endDate}" ${mode == "new" ? '' : 'readonly="readonly"'}>
                 <br>
 
+                <div class="section_txt">
                 <label style="">수강시간</label><br>
+                </div>
                 <label style="margin-right: 15px;">시작 시간</label>
                 <input class="dateBox" type="time" name="startTime" value="${lstRegistDto.startTime}" ${mode == "new" ? '' : 'readonly="readonly"'}>
                 <label style="margin-right: 15px; margin-left: 50px;">종료 시간</label>
