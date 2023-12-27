@@ -65,7 +65,7 @@
                             <span id="smApplySpan"></span>
                         </div>
                         <div id="smApplyBox_img">
-                            <img src="<c:url value="/upload/img${list.storedFileName}"/>">
+                            <img src="<c:url value="${pageContext.request.contextPath}/upload/img${list.storedFileName}"/>">
                         </div>
                     </div>
                     <p>${list.title}</p>

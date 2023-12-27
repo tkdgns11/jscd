@@ -16,7 +16,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/jscdReset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/admin/home.css"/>">
 <%--    <link rel="stylesheet" type="text/css" href="<c:url value="/css/regist.css"/>">--%>
-<%--    <script type="text/javascript" src="<c:url value="/js/lstRegist.js"/>"></script>--%>
+    <script type="text/javascript" src="<c:url value="/js/lstRegist.js"/>"></script>
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/adminInfo.css"/>">
     <!-- 탭 아이콘 & 글자 지정 -->
     <link rel="icon" href="/img/white_mainlogo.png"/>
@@ -120,11 +120,11 @@
                 <br>
 
                 <label style="margin-right: 25px;">최소 인원</label>
-                <input type="number" name="minNum" min="5" max="30" value="${lstRegistDto.minNum}" ${mode == "new" ? '' : 'readonly="readonly"'}>
+                <input type="number" class="memberNum" name="minNum" min="5" max="30" value="${lstRegistDto.minNum}" ${mode == "new" ? '' : 'readonly="readonly"'}>
                 <br>
 
                 <label style="margin-right: 25px;">최대 인원</label>
-                <input type="number" name="maxNum" min="5" max="30" value="${lstRegistDto.maxNum}" ${mode == "new" ? '' : 'readonly="readonly"'}>
+                <input type="number" class="memberNum" name="maxNum" min="5" max="30" value="${lstRegistDto.maxNum}" ${mode == "new" ? '' : 'readonly="readonly"'}>
                 <br>
 
                 <label style="margin-right: 25px;">강의 장소</label>

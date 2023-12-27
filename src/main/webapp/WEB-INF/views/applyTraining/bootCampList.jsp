@@ -81,7 +81,7 @@
         <c:forEach var="list" items="${list}">
             <div id="btApplyBox">
                 <ul>
-                    <li class="applyTxt">~${list.startDate} 모집중</li>
+                    <li class="applyTxt">~${list.startDate} ${list.status}</li>
                     <li class="btTitle">BootCamp</li>
                     <li class="btTitle">${list.title}</li>
                     <li class="applyTxt">담당 강사 ${list.name}</li>
