@@ -18,7 +18,10 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/adminInfo.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/jscdReset.css"/>">
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
-    <title>Home</title>
+    <!-- 탭 아이콘 & 글자 지정 -->
+    <link rel="icon" href="/img/white_mainlogo.png"/>
+    <link rel="apple-touch-icon" href="/img/white_mainlogo.png"/>
+    <title>정석코딩 관리자 | 회원 상세보기</title>
     <script>
         let msg = "${param.msg}";
         if (msg == "READ_ERR") alert("회원 정보를 가져오는데 실패했습니다. 다시 시도해 주세요.");
@@ -36,7 +39,7 @@
     </nav>
     <main>
         <div id="infoDetailBox">
-            <h2 id="infoTitle">회원 상세보기</h2>
+            <h2 id="록">회원 상세보기</h2>
             <label style="margin-right: 3px;">회원번호</label>
             <input type="text" class="infoInputBox" name="mebrNo" id="mebrNo" readonly value="${memberDto.mebrNo}"><br>
             <label style="margin-right: 15px;">아이디</label>

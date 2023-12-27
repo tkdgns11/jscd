@@ -99,7 +99,7 @@
             <i class="fa-solid fa-magnifying-glass fa-bounce" style="color: #0185fe;"></i>
         </div>
         <div id="memberBox">
-            <input type="button" value="${loginStatus}" class="deleteBtn"
+            <input type="button" value="${loginStatus}" class="cancleBtn"
                    onClick="location.href='<c:url value='${loginPath}'/>'">
             <input type="button" value="${memberStatus}" class="registeBtn"
                    onClick="location.href='<c:url value='${memberPath}'/>'">
