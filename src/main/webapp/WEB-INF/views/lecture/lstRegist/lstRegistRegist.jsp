@@ -15,11 +15,13 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/jscdReset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/admin/home.css"/>">
-    <link rel="stylesheet" type="text/css" href="<c:url value="/css/regist.css"/>">
-    <link rel="icon" href="/img/mainlogo.png"/>
-    <link rel="apple-touch-icon" href="/img/mainlogo.png"/>
-    <script type="text/javascript" src="<c:url value="/js/lstRegist.js"/>"></script>
-    <title>정석코딩 강의 등록</title>
+<%--    <link rel="stylesheet" type="text/css" href="<c:url value="/css/regist.css"/>">--%>
+<%--    <script type="text/javascript" src="<c:url value="/js/lstRegist.js"/>"></script>--%>
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/adminInfo.css"/>">
+    <!-- 탭 아이콘 & 글자 지정 -->
+    <link rel="icon" href="/img/white_mainlogo.png"/>
+    <link rel="apple-touch-icon" href="/img/white_mainlogo.png"/>
+    <title>정석코딩 관리자 | 강의 등록</title>
 </head>
 <body>
 <header>
@@ -39,19 +41,19 @@
                 <input type="hidden" id="fileNoDel" name="fileNoDel[]" value="">
                 <input type="hidden" id="fileNameDel" name="fileNameDel[]" value="">
 
-                <label style="margin-right: 3px;">강의 제목</label>
-                <input type="text" name="title" value="${lstRegistDto.title}" ${mode == "new" ? '' : 'readonly="readonly"'} placeholder="개설할 강의 제목을 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='강의에 대한 소개를 입력해주세요.'" >
+                <label style="margin-right: 25px;">강의 제목</label>
+                <input class="inputBox" type="text" name="title" value="${lstRegistDto.title}" ${mode == "new" ? '' : 'readonly="readonly"'} placeholder="개설할 강의 제목을 입력해주세요" onfocus="this.placeholder=''" onblur="this.placeholder='강의에 대한 소개를 입력해주세요'" >
                 <br>
 
-                <label style="">강의 소개</label>
-                <input type="text" name="discription" value="${lstRegistDto.discription}" ${mode == "new" ? '' : 'readonly="readonly"'} placeholder="개설할 강의의 설명을 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='개설할 강의의 설명을 입력해주세요.'" >
+                <label style="margin-right: 25px;">강의 소개</label>
+                <input class="inputBox" type="text" name="discription" value="${lstRegistDto.discription}" ${mode == "new" ? '' : 'readonly="readonly"'} placeholder="개설할 강의의 설명을 입력해주세요" onfocus="this.placeholder=''" onblur="this.placeholder='개설할 강의의 설명을 입력해주세요'" >
                 <br>
 
-                <label style="">과정 선택</label>
+                <label style="margin-right: 25px;">과정 선택</label>
                 <c:choose>
                     <c:when test="${mode eq 'new'}">
-                        <select class="modifySelect" name="courseCode" onchange="courseSelect(this.value)">
-                            <option value="" disabled selected>과정을 선택해주세요.</option>
+                        <select class="searchBox" name="courseCode" onchange="courseSelect(this.value)">
+                            <option value="" disabled selected>과정을 선택해주세요</option>
                             <c:forEach var="list" items="${list}">
                                 <option value="${list.courseCode}">${list.courseName}</option>
                             </c:forEach>
@@ -64,11 +66,13 @@
                     </c:when>
                 </c:choose>
 
-                <label style="">과목구분</label>
-                <input type="text" name="courseCategory" value="${lstRegistDto.courseCategory}" ${mode=='new' ? '' : 'disabled="disabled"'} placeholder="세미나 개설시 입력해주세요 ex)디자인패턴 - JAVA" onfocus="this.placeholder=''" onblur="this.placeholder='세미나 개설시 입력해주세요 ex)디자인패턴 - JAVA'">
+                <label style="margin-right: 30px;">과목구분</label>
+                <input class="inputBox" type="text" name="courseCategory" value="${lstRegistDto.courseCategory}" ${mode=='new' ? '' : 'disabled="disabled"'} placeholder="세미나 개설시 입력해주세요 ex) 디자인패턴 - JAVA" onfocus="this.placeholder=''" onblur="this.placeholder='세미나 개설시 입력해주세요 ex)디자인패턴 - JAVA'">
                 <br>
 
+                <div class="section_txt">
                 <label style="">세부사항</label>
+                </div>
                 <div id="classEnrollInfo">
                     <c:if test="${mode ne 'new'}">
                         <input type="text" class="detail" name="subject1" value="${lstRegistDto.subject1}" readonly="readonly">
@@ -84,11 +88,11 @@
                     </c:if>
                 </div>
 
-                <label style="">온/오프라인</label>
-                <select name="onOff" value="${lstRegistDto.onOff}" ${mode=='new' ? '' : 'disabled="disabled"'}>
+                <label style="margin-right: 10px;">온/오프라인</label>
+                <select class="searchBox" name="onOff" value="${lstRegistDto.onOff}" ${mode=='new' ? '' : 'disabled="disabled"'}>
                     <c:choose>
                         <c:when test="${mode eq 'new'}">
-                            <option value="" disabled selected>온/오프옵션을 선택해주세요.</option>
+                            <option value="" disabled selected>온/오프옵션을 선택해주세요</option>
                         </c:when>
                         <c:when test="${mode ne 'new'}">
                             <option value="${lstRegistDto.onOff}">${lstRegistDto.onOff}</option>
@@ -99,11 +103,11 @@
                 </select>
                 <br>
 
-                <label style="">진행 상태</label>
-                <select name="status" value="${lstRegistDto.status}" ${mode=='new' ? '' : 'disabled="disabled"'}>
+                <label style="margin-right: 25px;">진행 상태</label>
+                <select class="searchBox" name="status" value="${lstRegistDto.status}" ${mode=='new' ? '' : 'disabled="disabled"'}>
                     <c:choose>
                         <c:when test="${mode eq 'new'}">
-                            <option value="" disabled selected>진행상태옵션을 선택해주세요.</option>
+                            <option value="" disabled selected>진행상태옵션을 선택해주세요</option>
                         </c:when>
                         <c:when test="${mode ne 'new'}">
                             <option value="${lstRegistDto.status}">${lstRegistDto.status}</option>
@@ -115,19 +119,19 @@
                 </select>
                 <br>
 
-                <label style="">최소 인원</label>
+                <label style="margin-right: 25px;">최소 인원</label>
                 <input type="number" name="minNum" min="5" max="30" value="${lstRegistDto.minNum}" ${mode == "new" ? '' : 'readonly="readonly"'}>
                 <br>
 
-                <label style="">최대 인원</label>
+                <label style="margin-right: 25px;">최대 인원</label>
                 <input type="number" name="maxNum" min="5" max="30" value="${lstRegistDto.maxNum}" ${mode == "new" ? '' : 'readonly="readonly"'}>
                 <br>
 
-                <label style="">강의 장소</label>
-                <select class="modifySelect" name="location" value="${lstRegistDto.location}" ${mode=='new' ? '' : 'disabled="disabled"'}>
+                <label style="margin-right: 25px;">강의 장소</label>
+                <select class="searchBox" class="modifySelect" name="location" value="${lstRegistDto.location}" ${mode=='new' ? '' : 'disabled="disabled"'}>
                     <c:choose>
                         <c:when test="${mode eq 'new'}">
-                            <option value="" disabled selected>강의 장소를 선택해주세요.</option>
+                            <option value="" disabled selected>강의 장소를 선택해주세요</option>
                         </c:when>
                         <c:when test="${mode ne 'new'}">
                             <option value="${lstRegistDto.location}">${lstRegistDto.location}</option>
@@ -138,42 +142,45 @@
                     <option value="<c:out value="종로구 종로 서울 YMCA 빌딩 518호"/>">서울시 종로구 종로 서울 YMCA 빌딩 518호</option>
                 </select>
                 <br>
-
+                
+                <div class="section_txt">
                 <label style="">수강기간</label><br>
-                <label style="">시작일</label>
-                <input type="date" name="startDate" value="${lstRegistDto.startDate}" ${mode == "new" ? '' : 'readonly="readonly"'}>
-                <label style="">종료일</label>
-                <input type="date" name="endDate" value="${lstRegistDto.endDate}" ${mode == "new" ? '' : 'readonly="readonly"'}>
+                </div>
+                <label style="margin-right: 33px;">시작일</label>
+                <input class="dateBox" type="date" name="startDate" value="${lstRegistDto.startDate}" ${mode == "new" ? '' : 'readonly="readonly"'}>
+                <label style="margin-right: 33px; margin-left: 50px;">종료일</label>
+                <input class="dateBox" type="date" name="endDate" value="${lstRegistDto.endDate}" ${mode == "new" ? '' : 'readonly="readonly"'}>
                 <br>
 
                 <label style="">수강시간</label><br>
-                <label style="">시작 시간</label>
-                <input type="time" name="startTime" value="${lstRegistDto.startTime}" ${mode == "new" ? '' : 'readonly="readonly"'}>
-                <label style="">종료 시간</label>
-                <input type="time" name="endTime" value="${lstRegistDto.endTime}" ${mode == "new" ? '' : 'readonly="readonly"'}>
+                <label style="margin-right: 15px;">시작 시간</label>
+                <input class="dateBox" type="time" name="startTime" value="${lstRegistDto.startTime}" ${mode == "new" ? '' : 'readonly="readonly"'}>
+                <label style="margin-right: 15px; margin-left: 50px;">종료 시간</label>
+                <input class="dateBox" type="time" name="endTime" value="${lstRegistDto.endTime}" ${mode == "new" ? '' : 'readonly="readonly"'}>
                 <br>
 
-                <label style="">강사</label>
-                <input type="text" name="name" value="${lstRegistDto.name}" ${mode == "new" ? '' : 'readonly="readonly"'}>
+                <div class="section_txt"></div>
+                <label style="margin-right: 50px;">강사</label>
+                <input class="inputBox" type="text" name="name" value="${lstRegistDto.name}" ${mode == "new" ? '' : 'readonly="readonly"'} placeholder="강사명을 입력해주세요">
                 <br>
 
-                <label style="">교재</label>
-                <input type="text" name="book" value="${lstRegistDto.book}" ${mode == "new" ? '' : 'readonly="readonly"'}>
+                <label style="margin-right: 50px;">교재</label>
+                <input class="inputBox" type="text" name="book" value="${lstRegistDto.book}" ${mode == "new" ? '' : 'readonly="readonly"'} placeholder="교재명을 입력해주세요">
                 <br>
 
-                <label style="">준비물</label>
-                <input type="text" name="material" value="${lstRegistDto.material}" ${mode == "new" ? '' : 'readonly="readonly"'}>
+                <label style="margin-right: 40px;">준비물</label>
+                <input class="inputBox" type="text" name="material" value="${lstRegistDto.material}" ${mode == "new" ? '' : 'readonly="readonly"'} placeholder="준비물을 입력해주세요">
                 <br>
 
-                <label style="">가격</label>
-                <input type="text" name="totalPrice" value="${lstRegistDto.totalPrice}" readonly="readonly">
+                <label style="margin-right: 55px;">가격</label>
+                <input class="inputBox" type="text" name="totalPrice" value="${lstRegistDto.totalPrice}" readonly="readonly" placeholder="가격이 표시됩니다">
                 <br>
 
-                <label style="">할인율</label>
-                <select class="modifySelect" name="discount" onchange="calculPrice()" ${mode == "new" ? '' : 'disabled="disabled"'}>
+                <label style="margin-right: 40px;">할인율</label>
+                <select class="searchBox" name="discount" onchange="calculPrice()" ${mode == "new" ? '' : 'disabled="disabled"'}>
                     <c:choose>
                         <c:when test="${mode eq 'new'}">
-                            <option value="" disabled selected>할인율을 선택해주세요.</option>
+                            <option value="" disabled selected>할인율을 선택해주세요</option>
                         </c:when>
                         <c:when test="${mode ne 'new'}">
                             <option value="${lstRegistDto.discount}">${lstRegistDto.discount}</option>
@@ -188,17 +195,20 @@
                 </select>
                 <br>
 
-                <label style="">총 가격</label>
-                <input type="text" name="lastPrice" value="${lstRegistDto.lastPrice}" readonly="readonly">
+                <label style="margin-right: 40px;">총 가격</label>
+                <input class="inputBox" type="text" name="lastPrice" value="${lstRegistDto.lastPrice}" readonly="readonly" placeholder="최종 가격이 표시됩니다">
                 <br>
 
-                <label style="">내용</label><br>
-                <textarea class="contentBox" name="content" content="15" cols="91" ${mode == "new" ? '' : 'readonly="readonly"'} placeholder="개설할 강의의 내용을 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='개설할 강의의 내용을 입력해주세요.'"> ${lstRegistDto.content}</textarea>
-                <br>
+                <div id="section_content">
+                <label style="">관리자 메모</label><br>
+                <textarea class="contentBox" name="content" content="15" cols="91" ${mode == "new" ? '' : 'readonly="readonly"'} placeholder="개설할 강의의 정보를 입력해주세요" onfocus="this.placeholder=''" onblur="this.placeholder='개설할 강의의 내용을 입력해주세요'"> ${lstRegistDto.content}</textarea>
+                </div>
 
                 <label style="">첨부파일</label>
+                <div id="file_upload">
                 <input type="file" name="file" id="file" accept="<c:url value="/img/upload/img/*"/>"  onchange="setThumbnail(event)" multiple ${mode == "new" ? '' : 'readonly="readonly"'}>
                 <div id="imgContainer"></div>
+                </div>
 
                 <script>
                     function setThumbnail(event) {
@@ -217,7 +227,7 @@
                     }
                 </script>
 
-                <div>
+                <div id="file_list">
                     <p>파일 목록</p>
                     <div style="width: 300px;">
                         <c:forEach var="file" items="${file}" varStatus="var">
@@ -245,7 +255,7 @@
                 </div>
                 <br>
 
-                <div>
+                <div id="section_btn">
                     <c:choose>
                         <c:when test="${mode eq 'new'}">
                             <input type="button" class="registeBtn" id="registRegistBt" value="등록하기">
@@ -258,7 +268,7 @@
                     <c:if test="${mode ne 'new'}">
                         <input type="button" class="deleteBtn" id="registRemoveBt" value="삭제하기">
                     </c:if>
-                    <input type="button" class="backBtn" id="registListBt" value="돌아가기">
+                    <input type="button" class="backBtn" id="registListBt" value="목록">
                 </div>
             </form>
 

@@ -83,7 +83,7 @@
 .password:focus {outline: none;}
 .password{width: 400px;height: 36px;border: 0;border-bottom: 1px solid rgba(0, 0, 0, 0.2);margin: 8px 0 20px 0;padding-top: 4px;padding-left: 10px;}
 
-
+#infoDetailBox > form > label {font-size: 16px;font-weight: 500;color: rgba(0, 0, 0, 0.4); }
 
 /*회원 관리 테이블*/
 #memberInfo{display: flex; flex-direction: column; width: 80%; margin: 20px auto;}
@@ -92,6 +92,7 @@
 /*검색*/
 #memberSearchBox select{width: 100px; height: 40px; border-radius: 10px; text-align: center; color: #7c838b;}
 #memberSearchBox input[type=text]{height: 40px;  width: 250px; border-radius: 10px; border: 1px solid rgb(118 118 118); padding: 0 10px;}
+.searchBox {width: 400px; height: 36px; border-radius: 10px; text-align: center; color: #7c838b;}
 
 /*상태 수정*/
 #memberUpdateBox{margin-top: 20px;}
@@ -130,3 +131,15 @@
 
 .subject_name {color: #000000; cursor: pointer;}
 .subject_name:hover {text-decoration-line: underline;}
+
+.inputBox{width: 400px;height: 36px;border: 0;border-bottom: 1px solid rgba(0, 0, 0, 0.2);margin: 8px 0 20px 0;padding-top: 4px;padding-left: 10px;}
+#infoDetailBox form label, #infoDetailBox form input, #infoDetailBox form select {margin: 10px 0;}
+.section_txt {margin-top: 30px; font-weight:500; color: #626568; margin-bottom: 6px;}
+
+#section_content {margin: 30px 0; color: #626568;}
+#section_content textarea {margin-top: 5px; width: 500px; height: 100px; border: 1px solid rgba(0, 0, 0, 0.2);}
+.dateBox {width: 200px; height: 36px; border-radius: 10px; text-align: center; color: #7c838b; border: 1px solid rgb(118 118 118); padding: 0 10px;}
+#file_upload {border: 1px solid rgb(233 229 229); padding: 0 11px; margin: 10px 0; border-radius: 5px; width: 250px}
+#file_list p {color: #9ea0a5;}
+#section_btn {margin: 30px 0; display: flex; justify-content: center; width: 500px;}
+#registRegistBt, #registModifyBt {margin-right: 10px !important;}

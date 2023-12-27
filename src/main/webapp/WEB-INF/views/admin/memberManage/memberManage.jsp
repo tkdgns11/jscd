@@ -3,7 +3,10 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
 <html>
 <head>
-    <title>회원 정보 상세보기</title>
+    <!-- 탭 아이콘 & 글자 지정 -->
+    <link rel="icon" href="/img/white_mainlogo.png"/>
+    <link rel="apple-touch-icon" href="/img/white_mainlogo.png"/>
+    <title>정석코딩 관리자 | 회원 정보 상세보기</title>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&family=Noto+Serif+KR:wght@900&display=swap"
           rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
