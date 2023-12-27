@@ -23,8 +23,8 @@
     <script type="text/javascript" src="<c:url value="/js/myPage.js"/>"></script>
 
     <!-- 탭 아이콘 & 글자 지정 -->
-    <link rel="icon" href="/img/white_mainlogo.png"/>
-    <link rel="apple-touch-icon" href="/img/white_mainlogo.png"/>
+    <link rel="icon" href="/img/mainlogo.png"/>
+    <link rel="apple-touch-icon" href="/img/mainlogo.png"/>
     <title>정석코딩 | myPage</title>
 
     <%--폰트어썸 라이브러리 불러오기--%>
@@ -45,13 +45,21 @@
 </header>
 
 <div id="myPageContentBox">
-    <nav>
+    <nav class="myPageNav">
         <ul>
-            <li><a href="/member/memberEdit">회원 정보 수정</a></li>
-            <li><a href="/member/lectureApplyState">강의 신청 현황</a></li>
-            <li><a href="/order/orderList">내 주문 내역</a></li>
+            <li><a href="/member/memberEdit">
+                <i class="fa-solid fa-wrench" style="color: #7e8087;"></i>
+                &nbsp;&nbsp;회원 정보 수정</a></li>
+            <li><a href="/member/lectureApplyState">
+                <i class="fa-solid fa-clock-rotate-left" style="color: #7e8087;"></i>
+                &nbsp;&nbsp;강의 신청 현황</a></li>
+            <li><a href="/order/orderList">
+                <i class="fa-solid fa-comment-dollar" style="color: #7e8087;"></i>
+                &nbsp;&nbsp;내 주문 내역</a></li>
             <c:if test="${memberDto.getGrade() eq '3'}">
-                <li><a href="/member/instructorIntro">강사 소개말 등록</a></li>
+                <li><a href="/member/instructorIntro">
+                    <i class="fa-solid fa-wand-sparkles" style="color: #7e8087;"></i>
+                    &nbsp;&nbsp;강사 소개말 등록</a></li>
             </c:if>
         </ul>
     </nav>
@@ -62,11 +70,11 @@
         <label class="memberInfoLabel">이름</label><br>
         <input type="text" value="${memberDto.name}"  class="memberInfoInput" readonly><br>
         <label class="memberInfoLabel">닉네임</label><br>
-        <input type="text" value="${memberDto.nickname}" class="memberModifyInput" id="nickname" name="nickname"><br>
+        <input type="text" value="${memberDto.nickname}" class="memberModifyInput" id="nickname" name="nickname" placeholder="변경할 닉네임을 입력해주세요"><br>
         <label class="memberInfoLabel">비밀번호 변경</label><br>
-        <input type="password" class="password" id="pwd1" style="margin-bottom:15px"><br>
+        <input type="password" class="password" id="pwd1" style="margin-bottom:15px" placeholder="변경할 비밀할 비밀번호를 입력해주세요"><br>
         <label class="memberInfoLabel">비밀번호 변경 확인</label><br>
-        <input type="password" name="pwd" class="password" id="pwd2" style="margin-bottom:5px"><br>
+        <input type="password" name="pwd" class="password" id="pwd2" style="margin-bottom:5px" placeholder="변경할 비밀번호를 다시 한 번 입력해주세요"><br>
         <font id="checkPwd" size="2"></font><br>
         <input type="hidden" id="pwdChkYN" value="">
         <label class="memberInfoLabel" style="margin-top: 10%">성별</label><br>

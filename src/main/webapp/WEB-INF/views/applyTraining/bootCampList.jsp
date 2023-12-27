@@ -16,7 +16,10 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/bootCamp.css"/>">
     <link rel="icon" href="/img/mainlogo.png"/>
     <link rel="apple-touch-icon" href="/img/mainlogo.png"/>
-    <title>BootCampList</title>
+    <!-- 탭 아이콘 & 글자 지정 -->
+    <link rel="icon" href="/img/mainlogo.png"/>
+    <link rel="apple-touch-icon" href="/img/mainlogo.png"/>
+    <title>정석코딩 | 부트캠프 강의 목록</title>
 </head>
 <body>
 <header>

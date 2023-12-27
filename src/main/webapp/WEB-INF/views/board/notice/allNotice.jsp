@@ -6,7 +6,10 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>글쓰기 리스트</title>
+    <!-- 탭 아이콘 & 글자 지정 -->
+    <link rel="icon" href="/img/mainlogo.png"/>
+    <link rel="apple-touch-icon" href="/img/mainlogo.png"/>
+    <title>정석코딩 | 공지사항</title>
 <%--    <link rel="stylesheet" href="<c:url value='/css/noticeList.css'/>">--%>
     <link rel="stylesheet" href="<c:url value='/css/noticeReading.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/jscdReset.css'/>">

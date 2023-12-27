@@ -1,10 +1,10 @@
 /*myPagePwdChk*/
 #myPagePwdChkBox{display: flex; flex-direction: row; height: 720px; position: relative;}
-#myPagePwdChkBox > nav{height: 100%; border-right: 1px solid rgba(0,0,0,0.2)}
-#myPagePwdChkBox > nav > ul{width: 300px; margin-top: 50px;}
-#myPagePwdChkBox > nav > ul > li{width:200px; margin: 0 auto; padding:20px 30px;}
-#myPagePwdChkBox > nav > ul > li > a{font-size: 25px;font-weight: bold; color: #182566}
-#myPagePwdChkBox > nav > ul > li > a:hover{font-size: 25px;font-weight: bold; color: #0185FE}
+.myPageNav {height: 100%; border-right: 1px solid rgba(0,0,0,0.2)}
+.myPageNav >  ul{width: 300px; margin-top: 50px;}
+.myPageNav > ul > li{width:200px; margin: 0 auto; padding:20px 30px;}
+.myPageNav > ul > li > a{font-size: 21px;color: #7e8087}
+.myPageNav > ul > li > a:hover{font-size: 23px; color: #0185FE}
 #myPagePwdChkBox > div{position: relative; width: 100%}
 #myPagePwdChkBox > div > p {position: absolute; left: 50%; top: 20%; transform: translate(-50%, -30%); font-size: 20px; color: #3a9df8; letter-spacing: 3px;}
 #myPagePwdChkBox > div > input {position: absolute; left: 50%; top: 45%; transform: translate(-50%, -45%); background-color: #0185FE; color: #FFFFFF;}
@@ -15,9 +15,9 @@
 #myPagePwdChk > input{width: 100%; height: 50px; font-size: 15px; border-radius: 15px; letter-spacing: 3px}
 /*myPage*/
 .memberInfoInput:focus {outline: none;}
-.memberInfoInput{border: 0;background-color: rgba(0,0,0,0.1);border-radius: 5px;margin-top: 5px;margin-bottom: 25px;width: 550px;height: 35px;pointer-events : none;}
-.memberModifyInput{border: 0;background-color: rgba(0,0,0,0.1);border-radius: 5px;margin-top: 5px;margin-bottom: 25px;width: 550px;height: 35px;}
-.password{border: 0;background-color: rgba(0,0,0,0.1);border-radius: 5px;margin-top: 5px;margin-bottom: 25px;width: 550px;height: 35px;}
+.memberInfoInput{border: 0; border-bottom: solid 1px #c1c1c1;background-color: #FFFFFF; margin-top: 5px;margin-bottom: 25px;width: 550px;height: 35px;pointer-events : none;}
+.memberModifyInput{border: 0;border-bottom: solid 1px #c1c1c1;background-color: #FFFFFF;margin-top: 5px;margin-bottom: 25px;width: 550px;height: 35px;}
+.password{border: 0;border-bottom: solid 1px #c1c1c1;background-color: #FFFFFF;margin-top: 5px;margin-bottom: 25px;width: 550px;height: 35px;}
 .password:focus {outline: none;}
 .memberInfoLabel{color: rgba(0,0,0,0.3);font-weight: 500;}
 #myPageBox{margin-top: 2%;margin-left: 20%;}
@@ -25,11 +25,11 @@
 #myPageDelBox{margin-left: 89%;margin-top: 30px;}
 #myPageDelBox > a{color:rgba(0,0,0,0.3);border-bottom: 1px solid rgba(0,0,0,0.3);}
 #myPageContentBox{height: 920px;display: flex; flex-direction: row; position: relative}
-#myPageContentBox > nav{height: 100%; border-right: 1px solid rgba(0,0,0,0.2)}
-#myPageContentBox > nav > ul{width: 300px;}
-#myPageContentBox > nav > ul > li{width:200px; margin: 0 auto; padding:30px; border-bottom: 1px solid rgba(0,0,0,0.2)}
-#myPageContentBox > nav > ul > li > a{font-size: 25px;font-weight: bold; color: #182566}
-#myPageContentBox > nav > ul > li > a:hover{font-size: 25px;font-weight: bold; color: #0185FE}
+/*#myPageContentBox > nav{height: 100%; border-right: 1px solid rgba(0,0,0,0.2)}*/
+/*#myPageContentBox > nav > ul{width: 300px;}*/
+/*#myPageContentBox > nav > ul > li{width:200px; margin: 0 auto; padding:30px; border-bottom: 1px solid rgba(0,0,0,0.2)}*/
+/*#myPageContentBox > nav > ul > li > a{font-size: 25px;font-weight: bold; color: #182566}*/
+/*#myPageContentBox > nav > ul > li > a:hover{font-size: 25px;font-weight: bold; color: #0185FE}*/
 /*강사소개말*/
 #introTitle{font-size: 24px;font-weight: 600;margin-bottom: 30px;color: rgba(0,0,0,0.4);border-bottom: 1px solid rgba(0,0,0,0.2);padding-bottom: 10px;width: 740px;}
 #intro{border: 0;font-size: 15px;background-color: #8b8b8b1c;resize: none;}

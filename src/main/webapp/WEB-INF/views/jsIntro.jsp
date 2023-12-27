@@ -6,7 +6,10 @@
 <head>
     <meta charset="utf-8">
 
-    <title>정석코딩 소개</title>
+    <!-- 탭 아이콘 & 글자 지정 -->
+    <link rel="icon" href="/img/mainlogo.png"/>
+    <link rel="apple-touch-icon" href="/img/mainlogo.png"/>
+    <title>정석코딩 | 정석코딩 소개</title>
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/reset.css'/>">
 
 

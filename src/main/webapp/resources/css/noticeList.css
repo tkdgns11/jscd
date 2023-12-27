@@ -75,7 +75,7 @@ hr {height: 1px; border: 0; border-bottom: solid 1px #abd7ff; width: 85%; margin
 #boardList_search_input{display: flex;}
 #boardList_search_input input[type=text]{width:430px; height: 40px;border-radius: 3px; margin: 10px; border: 1px solid #cfdce7; padding: 0 30px;}
 #search_btn{margin: 10px;}
-#search_btn input {border-radius: 3px !important; background-color: #3d9aee; color: #FFFFFF; font-weight: 500; letter-spacing: 2px;}
+#search_btn input{border-radius: 3px !important; background-color: #FFFFFF; color: #0185FE; font-weight: 500; letter-spacing: 2px; border: solid 1px #0185FE;}
 
 /*main content*/
 #boardList_main_content {width: 85%; margin: 0 auto;}
