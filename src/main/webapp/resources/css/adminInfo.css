@@ -87,7 +87,7 @@
 
 /*회원 관리 테이블*/
 #memberInfo{display: flex; flex-direction: column; width: 80%; margin: 20px auto;}
-#main_content_controll{display: flex; flex-direction: column; align-items: flex-end; margin: 40px 20px;}
+#main_content_controll{display: flex; flex-direction: column; align-items: flex-end; margin: 40px 20px 15px 20px;}
 
 /*검색*/
 #memberSearchBox select{width: 100px; height: 40px; border-radius: 10px; text-align: center; color: #7c838b;}
@@ -116,7 +116,8 @@
 /*.searchBtn_stdManage:hover {opacity: 0.5;}*/
 .detailBtn {background-color: #FFFFFF; border-radius: 3px; border: solid 1px #bbbbbb; color: #353739;}
 
-#infoNaviBox a {color: #353739;}
+#infoNaviBox {margin-top: 30px;}
+#infoNaviBox a {color: #353739; padding: 0 7px;}
 #infoNaviBox a:hover {text-decoration-line: underline;}
 
 
@@ -124,3 +125,8 @@
 .infoDetailClass{display: flex; flex-direction: column;}
 /*과목등록*/
 #classEnrollBtn{margin-top: 20px;}
+/*강의 목록*/
+#lectureWriteBox {margin-top: 35px;}
+
+.subject_name {color: #000000; cursor: pointer;}
+.subject_name:hover {text-decoration-line: underline;}
