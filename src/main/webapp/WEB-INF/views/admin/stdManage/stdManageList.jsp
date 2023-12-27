@@ -76,7 +76,7 @@
                         <th style="width: 250px;">아이디</th>
                         <th style="width: 100px;">이름</th>
                         <th style="width:250px;">휴대전화</th>
-                        <th style="width: 100px;">기수</th>
+<%--                        <th style="width: 100px;">기수</th>--%>
                         <th style="width:100px;">상태</th>
                         <th style="width:250px;">가입일</th>
                         <th style="width:100px;"></th>
@@ -92,7 +92,7 @@
                             <td>${stdDto.id}</td>
                             <td>${stdDto.name}</td>
                             <td>${stdDto.phone}</td>
-                            <td>${stdDto.gisu}</td>
+<%--                            <td>${stdDto.gisu}</td>--%>
                             <td>${stdDto.status}</td>
                             <td><fmt:formatDate value="${stdDto.regDate}"
                                                 pattern="yyyy-MM-dd"
