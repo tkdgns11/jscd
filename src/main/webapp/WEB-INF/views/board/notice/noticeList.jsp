@@ -69,7 +69,7 @@
                     <c:forEach var="list" items="${list}">
                         <tr>
                             <td>${list.bno}</td>
-                            <td>${list.title}</td>
+                            <td><a href="/board/notice/read?bno=${list.bno}&page=${ph.sc.page}&pageSize=${ph.sc.pageSize}">${list.title}</a></td>
 <%--                            class="subject_name"--%>
                             <td>${list.regDate} </td>
                         </tr>
@@ -83,17 +83,17 @@
                 <c:if test="${totalCnt!=null && totalCnt!=0}">
                     <c:if test="${ph.showPrev}">
                         <%--                <a class="page" href="<c:url value='/onlyAdmin/lstRegist/list${ph.sc.getQueryString(ph.beginPage-1)}'/>">&lt;</a>--%>
-                        <a href="<c:url value='/adminManage/lstRegist/list${ph.sc.getQueryString(ph.beginPage-1)}'/>">
+                        <a href="<c:url value='/board/notice/list${ph.sc.getQueryString(ph.beginPage-1)}'/>">
                             <i class="fa-solid fa-backward" style="color: #353739;"></i>
                         </a>
                     </c:if>
                     <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
                         <%--                <a class="page ${i==ph.sc.page? "paging-active" : ""}" href="<c:url value='/onlyAdmin/lstRegist/list${ph.sc.getQueryString(i)}'/>">${i}</a>--%>
-                        <a class="page${i==ph.sc.page? "-paging-active" : ""}" href="<c:url value='/adminManage/lstRegist/list${ph.sc.getQueryString(i)}'/>">${i}</a>
+                        <a class="page${i==ph.sc.page? "-paging-active" : ""}" href="<c:url value='/board/notice/list${ph.sc.getQueryString(i)}'/>">${i}</a>
                     </c:forEach>
                     <c:if test="${ph.showNext}">
                         <%--                <a class="page" href="<c:url value='/onlyAdmin/lstRegist/list${ph.sc.getQueryString(ph.endPage+1)}'/>">&gt;</a>--%>
-                        <a href="<c:url value='/adminManage/lstRegist/list${ph.sc.getQueryString(ph.endPage+1)}'/>">
+                        <a href="<c:url value='/board/notice/list${ph.sc.getQueryString(ph.endPage+1)}'/>">
                             <i class="fa-solid fa-forward" style="color: #353739;"></i>
                         </a>
                     </c:if>
