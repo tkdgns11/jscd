@@ -219,13 +219,15 @@ public class MemberController {
 	//로그인 체크(회원인지 아닌지)
 	@PostMapping("/login")
 	@ResponseBody
-	public Map<String, String> loginCheck(@RequestBody MemberDto memberDto, String toUrl, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public Map<String, String> loginCheck(@RequestBody MemberDto memberDto, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		String id = memberDto.getId();
 		String pwd = memberDto.getPwd();
 		String rememberId = memberDto.getRememberId();
+		String toURL = memberDto.getToURL();
 		Map<String, String> map = new HashMap<>();
 		System.out.println(id+pwd+rememberId);
+
 
 		//1. id, pwd 체크
 		//1-1 일치하지 않음.
@@ -250,9 +252,10 @@ public class MemberController {
 			response.addCookie(cookie);
 		}
 
-		toUrl = toUrl == null || toUrl.equals("") ? "/" : toUrl;
 
-		map.put("redirect",toUrl);
+		toURL = toURL == null || toURL.equals("") ? "/" : toURL;
+
+		map.put("redirect",toURL);
 		return map;
 	}
 

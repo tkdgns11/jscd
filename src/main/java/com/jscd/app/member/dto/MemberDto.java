@@ -25,6 +25,15 @@ public class MemberDto {
 	private String privacyChkYN;
 	private String ageChkYN;
 	private String marketingChkYN;
+	private String toURL;
+
+	public String getToURL() {
+		return toURL;
+	}
+
+	public void setToURL(String toURL) {
+		this.toURL = toURL;
+	}
 
 	public MemberDto() {
 

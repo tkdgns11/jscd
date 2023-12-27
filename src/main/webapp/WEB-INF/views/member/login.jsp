@@ -50,7 +50,7 @@
                     <input type="password" id="pwd" name="pwd" placeholder="비밀번호를 입력해주세요." autocomplete="off">
                 </div>
             </div>
-            <input type="hidden" name="toURL" value="${param.toURL}">
+            <input type="hidden" name="toURL" value="${param.toURL}" id="toURL">
             <div id="msgBox">
                 ${param.msg}
             </div>
