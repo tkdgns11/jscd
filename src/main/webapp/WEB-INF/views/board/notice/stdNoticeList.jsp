@@ -69,7 +69,7 @@
                     <c:forEach var="list" items="${list}">
                         <tr>
                             <td>${list.bno}</td>
-                            <td>${list.title}</td>
+                            <td><a class="subject_name" href="/board/stdNotice/read?bno=${list.bno}&page=${ph.sc.page}&pageSize=${ph.sc.pageSize}">${list.title}</a></td>
                             <td>${list.regDate} </td>
                         </tr>
                     </c:forEach>
