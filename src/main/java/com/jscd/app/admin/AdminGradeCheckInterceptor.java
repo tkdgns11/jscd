@@ -48,7 +48,7 @@ public class AdminGradeCheckInterceptor implements HandlerInterceptor{
             System.out.println("<< 원장님만 접근 가능 >>");
             String msg = URLEncoder.encode("원장님만 접근 가능한 페이지 입니다.", "utf-8");
             //메세지 띄우고 홈으로 이동
-            response.sendRedirect("/dashBoard/home?msg="+msg);
+            response.sendRedirect("/admin/home?msg="+msg);
             return false;
         }
         //원장님이면 접근 가능

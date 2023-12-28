@@ -79,5 +79,11 @@
         </div>
     </main>
 </div>
+<script>
+
+    let msg = "${param.msg}";
+    if (msg != "") alert("원장님만 접근 가능한 페이지 입니다.");
+
+</script>
 </body>
 </html>
