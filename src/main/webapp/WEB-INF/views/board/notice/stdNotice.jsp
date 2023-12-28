@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>학생공지 글쓰기 리스트</title>
-<%--    <link rel="stylesheet" href="<c:url value='/css/noticeList.css'/>">--%>
+    <%--    <link rel="stylesheet" href="<c:url value='/css/noticeList.css'/>">--%>
     <link rel="stylesheet" href="<c:url value='/css/noticeReading.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/jscdReset.css'/>">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -35,11 +35,21 @@
         <textarea name="content" id="content" ${mode=="new" ? '' : 'readonly="readonly"'}>${stdNoticeDto.content}</textarea><%--위지윅 적용--%>
         <%--위지윅 적용--%>
         <script>
-            ClassicEditor
-                .create(document.querySelector('#content'))
-                .catch(error=>{
-                    console.error(error);
-                });
+            document.addEventListener("DOMContentLoaded", function (){
+                const contentTextarea = document.querySelector('#content');
+                if (!contentTextarea.hasAttribute('readonly')){
+                    ClassicEditor
+                        .create(contentTextarea,{
+                            language: "ko"
+                        })
+                        .then(newEditor => {
+                            editor = newEditor;
+                        })
+                        .catch(error => {
+                            console.error(error);
+                        });
+                }
+            });
         </script>
     </div>
     <div id="wrapAtc">
@@ -50,11 +60,11 @@
     <div id="buttonBox">
         <input type="button" id="listBtn" class="backBtn" value="목록">
         <div id="eachBtn">
-        <input type="button" id="writeBtn" class="registeBtn" value="${mode eq 'new' ? '등록' : ''}"
-               style="display: ${mode eq 'new' ? 'inline-block' : 'none'}">
-        <input type="button" id="modifyBtn" class="modifyBtn" value="${mode eq 'new' ? '' : '수정'}"
-               style="display: ${mode eq 'new' ? 'none' : 'inline-block'}">
-        <input type="button" id="removeBtn" class="deleteBtn" value="삭제">
+            <input type="button" id="writeBtn" class="registeBtn" value="${mode eq 'new' ? '등록' : ''}"
+                   style="display: ${mode eq 'new' ? 'inline-block' : 'none'}">
+            <input type="button" id="modifyBtn" class="modifyBtn" value="${mode eq 'new' ? '' : '수정'}"
+                   style="display: ${mode eq 'new' ? 'none' : 'inline-block'}">
+            <input type="button" id="removeBtn" class="deleteBtn" value="삭제">
         </div>
     </div>
 </form>
@@ -115,6 +125,13 @@
 
                 $("input[name=title]").removeAttr('readonly'); //title
                 $("textarea").removeAttr('readonly'); //content
+
+                ClassicEditor
+                    .create(document.querySelector('#content'))
+                    .catch(error => {
+                        console.error(error);
+                    });
+
                 $("#modifyBtn").val("수정완료");
 
                 return;

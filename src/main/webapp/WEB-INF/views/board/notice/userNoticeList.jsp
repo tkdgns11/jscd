@@ -77,7 +77,7 @@
                     <c:forEach var="noticeDto" items="${list}">
                         <div id="board_content_per">
                             <a href="<c:url value="/board/user/read?bno=${noticeDto.bno}&page=${ph.sc.page}&pageSize=${ph.sc.pageSize}"/>">${noticeDto.title}</a>
-                            <p class="ellipsis">${noticeDto.content}</p>
+                            <div class="ellipsis">${noticeDto.content}</div>
                             <div id="board_content_footer">
                                 <div>
                                     <span id="user_info_date">${noticeDto.regDate}</span>

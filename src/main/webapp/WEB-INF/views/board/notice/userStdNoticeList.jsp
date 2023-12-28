@@ -51,7 +51,7 @@
                 <p>&nbsp;</p>
             </div>
             <div id=boardList_main_search>
-<%--                    링크 변경해야 할 부분--%>
+                <%--                    링크 변경해야 할 부분--%>
                 <form action="<c:url value="/board/user/list"/>" method="get">
                     <div>
                         <div id="boardList_search_option">
@@ -75,10 +75,10 @@
             <hr/>
             <div id="boardList_main_content">
                 <div>
-                    <c:forEach var="noticeDto" items="${list}">
+                    <c:forEach var="stdNoticeDto" items="${list}">
                         <div id="board_content_per">
                             <a href="<c:url value="/board/userStd/read?bno=${stdNoticeDto.bno}&page=${ph.sc.page}&pageSize=${ph.sc.pageSize}"/>">${stdNoticeDto.title}</a>
-                            <p class="ellipsis">${stdNoticeDto.content}</p>
+                            <div class="ellipsis">${stdNoticeDto.content}</div>
                             <div id="board_content_footer">
                                 <div>
                                     <span id="user_info_date">${stdNoticeDto.regDate}</span>
