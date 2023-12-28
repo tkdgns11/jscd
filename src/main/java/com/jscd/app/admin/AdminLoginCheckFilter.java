@@ -15,7 +15,7 @@ import java.util.Optional;
 	작성 기능:관리자 메뉴를 관리자만 사용할 수 있도록 id를 확인
 	 */
 
-@WebFilter(urlPatterns = {"/adminManage/*", "/admin/home", "/admin/read" ,"/locker/adminList"})
+@WebFilter(urlPatterns = {"/adminManage/*", "/admin/home", "/admin/read" ,"/locker/adminList" , "/coupon/adminList"})
 public class AdminLoginCheckFilter implements Filter {
 
     @Override

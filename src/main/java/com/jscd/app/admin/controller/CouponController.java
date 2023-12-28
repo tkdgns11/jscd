@@ -1,6 +1,7 @@
 package com.jscd.app.admin.controller;
 
 import com.jscd.app.admin.dto.CouponDto;
+import com.jscd.app.admin.service.CouponService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ public class CouponController {
 
     @Autowired
     CouponService couponService;
+
 
     // 쿠폰 등록
     @PostMapping("/register")

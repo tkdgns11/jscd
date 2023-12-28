@@ -252,11 +252,9 @@ public class MemberController {
 			response.addCookie(cookie);
 		}
 
-
-		toURL = toURL == null || toURL.equals("") ? "/" : toURL;
-
-		map.put("redirect",toURL);
-		return map;
+		 toURL = toURL == null || toURL.equals("") ? "/" : toURL;
+		 map.put("redirect", toURL);
+		 return map;
 	}
 
 	//회원가입 페이지 이동

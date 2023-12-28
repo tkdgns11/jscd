@@ -1,6 +1,7 @@
 package com.jscd.app.admin.controller;
 
 import com.jscd.app.admin.dto.CouponInfoDto;
+import com.jscd.app.admin.service.CouponService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,8 +24,6 @@ public class CouponViewController {
     public String couponList(Model model, HttpServletRequest request) {
 
         List<CouponInfoDto> couponDtoList = couponService.GetCouponInfoList();
-
-        System.out.println("couponDtoList = " + couponDtoList);
 
         model.addAttribute("couponList", couponDtoList);
 

@@ -49,7 +49,7 @@ function login(){
         },
         success : function (data){
             console.log("성공");
-            if(data.redirect){
+            if(data.redirect) {
                 window.location.href = data.redirect;
             }
         }

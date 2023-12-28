@@ -357,8 +357,8 @@
         const floor5locker = document.getElementById("floor5locker"); //4층 사물함 요소 가져옴
         const moveBtn = document.getElementById("moveBtn"); //자리이동 버튼 요소 가져옴
         const guideText = document.getElementById("guideText"); //자리이동 버튼 클릭될때 text들어갈 요소 가져옴
-        // const regBtn = document.getElementById("regBtn"); //자리등록 버튼 요소 가져옴
-        // const extdBtn = document.getElementById("extdBtn"); //기간연장 버튼 요소 가져옴
+        const regBtn = document.getElementById("regBtn"); //자리등록 버튼 요소 가져옴
+        const extdBtn = document.getElementById("extdBtn"); //기간연장 버튼 요소 가져옴
         const removeBtn = document.getElementById("removeBtn"); //자리삭제 버튼 요소 가져옴
         const lockerCollection4 = document.getElementsByClassName("locker"); // 4층락커 요소 전부 가져옴
         const lockerCollection5 = document.getElementsByClassName("locker5"); // 5층락커 요소 전부 가져옴
@@ -424,15 +424,18 @@
 
             if (regClick === 1) {
                 initial();
+                regBtn.style.backgroundColor = '#dcdcdc';
                 regClick = 0;
             }
 
             if (removeClick === 1) {
                 initial();
+                removeBtn.style.backgroundColor = '#dcdcdc';
                 removeClick = 0;
             }
             if (extdClick === 1) {
                 initial();
+                extdBtn.style.backgroundColor = '#dcdcdc';
                 extdClick = 0;
             }
             moveClick = 1;
@@ -446,27 +449,35 @@
 
         function regNo() {
 
-            // alert("관리자에게 문의하세요! 일반회원은 자기자리 이동만 가능합니다! ");
-            //
-            // return;
-
             if (!loginCheck) {
-                alert("로그인 후 이용해주세요!");
+                let Check = confirm("이 기능을 사용하려면 로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?");
+
+                if (Check) {
+                    window.location.href = "/member/login?toURL=" + window.location.pathname;
+                }
+
                 return;
             }
 
+            regBtn.style.backgroundColor = '#87F5F5';
+
+
             if (regClick === 1) return;
+
             if (moveClick === 1) {
                 initial();
+                moveBtn.style.backgroundColor = '#dcdcdc';
                 isFirstMoveChoice = 0;
                 moveClick = 0;
             }
             if (removeClick === 1) {
                 initial();
+                removeBtn.style.backgroundColor = '#dcdcdc';
                 removeClick = 0;
             }
             if (extdClick === 1) {
                 initial();
+                extdBtn.style.backgroundColor = '#dcdcdc';
                 extdClick = 0;
             }
             regClick = 1;
@@ -480,25 +491,35 @@
 
         function extdNo() {
 
-            // alert("관리자에게 문의하세요! 일반회원은 자기자리 이동만 가능합니다! ");
-            //
-            // return;
+            if (!loginCheck) {
+                let Check = confirm("이 기능을 사용하려면 로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?");
 
+                if (Check) {
+                    window.location.href = "/member/login?toURL=" + window.location.pathname;
+                }
+
+                return;
+            }
+
+            extdBtn.style.backgroundColor = '#87F5F5';
 
             if (extdClick === 1) return;
 
             if (moveClick === 1) {
                 initial();
+                moveBtn.style.backgroundColor = '#dcdcdc';
                 isFirstMoveChoice = 0;
                 moveClick = 0;
             }
             if (removeClick === 1) {
                 initial();
+                removeBtn.style.backgroundColor = '#dcdcdc';
                 removeClick = 0;
             }
 
             if (regClick === 1) {
                 initial();
+                regBtn.style.backgroundColor = '#dcdcdc';
                 regClick = 0;
             }
 
@@ -519,16 +540,19 @@
 
             if (moveClick === 1) {
                 initial();
+                moveBtn.style.backgroundColor = '#dcdcdc';
                 isFirstMoveChoice = 0;
                 moveClick = 0;
             }
             if (regClick === 1) {
                 initial();
+                regBtn.style.backgroundColor = '#dcdcdc';
                 regClick = 0;
             }
 
             if (extdClick === 1) {
                 initial();
+                extdBtn.style.backgroundColor = '#dcdcdc';
                 extdClick = 0;
             }
             removeClick = 1;
@@ -554,19 +578,20 @@
             if (moveChoiceLocker[0] !== "") {
 
                 if (mebrArea.includes(moveChoiceLocker[0])) {
-                    moveClickedElement[0].style.backgroundColor = '#dcdcdc';
+                    moveClickedElement[0].style.backgroundColor = '#E1FFE1';
                 } else {
                     moveClickedElement[0].style.backgroundColor = '';
                 }
 
             }
 
+
             if (choiceLocker !== "") {
 
                 if (mebrArea.includes(choiceLocker)) {
-                    choiceElement.style.backgroundColor = '#dcdcdc';
+                    choiceElement.style.backgroundColor = '#E1FFE1';
                 } else {
-                    choiceElement.style.backgroundColor = '';
+                    choiceElement.style.backgroundColor = '#FFD1B7';
                 }
             }
 
@@ -585,6 +610,9 @@
             removeClick = 0;
             extdClick = 0;
             moveBtn.style.backgroundColor = '#dcdcdc';
+            regBtn.style.backgroundColor = '#dcdcdc';
+            removeBtn.style.backgroundColor = '#dcdcdc';
+            extdBtn.style.backgroundColor = '#dcdcdc';
         }
 
         function lockerClick(id, event) {
