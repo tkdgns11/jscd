@@ -35,12 +35,21 @@
 <%--            <input type="submit" value="Submit" onclick="return formCheck();" />--%>
 <%--            위지윅 적용--%>
             <script>
-
-            ClassicEditor.create( document.querySelector( '#content' ), {
-                language: "ko"
-
-            } );
-
+                document.addEventListener("DOMContentLoaded", function (){
+                    const contentTextarea = document.querySelector('#content');
+                    if (!contentTextarea.hasAttribute('readonly')){
+                        ClassicEditor
+                            .create(contentTextarea,{
+                                language: "ko"
+                            })
+                            .then(newEditor => {
+                                editor = newEditor;
+                            })
+                            .catch(error => {
+                                console.error(error);
+                            });
+                    }
+                });
             </script>
         </div>
         <div id="wrapAtc">
@@ -106,8 +115,8 @@
             let form = $('#form');
             form.attr("action", "<c:url value='/board/notice/write?page=${page}&pageSize=${pageSize}'/>");
             form.attr("method", "post"); //포스트로 해서 전송
-                          console.log(form);
 
+            console.log(form);
             form.submit();
 
         });
@@ -122,6 +131,12 @@
             if (isReadOnly == 'readonly') {
                 $("input[name=title]").removeAttr('readonly'); //title
                 $("textarea").removeAttr('readonly'); //content
+                ClassicEditor
+                    .create(document.querySelector('#content'))
+                    .catch(error => {
+                        console.error(error);
+                    });
+
                 $("#modifyBtn").val("수정완료");
                 return;
 
@@ -130,9 +145,7 @@
 
             form.attr("action", "<c:url value='/board/notice/modify?page=${page}&pageSize=${pageSize}'/>");
             form.attr("method", "post"); //포스트로 해서 전송
-                        if (formCheck()) {
-                            form.submit();
-                        }
+            if (formCheck()){form.submit();}
         })
     });
 </script>
