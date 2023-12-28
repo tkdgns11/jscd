@@ -38,10 +38,10 @@
                 <li><a href="<c:url value="/board/userStd/list"/>">
                     <i class="fa-solid fa-bullhorn" style="color: #73b4f0;"></i>
                     &nbsp;&nbsp;학생 공지사항</a></li>
-                <li><a href="<c:url value="/board/qna/stdQnaList"/>"> <!--학사 질문&답변으로 연결해야함-->
+                <li><a href="<c:url value="/board/qna/allqnaList"/>"> <!--학사 질문&답변으로 연결해야함-->
                     <i class="fa-solid fa-comment-dots" style="color: #73b4f0;"></i>
                     &nbsp;&nbsp;질문&답변</a></li>
-                <li><a href="<c:url value="/locker/mebrList"/>">
+                <li><a href="<c:url value="/board/faq"/>">
                     <i class="fa-solid fa-city" style="color: #73b4f0;"></i> <!--사물함으로 연결해야함-->
                     &nbsp;&nbsp;사물함</a></li>
             </ul>
@@ -51,7 +51,7 @@
                 <p>&nbsp;</p>
             </div>
             <div id=boardList_main_search>
-<%--                    링크 변경해야 할 부분--%>
+                <%--                    링크 변경해야 할 부분--%>
                 <form action="<c:url value="/board/user/list"/>" method="get">
                     <div>
                         <div id="boardList_search_option">
@@ -78,7 +78,7 @@
                     <c:forEach var="stdNoticeDto" items="${list}">
                         <div id="board_content_per">
                             <a href="<c:url value="/board/userStd/read?bno=${stdNoticeDto.bno}&page=${ph.sc.page}&pageSize=${ph.sc.pageSize}"/>">${stdNoticeDto.title}</a>
-                            <p class="ellipsis">${stdNoticeDto.content}</p>
+                            <div class="ellipsis">${stdNoticeDto.content}</div>
                             <div id="board_content_footer">
                                 <div>
                                     <span id="user_info_date">${stdNoticeDto.regDate}</span>

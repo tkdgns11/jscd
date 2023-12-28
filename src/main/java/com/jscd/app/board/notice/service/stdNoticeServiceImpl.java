@@ -7,6 +7,9 @@ import com.jscd.app.board.notice.dto.stdNoticeDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -62,7 +65,12 @@ public class stdNoticeServiceImpl implements stdNoticeService{
 
     @Override
     public int modify(stdNoticeDto stdNoticeDto) throws Exception {
-        return stdNoticeDao.update(stdNoticeDto);
+        Date date = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        String today = dateFormat.format(date);
+        stdNoticeDto.setModifyDate(today);
+        int result = stdNoticeDao.update(stdNoticeDto);
+        return result;
     }
 
 

@@ -144,13 +144,13 @@ public class noticeController {
     @PostMapping("/modify")
     public String modify(noticeDto noticeDto,Integer page, Integer pageSize, HttpSession session, Model m, RedirectAttributes rattr) { //사용자가 입력한 정보를 다시 돌려줘야해서 그걸 model에 담아둬야함
 
-        String writer = (String) session.getAttribute("adminId");
-        String noticeWriter= noticeDto.getWriter();
-
-        if (!writer.equals(noticeWriter)){
-            m.addAttribute("msg","modify_err");
-            return "board/notice/allNotice";
-        }
+//        String writer = (String) session.getAttribute("adminId");
+//        String noticeWriter= noticeDto.getWriter();
+//
+//        if (!writer.equals(noticeWriter)){
+//            m.addAttribute("msg","modify_err");
+//            return "board/notice/allNotice";
+//        }
 
 
         try {

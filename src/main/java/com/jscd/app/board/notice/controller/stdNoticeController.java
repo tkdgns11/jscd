@@ -71,7 +71,7 @@ public class stdNoticeController {
     @PostMapping("/remove") //게시물 삭제 POST방식만 있음
     public String remove(Integer bno, Integer page, Integer pageSize, Model m, HttpSession session, RedirectAttributes rattr) {
 
-        String writer = (String)session.getAttribute("id");
+        String writer = (String)session.getAttribute("adminId");
 
         try {
             m.addAttribute("page", page);
@@ -107,7 +107,7 @@ public class stdNoticeController {
     @PostMapping("/write")
     public String write(stdNoticeDto stdNoticeDto, HttpSession session, Model m, RedirectAttributes rattr) { //사용자가 입력한 정보를 다시 돌려줘야해서 그걸 model에 담아둬야함
 
-        String writer = (String)session.getAttribute("id");
+        String writer = (String)session.getAttribute("adminId");
         stdNoticeDto.setWriter(writer);
 
 
