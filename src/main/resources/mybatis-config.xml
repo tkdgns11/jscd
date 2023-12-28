@@ -28,6 +28,8 @@
 		<typeAlias alias="LockerDto" type="com.jscd.app.facility.dto.LockerDto"/>
 		<typeAlias alias="DailySummaryDto" type="com.jscd.app.admin.dto.DailySummaryDto"/>
 		<typeAlias alias="MemberManageDto" type="com.jscd.app.admin.dto.MemberManageDto"/>
+		<typeAlias alias="CouponInfoDto" type="com.jscd.app.admin.dto.CouponInfoDto"/>
+		<typeAlias alias="CouponDto" type="com.jscd.app.admin.dto.CouponDto"/>
 
 		<typeAlias alias="noticeDto" type="com.jscd.app.board.notice.dto.noticeDto"/>
 		<typeAlias alias="SearchCon" type="com.jscd.app.board.notice.dto.SearchCon"/>

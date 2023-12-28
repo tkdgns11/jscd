@@ -43,6 +43,7 @@ public class LockerViewController {
 
         if(loginCheck) {
             String mebrID = (String)request.getSession().getAttribute("id");
+            model.addAttribute("mebrID",mebrID);
             mebrLockerDtoList = lockerService.mebrIDLockers(mebrID);
         }
 

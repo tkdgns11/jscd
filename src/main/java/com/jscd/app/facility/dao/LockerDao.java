@@ -1,6 +1,9 @@
 package com.jscd.app.facility.dao;
 
+import com.jscd.app.admin.dto.CouponInfoDto;
 import com.jscd.app.facility.dto.LockerDto;
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.Map;

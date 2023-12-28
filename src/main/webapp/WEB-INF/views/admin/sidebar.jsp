@@ -23,6 +23,7 @@
         <ul class="submenu">
             <li><a href="/">정석코딩 바로가기</a></li>
             <li><a href="/admin/home">대시보드</a></li>
+            <li><a href="/coupon/adminList">쿠폰</a></li>
         </ul>
     </li>
     <li>

@@ -305,6 +305,8 @@
     window.onload = function () {
 
         let loginCheck = <c:out value="${loginCheck}" default="false" />; //loginCheck 속성이 null이거나 존재하지 않을 때 기본값으로 false를 사용
+        let loginID = "<c:out value='${mebrID}' default='' />"; // 따옴표로 묶어서 문자열로 만듦
+
 
         let mebrLockerList = [
             <c:forEach var="locker" items="${mebrLockerDtoList}" varStatus="status">
@@ -444,9 +446,9 @@
 
         function regNo() {
 
-            alert("관리자에게 문의하세요! 일반회원은 자기자리 이동만 가능합니다! ");
-
-            return;
+            // alert("관리자에게 문의하세요! 일반회원은 자기자리 이동만 가능합니다! ");
+            //
+            // return;
 
             if (!loginCheck) {
                 alert("로그인 후 이용해주세요!");
@@ -478,9 +480,9 @@
 
         function extdNo() {
 
-            alert("관리자에게 문의하세요! 일반회원은 자기자리 이동만 가능합니다! ");
-
-            return;
+            // alert("관리자에게 문의하세요! 일반회원은 자기자리 이동만 가능합니다! ");
+            //
+            // return;
 
 
             if (extdClick === 1) return;
@@ -596,7 +598,7 @@
 
             if (moveClick === 1 && isFirstMoveChoice !== 0 && document.getElementById(id.substring(0, 1) + "-" + id.substring(2)).innerText === '사용중') {
 
-                alert("사용중인 자리로는 옮길 수 있습니다!");
+                alert("사용중인 자리로는 옮길 수 없습니다!");
 
                 return;
             }
@@ -881,150 +883,179 @@
                     break;
 
                 case 'extdTransfer':
-                    if (confirm("정말 " + choiceLocker + "위치를 연장하시겠습니까?")) {
-                        extdDays = prompt("연장할 기간을 일단위로 숫자만 입력해주세요(ex 30)", "");
-                        if (!isOnlyNumber(extdDays)) {
-                            alert("연장 기간은 숫자만 입력해야 합니다. 현재 입력된 값: " + extdDays);
-                            cancelClick();
-                            return;
-                        }
-                        if (choiceLocker.substring(0, 1) === '4') {
-                            lockerCode = "01";
-                            lockerID = "01";
-                            forPtagString = "4층-";
+                    let couponID = prompt("가지고 계신 쿠폰ID를 입력해주세요.", "");
 
-                        } else {
-                            lockerCode = "02";
-                            lockerID = "02";
-                            forPtagString = "5층-";
-                        }
-
-                        if (choiceLocker.substring(2).length === 1) {
-                            lockerID += ("0" + choiceLocker.substring(2));
-                            forPtagString += choiceLocker.substring(2);
-                        } else {
-                            lockerID += choiceLocker.substring(2);
-                            forPtagString += choiceLocker.substring(2);
-                        }
-
-                        mebrID = document.getElementById(forPtagString).innerText;
-
-                        const lockerDto = {
-                            lockerID: lockerID,
-                            mebrID: mebrID,
-                            extdDays: extdDays
-                        };
-
-                        // 서버로 PATCH 요청
-                        fetch(`/locker/` + lockerID + `/extend`, {
-                            method: 'PATCH',
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify(lockerDto),
-                        })
-                            .then(response => {
-                                if (response.ok) {
-                                    alert("락커 연장이 완료되었습니다.");
-                                    location.reload();
-                                } else {
-                                    throw new Error("락커 연장에 실패했습니다.");
-                                }
-                            })
-                            .catch((error) => {
-                                console.error('Error:', error);
-                                alert("연장 실패: " + error);
-                                cancelClick();
-                                location.reload();
-                            });
-                    } else {
-                        cancelClick();
+                    if (couponID === null) {
+                        return; // '취소'를 눌렀을 경우 함수 종료
                     }
+
+                    $.ajax({
+                        url: '/coupon/check',
+                        type: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify({ couponID: couponID }),
+                        success: function(response) {
+                            if(response !== 1) {
+                                alert("쿠폰 ID를 확인해주세요.");
+                                cancelClick();
+                                return;
+                            }
+
+                            if (confirm("정말 " + choiceLocker + "위치를 연장하시겠습니까?")) {
+                                if (couponID === null) {
+                                    return; // '취소'를 눌렀을 경우 함수 종료
+                                }
+
+                                if (choiceLocker.substring(0, 1) === '4') {
+                                    lockerCode = "01";
+                                    lockerID = "01";
+                                    forPtagString = "4층-";
+
+                                } else {
+                                    lockerCode = "02";
+                                    lockerID = "02";
+                                    forPtagString = "5층-";
+                                }
+
+                                if (choiceLocker.substring(2).length === 1) {
+                                    lockerID += ("0" + choiceLocker.substring(2));
+                                    forPtagString += choiceLocker.substring(2);
+                                } else {
+                                    lockerID += choiceLocker.substring(2);
+                                    forPtagString += choiceLocker.substring(2);
+                                }
+
+                                mebrID = document.getElementById(forPtagString).innerText;
+
+                                const lockerDto = {
+                                    lockerID: lockerID,
+                                    mebrID: loginID,
+                                    extdDays: 30
+                                };
+
+                                // 서버로 PATCH 요청
+                                fetch(`/locker/` + lockerID + `/extend`, {
+                                    method: 'PATCH',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                    },
+                                    body: JSON.stringify(lockerDto),
+                                })
+                                    .then(response => {
+                                        if (response.ok) {
+                                            alert("락커 연장이 완료되었습니다.");
+                                            location.reload();
+                                        } else {
+                                            throw new Error("락커 연장에 실패했습니다.");
+                                        }
+                                    })
+                                    .catch((error) => {
+                                        console.error('Error:', error);
+                                        alert("연장 실패: " + error);
+                                        cancelClick();
+                                        location.reload();
+                                    });
+                            } else {
+                                cancelClick();
+                            }
+                        },
+                        error: function(error) {
+                            console.log('쿠폰ID 확인 중 에러 발생:', error);
+                        }
+                    });
                     break;
 
                 case 'regTransfer':
-                    // 등록 관련 로직 처리
-                    confirm("정말 " + choiceLocker + "위치로 등록하시겠습니까?");
-                    if (confirm) {
-                        mebrID = prompt("정석코딩 홈페이지 이메일을 입력해 주세요(aaa@aaa.com)", "");
-                        //서버로 전송 -> 여기서 일단 null값으로 데이터 입력. 회원의 이름을 받아서. ooo님 맞습니까? 나중에 userService;
-                        //기간을 입력해주세요. 기간입력 후 등록.
-                        if (!isValidEmail(mebrID)) {
-                            alert("유효한 이메일 주소를 입력해야 합니다. 현재 입력된 값: " + mebrID);
-                            mebrID = "";
-                            cancelClick();
-                            return;
+
+                    let confirmRegistration = confirm("정말 " + choiceLocker + "위치로 등록하시겠습니까?");
+
+                    if (confirmRegistration) {
+
+                        let couponID = prompt("가지고 계신 쿠폰ID를 입력해주세요.", "");
+
+                        if (couponID === null) {
+                            return; // '취소'를 눌렀을 경우 함수 종료
                         }
 
-                        useDays = prompt("사용할 기간을 일단위로 숫자만 입력해주세요(ex 30)", "");
-                        if (!isOnlyNumber(useDays)) {
-                            alert("사용 기간은 숫자만 입력해야 합니다. 현재 입력된 값: " + useDays);
-                            cancelClick();
-                            return;
-                        }
-
-                        makeEndDate(parseInt(useDays, 10));
-
-                        if (confirm("사용기간은 " + useDays + "일이고, 종료날짜는 " + endDate.toISOString().split('T')[0] + " 입니다. 맞으면 확인을 눌러주세요.")) {
-
-                            if (choiceLocker.substring(0, 1) === '4') {
-                                lockerCode = "01";
-                                lockerID = "01";
-                                forPtagString = "4층-";
-
-                            } else {
-                                lockerCode = "02";
-                                lockerID = "02";
-                                forPtagString = "5층-";
-                            }
-
-                            if (choiceLocker.substring(2).length === 1) {
-                                lockerID += ("0" + choiceLocker.substring(2));
-                                forPtagString += choiceLocker.substring(2);
-                            } else {
-                                lockerID += choiceLocker.substring(2);
-                                forPtagString += choiceLocker.substring(2);
-                            }
-
-                            const lockerDto = {
-                                lockerID: lockerID,
-                                mebrID: mebrID,
-                                startDate: startDate,
-                                endDate: endDate
-                            };
-
-                            // 서버로 Post 요청
-                            fetch(`/locker/register`, {
-                                method: 'Post',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                },
-                                body: JSON.stringify(lockerDto),
-                            })
-                                .then(response => {
-                                    if (response.ok) {
-                                        alert("락커 등록이 완료되었습니다.");
-                                        location.reload();
-                                    } else {
-                                        throw new Error("락커 등록에 실패했습니다.");
-                                    }
-                                })
-                                .catch((error) => {
-                                    console.error('Error:', error);
-                                    alert("등록 실패: " + error);
+                        $.ajax({
+                            url: '/coupon/check',
+                            type: 'POST',
+                            contentType: 'application/json',
+                            data: JSON.stringify({ couponID: couponID }), // couponID를 JSON 객체의 속성으로 전송
+                            success: function(response) {
+                                if(response !== 1) {
+                                    alert("쿠폰 ID를 확인해주세요.");
                                     cancelClick();
-                                    location.reload();
-                                });
+                                    return;
+                                }
 
+                                useDays = 30;
+                                makeEndDate(parseInt(useDays, 10));
+                                var confirmEndDate = confirm("사용기간은 " + useDays + "일이고, 종료날짜는 " + endDate.toISOString().split('T')[0] + " 입니다. 맞으면 확인을 눌러주세요.");
 
-                        } else {
-                            alert("등록을 취소하셨습니다.");
-                            cancelClick();
-                        }
+                                if (confirmEndDate) {
+                                    // 락커 ID 및 코드 설정
+                                    if (choiceLocker.substring(0, 1) === '4') {
+                                        lockerCode = "01";
+                                        lockerID = "01";
+                                        forPtagString = "4층-";
+                                    } else {
+                                        lockerCode = "02";
+                                        lockerID = "02";
+                                        forPtagString = "5층-";
+                                    }
+
+                                    if (choiceLocker.substring(2).length === 1) {
+                                        lockerID += ("0" + choiceLocker.substring(2));
+                                        forPtagString += choiceLocker.substring(2);
+                                    } else {
+                                        lockerID += choiceLocker.substring(2);
+                                        forPtagString += choiceLocker.substring(2);
+                                    }
+
+                                    const lockerDto = {
+                                        lockerID: lockerID,
+                                        mebrID: loginID,
+                                        startDate: startDate,
+                                        endDate: endDate
+                                    };
+
+                                    // 서버로 Post 요청
+                                    fetch(`/locker/register`, {
+                                        method: 'Post',
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                        },
+                                        body: JSON.stringify(lockerDto),
+                                    })
+                                        .then(response => {
+                                            if (response.ok) {
+                                                alert("락커 등록이 완료되었습니다.");
+                                                location.reload();
+                                            } else {
+                                                throw new Error("락커 등록에 실패했습니다.");
+                                            }
+                                        })
+                                        .catch((error) => {
+                                            console.error('Error:', error);
+                                            alert("등록 실패: " + error);
+                                            cancelClick();
+                                            location.reload();
+                                        });
+                                } else {
+                                    alert("등록을 취소하셨습니다.");
+                                    cancelClick();
+                                }
+                            },
+                            error: function(error) {
+                                console.log('쿠폰ID 확인 중 에러 발생:', error);
+                            }
+                        });
                     } else {
                         cancelClick();
                     }
                     break;
+
 
                 case 'removeTransfer':
                     // 삭제 관련 로직 처리

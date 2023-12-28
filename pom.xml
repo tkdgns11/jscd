@@ -31,12 +31,6 @@
 
 	<dependencies>
 
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>2.16.0</version>
-		</dependency>
-
 		<!-- https://mvnrepository.com/artifact/org.quartz-scheduler/quartz -->
 		<dependency>
 			<groupId>org.quartz-scheduler</groupId>
@@ -58,12 +52,28 @@
 			<version>1.18.30</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+		<!-- Jackson Core -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.12.3</version> <!-- 버전은 프로젝트에 맞게 조정 -->
+		</dependency>
+
+		<!-- Jackson Databind -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
-			<version>2.13.3</version>
+			<version>2.12.3</version>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.datatype/jackson-datatype-jsr310 -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-jsr310</artifactId>
+			<version>2.12.3</version>
+		</dependency>
+
+
 
 		<dependency>
 			<groupId>io.springfox</groupId>

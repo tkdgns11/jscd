@@ -31,7 +31,7 @@
 </button>
 <br><br>
 <button>
-    <a href="/locker/mebrList">마이페이지 사물함 </a>
+    <a href="/coupon/adminList">쿠폰리스트 페이지</a>
 </button>
 </body>
 </html>
