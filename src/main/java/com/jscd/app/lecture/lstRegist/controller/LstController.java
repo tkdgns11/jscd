@@ -59,10 +59,7 @@ public class LstController {
         try {
             int totalCnt = lstService.getSearchResultCnt(sc);
             m.addAttribute("totalCnt", totalCnt);
-
             PageHandler pageHandler = new PageHandler(totalCnt, sc);
-
-
             List<LstRegistDto> list = lstService.getSearchResultPage(sc);
             m.addAttribute("list", list);
             m.addAttribute("ph", pageHandler);

@@ -91,13 +91,16 @@
 <!--    2.학원매출 - 부트캠프 매출, 세미나 매출-->
     <select id="totalSalesStatus" resultType="DashboardDto">
         SELECT
-            SUM(CASE WHEN grade = '1' THEN 1 ELSE 0 END) AS memberCnt,
-            SUM(CASE WHEN grade = '2' THEN 1 ELSE 0 END) AS studentCnt,
-            SUM(CASE WHEN grade = '3' THEN 1 ELSE 0 END) AS teacherCnt,
-            SUM(CASE WHEN grade = '4' THEN 1 ELSE 0 END) AS managerCnt,
-            SUM(CASE WHEN grade = '5' THEN 1 ELSE 0 END) AS firstManagerCnt,
-            COUNT(*) AS memberTotalCnt
-        FROM member;
+        SUM(CASE WHEN payDay = CURDATE() - INTERVAL 7 Day THEN lastPrice END) AS 'price7day',
+        SUM(CASE WHEN payDay = CURDATE() - INTERVAL 6 Day THEN lastPrice END) AS 'price6day',
+        SUM(CASE WHEN payDay = CURDATE() - INTERVAL 5 Day THEN lastPrice END) AS 'price5day',
+        SUM(CASE WHEN payDay = CURDATE() - INTERVAL 4 Day THEN lastPrice END) AS 'price4day',
+        SUM(CASE WHEN payDay = CURDATE() - INTERVAL 3 Day THEN lastPrice END) AS 'price3day',
+        SUM(CASE WHEN payDay = CURDATE() - INTERVAL 2 Day THEN lastPrice END) AS 'price2day',
+        SUM(CASE WHEN payDay = CURDATE() - INTERVAL 1 Day THEN lastPrice END) AS 'price1day',
+        SUM(CASE WHEN payDay = CURDATE() THEN lastPrice END) AS 'priceToday'
+        FROM payhty
+        WHERE payDay >= CURDATE() - INTERVAL 7 DAY AND payDay  &lt;= CURDATE()
     </select>
 <!--    3.강의현황 - 진행 중 부트캠프, 진행 예정 부트캠프, 진행 중 세미나, 진행 예정 세미나, 종료 강의-->
     <select id="lstRegistStatus" resultType="DashboardDto">
