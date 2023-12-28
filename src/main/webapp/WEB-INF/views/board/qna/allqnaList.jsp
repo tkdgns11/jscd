@@ -90,8 +90,11 @@
                             <p class="ellipsis">${list.content}</p>
                             <div id="board_content_footer">
                                 <div>
-                                    <span id="user_info_date">${list.regDate}</span>
-                                    <span>${list.writer}</span>
+                                    <span id="user_info_date"><fmt:formatDate pattern="yyyy-MM-dd"
+                                                                              value="${list.regDate}"/></span>
+                                    <span id="user_info_id">&nbsp;&nbsp;
+                                        <i class="fa-solid fa-user-pen fa-xs" style="color: #afb1b6;"></i>
+                                            ${list.writer}</span>
                                 </div>
                                 <span id="hit_num"><i class="fa-regular fa-eye" style="color: #afb1b6;"></i> ${list.hit}</span>
                             </div>
