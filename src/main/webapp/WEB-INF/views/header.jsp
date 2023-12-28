@@ -80,7 +80,7 @@
                         <li><a href="<c:url value="/board/userStd/list"/>">
                             <i class="fa-solid fa-bullhorn" style="color: #4a4a4a;"></i>
                             &nbsp;&nbsp;공지사항</a></li>
-                        <li><a href="#">
+                        <li><a href="<c:url value="/board/qna/stdQnaList"/>">
                             <i class="fa-solid fa-comment-dots" style="color: #4a4a4a;"></i>
                             &nbsp;&nbsp;질문&답변</a></li>
                         <li><a href="<c:url value="/locker/mebrList"/>">
