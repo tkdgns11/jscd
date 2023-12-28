@@ -101,7 +101,7 @@
         </div>
 
 </form>
-</form>
+
 <section id="cmmtBox" style="${mode == 'new' ? 'display: none;' : ''}">
     <div id="cmmtLetter"><i class="fa-solid fa-comment"></i> 답변</div>
     <div id="cmmtContent">

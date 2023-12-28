@@ -1,0 +1,15 @@
+package com.jscd.app.board.qna.qnaService;
+
+import com.jscd.app.board.qna.qnaDto.StdQnaDto;
+
+import java.util.List;
+
+public interface StdQnaService {
+    // 학사 질문&답변 목록 조회
+    List<StdQnaDto> selectAllStdQna() throws Exception;
+    // 게시글 하나 불러오기
+    StdQnaDto stdQnaDetail(int stdQnaNo) throws Exception;
+    // 게시글 최초 등록
+    void registerStdQna(StdQnaDto stdQnaDto) throws Exception;
+}
+

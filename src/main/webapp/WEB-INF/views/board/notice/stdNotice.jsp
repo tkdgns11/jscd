@@ -5,7 +5,10 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>학생공지 글쓰기 리스트</title>
+    <!-- 탭 아이콘 & 글자 지정 -->
+    <link rel="icon" href="/img/white_mainlogo.png"/>
+    <link rel="apple-touch-icon" href="/img/white_mainlogo.png"/>
+    <title>정석코딩 관리자 | 학사 공지사항</title>
 <%--    <link rel="stylesheet" href="<c:url value='/css/noticeList.css'/>">--%>
     <link rel="stylesheet" href="<c:url value='/css/noticeReading.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/jscdReset.css'/>">
@@ -106,26 +109,58 @@
         });
 
 
+        <%--$('#modifyBtn').on('click', function () {--%>
+        <%--    //1. 읽기 상태이면 수정 상태로 변경--%>
+        <%--    let form = $('#form');--%>
+        <%--    let isReadOnly = $("input[name=title]").attr('readonly');--%>
+        
+        <%--    if (isReadOnly == 'readonly') {--%>
+        
+        <%--        $("input[name=title]").removeAttr('readonly'); //title--%>
+        <%--        $("textarea").removeAttr('readonly'); //content--%>
+        <%--        $("#modifyBtn").val("수정완료");--%>
+        
+        <%--        return;--%>
+        <%--    }--%>
+        
+        <%--    //2. 수정 상태이면, 수정된 내용을 서버로 전송--%>
+        <%--    form.attr("action", "<c:url value='/board/stdNotice/modify?page=${page}&pageSize=${pageSize}'/>");--%>
+        <%--    form.attr("method", "post"); //포스트로 해서 전송--%>
+        <%--    if (formCheck()){form.submit();}--%>
+        
+        <%--})--%>
+
         $('#modifyBtn').on('click', function () {
-            //1. 읽기 상태이면 수정 상태로 변경
+            // 읽기 상태이면 수정 상태로 변경
             let form = $('#form');
             let isReadOnly = $("input[name=title]").attr('readonly');
 
             if (isReadOnly == 'readonly') {
-
                 $("input[name=title]").removeAttr('readonly'); //title
                 $("textarea").removeAttr('readonly'); //content
                 $("#modifyBtn").val("수정완료");
-
-                return;
             }
 
-            //2. 수정 상태이면, 수정된 내용을 서버로 전송
-            form.attr("action", "<c:url value='/board/stdNotice/modify?page=${page}&pageSize=${pageSize}'/>");
-            form.attr("method", "post"); //포스트로 해서 전송
-            if (formCheck()){form.submit();}
+            // 수정 상태이면, 수정된 내용을 서버로 전송
+            else {
+                form.attr("action", "<c:url value='/board/stdNotice/modify?page=${page}&pageSize=${pageSize}'/>");
+                form.attr("method", "post"); //포스트로 해서 전송
+                if (formCheck()) {
+                    form.submit();
 
+                    // 서버로부터의 응답을 가정
+                    let response = true; // true일 경우 수정 성공, false일 경우 수정 실패
+
+                    if (response) {
+                        alert("수정이 완료되었습니다.");
+                    } else {
+                        alert("수정 실패, 다시 한 번 시도해주시기 바랍니다.");
+                    }
+                }
+            }
         })
+
+        
     });
 </script>
 </body>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jscd.app.board.qna.stdQnaMapper">
+<!--    학사 질문&답변 목록 출력-->
+<!--    stdQna : 학사 qna 게시글 테이블-->
+<!--    qnact : 질문 카테고리 분류 테이블-->
+    <select id="selectAllStdQna" resultType="StdQnaDto">
+        select s.*, ct.name
+        from stdQna s, qnact ct
+        where s.qnactNo = ct.qnaCtNo;
+    </select>
+    
+<!--    학사 질문&답변 최초 등록-->
+    <insert id="insertStdQna" parameterType="StdQnaDto">
+        insert into stdQna
+            (qnactNo, title, writer, content, openYN, regDate)
+        values 
+            (#{qnactNo}, #{title}, #{writer}, #{content}, #{openYN}, now());
+    </insert>
+    
+<!--    학사 질문&답변 게시글 1개 읽기-->
+    <select id="selectOneStdQna" resultType="StdQnaDto">
+        select s.*, ct.name
+        from stdQna s, qnact ct
+        where s.qnactNo = ct.qnaCtNo
+            and stdQnaNo = #{stdQnaNo};
+    </select>
+</mapper>

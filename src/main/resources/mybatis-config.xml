@@ -33,6 +33,7 @@
 		<typeAlias alias="SearchCon" type="com.jscd.app.board.notice.dto.SearchCon"/>
 		<typeAlias alias="AttachDto" type="com.jscd.app.board.qna.qnaDto.AttachDto"/>
 		<typeAlias alias="stdNoticeDto" type="com.jscd.app.board.notice.dto.stdNoticeDto"/>
+		<typeAlias alias="StdQnaDto" type="com.jscd.app.board.qna.qnaDto.StdQnaDto"/>
 
 		<typeAlias alias="OrderDTO" type="com.jscd.app.order.dto.OrderDTO"/>
 		<typeAlias alias="CompanyInfoDTO" type="com.jscd.app.order.dto.CompanyInfoDTO"/>
