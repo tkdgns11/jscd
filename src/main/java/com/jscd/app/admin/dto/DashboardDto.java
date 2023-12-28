@@ -20,6 +20,14 @@ public class DashboardDto {
 //    2. 학원 매출
     private Integer btPriceTotal; //부트캠프 매출
     private Integer smPriceTotal; //세미나 매출
+    private Integer price7day; //7일전
+    private Integer price6day; //6일전
+    private Integer price5day; //5일전
+    private Integer price4day; //4일전
+    private Integer price3day; //3일전
+    private Integer price2day; //2일전
+    private Integer price1day; //1일전
+    private Integer priceToday;
 
 //    3. 강의 현황
     private Integer btProceedingCnt; //진행 중 부트캠프

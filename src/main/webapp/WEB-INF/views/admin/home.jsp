@@ -38,8 +38,16 @@
         <input type="hidden" class="memberStatus" value="${memberStatus.firstManagerCnt}">
         <input type="hidden" class="memberStatus" value="${memberStatus.memberTotalCnt}">
 
-        <input type="hidden" class="salesStatus" value="${salesStatus.btPriceTotal}">
-        <input type="hidden" class="salesStatus" value="${salesStatus.smPriceTotal}">
+<%--        <input type="hidden" class="salesStatus" value="${salesStatus.btPriceTotal}">--%>
+<%--        <input type="hidden" class="salesStatus" value="${salesStatus.smPriceTotal}">--%>
+        <input type="hidden" class="salesStatus" value="${salesStatus.price7day}">
+        <input type="hidden" class="salesStatus" value="${salesStatus.price6day}">
+        <input type="hidden" class="salesStatus" value="${salesStatus.price5day}">
+        <input type="hidden" class="salesStatus" value="${salesStatus.price4day}">
+        <input type="hidden" class="salesStatus" value="${salesStatus.price3day}">
+        <input type="hidden" class="salesStatus" value="${salesStatus.price2day}">
+        <input type="hidden" class="salesStatus" value="${salesStatus.price1day}">
+        <input type="hidden" class="salesStatus" value="${salesStatus.priceToday}">
 
         <input type="hidden" class="lstRegistStatus" value="${lstRegistStatus.btProceedingCnt}">
         <input type="hidden" class="lstRegistStatus" value="${lstRegistStatus.btExpectedCnt}">
