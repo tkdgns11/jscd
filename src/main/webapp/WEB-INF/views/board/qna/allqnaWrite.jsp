@@ -52,7 +52,7 @@
                         value="<fmt:formatDate pattern='yyyy-MM-dd' value='${allqnaList.regDate}' />" readonly>.</span>
 
         <%--        <span>수정 ･<input type="text" id="modifyDatZe" name="modifyDate" value="${allqnaList.modifyDate} " readonly></span>--%>
-        <span>조회수 <input type="text" id="viewCnt" name="viewCnt" value=" ${allqnaList.hit}" readonly></span><br>
+            <span>조회수 <input type="text" id="viewCnt" name="viewCnt" value=" ${allqnaList.hit}" readonly></span><br>
         <span>작성자 <input type="text" name="writer" id="writer" value=" ${allqnaList.writer}" readonly></span><br>
 
         <div id="wrapCon">
