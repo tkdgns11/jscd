@@ -236,6 +236,7 @@ public class MemberController {
 			map.put("redirect", "/member/login?msg="+msg);
 			return map;
 		}
+
 		//1-2 일치하는 경우
 		HttpSession session = request.getSession();
 		session.setAttribute("id",id);

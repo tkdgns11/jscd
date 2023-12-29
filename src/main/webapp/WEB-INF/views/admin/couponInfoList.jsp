@@ -246,7 +246,6 @@
 
                 couponInfoListBoxes.push(coupon); // coupon을 배열에 추가
 
-                console.log(coupon);
 
                 tmpCount++;
             });
@@ -527,8 +526,6 @@
             // 등록 관련 로직 처리
             confirm("쿠폰을 발급하시겠습니까?");
             if (confirm) {
-
-                console.log(JSON.stringify(couponDtos));
 
                // 서버로 Post 요청
                 fetch(`/coupon/register`, {

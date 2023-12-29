@@ -28,8 +28,6 @@ public class CouponController {
 //            System.out.println("abc.toString() = " + abc.toString());
 //        });
 
-        System.out.println("컨트롤러 couponDtos = " + couponDtos);
-
         try {
             int result = couponService.registerCoupons(couponDtos);
             if (result > 0) {
