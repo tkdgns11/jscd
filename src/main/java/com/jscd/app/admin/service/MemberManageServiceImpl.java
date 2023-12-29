@@ -94,7 +94,10 @@ public class MemberManageServiceImpl implements MemberManageService { //회원 �
     @Override
     @Transactional(rollbackFor = Exception.class) //상세페이지 수정
     public int modifyDetail(MemberDto memberDto) throws Exception {
+        //업데이트를 진행
         int rowCnt = manageDao.updateDetail(memberDto);
+        //해당 멤버 객체 가져옴
+        memberDto = manageDao.selectMember(memberDto.getMebrNo());
         //만약 등급이 강사로 변경됐다면,
         if (memberDto.getGrade() == 3) {
             //멤버의 정보 그대로 강사테이블로 insert
