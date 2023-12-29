@@ -52,8 +52,8 @@
                 </ul>
             </div>
             <div id="addrBox">
-                <span>상호명 : 정석코딩 | 대표 : 남궁성 | 메일 : castello@naver.com | 사업자 번호 : 816-47-00000</span>
-                <span>주소 : 서울 종로구 종로2가 서울 YMCA 빌딩 5층 517호</span>
+                <span>상호명 : 정석코딩 | 대표 : 남궁성 | 메일 : jungsukcoding@jscd.com | 사업자 번호 : 888-44-00000</span>
+                <span>주소 : 서울 종로구 종로2가 서울 YMCA 빌딩 0층 000호</span>
             </div>
             <div id="copyRight">
                 <p>Copyright ⓒ2023 HappyHaJo. All rights reserved.</p>
