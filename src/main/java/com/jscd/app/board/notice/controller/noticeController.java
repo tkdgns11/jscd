@@ -11,14 +11,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @Controller
@@ -70,9 +70,10 @@ public class noticeController {
     }
 
     @PostMapping("/remove") //게시물 삭제 POST방식만 있음
-    public String remove(Integer bno, Integer page, Integer pageSize, Model m, HttpSession session, RedirectAttributes rattr) {
+    public String remove(noticeDto noticeDto, Integer bno, Integer page, Integer pageSize, Model m, HttpSession session, RedirectAttributes rattr) {
 
-
+        System.out.println("noticeDto = " + noticeDto);
+        System.out.println("bno = " + bno);
 
         String writer = (String) session.getAttribute("adminId");
 
@@ -109,27 +110,21 @@ public class noticeController {
     }
 
     @PostMapping("/write")
-    public String write(noticeDto noticeDto, BindingResult bindingResult, Integer page, Integer pageSize, HttpSession session, Model m, RedirectAttributes rattr) { //사용자가 입력한 정보를 다시 돌려줘야해서 그걸 model에 담아둬야함
-
-//BindingResult bindingResult,
-//        List<ObjectError> allErrors = bindingResult.getAllErrors();
-//        for (ObjectError allError : allErrors) {
-//            System.out.println("allError = " + allError);  //에러가 보이지 않는 문제가 있었음. 이렇게 해결함
-//        }
+    @ResponseBody
+    public Map<String, String> write(@RequestBody noticeDto noticeDto, Integer page, Integer pageSize, Model m, RedirectAttributes rattr, HttpSession session) {
+        Map<String, String> map = new HashMap<>();
 
         String writer = (String)session.getAttribute("adminId");
         noticeDto.setWriter(writer);
 
         try {
-
             int rowCnt = noticeService.write(noticeDto);
 
             if (rowCnt != 1)
                 throw new Exception("Write Failed");
 
-//            rattr.addFlashAttribute("msg", "wrt_ok");
-
-            return "redirect:/board/notice/list";
+            rattr.addFlashAttribute("msg", "wrt_ok");
+            map.put("redirect", "/board/notice/list");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -137,12 +132,16 @@ public class noticeController {
             m.addAttribute("mode", "new");
             m.addAttribute("msg", "wrt_err");
 
+        }
+        return map;
 
-            return "board/notice/allNotice";}}
+    }
+
 
 
     @PostMapping("/modify")
-    public String modify(noticeDto noticeDto,Integer page, Integer pageSize, HttpSession session, Model m, RedirectAttributes rattr) { //사용자가 입력한 정보를 다시 돌려줘야해서 그걸 model에 담아둬야함
+    @ResponseBody
+    public Map<String, String> modify(@RequestBody noticeDto noticeDto,Integer page, Integer pageSize, HttpSession session, Model m, RedirectAttributes rattr) { //사용자가 입력한 정보를 다시 돌려줘야해서 그걸 model에 담아둬야함
 
 //        String writer = (String) session.getAttribute("adminId");
 //        String noticeWriter= noticeDto.getWriter();
@@ -152,18 +151,27 @@ public class noticeController {
 //            return "board/notice/allNotice";
 //        }
 
+        System.out.println("page = " + page);
+        System.out.println("pageSize = " + pageSize);
+        System.out.println("noticeDto = " + noticeDto);
+        Map<String, String> map = new HashMap<>();
+
 
         try {
-            int rowCnt = noticeService.modify(noticeDto);
 
+
+            int rowCnt = noticeService.modify(noticeDto);
+            System.out.println("rowCnt = " + rowCnt);
             if (rowCnt != 1)
                 throw new Exception("Modify Failed");
 
             m.addAttribute("page", page);
             m.addAttribute("pageSize", pageSize);
+            Integer bno = noticeDto.getBno();
 
+            map.put("redirect", "/board/notice/read?bno="+bno+"&page="+page+"&pageSize="+pageSize);
 
-            return "board/notice/allNotice";
+            return map;
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -171,8 +179,8 @@ public class noticeController {
             m.addAttribute("page", page);
             m.addAttribute("pageSize", pageSize);
             m.addAttribute("msg", "mod_err");
-
-            return "board/notice/noticeList";
+            map.put("redirect", "/board/notice/noticeList");
+            return map;
 
         }
 

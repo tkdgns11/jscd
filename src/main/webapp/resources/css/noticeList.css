@@ -53,7 +53,7 @@
 /*#paging_group .paging a.paging-active {border-color: #007bff; background-color: #0185FE; color: #fff;}*/
 /*#paging_group .paging input.page {height: 1.25em; min-width: 1.25em; font-size: 1em; border-radius: 4px;  padding: 3.5px 6px;  margin: 0.25rem;  border: 1px solid #dbdbdb;  color: #363636;  }*/
 
-.ellipsis {overflow: hidden; text-overflow:ellipsis;  margin: 17px 0; white-space: nowrap;}
+.ellipsis {white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #afb1b6;}
 
 /*body, html, main{width: 100%; height: 100%; position: relative; display: flex; flex-direction: column;}*/
 input:focus {outline: none; border: 1px solid rgba(0,0,0,0.2);}
@@ -81,9 +81,8 @@ hr {height: 1px; border: 0; border-bottom: solid 1px #abd7ff; width: 85%; margin
 /*main content*/
 #boardList_main_content {width: 85%; margin: 0 auto;}
 #empty_space {width: 100%; height: 80px;}
-#board_content_per {border-bottom: solid 1px #abd7ff;}
-#board_content_per {padding: 0 20px 35px 20px; margin-bottom: 35px;}
-#board_content_per a {font-weight: 500; font-size: 30px; color: #000000;}
+#board_content_per {border-bottom: solid 1px #abd7ff; padding: 0 20px 35px 20px; margin-bottom: 35px; display: flex; flex-direction: column;}
+#board_content_per a {font-weight: 500; font-size: 30px; color: #000000; margin-bottom: 20px;}
 #board_content_per a:hover {text-decoration-line: underline;}
 #board_content_per p {margin-bottom: 17px; color: #5e646a;}
 #board_content_footer {width: 100%; display: flex; color: #afb1b6;}

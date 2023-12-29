@@ -16,7 +16,6 @@ function allqnaWrite() {
     div.innerHTML = editorData;
     const content = div.textContent || div.innerText || "";
     // const openYN = document.querySelector('input[name="openYN"]:checked').value;
-    content
     console.log("ctName======="+ctName);
     console.log("writer======="+writer.value);
     console.log("title======="+title.value);

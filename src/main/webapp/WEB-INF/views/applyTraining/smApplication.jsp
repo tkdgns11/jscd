@@ -137,6 +137,7 @@
 
         // 제출
         $("#writeBtn").on("click", () => {
+            alert("제출이 완료되었습니다");
             let form = $("#smApplicationForm");
             <%--form.attr("action", "<c:url value='/smTraining/smApplication'/>");--%>
             <%--form.attr("method", "post");--%>
