@@ -18,8 +18,6 @@
     <insert id="insert" parameterType="noticeDto">
         INSERT INTO allnotice
             (title, content, writer)
-
-
         VALUES
             (#{title}, #{content}, #{writer})
     </insert>
@@ -49,9 +47,8 @@
 
     <update id="update" parameterType="noticeDto">
         UPDATE allnotice
-        SET title     = #{title}
-          , content   = #{content}
-          , modifyDate=#{modifyDate}
+        SET title     = #{title},
+            content   = #{content}
         WHERE bno = #{bno}
     </update>
 

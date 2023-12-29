@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="<c:url value='/css/userNoticeReading.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/jscdReset.css'/>">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/translations/ko.js"></script>
 </head>
 <body>
 <header>
@@ -34,10 +36,27 @@
             <span>조회수 <input type="text" id="viewCnt" name="viewCnt" value=" ${noticeDto.viewCnt}" readonly></span><br>
             <span>작성자 <input type="text" name="writer" id="writer" value=" ${noticeDto.writer}" readonly></span><br>
             <div id="wrapCon">
-                <textarea name="content" id="content" ${mode=="new" ? '' : 'readonly="readonly"'}>${noticeDto.content}</textarea>
+                <textarea name="content" id="content" readonly="readonly">${noticeDto.content}</textarea>
                 <script>
-                    var editorContent = editorContent.getData()
-                    var convertContent = editorContent.replace(/(<([^>]+)>)/gi, '');
+                    document.addEventListener("DOMContentLoaded", function (){
+                        const contentTextarea = document.querySelector('#content');
+                        // if (!contentTextarea.hasAttribute('readonly')){
+                        ClassicEditor
+                            .create(contentTextarea,{
+                                language: "ko"
+                            })
+                            .then(newEditor => {
+                                editor = newEditor;
+                                const toolbarElement = editor.ui.view.toolbar.element;
+                                Editor#enableReadOnlyMode( '#content' )
+                            })
+                            .catch(error => {
+                                console.error(error);
+                            });
+
+
+                        // }
+                    });
                 </script>
 
             </div>
