@@ -601,6 +601,7 @@
             choiceElement = null;
         }
 
+        //취소버튼 클릭
         function cancelClick() {
             guideText.innerHTML = "";
             initial();
