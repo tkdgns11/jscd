@@ -7,8 +7,8 @@
     <!--부트캠프 결제 or 학생 등급으로 수정 시, 학생테이블로 insert-->
     <insert id="insert" parameterType="StdManageDto">
         insert into stdManage
-            (mebrNo, gisu, status)
-        values (#{mebrNo}, #{gisu}, #{status})
+            (mebrNo, gisu, status,regDate)
+        values (#{mebrNo}, #{gisu}, #{status},now())
     </insert>
 
     <!--    학생 인원수-->
@@ -39,7 +39,7 @@
         <include refid="selectStd"/>
         WHERE true
         <include refid="searchCondition"/>
-        order by s.gisu
+        order by s.mebrNo
         limit #{offset},#{pageSize}
     </select>
 
@@ -56,7 +56,7 @@
     <!--  학생 정보 전체 셀렉-->
     <select id="selectAll" parameterType="map" resultType="StdMemberManageDto">
         <include refid="selectStd"/>
-        order by s.gisu
+        order by s.mebrNo
         limit #{offset}, #{pageSize};
     </select>
 
