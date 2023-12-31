@@ -10,14 +10,14 @@ import com.jscd.app.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @Controller
@@ -92,7 +92,6 @@ public class stdNoticeController {
     }
 
     @GetMapping("/write")  //게시판 작성을 위한 빈 화면을 보여준다
-
     public String write(Model m, SearchCon sc) {
 
 
@@ -136,13 +135,15 @@ public class stdNoticeController {
     }
 
     @PostMapping("/modify")
-    public String modify(stdNoticeDto stdNoticeDto, Integer page, Integer pageSize, HttpSession session, Model m, RedirectAttributes rattr) { //사용자가 입력한 정보를 다시 돌려줘야해서 그걸 model에 담아둬야함
+    @ResponseBody
+    public Map<String, String> modify(@RequestBody stdNoticeDto stdNoticeDto, Integer page, Integer pageSize, HttpSession session, Model m, RedirectAttributes rattr) { //사용자가 입력한 정보를 다시 돌려줘야해서 그걸 model에 담아둬야함
 
         String writer = (String) session.getAttribute("id");
         stdNoticeDto.setWriter(writer);
 
         System.out.println("page = " + page);
         System.out.println("pageSize = " + pageSize);
+        Map<String, String> map = new HashMap<>();
 
         try {
             int rowCnt = stdNoticeService.modify(stdNoticeDto);
@@ -154,8 +155,10 @@ public class stdNoticeController {
 
             m.addAttribute("page", page);
             m.addAttribute("pageSize", pageSize);
+            Integer bno = stdNoticeDto.getBno();
+            map.put("redirect", "/board/stdNotice/read?bno="+bno+"&page="+page+"&pageSize="+pageSize);
 
-            return "board/notice/stdNotice";
+            return map;
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -163,8 +166,8 @@ public class stdNoticeController {
             m.addAttribute("page", page);
             m.addAttribute("pageSize", pageSize);
             m.addAttribute("msg", "mod_err");
-
-            return "board/notice/stdNoticeList";
+            map.put("redirect", "/board/stdNotice/noticeList");
+            return map;
 
         }
     }}

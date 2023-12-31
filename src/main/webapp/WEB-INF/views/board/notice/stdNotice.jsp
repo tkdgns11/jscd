@@ -24,11 +24,11 @@
 
 <form action="" id="form">
     <div id="detailHd">
-        <input type="hidden" name="bno" value="${stdNoticeDto.bno}"><br>
+        <input type="hidden" id="bno" name="bno" value="${stdNoticeDto.bno}"><br>
         <input id="title" placeholder="제목에 핵심 내용을 요약해보세요." name="title" value="${stdNoticeDto.title}" ${mode=="new" ? '' : 'readonly="readonly"'}><br>
         <span>작성 <input type="text" id="regDate" name="regDate" value="${stdNoticeDto.modifyDate} " readonly> ･</span>
         <span>조회수 <input type="text" id="viewCnt" name="viewCnt" value=" ${stdNoticeDto.viewCnt}" readonly></span><br>
-        <span>작성자 <input type="text" name="writer" id="writer" value=" ${stdNoticeDto.writer}" ></span><br>
+        <span>작성자 <input type="text" name="writer" id="writer" value=" ${stdNoticeDto.writer}"  readonly></span><br>
     </div>
 
     <div id="wrapCon">
@@ -37,7 +37,6 @@
         <script>
             document.addEventListener("DOMContentLoaded", function (){
                 const contentTextarea = document.querySelector('#content');
-                if (!contentTextarea.hasAttribute('readonly')){
                     ClassicEditor
                         .create(contentTextarea,{
                             language: "ko"
@@ -48,7 +47,6 @@
                         .catch(error => {
                             console.error(error);
                         });
-                }
             });
         </script>
     </div>
@@ -121,27 +119,54 @@
             let form = $('#form');
             let isReadOnly = $("input[name=title]").attr('readonly');
 
-            if (isReadOnly == 'readonly') {
 
+            if (isReadOnly == 'readonly') {
                 $("input[name=title]").removeAttr('readonly'); //title
                 $("textarea").removeAttr('readonly'); //content
-
-                ClassicEditor
-                    .create(document.querySelector('#content'))
-                    .catch(error => {
-                        console.error(error);
-                    });
+                // ClassicEditor
+                //     .create(document.querySelector('#content'))
+                //     .catch(error => {
+                //         console.error(error);
+                //     });
 
                 $("#modifyBtn").val("수정완료");
-
                 return;
+
             }
-
             //2. 수정 상태이면, 수정된 내용을 서버로 전송
-            form.attr("action", "<c:url value='/board/stdNotice/modify?page=${page}&pageSize=${pageSize}'/>");
-            form.attr("method", "post"); //포스트로 해서 전송
-            if (formCheck()){form.submit();}
+            const bno = document.getElementById("bno");
+            console.log(bno);
+            const writer = document.getElementById("writer").value;
+            const title = document.getElementById("title").value;
+            const editorData = editor.getData();
+            const div = document.createElement("div");
+            div.innerHTML = editorData;
+            const content = div.textContent || div.innerText || "";
+            // const openYN = document.querySelector('input[name="openYN"]:checked').value;
+            console.log("writer=======" + writer.value);
+            console.log("title=======" + title.value);
+            console.log("content=======" + content);
 
+            const allNoticeData = {bno: bno.value, title: title, writer: writer, content:content};
+            console.log(allNoticeData);
+
+            $.ajax({
+                url: "/board/stdNotice/modify?page=${page}&pageSize=${pageSize}",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(allNoticeData),
+                error: function (error) {
+                    console.log("에러 발생");
+                },
+                success: function (data) {
+                    console.log("성공");
+                    if (data.redirect) {
+                        console.log(data.redirect);
+                        window.location.href = data.redirect;
+                    }
+
+                }
+            });
         })
     });
 </script>
