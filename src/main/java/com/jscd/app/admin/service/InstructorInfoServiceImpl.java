@@ -38,8 +38,8 @@ public class InstructorInfoServiceImpl implements InstructorInfoService { //강�
     }
 
     @Override
-    public InstructorMemberInfoDto read(Integer mebrNo) throws Exception {
-        return infoDao.select(mebrNo);
+    public InstructorMemberInfoDto read(Integer mebrNO) throws Exception {
+        return infoDao.select(mebrNO);
     }
 
     @Override  //상세보기 페이지 update
@@ -50,7 +50,7 @@ public class InstructorInfoServiceImpl implements InstructorInfoService { //강�
         //만약, 상태를 퇴직으로 변경한다면
         if (instructorInfoDto.getStatus() == 4) {
             //회원번호에 해당하는 회원객체를 불러오고,
-            MemberDto memberDto = memberManageDao.selectMember(instructorInfoDto.getMebrNo());
+            MemberDto memberDto = memberManageDao.selectMember(instructorInfoDto.getMebrNO());
             //회원등급을 일반으로 변경한다
             memberDto.setGrade(1);
             rowCnt = memberManageDao.updateDetail(memberDto);
@@ -61,12 +61,12 @@ public class InstructorInfoServiceImpl implements InstructorInfoService { //강�
 
     @Override//메인페이지 update
     @Transactional(rollbackFor = Exception.class)
-    public int modifyStatus(Integer status, List<Integer> mebrNo) throws Exception {
-        int rowCnt = infoDao.updateStatus(status, mebrNo);
+    public int modifyStatus(Integer status, List<Integer> mebrNO) throws Exception {
+        int rowCnt = infoDao.updateStatus(status, mebrNO);
         if (status == 4) { //상태를 퇴직으로 변경한다면,
-            for (int i = 0; i < mebrNo.size(); i++) {
+            for (int i = 0; i < mebrNO.size(); i++) {
                 //회원번호에 해당하는 회원객체를 불러오고,
-                MemberDto memberDto = memberManageDao.selectMember(mebrNo.get(i));
+                MemberDto memberDto = memberManageDao.selectMember(mebrNO.get(i));
                 //회원등급을 일반으로 변경한다
                 memberDto.setGrade(1);
                 rowCnt = memberManageDao.updateDetail(memberDto);
@@ -78,8 +78,8 @@ public class InstructorInfoServiceImpl implements InstructorInfoService { //강�
 
 
     @Override
-    public int remove(Integer mebrNo) throws Exception {
-        return infoDao.delete(mebrNo);
+    public int remove(Integer mebrNO) throws Exception {
+        return infoDao.delete(mebrNO);
     }
 
 

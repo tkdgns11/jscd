@@ -41,18 +41,17 @@ public class LockerServiceImpl implements LockerService {
 
     int count = 0 ;
 
-    //락커 등록
+    //관리자 락커 등록
     @Transactional(rollbackFor = Exception.class)
     @Override
     public int registerLocker(LockerDto lockerDto) throws Exception {
         LockerDto checkLockerDto = lockerDao.selectLockerByIdForUpdate(lockerDto.getLockerID());
 
         if (checkLockerDto == null || checkLockerDto.getStatusCode() != 2 ) {
-
             throw new RuntimeException("등록할 락커를 다시 확인해주세요.");
         }
-
         checkLockerDto.setMebrID(lockerDto.getMebrID());
+        checkLockerDto.setStartDate(lockerDto.getStartDate());
         checkLockerDto.setEndDate(lockerDto.getEndDate());
         checkLockerDto.setStatusCode(1);
         checkLockerDto.setEtc("락커 신규 등록");
@@ -67,16 +66,12 @@ public class LockerServiceImpl implements LockerService {
 
         LockerDto newLocker = lockerDao.selectLockerByIdForUpdate(newLockerId);
 
-        System.out.println("newLocker = " + newLocker);
-
         //고장중인 락커로 옮길경우
         if (newLocker == null || newLocker.getStatusCode() == 3) {
             throw new RuntimeException("선택하신 락커로는 이동할 수 없습니다.");
         }
 
         LockerDto oldLocker = lockerDao.selectLockerByIdForUpdate(lockerDto.getLockerID());
-
-        System.out.println("oldLocker = " + oldLocker);
 
         if (oldLocker == null || oldLocker.getStatusCode() != 1 || !(oldLocker.getMebrID().equals(lockerDto.getMebrID()))) {
             throw new RuntimeException("이동시킬 락커를 다시 확인해주세요.");

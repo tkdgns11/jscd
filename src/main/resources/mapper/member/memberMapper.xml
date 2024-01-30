@@ -27,7 +27,7 @@
 
     <!-- 회원상태에 따른 조회-->
     <select id="select" resultType="memberDto">
-        SELECT mebrNo,
+        SELECT mebrNO,
                id,
                name,
                nickname,
@@ -39,9 +39,9 @@
                status,
                grade,
                regDate,
-               firstIdNo,
+               firstIdNO,
                modifyDate,
-               lastIdNo,
+               lastIdNO,
                etc
         FROM MEMBER
         WHERE id = #{id}
@@ -49,8 +49,8 @@
     <!-- 회원 등록-->
     <insert id="insert" parameterType="memberDto">
         INSERT INTO MEMBER
-        (id, name, nickname, birth, pwd, gender, phone, acct, regDate, firstIdNo, etc)
-        VALUES (#{id}, #{name}, #{nickname}, #{birth}, #{pwd}, #{gender}, #{phone}, #{acct}, now(), #{firstIdNo},
+        (id, name, nickname, birth, pwd, gender, phone, acct, regDate, firstIdNO, etc)
+        VALUES (#{id}, #{name}, #{nickname}, #{birth}, #{pwd}, #{gender}, #{phone}, #{acct}, now(), #{firstIdNO},
                 #{etc})
     </insert>
     <!-- 개인 정보 수정-->
@@ -80,8 +80,8 @@
     <!--	약관 동의 테이블-->
     <insert id="insertTerms" parameterType="memberDto">
         INSERT INTO TERMSAGREE
-        (id, serviceChkYN, privacyChkYN, ageChkYN, marketingChkYN, regDate, firstIdNo)
-        VALUES (#{id}, #{serviceChkYN}, #{serviceChkYN}, #{ageChkYN}, #{marketingChkYN}, now(), #{firstIdNo})
+        (id, serviceChkYN, privacyChkYN, ageChkYN, marketingChkYN, regDate, firstIdNO)
+        VALUES (#{id}, #{serviceChkYN}, #{serviceChkYN}, #{ageChkYN}, #{marketingChkYN}, now(), #{firstIdNO})
     </insert>
     <!--	마이페이지 강의 현황-->
     <select id="selectLecture" parameterType="LectureApplyDto" resultType="LectureApplyDto">
@@ -98,5 +98,9 @@
             modifyDate = now()
         WHERE id = #{id}
     </update>
+
+    <select id="selectByID" parameterType="String" resultType="Integer">
+        SELECT COUNT(*) FROM member WHERE id = #{ID}
+    </select>
 
 </mapper>

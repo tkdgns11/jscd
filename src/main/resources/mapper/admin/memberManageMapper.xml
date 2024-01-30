@@ -13,7 +13,7 @@
 
 <!--    회원 + 코드테이블 조인-->
     <sql id="selectMember">
-        select m.mebrNo,
+        select m.mebrNO,
                m.id,
                m.name,
                m.birth,
@@ -40,7 +40,7 @@
         <include refid="selectMember"/>
         WHERE true
         <include refid="searchCondition"/>
-        order by mebrNo
+        order by mebrNO
         limit #{offset},#{pageSize};
     </select>
 
@@ -60,19 +60,19 @@
     <!-- 회원 전체 정보-->
     <select id="selectAll" parameterType="Map" resultType="MemberDto">
         <include refid="selectMember"/>
-        order by mebrNo asc
+        order by mebrNO asc
         limit #{offset}, #{pageSize}
     </select>
 
     <!--회원 상세정보-->
     <select id="select" parameterType="Integer" resultType="MemberManageDto">
         <include refid="selectMember"/>
-        where mebrNo = #{mebrNo}
+        where mebrNO = #{mebrNO}
     </select>
 
     <select id="selectMember" parameterType="Integer" resultType="MemberDto">
         select * from member
-        where mebrNo = #{mebrNo}
+        where mebrNO = #{mebrNO}
     </select>
 
     <!-- 메인화면 등급/상태 update (일괄 수정)-->
@@ -81,9 +81,9 @@
         set grade= #{grade}
         ,status = #{status}
         , modifyDate = now()
-        where mebrNo in
-        <foreach collection="mebrNo" item="mebrNo" open="(" close=")" separator=",">
-            #{mebrNo}
+        where mebrNO in
+        <foreach collection="mebrNO" item="mebrNO" open="(" close=")" separator=",">
+            #{mebrNO}
         </foreach>
     </update>
 
@@ -95,13 +95,13 @@
           , grade      = #{grade}
           , etc        = #{etc}
           , modifyDate = now()
-        where mebrNo = #{mebrNo}
+        where mebrNO = #{mebrNO}
     </update>
 
     <delete id="delete" parameterType="Integer">
         delete
         from member
-        where mebrNo = #{mebrNo}
+        where mebrNO = #{mebrNO}
     </delete>
 
     <delete id="deleteAll">

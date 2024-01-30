@@ -57,10 +57,10 @@ public class MemberManageController {
 
 
     @GetMapping("/read") //회원 상세보기 페이지
-    public String infoRead(Integer mebrNo, Integer page, Model model) {
+    public String infoRead(Integer mebrNO, Integer page, Model model) {
 
         try { //전달 받은 회원번호로 회원 select
-            MemberManageDto memberDto = manageService.read(mebrNo);
+            MemberManageDto memberDto = manageService.read(mebrNO);
             System.out.println("회원 상세보기 memberDto = " + memberDto);
             //jsp에 전달
             model.addAttribute("memberDto", memberDto);
@@ -83,7 +83,7 @@ public class MemberManageController {
         try {
             //입력 받은 dto를 update
             manageService.modifyDetail(memberDto);
-            MemberDto adminDel = manageService.readMember(memberDto.getMebrNo());
+            MemberDto adminDel = manageService.readMember(memberDto.getMebrNO());
             if(originGrade.equals("관리자")){//기존 등급이 관리자라면, 관리자 테이블에서 삭제
                 adminService.removeAdmin(adminDel.getId());
             }
@@ -93,22 +93,22 @@ public class MemberManageController {
             e.printStackTrace();
             //에러 발생 시, 에러 msg 전달, 읽기 화면으로 이동
             model.addAttribute("msg", "MOD_ERR");
-            return "redirect:/adminManage/memberManage/read?page=" + page + "&mebrNo=" + memberDto.getMebrNo();
+            return "redirect:/adminManage/memberManage/read?page=" + page + "&mebrNO=" + memberDto.getMebrNO();
         }
 
-        return "redirect:/adminManage/memberManage/read?page="+page+"&mebrNo="+memberDto.getMebrNo();
+        return "redirect:/adminManage/memberManage/read?page="+page+"&mebrNO="+memberDto.getMebrNO();
     }
 
     @PostMapping("/modifyMain") //메인 페이지 등급/상태 일괄 수정
     public String statusModify(Integer[] mebrNoArr, Integer status, Integer grade, Integer page, Model model) {
         try {
             //전달받은 회원 번호 배열을 list에 담기
-            List mebrNo = new ArrayList(mebrNoArr.length);
+            List mebrNO = new ArrayList(mebrNoArr.length);
             for (int i = 0; i < mebrNoArr.length; i++) {
-                mebrNo.add(mebrNoArr[i]);
+                mebrNO.add(mebrNoArr[i]);
             }
             //상태,등급,회원번호 update
-            manageService.modify(status, grade, mebrNo);
+            manageService.modify(status, grade, mebrNO);
             //성공 msg 전달
             model.addAttribute("msg", "MOD_OK");
         } catch (Exception e) {

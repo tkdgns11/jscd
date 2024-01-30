@@ -6,20 +6,20 @@ public class RoundDto {
     private Integer roundCode;
     private String roundName;
     private String regDate;
-    private Integer firstIdNo;
+    private Integer firstIdNO;
     private String modifyDate;
-    private Integer lastIdNo;
+    private Integer lastIdNO;
 
     public RoundDto() {
     }
 
-    public RoundDto(Integer roundCode, String roundName, String regDate, Integer firstIdNo, String modifyDate, Integer lastIdNo) {
+    public RoundDto(Integer roundCode, String roundName, String regDate, Integer firstIdNO, String modifyDate, Integer lastIdNO) {
         this.roundCode = roundCode;
         this.roundName = roundName;
         this.regDate = regDate;
-        this.firstIdNo = firstIdNo;
+        this.firstIdNO = firstIdNO;
         this.modifyDate = modifyDate;
-        this.lastIdNo = lastIdNo;
+        this.lastIdNO = lastIdNO;
     }
 
     public Integer getRoundCode() {
@@ -46,12 +46,12 @@ public class RoundDto {
         this.regDate = regDate;
     }
 
-    public Integer getFirstIdNo() {
-        return firstIdNo;
+    public Integer getFirstIdNO() {
+        return firstIdNO;
     }
 
-    public void setFirstIdNo(Integer firstIdNo) {
-        this.firstIdNo = firstIdNo;
+    public void setFirstIdNO(Integer firstIdNO) {
+        this.firstIdNO = firstIdNO;
     }
 
     public String getModifyDate() {
@@ -62,12 +62,12 @@ public class RoundDto {
         this.modifyDate = modifyDate;
     }
 
-    public Integer getLastIdNo() {
-        return lastIdNo;
+    public Integer getLastIdNO() {
+        return lastIdNO;
     }
 
-    public void setLastIdNo(Integer lastIdNo) {
-        this.lastIdNo = lastIdNo;
+    public void setLastIdNO(Integer lastIdNO) {
+        this.lastIdNO = lastIdNO;
     }
 
     @Override
@@ -75,12 +75,12 @@ public class RoundDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RoundDto roundDto = (RoundDto) o;
-        return Objects.equals(roundCode, roundDto.roundCode) && Objects.equals(roundName, roundDto.roundName) && Objects.equals(regDate, roundDto.regDate) && Objects.equals(firstIdNo, roundDto.firstIdNo) && Objects.equals(modifyDate, roundDto.modifyDate) && Objects.equals(lastIdNo, roundDto.lastIdNo);
+        return Objects.equals(roundCode, roundDto.roundCode) && Objects.equals(roundName, roundDto.roundName) && Objects.equals(regDate, roundDto.regDate) && Objects.equals(firstIdNO, roundDto.firstIdNO) && Objects.equals(modifyDate, roundDto.modifyDate) && Objects.equals(lastIdNO, roundDto.lastIdNO);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(roundCode, roundName, regDate, firstIdNo, modifyDate, lastIdNo);
+        return Objects.hash(roundCode, roundName, regDate, firstIdNO, modifyDate, lastIdNO);
     }
 
     @Override
@@ -89,9 +89,9 @@ public class RoundDto {
                 "roundCode=" + roundCode +
                 ", roundName='" + roundName + '\'' +
                 ", regDate='" + regDate + '\'' +
-                ", firstIdNo=" + firstIdNo +
+                ", firstIdNO=" + firstIdNO +
                 ", modifyDate='" + modifyDate + '\'' +
-                ", lastIdNo=" + lastIdNo +
+                ", lastIdNO=" + lastIdNO +
                 '}';
     }
 }

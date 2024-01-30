@@ -44,7 +44,7 @@
 
         #lockerDetail > main {
             width: calc(100% - 300px);
-            height: auto ;
+            height: auto;
             position: relative;
             margin-top: 30px;
             margin-bottom: 30px;
@@ -776,84 +776,93 @@
                     break;
 
                 case 'regTransfer':
-                    // 등록 관련 로직 처리
-                    confirm("정말 " + choiceLocker + "위치로 등록하시겠습니까?");
-                    if (confirm) {
+                    if (confirm("정말 " + choiceLocker + "위치로 등록하시겠습니까?")) {
                         mebrID = prompt("정석코딩 홈페이지 이메일을 입력해 주세요(aaa@aaa.com)", "");
-                        //서버로 전송 -> 여기서 일단 null값으로 데이터 입력. 회원의 이름을 받아서. ooo님 맞습니까? 나중에 userService;
-                        //기간을 입력해주세요. 기간입력 후 등록.
+
                         if (!isValidEmail(mebrID)) {
-                            alert("유효한 이메일 주소를 입력해야 합니다. 현재 입력된 값: " + mebrID);
-                            mebrID = "";
+                            alert("유효한 이메일 주소를 입력해야 합니다. 현재 입력된 이메일: " + mebrID);
                             cancelClick();
                             return;
                         }
 
-                        useDays = prompt("사용할 기간을 일단위로 숫자만 입력해주세요(ex 30)", "");
-                        if (!isOnlyNumber(useDays)) {
-                            alert("사용 기간은 숫자만 입력해야 합니다. 현재 입력된 값: " + useDays);
-                            cancelClick();
-                            return;
-                        }
-
-                        makeEndDate(parseInt(useDays, 10));
-
-                        if (confirm("사용기간은 " + useDays + "일이고, 종료날짜는 " + endDate.toISOString().split('T')[0] + " 입니다. 맞으면 확인을 눌러주세요.")) {
-
-                            if (choiceLocker.substring(0, 1) === '4') {
-                                lockerCode = "01";
-                                lockerID = "01";
-                                forPtagString = "4층-";
-
-                            } else {
-                                lockerCode = "02";
-                                lockerID = "02";
-                                forPtagString = "5층-";
+                        checkEmail(mebrID).then(isValid => {
+                            if (!isValid) {
+                                alert("가입되지 않은 이메일입니다. 현재 입력된 이메일: " + mebrID);
+                                cancelClick();
+                                return;
                             }
 
-                            if (choiceLocker.substring(2).length === 1) {
-                                lockerID += ("0" + choiceLocker.substring(2));
-                                forPtagString += choiceLocker.substring(2);
-                            } else {
-                                lockerID += choiceLocker.substring(2);
-                                forPtagString += choiceLocker.substring(2);
+                            // 이메일 확인이 성공한 후의 로직
+                            useDays = prompt("사용할 기간을 일단위로 숫자만 입력해주세요(ex 30)", "");
+                            if (!isOnlyNumber(useDays)) {
+                                alert("사용 기간은 숫자만 입력해야 합니다. 현재 입력된 값: " + useDays);
+                                cancelClick();
+                                return;
                             }
 
-                            const lockerDto = {
-                                lockerID: lockerID,
-                                mebrID: mebrID,
-                                startDate: startDate,
-                                endDate: endDate
-                            };
+                            makeEndDate(parseInt(useDays, 10));
 
-                            // 서버로 Post 요청
-                            fetch(`/locker/register`, {
-                                method: 'Post',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                },
-                                body: JSON.stringify(lockerDto),
-                            })
-                                .then(response => {
-                                    if (response.ok) {
-                                        alert("락커 등록이 완료되었습니다.");
-                                        location.reload();
-                                    } else {
-                                        throw new Error("락커 등록에 실패했습니다.");
-                                    }
+                            if (confirm("사용기간은 " + useDays + "일이고, 종료날짜는 " + endDate.toISOString().split('T')[0] + " 입니다. 맞으면 확인을 눌러주세요.")) {
+
+                                if (choiceLocker.substring(0, 1) === '4') {
+                                    lockerCode = "01";
+                                    lockerID = "01";
+                                    forPtagString = "4층-";
+
+                                } else {
+                                    lockerCode = "02";
+                                    lockerID = "02";
+                                    forPtagString = "5층-";
+                                }
+
+                                if (choiceLocker.substring(2).length === 1) {
+                                    lockerID += ("0" + choiceLocker.substring(2));
+                                    forPtagString += choiceLocker.substring(2);
+                                } else {
+                                    lockerID += choiceLocker.substring(2);
+                                    forPtagString += choiceLocker.substring(2);
+                                }
+
+                                const lockerDto = {
+                                    lockerID: lockerID,
+                                    mebrID: mebrID,
+                                    startDate: startDate,
+                                    endDate: endDate
+                                };
+
+                                // 서버로 Post 요청
+                                fetch(`/locker/register`, {
+                                    method: 'Post',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                    },
+                                    body: JSON.stringify(lockerDto),
                                 })
-                                .catch((error) => {
-                                    console.error('Error:', error);
-                                    alert("등록 실패: " + error);
-                                    cancelClick();
-                                    location.reload();
-                                });
+                                    .then(response => {
+                                        if (response.ok) {
+                                            alert("락커 등록이 완료되었습니다.");
+                                            location.reload();
+                                        } else {
+                                            throw new Error("락커 등록에 실패했습니다.");
+                                        }
+                                    })
+                                    .catch((error) => {
+                                        console.error('Error:', error);
+                                        alert("등록 실패: " + error);
+                                        cancelClick();
+                                        location.reload();
+                                    });
 
+                            } else {
+                                alert("등록을 취소하셨습니다.");
+                                cancelClick();
+                            }
 
-                        } else {
-                            alert("등록을 취소하셨습니다.");
+                        }).catch(error => {
+                            console.error('Error:', error);
+                            alert("이메일 확인 중 오류가 발생했습니다.");
                             cancelClick();
-                        }
+                        });
                     } else {
                         cancelClick();
                     }
@@ -923,6 +932,25 @@
             }
         }
 
+        function checkEmail(mebrID) {
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    url: '/member/check',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({id: mebrID}),
+                    success: function (response) {
+                        resolve(response === 1);
+                    },
+                    error: function (error) {
+                        console.log('ID 확인 중 에러 발생:', error);
+                        reject(error);
+                    }
+                });
+            });
+        }
+
+
         function isOnlyNumber(value) {
             return !isNaN(value) && isFinite(value);
         }
@@ -932,11 +960,36 @@
             return emailRegex.test(email);
         }
 
+        // function makeEndDate(useDays) {
+        //     let today = new Date();
+        //     endDate = new Date(today); // 오늘 날짜를 기반으로 새 Date 객체 생성
+        //     endDate.setDate(today.getDate() + useDays); // 날짜 변경
+        // }
+
         function makeEndDate(useDays) {
             let today = new Date();
-            endDate = new Date(today); // 오늘 날짜를 기반으로 새 Date 객체 생성
-            endDate.setDate(today.getDate() + useDays); // 날짜 변경
+            let endDate = new Date(today); // 오늘 날짜와 시간을 기반으로 새 Date 객체 생성
+            endDate.setDate(today.getDate() + useDays); // 일수를 더하여 날짜 변경
+
+            // endDate를 YYYY-MM-DD HH:MM 형식으로 포맷팅
+            let year = endDate.getFullYear();
+            let month = endDate.getMonth() + 1; // 월은 0부터 시작하므로 1을 더해줍니다.
+            let day = endDate.getDate();
+            let hours = endDate.getHours();
+            let minutes = endDate.getMinutes();
+
+            // MM, DD, HH, MM 형식을 맞추기 위해 필요하다면 앞에 0을 붙여줍니다.
+            month = (month < 10) ? '0' + month : month;
+            day = (day < 10) ? '0' + day : day;
+            hours = (hours < 10) ? '0' + hours : hours;
+            minutes = (minutes < 10) ? '0' + minutes : minutes;
+
+            // 포맷된 날짜와 시간 문자열로 설정
+            endDate = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes;
+
+            return endDate; // 포맷된 날짜와 시간을 반환
         }
+
 
         floor4.addEventListener("click", changeFloor);
 

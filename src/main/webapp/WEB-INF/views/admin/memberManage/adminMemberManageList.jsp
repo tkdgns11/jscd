@@ -96,12 +96,12 @@
                     <c:forEach var="memberDto" items="${list}">
                         <tr>
                             <td><input type="checkbox"
-                                       value="${memberDto.mebrNo}"
+                                       value="${memberDto.mebrNO}"
                                        class="chk"
                                        name="chk" onclick="chkClicked()"
                             >
                             </td>
-                            <td>${memberDto.mebrNo}</td>
+                            <td>${memberDto.mebrNO}</td>
                             <td>${memberDto.id}</td>
                             <td>${memberDto.name}</td>
                             <td>${memberDto.nickname}</td>
@@ -113,7 +113,7 @@
                                                 pattern="yyyy-MM-dd" type="date"/></td>
                             <td>
                                 <button class="detailBtn"
-                                        onclick="location.href='/adminManage/memberManage/read?page=${sc.page}&mebrNo=${memberDto.mebrNo}'">
+                                        onclick="location.href='/adminManage/memberManage/read?page=${sc.page}&mebrNO=${memberDto.mebrNO}'">
                                     상세보기
                                 </button>
                             </td>

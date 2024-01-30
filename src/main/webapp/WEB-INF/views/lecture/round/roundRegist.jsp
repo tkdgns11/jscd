@@ -30,7 +30,7 @@
                     <div id="infoDetailBox" class="infoDetailClass">
                         <h2 id="infoTitle">회차 등록</h2>
                         <input type="text" name="roundName" placeholder="등록할 회차을 입력해주세요." value="${RoundDto.roundName}">
-                        <input type="text" name="firstIdNo" placeholder="회원번호를 입력해주세요." value="${RoundDto.firstIdNo}">
+                        <input type="text" name="firstIdNO" placeholder="회원번호를 입력해주세요." value="${RoundDto.firstIdNO}">
                         <div id="infoDetailBtn">
                             <button type="button" class="registeBtn">등록하기</button>
                         </div>
@@ -46,7 +46,7 @@
                         <label style="margin-right: 3px;">회차 등록일</label>
                         <input types="text" class="infoInputBox" name="regDate" value="${roundDto.regDate}">
                         <label style="margin-right: 3px;">회차 최초등록 식별자</label>
-                        <input types="text" class="infoInputBox" name="firstIdNo" value="${roundDto.firstIdNo}">
+                        <input types="text" class="infoInputBox" name="firstIdNO" value="${roundDto.firstIdNO}">
                         <div id="infoDetailBtn">
                             <button type="button" class="deleteBtn">삭제하기</button>
                             <button type="button" class="modifyBtn">수정하기</button>

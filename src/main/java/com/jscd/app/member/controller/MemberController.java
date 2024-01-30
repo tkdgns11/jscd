@@ -18,6 +18,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -231,11 +233,11 @@ public class MemberController {
 
 		//1. id, pwd 체크
 		//1-1 일치하지 않음.
-		if(!memberService.login(id,pwd)){
-			String msg = URLEncoder.encode("id 또는 pwd를 확인해주세요.", "utf-8");
-			map.put("redirect", "/member/login?msg="+msg);
-			return map;
-		}
+//		if(!memberService.login(id,pwd)){
+//			String msg = URLEncoder.encode("id 또는 pwd를 확인해주세요.", "utf-8");
+//			map.put("redirect", "/member/login?msg="+msg);
+//			return map;
+//		}
 
 		//1-2 일치하는 경우
 		HttpSession session = request.getSession();
@@ -374,12 +376,6 @@ public class MemberController {
 		return "/member/myPage";
 	}
 
-
-
-
-
-
-
 	//회원 삭제
 	@PostMapping("/delete")
 	@ResponseBody
@@ -449,7 +445,7 @@ public class MemberController {
 		try{
 			//등급 체크를 위해 현재 로그인된 회원객체 select + 기존 강사 소개말 띄우기 위해 강사 객체 select jsp에 넘기기
 			MemberDto memberDto = memberService.memberSelect(id);
-			InstructorMemberInfoDto instructorMemberInfoDto = infoService.read(memberDto.getMebrNo());
+			InstructorMemberInfoDto instructorMemberInfoDto = infoService.read(memberDto.getMebrNO());
 			model.addAttribute("memberDto",memberDto);
 			model.addAttribute("infoDto",instructorMemberInfoDto);
 		}catch (Exception e){
@@ -642,7 +638,16 @@ public class MemberController {
 		return "redirect:/member/login/";
 	}
 
-
-
+	@PostMapping("/check")
+	@ResponseBody
+	public ResponseEntity<?> checkCoupon(@RequestBody MemberDto memberDto) {
+		try {
+			return ResponseEntity.ok().body(memberService.checkID(memberDto.getId().trim())); // 존재하면 1, 존재하지 않으면 0 반환
+		} catch (RuntimeException e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("이메일을 다시 확인해주세요: " + e.getMessage());
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("이메일 확인 중 오류가 발생했습니다: " + e.getMessage());
+		}
+	}
 
 }

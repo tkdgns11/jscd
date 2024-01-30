@@ -6,7 +6,7 @@ import java.util.Objects;
 public class StdMemberManageDto { //학생+회원 조인 Dto
 
     //회원테이블
-    private Integer mebrNo;
+    private Integer mebrNO;
     private String id;
     private String name;
     private String alias;
@@ -21,8 +21,8 @@ public class StdMemberManageDto { //학생+회원 조인 Dto
     private String status;
     private String etc;
 
-    public StdMemberManageDto(Integer mebrNo, String id, String name, String alias, String birth, String phone, Date regDate, String gisu, String status, String etc) {
-        this.mebrNo = mebrNo;
+    public StdMemberManageDto(Integer mebrNO, String id, String name, String alias, String birth, String phone, Date regDate, String gisu, String status, String etc) {
+        this.mebrNO = mebrNO;
         this.id = id;
         this.name = name;
         this.alias = alias;
@@ -45,12 +45,12 @@ public class StdMemberManageDto { //학생+회원 조인 Dto
         this.acct = acct;
     }
 
-    public int getmebrNo() {
-        return mebrNo;
+    public int getmebrNO() {
+        return mebrNO;
     }
 
-    public void setmebrNo(int mebrNo) {
-        this.mebrNo = mebrNo;
+    public void setmebrNO(int mebrNO) {
+        this.mebrNO = mebrNO;
     }
 
     public String getId() {
@@ -127,12 +127,12 @@ public class StdMemberManageDto { //학생+회원 조인 Dto
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         StdMemberManageDto that = (StdMemberManageDto) o;
-        return mebrNo == that.mebrNo && Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(alias, that.alias) && Objects.equals(birth, that.birth) && Objects.equals(phone, that.phone) && Objects.equals(regDate, that.regDate) && Objects.equals(gisu, that.gisu) && Objects.equals(status, that.status) && Objects.equals(etc, that.etc);
+        return mebrNO == that.mebrNO && Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(alias, that.alias) && Objects.equals(birth, that.birth) && Objects.equals(phone, that.phone) && Objects.equals(regDate, that.regDate) && Objects.equals(gisu, that.gisu) && Objects.equals(status, that.status) && Objects.equals(etc, that.etc);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(mebrNo, id, name, alias, birth, phone, regDate, gisu, status, etc);
+        return Objects.hash(mebrNO, id, name, alias, birth, phone, regDate, gisu, status, etc);
     }
 
     @Override
@@ -140,7 +140,7 @@ public class StdMemberManageDto { //학생+회원 조인 Dto
 
 
         return "StdMemberManageDto{" +
-                "mebrNo=" + mebrNo +
+                "mebrNO=" + mebrNO +
                 ", id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", alias='" + alias + '\'' +

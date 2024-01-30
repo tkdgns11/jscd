@@ -106,5 +106,10 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.updatePwd(memberDto);
 	}
 
+	@Override
+	public int checkID(String ID) throws Exception {
+		return memberDao.selectByID(ID);
+	}
+
 }
 

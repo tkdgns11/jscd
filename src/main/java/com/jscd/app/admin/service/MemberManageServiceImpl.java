@@ -43,30 +43,30 @@ public class MemberManageServiceImpl implements MemberManageService { //회원 �
     }
 
     @Override
-    public MemberManageDto read(Integer mebrNo) throws Exception {
-        return manageDao.select(mebrNo);
+    public MemberManageDto read(Integer mebrNO) throws Exception {
+        return manageDao.select(mebrNO);
     }
 
 
     @Override
     @Transactional(rollbackFor = Exception.class) //메인페이지 상태/등급 일괄 수정
-    public int modify(Integer status, Integer grade, List<Integer> mebrNo) throws Exception {
-        int rowCnt = manageDao.update(status, grade, mebrNo);
+    public int modify(Integer status, Integer grade, List<Integer> mebrNO) throws Exception {
+        int rowCnt = manageDao.update(status, grade, mebrNO);
 
         //등급이 강사로 변경됐다면,
         if (grade == 3) {
             //회원 정보를 강사테이블로 insert
             InstructorInfoDto instructorInfoDto = new InstructorInfoDto();
 
-            for (int i = 0; i < mebrNo.size(); i++) {
+            for (int i = 0; i < mebrNO.size(); i++) {
                 //회원 번호만 insert(소개말,급여는 추후에 강사가 기입 and 관리자가 지정)
-                instructorInfoDto.setMebrNo(mebrNo.get(i));
+                instructorInfoDto.setMebrNO(mebrNO.get(i));
                 rowCnt = insturctorInfoDao.insert(instructorInfoDto);
             }
         } else if (grade == 4) { //등급이 관리자(조교)로 변경됐다면,
 
-            for (int i = 0; i < mebrNo.size(); i++) {
-                MemberDto memberDto = manageDao.selectMember(mebrNo.get(i));
+            for (int i = 0; i < mebrNO.size(); i++) {
+                MemberDto memberDto = manageDao.selectMember(mebrNO.get(i));
                 //회원 정보가 관리자 테이블로 insert
                 AdminDto adminDto = new AdminDto();
                 adminDto.setId(memberDto.getId());
@@ -77,8 +77,8 @@ public class MemberManageServiceImpl implements MemberManageService { //회원 �
             }
         } else if (grade == 2) { //등급이 학생으로 변경됐다면,
             StdManageDto stdManageDto = new StdManageDto();
-            for (int i = 0; i < mebrNo.size(); i++) {
-                stdManageDto.setMebrNo(mebrNo.get(i)); //회원 번호만 넣기
+            for (int i = 0; i < mebrNO.size(); i++) {
+                stdManageDto.setMebrNO(mebrNO.get(i)); //회원 번호만 넣기
                 stdManageDto.setGisu(""); //기수 어떻게 들어갈지..일단 비우기
                 stdManageDto.setStatus(1); //1 '수강예정' 기본값
                 rowCnt = stdManageDao.insert(stdManageDto);
@@ -97,12 +97,12 @@ public class MemberManageServiceImpl implements MemberManageService { //회원 �
         //업데이트를 진행
         int rowCnt = manageDao.updateDetail(memberDto);
         //해당 멤버 객체 가져옴
-        memberDto = manageDao.selectMember(memberDto.getMebrNo());
+        memberDto = manageDao.selectMember(memberDto.getMebrNO());
         //만약 등급이 강사로 변경됐다면,
         if (memberDto.getGrade() == 3) {
             //멤버의 정보 그대로 강사테이블로 insert
             InstructorInfoDto instructorInfoDto = new InstructorInfoDto();
-            instructorInfoDto.setMebrNo(memberDto.getMebrNo());
+            instructorInfoDto.setMebrNO(memberDto.getMebrNO());
             insturctorInfoDao.insert(instructorInfoDto);
         } else if (memberDto.getGrade() == 4) { //등급이 관리자로 변경됐다면,
             //멤버의 정보가 관리자 테이블로 insert
@@ -114,7 +114,7 @@ public class MemberManageServiceImpl implements MemberManageService { //회원 �
             adminDao.insertAdmin(adminDto);
         }else if(memberDto.getGrade() == 2){ //학생으로 변경됐다면,
             StdManageDto stdManageDto = new StdManageDto();
-            stdManageDto.setMebrNo(memberDto.getMebrNo());
+            stdManageDto.setMebrNO(memberDto.getMebrNO());
             stdManageDto.setGisu("");
             stdManageDto.setStatus(1); //'수강예정' 기본값
             rowCnt = stdManageDao.insert(stdManageDto);
@@ -123,8 +123,8 @@ public class MemberManageServiceImpl implements MemberManageService { //회원 �
     }
 
     @Override
-    public int remove(Integer mebrNo) throws Exception {
-        return manageDao.delete(mebrNo);
+    public int remove(Integer mebrNO) throws Exception {
+        return manageDao.delete(mebrNO);
     }
 
     @Override
@@ -138,8 +138,8 @@ public class MemberManageServiceImpl implements MemberManageService { //회원 �
     }
 
     @Override
-    public MemberDto readMember(Integer mebrNo) throws Exception {
-        return manageDao.selectMember(mebrNo);
+    public MemberDto readMember(Integer mebrNO) throws Exception {
+        return manageDao.selectMember(mebrNO);
     }
 
 }

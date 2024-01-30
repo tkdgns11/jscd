@@ -41,7 +41,7 @@
         <div id="infoDetailBox">
             <h2 id="infoTitle">회원 상세보기</h2>
             <label style="margin-right: 3px;">회원번호</label>
-            <input type="text" class="infoInputBox" name="mebrNo" id="mebrNo" readonly value="${memberDto.mebrNo}"><br>
+            <input type="text" class="infoInputBox" name="mebrNO" id="mebrNO" readonly value="${memberDto.mebrNO}"><br>
             <label style="margin-right: 15px;">아이디</label>
             <input type="text" class="infoInputBox" readonly value="${memberDto.id}" id="id"><br>
             <label style="margin-right: 25px;">이름</label>
@@ -140,18 +140,18 @@
             } else {
                 const form = document.createElement('form');
                 form.setAttribute('method', 'post');
-                form.setAttribute('action', '/adminManage/memberManage/modify?page=${page}&mebrNo=${memberDto.mebrNo}');
+                form.setAttribute('action', '/adminManage/memberManage/modify?page=${page}&mebrNO=${memberDto.mebrNO}');
 
                 var status = document.getElementById('status');
                 var grade = document.getElementById('grade');
                 var etc = document.getElementById('etc');
-                var mebrNo = document.getElementById('mebrNo');
+                var mebrNO = document.getElementById('mebrNO');
                 var originGrade = document.getElementById('originGrade');
 
                 form.appendChild(grade);
                 form.appendChild(status);
                 form.appendChild(etc);
-                form.appendChild(mebrNo);
+                form.appendChild(mebrNO);
                 form.appendChild(originGrade);
 
                 console.log(form)

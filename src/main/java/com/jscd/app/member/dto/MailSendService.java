@@ -27,7 +27,7 @@ public class MailSendService {
     //이메일 보낼 양식!
     public String joinEmail(String email) {
         makeRandomNumber();
-        String setFrom = "jyh931229@gmail.com"; // email-config에 설정한 자신의 이메일 주소를 입력
+        String setFrom = "tkdgns11123@gmail.com"; // email-config에 설정한 자신의 이메일 주소를 입력
         String toMail = email;
         String title = "회원 가입 인증 이메일 입니다."; // 이메일 제목
         String content =
@@ -60,7 +60,7 @@ public class MailSendService {
     //비밀번호 찾기 이메일 양식
     public String findPwd(String email) {
         makeRandomNumber();
-        String setFrom = "jyh931229@gmail.com"; // email-config에 설정한 자신의 이메일 주소를 입력
+        String setFrom = "tkdgns11123@gmail.com"; // email-config에 설정한 자신의 이메일 주소를 입력
         String toMail = email;
         String title = "비밀번호 찾기 인증 이메일 입니다."; // 이메일 제목
         String content =

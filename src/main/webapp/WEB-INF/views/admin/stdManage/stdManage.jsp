@@ -39,7 +39,7 @@
 
 
             <label style="margin-right: 3px;">회원 번호</label>
-            <input type="text" class="infoInputBox" readonly name="mebrNo" id="mebrNo" value="${stdDto.mebrNo}"><br>
+            <input type="text" class="infoInputBox" readonly name="mebrNO" id="mebrNO" value="${stdDto.mebrNO}"><br>
             <label style="margin-right: 15px;">아이디</label>
             <input type="text" class="infoInputBox" readonly value="${stdDto.id}"><br>
             <label style="margin-right: 25px;">이름</label>
@@ -98,7 +98,7 @@
 
             const form = document.createElement('form');
             form.setAttribute('method', 'post');
-            form.setAttribute('action', '/adminManage/stdManage/delete?mebrNo=${stdDto.mebrNo}&page=${page}');
+            form.setAttribute('action', '/adminManage/stdManage/delete?mebrNO=${stdDto.mebrNO}&page=${page}');
             document.body.appendChild(form);
             form.submit();
 
@@ -134,17 +134,17 @@
             } else {
                 const form = document.createElement('form');
                 form.setAttribute('method', 'post');
-                form.setAttribute('action', '/adminManage/stdManage/modify?page=${page}&mebrNo=${stdDto.mebrNo}');
+                form.setAttribute('action', '/adminManage/stdManage/modify?page=${page}&mebrNO=${stdDto.mebrNO}');
 
                 var gisu = document.getElementById('gisu');
                 var status = document.getElementById('status');
                 var etc = document.getElementById('etc');
-                var mebrNo = document.getElementById('mebrNo');
+                var mebrNO = document.getElementById('mebrNO');
 
                 form.appendChild(gisu);
                 form.appendChild(status);
                 form.appendChild(etc);
-                form.appendChild(mebrNo);
+                form.appendChild(mebrNO);
                 console.log(form)
                 document.body.appendChild(form);
                 $('#infoDetailBox').css('display','none');

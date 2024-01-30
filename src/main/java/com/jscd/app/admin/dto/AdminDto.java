@@ -14,9 +14,9 @@ public class AdminDto { //관리자 테이블
     private Integer status;
     private Integer grade;
     private Date regDate;
-    private String firstIdNo;
+    private String firstIdNO;
     private Date modifyDate;
-    private String lastIdNo;
+    private String lastIdNO;
     private String etc;
 
 
@@ -27,7 +27,7 @@ public class AdminDto { //관리자 테이블
         this.pwd = pwd;
     }
 
-    public AdminDto(String id, String name, String nickname, Date birth, String pwd, String phone, Integer status, Integer grade, Date regDate, String firstIdNo, Date modifyDate, String lastIdNo, String etc) {
+    public AdminDto(String id, String name, String nickname, Date birth, String pwd, String phone, Integer status, Integer grade, Date regDate, String firstIdNO, Date modifyDate, String lastIdNO, String etc) {
         this.id = id;
         this.name = name;
         this.nickname = nickname;
@@ -37,9 +37,9 @@ public class AdminDto { //관리자 테이블
         this.status = status;
         this.grade = grade;
         this.regDate = regDate;
-        this.firstIdNo = firstIdNo;
+        this.firstIdNO = firstIdNO;
         this.modifyDate = modifyDate;
-        this.lastIdNo = lastIdNo;
+        this.lastIdNO = lastIdNO;
         this.etc = etc;
     }
 
@@ -118,12 +118,12 @@ public class AdminDto { //관리자 테이블
         this.regDate = regDate;
     }
 
-    public String getfirstIdNo() {
-        return firstIdNo;
+    public String getFirstIdNO() {
+        return firstIdNO;
     }
 
-    public void setfirstIdNo(String firstIdNo) {
-        this.firstIdNo = firstIdNo;
+    public void setfirstIdNO(String firstIdNO) {
+        this.firstIdNO = firstIdNO;
     }
 
     public Date getModifyDate() {
@@ -134,12 +134,12 @@ public class AdminDto { //관리자 테이블
         this.modifyDate = modifyDate;
     }
 
-    public String getlastIdNo() {
-        return lastIdNo;
+    public String getlastIdNO() {
+        return lastIdNO;
     }
 
-    public void setlastIdNo(String lastIdNo) {
-        this.lastIdNo = lastIdNo;
+    public void setlastIdNO(String lastIdNO) {
+        this.lastIdNO = lastIdNO;
     }
 
     public String getEtc() {
@@ -156,12 +156,12 @@ public class AdminDto { //관리자 테이블
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AdminDto adminDto = (AdminDto) o;
-        return Objects.equals(id, adminDto.id) && Objects.equals(name, adminDto.name) && Objects.equals(nickname, adminDto.nickname) && Objects.equals(birth, adminDto.birth) && Objects.equals(pwd, adminDto.pwd) && Objects.equals(phone, adminDto.phone) && Objects.equals(status, adminDto.status) && Objects.equals(grade, adminDto.grade) && Objects.equals(regDate, adminDto.regDate) && Objects.equals(firstIdNo, adminDto.firstIdNo) && Objects.equals(modifyDate, adminDto.modifyDate) && Objects.equals(lastIdNo, adminDto.lastIdNo) && Objects.equals(etc, adminDto.etc);
+        return Objects.equals(id, adminDto.id) && Objects.equals(name, adminDto.name) && Objects.equals(nickname, adminDto.nickname) && Objects.equals(birth, adminDto.birth) && Objects.equals(pwd, adminDto.pwd) && Objects.equals(phone, adminDto.phone) && Objects.equals(status, adminDto.status) && Objects.equals(grade, adminDto.grade) && Objects.equals(regDate, adminDto.regDate) && Objects.equals(firstIdNO, adminDto.firstIdNO) && Objects.equals(modifyDate, adminDto.modifyDate) && Objects.equals(lastIdNO, adminDto.lastIdNO) && Objects.equals(etc, adminDto.etc);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, nickname, birth, pwd, phone, status, grade, regDate, firstIdNo, modifyDate, lastIdNo, etc);
+        return Objects.hash(id, name, nickname, birth, pwd, phone, status, grade, regDate, firstIdNO, modifyDate, lastIdNO, etc);
     }
 
     @Override
@@ -176,9 +176,9 @@ public class AdminDto { //관리자 테이블
                 ", status=" + status +
                 ", grade=" + grade +
                 ", regDate=" + regDate +
-                ", firstIdNo='" + firstIdNo + '\'' +
+                ", firstIdNO='" + firstIdNO + '\'' +
                 ", modifyDate=" + modifyDate +
-                ", lastIdNo='" + lastIdNo + '\'' +
+                ", lastIdNO='" + lastIdNO + '\'' +
                 ", etc='" + etc + '\'' +
                 '}';
     }

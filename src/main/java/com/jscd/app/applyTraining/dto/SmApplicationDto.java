@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class SmApplicationDto {
     private Integer stfmNo;
-    private Integer mebrNo;
+    private Integer mebrNO;
     private String id;
     private Integer registCode;
     private String title;
@@ -18,9 +18,9 @@ public class SmApplicationDto {
     private String intro;
     private String expect;
     private Date regDate;
-    private Integer firstIdNo;
+    private Integer firstIdNO;
     private Date modifyDate;
-    private Integer lastIdNo;
+    private Integer lastIdNO;
     private String etc;
 
     public SmApplicationDto() {}
@@ -44,19 +44,19 @@ public class SmApplicationDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SmApplicationDto that = (SmApplicationDto) o;
-        return Objects.equals(stfmNo, that.stfmNo) && Objects.equals(mebrNo, that.mebrNo) && Objects.equals(id, that.id) && Objects.equals(registCode, that.registCode) && Objects.equals(title, that.title) && Objects.equals(lastPrice, that.lastPrice) && Objects.equals(status, that.status) && Objects.equals(level, that.level) && Objects.equals(levelDetail, that.levelDetail) && Objects.equals(attdPps, that.attdPps) && Objects.equals(attdPath, that.attdPath) && Objects.equals(intro, that.intro) && Objects.equals(expect, that.expect) && Objects.equals(regDate, that.regDate) && Objects.equals(firstIdNo, that.firstIdNo) && Objects.equals(modifyDate, that.modifyDate) && Objects.equals(lastIdNo, that.lastIdNo) && Objects.equals(etc, that.etc);
+        return Objects.equals(stfmNo, that.stfmNo) && Objects.equals(mebrNO, that.mebrNO) && Objects.equals(id, that.id) && Objects.equals(registCode, that.registCode) && Objects.equals(title, that.title) && Objects.equals(lastPrice, that.lastPrice) && Objects.equals(status, that.status) && Objects.equals(level, that.level) && Objects.equals(levelDetail, that.levelDetail) && Objects.equals(attdPps, that.attdPps) && Objects.equals(attdPath, that.attdPath) && Objects.equals(intro, that.intro) && Objects.equals(expect, that.expect) && Objects.equals(regDate, that.regDate) && Objects.equals(firstIdNO, that.firstIdNO) && Objects.equals(modifyDate, that.modifyDate) && Objects.equals(lastIdNO, that.lastIdNO) && Objects.equals(etc, that.etc);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(stfmNo, mebrNo, id, registCode, title, lastPrice, status, level, levelDetail, attdPps, attdPath, intro, expect, regDate, firstIdNo, modifyDate, lastIdNo, etc);
+        return Objects.hash(stfmNo, mebrNO, id, registCode, title, lastPrice, status, level, levelDetail, attdPps, attdPath, intro, expect, regDate, firstIdNO, modifyDate, lastIdNO, etc);
     }
 
     @Override
     public String toString() {
         return "SmApplicationDto{" +
                 "stfmNo=" + stfmNo +
-                ", mebrNo=" + mebrNo +
+                ", mebrNO=" + mebrNO +
                 ", id='" + id + '\'' +
                 ", registCode=" + registCode +
                 ", title='" + title + '\'' +
@@ -69,9 +69,9 @@ public class SmApplicationDto {
                 ", intro='" + intro + '\'' +
                 ", expect='" + expect + '\'' +
                 ", regDate=" + regDate +
-                ", firstIdNo=" + firstIdNo +
+                ", firstIdNO=" + firstIdNO +
                 ", modifyDate=" + modifyDate +
-                ", lastIdNo=" + lastIdNo +
+                ", lastIdNO=" + lastIdNO +
                 ", etc='" + etc + '\'' +
                 '}';
     }
@@ -84,12 +84,12 @@ public class SmApplicationDto {
         this.stfmNo = stfmNo;
     }
 
-    public Integer getMebrNo() {
-        return mebrNo;
+    public Integer getMebrNO() {
+        return mebrNO;
     }
 
-    public void setMebrNo(Integer mebrNo) {
-        this.mebrNo = mebrNo;
+    public void setMebrNO(Integer mebrNO) {
+        this.mebrNO = mebrNO;
     }
 
     public String getId() {
@@ -188,12 +188,12 @@ public class SmApplicationDto {
         this.regDate = regDate;
     }
 
-    public Integer getFirstIdNo() {
-        return firstIdNo;
+    public Integer getFirstIdNO() {
+        return firstIdNO;
     }
 
-    public void setFirstIdNo(Integer firstIdNo) {
-        this.firstIdNo = firstIdNo;
+    public void setFirstIdNO(Integer firstIdNO) {
+        this.firstIdNO = firstIdNO;
     }
 
     public Date getModifyDate() {
@@ -204,12 +204,12 @@ public class SmApplicationDto {
         this.modifyDate = modifyDate;
     }
 
-    public Integer getLastIdNo() {
-        return lastIdNo;
+    public Integer getLastIdNO() {
+        return lastIdNO;
     }
 
-    public void setLastIdNo(Integer lastIdNo) {
-        this.lastIdNo = lastIdNo;
+    public void setLastIdNO(Integer lastIdNO) {
+        this.lastIdNO = lastIdNO;
     }
 
     public String getEtc() {

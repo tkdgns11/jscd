@@ -66,7 +66,7 @@
                                 <td>${list.courseCode}</td>
                                 <td><a class="subject_name" href="<c:url value='/adminManage/registCourse/courseDetail?courseCode=${list.courseCode}'/>">${list.courseName}</a></td>
                                 <td>${list.regDate}</td>
-                                <td>${list.firstIdNo}</td>
+                                <td>${list.firstIdNO}</td>
                             </tr>
                         </c:forEach>
                     </form>

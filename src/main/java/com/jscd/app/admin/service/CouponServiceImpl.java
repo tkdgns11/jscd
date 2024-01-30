@@ -24,10 +24,12 @@ public class CouponServiceImpl implements CouponService {
     }
 
     @Override
-    public int registerCoupons(List<CouponDto> coupons) {
+    public int registerCoupons(List<CouponDto> coupons) throws Exception {
 
         for (int i = 0; i < coupons.size(); i++) {
             CouponDto coupon = coupons.get(i);
+            coupon.setUseAvailable('y');
+            coupon.setCouponHisCode(1);
             couponDao.insertCoupon(coupon);
         }
 
@@ -35,8 +37,11 @@ public class CouponServiceImpl implements CouponService {
     }
 
     @Override
-    public int checkCoupon(String couponID) {
-       return couponDao.selectByCouponID(couponID);
+    public int checkCoupon(String couponID) throws Exception {
+        return couponDao.selectByCouponID(couponID);
+    }
+
+    public int useCoupon(String couponID) throws Exception {
+        return couponDao.selectByCouponID(couponID);
     }
 }
-

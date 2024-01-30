@@ -23,9 +23,9 @@ public class StodDTO {
     private String kind;
     private String slrPhone;
     private String regDate;
-    private int firstIdNo;
+    private int firstIdNO;
     private String modifyDate;
-    private Integer lastIdNo;
+    private Integer lastIdNO;
     private String etc;
     private String slrAddr;
     private String slrMail;
@@ -47,7 +47,7 @@ public class StodDTO {
 
     public StodDTO(){}
 
-    public StodDTO(String id, String name, String phone, int registCode, String title, int lastPrice, String startDate, String endDate, int slrNo, String slrName, String slrNum, String companyName, String indst, String kind, String slrPhone, String regDate, int firstIdNo, String modifyDate, Integer lastIdNo, String etc, String slrAddr, String slrMail, String odNo, String status, String payType, String creditNum, String cardType, int instlFees, String payDay, String csrcNum, String payTime, String userActNum, String payName, String payBank) {
+    public StodDTO(String id, String name, String phone, int registCode, String title, int lastPrice, String startDate, String endDate, int slrNo, String slrName, String slrNum, String companyName, String indst, String kind, String slrPhone, String regDate, int firstIdNO, String modifyDate, Integer lastIdNO, String etc, String slrAddr, String slrMail, String odNo, String status, String payType, String creditNum, String cardType, int instlFees, String payDay, String csrcNum, String payTime, String userActNum, String payName, String payBank) {
         this.id = id;
         this.name = name;
         this.phone = phone;
@@ -64,9 +64,9 @@ public class StodDTO {
         this.kind = kind;
         this.slrPhone = slrPhone;
         this.regDate = regDate;
-        this.firstIdNo = firstIdNo;
+        this.firstIdNO = firstIdNO;
         this.modifyDate = modifyDate;
-        this.lastIdNo = lastIdNo;
+        this.lastIdNO = lastIdNO;
         this.etc = etc;
         this.slrAddr = slrAddr;
         this.slrMail = slrMail;
@@ -212,12 +212,12 @@ public class StodDTO {
         this.regDate = regDate;
     }
 
-    public int getFirstIdNo() {
-        return firstIdNo;
+    public int getFirstIdNO() {
+        return firstIdNO;
     }
 
-    public void setFirstIdNo(int firstIdNo) {
-        this.firstIdNo = firstIdNo;
+    public void setFirstIdNO(int firstIdNO) {
+        this.firstIdNO = firstIdNO;
     }
 
     public String getModifyDate() {
@@ -228,12 +228,12 @@ public class StodDTO {
         this.modifyDate = modifyDate;
     }
 
-    public Integer getLastIdNo() {
-        return lastIdNo;
+    public Integer getLastIdNO() {
+        return lastIdNO;
     }
 
-    public void setLastIdNo(Integer lastIdNo) {
-        this.lastIdNo = lastIdNo;
+    public void setLastIdNO(Integer lastIdNO) {
+        this.lastIdNO = lastIdNO;
     }
 
     public String getEtc() {
@@ -375,9 +375,9 @@ public class StodDTO {
                 ", kind='" + kind + '\'' +
                 ", slrPhone='" + slrPhone + '\'' +
                 ", regDate='" + regDate + '\'' +
-                ", firstIdNo=" + firstIdNo +
+                ", firstIdNO=" + firstIdNO +
                 ", modifyDate='" + modifyDate + '\'' +
-                ", lastIdNo=" + lastIdNo +
+                ", lastIdNO=" + lastIdNO +
                 ", etc='" + etc + '\'' +
                 ", slrAddr='" + slrAddr + '\'' +
                 ", slrMail='" + slrMail + '\'' +

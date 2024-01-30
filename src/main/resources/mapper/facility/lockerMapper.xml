@@ -123,7 +123,7 @@
     <insert id="insertLocker" parameterType="LockerDto">
         INSERT INTO lockerDetail
         (lockerID, lockerCode, lockerNO, statusCode, mebrID, startDate, endDate, etc, regDate)
-        VALUES (#{lockerID}, #{lockerCode}, #{lockerNO},  #{statusCode}, #{mebrID}, now(), #{endDate}, #{etc}, now())
+        VALUES (#{lockerID}, #{lockerCode}, #{lockerNO}, #{statusCode}, #{mebrID}, #{startDate}, #{endDate}, #{etc}, now())
     </insert>
 
     <!--  락커 기간연장 등록-->

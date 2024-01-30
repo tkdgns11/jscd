@@ -7,8 +7,8 @@
     <!--부트캠프 결제 or 학생 등급으로 수정 시, 학생테이블로 insert-->
     <insert id="insert" parameterType="StdManageDto">
         insert into stdManage
-            (mebrNo, gisu, status,regDate)
-        values (#{mebrNo}, #{gisu}, #{status},now())
+            (mebrNO, gisu, status,regDate)
+        values (#{mebrNO}, #{gisu}, #{status},now())
     </insert>
 
     <!--    학생 인원수-->
@@ -19,7 +19,7 @@
 
 <!--    학생+회원+코드테이블 조인-->
     <sql id="selectStd">
-        select m.mebrNo,
+        select m.mebrNO,
                m.name,
                m.id,
                m.birth,
@@ -30,7 +30,7 @@
                a.status,
                s.etc
         from member m
-                 join stdManage s on s.mebrNo = m.mebrNo
+                 join stdManage s on s.mebrNO = m.mebrNO
                  join (select ctNum, codeName as status from allCode where ctId = "M003") a
                       on s.status = a.ctNum
     </sql>
@@ -39,7 +39,7 @@
         <include refid="selectStd"/>
         WHERE true
         <include refid="searchCondition"/>
-        order by s.mebrNo
+        order by s.mebrNO
         limit #{offset},#{pageSize}
     </select>
 
@@ -47,7 +47,7 @@
         select count(*)
         from member m
         join stdManage s
-        on s.mebrNo = m.mebrNo
+        on s.mebrNO = m.mebrNO
         join (select ctNum,codeName as status from allCode where ctId = "M003") a
         on s.status = a.ctNum
         <include refid="searchCondition"/>
@@ -56,14 +56,14 @@
     <!--  학생 정보 전체 셀렉-->
     <select id="selectAll" parameterType="map" resultType="StdMemberManageDto">
         <include refid="selectStd"/>
-        order by s.mebrNo
+        order by s.mebrNO
         limit #{offset}, #{pageSize};
     </select>
 
     <!--   상세정보 -->
     <select id="select" parameterType="Integer" resultType="StdMemberManageDto">
         <include refid="selectStd"/>
-        where s.mebrNo = #{mebrNo};
+        where s.mebrNO = #{mebrNO};
     </select>
 
     <!--상세보기 update-->
@@ -73,7 +73,7 @@
           , status     = #{status}
           , etc        = #{etc}
           , modifyDate = now()
-        where mebrNo = #{mebrNo};
+        where mebrNO = #{mebrNO};
     </update>
 
 <!--    메인화면 상태 update(일괄 수정)-->
@@ -81,9 +81,9 @@
         update stdManage
         set status = ${status}
         , modifyDate = now()
-        where mebrNo in
-        <foreach collection="mebrNo" item="mebrNo" open="(" close=")" separator=",">
-            #{mebrNo}
+        where mebrNO in
+        <foreach collection="mebrNO" item="mebrNO" open="(" close=")" separator=",">
+            #{mebrNO}
         </foreach>
     </update>
 
@@ -91,9 +91,9 @@
     <!-- 학생이 수료를 하지 못하고 중도하차 하는 경우(메인 페이지 삭제)-->
     <update id="deleteMain" parameterType="list">
         delete from stdManage
-        where mebrNo in
-        <foreach collection="list" item="mebrNo" open="(" close=")" separator=",">
-            #{mebrNo}
+        where mebrNO in
+        <foreach collection="list" item="mebrNO" open="(" close=")" separator=",">
+            #{mebrNO}
         </foreach>
     </update>
 
@@ -102,7 +102,7 @@
     <delete id="delete" parameterType="Integer">
         delete
         from stdManage
-        where mebrNo = #{mebrNo}
+        where mebrNO = #{mebrNO}
     </delete>
 
     <delete id="deleteAll">

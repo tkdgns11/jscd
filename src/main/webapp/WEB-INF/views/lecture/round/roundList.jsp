@@ -72,7 +72,7 @@
                                         ${list.regDate}
                                 </td>
                                 <td>
-                                        ${list.firstIdNo}
+                                        ${list.firstIdNO}
                                 </td>
                             </tr>
                         </c:forEach>

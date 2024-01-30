@@ -4,29 +4,29 @@ import java.util.Date;
 import java.util.Objects;
 
 public class StdManageDto { //학생
-        private Integer mebrNo; //pk_회원 고유 번호
+        private Integer mebrNO; //pk_회원 고유 번호
         private String gisu;
         private Integer status;
         private Date regDate;
-        private String firstIdNo;
+        private String firstIdNO;
         private Date modifyDate;
-        private String lastIdNo;
+        private String lastIdNO;
         private String etc;
 
         public StdManageDto(){}
 
-        public StdManageDto(Integer mebrNo,String gisu, Integer status) {
-            this.mebrNo = mebrNo;
+        public StdManageDto(Integer mebrNO,String gisu, Integer status) {
+            this.mebrNO = mebrNO;
             this.gisu = gisu;
             this.status = status;
         }
 
-        public Integer getMebrNo() {
-            return mebrNo;
+        public Integer getMebrNO() {
+            return mebrNO;
         }
 
-        public void setMebrNo(Integer mebrNo) {
-            this.mebrNo = mebrNo;
+        public void setMebrNO(Integer mebrNO) {
+            this.mebrNO = mebrNO;
         }
 
         public String getGisu() {
@@ -53,12 +53,12 @@ public class StdManageDto { //학생
             this.regDate = regDate;
         }
 
-        public String getfirstIdNo() {
-            return firstIdNo;
+        public String getfirstIdNO() {
+            return firstIdNO;
         }
 
-        public void setfirstIdNo(String firstIdNo) {
-            this.firstIdNo = firstIdNo;
+        public void setfirstIdNO(String firstIdNO) {
+            this.firstIdNO = firstIdNO;
         }
 
         public Date getModifyDate() {
@@ -69,12 +69,12 @@ public class StdManageDto { //학생
             this.modifyDate = modifyDate;
         }
 
-        public String getlastIdNo() {
-            return lastIdNo;
+        public String getlastIdNO() {
+            return lastIdNO;
         }
 
-        public void setlastIdNo(String lastIdNo) {
-            this.lastIdNo = lastIdNo;
+        public void setlastIdNO(String lastIdNO) {
+            this.lastIdNO = lastIdNO;
         }
 
         public String getEtc() {
@@ -90,24 +90,24 @@ public class StdManageDto { //학생
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
             StdManageDto that = (StdManageDto) o;
-            return Objects.equals(mebrNo, that.mebrNo)&& Objects.equals(gisu, that.gisu) && Objects.equals(status, that.status) && Objects.equals(regDate, that.regDate) && Objects.equals(firstIdNo, that.firstIdNo) && Objects.equals(modifyDate, that.modifyDate) && Objects.equals(lastIdNo, that.lastIdNo) && Objects.equals(etc, that.etc);
+            return Objects.equals(mebrNO, that.mebrNO)&& Objects.equals(gisu, that.gisu) && Objects.equals(status, that.status) && Objects.equals(regDate, that.regDate) && Objects.equals(firstIdNO, that.firstIdNO) && Objects.equals(modifyDate, that.modifyDate) && Objects.equals(lastIdNO, that.lastIdNO) && Objects.equals(etc, that.etc);
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(mebrNo, gisu, status, regDate, firstIdNo, modifyDate, lastIdNo, etc);
+            return Objects.hash(mebrNO, gisu, status, regDate, firstIdNO, modifyDate, lastIdNO, etc);
         }
 
         @Override
         public String toString() {
             return "StdManageDto{" +
-                    "mebrNo=" + mebrNo +
+                    "mebrNO=" + mebrNO +
                     ", gisu='" + gisu + '\'' +
                     ", status='" + status + '\'' +
                     ", regDate=" + regDate +
-                    ", firstIdNo='" + firstIdNo + '\'' +
+                    ", firstIdNO='" + firstIdNO + '\'' +
                     ", modifyDate=" + modifyDate +
-                    ", lastIdNo='" + lastIdNo + '\'' +
+                    ", lastIdNO='" + lastIdNO + '\'' +
                     ", etc='" + etc + '\'' +
                     '}';
         }

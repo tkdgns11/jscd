@@ -185,7 +185,7 @@ function  pwdValid(pwd, pwdChk, pwdReg){
 
     //패스워드 정규식 유효성 검사
     if(!pwdReg.test(pwd.value)) {
-        alert("8~20자 영문 대소문자, 숫자, 특수문자를 사용해주세요.");
+        alert("비밀번호는 8~20자 영문 대소문자, 숫자, 특수문자를 사용해주세요.");
         return false;
     }
 

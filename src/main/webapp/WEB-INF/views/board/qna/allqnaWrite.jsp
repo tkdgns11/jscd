@@ -85,19 +85,20 @@
             <input type="file" id="upload" name="file" class="attachBtn" ${mode eq 'new' ? '' : 'hidden'}>
         </div>
         <%--       id 바꿈 btnBox -> buttonBox--%>
-        <div id="bottomBox">
+        <div class="bottomBox">
 
-            <div id="buttonBox">
-                <input type="button" id="writeBtn" class="registeBtn"
-                       onclick="allqnaWrite();" ${mode eq 'new' ? '' : 'hidden'} value="등록">
-                <input type="button" id="modifyBtn" class="modifyBtn"
-                       onclick="allqnaEdit();" ${mode eq 'new' ? 'hidden' : ''} value="수정">
-                <input type="button" id="removeBtn" class="deleteBtn"
-                       onclick="allqnaDelete()" ${mode eq 'new' ? 'hidden' : ''} value="삭제">
-                <input type="button" id="listBtn" class="backBtn" onclick="location.href='${path}/board/qna/allqnaList'" value="목록">
+            <div class="buttonBox" id = "bottomBoxs">
+                <div>
+                    <input type="button" id="listBtn" class="backBtn" onclick="location.href='${path}/board/qna/allqnaList'" value="목록">
+                </div>
+                <div>
+                    <input type="button" id="writeBtn" class="registeBtn"
+                             onclick="allqnaWrite();" ${mode eq 'new' ? '' : 'hidden'} value="등록">
+                    <input type="button" id="modifyBtn" class="modifyBtn"
+                           onclick="allqnaEdit();" ${mode eq 'new' ? 'hidden' : ''} value="수정">
+                    <input type="button" id="removeBtn" class="deleteBtn"
+                           onclick="allqnaDelete()" ${mode eq 'new' ? 'hidden' : ''} value="삭제"></div>
             </div>
-
-
         </div>
 
 </form>

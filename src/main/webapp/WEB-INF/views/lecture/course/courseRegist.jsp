@@ -31,7 +31,7 @@
           <div id="infoDetailBox" class="infoDetailClass">
             <h2 id="infoTitle">과정 등록</h2>
             <input type="text" name="courseName" placeholder="등록할 과정을 입력해주세요." value="${courseDto.courseName}">
-            <input type="text" name="firstIdNo" placeholder="회원번호를 입력해주세요." value="${courseDto.firstIdNo}">
+            <input type="text" name="firstIdNO" placeholder="회원번호를 입력해주세요." value="${courseDto.firstIdNO}">
             <div id="infoDetailBtn">
               <button type="button" class="registeBtn">등록하기</button>
             </div>
@@ -47,7 +47,7 @@
           <label style="margin-right: 3px;">과정 등록일</label>
           <input types="text" class="infoInputBox" name="regDate" value="${courseDto.regDate}">
           <label style="margin-right: 3px;">과정 최초등록 식별자</label>
-          <input types="text" class="infoInputBox" name="firstIdNo" value="${courseDto.firstIdNo}">
+          <input types="text" class="infoInputBox" name="firstIdNO" value="${courseDto.firstIdNO}">
           <div id="infoDetailBtn">
             <button type="button" class="deleteBtn">삭제하기</button>
             <button type="button" class="modifyBtn">수정하기</button>

@@ -31,7 +31,11 @@
 </button>
 <br><br>
 <button>
-    <a href="/coupon/adminList">쿠폰리스트 페이지</a>
+    <a href="/locker/mebrFastCampus">패캠 사물함 페이지</a>
 </button>
 </body>
+<br><br>
+<button>
+    <a href="/coupon/adminList">쿠폰리스트 페이지</a>
+</button>
 </html>

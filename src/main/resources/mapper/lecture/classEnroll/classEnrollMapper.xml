@@ -23,15 +23,15 @@
 
     <!--    강의 추가하기-->
     <insert id="insert" parameterType="ClassEnrollDto">
-        insert into classEnroll (courseCode, roundCode, className, price, discount, lstPrice, firstIdNo, lastIdNo, etc)
-        values (#{courseCode}, #{roundCode}, #{className}, #{price}, #{discount}, #{lstPrice}, #{firstIdNo}, #{lastIdNo}, #{etc});
+        insert into classEnroll (courseCode, roundCode, className, price, discount, lstPrice, firstIdNO, lastIdNO, etc)
+        values (#{courseCode}, #{roundCode}, #{className}, #{price}, #{discount}, #{lstPrice}, #{firstIdNO}, #{lastIdNO}, #{etc});
     </insert>
 
     <!--    강의 수정하기-->
     <update id="update" parameterType="ClassEnrollDto">
         update classEnroll
         set courseCode = #{courseCode}, roundCode = #{roundCode}, className = #{className}, price = #{price}, discount = #{discount},
-            modifyDate = now(), lastIdNo = #{lastIdNo}, etc = #{etc}
+            modifyDate = now(), lastIdNO = #{lastIdNO}, etc = #{etc}
         where classCode = #{classCode}
     </update>
 

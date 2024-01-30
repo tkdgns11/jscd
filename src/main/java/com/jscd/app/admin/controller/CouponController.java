@@ -25,12 +25,12 @@ public class CouponController {
     public ResponseEntity<?> createCoupons(@RequestBody List<CouponDto> couponDtos) {
         
 //        couponDtos.stream().forEach(abc -> {
-//            System.out.println("abc.toString() = " + abc.toString());
+//            System.out.println("abc.getUsableEndTime() = " + abc.getUsableEndTime());
 //        });
 
         try {
             int result = couponService.registerCoupons(couponDtos);
-            if (result > 0) {
+            if (couponService.registerCoupons(couponDtos) > 0) {
                 return ResponseEntity.ok().body(result + "개의 쿠폰이 발급되었습니다.");
             } else {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("쿠폰 발급에 실패했습니다.");
@@ -45,11 +45,7 @@ public class CouponController {
     @PostMapping("/check")
     public ResponseEntity<?> checkCoupon(@RequestBody CouponDto CouponDto) {
         try {
-            String couponID = CouponDto.getCouponID().trim(); // 좌우 공백 제거
-            System.out.println("couponID = " + couponID);
-            int result = couponService.checkCoupon(couponID);
-            System.out.println("result = " + result);
-            return ResponseEntity.ok().body(result); // 존재하면 1, 존재하지 않으면 0 반환
+            return ResponseEntity.ok().body(couponService.checkCoupon(CouponDto.getCouponID().trim())); // 존재하면 1, 존재하지 않으면 0 반환
         } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("쿠폰ID을 다시 확인해주세요: " + e.getMessage());
         } catch (Exception e) {

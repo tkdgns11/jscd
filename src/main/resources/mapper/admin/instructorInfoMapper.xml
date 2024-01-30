@@ -9,8 +9,8 @@
     <!-- 회원 정보 관리에서 등급이 강사로 변경 -> 강사 정보 insert -->
     <insert id="insert" parameterType="InstructorInfoDto">
         insert into instructorInfo
-            (mebrNo, regDate, modifyDate)
-            value (#{mebrNo},now(),now())
+            (mebrNO, regDate, modifyDate)
+            value (#{mebrNO},now(),now())
     </insert>
 
     <!--    강사 인원수-->
@@ -21,8 +21,8 @@
 
 <!--    강사 + 회원 + 코드테이블 조인-->
     <sql id="selectInstructor">
-        select i.iscrNo,
-               i.mebrNo,
+        select i.iscrNO,
+               i.mebrNO,
                m.id,
                m.name,
                m.birth,
@@ -35,7 +35,7 @@
                i.etc
         from member m
                  join instructorInfo i
-                      on i.mebrNo = m.mebrNo
+                      on i.mebrNO = m.mebrNO
                  join (select ctNum, codeName as status from allCode where ctId = "A001") a
                       on i.status = a.ctNum
     </sql>
@@ -43,14 +43,14 @@
     <!-- 강사 전체 정보 확인-->
     <select id="selectAll" parameterType="map" resultType="InstructorMemberInfoDto">
         <include refid="selectInstructor"/>
-        order by i.iscrNo asc
+        order by i.iscrNO asc
         limit #{offset}, #{pageSize};
     </select>
 
     <!--  강사 정보 상세 확인-->
     <select id="select" parameterType="int" resultType="InstructorMemberInfoDto">
         <include refid="selectInstructor"/>
-        where i.mebrNo = #{mebrNo};
+        where i.mebrNO = #{mebrNO};
     </select>
 
     <!-- 상세보기 화면 update-->
@@ -61,7 +61,7 @@
           , hourPmt    = #{hourPmt}
           , etc        = #{etc}
           , modifyDate = now()
-        where mebrNo = #{mebrNo}
+        where mebrNO = #{mebrNO}
     </update>
 
     <!-- 메인화면 상태만 update (일괄 수정 가능)-->
@@ -69,9 +69,9 @@
         update instructorInfo
         set status = ${status}
         , modifyDate = now()
-        where mebrNo in
-        <foreach collection="mebrNo" item="mebrNo" open="(" close=")" separator=",">
-            #{mebrNo}
+        where mebrNO in
+        <foreach collection="mebrNO" item="mebrNO" open="(" close=")" separator=",">
+            #{mebrNO}
         </foreach>
     </update>
 
@@ -79,7 +79,7 @@
     <delete id="delete" parameterType="Integer">
         delete
         from instructorInfo
-        where mebrNo = #{mebrNo}
+        where mebrNO = #{mebrNO}
     </delete>
 
     <delete id="deleteAll">
@@ -107,7 +107,7 @@
         <include refid="selectInstructor"/>
         WHERE true
         <include refid="searchCondition"/>
-        order by i.iscrNo asc
+        order by i.iscrNO asc
         limit #{offset},#{pageSize};
     </select>
 
@@ -116,7 +116,7 @@
         SELECT count(*)
         from member m
         join instructorInfo i
-        on i.mebrNo = m.mebrNo
+        on i.mebrNO = m.mebrNO
         join (select ctNum,codeName as status from allCode where ctId = "A001") a
         on i.status = a.ctNum
         <include refid="searchCondition"/>
@@ -127,7 +127,7 @@
         update instructorInfo
         set intro = #{intro},
             modifyDate = now()
-        where mebrNo = #{mebrNo}
+        where mebrNO = #{mebrNO}
     </update>
 
 </mapper>

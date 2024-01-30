@@ -240,8 +240,8 @@
 
     <!--강의 첨부 파일 업로드 -->
     <insert id="InsertFile" parameterType="hashMap">
-        INSERT INTO lstregistfile(registCode, originFileName, storedFileName, fileSize, regDate, firstIdNo)
-        VALUES (#{registCode}, #{originFileName}, #{storedFileName}, #{fileSize}, now(), #{firstIdNo})
+        INSERT INTO lstregistfile(registCode, originFileName, storedFileName, fileSize, regDate, firstIdNO)
+        VALUES (#{registCode}, #{originFileName}, #{storedFileName}, #{fileSize}, now(), #{firstIdNO})
     </insert>
 
     <!--강의 첨부 파일 조회-->

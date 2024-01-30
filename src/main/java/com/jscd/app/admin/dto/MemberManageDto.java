@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class MemberManageDto {
 	//member + allCode와 조인하여 성별,상태,등급을 String으로 받아서 화면에 뿌릴 때 사용할 Dto
-	private Integer mebrNo;
+	private Integer mebrNO;
 	private String id;
 	private String name;
 	private String nickname;
@@ -16,17 +16,17 @@ public class MemberManageDto {
 	private String status;
 	private String grade;
 	private Date regDate;
-	private String firstIdNo;
+	private String firstIdNO;
 	private Date modifyDate;
-	private String lastIdNo;
+	private String lastIdNO;
 	private String etc;
 
 
 	public MemberManageDto(){}
 
 
-	public MemberManageDto(Integer mebrNo, String id, String name, String nickname, String birth, String pwd, String gender, String phone, String acct, String status, String grade, Date regDate, String firstIdNo, Date modifyDate, String lastIdNo, String etc, String rememberId) {
-		this.mebrNo = mebrNo;
+	public MemberManageDto(Integer mebrNO, String id, String name, String nickname, String birth, String pwd, String gender, String phone, String acct, String status, String grade, Date regDate, String firstIdNO, Date modifyDate, String lastIdNO, String etc, String rememberId) {
+		this.mebrNO = mebrNO;
 		this.id = id;
 		this.name = name;
 		this.nickname = nickname;
@@ -38,17 +38,17 @@ public class MemberManageDto {
 		this.status = status;
 		this.grade = grade;
 		this.regDate = regDate;
-		this.firstIdNo = firstIdNo;
+		this.firstIdNO = firstIdNO;
 		this.modifyDate = modifyDate;
-		this.lastIdNo = lastIdNo;
+		this.lastIdNO = lastIdNO;
 		this.etc = etc;
 	}
 
-	public Integer getMebrNo() {
-		return mebrNo;
+	public Integer getMebrNO() {
+		return mebrNO;
 	}
-	public void setMebrNo(Integer mebrNo) {
-		this.mebrNo = mebrNo;
+	public void setMebrNO(Integer mebrNO) {
+		this.mebrNO = mebrNO;
 	}
 	public String getId() {
 		return id;
@@ -116,11 +116,11 @@ public class MemberManageDto {
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
-	public String getfirstIdNo() {
-		return firstIdNo;
+	public String getfirstIdNO() {
+		return firstIdNO;
 	}
-	public void setfirstIdNo(String firstIdNo) {
-		this.firstIdNo = firstIdNo;
+	public void setfirstIdNO(String firstIdNO) {
+		this.firstIdNO = firstIdNO;
 	}
 	public Date getModifyDate() {
 		return modifyDate;
@@ -128,11 +128,11 @@ public class MemberManageDto {
 	public void setModifyDate(Date modifyDate) {
 		this.modifyDate = modifyDate;
 	}
-	public String getlastIdNo() {
-		return lastIdNo;
+	public String getlastIdNO() {
+		return lastIdNO;
 	}
-	public void setlastIdNo(String lastIdNo) {
-		this.lastIdNo = lastIdNo;
+	public void setlastIdNO(String lastIdNO) {
+		this.lastIdNO = lastIdNO;
 	}
 	public String getEtc() {
 		return etc;
@@ -146,7 +146,7 @@ public class MemberManageDto {
 	@Override
 	public String toString() {
 		return "MemberManageDto{" +
-				"mebrNo=" + mebrNo +
+				"mebrNO=" + mebrNO +
 				", id='" + id + '\'' +
 				", name='" + name + '\'' +
 				", nickname='" + nickname + '\'' +
@@ -158,9 +158,9 @@ public class MemberManageDto {
 				", status=" + status +
 				", grade=" + grade +
 				", regDate=" + regDate +
-				", firstIdNo='" + firstIdNo + '\'' +
+				", firstIdNO='" + firstIdNO + '\'' +
 				", modifyDate=" + modifyDate +
-				", lastIdNo='" + lastIdNo + '\'' +
+				", lastIdNO='" + lastIdNO + '\'' +
 				", etc='" + etc + '\'' +
 				'}';
 	}

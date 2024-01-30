@@ -10,14 +10,35 @@
 
     <context:property-placeholder location="/config/config.properties" />
     <!-- Root Context: defines shared resources visible to all other web components -->
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <!--property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property-->
-        <!--property name="url" value="jdbc:log4jdbc:mysql://localhost:3306/springbasic?useUnicode=true&amp;characterEncoding=utf8"></property-->
-        <property name="driverClassName" value="${spring.datasource.driverClassname}"></property>
-        <property name="url" value="${spring.datasource.url}"></property>
-        <property name="username" value="${spring.datasource.username}"></property>
-        <property name="password" value="${spring.datasource.password}"></property>
+
+    <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+        <constructor-arg>
+            <bean class="com.zaxxer.hikari.HikariConfig">
+                <!-- MySQL 새 드라이버 클래스로 업데이트 -->
+                <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
+
+                <!-- MySQL JDBC URL 업데이트 (시간대 설정 포함) -->
+                <property name="jdbcUrl" value="${spring.datasource.url}?serverTimezone=UTC" />
+
+                <property name="username" value="${spring.datasource.username}" />
+                <property name="password" value="${spring.datasource.password}" />
+
+                <!-- 기존 HikariCP 설정 유지 -->
+                <property name="maximumPoolSize" value="10" />
+                <property name="idleTimeout" value="30000" />
+                <property name="poolName" value="HikariPool" />
+            </bean>
+        </constructor-arg>
     </bean>
+
+<!--    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
+<!--        &lt;!&ndash;property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property&ndash;&gt;-->
+<!--        &lt;!&ndash;property name="url" value="jdbc:log4jdbc:mysql://localhost:3306/springbasic?useUnicode=true&amp;characterEncoding=utf8"></property&ndash;&gt;-->
+<!--        <property name="driverClassName" value="${spring.datasource.driverClassname}"></property>-->
+<!--        <property name="url" value="${spring.datasource.url}"></property>-->
+<!--        <property name="username" value="${spring.datasource.username}"></property>-->
+<!--        <property name="password" value="${spring.datasource.password}"></property>-->
+<!--    </bean>-->
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>

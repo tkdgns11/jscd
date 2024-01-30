@@ -37,8 +37,8 @@ public class StdManageServiceImpl implements StdManageService { //학생 정보 
     }
 
     @Override
-    public StdMemberManageDto read(Integer mebrNo) throws Exception {
-        return stdManageDao.select(mebrNo);
+    public StdMemberManageDto read(Integer mebrNO) throws Exception {
+        return stdManageDao.select(mebrNO);
     }
 
     @Override
@@ -50,7 +50,7 @@ public class StdManageServiceImpl implements StdManageService { //학생 정보 
         //만약에, 상태가 '수료'라면,
         if (stdManageDto.getStatus() == 3) {
             //회원등급을 학생 -> 일반으로 변경한다
-            MemberDto memberDto = memberManageDao.selectMember(stdManageDto.getMebrNo());
+            MemberDto memberDto = memberManageDao.selectMember(stdManageDto.getMebrNO());
             memberDto.setGrade(1);
             rowCnt = memberManageDao.updateDetail(memberDto);
         }
@@ -59,14 +59,14 @@ public class StdManageServiceImpl implements StdManageService { //학생 정보 
 
     @Override
     @Transactional(rollbackFor = Exception.class) //메인페이지 상태 update
-    public int modifyStatus(Integer status, List<Integer> mebrNo) throws Exception {
+    public int modifyStatus(Integer status, List<Integer> mebrNO) throws Exception {
         //상태를 변경
-        int rowCnt = stdManageDao.updateStatus(status, mebrNo);
+        int rowCnt = stdManageDao.updateStatus(status, mebrNO);
         //만약에, 상태가 '수료'라면,
         if (status == 3) {
-            for (int i = 0; i < mebrNo.size(); i++) {
+            for (int i = 0; i < mebrNO.size(); i++) {
                 //회원등급을 학생 -> 일반으로 변경한다
-                MemberDto memberDto = memberManageDao.selectMember(mebrNo.get(i));
+                MemberDto memberDto = memberManageDao.selectMember(mebrNO.get(i));
                 memberDto.setGrade(1);
                 rowCnt = memberManageDao.updateDetail(memberDto);
             }
@@ -76,14 +76,14 @@ public class StdManageServiceImpl implements StdManageService { //학생 정보 
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public int remove(Integer mebrNo) throws Exception {
+    public int remove(Integer mebrNO) throws Exception {
         //상세보기 삭제 - 수료하지 못하고 하차 시, delete 실행. 회원의 등급이 일반으로 변경
 
         //학생 테이블에서 삭제
-        int rowCnt = stdManageDao.delete(mebrNo);
+        int rowCnt = stdManageDao.delete(mebrNO);
 
         //회원의 등급이 학생 -> 일반으로 업데이트
-        MemberDto memberDto = memberManageDao.selectMember(mebrNo);
+        MemberDto memberDto = memberManageDao.selectMember(mebrNO);
         memberDto.setGrade(1);
         rowCnt = memberManageDao.updateDetail(memberDto);
 
@@ -92,15 +92,15 @@ public class StdManageServiceImpl implements StdManageService { //학생 정보 
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public int removeMain(List<Integer> mebrNo) throws Exception {
+    public int removeMain(List<Integer> mebrNO) throws Exception {
         //메인화면 일괄 삭제 - 수료하지 못하고 하차 시, delete 실행.  회원의 등급이 일반으로 변경
 
         //학생 테이블에서 삭제
-        int rowCnt = stdManageDao.deleteMain(mebrNo);
+        int rowCnt = stdManageDao.deleteMain(mebrNO);
 
-        for (int i = 0; i < mebrNo.size(); i++) {
+        for (int i = 0; i < mebrNO.size(); i++) {
             //회원의 등급이 학생 -> 일반으로 업데이트
-            MemberDto memberDto = memberManageDao.selectMember(mebrNo.get(i));
+            MemberDto memberDto = memberManageDao.selectMember(mebrNO.get(i));
             memberDto.setGrade(1);
             rowCnt = memberManageDao.updateDetail(memberDto);
         }

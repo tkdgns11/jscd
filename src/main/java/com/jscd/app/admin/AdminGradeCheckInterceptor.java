@@ -44,13 +44,13 @@ public class AdminGradeCheckInterceptor implements HandlerInterceptor{
         System.out.println("grade = " + grade);
 
         //등급이 5가 아니라면(조교라면,)
-        if(grade != 5){ //원장님 : 5 _ 조교 : 4
-            System.out.println("<< 원장님만 접근 가능 >>");
-            String msg = URLEncoder.encode("원장님만 접근 가능한 페이지 입니다.", "utf-8");
-            //메세지 띄우고 홈으로 이동
-            response.sendRedirect("/admin/home?msg="+msg);
-            return false;
-        }
+//        if(grade != 5){ //원장님 : 5 _ 조교 : 4
+//            System.out.println("<< 원장님만 접근 가능 >>");
+//            String msg = URLEncoder.encode("원장님만 접근 가능한 페이지 입니다.", "utf-8");
+//            //메세지 띄우고 홈으로 이동
+//            response.sendRedirect("/admin/home?msg="+msg);
+//            return false;
+//        }
         //원장님이면 접근 가능
         return true;
 

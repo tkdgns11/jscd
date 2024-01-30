@@ -24,6 +24,5 @@ public interface MemberDao {
 //    void updateStatusToPaid(LectureApplyDto lectureApplyDto);
     String selectEmail(MemberDto memberDto)throws Exception;
     int updatePwd(MemberDto memberDto)throws Exception;
-
-
-    }
+    int selectByID(String ID) throws Exception;
+}

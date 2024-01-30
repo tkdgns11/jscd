@@ -1,29 +1,32 @@
 package com.jscd.app.admin.dto;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
 import java.util.Objects;
 
 public class CouponDto {
-    private Integer historyNO;
     private String couponID;
+    private Integer historyNO;
     private Integer couponNO;
-    private Date startUseDate ;
-    private Date endUseDate;
+    private Integer couponHisCode;
+    private Date occurrenceDateTime;
+    private LocalDate startUseDate ;
+    private LocalDate endUseDate;
     private LocalTime usableStartTime;
     private LocalTime usableEndTime;
     private char useAvailable;
     private String etc;
     private Date regDate;
-    private String firstIdNo;
+    private String firstIdNO;
     private Date modifyDate;
-    private String lastIdNo;
+    private String lastIdNO;
 
     public CouponDto(String couponID) {
         this.couponID = couponID;
     }
 
-    public CouponDto(String couponID, Integer couponNO, Date startUseDate, Date endUseDate, LocalTime usableStartTime, LocalTime usableEndTime) {
+    public CouponDto(String couponID, Integer couponNO, LocalDate startUseDate, LocalDate endUseDate, LocalTime usableStartTime, LocalTime usableEndTime) {
         this.couponID = couponID;
         this.couponNO = couponNO;
         this.startUseDate = startUseDate;
@@ -58,19 +61,19 @@ public class CouponDto {
         this.couponNO = couponNO;
     }
 
-    public Date getStartUseDate() {
+    public LocalDate getStartUseDate() {
         return startUseDate;
     }
 
-    public void setStartUseDate(Date startUseDate) {
+    public void setStartUseDate(LocalDate startUseDate) {
         this.startUseDate = startUseDate;
     }
 
-    public Date getEndUseDate() {
+    public LocalDate getEndUseDate() {
         return endUseDate;
     }
 
-    public void setEndUseDate(Date endUseDate) {
+    public void setEndUseDate(LocalDate endUseDate) {
         this.endUseDate = endUseDate;
     }
 
@@ -114,12 +117,12 @@ public class CouponDto {
         this.regDate = regDate;
     }
 
-    public String getFirstIdNo() {
-        return firstIdNo;
+    public String getFirstIdNO() {
+        return firstIdNO;
     }
 
-    public void setFirstIdNo(String firstIdNo) {
-        this.firstIdNo = firstIdNo;
+    public void setFirstIdNO(String firstIdNO) {
+        this.firstIdNO = firstIdNO;
     }
 
     public Date getModifyDate() {
@@ -130,12 +133,12 @@ public class CouponDto {
         this.modifyDate = modifyDate;
     }
 
-    public String getLastIdNo() {
-        return lastIdNo;
+    public String getLastIdNO() {
+        return lastIdNO;
     }
 
-    public void setLastIdNo(String lastIdNo) {
-        this.lastIdNo = lastIdNo;
+    public void setLastIdO(String lastIdO) {
+        this.lastIdNO = lastIdNO;
     }
 
     @Override
@@ -143,12 +146,12 @@ public class CouponDto {
         if (this == o) return true;
         if (!(o instanceof CouponDto)) return false;
         CouponDto couponDto = (CouponDto) o;
-        return getUseAvailable() == couponDto.getUseAvailable() && Objects.equals(getHistoryNO(), couponDto.getHistoryNO()) && Objects.equals(getCouponID(), couponDto.getCouponID()) && Objects.equals(getCouponNO(), couponDto.getCouponNO()) && Objects.equals(getStartUseDate(), couponDto.getStartUseDate()) && Objects.equals(getEndUseDate(), couponDto.getEndUseDate()) && Objects.equals(getUsableStartTime(), couponDto.getUsableStartTime()) && Objects.equals(getUsableEndTime(), couponDto.getUsableEndTime()) && Objects.equals(getEtc(), couponDto.getEtc()) && Objects.equals(getRegDate(), couponDto.getRegDate()) && Objects.equals(getFirstIdNo(), couponDto.getFirstIdNo()) && Objects.equals(getModifyDate(), couponDto.getModifyDate()) && Objects.equals(getLastIdNo(), couponDto.getLastIdNo());
+        return getUseAvailable() == couponDto.getUseAvailable() && Objects.equals(getHistoryNO(), couponDto.getHistoryNO()) && Objects.equals(getCouponID(), couponDto.getCouponID()) && Objects.equals(getCouponNO(), couponDto.getCouponNO()) && Objects.equals(getStartUseDate(), couponDto.getStartUseDate()) && Objects.equals(getEndUseDate(), couponDto.getEndUseDate()) && Objects.equals(getUsableStartTime(), couponDto.getUsableStartTime()) && Objects.equals(getUsableEndTime(), couponDto.getUsableEndTime()) && Objects.equals(getEtc(), couponDto.getEtc()) && Objects.equals(getRegDate(), couponDto.getRegDate()) && Objects.equals(getFirstIdNO(), couponDto.getFirstIdNO()) && Objects.equals(getModifyDate(), couponDto.getModifyDate()) && Objects.equals(getLastIdNO(), couponDto.getLastIdNO());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getHistoryNO(), getCouponID(), getCouponNO(), getStartUseDate(), getEndUseDate(), getUsableStartTime(), getUsableEndTime(), getUseAvailable(), getEtc(), getRegDate(), getFirstIdNo(), getModifyDate(), getLastIdNo());
+        return Objects.hash(getHistoryNO(), getCouponID(), getCouponNO(), getStartUseDate(), getEndUseDate(), getUsableStartTime(), getUsableEndTime(), getUseAvailable(), getEtc(), getRegDate(), getFirstIdNO(), getModifyDate(), getLastIdNO());
     }
 
     @Override
@@ -164,9 +167,29 @@ public class CouponDto {
                 ", useAvailable=" + useAvailable +
                 ", etc='" + etc + '\'' +
                 ", regDate=" + regDate +
-                ", firstIdNo='" + firstIdNo + '\'' +
+                ", firstIdNO='" + firstIdNO + '\'' +
                 ", modifyDate=" + modifyDate +
-                ", lastIdNo='" + lastIdNo + '\'' +
+                ", lastIdNO='" + lastIdNO + '\'' +
                 '}';
+    }
+
+    public Integer getCouponHisCode() {
+        return couponHisCode;
+    }
+
+    public void setCouponHisCode(Integer couponHisCode) {
+        this.couponHisCode = couponHisCode;
+    }
+
+    public Date getOccurrenceDateTime() {
+        return occurrenceDateTime;
+    }
+
+    public void setOccurrenceDateTime(Date occurrenceDateTime) {
+        this.occurrenceDateTime = occurrenceDateTime;
+    }
+
+    public void setLastIdNO(String lastIdNO) {
+        this.lastIdNO = lastIdNO;
     }
 }

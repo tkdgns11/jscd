@@ -15,14 +15,14 @@ public class CompanyInfoDTO {
     private String kind;
     private String slrPhone;
     private Date regDate;
-    private int firstIdNo;
+    private int firstIdNO;
     private Date modifyDate;
-    private int lastIdNo;
+    private int lastIdNO;
     private String etc;
 
     public CompanyInfoDTO(){}
 
-    public CompanyInfoDTO(int slrNo, String slrName, String slrNum, String actName, String actNum, String slrAddr, String slrMail, String companyName, String indst, String kind, String slrPhone, Date regDate, int firstIdNo, Date modifyDate, int lastIdNo, String etc) {
+    public CompanyInfoDTO(int slrNo, String slrName, String slrNum, String actName, String actNum, String slrAddr, String slrMail, String companyName, String indst, String kind, String slrPhone, Date regDate, int firstIdNO, Date modifyDate, int lastIdNO, String etc) {
         this.slrNo = slrNo;
         this.slrName = slrName;
         this.slrNum = slrNum;
@@ -35,9 +35,9 @@ public class CompanyInfoDTO {
         this.kind = kind;
         this.slrPhone = slrPhone;
         this.regDate = regDate;
-        this.firstIdNo = firstIdNo;
+        this.firstIdNO = firstIdNO;
         this.modifyDate = modifyDate;
-        this.lastIdNo = lastIdNo;
+        this.lastIdNO = lastIdNO;
         this.etc = etc;
     }
 
@@ -137,12 +137,12 @@ public class CompanyInfoDTO {
         this.regDate = regDate;
     }
 
-    public int getFirstIdNo() {
-        return firstIdNo;
+    public int getFirstIdNO() {
+        return firstIdNO;
     }
 
-    public void setFirstIdNo(int firstIdNo) {
-        this.firstIdNo = firstIdNo;
+    public void setFirstIdNO(int firstIdNO) {
+        this.firstIdNO = firstIdNO;
     }
 
     public Date getModifyDate() {
@@ -153,12 +153,12 @@ public class CompanyInfoDTO {
         this.modifyDate = modifyDate;
     }
 
-    public int getLastIdNo() {
-        return lastIdNo;
+    public int getLastIdNO() {
+        return lastIdNO;
     }
 
-    public void setLastIdNo(int lastIdNo) {
-        this.lastIdNo = lastIdNo;
+    public void setLastIdNO(int lastIdNO) {
+        this.lastIdNO = lastIdNO;
     }
 
     public String getEtc() {
@@ -184,9 +184,9 @@ public class CompanyInfoDTO {
                 ", kind='" + kind + '\'' +
                 ", slrPhone='" + slrPhone + '\'' +
                 ", regDate=" + regDate +
-                ", firstIdNo=" + firstIdNo +
+                ", firstIdNO=" + firstIdNO +
                 ", modifyDate=" + modifyDate +
-                ", lastIdNo=" + lastIdNo +
+                ", lastIdNO=" + lastIdNO +
                 ", etc='" + etc + '\'' +
                 '}';
     }

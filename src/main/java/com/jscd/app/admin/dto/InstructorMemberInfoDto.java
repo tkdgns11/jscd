@@ -4,15 +4,15 @@ import java.util.Date;
 import java.util.Objects;
 
 public class InstructorMemberInfoDto { //강사 + 회원 조인 Dto
-    private Integer iscrNo; //pk_강사 고유 코드
-    private Integer mebrNo; //회원 고유 번호
+    private Integer iscrNO; //pk_강사 고유 코드
+    private Integer mebrNO; //회원 고유 번호
     private String intro;
     private String status;
     private Float hourPmt;
     private Date regDate;
-    private String firstIdNo;
+    private String firstIdNO;
     private Date modifyDate;
-    private String lastIdNo;
+    private String lastIdNO;
     private String etc;
     //    ㅡㅡㅡㅡㅡㅡㅡㅡ회원컬럼ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     private String id;
@@ -23,18 +23,18 @@ public class InstructorMemberInfoDto { //강사 + 회원 조인 Dto
 
     public InstructorMemberInfoDto(){}
 
-    public InstructorMemberInfoDto(Integer iscrNo, Integer mebrNo, String intro, String status, Float hourPmt, Date regDate,
-                                   String firstIdNo, Date modifyDate, String lastIdNo, String etc, String id, String name, String birth,
+    public InstructorMemberInfoDto(Integer iscrNO, Integer mebrNO, String intro, String status, Float hourPmt, Date regDate,
+                                   String firstIdNO, Date modifyDate, String lastIdNO, String etc, String id, String name, String birth,
                                    String phone, String acct) {
-        this.iscrNo = iscrNo;
-        this.mebrNo = mebrNo;
+        this.iscrNO = iscrNO;
+        this.mebrNO = mebrNO;
         this.intro = intro;
         this.status = status;
         this.hourPmt = hourPmt;
         this.regDate = regDate;
-        this.firstIdNo = firstIdNo;
+        this.firstIdNO = firstIdNO;
         this.modifyDate = modifyDate;
-        this.lastIdNo = lastIdNo;
+        this.lastIdNO = lastIdNO;
         this.etc = etc;
         this.id = id;
         this.name = name;
@@ -43,20 +43,20 @@ public class InstructorMemberInfoDto { //강사 + 회원 조인 Dto
         this.acct = acct;
     }
 
-    public Integer getIscrNo() {
-        return iscrNo;
+    public Integer getIscrNO() {
+        return iscrNO;
     }
 
     public void setIscrNo(Integer iscrNo) {
-        this.iscrNo = iscrNo;
+        this.iscrNO = iscrNO;
     }
 
-    public Integer getMebrNo() {
-        return mebrNo;
+    public Integer getMebrNO() {
+        return mebrNO;
     }
 
-    public void setMebrNo(Integer mebrNo) {
-        this.mebrNo = mebrNo;
+    public void setMebrNo(Integer mebrNO) {
+        this.mebrNO = mebrNO;
     }
 
     public String getIntro() {
@@ -91,12 +91,12 @@ public class InstructorMemberInfoDto { //강사 + 회원 조인 Dto
         this.regDate = regDate;
     }
 
-    public String getfirstIdNo() {
-        return firstIdNo;
+    public String getfirstIdNO() {
+        return firstIdNO;
     }
 
-    public void setfirstIdNo(String firstIdNo) {
-        this.firstIdNo = firstIdNo;
+    public void setfirstIdNO(String firstIdNO) {
+        this.firstIdNO = firstIdNO;
     }
 
     public Date getModifyDate() {
@@ -107,12 +107,12 @@ public class InstructorMemberInfoDto { //강사 + 회원 조인 Dto
         this.modifyDate = modifyDate;
     }
 
-    public String getlastIdNo() {
-        return lastIdNo;
+    public String getlastIdNO() {
+        return lastIdNO;
     }
 
-    public void setlastIdNo(String lastIdNo) {
-        this.lastIdNo = lastIdNo;
+    public void setlastIdNO(String lastIdNO) {
+        this.lastIdNO = lastIdNO;
     }
 
     public String getEtc() {
@@ -165,26 +165,26 @@ public class InstructorMemberInfoDto { //강사 + 회원 조인 Dto
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         InstructorMemberInfoDto that = (InstructorMemberInfoDto) o;
-        return Objects.equals(iscrNo, that.iscrNo) && Objects.equals(mebrNo, that.mebrNo) && Objects.equals(intro, that.intro) && Objects.equals(status, that.status) && Objects.equals(hourPmt, that.hourPmt) && Objects.equals(regDate, that.regDate) && Objects.equals(firstIdNo, that.firstIdNo) && Objects.equals(modifyDate, that.modifyDate) && Objects.equals(lastIdNo, that.lastIdNo) && Objects.equals(etc, that.etc) && Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(birth, that.birth) && Objects.equals(phone, that.phone)&& Objects.equals(acct, that.acct);
+        return Objects.equals(iscrNO, that.iscrNO) && Objects.equals(mebrNO, that.mebrNO) && Objects.equals(intro, that.intro) && Objects.equals(status, that.status) && Objects.equals(hourPmt, that.hourPmt) && Objects.equals(regDate, that.regDate) && Objects.equals(firstIdNO, that.firstIdNO) && Objects.equals(modifyDate, that.modifyDate) && Objects.equals(lastIdNO, that.lastIdNO) && Objects.equals(etc, that.etc) && Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(birth, that.birth) && Objects.equals(phone, that.phone)&& Objects.equals(acct, that.acct);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(iscrNo, mebrNo, intro, status, hourPmt, regDate, firstIdNo, modifyDate, lastIdNo, etc, id, name, birth, phone, acct);
+        return Objects.hash(iscrNO, mebrNO, intro, status, hourPmt, regDate, firstIdNO, modifyDate, lastIdNO, etc, id, name, birth, phone, acct);
     }
 
     @Override
     public String toString() {
         return "InstructorMemberInfoDto{" +
-                "iscrNo='" + iscrNo + '\'' +
-                ", mebrNo=" + mebrNo +
+                "iscrNO='" + iscrNO + '\'' +
+                ", mebrNO=" + mebrNO +
                 ", intro='" + intro + '\'' +
                 ", status=" + status +
                 ", hourPmt=" + hourPmt +
                 ", regDate=" + regDate +
-                ", firstIdNo='" + firstIdNo + '\'' +
+                ", firstIdNO='" + firstIdNO + '\'' +
                 ", modifyDate=" + modifyDate +
-                ", lastIdNo='" + lastIdNo + '\'' +
+                ", lastIdNO='" + lastIdNO + '\'' +
                 ", etc='" + etc + '\'' +
                 ", id='" + id + '\'' +
                 ", name='" + name + '\'' +

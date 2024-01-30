@@ -14,14 +14,14 @@ public class ClassEnrollDto {
 //    private String discount;
 //    private Integer lstPrice;
     private Date regDate;
-    private Integer firstIdNo;
+    private Integer firstIdNO;
     private Date modifyDate;
-    private Integer lastIdNo;
+    private Integer lastIdNO;
     private String etc;
 
     public ClassEnrollDto() {}
 
-    public ClassEnrollDto(Integer classCode, Integer courseCode, Integer roundCode, String className, String category, String content, Integer price, Date regDate, Integer firstIdNo, Date modifyDate, Integer lastIdNo, String etc) {
+    public ClassEnrollDto(Integer classCode, Integer courseCode, Integer roundCode, String className, String category, String content, Integer price, Date regDate, Integer firstIdNO, Date modifyDate, Integer lastIdNO, String etc) {
         this.classCode = classCode;
         this.courseCode = courseCode;
         this.roundCode = roundCode;
@@ -30,9 +30,9 @@ public class ClassEnrollDto {
         this.content = content;
         this.price = price;
         this.regDate = regDate;
-        this.firstIdNo = firstIdNo;
+        this.firstIdNO = firstIdNO;
         this.modifyDate = modifyDate;
-        this.lastIdNo = lastIdNo;
+        this.lastIdNO = lastIdNO;
         this.etc = etc;
     }
 
@@ -100,12 +100,12 @@ public class ClassEnrollDto {
         this.regDate = regDate;
     }
 
-    public Integer getFirstIdNo() {
-        return firstIdNo;
+    public Integer getFirstIdNO() {
+        return firstIdNO;
     }
 
-    public void setFirstIdNo(Integer firstIdNo) {
-        this.firstIdNo = firstIdNo;
+    public void setFirstIdNO(Integer firstIdNO) {
+        this.firstIdNO = firstIdNO;
     }
 
     public Date getModifyDate() {
@@ -116,12 +116,12 @@ public class ClassEnrollDto {
         this.modifyDate = modifyDate;
     }
 
-    public Integer getLastIdNo() {
-        return lastIdNo;
+    public Integer getLastIdNO() {
+        return lastIdNO;
     }
 
-    public void setLastIdNo(Integer lastIdNo) {
-        this.lastIdNo = lastIdNo;
+    public void setLastIdNO(Integer lastIdNO) {
+        this.lastIdNO = lastIdNO;
     }
 
     public String getEtc() {
@@ -143,9 +143,9 @@ public class ClassEnrollDto {
                 ", content='" + content + '\'' +
                 ", price=" + price +
                 ", regDate=" + regDate +
-                ", firstIdNo=" + firstIdNo +
+                ", firstIdNO=" + firstIdNO +
                 ", modifyDate=" + modifyDate +
-                ", lastIdNo=" + lastIdNo +
+                ", lastIdNO=" + lastIdNO +
                 ", etc='" + etc + '\'' +
                 '}';
     }

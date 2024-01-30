@@ -60,11 +60,11 @@ public class InstructorInfoController {
 
     //강사 상세 정보 읽기+수정
     @GetMapping("/read")
-    public String infoRead(Integer mebrNo, Integer page, Model model) {
+    public String infoRead(Integer mebrNO, Integer page, Model model) {
 
         try {
             //쿼리스트링으로 넘어온 iscrNo로 강사 데이터를 select
-            InstructorMemberInfoDto infoDto = infoService.read(mebrNo);
+            InstructorMemberInfoDto infoDto = infoService.read(mebrNO);
 
             //객체를 jsp에 넘겨주기
             model.addAttribute("infoDto", infoDto);
@@ -90,10 +90,10 @@ public class InstructorInfoController {
             e.printStackTrace();
             //에러 발생 시, 에러 msg 전달 _ 읽기 화면으로 이동
             model.addAttribute("msg", "MOD_ERR");
-            return "redirect:/adminManage/instructor/read?page=" + page + "&mebrNo=" + instructorInfoDto.getMebrNo();
+            return "redirect:/adminManage/instructor/read?page=" + page + "&mebrNO=" + instructorInfoDto.getMebrNO();
         }
 
-        return "redirect:/adminManage/instructor/read?page=" + page + "&mebrNo=" + instructorInfoDto.getMebrNo();
+        return "redirect:/adminManage/instructor/read?page=" + page + "&mebrNO=" + instructorInfoDto.getMebrNO();
     }
 
     //메인화면 수정
@@ -101,12 +101,12 @@ public class InstructorInfoController {
     public String statusModify(Integer[] mebrNoArr, Integer page, Integer status, Model model) {
         try {
             //jsp에서 전달받은 회원번호 배열 List에 담아주기
-            List mebrNo = new ArrayList(mebrNoArr.length);
+            List mebrNO = new ArrayList(mebrNoArr.length);
             for (int i = 0; i < mebrNoArr.length; i++) {
-                mebrNo.add(mebrNoArr[i]);
+                mebrNO.add(mebrNoArr[i]);
             }
             //수정 메서드에 전달
-            infoService.modifyStatus(status, mebrNo);
+            infoService.modifyStatus(status, mebrNO);
 
             model.addAttribute("msg", "MOD_OK");
         } catch (Exception e) {

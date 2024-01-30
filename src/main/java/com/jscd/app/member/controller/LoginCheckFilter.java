@@ -14,7 +14,7 @@ import java.io.IOException;
 	작성 기능: 로그인 해야 부캠/세미나 페이지 접근 가능
 	 */
 
-@WebFilter(urlPatterns = {"/btTraining/*", "/smTraining/*"})
+@WebFilter(urlPatterns = {"/btTraining/smApplication", "/smTraining/smApplication"})
 public class LoginCheckFilter implements Filter {
 
     @Override

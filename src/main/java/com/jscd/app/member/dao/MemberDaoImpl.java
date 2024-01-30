@@ -1,7 +1,5 @@
 package com.jscd.app.member.dao;
 
-import com.jscd.app.applyTraining.dto.BtApplicationDto;
-import com.jscd.app.board.qna.qnaDto.AttachDto;
 import com.jscd.app.lecture.lstRegist.dto.LectureApplyDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,5 +78,9 @@ public class MemberDaoImpl implements MemberDao{
 		return session.update(namespace+"updatePwd",memberDto);
 	}
 
+	@Override
+	public int selectByID(String ID){
+		return session.selectOne(namespace + "selectByID", ID);
+	}
 
 }

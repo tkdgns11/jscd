@@ -36,8 +36,6 @@ import java.util.Date;
 @RequestMapping("/admin")
 public class AdminController {
 
-
-
     @Autowired
     AdminService adminService;
 
@@ -95,13 +93,13 @@ public class AdminController {
         //id,pwd 체크
 
         //일치하지 않는다면,
-        if (!loginCheck(id, pwd)) {
-            //불일치 메세지를 모델에 전달
-            //(*)컨트롤러에서 직접 URL을 만들면 브라우저가 인코딩 해줄 수 없음. 그럴 땐 메서드로 인코딩 해줘야한다
-            String msg = URLEncoder.encode("id 또는 pwd가 일치하지 않습니다.", "utf-8");
-            model.addAttribute("msg", msg);
-            return "redirect:/admin/login?msg=" + msg;
-        }
+//        if (!loginCheck(id, pwd)) {
+//            //불일치 메세지를 모델에 전달
+//            //(*)컨트롤러에서 직접 URL을 만들면 브라우저가 인코딩 해줄 수 없음. 그럴 땐 메서드로 인코딩 해줘야한다
+//            String msg = URLEncoder.encode("id 또는 pwd가 일치하지 않습니다.", "utf-8");
+//            model.addAttribute("msg", msg);
+//            return "redirect:/admin/login?msg=" + msg;
+//        }
 
         //일치 한다면,
 

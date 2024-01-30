@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.Objects;
 
 public class MemberDto {
-	private int mebrNo;
+	private int mebrNO;
 	private String id;
 	private String name;
 	private String nickname;
@@ -16,9 +16,9 @@ public class MemberDto {
 	private int status;
 	private int grade;
 	private Date regDate;
-	private String firstIdNo;	// 시스템 컬럼은 안들어가도 되는거 아닌가?
+	private String firstIdNO;	// 시스템 컬럼은 안들어가도 되는거 아닌가?
 	private Date modifyDate;
-	private String lastIdNo;
+	private String lastIdNO;
 	private String etc;
 	private String rememberId; //아이디 기억
 	private String serviceChkYN;
@@ -35,13 +35,14 @@ public class MemberDto {
 		this.toURL = toURL;
 	}
 
-	public MemberDto() {
+	public MemberDto() {}
 
+	public MemberDto(String id){
+		this.id = id;
 	}
 
-
-	public MemberDto(int mebrNo, String id, String name, String nickname, String birth, String pwd, int gender, String phone, String acct, int status, int grade, Date regDate, String firstIdNo, Date modifyDate, String lastIdNo, String etc, String rememberId, String serviceChkYN, String privacyChkYN, String ageChkYN, String marketingChkYN) {
-		this.mebrNo = mebrNo;
+	public MemberDto(int mebrNO, String id, String name, String nickname, String birth, String pwd, int gender, String phone, String acct, int status, int grade, Date regDate, String firstIdNO, Date modifyDate, String lastIdNO, String etc, String rememberId, String serviceChkYN, String privacyChkYN, String ageChkYN, String marketingChkYN) {
+		this.mebrNO = mebrNO;
 		this.id = id;
 		this.name = name;
 		this.nickname = nickname;
@@ -53,9 +54,9 @@ public class MemberDto {
 		this.status = status;
 		this.grade = grade;
 		this.regDate = regDate;
-		this.firstIdNo = firstIdNo;
+		this.firstIdNO = firstIdNO;
 		this.modifyDate = modifyDate;
-		this.lastIdNo = lastIdNo;
+		this.lastIdNO = lastIdNO;
 		this.etc = etc;
 		this.rememberId = rememberId;
 		this.serviceChkYN = serviceChkYN;
@@ -64,12 +65,12 @@ public class MemberDto {
 		this.marketingChkYN = marketingChkYN;
 	}
 
-	public int getMebrNo() {
-		return mebrNo;
+	public int getMebrNO() {
+		return mebrNO;
 	}
 
-	public void setMebrNo(int mebrNo) {
-		this.mebrNo = mebrNo;
+	public void setMebrNO(int mebrNO) {
+		this.mebrNO = mebrNO;
 	}
 
 	public String getId() {
@@ -160,12 +161,12 @@ public class MemberDto {
 		this.regDate = regDate;
 	}
 
-	public String getFirstIdNo() {
-		return firstIdNo;
+	public String getFirstIdNO() {
+		return firstIdNO;
 	}
 
-	public void setFirstIdNo(String firstIdNo) {
-		this.firstIdNo = firstIdNo;
+	public void setFirstIdNO(String firstIdNO) {
+		this.firstIdNO = firstIdNO;
 	}
 
 	public Date getModifyDate() {
@@ -176,12 +177,12 @@ public class MemberDto {
 		this.modifyDate = modifyDate;
 	}
 
-	public String getLastIdNo() {
-		return lastIdNo;
+	public String getLastIdNO() {
+		return lastIdNO;
 	}
 
-	public void setLastIdNo(String lastIdNo) {
-		this.lastIdNo = lastIdNo;
+	public void setLastIdNO(String lastIdNO) {
+		this.lastIdNO = lastIdNO;
 	}
 
 	public String getEtc() {
@@ -238,14 +239,14 @@ public class MemberDto {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 		MemberDto memberDto = (MemberDto) o;
-		return mebrNo == memberDto.mebrNo && gender == memberDto.gender && status == memberDto.status && grade == memberDto.grade && Objects.equals(id, memberDto.id) && Objects.equals(name, memberDto.name) && Objects.equals(nickname, memberDto.nickname) && Objects.equals(birth, memberDto.birth) && Objects.equals(pwd, memberDto.pwd) && Objects.equals(phone, memberDto.phone) && Objects.equals(acct, memberDto.acct) && Objects.equals(regDate, memberDto.regDate) && Objects.equals(firstIdNo, memberDto.firstIdNo) && Objects.equals(modifyDate, memberDto.modifyDate) && Objects.equals(lastIdNo, memberDto.lastIdNo) && Objects.equals(etc, memberDto.etc) && Objects.equals(rememberId, memberDto.rememberId) && Objects.equals(serviceChkYN, memberDto.serviceChkYN) && Objects.equals(privacyChkYN, memberDto.privacyChkYN) && Objects.equals(ageChkYN, memberDto.ageChkYN) && Objects.equals(marketingChkYN, memberDto.marketingChkYN);
+		return mebrNO == memberDto.mebrNO && gender == memberDto.gender && status == memberDto.status && grade == memberDto.grade && Objects.equals(id, memberDto.id) && Objects.equals(name, memberDto.name) && Objects.equals(nickname, memberDto.nickname) && Objects.equals(birth, memberDto.birth) && Objects.equals(pwd, memberDto.pwd) && Objects.equals(phone, memberDto.phone) && Objects.equals(acct, memberDto.acct) && Objects.equals(regDate, memberDto.regDate) && Objects.equals(firstIdNO, memberDto.firstIdNO) && Objects.equals(modifyDate, memberDto.modifyDate) && Objects.equals(lastIdNO, memberDto.lastIdNO) && Objects.equals(etc, memberDto.etc) && Objects.equals(rememberId, memberDto.rememberId) && Objects.equals(serviceChkYN, memberDto.serviceChkYN) && Objects.equals(privacyChkYN, memberDto.privacyChkYN) && Objects.equals(ageChkYN, memberDto.ageChkYN) && Objects.equals(marketingChkYN, memberDto.marketingChkYN);
 	}
 
 
 	@Override
 	public String toString() {
 		return "MemberDto{" +
-				"mebrNo=" + mebrNo +
+				"mebrNO=" + mebrNO +
 				", id='" + id + '\'' +
 				", name='" + name + '\'' +
 				", nickname='" + nickname + '\'' +
@@ -257,9 +258,9 @@ public class MemberDto {
 				", status=" + status +
 				", grade=" + grade +
 				", regDate=" + regDate +
-				", firstIdNo='" + firstIdNo + '\'' +
+				", firstIdNO='" + firstIdNO + '\'' +
 				", modifyDate=" + modifyDate +
-				", lastIdNo='" + lastIdNo + '\'' +
+				", lastIdNO='" + lastIdNO + '\'' +
 				", etc='" + etc + '\'' +
 				", rememberId='" + rememberId + '\'' +
 				", serviceChkYN='" + serviceChkYN + '\'' +

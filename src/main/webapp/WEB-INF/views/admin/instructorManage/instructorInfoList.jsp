@@ -86,12 +86,12 @@
 
                         <tr>
                             <td><input type="checkbox"
-                                       value="${instructorDto.mebrNo}"
+                                       value="${instructorDto.mebrNO}"
                                        class="chk"
                                        name="chk" onclick="chkClicked()"
                             >
                             </td>
-                            <td>${instructorDto.iscrNo}</td>
+                            <td>${instructorDto.iscrNO}</td>
                             <td>${instructorDto.id}</td>
                             <td>${instructorDto.name}</td>
                             <td>${instructorDto.phone}</td>
@@ -101,7 +101,7 @@
                                     pattern="yyyy-MM-dd"
                                     type="date"/></td>
                             <td>
-                                <button class="detailBtn" onclick="location.href='/adminManage/instructor/read?page=${sc.page}&mebrNo=${instructorDto.mebrNo}'">
+                                <button class="detailBtn" onclick="location.href='/adminManage/instructor/read?page=${sc.page}&mebrNO=${instructorDto.mebrNO}'">
                                     상세보기
                                 </button>
                             </td>

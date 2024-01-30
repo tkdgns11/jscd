@@ -59,7 +59,7 @@
             <h1 id="receipt-text-01"></h1>
         </div>
         <div style="margin-top: 50px;">
-            <input type="hidden" name="mebrNo" >
+            <input type="hidden" name="mebrNO" >
             <div>
                 <img src="<c:url value="/img/signup_user.png"/>">
                 <input type="text" id="name" name="name" placeholder="이름">

@@ -5,13 +5,13 @@
 <mapper namespace="com.jscd.app.lecture.course.courseMapper">
 <!--    과정 전체 읽기-->
     <select id="selectAll" resultType="CourseDto">
-        select courseCode, courseName, regDate, firstIdNo
+        select courseCode, courseName, regDate, firstIdNO
         from course
     </select>
 <!--    과정 등록하기-->
     <insert id="addCourse" parameterType="CourseDto">
-        insert into course(courseName, firstIdNo)
-        values (#{courseName}, #{firstIdNo})
+        insert into course(courseName, firstIdNO)
+        values (#{courseName}, #{firstIdNO})
     </insert>
 <!--    과정 세부사항 확인하기-->
     <select id="readCourse" parameterType="int" resultType="CourseDto">
@@ -27,7 +27,7 @@
 <!--    과정 수정하기-->
     <update id="modifyCourse" parameterType="CourseDto">
         update course
-        set courseName = #{courseName}, firstIdNo = #{firstIdNo}
+        set courseName = #{courseName}, firstIdNO = #{firstIdNO}
         where courseCode = #{courseCode}
     </update>
 </mapper>

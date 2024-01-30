@@ -39,7 +39,7 @@
             <h2 id="infoTitle">강사 상세보기</h2>
 
             <label style="margin-right: 3px;">강사번호</label>
-            <input type="text" class="infoInputBox" readonly value="${infoDto.iscrNo}"><br>
+            <input type="text" class="infoInputBox" readonly value="${infoDto.iscrNO}"><br>
             <label style="margin-right: 15px;">아이디</label>
             <input type="text" class="infoInputBox" readonly value="${infoDto.id}"><br>
             <label style="margin-right: 25px;">이름</label>
@@ -61,7 +61,7 @@
                    value="<fmt:formatDate value="${infoDto.regDate}" pattern="yyyy-MM-dd" type="date"/>"><br>
             <label style="margin-right: 25px;">비고</label>
             <input type="text" class="infoModifyInputBox" name="etc" id="etc" readonly value="${infoDto.etc}"><br>
-            <input type="hidden" name="mebrNo" id="mebrNo" value="${infoDto.mebrNo}">
+            <input type="hidden" name="mebrNO" id="mebrNO" value="${infoDto.mebrNO}">
             <div id="adminBtnBox">
                 <input type="submit" value="수정" class="modifyBtn">
                 <input type="button" value="목록" class="backBtn"
@@ -118,17 +118,17 @@
             } else {
                 const form = document.createElement('form');
                 form.setAttribute('method', 'post');
-                form.setAttribute('action', '/adminManage/instructor/modify?page=${page}&mebrNo=${infoDto.mebrNo}');
+                form.setAttribute('action', '/adminManage/instructor/modify?page=${page}&mebrNO=${infoDto.mebrNO}');
 
                 var status = document.getElementById('status');
                 var hourPmt = document.getElementById('hourPmt');
                 var etc = document.getElementById('etc');
-                var mebrNo = document.getElementById('mebrNo');
+                var mebrNO = document.getElementById('mebrNO');
 
                 form.appendChild(status);
                 form.appendChild(hourPmt);
                 form.appendChild(etc);
-                form.appendChild(mebrNo);
+                form.appendChild(mebrNO);
                 console.log(form)
                 document.body.appendChild(form);
                 $('#infoDetailBox').css('display','none');

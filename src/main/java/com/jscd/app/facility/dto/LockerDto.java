@@ -5,7 +5,6 @@ import java.util.Objects;
 
 public class LockerDto {
     //member table
-    private Integer mebrNo;
     private String id; //email
     private String name;
     private String phone;
@@ -42,12 +41,11 @@ public class LockerDto {
 
     public LockerDto(){}
 
-    public Integer getMebrNo() {
-        return mebrNo;
-    }
-
-    public void setMebrNo(Integer mebrNo) {
-        this.mebrNo = mebrNo;
+    public LockerDto(String lockerID, String mebrID, Date startDate, Date endDate) {
+        this.lockerID = lockerID;
+        this.mebrID = mebrID;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
 
     public String getId() {
@@ -239,18 +237,17 @@ public class LockerDto {
         if (this == o) return true;
         if (!(o instanceof LockerDto)) return false;
         LockerDto lockerDto = (LockerDto) o;
-        return Objects.equals(getMebrNo(), lockerDto.getMebrNo()) && Objects.equals(getId(), lockerDto.getId()) && Objects.equals(getName(), lockerDto.getName()) && Objects.equals(getPhone(), lockerDto.getPhone()) && Objects.equals(getLockerCode(), lockerDto.getLockerCode()) && Objects.equals(getLockerCnt(), lockerDto.getLockerCnt()) && Objects.equals(getLockerAddr(), lockerDto.getLockerAddr()) && Objects.equals(getLockerDeAddr(), lockerDto.getLockerDeAddr()) && Objects.equals(getMonthFee(), lockerDto.getMonthFee()) && Objects.equals(getLockerID(), lockerDto.getLockerID()) && Objects.equals(getHistoryNO(), lockerDto.getHistoryNO()) && Objects.equals(getLockerNO(), lockerDto.getLockerNO()) && Objects.equals(getMebrID(), lockerDto.getMebrID()) && Objects.equals(getStatusCode(), lockerDto.getStatusCode()) && Objects.equals(getStartDate(), lockerDto.getStartDate()) && Objects.equals(getEndDate(), lockerDto.getEndDate()) && Objects.equals(getEtc(), lockerDto.getEtc()) && Objects.equals(getRegDate(), lockerDto.getRegDate()) && Objects.equals(getFrsidNmbr(), lockerDto.getFrsidNmbr()) && Objects.equals(getModifyDate(), lockerDto.getModifyDate()) && Objects.equals(getLstidNmbr(), lockerDto.getLstidNmbr()) && Objects.equals(getExtdDays(), lockerDto.getExtdDays()) && Objects.equals(getEndDateString(), lockerDto.getEndDateString()) && Objects.equals(getRemainDays(), lockerDto.getRemainDays());
+        return Objects.equals(getId(), lockerDto.getId()) && Objects.equals(getName(), lockerDto.getName()) && Objects.equals(getPhone(), lockerDto.getPhone()) && Objects.equals(getLockerCode(), lockerDto.getLockerCode()) && Objects.equals(getLockerCnt(), lockerDto.getLockerCnt()) && Objects.equals(getLockerAddr(), lockerDto.getLockerAddr()) && Objects.equals(getLockerDeAddr(), lockerDto.getLockerDeAddr()) && Objects.equals(getMonthFee(), lockerDto.getMonthFee()) && Objects.equals(getLockerID(), lockerDto.getLockerID()) && Objects.equals(getHistoryNO(), lockerDto.getHistoryNO()) && Objects.equals(getLockerNO(), lockerDto.getLockerNO()) && Objects.equals(getMebrID(), lockerDto.getMebrID()) && Objects.equals(getStatusCode(), lockerDto.getStatusCode()) && Objects.equals(getStartDate(), lockerDto.getStartDate()) && Objects.equals(getEndDate(), lockerDto.getEndDate()) && Objects.equals(getEtc(), lockerDto.getEtc()) && Objects.equals(getExtdDays(), lockerDto.getExtdDays()) && Objects.equals(getEndDateString(), lockerDto.getEndDateString()) && Objects.equals(getRemainDays(), lockerDto.getRemainDays());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getMebrNo(), getId(), getName(), getPhone(), getLockerCode(), getLockerCnt(), getLockerAddr(), getLockerDeAddr(), getMonthFee(), getLockerID(), getHistoryNO(), getLockerNO(), getMebrID(), getStatusCode(), getStartDate(), getEndDate(), getEtc(), getRegDate(), getFrsidNmbr(), getModifyDate(), getLstidNmbr(), getExtdDays(), getEndDateString(), getRemainDays());
+        return Objects.hash(getId(), getName(), getPhone(), getLockerCode(), getLockerCnt(), getLockerAddr(), getLockerDeAddr(), getMonthFee(), getLockerID(), getHistoryNO(), getLockerNO(), getMebrID(), getStatusCode(), getStartDate(), getEndDate(), getEtc(), getExtdDays(), getEndDateString(), getRemainDays());
     }
 
     @Override
     public String toString() {
         return "LockerDto{" +
-                "mebrNo=" + mebrNo +
                 ", id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +

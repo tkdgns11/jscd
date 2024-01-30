@@ -51,13 +51,13 @@
         <button class="admin" id="removeBtn">삭제</button>
         <span id="guideText"></span>
     </div>
-
+`
     <div class="boundary" id="floor4locker">
         <div class="lockerTitle">4층 425</div>
         <div class="lockerDetail" id="425locker">
             <div class="locker-row">
                 <c:forEach items="${lockerList}" var="locker">
-                    <c:if test="${locker.lockerCode == '01' and (locker.lockerNO == 1 or locker.lockerNO == 4 or locker.lockerNO == 7 or locker.lockerNO == 10 or locker.lockerNO == 13 or locker.lockerNO == 16 or locker.lockerNO == 19 or locker.lockerNO == 22 or locker.lockerNO == 25 or locker.lockerNO == 28)}">
+                    <c:if test="${locker.lockerCode == '01' and locker.lockerNO <= 30 and locker.lockerNO % 3 == 1}">
                         <div class="locker ${locker.mebrID != null ? 'occupied' : ''}" id="4층${locker.lockerNO}">
                             <button class="lockerNO">${locker.lockerNO}</button>
                             <div id="4-${locker.lockerNO}">
@@ -76,7 +76,7 @@
             </div>
             <div class="locker-row">
                 <c:forEach items="${lockerList}" var="locker">
-                    <c:if test="${locker.lockerCode == '01' and (locker.lockerNO == 2 or locker.lockerNO == 5 or locker.lockerNO == 8 or locker.lockerNO == 11 or locker.lockerNO == 14 or locker.lockerNO == 17 or locker.lockerNO == 20 or locker.lockerNO == 23 or locker.lockerNO == 26 or locker.lockerNO == 29)}">
+                    <c:if test="${locker.lockerCode == '01' and locker.lockerNO <= 30 and locker.lockerNO % 3 == 2}">
                         <div class="locker ${locker.mebrID != null ? 'occupied' : ''}" id="4층${locker.lockerNO}">
                             <button class="lockerNO">${locker.lockerNO}</button>
                             <div id="4-${locker.lockerNO}">
@@ -95,7 +95,7 @@
             </div>
             <div class="locker-row">
                 <c:forEach items="${lockerList}" var="locker">
-                    <c:if test="${locker.lockerCode == '01' and (locker.lockerNO == 3 or locker.lockerNO == 6 or locker.lockerNO == 9 or locker.lockerNO == 12 or locker.lockerNO == 15 or locker.lockerNO == 18 or locker.lockerNO == 21 or locker.lockerNO == 24 or locker.lockerNO == 27 or locker.lockerNO == 30)}">
+                    <c:if test="${locker.lockerCode == '01' and locker.lockerNO <= 30 and locker.lockerNO % 3 == 0}">
                         <div class="locker ${locker.mebrID != null ? 'occupied' : ''}" id="4층${locker.lockerNO}">
                             <button class="lockerNO">${locker.lockerNO}</button>
                             <div id="4-${locker.lockerNO}">
@@ -118,7 +118,7 @@
         <div class="lockerDetail" id="423locker">
             <div class="locker-row">
                 <c:forEach items="${lockerList}" var="locker">
-                    <c:if test="${locker.lockerCode == '01' and (locker.lockerNO == 31 or locker.lockerNO == 34 or locker.lockerNO == 37 or locker.lockerNO == 40 or locker.lockerNO == 43 or locker.lockerNO == 46 or locker.lockerNO == 49 or locker.lockerNO == 52 or locker.lockerNO == 55 or locker.lockerNO == 58)}">
+                    <c:if test="${locker.lockerCode == '01' and locker.lockerNO >= 30 and locker.lockerNO % 3 == 1}">
                         <div class="locker ${locker.mebrID != null ? 'occupied' : ''}" id="4층${locker.lockerNO}">
                             <button class="lockerNO">${locker.lockerNO}</button>
                             <div id="4-${locker.lockerNO}">
@@ -137,7 +137,7 @@
             </div>
             <div class="locker-row">
                 <c:forEach items="${lockerList}" var="locker">
-                    <c:if test="${locker.lockerCode == '01' and (locker.lockerNO == 32 or locker.lockerNO == 35 or locker.lockerNO == 38 or locker.lockerNO == 41 or locker.lockerNO == 44 or locker.lockerNO == 47 or locker.lockerNO == 50 or locker.lockerNO == 53 or locker.lockerNO == 56 or locker.lockerNO == 59)}">
+                    <c:if test="${locker.lockerCode == '01' and locker.lockerNO >= 30 and locker.lockerNO % 3 == 2}">
                         <div class="locker ${locker.mebrID != null ? 'occupied' : ''}" id="4층${locker.lockerNO}">
                             <button class="lockerNO">${locker.lockerNO}</button>
                             <div id="4-${locker.lockerNO}">
@@ -156,7 +156,7 @@
             </div>
             <div class="locker-row">
                 <c:forEach items="${lockerList}" var="locker">
-                    <c:if test="${locker.lockerCode == '01' and (locker.lockerNO == 33 or locker.lockerNO == 36 or locker.lockerNO == 39 or locker.lockerNO == 42 or locker.lockerNO == 45 or locker.lockerNO == 48 or locker.lockerNO == 51 or locker.lockerNO == 54 or locker.lockerNO == 57 or locker.lockerNO == 60)}">
+                    <c:if test="${locker.lockerCode == '01' and locker.lockerNO > 30 and locker.lockerNO % 3 == 0}">
                         <div class="locker ${locker.mebrID != null ? 'occupied' : ''}" id="4층${locker.lockerNO}">
                             <button class="lockerNO">${locker.lockerNO}</button>
                             <div id="4-${locker.lockerNO}">
@@ -180,7 +180,7 @@
         <div class="lockerDetail" id="522locker">
             <div class="locker-row">
                 <c:forEach items="${lockerList}" var="locker">
-                    <c:if test="${locker.lockerCode == '02' and (locker.lockerNO == 1 or locker.lockerNO == 7 or locker.lockerNO == 13 or locker.lockerNO == 19 or locker.lockerNO == 25 or locker.lockerNO == 31 or locker.lockerNO == 37 or locker.lockerNO == 43)}">
+                    <c:if test="${locker.lockerCode == '02' and (locker.lockerNO % 6 == 1)}">
                         <div class="locker5 ${locker.mebrID != null ? 'occupied' : ''}" id="5층${locker.lockerNO}">
                             <button class="lockerNO">${locker.lockerNO}</button>
                             <div id="5-${locker.lockerNO}">
@@ -200,7 +200,7 @@
             </div>
             <div class="locker-row">
                 <c:forEach items="${lockerList}" var="locker">
-                    <c:if test="${locker.lockerCode == '02' and (locker.lockerNO == 2 or locker.lockerNO == 8 or locker.lockerNO == 14 or locker.lockerNO == 20 or locker.lockerNO == 26 or locker.lockerNO == 32 or locker.lockerNO == 38 or locker.lockerNO == 44)}">
+                    <c:if test="${locker.lockerCode == '02' and (locker.lockerNO % 6 == 2)}">
                         <div class="locker5 ${locker.mebrID != null ? 'occupied' : ''}" id="5층${locker.lockerNO}">
                             <button class="lockerNO">${locker.lockerNO}</button>
                             <div id="5-${locker.lockerNO}">
@@ -219,27 +219,7 @@
             </div>
             <div class="locker-row">
                 <c:forEach items="${lockerList}" var="locker">
-                    <c:if test="${locker.lockerCode == '02' and (locker.lockerNO == 3 or locker.lockerNO == 9 or locker.lockerNO == 15 or locker.lockerNO == 21 or locker.lockerNO == 27 or locker.lockerNO == 33 or locker.lockerNO == 39 or locker.lockerNO == 45)}">
-                        <div class="locker5 ${locker.mebrID != null ? 'occupied' : ''}" id="5층${locker.lockerNO}">
-                            <button class="lockerNO">${locker.lockerNO}</button>
-                            <div id="5-${locker.lockerNO}">
-                                <c:choose>
-                                    <c:when test="${locker.mebrID != null}">
-                                        <p>사용중</p>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <p>빈자리</p>
-                                    </c:otherwise>
-                                </c:choose>
-                            </div>
-                        </div>
-                    </c:if>
-                </c:forEach>
-            </div>
-
-            <div class="locker-row">
-                <c:forEach items="${lockerList}" var="locker">
-                    <c:if test="${locker.lockerCode == '02' and (locker.lockerNO == 4 or locker.lockerNO == 10 or locker.lockerNO == 16 or locker.lockerNO == 22 or locker.lockerNO == 28 or locker.lockerNO == 34 or locker.lockerNO == 40 or locker.lockerNO == 46)}">
+                    <c:if test="${locker.lockerCode == '02' and (locker.lockerNO % 6 == 3)}">
                         <div class="locker5 ${locker.mebrID != null ? 'occupied' : ''}" id="5층${locker.lockerNO}">
                             <button class="lockerNO">${locker.lockerNO}</button>
                             <div id="5-${locker.lockerNO}">
@@ -259,7 +239,7 @@
 
             <div class="locker-row">
                 <c:forEach items="${lockerList}" var="locker">
-                    <c:if test="${locker.lockerCode == '02' and (locker.lockerNO == 5 or locker.lockerNO == 11 or locker.lockerNO == 17 or locker.lockerNO == 23 or locker.lockerNO == 29 or locker.lockerNO == 35 or locker.lockerNO == 41 or locker.lockerNO == 47)}">
+                    <c:if test="${locker.lockerCode == '02' and (locker.lockerNO % 6 == 4)}">
                         <div class="locker5 ${locker.mebrID != null ? 'occupied' : ''}" id="5층${locker.lockerNO}">
                             <button class="lockerNO">${locker.lockerNO}</button>
                             <div id="5-${locker.lockerNO}">
@@ -279,7 +259,27 @@
 
             <div class="locker-row">
                 <c:forEach items="${lockerList}" var="locker">
-                    <c:if test="${locker.lockerCode == '02' and (locker.lockerNO == 6 or locker.lockerNO == 12 or locker.lockerNO == 18 or locker.lockerNO == 24 or locker.lockerNO == 30 or locker.lockerNO == 36 or locker.lockerNO == 42 or locker.lockerNO == 48)}">
+                    <c:if test="${locker.lockerCode == '02' and (locker.lockerNO % 6 == 5)}">
+                        <div class="locker5 ${locker.mebrID != null ? 'occupied' : ''}" id="5층${locker.lockerNO}">
+                            <button class="lockerNO">${locker.lockerNO}</button>
+                            <div id="5-${locker.lockerNO}">
+                                <c:choose>
+                                    <c:when test="${locker.mebrID != null}">
+                                        <p>사용중</p>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <p>빈자리</p>
+                                    </c:otherwise>
+                                </c:choose>
+                            </div>
+                        </div>
+                    </c:if>
+                </c:forEach>
+            </div>
+
+            <div class="locker-row">
+                <c:forEach items="${lockerList}" var="locker">
+                    <c:if test="${locker.lockerCode == '02' and (locker.lockerNO % 6 == 0)}">
                         <div class="locker5 ${locker.mebrID != null ? 'occupied' : ''}" id="5층${locker.lockerNO}">
                             <button class="lockerNO">${locker.lockerNO}</button>
                             <div id="5-${locker.lockerNO}">
@@ -306,7 +306,6 @@
 
         let loginCheck = <c:out value="${loginCheck}" default="false" />; //loginCheck 속성이 null이거나 존재하지 않을 때 기본값으로 false를 사용
         let loginID = "<c:out value='${mebrID}' default='' />"; // 따옴표로 묶어서 문자열로 만듦
-
 
         let mebrLockerList = [
             <c:forEach var="locker" items="${mebrLockerDtoList}" varStatus="status">
@@ -533,7 +532,7 @@
         }
 
         function removeNo() {
-            alert("관리자에게 문의하세요! 일반회원은 자기자리 이동만 가능합니다! ");
+            alert("관리자에게 문의하세요!");
             return;
 
             if (removeClick === 1) return;

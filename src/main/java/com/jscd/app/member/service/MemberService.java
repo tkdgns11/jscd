@@ -32,4 +32,5 @@ public interface MemberService {
 	int modifyPwd(MemberDto memberDto)throws Exception;
 
 
-	}
+    int checkID(String ID) throws Exception;
+}

@@ -43,16 +43,16 @@ public class LstRegistDto {
     private String content;
 
     private String regDate;
-    private Integer firstIdNo;
+    private Integer firstIdNO;
     private String modifyDate;
-    private Integer lastIdNo;
+    private Integer lastIdNO;
     private String etc;
     private String courseName;
 
     public LstRegistDto() {
     }
 
-    public LstRegistDto(Integer registCode, String title, String discription, Integer courseCode, String courseCategory, String subject1, String subject2, String subject3, String subject4, String subject5, Integer price1, Integer price2, Integer price3, Integer price4, Integer price5, String onOff, String status, Integer minNum, Integer maxNum, String location, Integer currentNum, String startDate, String endDate, String startTime, String endTime, String name, String book, String material, Integer totalPrice, String discount, Integer lastPrice, String content, String regDate, Integer firstIdNo, String modifyDate, Integer lastIdNo, String etc, String courseName) {
+    public LstRegistDto(Integer registCode, String title, String discription, Integer courseCode, String courseCategory, String subject1, String subject2, String subject3, String subject4, String subject5, Integer price1, Integer price2, Integer price3, Integer price4, Integer price5, String onOff, String status, Integer minNum, Integer maxNum, String location, Integer currentNum, String startDate, String endDate, String startTime, String endTime, String name, String book, String material, Integer totalPrice, String discount, Integer lastPrice, String content, String regDate, Integer firstIdNO, String modifyDate, Integer lastIdNO, String etc, String courseName) {
         this.registCode = registCode;
         this.title = title;
         this.discription = discription;
@@ -86,9 +86,9 @@ public class LstRegistDto {
         this.lastPrice = lastPrice;
         this.content = content;
         this.regDate = regDate;
-        this.firstIdNo = firstIdNo;
+        this.firstIdNO = firstIdNO;
         this.modifyDate = modifyDate;
-        this.lastIdNo = lastIdNo;
+        this.lastIdNO = lastIdNO;
         this.etc = etc;
         this.courseName = courseName;
     }
@@ -357,12 +357,12 @@ public class LstRegistDto {
         this.regDate = regDate;
     }
 
-    public Integer getFirstIdNo() {
-        return firstIdNo;
+    public Integer getFirstIdNO() {
+        return firstIdNO;
     }
 
-    public void setFirstIdNo(Integer firstIdNo) {
-        this.firstIdNo = firstIdNo;
+    public void setFirstIdNO(Integer firstIdNO) {
+        this.firstIdNO = firstIdNO;
     }
 
     public String getModifyDate() {
@@ -373,12 +373,12 @@ public class LstRegistDto {
         this.modifyDate = modifyDate;
     }
 
-    public Integer getLastIdNo() {
-        return lastIdNo;
+    public Integer getLastIdNO() {
+        return lastIdNO;
     }
 
-    public void setLastIdNo(Integer lastIdNo) {
-        this.lastIdNo = lastIdNo;
+    public void setLastIdNO(Integer lastIdNO) {
+        this.lastIdNO = lastIdNO;
     }
 
     public String getEtc() {
@@ -433,9 +433,9 @@ public class LstRegistDto {
                 ", lastPrice=" + lastPrice +
                 ", content='" + content + '\'' +
                 ", regDate='" + regDate + '\'' +
-                ", firstIdNo=" + firstIdNo +
+                ", firstIdNO=" + firstIdNO +
                 ", modifyDate='" + modifyDate + '\'' +
-                ", lastIdNo=" + lastIdNo +
+                ", lastIdNO=" + lastIdNO +
                 ", etc='" + etc + '\'' +
                 ", courseName='" + courseName + '\'' +
                 '}';

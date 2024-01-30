@@ -505,7 +505,6 @@
             //생성된 쿠폰목록에서 체크된 체크박스 전체 가져옴
             const checkedCoupon = document.querySelectorAll(".couponSelectCheckbox:checked");
 
-
             checkedCoupon.forEach(function (checkbox) {
                 // 체크박스 옆에 있는 형제 요소의 ID 값을 가져옴
                 let couponId = checkbox.nextElementSibling.innerText;

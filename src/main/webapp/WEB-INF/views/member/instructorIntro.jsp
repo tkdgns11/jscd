@@ -40,7 +40,7 @@
         <h1 id="introTitle">강사 소개말</h1>
         <textarea rows="20" cols="80" name="intro" readonly id="intro" id="intro">${infoDto.getIntro()}</textarea>
         <input type="button" value="수정" class="modifyBtn" style="margin-top: 170px;left: 3.5%">
-        <input type="hidden" name="mebrNo" value="${memberDto.getMebrNo()}" id="mebrNo">
+        <input type="hidden" name="mebrNO" value="${memberDto.getMebrNO()}" id="mebrNO">
     </div>
 </div>
 <footer>
@@ -73,10 +73,10 @@
                 form.setAttribute('action', '/member/instructorIntro');
 
                 var intro = document.getElementById('intro');
-                var mebrNo = document.getElementById('mebrNo');
+                var mebrNO = document.getElementById('mebrNO');
 
                 form.appendChild(intro);
-                form.appendChild(mebrNo);
+                form.appendChild(mebrNO);
                 document.body.appendChild(form);
                 form.submit();
             }

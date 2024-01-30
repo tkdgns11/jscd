@@ -56,11 +56,11 @@ public class StdManageController {
 
 
     @GetMapping("/read") //상세 페이지
-    public String infoRead(Integer mebrNo, Integer page, Model model) {
+    public String infoRead(Integer mebrNO, Integer page, Model model) {
 
         try {
             //전달받은 회원번호로 학생 조회
-            StdMemberManageDto stdDto = stdService.read(mebrNo);
+            StdMemberManageDto stdDto = stdService.read(mebrNO);
             //jsp에 전달
             model.addAttribute("stdDto", stdDto);
             model.addAttribute("page", page);
@@ -86,21 +86,21 @@ public class StdManageController {
             e.printStackTrace();
             //에러 발생 시, 읽기 화면으로 이동, 에러 msg 전달
             model.addAttribute("msg", "MOD_ERR");
-            return "redirect:/adminManage/stdManage/read?page=" + page + "&mebrNo=" + stdDto.getMebrNo();
+            return "redirect:/adminManage/stdManage/read?page=" + page + "&mebrNO=" + stdDto.getMebrNO();
         }
-        return "redirect:/adminManage/stdManage/read?page="+page+"&mebrNo="+stdDto.getMebrNo();
+        return "redirect:/adminManage/stdManage/read?page="+page+"&mebrNO="+stdDto.getMebrNO();
     }
 
     @PostMapping("/modifyStatus") //메인 페이지 상태 일괄 수정
-    public String statusModify(Integer[] mebrNoArr, Integer page, Integer status, Model model) {
+    public String statusModify(Integer[] mebrNOArr, Integer page, Integer status, Model model) {
         try {
             //전달 받은 회원 번호 배열 list에 담기
-            List mebrNo = new ArrayList(mebrNoArr.length);
-            for (int i = 0; i < mebrNoArr.length; i++) {
-                mebrNo.add(mebrNoArr[i]);
+            List mebrNO = new ArrayList(mebrNOArr.length);
+            for (int i = 0; i < mebrNOArr.length; i++) {
+                mebrNO.add(mebrNOArr[i]);
             }
             //상태와 배열 전달
-            stdService.modifyStatus(status, mebrNo);
+            stdService.modifyStatus(status, mebrNO);
             //성공 시 msg jsp에 전달
             model.addAttribute("msg", "MOD_OK");
         } catch (Exception e) {
@@ -114,18 +114,18 @@ public class StdManageController {
     }
 
     @PostMapping("/delete") //상세보기 화면에서 삭제
-    public String stdDelete(Integer mebrNo, Integer page, Model model) {
+    public String stdDelete(Integer mebrNO, Integer page, Model model) {
 
         try {
             //전달받은 회원번호로 학생 삭제
-            stdService.remove(mebrNo);
+            stdService.remove(mebrNO);
             //성공 msg 전달
             model.addAttribute("msg", "DEL_OK");
         } catch (Exception e) {
             e.printStackTrace();
             //에러 발생 시, 에러 msg 전달, 읽기 화면으로 리다이렉트
             model.addAttribute("msg", "DEL_ERR");
-            return "redirect:/adminManage/stdManage/read?page=" + page + "&mebrNo=" + mebrNo;
+            return "redirect:/adminManage/stdManage/read?page=" + page + "&mebrNO=" + mebrNO;
 
         }
 
@@ -134,16 +134,16 @@ public class StdManageController {
     }
 
     @PostMapping("/deleteMain") //메인화면에서 삭제
-    public String stdDeleteMain(Integer[]mebrNoArr, Integer page, Model model) {
+    public String stdDeleteMain(Integer[]mebrNOArr, Integer page, Model model) {
 
         try {
             //전달받은 회원번호 배열 list에 담기
-            List mebrNo = new ArrayList(mebrNoArr.length);
-            for (int i = 0; i < mebrNoArr.length; i++) {
-                mebrNo.add(mebrNoArr[i]);
+            List mebrNO = new ArrayList(mebrNOArr.length);
+            for (int i = 0; i < mebrNOArr.length; i++) {
+                mebrNO.add(mebrNOArr[i]);
             }
             //회원 배열 전달
-            stdService.removeMain(mebrNo);
+            stdService.removeMain(mebrNO);
             //성공 시, msg jsp에 전달
             model.addAttribute("msg", "DEL_OK");
         } catch (Exception e) {

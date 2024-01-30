@@ -26,6 +26,7 @@ public class LstRegistDaoImpl implements LstRegistDao {
     //2.강의 등록
     @Override
     public int addRegist(LstRegistDto lstRegistDto) throws Exception {
+        System.out.println("lstRegistDto = " + lstRegistDto);
         return session.insert(namespace + "insert", lstRegistDto);
     }
 

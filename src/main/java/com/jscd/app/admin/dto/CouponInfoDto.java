@@ -16,9 +16,9 @@ public class CouponInfoDto {
     private char isAvailable;
     private Integer historyNO ;
     private Date regDate;
-    private String firstIdNo;
+    private String firstIdNO;
     private Date modifyDate;
-    private String lastIdNo;
+    private String lastIdNO;
     private String etc;
 
     public CouponInfoDto() {}
@@ -116,12 +116,12 @@ public class CouponInfoDto {
         this.regDate = regDate;
     }
 
-    public String getFirstIdNo() {
-        return firstIdNo;
+    public String getFirstIdNO() {
+        return firstIdNO;
     }
 
-    public void setFirstIdNo(String firstIdNo) {
-        this.firstIdNo = firstIdNo;
+    public void setFirstIdNO(String firstIdNO) {
+        this.firstIdNO = firstIdNO;
     }
 
     public Date getModifyDate() {
@@ -132,12 +132,12 @@ public class CouponInfoDto {
         this.modifyDate = modifyDate;
     }
 
-    public String getLastIdNo() {
-        return lastIdNo;
+    public String getLastIdNO() {
+        return lastIdNO;
     }
 
-    public void setLastIdNo(String lastIdNo) {
-        this.lastIdNo = lastIdNo;
+    public void setLastIdNO(String lastIdNO) {
+        this.lastIdNO = lastIdNO;
     }
 
     public String getEtc() {
@@ -153,12 +153,12 @@ public class CouponInfoDto {
         if (this == o) return true;
         if (!(o instanceof CouponInfoDto)) return false;
         CouponInfoDto that = (CouponInfoDto) o;
-        return getIsAvailable() == that.getIsAvailable() && Objects.equals(getCouponNO(), that.getCouponNO()) && Objects.equals(getName(), that.getName()) && Objects.equals(getDescription(), that.getDescription()) && Objects.equals(getMaxIssueNO(), that.getMaxIssueNO()) && Objects.equals(getMaxPerMebr(), that.getMaxPerMebr()) && Objects.equals(getMaxPerUse(), that.getMaxPerUse()) && Objects.equals(getValidityPeriodIssue(), that.getValidityPeriodIssue()) && Objects.equals(getSpecialNotes(), that.getSpecialNotes()) && Objects.equals(getHistoryNO(), that.getHistoryNO()) && Objects.equals(getRegDate(), that.getRegDate()) && Objects.equals(getFirstIdNo(), that.getFirstIdNo()) && Objects.equals(getModifyDate(), that.getModifyDate()) && Objects.equals(getLastIdNo(), that.getLastIdNo()) && Objects.equals(getEtc(), that.getEtc());
+        return getIsAvailable() == that.getIsAvailable() && Objects.equals(getCouponNO(), that.getCouponNO()) && Objects.equals(getName(), that.getName()) && Objects.equals(getDescription(), that.getDescription()) && Objects.equals(getMaxIssueNO(), that.getMaxIssueNO()) && Objects.equals(getMaxPerMebr(), that.getMaxPerMebr()) && Objects.equals(getMaxPerUse(), that.getMaxPerUse()) && Objects.equals(getValidityPeriodIssue(), that.getValidityPeriodIssue()) && Objects.equals(getSpecialNotes(), that.getSpecialNotes()) && Objects.equals(getHistoryNO(), that.getHistoryNO()) && Objects.equals(getRegDate(), that.getRegDate()) && Objects.equals(getFirstIdNO(), that.getFirstIdNO()) && Objects.equals(getModifyDate(), that.getModifyDate()) && Objects.equals(getLastIdNO(), that.getLastIdNO()) && Objects.equals(getEtc(), that.getEtc());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getCouponNO(), getName(), getDescription(), getMaxIssueNO(), getMaxPerMebr(), getMaxPerUse(), getValidityPeriodIssue(), getSpecialNotes(), getIsAvailable(), getHistoryNO(), getRegDate(), getFirstIdNo(), getModifyDate(), getLastIdNo(), getEtc());
+        return Objects.hash(getCouponNO(), getName(), getDescription(), getMaxIssueNO(), getMaxPerMebr(), getMaxPerUse(), getValidityPeriodIssue(), getSpecialNotes(), getIsAvailable(), getHistoryNO(), getRegDate(), getFirstIdNO(), getModifyDate(), getLastIdNO(), getEtc());
     }
 
     @Override
@@ -175,9 +175,9 @@ public class CouponInfoDto {
                 ", isAvailable=" + isAvailable +
                 ", historyNO=" + historyNO +
                 ", regDate=" + regDate +
-                ", firstIdNo='" + firstIdNo + '\'' +
+                ", firstIdNO='" + firstIdNO + '\'' +
                 ", modifyDate=" + modifyDate +
-                ", lastIdNo='" + lastIdNo + '\'' +
+                ", lastIdNO='" + lastIdNO + '\'' +
                 ", etc='" + etc + '\'' +
                 '}';
     }

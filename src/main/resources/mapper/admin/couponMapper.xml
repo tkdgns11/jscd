@@ -22,26 +22,24 @@
 <!--        </foreach>-->
 <!--    </insert>-->
 
-    <insert id="insertCoupons" parameterType="List">
-        INSERT INTO couponDetail
-        (couponID, couponNO, issueDateTime, startUseDate, endUseDate, usableStartTime, usableEndTime, useAvailable, regDate)
-        VALUES
-        <foreach collection="list" item="coupon" separator=",">
-            (#{coupon.couponID}, #{coupon.couponNO}, now(), #{coupon.startUseDate}, #{coupon.endUseDate}, #{coupon.usableStartTime}, #{coupon.usableEndTime},'y', now())
-        </foreach>
-    </insert>
+<!--    <insert id="insertCoupons" parameterType="List">-->
+<!--        INSERT INTO couponDetail-->
+<!--        (couponID, couponNO, issueDateTime, startUseDate, endUseDate, usableStartTime, usableEndTime, useAvailable, regDate)-->
+<!--        VALUES-->
+<!--        <foreach collection="list" item="coupon" separator=",">-->
+<!--            (#{coupon.couponID}, #{coupon.couponNO}, now(), #{coupon.startUseDate}, #{coupon.endUseDate}, #{coupon.usableStartTime}, #{coupon.usableEndTime}, #{coupon.useAvailable}, now())-->
+<!--        </foreach>-->
+<!--    </insert>-->
 
     <select id="selectByCouponID" parameterType="String" resultType="Integer">
-        SELECT COUNT(*) FROM couponDetail WHERE couponID = #{couponID}
+        SELECT COUNT(*) FROM couponDetail WHERE couponID = #{couponID} and useAvailable = 'y'
     </select>
 
 
     <insert id="insertCoupon" parameterType="CouponDto">
         INSERT INTO couponDetail
-        (couponID, couponNO)
-        VALUES (#{couponID}, #{couponNO})
+        (couponID, couponNO, couponHisCode, occurrenceDateTime, startUseDate, endUseDate, usableStartTime, usableEndTime, useAvailable)
+        VALUES (#{couponID}, #{couponNO}, #{couponHisCode}, now(),  #{startUseDate}, #{endUseDate}, #{usableStartTime}, #{usableEndTime}, #{useAvailable})
     </insert>
-
-
 
 </mapper>

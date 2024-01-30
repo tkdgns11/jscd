@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface CouponDao {
 
-    int insertCoupons(List<CouponDto> coupons);
+    int insertCoupons(List<CouponDto> coupons) throws Exception;
 
-    void insertCoupon(CouponDto coupon);
+    void insertCoupon(CouponDto coupon) throws Exception;
 
-    int selectByCouponID(String couponID);
+    int selectByCouponID(String couponID) throws Exception;
 }

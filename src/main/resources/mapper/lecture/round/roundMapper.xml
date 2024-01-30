@@ -5,13 +5,13 @@
 <mapper namespace="com.jscd.app.lecture.round.roundMapper">
     <!--    과정 전체 읽기-->
     <select id="selectAll" resultType="RoundDto">
-        select roundCode, roundName, regDate, firstIdNo
+        select roundCode, roundName, regDate, firstIdNO
         from round
     </select>
     <!--    과정 등록하기-->
     <insert id="addRound" parameterType="RoundDto">
-        insert into round(roundName, firstIdNo)
-        values (#{roundName}, #{firstIdNo})
+        insert into round(roundName, firstIdNO)
+        values (#{roundName}, #{firstIdNO})
     </insert>
     <!--    과정 세부사항 확인하기-->
     <select id="readRound" parameterType="int" resultType="RoundDto">
@@ -27,7 +27,7 @@
     <!--    과정 수정하기-->
     <update id="modifyRound" parameterType="RoundDto">
         update round
-        set roundName = #{roundName}, firstIdNo = #{firstIdNo}
+        set roundName = #{roundName}, firstIdNO = #{firstIdNO}
         where roundCode = #{roundCode}
     </update>
 </mapper>

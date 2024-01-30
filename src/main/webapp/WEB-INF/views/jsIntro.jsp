@@ -130,10 +130,11 @@
         <div class="itemBox">
             <p class="itemTitle">3개의 스터디룸</p>
             <img src="<c:url value="/img/stRoom.jpg"/>" class="itemImg" style="width: 550px; height: 400px;">
-            <p class="itemDesc">518호내의 위치</p>
+            <p class="itemDesc">tv, 화이트보드, 테이블, 의자 배치</p>
         </div>
         <div class="itemBox" style="margin-top: 65px;">
             <img src="<c:url value="/img/stRoom3.jpeg"/>" class="itemImg" style="width: 550px; height: 400px;">
+            <p class="itemDesc">밖에서 본 모습</p>
         </div>
     </div>
 

@@ -9,7 +9,7 @@ public interface CouponService {
 
     List<CouponInfoDto> GetCouponInfoList();
 
-    int registerCoupons(List<CouponDto> coupons) ;
+    int registerCoupons(List<CouponDto> coupons) throws Exception;
 
-    int checkCoupon(String couponID);
+    int checkCoupon(String couponID) throws Exception;
 }

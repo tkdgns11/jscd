@@ -5,36 +5,36 @@ import java.util.Objects;
 
 public class InstructorInfoDto { //강사정보
 
-        private Integer iscrNo; //pk_강사 고유 코드
-        private Integer mebrNo; //회원 고유 번호
+        private Integer iscrNO; //pk_강사 고유 코드
+        private Integer mebrNO; //회원 고유 번호
         private String intro;
         private Integer status;
 
         private Float hourPmt;
         private Date regDate;
-        private String firstIdNo;
+        private String firstIdNO;
         private Date modifyDate;
-        private String lastIdNo;
+        private String lastIdNO;
         private String etc;
 
         public InstructorInfoDto(){}
 
-        public InstructorInfoDto(Integer iscrNo, Integer mebrNo, String intro, Integer status, Float hourPmt, Date regDate, String firstIdNo, Date modifyDate, String lastIdNo, String etc) {
-            this.iscrNo = iscrNo;
-            this.mebrNo = mebrNo;
+        public InstructorInfoDto(Integer iscrNO, Integer mebrNO, String intro, Integer status, Float hourPmt, Date regDate, String firstIdNO, Date modifyDate, String lastIdNO, String etc) {
+            this.iscrNO = iscrNO;
+            this.mebrNO = mebrNO;
             this.intro = intro;
             this.status = status;
             this.hourPmt = hourPmt;
             this.regDate = regDate;
-            this.firstIdNo = firstIdNo;
+            this.firstIdNO = firstIdNO;
             this.modifyDate = modifyDate;
-            this.lastIdNo = lastIdNo;
+            this.lastIdNO = lastIdNO;
             this.etc = etc;
         }
 
-    public InstructorInfoDto(Integer iscrNo, Integer mebrNo, String intro, Integer status, Float hourPmt) {
-        this.iscrNo = iscrNo;
-        this.mebrNo = mebrNo;
+    public InstructorInfoDto(Integer iscrNO, Integer mebrNO, String intro, Integer status, Float hourPmt) {
+        this.iscrNO = iscrNO;
+        this.mebrNO = mebrNO;
         this.intro = intro;
         this.status = status;
         this.hourPmt = hourPmt;
@@ -42,20 +42,20 @@ public class InstructorInfoDto { //강사정보
 
 
 
-        public Integer getIscrNo() {
-            return iscrNo;
+        public Integer getIscrNO() {
+            return iscrNO;
         }
 
-        public void setIscrNo(Integer iscrNo) {
-            this.iscrNo = iscrNo;
+        public void setIscrNO(Integer iscrNO) {
+            this.iscrNO = iscrNO;
         }
 
-        public Integer getMebrNo() {
-            return mebrNo;
+        public Integer getMebrNO() {
+            return mebrNO;
         }
 
-        public void setMebrNo(Integer mebrNo) {
-            this.mebrNo = mebrNo;
+        public void setMebrNO(Integer mebrNO) {
+            this.mebrNO = mebrNO;
         }
 
         public String getIntro() {
@@ -90,12 +90,12 @@ public class InstructorInfoDto { //강사정보
             this.regDate = regDate;
         }
 
-        public String getfirstIdNo() {
-            return firstIdNo;
+        public String getfirstIdNO() {
+            return firstIdNO;
         }
 
-        public void setfirstIdNo(String firstIdNo) {
-            this.firstIdNo = firstIdNo;
+        public void setfirstIdNO(String firstIdNO) {
+            this.firstIdNO = firstIdNO;
         }
 
         public Date getModifyDate() {
@@ -106,12 +106,12 @@ public class InstructorInfoDto { //강사정보
             this.modifyDate = modifyDate;
         }
 
-        public String getlastIdNo() {
-            return lastIdNo;
+        public String getlastIdNO() {
+            return lastIdNO;
         }
 
-        public void setlastIdNo(String lastIdNo) {
-            this.lastIdNo = lastIdNo;
+        public void setlastIdNO(String lastIdNO) {
+            this.lastIdNO = lastIdNO;
         }
 
         public String getEtc() {
@@ -127,26 +127,26 @@ public class InstructorInfoDto { //강사정보
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
             InstructorInfoDto that = (InstructorInfoDto) o;
-            return Objects.equals(iscrNo, that.iscrNo) && Objects.equals(mebrNo, that.mebrNo) && Objects.equals(intro, that.intro) && Objects.equals(status, that.status) && Objects.equals(hourPmt, that.hourPmt) && Objects.equals(regDate, that.regDate) && Objects.equals(firstIdNo, that.firstIdNo) && Objects.equals(modifyDate, that.modifyDate) && Objects.equals(lastIdNo, that.lastIdNo) && Objects.equals(etc, that.etc);
+            return Objects.equals(iscrNO, that.iscrNO) && Objects.equals(mebrNO, that.mebrNO) && Objects.equals(intro, that.intro) && Objects.equals(status, that.status) && Objects.equals(hourPmt, that.hourPmt) && Objects.equals(regDate, that.regDate) && Objects.equals(firstIdNO, that.firstIdNO) && Objects.equals(modifyDate, that.modifyDate) && Objects.equals(lastIdNO, that.lastIdNO) && Objects.equals(etc, that.etc);
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(iscrNo, mebrNo, intro, status, hourPmt, regDate, firstIdNo, modifyDate, lastIdNo, etc);
+            return Objects.hash(iscrNO, mebrNO, intro, status, hourPmt, regDate, firstIdNO, modifyDate, lastIdNO, etc);
         }
 
         @Override
         public String toString() {
             return "InstructorInfoDto{" +
-                    "iscrNo=" + iscrNo +
-                    ", mebrNo=" + mebrNo +
+                    "iscrNO=" + iscrNO +
+                    ", mebrNO=" + mebrNO +
                     ", intro='" + intro + '\'' +
                     ", status=" + status +
                     ", hourPmt=" + hourPmt +
                     ", regDate=" + regDate +
-                    ", firstIdNo='" + firstIdNo + '\'' +
+                    ", firstIdNO='" + firstIdNO + '\'' +
                     ", modifyDate=" + modifyDate +
-                    ", lastIdNo='" + lastIdNo + '\'' +
+                    ", lastIdNO='" + lastIdNO + '\'' +
                     ", etc='" + etc + '\'' +
                     '}';
         }
