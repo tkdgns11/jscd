@@ -9,8 +9,8 @@
 ![jungsukerd3](https://github.com/tkdgns11/jscd/assets/134262318/6bed1e04-13aa-41bf-9299-899c95a7ebf1)
 
 ## 개발환경 
-# Spring framework 5.0.7 , Mybatis 3.5, MySQL 8.0, Tomcat 9.0, 
-# IntelliJ, MySqlWorkbench, VS Code, Git, DataGrip
+### Spring framework 5.0.7 , Mybatis 3.5, MySQL 8.0, Tomcat 9.0, 
+### IntelliJ, MySqlWorkbench, VS Code, Git, DataGrip
 
 ## 구글 드라이브 (산출문서) https://drive.google.com/drive/folders/1WbtBNvzTYSZZZ7KKohTmRPNkVARDUT-V?usp=drive_link
 
