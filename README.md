@@ -9,7 +9,8 @@
 
 피그마 (화면 구성 및 디자인) https://www.figma.com/file/z74K1b0Lg3Ho27GqJHeYYt/JungsukCoding?type=design&node-id=649%3A35&mode=design&t=1zFreXuAPWXUnz1u-1
 
-ERD 프로젝트 기간동안 총 77개 테이블을 설계하고 그 중 51개 테이블을 구현하였습니다. 
+ERD 
+프로젝트 기간동안 총 77개 테이블을 설계하고 그 중 51개 테이블을 구현하였습니다. 
 ![jungsukerd2](https://github.com/tkdgns11/jscd/assets/134262318/eceedc79-2e09-44ae-b19b-7d4cb106b7e3)
 
 ERD https://www.erdcloud.com/d/WeKLMPhyHwTmDEY6q
